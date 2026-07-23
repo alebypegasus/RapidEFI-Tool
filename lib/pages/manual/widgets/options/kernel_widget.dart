@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/extension/list_extension.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
@@ -56,8 +57,8 @@ class _KernelWidgetState extends State<KernelWidget> {
         .toList();
   }
 
-  static const String powerManagementText =
-      '禁用电源管理(DummyPowerManagement),修复CPU电源管理导致的重启问题(表现为出现AppleIntelCPUPowerManagement内核崩溃日志,或卡开机Logo,或刚进入系统就重启等问题).对于4代及以上平台,是NullCpuPowerManagement.kext的首选替代品';
+  String get powerManagementText =>
+      AppLocalizations.of(context)!.manualKernelDummyPowerManagement;
 
   static String rtcWake = KernelPatch.fixRTCWakeScheduling.note;
 
@@ -78,7 +79,7 @@ class _KernelWidgetState extends State<KernelWidget> {
       choices: [powerManagementText],
       selectedChoices: [dummyPowerManagement ? powerManagementText : ''],
       allowToggle: true,
-      subTitle: '电源管理',
+      subTitle: AppLocalizations.of(context)!.manualKernelPowerManagement,
       onChanged: (value) {
         // 提取更新状态和调用回调的逻辑到一个方法中
         updateDummyPowerManagement(value.isEmpty);
@@ -126,7 +127,7 @@ class _KernelWidgetState extends State<KernelWidget> {
       selectedChoices: selectedChoices,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: 'Kernel - Quirks 建议保持默认配置,除非必要或者清楚每一项的含义',
+      subTitle: AppLocalizations.of(context)!.manualKernelQuirksDefault,
       onChanged: (value) {
         selectedChoices = List<String>.from(value);
         final selected = selectedChoices.toSet();
@@ -149,7 +150,7 @@ class _KernelWidgetState extends State<KernelWidget> {
           .map((e) => e.comment)
           .toList(),
       allowToggle: false,
-      subTitle: 'SSD固态硬盘Trim策略',
+      subTitle: AppLocalizations.of(context)!.manualKernelTrimStrategy,
       tiplist: kernelTrims.map((e) => e.note.description).toList(),
       onChanged: (value) {
         final selectedComment = value.first;

@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/pages/hardware/widgets/hardware_shared.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis.dart';
@@ -77,10 +78,10 @@ class _AudioSectionState extends State<AudioSection> {
       return HardwareDeviceBlock([
         HardwareLine([
           entry.name,
-          if (entry.deviceId.isNotEmpty) '设备ID: ${entry.deviceId}',
+          if (entry.deviceId.isNotEmpty) AppLocalizations.of(context)!.hwDeviceID(entry.deviceId),
           if (entry.codecDeviceId.isNotEmpty)
             'Codec ID: ${entry.codecDeviceId}',
-          if (entry.model.isNotEmpty) '型号: ${entry.model}',
+          if (entry.model.isNotEmpty) AppLocalizations.of(context)!.hwModel(entry.model),
         ], color: color),
         if (widget.detailed)
           HardwarePathLine({
@@ -93,7 +94,7 @@ class _AudioSectionState extends State<AudioSection> {
 
     final hasAlc = _alcLayouts.isNotEmpty;
     return HardwareSection(
-      '声卡',
+      AppLocalizations.of(context)!.hwAudioCard,
       lines,
       note: audioCompatibility(widget.rawInfo),
       trailing: hasAlc
@@ -101,7 +102,7 @@ class _AudioSectionState extends State<AudioSection> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                  Text('布局ID:',
+                  Text(AppLocalizations.of(context)!.hwAudioLayoutId,
                       style: const TextStyle(
                           fontSize: 11, fontWeight: FontWeight.w600)),
                   const SizedBox(width: 5),

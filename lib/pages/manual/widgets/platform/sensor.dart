@@ -1,8 +1,9 @@
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
-import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/pages/shared/widgets/kext_choice_list.dart';
+import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 
 class Sensor extends StatelessWidget {
   final List<KernelKext> selectedKexts;
@@ -29,7 +30,7 @@ class Sensor extends StatelessWidget {
       showBundleNameTips: true,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: '传感器驱动(除非必要,否则不建议勾选)',
+      subTitle: AppLocalizations.of(context)!.manualSensorDriver,
       labelBuilder: kextFunctionOrBundleLabel,
       onChanged: (List<KernelKext> value) {
         final picked = value.toList();

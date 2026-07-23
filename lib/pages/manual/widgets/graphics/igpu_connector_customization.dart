@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/support/intel_connector_patch.dart';
 
@@ -28,6 +29,8 @@ class _IgpuConnectorCustomizationState
     extends State<IgpuConnectorCustomization> {
   late IntelConnectorPlatformTemplate _template;
   late List<_ConnectorDraft> _values;
+
+  bool get _isSupported => _template.supported;
 
   @override
   void initState() {
@@ -185,10 +188,13 @@ class _IgpuConnectorCustomizationState
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 8, 10, 0),
           child: Text(
-            _template.supported
-                ? '当前Framebuffer: ${_template.framebufferId}。按WhateverGreen官方表生成 framebuffer-conX-alldata。'
-                : '当前Framebuffer不支持结构化推荐值; 已有原始值可删除后重新选择受支持的核显基础配置。',
-            style: const TextStyle(fontSize: 12),
+            _isSupported
+                ? AppLocalizations.of(context)!.manualIgpuConnectorSupported(_template.framebufferId)
+                : AppLocalizations.of(context)!.manualIgpuConnectorUnsupported,
+            style: TextStyle(
+              fontSize: 12,
+              color: _isSupported ? null : Colors.red,
+            ),
           ),
         ),
         ..._values.asMap().entries.map(
@@ -199,7 +205,7 @@ class _IgpuConnectorCustomizationState
           child: Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              tooltip: '添加接口定制',
+              tooltip: AppLocalizations.of(context)!.manualAddConnectorTooltip,
               onPressed: !_template.supported ||
                       _values.length >= _template.connectorIndexes.length
                   ? null
@@ -225,14 +231,12 @@ class _IgpuConnectorCustomizationState
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 8,
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
-            spacing: 12,
             children: [
               _buildDropdown<int>(
-                label: '接口',
+                label: AppLocalizations.of(context)!.manualConnectorLabel,
                 value: value.connectorIndex,
                 items: _availableConnectorIndexes(itemIndex),
                 itemLabel: (item) => 'con$item',
@@ -247,8 +251,9 @@ class _IgpuConnectorCustomizationState
                   );
                 },
               ),
+              const SizedBox(width: 12),
               _buildDropdown<String>(
-                label: '索引号',
+                label: AppLocalizations.of(context)!.manualIndexLabel,
                 value: value.indexHex,
                 items: _template.portIndexes,
                 itemLabel: (item) => item,
@@ -257,8 +262,9 @@ class _IgpuConnectorCustomizationState
                   value.copyWith(indexHex: indexHex),
                 ),
               ),
+              const SizedBox(width: 12),
               _buildDropdown<String>(
-                label: '总线ID',
+                label: AppLocalizations.of(context)!.manualBusIdLabel,
                 value: value.busIdHex,
                 items: _availableBusIds(itemIndex, value.busIdHex),
                 itemLabel: (item) => item,
@@ -267,19 +273,23 @@ class _IgpuConnectorCustomizationState
                   value.copyWith(busIdHex: busIdHex),
                 ),
               ),
+              const SizedBox(width: 12),
               _buildDropdown<IntelConnectorType>(
-                label: '接口类型',
+                label: AppLocalizations.of(context)!.manualConnectorTypeLabel,
                 value: value.type,
                 items: IntelConnectorType.values,
-                itemLabel: (item) =>
-                    item.recommended ? item.label : '${item.label}(老接口)',
+                itemLabel: (item) => item.recommended
+                    ? item.label
+                    : AppLocalizations.of(context)!.manualOldConnector(item.label),
                 onChanged: (type) => _updateValue(
                   itemIndex,
                   value.copyWith(type: type),
                 ),
               ),
+              const SizedBox(width: 12),
               IconButton(
-                tooltip: '删除 con${value.connectorIndex} 定制',
+                tooltip: AppLocalizations.of(context)!
+                    .manualDeleteConnectorTooltip(value.connectorIndex.toString()),
                 onPressed: () => _removeConnector(itemIndex),
                 icon: const Icon(Icons.delete_outline),
               ),
@@ -299,22 +309,23 @@ class _IgpuConnectorCustomizationState
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        spacing: 12,
         children: [
-          const Text(
-            '原始值不可解析',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          Text(
+            AppLocalizations.of(context)!.manualUnparseableValue,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
+          const SizedBox(width: 12),
           Text(
             'con$connectorIndex',
             style: const TextStyle(fontSize: 12),
           ),
-          const Text(
-            '请删除后重新添加结构化接口定制',
-            style: TextStyle(fontSize: 12),
+          const SizedBox(width: 12),
+          Text(
+            AppLocalizations.of(context)!.manualDeleteAndReadd,
+            style: const TextStyle(fontSize: 12),
           ),
           IconButton(
-            tooltip: '删除不可解析接口定制',
+            tooltip: AppLocalizations.of(context)!.manualDeleteUnparseableTooltip,
             onPressed: () => _removeConnector(itemIndex),
             icon: const Icon(Icons.delete_outline),
           ),

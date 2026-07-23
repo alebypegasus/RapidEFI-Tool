@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart' hide Checkbox, FilledButton;
 import 'package:flutter/material.dart' hide Colors, Tooltip;
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/expander_card.dart';
 import 'package:rapidefi/utils/config/models/motherboard/mbconf_model.dart';
 import 'package:rapidefi/utils/config/support/mbconf_service.dart';
@@ -61,28 +62,29 @@ class _MotherboardSelectorWidgetState
     }
   }
 
-  void _onPlatformChanged(String? v) => setState(() {
-        _selPlatform = v;
-        _selVendor = null;
-        _selModel = null;
-        _entry = null;
-        _checked = {};
-      });
-
-  void _onVendorChanged(String? v) => setState(() {
-        _selVendor = v;
-        _selModel = null;
-        _entry = null;
-        _checked = {};
-      });
-
-  void _onModelChanged(String? v) {
+  void _onPlatformChanged(String? val) {
     setState(() {
-      _selModel = v;
+      _selPlatform = val;
+      _selVendor = null;
+      _selModel = null;
       _entry = null;
-      _checked = {};
     });
-    if (v != null) _loadEntry();
+  }
+
+  void _onVendorChanged(String? val) {
+    setState(() {
+      _selVendor = val;
+      _selModel = null;
+      _entry = null;
+    });
+  }
+
+  void _onModelChanged(String? val) {
+    setState(() {
+      _selModel = val;
+      _entry = null;
+    });
+    _loadEntry();
   }
 
   void _toggleAll(bool select) {
@@ -99,24 +101,31 @@ class _MotherboardSelectorWidgetState
     if (_entry == null || _checked.isEmpty) return;
     final selected = _checked.map((i) => _entry!.items[i]).toList();
     widget.onApply?.call(selected);
-    showToast('已从 $_selModel 应用 ${selected.length} 项配置',
+    showToast(AppLocalizations.of(context)!.manualMotherboardAppliedCount(_selModel ?? '', selected.length.toString()),
         duration: const Duration(seconds: 3));
   }
 
   // ─────────────────────────────────────────────────────────────────────────
   @override
   Widget build(BuildContext context) {
-    final vendorList = _platforms
-            .where((p) => p.name == _selPlatform)
-            .firstOrNull
-            ?.vendors ??
-        [];
-    final modelList =
-        vendorList.where((v) => v.name == _selVendor).firstOrNull?.models ?? [];
+    final l10n = AppLocalizations.of(context)!;
+    final vendorList = _selPlatform == null
+        ? <MbConfVendor>[]
+        : (_platforms
+                .firstWhere((p) => p.name == _selPlatform,
+                    orElse: () => MbConfPlatform(name: '', vendors: []))
+                .vendors);
+
+    final modelList = _selVendor == null
+        ? <String>[]
+        : (vendorList
+                .firstWhere((v) => v.name == _selVendor,
+                    orElse: () => MbConfVendor(name: '', models: []))
+                .models);
 
     return ExpanderCard(
-      // "详细信息" 区域：条目勾选列表（仅在选中主板后显示）
-      header: const Text('选择应用的配置项'),
+      // AppLocalizations.of(context)!.manualMotherboardDetails 区域：条目勾选列表（仅在选中主板后显示）
+      header: Text(l10n.selectConfigItems),
       expander: (_entry != null || _entryLoading)
           ? _buildExpanderContent()
           : null,
@@ -125,16 +134,16 @@ class _MotherboardSelectorWidgetState
         children: [
           // ── 标题行 ──────────────────────────────────────────
           Row(children: [
-            const Text(
-              '主板型号配置:',
+            Text(
+              l10n.motherboardModelConfig,
               style:
-                  TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 10),
             Text(
               _selModel != null
-                  ? '已选：$_selModel'
-                  : '(选择主板型号，勾选要应用的配置)',
+                  ? '${l10n.selected}$_selModel'
+                  : l10n.selectMotherboardModelTip,
               style: TextStyle(
                 fontSize: 13,
                 color: _selModel != null ? null : Colors.grey,
@@ -153,7 +162,7 @@ class _MotherboardSelectorWidgetState
               children: [
                 // 平台代数
                 _buildComboBox<String>(
-                  label: '平台代数',
+                  label: l10n.platformGen,
                   width: 300,
                   value: _selPlatform,
                   items: _platforms
@@ -166,7 +175,7 @@ class _MotherboardSelectorWidgetState
                 ),
                 // 品牌
                 _buildComboBox<String>(
-                  label: '品牌',
+                  label: l10n.vendor,
                   width: 150,
                   value: _selVendor,
                   items: vendorList
@@ -177,7 +186,7 @@ class _MotherboardSelectorWidgetState
                 ),
                 // 主板型号
                 _buildComboBox<String>(
-                  label: '主板型号',
+                  label: l10n.motherboardModel,
                   width: 320,
                   value: _selModel,
                   items: modelList
@@ -203,6 +212,7 @@ class _MotherboardSelectorWidgetState
     required List<ComboBoxItem<T>> items,
     required ValueChanged<T?>? onChanged,
   }) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -215,7 +225,7 @@ class _MotherboardSelectorWidgetState
           child: ComboBox<T>(
             isExpanded: true,
             value: value,
-            placeholder: const Text('请选择'),
+            placeholder: Text(l10n.pleaseSelect),
             items: items,
             onChanged: onChanged,
           ),
@@ -273,11 +283,11 @@ class _MotherboardSelectorWidgetState
             value: allSel ? true : noneSel ? false : null,
             onChanged: (v) => _toggleAll(v == true),
           ),
-          const Text('全选 / 全不选',
+          Text(AppLocalizations.of(context)!.manualMotherboardSelectAll,
               style:
-                  TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+                  const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
           const SizedBox(width: 8),
-          Text('(${_checked.length}/$total 已选)',
+          Text(AppLocalizations.of(context)!.manualMotherboardSelectedCount(_checked.length.toString(), total.toString()),
               style: const TextStyle(fontSize: 12, color: Colors.grey)),
         ]),
       ),
@@ -378,15 +388,16 @@ class _MotherboardSelectorWidgetState
   }
 
   Widget _buildApplyBar() {
+    final l10n = AppLocalizations.of(context)!;
     return Row(mainAxisAlignment: MainAxisAlignment.end, children: [
       Button(
         onPressed: () => _toggleAll(false),
-        child: const Text('清除全选'),
+        child: Text(l10n.clearAllSelection),
       ),
       const SizedBox(width: 8),
       FilledButton(
         onPressed: _checked.isNotEmpty ? _apply : null,
-        child: Text('应用选中 (${_checked.length} 项)'),
+        child: Text(l10n.applySelected(_checked.length)),
       ),
     ]);
   }

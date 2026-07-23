@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/battery.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/laptop_other.dart';
@@ -41,11 +42,11 @@ class _LaptopWidgetState extends State<LaptopWidget> {
 
   final bool showScrollButtons = true;
 
-  final List<String> titles = const [
-    '键盘触摸板驱动',
-    '电池驱动',
-    '传感器驱动',
-    '其他修复',
+  List<String> get titles => [
+    AppLocalizations.of(context)!.manualKeyboardTouchpadDriver,
+    AppLocalizations.of(context)!.manualBatteryDriver,
+    AppLocalizations.of(context)!.manualSensorDriver,
+    AppLocalizations.of(context)!.manualLaptopOtherFixes,
   ];
 
   final List<IconData> iconDatas = const [
@@ -151,8 +152,8 @@ class _LaptopWidgetState extends State<LaptopWidget> {
     );
 
     return TitleCard(
-      title: '笔记本相关驱动:',
-      subTitle: '(主要用于笔记本)',
+      title: AppLocalizations.of(context)!.manualLaptopRelatedDrivers,
+      subTitle: AppLocalizations.of(context)!.manualLaptopMainly,
       expander: SizedBox(
         height: 380,
         child: TabView(

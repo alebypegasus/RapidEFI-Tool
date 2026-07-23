@@ -1,0 +1,771 @@
+{
+  "@@locale": "pt",
+  "appName": "RapidEFI",
+  "recent": "Recentes",
+  "efiRelated": "Relacionado a EFI",
+  "toolsAndGuides": "Ferramentas & Guias",
+  "navHistory": "Histórico",
+  "navConfigureEFI": "Configurar EFI",
+  "navProcessEFI": "Processar EFI",
+  "navCustomSSDT": "Customizar SSDT",
+  "navOCLPPatch": "Patch OCLP-X",
+  "navTahoeGuide": "macOS Tahoe 26",
+  "navSettings": "Configurações",
+  "navSponsor": "Apoiar Desenvolvedor",
+  "searchPlaceholder": "Pesquisar",
+  "darkMode": "Modo Escuro",
+  "clickAgainToExit": "Clique novamente para sair",
+  "currentOpenCoreVersion": "Versão OpenCore Atual: {version}",
+  "copyrightTitle": "Declaração de Direitos Autorais",
+  "copyrightText": "Copyright (C) 2024 JeoJay\n\nLicença de Uso:\nPermitido para uso individual ou por organizações sob as seguintes condições:\n\n1. Uso não comercial:\nEste software é totalmente gratuito e de código aberto, estritamente para uso não comercial. A venda deste software é proibida.\n\n2. Atribuição:\nQualquer forma de republicação, citação ou uso em sites de terceiros deve indicar explicitamente a fonte e incluir as seguintes informações:\nDesenvolvido por JeoJay. Copyright (C) 2024 JeoJay. Todos os direitos reservados.\n\n3. Não modificar avisos de direitos autorais:\nAo republicar ou usar qualquer conteúdo deste software, o aviso de direitos autorais original e as informações de atribuição não devem ser modificados ou excluídos.\n\nIsenção de Responsabilidade:\nEste software é fornecido 'como está', sem garantias de qualquer tipo, expressas ou implícitas. O detentor dos direitos autorais não será responsável por quaisquer danos diretos ou indiretos decorrentes do uso deste software.",
+  "themeModeTitle": "Modo Escuro:",
+  "themeModeSystem": "Seguir Sistema",
+  "themeModeLight": "Desligado",
+  "themeModeDark": "Ligado",
+  "themeColorTitle": "Cor do Tema:",
+  "appFontTitle": "Fonte do Aplicativo:",
+  "efiSettingsTitle": "Opções de Saída da EFI:",
+  "addOpenCoreTheme": "Adicionar tema de inicialização OpenCore ao configurar EFI",
+  "generateConfigModel": "Gerar arquivo configModel na pasta EFI",
+  "zipEFI": "Compactar EFI em arquivo Zip",
+  "languageTitle": "Idioma:",
+  "languageSystem": "Seguir Sistema",
+  "languageEn": "English",
+  "languagePtBR": "Português (Brasil)",
+  "languagePtPT": "Português (Portugal)",
+  "languageZhCN": "中文 (简体)",
+  "languageZhTW": "中文 (繁體)",
+  "languageJa": "日本語",
+  "versionUpdateTitle": "Atualização de Versão:",
+  "currentVersion": "Versão Atual: {version}",
+  "checkUpdate": "Verificar Atualizações",
+  "checkingUpdate": "Verificando...",
+  "settingSnippet": "1. A opção 'Adicionar tema de inicialização OpenCore ao configurar EFI' vem ativada por padrão. Um tema de boot será incluído na pasta EFI de saída. Desmarque se não precisar de tema.\n\n2. A opção 'Gerar arquivo configModel na pasta EFI' vem ativada por padrão. Este arquivo pode ser usado para re-editar e ajustar a EFI atual na seção 'Processar EFI'.\n\n3. A opção 'Compactar EFI em arquivo Zip' compacta a EFI gerada em um arquivo Zip. Note que a compactação Zip pode afetar o tempo de saída da EFI, especialmente em computadores com hardware mais lento.",
+  "fontMicrosoftYaHei": "Microsoft YaHei",
+  "fontSarasaGothic": "Sarasa Gothic",
+  "fontSourceHanSerif": "Source Han Serif",
+  "cpuArchitecture": "Arquitetura da CPU",
+  "desktop": "Desktop",
+  "laptop": "Notebook",
+  "hedt": "Servidor",
+  "nuc": "Mini PC",
+  "amd": "Processador AMD",
+  "smbios": "Modelo SMBIOS",
+  "generateEFI": "Gerar EFI",
+  "clearSelection": "Limpar Seleção",
+  "exportConfig": "Exportar Configuração",
+  "selectTargetFolder": "Selecionar Pasta de Destino",
+  "efiGenerateSuccess": "EFI gerada com sucesso!",
+  "efiGenerateFailed": "Falha ao gerar EFI: {error}",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "save": "Salvar",
+  "delete": "Excluir",
+  "openFolder": "Abrir Pasta",
+  "date": "Data",
+  "actions": "Ações",
+  "historyTitle": "Histórico",
+  "historyDescription": "As EFIs geradas pelo RapidEFI são salvas automaticamente em backup após cada compilação com sucesso. Você pode re-editar e ajustar a saída com base nesses registros sempre que necessário.",
+  "clearAllHistory": "Limpar Todo o Histórico",
+  "clearingHistory": "Limpando histórico...",
+  "noHistory": "Nenhum histórico encontrado",
+  "editEFI": "Editar EFI",
+  "configuringEFI": "Configurando EFI, por favor aguarde...",
+  "configureEFISuccess": "EFI configurada com sucesso",
+  "configureEFIFailed": "Erro ao configurar EFI!\nPor favor altere o diretório de saída.",
+  "sponsorTitle": "Apoiar Desenvolvedor",
+  "visitBilibili": "Bilibili do Autor",
+  "visitGithub": "Visitar GitHub",
+  "buyCoffeeTitle": "Pague um Café para o Desenvolvedor",
+  "buyCoffeeText": "Se esta ferramenta te ajudou, fique à vontade para apoiar o desenvolvedor! Obrigado pelo suporte!\n\nContato do autor: QQ 766264141 ou WX: JeoJay127. Não existem outros meios de contato privados, cuidado com golpes!",
+  "successCasesTitle": "Casos de Sucesso do RapidEFI",
+  "tahoeGuideTitle": "Guia macOS Tahoe 26",
+  "oclpIntro": "Introdução",
+  "oclpGpu": "Patch de GPU",
+  "oclpWifi": "Patch de WiFi",
+  "ssdtPlatform": "Patch de Plataforma",
+  "ssdtAudio": "Patch de Áudio",
+  "ssdtGpuSpoof": "Falsificação de GPU",
+  "ssdtDisableDevice": "Desativar Dispositivo",
+  "ssdtBrightness": "Patch de Brilho",
+  "manualEFIConfig": "Configuração Manual de EFI",
+  "autoEFIConfig": "Configuração Automática de EFI",
+  "cpuSelection": "Seleção de CPU:",
+  "platformSelection": "Seleção de Plataforma:",
+  "platformInfo": "Informações da Plataforma:",
+  "targetMacOSVersion": "Versão do macOS Alvo:",
+  "smbiosModelSetup": "Modelo SMBIOS:",
+  "motherboardModelConfig": "Modelo da Placa-Mãe:",
+  "selectMotherboardModelTip": "(Selecione o modelo da placa-mãe para aplicar a configuração)",
+  "platformGen": "Geração da Plataforma",
+  "vendor": "Marca",
+  "motherboardModel": "Modelo da Placa-Mãe",
+  "pleaseSelect": "Por favor selecione",
+  "selected": "Selecionado: ",
+  "applySelectedConfig": "Aplicar Configuração Selecionada",
+  "noMatchingConfigEntries": "Nenhum item de configuração correspondente",
+  "pentiumCeleron": "Pentium / Celeron",
+  "pentiumCeleronTip": "Processadores Pentium ou Celeron requerem falsificação de CPU (Spoof)! Por favor ative.\nNota: Gráficos integrados (iGPU) de Pentium/Celeron geralmente não possuem suporte!",
+  "u62CpuTitle": "CPU Tipo U62",
+  "u62CpuTip": "CPUs U62 da 10ª Geração Comet Lake (ex: i3-10110U, i5-10210U, i7-10510U, etc.) - por favor ative!",
+  "macOSVersionSnippet": "A EFI gerada possui compatibilidade retroativa com a versão do macOS selecionada até o OS X El Capitan 10.11.",
+  "amdCores": "Contagem de Núcleos AMD:",
+  "ryzen7000to9000": "CPUs Séries 7000~9000",
+  "useAmdIgpuOutput": "Usar iGPU AMD para Saída de Vídeo",
+  "igpuConfigTitle": "Configuração de iGPU",
+  "dgpuConfigTitle": "Configuração de dGPU",
+  "audioDriver": "Driver de Áudio:",
+  "defaultAppleALCDriver": "(Padrão: usa driver AppleALC)",
+  "alcLayoutId": "ID de Layout ALC:",
+  "queryLayoutId": "Consultar Layout ID",
+  "hpetAcpiPath": "Caminho ACPI HPET (correção IRQ):",
+  "fixIrq": "Corrigir IRQ",
+  "selectAudioLayoutIdTitle": "Selecionar ID de Layout de Áudio",
+  "selectAudioLayoutIdTip": "(Use a roda do mouse para selecionar e clique em confirmar)",
+  "ethernetDriver": "Driver de Rede (Ethernet):",
+  "defaultNoEthernetDriver": "(Padrão: sem driver de rede)",
+  "loadingData": "Carregando dados...",
+  "refreshHardwareInfo": "Atualizar Informações",
+  "importHardwareInfo": "Importar Dados",
+  "exportHardwareReport": "Exportar Relatório",
+  "exportAcpiTables": "Exportar Tabelas ACPI",
+  "efiSettings": "Configurações da EFI",
+  "outputEFI": "Exportar EFI",
+  "summaryView": "Resumido",
+  "detailedView": "Detalhado",
+  "legendGreen": "Verde: Suporta sistema mais recente (macOS Tahoe 26)",
+  "legendYellow": "Amarelo: Suporta algumas versões do macOS",
+  "legendRed": "Vermelho: Totalmente incompatível",
+  "noAcpiImported": "Sem ACPI Importada",
+  "personalizedEfiTitle": "Configurações Personalizadas da EFI",
+  "applySettings": "Aplicar Configurações",
+  "configureEFIError": "Erro ao configurar EFI!\nPor favor, altere o caminho de saída",
+  "selectConfigItems": "Selecionar Itens de Configuração para Aplicar",
+  "newVersionFound": "Nova Versão Disponível",
+  "versionTag": "Versão: {tag}",
+  "publishedAtDate": "Data de Lançamento: {date}",
+  "downloadNow": "Baixar Agora",
+  "close": "Fechar",
+  "generatingEfiAndSsdt": "Gerando EFI e SSDT customizada, aguarde...",
+  "configuringEfiTitle": "Configurando EFI",
+  "configureEfiSuccessTitle": "EFI Configurada com Sucesso",
+  "configureEfiErrorTitle": "Falha na Configuração da EFI",
+  "outputDirectory": "Diretório de Saída:",
+  "openEfiDirectory": "Abrir Diretório EFI",
+  "select": "Selecionar",
+  "selectFile": "Selecionar Arquivo",
+  "selectDirectory": "Selecionar Diretório",
+  "hardwareReport": "Relatório de Hardware",
+  "acpiTablesDirectory": "Diretório de Tabelas ACPI",
+  "noAcpiFolderTip": "Sem o diretório de tabelas ACPI, a SSDT personalizada não poderá ser gerada a partir do relatório importado.",
+  "hasAcpiFolderTip": "O diretório de tabelas ACPI selecionado será usado para a SSDT personalizada.",
+  "adminRightsRequired": "Permissão de Administrador Necessária",
+  "enterSystemPassword": "Por favor, digite a senha do seu sistema",
+  "import": "Importar",
+  "optionalSelectIfMatching": "(Opcional - marque se correspondente)",
+  "selectIfMatching": "(Marque se correspondente)",
+  "baseConfig": "Configuração Básica",
+  "advanceConfig": "Configuração Avançada",
+  "connectorCustomization": "Personalização de Conectores",
+  "displayEdid": "EDID do Monitor",
+  "nvidiaDgpu": "dGPU Nvidia",
+  "amdDgpu": "dGPU AMD",
+  "amdDgpuSpoof": "Simulação de dGPU AMD",
+  "above4gTitle": "Configurações de Above 4G Decoding",
+  "addNpciBootArg": "Adicionar argumento de boot npci=0x2000",
+  "above4gTip": "Recomendado se o Above 4G Decoding estiver desativado na BIOS. Desmarque se estiver ativado.",
+  "personalizedEfiIntroTip": "Todos os campos são opcionais. A EFI gerada incluirá arquivos baseados nessas configurações.",
+  "ssdtType": "Tipo de SSDT:",
+  "customSsdt": "SSDT Personalizada",
+  "presetSsdt": "SSDT Pré-configurada",
+  "cpuTypeLabel": "Tipo de CPU:",
+  "platformTypeLabel": "Tipo de Plataforma:",
+  "selectAll": "Marcar Todos",
+  "basicOfficialRecommend": "* Básico (Recomendado Oficial)",
+  "recommendFixes": "* Recomendado (Correção de Recursos)",
+  "optionalEnhancements": "* Opcional (Melhorias)",
+  "personalizedPlatformTip": "Tipo de CPU, plataforma e informações foram detectados do hardware; ajuste manualmente abaixo se necessário.",
+  "pciPathLabel": "Caminho PCI da GPU:",
+  "pciPathHint": "Digite o Caminho PCI",
+  "spoofGpuIdLabel": "ID de Simulação da GPU:",
+  "selectSpoofGpuPlaceholder": "Selecione a GPU para simular",
+  "gpuSpoofDataLoadError": "Falha ao carregar dados de simulação de GPU",
+  "injectEdidTitle": "Injetar EDID do Monitor (256 ou 512 caracteres hex):",
+  "injectEdidHint": "Digite o EDID do Monitor (formato hex, espaços permitidos)",
+  "edidInvalidToast": "Os dados de EDID são inválidos, verifique antes de inserir!",
+  "details": "Detalhes",
+  "clearAllSelection": "Limpar Seleção",
+  "applySelected": "Aplicar Seleção ({count} itens)",
+  "getModdedOclp": "Obter OCLP Modificado",
+  "getIntelModdedOclp": "Obter OCLP Modificado para Intel",
+  "soundDriverCardTitle": "Driver de Áudio:",
+  "soundDriverDefaultTip": "(Padrão usa AppleALC)",
+  "hpetAcpiPathTitle": "Caminho ACPI HPET (Correção IRQ de Áudio):",
+  "selectAudioLayoutTitle": "Selecionar Layout ID de Áudio (BD: {published} v{version})",
+  "pickerScrollConfirmTip": "(Role a roda e clique em confirmar)",
+  "nicDriverCardTitle": "Driver de Rede:",
+  "nicDriverDefaultTip": "(Padrão sem driver de rede)",
+  "wifiBtCardTitle": "Driver Wi-Fi e Bluetooth:",
+  "wifiBtDefaultTip": "(Padrão sem driver Wi-Fi, adicione se necessário)",
+  "usbCardTitle": "Driver USB:",
+  "usbDefaultTip": "(Padrão usa USBInjectAll)",
+  "selectUtbMap": "Selecionar UTBMap",
+  "selectUtbMapHint": "Selecione o UTBMap.kext criado pelo USBToolBox",
+  "releaseUsbOwnershipText": "Ativar quirk 'UEFI->Quirks->ReleaseUsbOwnership' para liberar controle USB do firmware...",
+  "bootArgsCardTitle": "Parâmetros de Inicialização:",
+  "bootArgsDefaultTip": "(Padrão ativa modo -v, desmarque se não necessário)",
+  "debugCategory": "Depuração",
+  "amfiSipCategory": "AMFI/SIP",
+  "igpuCategory": "iGPU",
+  "dgpuCategory": "dGPU",
+  "blackScreenFixCategory": "Correção de Tela Preta",
+  "above4gCategory": "Above 4G Decoding",
+  "touchpadFixCategory": "Correção de Touchpad",
+  "othersCategory": "Outros",
+  "optionalKextsCardTitle": "Kexts Opcionais:",
+  "optionalKextsDefaultTip": "(Drivers opcionais, adicione apenas se necessário)",
+  "graphicsCategory": "Vídeo",
+  "powerManagementCategory": "Gerenciamento de Energia",
+  "sleepCategory": "Repouso/Hibernação",
+  "diskCategory": "Disco",
+  "cpuCategory": "CPU",
+  "amdPlatformCategory": "Plataforma AMD",
+  "usbCategory": "USB",
+  "sdCardCategory": "Cartão SD",
+  "optionalSettingsCardTitle": "Configurações Opcionais:",
+  "optionalSettingsDefaultTip": "(Geralmente mantenha o padrão)",
+  "tabBrand": "Marca",
+  "tabSpecialMotherboard": "Placa-Mãe Especial",
+  "tabSipSetting": "Configuração SIP",
+  "tabCpuRename": "Renomear CPU",
+  "tabUiScale": "Escala de UI OpenCore",
+  "tabAcpiConfig": "Configuração ACPI",
+  "tabBooterConfig": "Configuração Booter",
+  "tabKernelConfig": "Configuração Kernel",
+  "tabUefiConfig": "Configuração UEFI",
+  "processEfiTitle": "Processar EFI",
+  "processEfiSubTitle": "(Reprocessar EFI configurada pelo RapidEFI)",
+  "processEfiExpanderText": "A EFI configurada pela ferramenta RapidEFI gerará um arquivo chamado configModel na pasta de saída. Importe este arquivo aqui para editar novamente a EFI atual.\n\nEste recurso suporta apenas RapidEFI V3.0.0 e superior.",
+  "clearCurrentConfig": "Limpar Configuração Atual",
+  "importConfigModelFile": "Importar Arquivo configModel",
+  "importingConfigModel": "Importando configModel...",
+  "releaseToReimport": "Solte o mouse para reimportar o configModel",
+  "dragConfigModelArea": "Arraste o arquivo configModel para cá\nou clique para selecionar o arquivo",
+  "importFailedToast": "Os dados de configuração importados são inválidos. Reimporte um arquivo configModel válido.",
+  "changeEfiTitle": "Alterar Título da EFI",
+  "modifyCurrentEfiName": "Modificar Nome Atual da EFI",
+  "originalEfiName": "Nome Original da EFI: {name}",
+  "@originalEfiName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "enterModifiedName": "Por favor, digite o nome modificado",
+  "deleteRecord": "Apagar este registro",
+  "exportThisEfi": "Exportar esta EFI",
+  "releaseToIdentifyHardware": "Solte para identificar automaticamente o relatório de hardware e as tabelas ACPI",
+  "dragHardwareReportHere": "Arraste a pasta do relatório de hardware exportado pela ferramenta aqui\n(identifica automaticamente sysInfo.txt e o diretório ACPI)",
+  "invalidHardwareReportToast": "Arquivo de relatório de hardware válido não reconhecido",
+  "optionalSuffix": "{title} (Opcional)",
+  "@optionalSuffix": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notSelected": "Não selecionado",
+  "verifyingAdminPassword": "Verificando senha de administrador...",
+  "hardwareReportAcpiMissing": "Relatório de hardware externo importado, mas diretório de tabela ACPI não fornecido, SSDT não pode ser personalizado.",
+  "hwMemory": "Memória",
+  "hwCompatible": "Compatível",
+  "hwDeviceID": "ID do Dispositivo: {id}",
+  "@hwDeviceID": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "hwType": "Tipo: {type}",
+  "@hwType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCapacity": "Capacidade: {cap}",
+  "@hwCapacity": {
+    "placeholders": {
+      "cap": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInterface": "Interface: {bus}",
+  "@hwInterface": {
+    "placeholders": {
+      "bus": {
+        "type": "String"
+      }
+    }
+  },
+  "hwModel": "Modelo: {model}",
+  "@hwModel": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      }
+    }
+  },
+  "hwStorage": "Armazenamento",
+  "hwStorageController": "Controladora\nde Armaz.",
+  "hwBluetooth": "Bluetooth",
+  "hwAudioCard": "Placa de Áudio",
+  "hwAudioLayoutId": "ID de Layout:",
+  "hwNetworkCard": "Placa de Rede",
+  "hwMonitor": "Monitor",
+  "hwResolution": "Resolução: {res} @ {hz} Hz",
+  "@hwResolution": {
+    "placeholders": {
+      "res": {
+        "type": "String"
+      },
+      "hz": {
+        "type": "String"
+      }
+    }
+  },
+  "hwMonitorSize": "({size}\")",
+  "@hwMonitorSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "hwConnectedGpu": "GPU Conectada: {gpu}",
+  "@hwConnectedGpu": {
+    "placeholders": {
+      "gpu": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInput": "Entrada",
+  "hwSDCard": "Cartão SD",
+  "hwDevice": "Dispositivo: {dev}",
+  "@hwDevice": {
+    "placeholders": {
+      "dev": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSerialNumber": "Número de Série: {sn}",
+  "@hwSerialNumber": {
+    "placeholders": {
+      "sn": {
+        "type": "String"
+      }
+    }
+  },
+  "hwBuiltIn": "Integrado: {builtin}",
+  "@hwBuiltIn": {
+    "placeholders": {
+      "builtin": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSecureBoot": "Secure Boot: {status}",
+  "@hwSecureBoot": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCSM": "CSM: {status}",
+  "@hwCSM": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwResizableBar": "Resizable BAR: {status}",
+  "@hwResizableBar": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAbove4G": "Above 4G Decoding: {status}",
+  "@hwAbove4G": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAHCI": "AHCI: {status}",
+  "@hwAHCI": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAHCIUnknown": "AHCI: Desconhecido",
+  "hwEnabled": "Ativado",
+  "hwDisabled": "Desativado",
+  "hwCurrentBiosSettings": "Configurações Atuais da BIOS",
+  "hwBiosNote": "Notas para Hackintosh:\n1. Para textos em vermelho, certifique-se de alterá-los na BIOS para mantê-los azuis.\n2. Textos em azul indicam as configurações recomendadas na maioria dos casos.\nSecure Boot: Deve estar desativado (caso contrário, bootloaders não assinados como o OC não iniciam).\nCSM: Recomendado desativar (iGPUs Intel 4ª/5ª gen mobile, X99, e algumas RX460 podem precisar de CSM ativado para evitar problemas visuais).\nResizable BAR: Recomendado desativar na BIOS (se não for possível, certifique-se de configurar ResizeAppleGpuBars para 0 em Booter->Quirks).\nAbove 4G Decoding: Recomendado ativar na BIOS e remover npci=0x2000. Se a opção não existir, use npci=0x2000 ou npci=0x3000. Nunca use os dois juntos!\nAHCI (Modo SATA): Deve estar ativado (caso contrário, discos não serão reconhecidos).",
+  "hwBit": "{arch} Bits",
+  "@hwBit": {
+    "placeholders": {
+      "arch": {
+        "type": "String"
+      }
+    }
+  },
+  "hwVirtualizationEnabled": "Virtualização: Ativado",
+  "hwVirtualizationDisabled": "Virtualização: Desativado",
+  "hwCoresThreads": "{cores} Núcleos {threads} Threads",
+  "@hwCoresThreads": {
+    "placeholders": {
+      "cores": {
+        "type": "String"
+      },
+      "threads": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInstructionSet": "Conjunto de Instruções: {simd}",
+  "@hwInstructionSet": {
+    "placeholders": {
+      "simd": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCore": "Núcleo: {core}",
+  "@hwCore": {
+    "placeholders": {
+      "core": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSpoofIDRequired": "Falsificar ID Necessário: {id}",
+  "@hwSpoofIDRequired": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "hwGPU": "Placa de Vídeo",
+  "hwIncompatible": "Incompatível",
+  "hwDeviceType": "{type}",
+  "@hwDeviceType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "hwMotherboard": "Placa Mãe",
+  "hwBrand": "Marca: {brand}",
+  "@hwBrand": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "hwChipset": "Chipset: {chipset}",
+  "@hwChipset": {
+    "placeholders": {
+      "chipset": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAppleALCSnippet": "AppleALC suporta múltiplos IDs de layout. Diferentes IDs podem afetar a disponibilidade da interface de áudio.",
+  "manualNvidiaInfoText": "As séries de GPUs Nvidia suportadas são:\n• Série Tesla (série 8000 - 300): Suporte nativo até macOS High Sierra 10.13.x (pode precisar de correção NVCAP), versões mais recentes exigem patch OCLP (sem suporte a Metal)\nExemplos: 8600GT, 9600GT, GT210, GT220, GT240, etc. Muito antigas, não recomendado!\n• Série Kepler (série 600 - 800): Suporte nativo até macOS Big Sur 11.x, versões mais recentes exigem patch OCLP (suporta Metal, driver real)\nNúcleo Kepler: GT630, GT635, GT640, GTX650, GTX660, GTX680, GT710, GT720, GT730, GT740, GTX760, GTX Titan Z, GTX Titan Black, etc.\nPlacas profissionais Kepler: NVS 510, Quadro 410, Quadro K420, Quadro K600, Quadro K2000, etc.\n• Séries Fermi, Maxwell, Pascal: Suporte Webdriver até macOS High Sierra 10.13.x. Para macOS Big Sur 11.x ou superior, marque os argumentos de boot abaixo e aplique o patch OCLP (sem suporte a Metal, driver falso)\nSérie Fermi: GT605, GT610, GT620, GT630, GT705, GT710, GT720, GT730, GT740, etc.\nSérie Maxwell: GTX750, GTX750Ti, GTX950, GTX960, GTX970, GTX980, etc.\nSérie Pascal: GTX1050, GTX1060, GTX1070, GTX1080, etc.\nSéries Nvidia não suportadas (série 11 e superior NÃO são suportadas):\n• Séries 16 ~ 50: GTX1650, GTX1660, RTX 2050, RTX 2060, RTX 3050, RTX 3060, RTX 4050, RTX 4060, RTX 5060, RTX 5070, etc.",
+  "manualEdidInfoText": "1. Usado geralmente para corrigir o problema de tela preta/sem sinal da iGPU Intel 6ª-10ª Ger (EDID de dGPU não é tratado aqui). (Sintoma: O Caps Lock funciona, mas o monitor fica sem sinal)\n2. Para placas-mãe de desktop série 500 (H510/B560/H570/Q570/Z590/W580) usando saída HDMI da iGPU, injetar o EDID real do monitor é obrigatório, caso contrário a tela preta é quase certa.\n3. Como obter o EDID do monitor:\nNo Windows, use a ferramenta RapidEFI ou hdinfo para obter o EDID (você pode usar outras ferramentas, mas precisará formatar o EDID manualmente):\n1). Abra o RapidEFI v4.x ou superior, clique em \"Configurar EFI\" -> \"Auto Configurar EFI\" -> \"Configuração Detalhada\" (ou clique em \"Configuração Detalhada\" se usar hdinfo).\n2). Aguarde a detecção automática do hardware concluir, depois clique no código EDID próximo à seção Monitor para obtê-lo (aparecerá um aviso de copiado para a área de transferência).\n3). Retorne a esta página e cole o EDID na caixa de texto.\n4. Antes de injetar o EDID, marque a interface AAPL0X desejada em \"Configurações Avançadas\"; se não tiver certeza, escolha de acordo com o plano real de correção de HDMI.\n5. Os dados EDID geralmente têm 128 bytes (256 caracteres hex) ou 256 bytes (512 caracteres hex). Se não for o caso, verifique antes de inserir!",
+  "manualIgpuConnectorSupported": "Framebuffer Atual: {fb}. Gerando framebuffer-conX-alldata conforme docs do WhateverGreen.",
+  "@manualIgpuConnectorSupported": {
+    "placeholders": {
+      "fb": {
+        "type": "String"
+      }
+    }
+  },
+  "manualIgpuConnectorUnsupported": "Framebuffer Atual não suporta recomendações estruturadas; exclua valores brutos e selecione uma config base de iGPU suportada.",
+  "manualAddConnectorTooltip": "Adicionar Patch de Conector",
+  "manualConnectorLabel": "Conector",
+  "manualIndexLabel": "Índice",
+  "manualBusIdLabel": "Bus ID",
+  "manualConnectorTypeLabel": "Tipo",
+  "manualOldConnector": "{label} (Legado)",
+  "@manualOldConnector": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "manualDeleteConnectorTooltip": "Excluir patch con{index}",
+  "@manualDeleteConnectorTooltip": {
+    "placeholders": {
+      "index": {
+        "type": "String"
+      }
+    }
+  },
+  "manualUnparseableValue": "Valor bruto inanalisável",
+  "manualDeleteAndReadd": "Exclua e readicione patches de conectores estruturados",
+  "manualDeleteUnparseableTooltip": "Excluir patch inanalisável",
+  "manualBatteryDriver": "Driver de Bateria",
+  "manualKeyboardTouchpadDriver": "Driver de Teclado e Touchpad",
+  "manualSensorDriver": "Driver de Sensor (Não recomendado, a menos que necessário)",
+  "manualKernelTrimStrategy": "Estratégia de Trim SSD",
+  "manualKernelPowerManagement": "Gerenciamento de Energia",
+  "manualKernelDummyPowerManagement": "Desativar Gerenciamento de Energia (DummyPowerManagement), corrige reboots causados pelo gerenc. de energia do CPU. Para 4ª Ger e acima, é a alternativa preferida ao NullCpuPowerManagement.kext",
+  "manualKernelQuirksDefault": "Kernel - Quirks é recomendado manter o padrão, a menos que necessário",
+  "manualUefiProvideConsoleGop": "ProvideConsoleGop é ativado por padrão para corrigir a UI de boot do OpenCore não aparecendo. Se ainda não aparecer, tente desmarcar",
+  "manualUefiDriversHfs": "UEFI-Drivers (Corrigir UI de boot do OpenCore devido ao driver HFS)",
+  "manualUefiOutputBootUI": "UEFI - Output (Corrigir UI de boot do OpenCore não aparecendo)",
+  "manualSpecialMotherboardTip": "Opcional - marque se sua placa-mãe corresponder à descrição",
+  "manualCsrSettingTip": "Opcional - defina conforme necessidade, SIP desativado por padrão",
+  "manualRenameCpuNameTip": "Opcional - personalizar nome do CPU",
+  "manualRenameCpuNameLabel": "Inserir nome do CPU (deixe em branco para exibir nome do Windows):",
+  "manualRenameCpuNameHint": "Insira o nome do CPU aqui",
+  "manualBrandTip": "Opcional - marque se a marca corresponder à descrição",
+  "manualBooterPlan1": "Plano 1",
+  "manualBooterPlan2": "Plano 2",
+  "manualBooterPlan3": "Plano 3",
+  "manualBooterPlan4": "Plano 4",
+  "manualBooterEbFix": "Correção EB (Opcional - o padrão geralmente serve):",
+  "manualAcpiPatch": "ACPI - Patch",
+  "manualAcpiSsdt": "ACPI - SSDT",
+  "manualBluetoothNvram": "Parâmetros NVRAM Bluetooth:",
+  "manualUsbWifiGithub": "Visitar repositório de chris1111",
+  "manualUsbWifiKexts": "Adicionar Kexts para WiFi USB (Nota: também instale o cliente Wireless USB Big Sur Adapter no macOS)",
+  "manualWifiCardSupport": "Os drivers suportam macOS Mojave 10.14 ~ macOS Sequoia 15! Nota: Monterey 12 e acima exigem patch OCLP!!!",
+  "manualWifiAtheros": "Qualcomm (Atheros)",
+  "manualWifiIntel": "Intel",
+  "manualWifiBrcm": "Broadcom (Brcm)",
+  "manualWifiBluetoothDriver": "Driver Bluetooth",
+  "manualWifiItlwmPlan": "Plano 2, usar itlwm (requer HeliPort). Conflita com o Plano 1, NÃO usar juntos!!!",
+  "manualWifiAirportItlwmPlan": "Plano 1, usar AirportItlwm. Conflita com o Plano 2, NÃO usar juntos!!!",
+  "manualWifiAddAllDrivers": "Adicionar todos os drivers WiFi (tamanho grande)",
+  "manualLaptopMainly": "(Principalmente para laptops)",
+  "manualLaptopRelatedDrivers": "Drivers para laptops:",
+  "manualLaptopOtherFixes": "Outras correções",
+  "manualLaptopOtherFixesTip": "Outras correções (Não recomendado a menos que necessário)",
+  "manualMotherboardSelectAll": "Selecionar Tudo / Nenhum",
+  "manualMotherboardDetails": "Detalhes",
+  "manualMotherboardSelectedCount": "({selected}/{total} Selecionados)",
+  "manualMotherboardAppliedCount": "Aplicadas {count} configurações de {model}",
+  "manualMotherboardFromMbconfs": "De mbconfs",
+  "manualIgpuRemark": "⚠️ Observação",
+  "manualIgpuSelectCpu": "Selecionar CPU",
+  "manualIgpuLoadConfig": "Carregar config iGPU do modelo do CPU",
+  "manualIgpuSelectProperties": "Selecionar propriedades para aplicar",
+  "manualIgpuPresetScheme": "Esquema Predefinido",
+  "manualIgpuSelectGen": "Selecionar Geração",
+  "manualIgpuSelectedCpu": "Selecionado: {model}  {igpu}",
+  "manualIgpuCpuModel": "Modelo CPU",
+  "manualIgpuMatchOrNot": "Marque se corresponder",
+  "manualIgpuCpuGen": "Geração CPU",
+  "manualIgpuByCpuModel": "Por Modelo de CPU",
+  "manualIgpuName": "iGPU",
+  "manualIgpuLoadedConfig": "Carregada config iGPU {igpu} de {model}, escrevendo {count} propriedades",
+  "manualIgpuFromModel": "De {model} ({igpu})",
+  "manualIgpuSelectInstruction": "Selecione geração e modelo do CPU, depois marque as propriedades para aplicar",
+  "manualIgpuModel": "Modelo",
+  "manualFakeGpuSelect": "Selecione a GPU para falsificar (spoof)",
+  "settingsThemeColors": "Tema de Cores",
+  "settingsThemeDefault": "Padrão",
+  "sharedInvalidInput": "Entrada inválida",
+  "sharedRequiresHexChars": "Requer {length} caracteres hexadecimais",
+  "sharedExample73BF": "Exemplo: 73BF",
+  "sharedTipsLengthMustMatch": "O tamanho de tips deve coincidir com choices",
+  "sharedCpuInfo": "[Info do CPU]: \n{description}",
+  "sharedMacosLastSupported": "Última Versão Nativa do macOS Suportada: {version}",
+  "sharedBiosDisable": "[Recomendado Desativar no BIOS]: \n{description}",
+  "sharedOclpSupported": "Versão do macOS Suportada pelo Patch: {version}",
+  "sharedBiosEnable": "[Recomendado Ativar no BIOS]: \n{description}",
+  "sharedMacosInitialSupport": "Versão Nativa Inicial do macOS Suportada: {version}",
+  "sharedInvalidAcpiPath": "Caminho ACPI inválido",
+  "sharedFillAcpiPath": "Preencha o caminho ACPI",
+  "sharedFillPciPath": "Preencha o caminho PCI",
+  "sharedInvalidPciPath": "Caminho PCI inválido",
+  "sharedGetModifiedOclp": "Obter OCLP modificado",
+  "hwConfigModelGenerated": "ConfigModel gerado: {details}",
+  "hwGetInfoFailed": "Falha ao obter info de hardware: {e}",
+  "hwAdminPwdIncorrect": "Senha de administrador incorreta, não é possível exportar tabelas ACPI",
+  "hwNoNativeInfoExportable": "Sem informações de hardware nativas disponíveis para exportar",
+  "hwOutputtingOpencore": "Gerando OpenCore EFI...",
+  "hwAcpiExportFailedErr": "Falha na exportação das tabelas ACPI nativas: {error}",
+  "hwSsdtProcessFailed": "Falha no processo de personalização do SSDT.",
+  "hwConfigRuleRefactoring": "Regras de geração do ConfigModel de hardware em refatoração",
+  "hwQueryUnsupported": "A plataforma atual não suporta consulta de informações de hardware",
+  "hwPreparingSsdt": "Preparando para personalizar o SSDT: {items}",
+  "hwImportedExtReportHint": "Este é um relatório de hardware externo importado, atualize as informações do hardware nativo antes de exportar",
+  "hwRefreshingInfo": "Atualizando informações de hardware",
+  "hwSsdtProcessEnded": "O processo de personalização do SSDT foi concluído.",
+  "hwInfoUnsupported": "Informações de hardware atualmente não suportadas",
+  "hwEfiWrittenExtracting": "EFI gravada, começando a extrair o ACPI e personalizar o SSDT...",
+  "hwConfigEfiFailed": "Falha ao configurar EFI: {error}",
+  "hwReportFolderCleanFailed": "Falha ao limpar a pasta de relatório de hardware",
+  "hwReportFolderCleanFailedErr": "Falha ao limpar a pasta de relatório de hardware: {error}",
+  "hwExportingNativeReport": "Exportando relatório de hardware nativo...",
+  "hwAdminAuthCanceled": "Autorização do administrador cancelada, tabelas ACPI não exportadas",
+  "hwImportedNoAcpiDir": "Relatório de hardware externo importado, mas sem o diretório das tabelas ACPI, personalização do SSDT desativada.",
+  "hwExportAcpiUnsupported": "A plataforma atual não suporta a exportação de tabelas ACPI",
+  "hwReportExportedTo": "Relatório de hardware exportado para {reportDirectory}, {msg}",
+  "hwInfoNotJson": "O arquivo de informações de hardware não é um objeto JSON",
+  "hwUnsupported": "Não suportado",
+  "hwAcpiTempCleanFailed": "Falha ao limpar o diretório temporário das tabelas ACPI: {error}",
+  "hwEfiConfigDone": "Configuração EFI concluída.",
+  "hwEfiConfigError": "Erro ao configurar a EFI: {error}",
+  "hwNativeAcpiExportFailed": "A exportação das tabelas ACPI nativas falhou",
+  "hwAcpiToolNotReady": "A ferramenta de exportação ACPI não está pronta",
+  "hwFailed": "Falha",
+  "hwImportReportFailed": "Falha ao importar o relatório de hardware: {e}",
+  "hwNativeAcpiExportDone": "Exportação das tabelas ACPI nativas concluída: {dir}",
+  "hwAcpiExportFailedNoValid": "Falha na exportação das tabelas ACPI: Nenhuma tabela ACPI válida foi encontrada",
+  "hwUsingOriginalSsdt": "Usando SSDT original do EFI, ignorando a personalização do SSDT.",
+  "hwWaitingRefresh": "Aguardando atualização de informações de hardware",
+  "hwInfoLoaded": "Informações de hardware carregadas com sucesso",
+  "hwAcpiExportedTo": "Tabelas ACPI exportadas para {path}",
+  "hwStartConfigEfi": "Iniciando a configuração da EFI...",
+  "hwInfoLoadFailed": "Falha ao carregar as informações do hardware",
+  "hwCache": "Cache",
+  "hwInfoImportDone": "Importação de informações de hardware concluída",
+  "hwReportAndAcpiExported": "Relatório de hardware e tabelas ACPI exportados para {reportDirectory}",
+  "hwAcpiDirInvalid": "O diretório das tabelas ACPI é inválido, personalização do SSDT indisponível",
+  "hwExportingNativeAcpi": "Exportando tabelas ACPI nativas...",
+  "hwGeneratingConfigModel": "Gerando ConfigModel com base nas informações de hardware...",
+  "hwInfoImported": "Informações de hardware importadas",
+  "hwAcpiExportFailedOrUnsup": "Falha ou falta de suporte na exportação das tabelas ACPI",
+  "hwReportFolderCreateFailed": "Falha ao criar pasta de relatório de hardware",
+  "hwNoAdminPwd": "Senha de administrador não inserida, tabelas ACPI não podem ser exportadas",
+  "hwEfiConfigFailedCheck": "Falha na configuração da EFI, verifique o caminho de saída ou os logs.",
+  "hwLoadingInfo": "Carregando informações de hardware",
+  "hwDone": "Concluído",
+  "hwAcpiExportFailedProcess": "A exportação das tabelas ACPI falhou: Falha na execução do processo de exportação",
+  "hwIgpuType": "Gráfico Integrado (iGPU)",
+  "hwGpuCompatible": "Compatível",
+  "hwGpuIncompatibleNoDisplay": "Incompatível, sem vídeo direto",
+  "hwGpuIncompatible": "Incompatível",
+  "hwLaptop": "Notebook",
+  "hwGpuLoadingCompat": "Carregando compatibilidade",
+  "hwGpuLimitedCompat": "Compatibilidade Limitada",
+  "hwClickToCopy": "Clique para copiar",
+  "hwCopiedToClipboard": "Copiado para a área de transferência",
+  "@hwConfigModelGenerated": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwGetInfoFailed": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportFailedErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwPreparingSsdt": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwConfigEfiFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwReportFolderCleanFailedErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwReportExportedTo": {
+    "placeholders": {
+      "reportDirectory": {
+        "type": "String"
+      },
+      "msg": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiTempCleanFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwEfiConfigError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwImportReportFailed": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwNativeAcpiExportDone": {
+    "placeholders": {
+      "dir": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportedTo": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwReportAndAcpiExported": {
+    "placeholders": {
+      "reportDirectory": {
+        "type": "String"
+      }
+    }
+  }
+}

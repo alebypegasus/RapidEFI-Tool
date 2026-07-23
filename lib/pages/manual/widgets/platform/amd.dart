@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
+
 import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
 import 'package:rapidefi/widgets/radio_option_group.dart';
 
@@ -71,15 +73,16 @@ class _AMDWidgetState extends State<AMDWidget> {
     }
   }
 
-  Widget cores() {
+  Widget cores(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          'AMD核心数:',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        Text(
+          l10n.amdCores,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         const SizedBox(
           width: 10,
@@ -105,6 +108,7 @@ class _AMDWidgetState extends State<AMDWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return TitleCard(
       title: '',
       content: Wrap(
@@ -113,13 +117,13 @@ class _AMDWidgetState extends State<AMDWidget> {
         children: [
           Wrap(
             children: [
-              cores(),
+              cores(context),
               const SizedBox(
                 width: 20,
               ),
               if (showRyzenGPU)
                 ChoiceChipTile(
-                    label: "7000~9000系CPU",
+                    label: l10n.ryzen7000to9000,
                     selected: usePrecastMMIO,
                     onChanged: (bo) {
                       usePrecastMMIO = bo;
@@ -131,7 +135,7 @@ class _AMDWidgetState extends State<AMDWidget> {
               ),
               if (showRyzenGPU)
                 ChoiceChipTile(
-                    label: "使用AMD核显输出显示",
+                    label: l10n.useAmdIgpuOutput,
                     selected: useRyzenGPU,
                     onChanged: (bo) {
                       useRyzenGPU = bo;
@@ -140,6 +144,7 @@ class _AMDWidgetState extends State<AMDWidget> {
                     })
             ],
           ),
+
           showAMDSpecialMainboards
               ? RadioOptionGroup(
                   groupValue: specialMotherboard.value,

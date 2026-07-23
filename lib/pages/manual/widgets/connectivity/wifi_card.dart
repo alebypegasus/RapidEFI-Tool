@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/connectivity/bluetooth_widget.dart';
 import 'package:rapidefi/pages/manual/widgets/connectivity/brcm_wifi.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
@@ -101,12 +102,12 @@ class _WifiCardState extends State<WifiCard> {
   CloseButtonVisibilityMode closeButtonVisibilityMode =
       CloseButtonVisibilityMode.never;
   bool showScrollButtons = true;
-  List<String> titles = [
-    "英特尔(Intel)",
-    "博通(Brcm)",
-    "高通(Atheros)",
+  List<String> get titles => [
+    AppLocalizations.of(context)!.manualWifiIntel,
+    AppLocalizations.of(context)!.manualWifiBrcm,
+    AppLocalizations.of(context)!.manualWifiAtheros,
     "USB Wi-Fi",
-    "蓝牙驱动"
+    AppLocalizations.of(context)!.manualWifiBluetoothDriver
   ];
 
   List<IconData> iconDatas = [
@@ -161,16 +162,16 @@ class _WifiCardState extends State<WifiCard> {
               choices: [],
               header: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: const Text(
-                  '方案一，使用AirportItlwm驱动,英特尔(Intel系列)Z大WiFi驱动,加入以下所有WiFi驱动(体积较大,谨慎选择).注意与方案二冲突，可能造成启动崩溃，不可同时使用!!!',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                child: Text(
+                  AppLocalizations.of(context)!.manualWifiAirportItlwmPlan,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               footer: WifiTypeWidget(
                 choices: intelAirportOptions,
                 selectedChoices: intelSelectedChoices,
                 isMultipleSelection: true,
-                expandTitle: '加入以下所有WiFi驱动(体积较大,谨慎选择)',
+                expandTitle: AppLocalizations.of(context)!.manualWifiAddAllDrivers,
                 onChanged: (List<KernelKext> value) {
                   _handleIntelSelectionChange.call(value);
                 },
@@ -180,9 +181,9 @@ class _WifiCardState extends State<WifiCard> {
               choices: [intelItlwmOption],
               header: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: const Text(
-                  '方案二,使用itlwm驱动(需配合HeliPort客户端),英特尔(Intel系列)Z大WiFi驱动.注意与方案一冲突，可能造成启动崩溃，不可同时使用!!!',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                child: Text(
+                  AppLocalizations.of(context)!.manualWifiItlwmPlan,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               selectedChoices: itlwmSelected ? [intelItlwmOption] : [],
@@ -213,11 +214,11 @@ class _WifiCardState extends State<WifiCard> {
       StateKeepContainer(
         child: ScrollableChoiceListPanel(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 10, left: 10),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10),
               child: Text(
-                "工具提供的驱动支持macOS Mojave 10.14 ~ macOS Sequoia 15系统！注意Monterey 12及以上系统还需要使用OCLP补丁后方可正常使用！！！",
-                style: TextStyle(fontSize: 12),
+                AppLocalizations.of(context)!.manualWifiCardSupport,
+                style: const TextStyle(fontSize: 12),
               ),
             ),
             WifiTypeWidget(
@@ -247,6 +248,7 @@ class _WifiCardState extends State<WifiCard> {
       ),
     ];
 
+    final l10n = AppLocalizations.of(context)!;
     tabs = List.generate(titles.length, (index) {
       return Tab(
         text: Text(titles[index]),
@@ -256,9 +258,9 @@ class _WifiCardState extends State<WifiCard> {
     });
 
     return TitleCard(
-      title: "WiFi蓝牙驱动:",
-      subTitle: "(默认不配置WiFi驱动,请自行配置添加)",
-      content: const OclpLinkButton(buttonText: '获取Intel专用修改版OCLP'),
+      title: l10n.wifiBtCardTitle,
+      subTitle: l10n.wifiBtDefaultTip,
+      content: OclpLinkButton(buttonText: l10n.getIntelModdedOclp),
       expander: SizedBox(
         height: 300,
         child: TabView(

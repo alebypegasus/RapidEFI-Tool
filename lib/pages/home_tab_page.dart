@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
+
 import 'package:rapidefi/pages/hardware/hardware_page.dart';
 import 'package:rapidefi/pages/manual/manual_page.dart';
 import 'package:rapidefi/utils/config/services/config_service.dart';
@@ -21,7 +23,6 @@ class HomeTabPage extends StatefulWidget {
 class _HomeTabPageState extends State<HomeTabPage>
     with TickerProviderStateMixin {
   late final TabController _tabController;
-  late final List<String> tabName;
   late final List<Widget> pages;
   final PageStorageBucket _bucket = PageStorageBucket();
   bool _hardwarePrewarmStarted = false;
@@ -29,21 +30,19 @@ class _HomeTabPageState extends State<HomeTabPage>
   @override
   void initState() {
     super.initState();
-    _initTabData();
+    final showAutoEFI = Device.isDesktop;
+    pages = _getPages(showAutoEFI);
     _tabController = TabController(vsync: this, length: pages.length);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       UpdateDialog.checkLatestRelease(context);
     });
   }
 
-  void _initTabData() {
-    final showAutoEFI = Device.isDesktop;
-    tabName = _getTabNames(showAutoEFI);
-    pages = _getPages(showAutoEFI);
-  }
-
-  List<String> _getTabNames(bool showAutoEFI) {
-    return showAutoEFI ? ["手动配置EFI", "自动配置EFI"] : ["手动配置EFI"];
+  List<String> _getTabNames(BuildContext context, bool showAutoEFI) {
+    final l10n = AppLocalizations.of(context)!;
+    return showAutoEFI
+        ? [l10n.manualEFIConfig, l10n.autoEFIConfig]
+        : [l10n.manualEFIConfig];
   }
 
   List<Widget> _getPages(bool showAutoEFI) {
@@ -76,19 +75,29 @@ class _HomeTabPageState extends State<HomeTabPage>
 
   @override
   Widget build(BuildContext context) {
+    final showAutoEFI = Device.isDesktop;
+    final tabName = _getTabNames(context, showAutoEFI);
+
     return PageStorage(
       bucket: _bucket,
       child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: CategorizedTabView(
-            controller: _tabController,
-            tabs: tabName.map((name) => Tab(text: name)).toList(),
-            onTap: (index) {
-              ConfigService().updateConfigModel(index == 1);
-            },
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: pages,
-          )),
+        backgroundColor: Colors.transparent,
+        body: CategorizedTabView(
+          controller: _tabController,
+          tabs: tabName.map((name) => Tab(text: name)).toList(),
+          onTap: (index) {
+            ConfigService().updateConfigModel(index == 1);
+          },
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: pages,
+        ),
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 }

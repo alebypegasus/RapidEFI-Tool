@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/enums/csr_setting_enum.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
@@ -44,7 +45,7 @@ class _CSRWidgetState extends State<CSRWidget> {
         selectedChoices: [csrsetting.value],
         isMultipleSelection: false,
         allowToggle: true,
-        subTitle: "可选项-根据需求设置,默认关闭SIP",
+        subTitle: AppLocalizations.of(context)!.manualCsrSettingTip,
         onChanged: (List<String> value) {
           String? selectedValue = value.firstOrNull;
           csrsetting = CsrSetting.values.firstWhere(

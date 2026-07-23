@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
+
 import 'package:rapidefi/utils/config/services/config_service.dart';
 import 'package:rapidefi/utils/file_util.dart';
 import 'package:rapidefi/utils/hardware/hardware_info.dart';
@@ -152,7 +154,7 @@ class _HardwarePageState extends State<HardwarePage> {
       customSsdtAvailable: _controller.customSsdtAvailable,
       customSsdtUnavailableReason: _controller.customSsdtAvailable
           ? null
-          : '已导入外部硬件报告，但未提供 ACPI 表目录，不能定制 SSDT。',
+          : AppLocalizations.of(context)!.hardwareReportAcpiMissing,
     );
     if (result != null) {
       setState(() {
@@ -213,39 +215,42 @@ class _HardwarePageState extends State<HardwarePage> {
   Future<String?> _requestSudoPasswordForAcpiExport() async {
     final password = await _requestSudoPassword();
     if (password != null && password.trim().isNotEmpty) {
-      showToast('正在验证管理员密码...');
+      if (!mounted) return password;
+      showToast(AppLocalizations.of(context)!.verifyingAdminPassword);
     }
     return password;
   }
 
   Future<String?> _requestSudoPassword() async {
+    final l10n = AppLocalizations.of(context)!;
     String password = '';
     return showDialog<String>(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('需要管理员权限'),
+          title: Text(l10n.adminRightsRequired),
           content: TextField(
             autofocus: true,
             obscureText: true,
-            decoration: const InputDecoration(labelText: '请输入电脑开机密码'),
+            decoration: InputDecoration(labelText: l10n.enterSystemPassword),
             onChanged: (value) => password = value,
             onSubmitted: (value) => Navigator.pop(context, value),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('取消'),
+              child: Text(l10n.cancel),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context, password),
-              child: const Text('确定'),
+              child: Text(l10n.confirm),
             ),
           ],
         );
       },
     );
   }
+
 
   Future<void> _importHardwareMaterials() async {
     final result = await _HardwareImportDialog.show(
@@ -312,11 +317,11 @@ class _HardwarePageState extends State<HardwarePage> {
                           color: Theme.of(context).colorScheme.outlineVariant,
                         ),
                       ),
-                      child: const Padding(
+                      child: Padding(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 28, vertical: 18),
+                            const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
                         child: Text(
-                          '释放后自动识别硬件报告和 ACPI 表',
+                          AppLocalizations.of(context)!.releaseToIdentifyHardware,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -344,7 +349,7 @@ class _HardwarePageState extends State<HardwarePage> {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Text(
-          '拖入当前工具导出的硬件报告文件夹\n(自动识别sysInfo.txt和ACPI目录)',
+          AppLocalizations.of(context)!.dragHardwareReportHere,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 11,
@@ -387,7 +392,7 @@ class _HardwarePageState extends State<HardwarePage> {
     final directory = _resolveDroppedDirectory(droppedPath, reportFile);
     if (reportFile == null || directory == null) {
       setState(() => _bodyDragging = false);
-      showToast('未识别到有效硬件报告文件');
+      showToast(AppLocalizations.of(context)!.invalidHardwareReportToast);
       return;
     }
 
@@ -691,6 +696,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final dialogBackground =
@@ -700,7 +706,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.black.withValues(alpha: darkMode ? 0.75 : 0.22),
       elevation: darkMode ? 18 : 8,
-      title: const Text('导入硬件资料', textAlign: TextAlign.center),
+      title: Text(l10n.importHardwareInfo, textAlign: TextAlign.center),
       titlePadding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
       content: SizedBox(
@@ -710,24 +716,24 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildPickRow(
-              title: '硬件报告',
+              title: l10n.hardwareReport,
               pathText: _hardwareReportPath,
-              buttonText: '选择文件',
+              buttonText: l10n.selectFile,
               onTap: _pickHardwareReport,
             ),
             const SizedBox(height: 12),
             _buildPickRow(
-              title: 'ACPI 表目录',
+              title: l10n.acpiTablesDirectory,
               pathText: _acpiTablesPath,
-              buttonText: '选择目录',
+              buttonText: l10n.selectDirectory,
               onTap: _pickAcpiTables,
               optional: true,
             ),
             const SizedBox(height: 8),
             Text(
               _acpiTablesPath.isEmpty
-                  ? '未选择 ACPI 表目录时，导入外部硬件报告后只能使用预制/原始 SSDT。'
-                  : '将使用所选 ACPI 表目录进行定制 SSDT。',
+                  ? l10n.noAcpiFolderTip
+                  : l10n.hasAcpiFolderTip,
               style: TextStyle(
                 fontSize: 12,
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -740,7 +746,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('取消'),
+          child: Text(l10n.cancel),
         ),
         TextButton(
           onPressed: _hardwareReportPath.isEmpty
@@ -752,11 +758,12 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
                       acpiTablesPath: _acpiTablesPath,
                     ),
                   ),
-          child: const Text('导入'),
+          child: Text(l10n.import),
         ),
       ],
     );
   }
+
 
   Widget _buildPickRow({
     required String title,
@@ -774,7 +781,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       children: [
         SizedBox(
           width: 88,
-          child: Text(optional ? '$title(可选)' : title),
+          child: Text(optional ? AppLocalizations.of(context)!.optionalSuffix(title) : title),
         ),
         Expanded(
           child: Container(
@@ -786,7 +793,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
               borderRadius: BorderRadius.circular(4),
             ),
             child: Text(
-              pathText.isEmpty ? '未选择' : pathText,
+              pathText.isEmpty ? AppLocalizations.of(context)!.notSelected : pathText,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontSize: 12),
             ),

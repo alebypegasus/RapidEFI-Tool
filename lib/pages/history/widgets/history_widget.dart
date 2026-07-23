@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rapidefi/extension/int_extension.dart';
 import 'package:rapidefi/pages/history/model/history_model.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/theme.dart';
 
 class HistoryWidget extends StatefulWidget {
@@ -113,7 +114,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                 child: Row(
                   children: [
                     Tooltip(
-                      message: '更改EFI标题',
+                      message: AppLocalizations.of(context)!.changeEfiTitle,
                       child: IconButton(
                         icon: const Icon(
                           Icons.edit,
@@ -124,15 +125,15 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                             context: context,
                             builder: (context) {
                               return fluent.ContentDialog(
-                                title: const Text('修改当前EFI名称'),
+                                title: Text(AppLocalizations.of(context)!.modifyCurrentEfiName),
                                 content: fluent.InfoLabel(
-                                  label: '原EFI名称: ${widget.historyModel.name}',
+                                  label: AppLocalizations.of(context)!.originalEfiName(widget.historyModel.name),
                                   child: fluent.Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: fluent.SizedBox(
                                       height: 40,
                                       child: fluent.TextBox(
-                                        placeholder: '请输入修改后的名称',
+                                        placeholder: AppLocalizations.of(context)!.enterModifiedName,
                                         onChanged: (value) {
                                           if (value.isNotEmpty) {
                                             updateName = value;
@@ -144,7 +145,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                 ),
                                 actions: [
                                   fluent.FilledButton(
-                                    child: const Text('确认'),
+                                    child: Text(AppLocalizations.of(context)!.confirm),
                                     onPressed: () {
                                       Navigator.pop(context);
                                       if (updateName.isNotEmpty) {
@@ -155,7 +156,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                     },
                                   ),
                                   fluent.Button(
-                                    child: const Text('取消'),
+                                    child: Text(AppLocalizations.of(context)!.cancel),
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
@@ -168,7 +169,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                       ),
                     ),
                     Tooltip(
-                      message: '删除此记录',
+                      message: AppLocalizations.of(context)!.deleteRecord,
                       child: IconButton(
                         icon: const Icon(
                           Icons.delete,
@@ -180,7 +181,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                       ),
                     ),
                     Tooltip(
-                      message: '导出此EFI',
+                      message: AppLocalizations.of(context)!.exportThisEfi,
                       child: IconButton(
                         icon: const Icon(
                           Icons.output,

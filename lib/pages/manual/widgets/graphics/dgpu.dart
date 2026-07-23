@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/graphics/amd_gpu.dart';
 import 'package:rapidefi/pages/manual/widgets/graphics/fake_gpu.dart';
 import 'package:rapidefi/pages/manual/widgets/graphics/nvidia_gpu.dart';
@@ -28,13 +29,11 @@ class DgpuWidget extends StatefulWidget {
 
 class _DgpuWidgetState extends State<DgpuWidget> with TickerProviderStateMixin {
   late final TabController _tabController;
-  late final List<String> tabName;
 
   @override
   void initState() {
     super.initState();
-    tabName = ['Nvidia独显', 'AMD独显', 'AMD独显仿冒'];
-    _tabController = TabController(vsync: this, length: tabName.length);
+    _tabController = TabController(vsync: this, length: 3);
   }
 
   @override
@@ -67,9 +66,11 @@ class _DgpuWidgetState extends State<DgpuWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final tabName = [l10n.nvidiaDgpu, l10n.amdDgpu, l10n.amdDgpuSpoof];
     return TabbedTitleCard(
-      title: '独显配置:',
-      subTitle: '(可选项-对应则勾选)',
+      title: l10n.dgpuConfigTitle,
+      subTitle: l10n.optionalSelectIfMatching,
       initiallyExpanded: false,
       content: const OclpLinkButton(),
       controller: _tabController,
@@ -78,3 +79,4 @@ class _DgpuWidgetState extends State<DgpuWidget> with TickerProviderStateMixin {
     );
   }
 }
+

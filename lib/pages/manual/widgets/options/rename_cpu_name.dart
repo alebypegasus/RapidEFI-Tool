@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/utils/config/models/enums/processor_type_enum.dart';
@@ -42,9 +43,9 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         children: [
-          const Text(
-            '输入CPU名称(不填则显示Win下CPU名称):',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          Text(
+            AppLocalizations.of(context)!.manualRenameCpuNameLabel,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
           const SizedBox(
             width: 10,
@@ -56,7 +57,7 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
             ),
             child: TextBox(
               controller: _controller,
-              placeholder: '在此输入CPU名称',
+              placeholder: AppLocalizations.of(context)!.manualRenameCpuNameHint,
               onChanged: (value) {
                 cpuName = value;
                 setState(() {});
@@ -91,7 +92,7 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
           selectedChoices: [processorType.text.description],
           isMultipleSelection: false,
           allowToggle: true,
-          subTitle: "可选项-自定义CPU名称",
+          subTitle: AppLocalizations.of(context)!.manualRenameCpuNameTip,
           header: processorType != ProcessorType.none
               ? cpunameText()
               : const SizedBox.shrink(),

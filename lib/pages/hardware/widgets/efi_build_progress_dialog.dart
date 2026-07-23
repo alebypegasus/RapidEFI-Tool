@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/file_util.dart';
+
 import 'package:rapidefi/utils/log/logwidet.dart';
 
 class EfiBuildProgressHandle {
@@ -72,6 +74,7 @@ class EfiBuildProgressDialog extends StatefulWidget {
 class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final dialogBackground =
@@ -85,14 +88,18 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
         final running = result == null;
         final success = result?.success == true;
         final statusText = running
-            ? '正在生成 EFI 与定制 SSDT，请稍后...'
+            ? l10n.generatingEfiAndSsdt
             : result.message ??
-                (success ? 'EFI 配置完成。' : 'EFI 配置失败，请检查输出路径或日志。');
+                (success ? l10n.configureEFISuccess : l10n.configureEFIError);
 
         return AlertDialog(
           backgroundColor: dialogBackground,
           title: Text(
-            running ? '正在配置 EFI' : (success ? '配置 EFI 成功' : '配置 EFI 失败'),
+            running
+                ? l10n.configuringEfiTitle
+                : (success
+                    ? l10n.configureEfiSuccessTitle
+                    : l10n.configureEfiErrorTitle),
           ),
           content: SizedBox(
             width: 620,
@@ -127,7 +134,7 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
                 if (result != null && result.outputPath.isNotEmpty) ...[
                   const SizedBox(height: 8),
                   SelectableText(
-                    '输出目录: ${result.outputPath}',
+                    '${l10n.outputDirectory} ${result.outputPath}',
                     style: TextStyle(
                       color: colorScheme.onSurfaceVariant,
                       fontSize: 12,
@@ -156,15 +163,16 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
                   widget.handle.close();
                   FileUtils.revealInFileExplorer(outputPath);
                 },
-                child: const Text('打开EFI目录'),
+                child: Text(l10n.openEfiDirectory),
               ),
             TextButton(
               onPressed: widget.handle.close,
-              child: Text(running ? '取消' : '关闭'),
+              child: Text(running ? l10n.cancel : l10n.close),
             ),
           ],
         );
       },
+
     );
   }
 }

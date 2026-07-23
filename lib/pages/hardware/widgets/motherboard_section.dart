@@ -3,6 +3,7 @@ import 'package:rapidefi/utils/hardware/analysis/hardware_compatibility.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
 import 'package:rapidefi/pages/hardware/widgets/hardware_shared.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 
 class MotherboardSection extends StatelessWidget {
   final Map<String, dynamic> rawInfo;
@@ -20,15 +21,15 @@ class MotherboardSection extends StatelessWidget {
         ? brandCode
         : '$brandCode($brandName)';
     return HardwareSection(
-        '主板',
+        AppLocalizations.of(context)!.hwMotherboard,
         [
           HardwareLine([
-            '品牌: $brandText',
-            '型号: ${safeStr(board['Product'], fallback: safeStr(board['Model']))}',
-            '设备ID: ${safeStr(board['Device ID'])}',
-            '芯片组: ${chipsetName(board)}',
+            AppLocalizations.of(context)!.hwBrand(brandText),
+            AppLocalizations.of(context)!.hwModel(safeStr(board['Product'], fallback: safeStr(board['Model']))),
+            AppLocalizations.of(context)!.hwDeviceID(safeStr(board['Device ID'])),
+            AppLocalizations.of(context)!.hwChipset(chipsetName(board)),
           ]),
         ],
-        note: CompatibilityNote.supported('兼容'));
+        note: CompatibilityNote.supported(AppLocalizations.of(context)!.hwCompatible));
   }
 }

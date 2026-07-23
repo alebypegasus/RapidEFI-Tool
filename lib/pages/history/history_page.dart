@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
+import 'package:path/path.dart' as path;
+
+
+
 import 'package:provider/provider.dart';
 import 'package:rapidefi/extension/int_extension.dart';
 import 'package:rapidefi/pages/manual/manual_page.dart';
@@ -102,7 +106,9 @@ class HistoryPageState extends State<HistoryPage> {
   ) async {
     if (!mounted) return;
 
-    CustomToast.show(this.context, "配置EFI中,请稍后");
+    final l10n = AppLocalizations.of(context);
+    CustomToast.show(context, l10n?.configuringEFI ?? "Configuring EFI, please wait...");
+
     final success = await EfiBuildPipeline(ConfigService()).build(
       configModel: configModel,
       mode: ConfigModelMode.history,
@@ -112,8 +118,9 @@ class HistoryPageState extends State<HistoryPage> {
       ),
     );
     CustomToast.dismiss();
-    showToast(success ? "配置EFI成功" : "配置EFI发生错误!\n请更换EFI输出路径");
+    showToast(success ? (l10n?.configureEFISuccess ?? "EFI configured successfully") : (l10n?.configureEFIFailed ?? "Error configuring EFI!\nPlease change the EFI output directory"));
   }
+
 
   Future<void> exportEFI(HistoryModel historyModel) async {
     if (_exporting) return;
@@ -152,7 +159,8 @@ class HistoryPageState extends State<HistoryPage> {
   Future<void> deleteHistory(HistoryModel historyModel) async {
     final targetKey = _historyStorageName(historyModel);
     final historyDirectory = await FileUtils.getHistoryDirectory();
-    final historyFile = join(historyDirectory, targetKey);
+    final historyFile = path.join(historyDirectory, targetKey);
+
 
     try {
       await FileUtils.deleteFile(historyFile);
@@ -271,31 +279,30 @@ class HistoryPageState extends State<HistoryPage> {
       );
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
+
       backgroundColor: Colors.transparent,
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(15),
             child: TitleCard(
-              title: '历史记录',
-              content: _buildClearAllAction(),
-              expander: const Text(
-                'RapidEFI工具配置的EFI,每次成功生成后,会进行自动备份,产生一个历史记录。'
-                '如有需要，可以根据这个EFI记录再次编辑调整输出\n\n'
-                '此功能仅支持RapidEFI V3.0.0以上版本,不支持以前旧版本',
-              ),
+              title: l10n.historyTitle,
+              content: _buildClearAllAction(l10n),
+              expander: Text(l10n.historyDescription),
             ),
           ),
           Expanded(
-            child: _buildBody(),
+            child: _buildBody(l10n),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildClearAllAction() {
+  Widget _buildClearAllAction(AppLocalizations l10n) {
     final disabled = historyModels.isEmpty || _deletingAll;
 
     return Padding(
@@ -316,16 +323,17 @@ class HistoryPageState extends State<HistoryPage> {
               children: [
                 Icon(
                   Icons.delete_forever,
-                  color: disabled ? Theme.of(this.context).disabledColor : null,
+                  color: disabled ? Theme.of(context).disabledColor : null,
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  _deletingAll ? '正在清空历史记录...' : '清空所有历史记录',
+                  _deletingAll ? l10n.clearingHistory : l10n.clearAllHistory,
                   style: TextStyle(
                     color:
-                        disabled ? Theme.of(this.context).disabledColor : null,
+                        disabled ? Theme.of(context).disabledColor : null,
                   ),
                 ),
+
                 const SizedBox(width: 10),
               ],
             ),
@@ -335,7 +343,7 @@ class HistoryPageState extends State<HistoryPage> {
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(AppLocalizations l10n) {
     if (_loading) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -343,16 +351,17 @@ class HistoryPageState extends State<HistoryPage> {
     }
 
     if (historyModels.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Text('暂无历史记录'),
+          padding: const EdgeInsets.all(15),
+          child: Text(l10n.noHistory),
         ),
       );
     }
 
     return _buildHistoryList();
   }
+
 
   Widget _buildHistoryList() {
     return Scrollbar(
@@ -418,16 +427,17 @@ class _HistoryManualPage extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back),
                     onPressed: onBack,
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Center(
                       child: Text(
-                        '编辑EFI',
-                        style: TextStyle(
+                        AppLocalizations.of(context)?.editEFI ?? 'Edit EFI',
+                        style: const TextStyle(
                           fontSize: 20,
                         ),
                       ),
                     ),
                   ),
+
                   const SizedBox(width: 48),
                 ],
               ),

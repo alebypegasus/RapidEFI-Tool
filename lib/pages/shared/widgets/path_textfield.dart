@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 //  path_textfield.dart 
 //  Created by JeoJay127 
 //
@@ -38,9 +39,9 @@ class _PathTextFieldState extends State<PathTextField> {
   String get _defaultHintText {
     switch (widget.pathType) {
       case PathType.acpi:
-        return '填写ACPI路径';
+        return AppLocalizations.of(context)!.sharedFillAcpiPath;
       case PathType.pci:
-        return '填写PCI路径';
+        return AppLocalizations.of(context)!.sharedFillPciPath;
     }
   }
 
@@ -48,9 +49,9 @@ class _PathTextFieldState extends State<PathTextField> {
   String get _defaultErrorText {
     switch (widget.pathType) {
       case PathType.acpi:
-        return '无效ACPI路径';
+        return AppLocalizations.of(context)!.sharedInvalidAcpiPath;
       case PathType.pci:
-        return '无效PCI路径';
+        return AppLocalizations.of(context)!.sharedInvalidPciPath;
     }
   }
 

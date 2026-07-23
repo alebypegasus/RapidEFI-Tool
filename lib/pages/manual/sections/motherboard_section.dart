@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rapidefi/pages/manual/manual_config_controller.dart';
@@ -60,7 +61,7 @@ class MotherboardSectionView extends StatelessWidget {
                   executablePath: 'Contents/MacOS/${bundlePath.replaceAll('.kext', '')}',
                   plistPath: 'Contents/Info.plist',
                   enabled: true,
-                  comment: '来自 mbconfs',
+                  comment: AppLocalizations.of(context)!.manualMotherboardFromMbconfs,
                   arch: 'Any',
                 ),
               ];
@@ -303,7 +304,7 @@ class MotherboardSectionView extends StatelessWidget {
         key: key,
         dataType: dataType,
         value: strValue,
-        comment: '来自 mbconfs',
+        comment: 'From mbconfs',
       );
       if (idx == -1) {
         existing.add(newItem);

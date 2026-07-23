@@ -3,6 +3,7 @@ import 'package:rapidefi/utils/config/models/kernel/kext_group.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kext_groups.dart';
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 
 class TouchPad extends StatelessWidget {
   final ValueChanged<List<KernelKext>>? onChanged;
@@ -24,7 +25,7 @@ class TouchPad extends StatelessWidget {
       selectedKexts: selectedKexts,
       isMultipleSelection: false,
       allowToggle: true,
-      subTitle: '键盘触摸板驱动',
+      subTitle: AppLocalizations.of(context)!.manualKeyboardTouchpadDriver,
       onChanged: (value) {
         onChanged?.call(value);
       },

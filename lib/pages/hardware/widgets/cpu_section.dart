@@ -3,6 +3,7 @@ import 'package:rapidefi/utils/hardware/analysis/hardware_compatibility.dart';
 
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
 import 'package:rapidefi/pages/hardware/widgets/hardware_shared.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 
 class CpuSection extends StatelessWidget {
   final Map<String, dynamic> rawInfo;
@@ -14,24 +15,24 @@ class CpuSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = rawInfo;
     return Column(children: [
-      HardwareHeaderCard([_systemLine(data)]),
+      HardwareHeaderCard([_systemLine(context, data)]),
       const SizedBox(height: 6),
-      HardwareSection('CPU', _cpuLines(data), note: cpuCompatibility(data)),
+      HardwareSection('CPU', _cpuLines(context, data), note: cpuCompatibility(data)),
     ]);
   }
 
-  String _systemLine(Map<String, dynamic> d) {
+  String _systemLine(BuildContext context, Map<String, dynamic> d) {
     final system = safeMap(d['System']);
     final board = safeMap(d['Motherboard']);
     final platform = safeStr(board['Platform'], fallback: 'Desktop');
     return joinNonEmpty([
       platform,
       safeStr(system['Caption']),
-      '${safeStr(system['OSArchitecture'])} 位',
+      AppLocalizations.of(context)!.hwBit(safeStr(system['OSArchitecture'])),
     ], '    ');
   }
 
-  List<Widget> _cpuLines(Map<String, dynamic> d) {
+  List<Widget> _cpuLines(BuildContext context, Map<String, dynamic> d) {
     final cpus = safeList(d['CPU']);
     if (cpus.isEmpty) return [];
     final cpu = safeMap(cpus.first);
@@ -48,11 +49,11 @@ class CpuSection extends StatelessWidget {
     }
 
     final vt = isTruthy(cpu['VirtualizationFirmwareEnabled'])
-        ? '虚拟化: 已启用'
-        : '虚拟化: 未启用';
+        ? AppLocalizations.of(context)!.hwVirtualizationEnabled
+        : AppLocalizations.of(context)!.hwVirtualizationDisabled;
     return [
-      HardwareLine([name, cpuCodename(cpu), '$cores核心$threads线程']),
-      if (detailed) HardwareLine(['指令集: ${safeStr(cpu['SIMD Features'])}', vt]),
+      HardwareLine([name, cpuCodename(cpu), AppLocalizations.of(context)!.hwCoresThreads(cores, threads)]),
+      if (detailed) HardwareLine([AppLocalizations.of(context)!.hwInstructionSet(safeStr(cpu['SIMD Features'])), vt]),
     ];
   }
 }

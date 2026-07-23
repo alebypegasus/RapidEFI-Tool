@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:rapidefi/extension/string_extension.dart';
@@ -159,7 +160,7 @@ class _IgpuBaseState extends State<IgpuBase> {
         key: prop.key,
         dataType: prop.dataType,
         value: prop.value,
-        comment: '来自 ${cpu.cpuModel} (${cpu.igpuName})',
+        comment: AppLocalizations.of(context)!.manualIgpuFromModel(cpu.cpuModel, cpu.igpuName),
         display: true,
       );
     }
@@ -168,7 +169,7 @@ class _IgpuBaseState extends State<IgpuBase> {
 
     if (!silent) {
       showToast(
-        '已从 ${cpu.cpuModel} 加载 ${cpu.igpuName} 核显配置，写入 ${_checkedIndices.length} 项属性',
+        AppLocalizations.of(context)!.manualIgpuLoadedConfig(cpu.cpuModel, cpu.igpuName, _checkedIndices.length.toString()),
         duration: const Duration(seconds: 3),
       );
     }
@@ -199,15 +200,15 @@ class _IgpuBaseState extends State<IgpuBase> {
       style: SegmentedButton.styleFrom(
         visualDensity: VisualDensity.compact,
       ),
-      segments: const [
+      segments: [
         ButtonSegment(
           value: _ConfigMode.preset,
-          label: Text('预设方案'),
+          label: Text(AppLocalizations.of(context)!.manualIgpuPresetScheme),
           icon: Icon(Icons.list_alt_outlined, size: 16),
         ),
         ButtonSegment(
           value: _ConfigMode.cpu,
-          label: Text('按 CPU 型号'),
+          label: Text(AppLocalizations.of(context)!.manualIgpuByCpuModel),
           icon: Icon(Icons.memory_outlined, size: 16),
         ),
       ],
@@ -233,7 +234,7 @@ class _IgpuBaseState extends State<IgpuBase> {
       tips: tips,
       choices: choices,
       selectedChoices: [selectedChoice.nullSafe],
-      subTitle: '对应则勾选，否则不勾选',
+      subTitle: AppLocalizations.of(context)!.manualIgpuMatchOrNot,
       allowToggle: true,
       onChanged: (List<String> value) {
         if (value.isNotEmpty) {
@@ -266,19 +267,19 @@ class _IgpuBaseState extends State<IgpuBase> {
         initiallyExpanded: false,
         tilePadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-        title: const Text(
-          '从 CPU 型号加载核显配置',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        title: Text(
+          AppLocalizations.of(context)!.manualIgpuLoadConfig,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
         subtitle: _selectedCpu != null
             ? Text(
-                '已选：${_selectedCpu!.cpuModel}  ${_selectedCpu!.igpuName}',
+                AppLocalizations.of(context)!.manualIgpuSelectedCpu(_selectedCpu!.cpuModel, _selectedCpu!.igpuName),
                 style:
                     TextStyle(fontSize: 12, color: colorScheme.primary),
               )
-            : const Text(
-                '选择 CPU 代数和型号，勾选要应用的属性',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+            : Text(
+                AppLocalizations.of(context)!.manualIgpuSelectInstruction,
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
               ),
         children: [
           Padding(
@@ -324,14 +325,14 @@ class _IgpuBaseState extends State<IgpuBase> {
           child: DropdownButtonFormField<String>(
             value: _selectedGeneration,
             isExpanded: true,
-            decoration: const InputDecoration(
-              labelText: 'CPU 代数',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: AppLocalizations.of(context)!.manualIgpuCpuGen,
+              border: const OutlineInputBorder(),
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               isDense: true,
             ),
-            hint: const Text('选择代数'),
+            hint: Text(AppLocalizations.of(context)!.manualIgpuSelectGen),
             items: genNames
                 .map((g) =>
                     DropdownMenuItem(value: g, child: Text(g)))
@@ -346,14 +347,14 @@ class _IgpuBaseState extends State<IgpuBase> {
             value: _selectedCpu,
             isExpanded: true,
             decoration: InputDecoration(
-              labelText: 'CPU 型号',
+              labelText: AppLocalizations.of(context)!.manualIgpuCpuModel,
               border: const OutlineInputBorder(),
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               isDense: true,
               enabled: cpuList.isNotEmpty,
             ),
-            hint: const Text('选择 CPU'),
+            hint: Text(AppLocalizations.of(context)!.manualIgpuSelectCpu),
             items: cpuList
                 .map((cpu) => DropdownMenuItem(
                       value: cpu,
@@ -388,16 +389,16 @@ class _IgpuBaseState extends State<IgpuBase> {
         spacing: 24,
         runSpacing: 4,
         children: [
-          _previewItem('核显', cpu.igpuName, colorScheme),
+          _previewItem(AppLocalizations.of(context)!.manualIgpuName, cpu.igpuName, colorScheme),
           if (cpu.platformId != null)
             _previewItem(
               cpu.platformIdKey ?? 'platform-id',
               cpu.platformId!,
               colorScheme,
             ),
-          _previewItem('型号', cpu.modelName, colorScheme),
+          _previewItem(AppLocalizations.of(context)!.manualIgpuModel, cpu.modelName, colorScheme),
           if (cpu.note != null)
-            _previewItem('⚠️ 备注', cpu.note!, colorScheme,
+            _previewItem(AppLocalizations.of(context)!.manualIgpuRemark, cpu.note!, colorScheme,
                 valueColor: Colors.orange.shade700),
         ],
       ),
@@ -460,14 +461,14 @@ class _IgpuBaseState extends State<IgpuBase> {
                           : null,
                   onChanged: (v) => _toggleAll(v == true),
                 ),
-                const Text(
-                  '选择要应用的属性',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.manualIgpuSelectProperties,
+                  style: const TextStyle(
                       fontSize: 13, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '(${_checkedIndices.length}/${props.length} 已选)',
+                  AppLocalizations.of(context)!.manualMotherboardSelectedCount(_checkedIndices.length.toString(), props.length.toString()),
                   style: const TextStyle(
                       fontSize: 12, color: Colors.grey),
                 ),

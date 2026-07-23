@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/manual_config_controller.dart';
 import 'package:rapidefi/pages/manual/widgets/options/acpi_ssdt_widget.dart';
 import 'package:rapidefi/pages/manual/widgets/options/booter_widget.dart';
@@ -53,29 +54,31 @@ class OptionalSettingWidget extends StatefulWidget {
 class _OptionalSettingWidgetState extends State<OptionalSettingWidget>
     with TickerProviderStateMixin {
   late final TabController _tabController;
-  late final List<String> tabName;
 
   @override
   void initState() {
     super.initState();
-    tabName = [
-      "品牌",
-      "特殊主板",
-      "SIP设置",
-      "CPU改名",
-      "OpenCore引导UI缩放设置",
-      "ACPI配置",
-      "Booter配置",
-      "Kernel配置",
-      "UEFI配置"
-    ];
-    _tabController = TabController(vsync: this, length: tabName.length);
+    _tabController = TabController(vsync: this, length: 9);
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
+  }
+
+  List<String> _getTabNames(AppLocalizations l10n) {
+    return [
+      l10n.tabBrand,
+      l10n.tabSpecialMotherboard,
+      l10n.tabSipSetting,
+      l10n.tabCpuRename,
+      l10n.tabUiScale,
+      l10n.tabAcpiConfig,
+      l10n.tabBooterConfig,
+      l10n.tabKernelConfig,
+      l10n.tabUefiConfig,
+    ];
   }
 
   List<Widget> _buildPages() {
@@ -181,11 +184,13 @@ class _OptionalSettingWidgetState extends State<OptionalSettingWidget>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final tabName = _getTabNames(l10n);
     final pages = _buildPages();
 
     return TabbedTitleCard(
-      title: "可选项设置:",
-      subTitle: "(通常保持默认即可,除非有特殊需求时才需要修改)",
+      title: l10n.optionalSettingsCardTitle,
+      subTitle: l10n.optionalSettingsDefaultTip,
       initiallyExpanded: false,
       controller: _tabController,
       tabs: tabName.map((name) => Tab(text: name)).toList(),

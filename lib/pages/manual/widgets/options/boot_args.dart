@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/nvram/boot_arg_model.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_nvram.dart';
 import 'package:rapidefi/utils/config/services/config_option_provider.dart';
@@ -24,7 +25,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
     super.initState();
     _categories = [
       _BootArgCategory(
-        name: '调试类型',
+        nameKey: 'debugCategory',
         options: [
           ConfigNvram.verbose,
           ConfigNvram.keepsyms1,
@@ -37,7 +38,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        name: 'AMFI/SIP相关',
+        nameKey: 'amfiSipCategory',
         options: [
           ConfigNvram.amfi,
           ConfigNvram.amfi_get_out_of_my_way,
@@ -47,7 +48,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        name: '核显相关',
+        nameKey: 'igpuCategory',
         options: [
           ConfigNvram.disablegfxfirmware,
           ConfigNvram.wegnoigpu,
@@ -64,7 +65,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        name: '独显相关',
+        nameKey: 'dgpuCategory',
         options: [
           ConfigNvram.wegnoegpu,
           ConfigNvram.nv_disable,
@@ -78,7 +79,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        name: '黑屏修复',
+        nameKey: 'blackScreenFixCategory',
         options: [
           ConfigNvram.agdpmod_pikera,
           ConfigNvram.agdpmod_vit9696,
@@ -95,20 +96,20 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        name: 'Above 4G Decoding',
+        nameKey: 'above4gCategory',
         options: [
           ConfigNvram.npci2000,
           ConfigNvram.npci3000,
         ],
       ),
       _BootArgCategory(
-        name: '触摸板修复',
+        nameKey: 'touchpadFixCategory',
         options: [
           ConfigNvram.i2c_force_polling,
         ],
       ),
       _BootArgCategory(
-        name: '其他',
+        nameKey: 'othersCategory',
         options: [
           ConfigNvram.ctrsmt,
           ConfigNvram.brcmfx_country_hk,
@@ -127,12 +128,28 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  String _getCategoryName(BuildContext context, String nameKey) {
+    final l10n = AppLocalizations.of(context)!;
+    return switch (nameKey) {
+      'debugCategory' => l10n.debugCategory,
+      'amfiSipCategory' => l10n.amfiSipCategory,
+      'igpuCategory' => l10n.igpuCategory,
+      'dgpuCategory' => l10n.dgpuCategory,
+      'blackScreenFixCategory' => l10n.blackScreenFixCategory,
+      'above4gCategory' => l10n.above4gCategory,
+      'touchpadFixCategory' => l10n.touchpadFixCategory,
+      'othersCategory' => l10n.othersCategory,
+      _ => nameKey,
+    };
+  }
+
   ChoiceListCategory<String> _buildChoiceListCategory(
+    BuildContext context,
     _BootArgCategory category,
     ConfigOptionProvider provider,
   ) {
     return ChoiceListCategory<String>(
-      name: category.name,
+      name: _getCategoryName(context, category.nameKey),
       tips: BootArgChoiceMapper.tips(category.options),
       choices: BootArgChoiceMapper.choices(category.options),
       selectedChoices: BootArgChoiceMapper.selectedChoices(
@@ -153,13 +170,14 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Consumer<ConfigOptionProvider>(builder: (context, provider, child) {
       return CategorizedChoiceListCard<String>(
-        title: "引导参数:",
-        subTitle: "(默认开启-v代码模式,不需要可以去掉-v勾选)",
+        title: l10n.bootArgsCardTitle,
+        subTitle: l10n.bootArgsDefaultTip,
         controller: _tabController,
         categories: _categories
-            .map((category) => _buildChoiceListCategory(category, provider))
+            .map((category) => _buildChoiceListCategory(context, category, provider))
             .toList(),
       );
     });
@@ -168,10 +186,10 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
 
 class _BootArgCategory {
   const _BootArgCategory({
-    required this.name,
+    required this.nameKey,
     required this.options,
   });
 
-  final String name;
+  final String nameKey;
   final List<BootArgModel> options;
 }

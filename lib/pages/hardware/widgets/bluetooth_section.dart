@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/pages/hardware/widgets/hardware_shared.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
+import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis.dart';
 
 class BluetoothSection extends StatelessWidget {
@@ -24,7 +25,7 @@ class BluetoothSection extends StatelessWidget {
             SelectableText(
               joinNonEmpty([
                 entry.name,
-                if (entry.deviceId.isNotEmpty) '设备ID: ${entry.deviceId}',
+                if (entry.deviceId.isNotEmpty) AppLocalizations.of(context)!.hwDeviceID(entry.deviceId),
                 entry.busType,
               ], '    '),
               style: TextStyle(fontSize: 14, height: 1.25, color: color),
@@ -44,7 +45,7 @@ class BluetoothSection extends StatelessWidget {
     }).toList();
     if (lines.isEmpty) return const SizedBox.shrink();
     return HardwareSection(
-      '蓝牙',
+      AppLocalizations.of(context)!.hwBluetooth,
       lines,
       note: bluetoothCompatibility(rawInfo),
     );

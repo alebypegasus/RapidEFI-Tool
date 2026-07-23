@@ -4,6 +4,7 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:path/path.dart' as path;
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_add_item.dart';
@@ -29,7 +30,6 @@ class ProcessPage extends StatefulWidget {
 class _ProcessPageState extends State<ProcessPage> {
   ConfigModel? _configModel;
   String? _acpiSourceDirectory;
-
   bool _highlighted = false;
   bool _importing = false;
   int _configRevision = 0;
@@ -38,6 +38,7 @@ class _ProcessPageState extends State<ProcessPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Column(
@@ -45,13 +46,9 @@ class _ProcessPageState extends State<ProcessPage> {
           Padding(
             padding: const EdgeInsets.all(15),
             child: TitleCard(
-              title: '加工EFI',
-              content: _buildImportHeader(),
-              expander: const Text(
-                'RapidEFI工具配置的EFI,会在EFI输出文件夹生成一个名为configModel的文件,'
-                '请将此文件导入工具如下指定区域,即可再次编辑当前EFI\n\n'
-                '此功能仅支持RapidEFI V3.0.0以上版本,不支持以前旧版本',
-              ),
+              title: l10n.processEfiTitle,
+              content: _buildImportHeader(l10n),
+              expander: Text(l10n.processEfiExpanderText),
             ),
           ),
           Expanded(
@@ -65,13 +62,13 @@ class _ProcessPageState extends State<ProcessPage> {
     );
   }
 
-  Widget _buildImportHeader() {
+  Widget _buildImportHeader(AppLocalizations l10n) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Flexible(
+        Flexible(
           child: Text(
-            '(对RapidEFI配置的EFI再次加工)',
+            l10n.processEfiSubTitle,
             overflow: TextOverflow.ellipsis,
           ),
         ),
@@ -81,12 +78,12 @@ class _ProcessPageState extends State<ProcessPage> {
           spacing: 6,
           children: [
             _buildActionButton(
-              text: '清除当前配置',
+              text: l10n.clearCurrentConfig,
               enabled: _hasConfigModel && !_importing,
               onTap: _clearConfigModel,
             ),
             _buildActionButton(
-              text: _importing ? '正在导入...' : '导入configModel文件',
+              text: _importing ? l10n.importingConfigModel : l10n.importConfigModelFile,
               enabled: !_importing,
               onTap: _pickAndImportConfigModel,
             ),
@@ -173,8 +170,8 @@ class _ProcessPageState extends State<ProcessPage> {
                         ),
                         child: Text(
                           _importing
-                              ? '正在导入configModel...'
-                              : '松开鼠标重新导入configModel',
+                              ? AppLocalizations.of(context)!.importingConfigModel
+                              : AppLocalizations.of(context)!.releaseToReimport,
                           style: const TextStyle(fontSize: 14),
                         ),
                       ),
@@ -200,6 +197,7 @@ class _ProcessPageState extends State<ProcessPage> {
   }
 
   Widget _buildEmptyDropArea() {
+    final l10n = AppLocalizations.of(context)!;
     return DropTarget(
       onDragDone: _handleDragDone,
       onDragEntered: (_) => _setHighlighted(true),
@@ -223,7 +221,7 @@ class _ProcessPageState extends State<ProcessPage> {
           ),
           child: Center(
             child: Text(
-              _importing ? '正在导入configModel...' : '拖拽configModel文件到这里\n或点击选择文件',
+              _importing ? l10n.importingConfigModel : l10n.dragConfigModelArea,
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 14),
             ),
@@ -288,7 +286,7 @@ class _ProcessPageState extends State<ProcessPage> {
         _highlighted = false;
         _configRevision++;
       });
-      showToast('导入的配置数据不符合要求，请重新导入 configModel 文件');
+      showToast(AppLocalizations.of(context)?.importFailedToast ?? 'Import failed');
     } finally {
       _setImporting(false);
     }

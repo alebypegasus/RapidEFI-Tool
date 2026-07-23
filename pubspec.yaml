@@ -52,7 +52,7 @@ dependencies:
   equatable: ^2.0.5
   sp_util: ^2.0.3
   flutter_markdown: ^0.7.7
-  fluent_ui: ^4.15.1
+  fluent_ui: ^4.16.0
   flutter_acrylic: ^1.1.3
   system_theme: ^3.1.2
   go_router: ^14.3.0
@@ -61,6 +61,12 @@ dependencies:
   #文件拖拽
   desktop_drop: ^0.5.0
   crypto: ^3.0.6
+
+dependency_overrides:
+  fluent_ui:
+    path: packages/fluent_ui
+
+
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +84,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

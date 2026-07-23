@@ -1,5 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:rapidefi/l10n/app_localizations.dart';
+
+
 import 'package:flutter/services.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -56,9 +59,14 @@ class _AppHost extends StatelessWidget {
         ),
         radius: 10,
         position: ToastPosition.center,
-        child: DoubleClickBackExitApp(
-          tips: () => showToast('再次点击退出'),
-          child: _buildFluentApp(context, appTheme),
+        child: Builder(
+          builder: (context) => DoubleClickBackExitApp(
+            tips: () {
+              final l10n = AppLocalizations.of(context);
+              showToast(l10n?.clickAgainToExit ?? 'Click again to exit');
+            },
+            child: _buildFluentApp(context, appTheme),
+          ),
         ),
       ),
     );
@@ -73,16 +81,15 @@ class _AppHost extends StatelessWidget {
       darkTheme: _fluentTheme(context, appTheme, Brightness.dark),
       theme: _fluentTheme(context, appTheme, Brightness.light),
       localizationsDelegates: const [
+        AppLocalizations.delegate,
         PickerLocalizationsDelegate.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('zh', 'CH'),
-      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       locale: appTheme.locale,
+
       builder: (context, child) => _AppChrome(
         appTheme: appTheme,
         child: child ?? const SizedBox.shrink(),
@@ -206,27 +213,6 @@ class _AppState extends State<App> {
   final searchFocusNode = FocusNode();
   final searchController = TextEditingController();
 
-  late final List<NavigationPaneItem> originalItems = [
-    PaneItemWidgetAdapter(child: const _PaneHeaderText('最近')),
-    PaneItemSeparator(),
-    _paneItem(_mainNavDestinations[0]),
-    PaneItemWidgetAdapter(child: const _PaneHeaderText('EFI相关')),
-    PaneItemSeparator(),
-    _paneItem(_mainNavDestinations[1]),
-    _paneItem(_mainNavDestinations[2]),
-    PaneItemWidgetAdapter(child: const _PaneHeaderText('工具及指南')),
-    PaneItemSeparator(),
-    _paneItem(_mainNavDestinations[3]),
-    _paneItem(_mainNavDestinations[4]),
-    _paneItem(_mainNavDestinations[5]),
-  ];
-
-  late final List<NavigationPaneItem> footerItems = [
-    PaneItemSeparator(),
-    _paneItem(_footerNavDestinations[0]),
-    _paneItem(_footerNavDestinations[1]),
-  ];
-
   @override
   void dispose() {
     searchController.dispose();
@@ -237,20 +223,42 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     final appTheme = context.watch<AppTheme>();
+    final l10n = AppLocalizations.of(context)!;
+
+    final originalItems = [
+      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n.recent)),
+      PaneItemSeparator(),
+      _paneItem(l10n, _mainNavDestinations[0]),
+      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n.efiRelated)),
+      PaneItemSeparator(),
+      _paneItem(l10n, _mainNavDestinations[1]),
+      _paneItem(l10n, _mainNavDestinations[2]),
+      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n.toolsAndGuides)),
+      PaneItemSeparator(),
+      _paneItem(l10n, _mainNavDestinations[3]),
+      _paneItem(l10n, _mainNavDestinations[4]),
+      _paneItem(l10n, _mainNavDestinations[5]),
+    ];
+
+    final footerItems = [
+      PaneItemSeparator(),
+      _paneItem(l10n, _footerNavDestinations[0]),
+      _paneItem(l10n, _footerNavDestinations[1]),
+    ];
 
     return NavigationView(
-      titleBar: _buildTitleBar(context, appTheme),
+      titleBar: _buildTitleBar(context, appTheme, l10n),
       paneBodyBuilder: _buildPaneBody,
-      pane: _buildNavigationPane(context, appTheme),
+      pane: _buildNavigationPane(context, appTheme, l10n, originalItems, footerItems),
       onOpenSearch: searchFocusNode.requestFocus,
     );
   }
 
-  PaneItem _paneItem(_NavDestination destination) {
+  PaneItem _paneItem(AppLocalizations l10n, _NavDestination destination) {
     return PaneItem(
       key: ValueKey(destination.path),
       icon: Icon(destination.icon),
-      title: Text(destination.title),
+      title: Text(destination.title(l10n)),
       body: const SizedBox.shrink(),
       onTap: () {
         _goToDestination(destination);
@@ -265,7 +273,7 @@ class _AppState extends State<App> {
     );
   }
 
-  Widget _buildTitleBar(BuildContext context, AppTheme appTheme) {
+  Widget _buildTitleBar(BuildContext context, AppTheme appTheme, AppLocalizations l10n) {
     final topPadding = MediaQuery.paddingOf(context).top;
 
     return DragToMoveArea(
@@ -276,7 +284,7 @@ class _AppState extends State<App> {
           children: [
             Align(
               alignment: AlignmentDirectional.centerStart,
-              child: _buildWindowTitle(context),
+              child: _buildWindowTitle(context, l10n),
             ),
             PositionedDirectional(
               start: 0,
@@ -285,7 +293,7 @@ class _AppState extends State<App> {
               bottom: 0,
               child: Align(
                 alignment: AlignmentDirectional.topEnd,
-                child: _buildWindowActions(context, appTheme),
+                child: _buildWindowActions(context, appTheme, l10n),
               ),
             ),
           ],
@@ -294,9 +302,9 @@ class _AppState extends State<App> {
     );
   }
 
-  Widget _buildWindowTitle(BuildContext context) {
+  Widget _buildWindowTitle(BuildContext context, AppLocalizations l10n) {
     final appVersion = SpUtil.getString(Constant.appVersionKey);
-    final ocVersion = SpUtil.getString(Constant.openCoreVersionKey);
+    final ocVersion = SpUtil.getString(Constant.openCoreVersionKey) ?? '';
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -328,7 +336,7 @@ class _AppState extends State<App> {
         ),
         Flexible(
           child: Text(
-            '${Constant.appName}-$appVersion(当前OpenCore版本: $ocVersion)',
+            '${Constant.appName}-$appVersion (${l10n.currentOpenCoreVersion(ocVersion)})',
             softWrap: false,
             overflow: TextOverflow.ellipsis,
           ),
@@ -337,14 +345,14 @@ class _AppState extends State<App> {
     );
   }
 
-  Widget _buildWindowActions(BuildContext context, AppTheme appTheme) {
+  Widget _buildWindowActions(BuildContext context, AppTheme appTheme, AppLocalizations l10n) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.only(end: 8.0),
           child: ToggleSwitch(
-            content: const Text('深色模式'),
+            content: Text(l10n.darkMode),
             checked: FluentTheme.of(context).brightness == Brightness.dark,
             onChanged: (value) {
               appTheme.mode = value ? ThemeMode.dark : ThemeMode.light;
@@ -362,15 +370,21 @@ class _AppState extends State<App> {
     );
   }
 
-  NavigationPane _buildNavigationPane(BuildContext context, AppTheme appTheme) {
+  NavigationPane _buildNavigationPane(
+    BuildContext context,
+    AppTheme appTheme,
+    AppLocalizations l10n,
+    List<NavigationPaneItem> items,
+    List<NavigationPaneItem> footerItems,
+  ) {
     return NavigationPane(
       selected: widget.navigationShell.currentIndex,
       size: const NavigationPaneSize(openMaxWidth: 220),
       header: _buildPaneHeader(context, appTheme),
       displayMode: appTheme.displayMode,
       indicator: _buildNavigationIndicator(appTheme),
-      items: originalItems,
-      autoSuggestBox: Builder(builder: _buildSearchBox),
+      items: items,
+      autoSuggestBox: Builder(builder: (context) => _buildSearchBox(context, l10n)),
       autoSuggestBoxReplacement: const Icon(FluentIcons.search),
       footerItems: footerItems,
     );
@@ -397,13 +411,13 @@ class _AppState extends State<App> {
     };
   }
 
-  AutoSuggestBox _buildSearchBox(BuildContext context) {
+  AutoSuggestBox _buildSearchBox(BuildContext context, AppLocalizations l10n) {
     return AutoSuggestBox(
       focusNode: searchFocusNode,
       controller: searchController,
       unfocusedColor: Colors.transparent,
       items: _searchDestinations()
-          .map((destination) => _suggestionItem(context, destination))
+          .map((destination) => _suggestionItem(context, l10n, destination))
           .toList(),
       trailingIcon: IgnorePointer(
         child: IconButton(
@@ -411,7 +425,7 @@ class _AppState extends State<App> {
           icon: const Icon(FluentIcons.search),
         ),
       ),
-      placeholder: '搜索',
+      placeholder: l10n.searchPlaceholder,
     );
   }
 
@@ -424,11 +438,13 @@ class _AppState extends State<App> {
 
   AutoSuggestBoxItem<String> _suggestionItem(
     BuildContext context,
+    AppLocalizations l10n,
     _NavDestination destination,
   ) {
+    final title = destination.title(l10n);
     return AutoSuggestBoxItem(
-      label: destination.title,
-      value: destination.title,
+      label: title,
+      value: title,
       onSelected: () {
         searchController.clear();
         searchFocusNode.unfocus();
@@ -481,68 +497,71 @@ class _NavDestination {
     required this.index,
     required this.path,
     required this.icon,
-    required this.title,
+    required this.titleGetter,
   });
 
   final int index;
   final String path;
   final IconData icon;
-  final String title;
+  final String Function(AppLocalizations l10n) titleGetter;
+
+  String title(AppLocalizations l10n) => titleGetter(l10n);
 }
 
-const List<_NavDestination> _mainNavDestinations = [
+final List<_NavDestination> _mainNavDestinations = [
   _NavDestination(
     index: 0,
     path: '/history',
     icon: FluentIcons.history,
-    title: '历史记录',
+    titleGetter: (l10n) => l10n.navHistory,
   ),
   _NavDestination(
     index: 1,
     path: '/',
     icon: FluentIcons.repair,
-    title: '配置EFI',
+    titleGetter: (l10n) => l10n.navConfigureEFI,
   ),
   _NavDestination(
     index: 2,
     path: '/efi/process',
     icon: FluentIcons.c_r_m_services,
-    title: '加工EFI',
+    titleGetter: (l10n) => l10n.navProcessEFI,
   ),
   _NavDestination(
     index: 3,
     path: '/ssdt',
     icon: FluentIcons.developer_tools,
-    title: '定制SSDT',
+    titleGetter: (l10n) => l10n.navCustomSSDT,
   ),
   _NavDestination(
     index: 4,
     path: '/oclp',
     icon: FluentIcons.publish_course,
-    title: 'OCLP-X补丁',
+    titleGetter: (l10n) => l10n.navOCLPPatch,
   ),
   _NavDestination(
     index: 5,
     path: '/tahoe',
     icon: FluentIcons.system,
-    title: 'macOS Tahoe 26',
+    titleGetter: (l10n) => l10n.navTahoeGuide,
   ),
 ];
 
-const List<_NavDestination> _footerNavDestinations = [
+final List<_NavDestination> _footerNavDestinations = [
   _NavDestination(
     index: 6,
     path: '/settings',
     icon: FluentIcons.settings,
-    title: '偏好设置',
+    titleGetter: (l10n) => l10n.navSettings,
   ),
   _NavDestination(
     index: 7,
     path: '/about',
     icon: FluentIcons.coffee_script,
-    title: '赞助开发者',
+    titleGetter: (l10n) => l10n.navSponsor,
   ),
 ];
+
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 

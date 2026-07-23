@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/enums/brand_enum.dart';
 
@@ -41,7 +42,7 @@ class _BrandWidgetState extends State<BrandWidget> {
           selectedChoices: [brand.value],
           isMultipleSelection: false,
           allowToggle: true,
-          subTitle: "可选项-符合描述的品牌建议勾选",
+          subTitle: AppLocalizations.of(context)!.manualBrandTip,
           onChanged: (List<String> value) {
             String? selectedValue = value.firstOrNull;
             brand = Brand.values.firstWhere(

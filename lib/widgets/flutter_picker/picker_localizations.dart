@@ -47,11 +47,20 @@ class PickerLocalizations {
       'cancelText': 'Cancel',
       'confirmText': 'Confirm',
     },
+    'pt': <String, String>{
+      'cancelText': 'Cancelar',
+      'confirmText': 'Confirmar',
+    },
+    'ja': <String, String>{
+      'cancelText': 'キャンセル',
+      'confirmText': '確認',
+    },
     'zh': <String, String>{
       'cancelText': '取消',
       'confirmText': '确定',
     },
   };
+
 
   /// 当前支持“取消”和“确定”，也允许追加其他文字。
   static void registerCustomLanguage(

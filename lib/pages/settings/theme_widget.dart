@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -105,7 +106,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
                   height: 40,
                 ),
                 Text(
-                  "默认",
+                  AppLocalizations.of(context)!.settingsThemeDefault,
                   style: TextStyle(fontSize: 11, color: color),
                 ),
                 isDefalut
@@ -177,7 +178,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
       return colorWidets;
     }
     return ExpansionTile(
-      title: const Text('色彩主题'),
+      title: Text(AppLocalizations.of(context)!.settingsThemeColors),
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

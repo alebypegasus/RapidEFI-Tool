@@ -1,6 +1,7 @@
-import 'package:rapidefi/utils/config/models/enums/uiscale_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
+import 'package:rapidefi/utils/config/models/enums/uiscale_enum.dart';
 
 class UIScaleWidget extends StatefulWidget {
   final ValueChanged onChanged;
@@ -26,11 +27,12 @@ class _UIScaleWidgetState extends State<UIScaleWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final choices = UIScale.values.map((e) => e.text.description).toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         ChoiceList(
@@ -38,7 +40,7 @@ class _UIScaleWidgetState extends State<UIScaleWidget> {
           selectedChoices: [uiScale.text.description],
           isMultipleSelection: false,
           allowToggle: false,
-          subTitle: "可选项-调整OpenCore 引导UI缩放比例",
+          subTitle: l10n.optionalSelectIfMatching,
           onChanged: (List<String> value) {
             String? selectedValue = value.firstOrNull;
             uiScale = UIScale.values.firstWhere(
@@ -52,3 +54,4 @@ class _UIScaleWidgetState extends State<UIScaleWidget> {
     );
   }
 }
+

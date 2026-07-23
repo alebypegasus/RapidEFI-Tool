@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/os_version.dart';
+
 import 'package:rapidefi/pages/manual/widgets/platform/smbios.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_chip_tile.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
@@ -331,6 +333,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final dialogBackground =
@@ -340,7 +343,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.black.withValues(alpha: darkMode ? 0.75 : 0.22),
       elevation: darkMode ? 18 : 8,
-      title: const Text('EFI设置', textAlign: TextAlign.center),
+      title: Text(l10n.personalizedEfiTitle, textAlign: TextAlign.center),
       titlePadding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
       content: SizedBox(
@@ -349,10 +352,10 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
           mainAxisSize: MainAxisSize.min,
           spacing: 8,
           children: [
-            const Text(
-              '当前内容为可选项，输出 EFI 时会根据当前设置生成对应文件',
+            Text(
+              l10n.personalizedEfiIntroTip,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12),
+              style: const TextStyle(fontSize: 12),
             ),
             ConstrainedBox(
               constraints: BoxConstraints(
@@ -374,7 +377,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('取消'),
+          child: Text(l10n.cancel),
         ),
         ElevatedButton(
           onPressed: () => Navigator.pop(
@@ -391,13 +394,14 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
               ssdtSelection: _buildSsdtSelection(),
             ),
           ),
-          child: const Text('确认'),
+          child: Text(l10n.confirm),
         ),
       ],
     );
   }
 
   Widget _buildLeftOptions() {
+    final l10n = AppLocalizations.of(context)!;
     final hasAlc = _alcModel != null;
     return SingleChildScrollView(
       child: Column(
@@ -429,8 +433,9 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ),
           if (hasAlc)
             TitleCard(
-              title: '声卡布局 ID:',
+              title: l10n.alcLayoutId,
               subTitle: _alcModel,
+
               content: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: fluent.ComboBox<String>(
@@ -449,23 +454,25 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                       setState(() => _selectedAlcLayout = int.tryParse(v!)),
                 ),
               ),
-              snippet: 'AppleALC 支持多个布局 ID，不同 ID 可能影响音频接口可用性。',
+              snippet: l10n.hwAppleALCSnippet,
             ),
           TitleCard(
-            title: 'Above 4G Decoding设置',
+            title: l10n.above4gTitle,
             content: ChoiceChipTile(
-              label: '添加npci=0x2000启动参数',
+              label: l10n.addNpciBootArg,
               selected: _enableNpci,
               onChanged: (bo) => setState(() => _enableNpci = bo),
             ),
-            snippet: '主板 BIOS 中 Above 4G Decoding 未开启时，建议勾选此参数；已开启时去掉该启动参数。',
+            snippet: l10n.above4gTip,
           ),
         ],
       ),
     );
   }
 
+
   Widget _buildSsdtPanel() {
+    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final panelColor = darkMode
@@ -494,7 +501,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '当前 CPU 类型、平台类型和平台信息来自硬件信息识别结果；如果识别有误，可以在下方手动微调。',
+              l10n.personalizedPlatformTip,
               style: TextStyle(
                 color: colorScheme.onSurfaceVariant,
                 fontSize: 12,
@@ -506,7 +513,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                 SizedBox(
                   width: 64,
                   child: Text(
-                    'SSDT类型:',
+                    l10n.ssdtType,
                     style: TextStyle(
                       color: onPanelColor,
                       fontWeight: FontWeight.bold,
@@ -517,14 +524,14 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                   groupValue: _selectedSsdtBuildMode.name,
                   direction: RadioGroupDirection.row,
                   radioScale: 0.78,
-                  options: const [
+                  options: [
                     RadioOptionData(
                       value: 'custom',
-                      label: '定制SSDT',
+                      label: l10n.customSsdt,
                     ),
                     RadioOptionData(
                       value: 'original',
-                      label: '预制SSDT',
+                      label: l10n.presetSsdt,
                     ),
                   ],
                   onChanged: (value) => setState(() {
@@ -553,7 +560,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ],
             const SizedBox(height: 10),
             _buildSegmentRow<CpuType>(
-              label: 'CPU类型:',
+              label: l10n.cpuTypeLabel,
               values: const [CpuType.intel, CpuType.amd],
               selected: _selectedCpuType,
               textOf: (value) => value == CpuType.intel ? 'Intel' : 'AMD',
@@ -561,7 +568,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ),
             const SizedBox(height: 10),
             _buildSegmentRow<PlatformType>(
-              label: '平台类型:',
+              label: l10n.platformTypeLabel,
               values: PlatformType.values,
               selected: _selectedPlatformType,
               textOf: _platformTypeLabel,
@@ -573,7 +580,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                 SizedBox(
                   width: 64,
                   child: Text(
-                    '平台信息:',
+                    l10n.platformInfo,
                     style: TextStyle(
                       color: onPanelColor,
                       fontWeight: FontWeight.bold,
@@ -615,7 +622,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                   child: Opacity(
                     opacity: customEnabled ? 1 : 0.56,
                     child: CheckboxTile(
-                      label: '勾选所有',
+                      label: l10n.selectAll,
                       selected: _ssdtItems.isNotEmpty &&
                           _selectedSsdtKeys.length == _ssdtItems.length,
                       onChanged: _toggleAllSsdt,
@@ -641,6 +648,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
       ),
     );
   }
+
 
   Widget _buildSegmentRow<T>({
     required String label,
@@ -750,20 +758,21 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
   }
 
   Widget _buildLegend() {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Wrap(
         spacing: 8,
-        children: const [
+        children: [
           _LegendText(
-            text: '* 核心(官方推荐)',
+            text: l10n.basicOfficialRecommend,
             color: _PersonalizedEfiDialogState._basicColor,
           ),
           _LegendText(
-            text: '* 推荐(功能修复)',
+            text: l10n.recommendFixes,
             color: _PersonalizedEfiDialogState._recommendColor,
           ),
           _LegendText(
-            text: '* 可选(功能完善)',
+            text: l10n.optionalEnhancements,
             color: _PersonalizedEfiDialogState._optionalColor,
           ),
         ],
@@ -808,17 +817,19 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
   }
 
   String _platformTypeLabel(PlatformType platformType) {
+    final l10n = AppLocalizations.of(context)!;
     switch (platformType) {
       case PlatformType.desktop:
-        return '台式机';
+        return l10n.desktop;
       case PlatformType.laptop:
-        return '笔记本';
+        return l10n.laptop;
       case PlatformType.nuc:
-        return '迷你主机';
+        return l10n.nuc;
       case PlatformType.hedt:
-        return '服务器';
+        return l10n.hedt;
     }
   }
+
 }
 
 class _LegendText extends StatelessWidget {

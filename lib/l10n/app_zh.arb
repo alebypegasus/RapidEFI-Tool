@@ -1,0 +1,875 @@
+{
+  "@@locale": "zh",
+  "appName": "RapidEFI",
+  "recent": "最近",
+  "efiRelated": "EFI相关",
+  "toolsAndGuides": "工具及指南",
+  "navHistory": "历史记录",
+  "navConfigureEFI": "配置EFI",
+  "navProcessEFI": "加工EFI",
+  "navCustomSSDT": "定制SSDT",
+  "navOCLPPatch": "OCLP-X补丁",
+  "navTahoeGuide": "macOS Tahoe 26",
+  "navSettings": "偏好设置",
+  "navSponsor": "赞助开发者",
+  "searchPlaceholder": "搜索",
+  "darkMode": "深色模式",
+  "clickAgainToExit": "再次点击退出",
+  "currentOpenCoreVersion": "当前OpenCore版本: {version}",
+  "copyrightTitle": "版权申明",
+  "copyrightText": "版权所有（C）2024 JeoJay\n\n使用许可\n\n允许个人或组织在以下条件下使用：\n\n1.非商业用途：\n本软件完全免费且开源,仅限于非商业用途,禁止售卖此软件。\n\n2.注明出处：\n任何形式的转载、引用或在第三方网站使用本软件的内容，必须明确注明出处，并包含以下信息：\n\n本软件由JeoJay开发。版权所有（C）2024 JeoJay.   (Copyright © 2024 com.jeojay. All rights reserved.)\n\n3.不得修改版权声明：\n转载或使用本软件的任何内容时，不得修改或删除原始的版权声明和注明出处的信息。\n\n免责声明：\n本软件按“原样”提供，不提供任何明示或暗示的担保。版权所有人不对使用本软件产生的任何直接或间接损害承担责任。",
+  "themeModeTitle": "深色模式 :",
+  "themeModeSystem": "跟随系统",
+  "themeModeLight": "关闭",
+  "themeModeDark": "开启",
+  "themeColorTitle": "主题颜色 :",
+  "appFontTitle": "应用字体 :",
+  "efiSettingsTitle": "EFI相关设置 :",
+  "addOpenCoreTheme": "配置EFI时添加OpenCore引导主题",
+  "generateConfigModel": "生成configModel文件到EFI文件夹",
+  "zipEFI": "EFI压缩成Zip文件",
+  "languageTitle": "语言设置 :",
+  "languageSystem": "跟随系统",
+  "languageEn": "English",
+  "languagePtBR": "Português (Brasil)",
+  "languagePtPT": "Português (Portugal)",
+  "languageZhCN": "中文 (简体)",
+  "languageZhTW": "中文 (繁體)",
+  "languageJa": "日本語",
+  "versionUpdateTitle": "版本更新 :",
+  "currentVersion": "当前版本: {version}",
+  "checkUpdate": "检测更新",
+  "checkingUpdate": "检测中...",
+  "settingSnippet": "1.工具默认勾选【配置EFI时添加OpenCore引导主题】.RapidEFI工具配置输出EFI的时候,会添加一个OpenCore的引导主题.如果不需要主题,可以去掉勾选.\n\n2.工具默认勾选【生成configModel文件到EFI文件夹】.RapidEFI工具配置输出EFI的时候,会在EFI输出文件夹生成一个名为configModel的文件.该文件可用于再次编辑调整当前EFI.具体可参考工具【加工EFI】部分.\n\n3.如果勾选【EFI压缩成Zip文件】,工具输出EFI的同时会将当前EFI压缩成一个Zip文件。注意压缩Zip文件,会影响输出EFI整体进度。尤其性能比较差的硬件,影响更为明显.谨慎勾选此项.",
+  "fontMicrosoftYaHei": "微软雅黑",
+  "fontSarasaGothic": "更纱黑体",
+  "fontSourceHanSerif": "思源宋体",
+  "cpuArchitecture": "CPU 架构",
+  "desktop": "台式机",
+  "laptop": "笔记本",
+  "hedt": "服务器",
+  "nuc": "迷你主机",
+  "amd": "AMD 处理器",
+  "smbios": "SMBIOS 机型",
+  "generateEFI": "生成EFI",
+  "clearSelection": "清除选择",
+  "exportConfig": "导出配置",
+  "selectTargetFolder": "选择目标文件夹",
+  "efiGenerateSuccess": "EFI 生成成功！",
+  "efiGenerateFailed": "EFI 生成失败: {error}",
+  "cancel": "取消",
+  "confirm": "确定",
+  "save": "保存",
+  "delete": "删除",
+  "openFolder": "打开文件夹",
+  "date": "日期",
+  "actions": "操作",
+  "historyTitle": "历史记录",
+  "historyDescription": "RapidEFI工具配置的EFI,每次成功生成后,会进行自动备份,产生一个历史记录。如有需要，可以根据这个EFI记录再次编辑调整输出\n\n此功能仅支持RapidEFI V3.0.0以上版本,不支持以前旧版本",
+  "clearAllHistory": "清空所有历史记录",
+  "clearingHistory": "正在清空历史记录...",
+  "noHistory": "暂无历史记录",
+  "editEFI": "编辑EFI",
+  "configuringEFI": "配置EFI中,请稍后",
+  "configureEFISuccess": "配置EFI成功",
+  "configureEFIFailed": "配置EFI发生错误!\n请更换EFI输出路径",
+  "sponsorTitle": "赞助开发者",
+  "visitBilibili": "访问作者b站",
+  "visitGithub": "访问 GitHub",
+  "buyCoffeeTitle": "请开发者喝杯奶茶",
+  "buyCoffeeText": "如果有幸帮到了你，可以对开发者随意打赏！感谢支持！！！\n\n作者联系方式:QQ766264141或者WX:JeoJay127。除此之外没有其他私人联系方式,谨防受骗!",
+  "successCasesTitle": "RapidEFI成功案例",
+  "tahoeGuideTitle": "macOS Tahoe 26 指南",
+  "oclpIntro": "工具介绍",
+  "oclpGpu": "显卡补丁",
+  "oclpWifi": "WiFi补丁",
+  "ssdtPlatform": "平台补丁",
+  "ssdtAudio": "声卡补丁",
+  "ssdtGpuSpoof": "显卡仿冒",
+  "ssdtDisableDevice": "屏蔽设备",
+  "ssdtBrightness": "亮度补丁",
+  "manualEFIConfig": "手动配置EFI",
+  "autoEFIConfig": "自动配置EFI",
+  "cpuSelection": "CPU选择:",
+  "platformSelection": "平台选择:",
+  "platformInfo": "平台信息:",
+  "targetMacOSVersion": "安装macOS版本:",
+  "smbiosModelSetup": "SMBIOS机型设置:",
+  "motherboardModelConfig": "主板型号配置:",
+  "selectMotherboardModelTip": "(选择主板型号，勾选要应用的配置)",
+  "platformGen": "平台代数",
+  "vendor": "品牌",
+  "motherboardModel": "主板型号",
+  "pleaseSelect": "请选择",
+  "selected": "已选：",
+  "applySelectedConfig": "应用勾选配置",
+  "noMatchingConfigEntries": "无匹配配置条目",
+  "pentiumCeleron": "奔腾赛扬",
+  "pentiumCeleronTip": "奔腾或赛扬处理器需要仿冒CPU,请务必开启!\n注意:奔腾赛扬核显通常是无法驱动的!!!",
+  "u62CpuTitle": "U62类型CPU",
+  "u62CpuTip": "10代Comet Lake架构的U62 CPU(例如: i3-10110U,i5-10210U,i5-10310U,\n i7-10510U,i7-10610U,i7-10710U,i7-10810U),请务必勾选!!!",
+  "macOSVersionSnippet": "根据当前选择的macOS版本,制作的EFI,会向下兼容.例如,如果选择了Tahoe 26,那么该引导同时支持Sequoia 15及以下版本。\n\n温馨提示:工具制作的EFI向下兼容,经测试支持macOS EI Capitan 10.11.x ~ macOS Tahoe 26.x系统。更低版本自行测试,太老了,也没必要了。",
+  "amdCores": "AMD核心数:",
+  "ryzen7000to9000": "7000~9000系CPU",
+  "useAmdIgpuOutput": "使用AMD核显输出显示",
+  "igpuConfigTitle": "核显配置",
+  "dgpuConfigTitle": "独显配置",
+  "audioDriver": "声卡驱动:",
+  "defaultAppleALCDriver": "(默认使用AppleALC驱动)",
+  "alcLayoutId": "ALC布局ID:",
+  "queryLayoutId": "查询布局ID",
+  "hpetAcpiPath": "高精度计时器ACPI路径(用于修复声卡IRQ问题):",
+  "fixIrq": "修复IRQ",
+  "selectAudioLayoutIdTitle": "选择声卡布局ID",
+  "selectAudioLayoutIdTip": "(鼠标滑轮选择后,点击确认即可)",
+  "ethernetDriver": "网卡驱动:",
+  "defaultNoEthernetDriver": "(默认不添加网卡驱动)",
+  "loadingData": "数据加载中...",
+  "refreshHardwareInfo": "刷新硬件信息",
+  "importHardwareInfo": "导入硬件资料",
+  "exportHardwareReport": "导出硬件报告",
+  "exportAcpiTables": "导出 ACPI 表",
+  "efiSettings": "EFI设置",
+  "outputEFI": "输出EFI",
+  "summaryView": "简要",
+  "detailedView": "详细",
+  "legendGreen": "绿色: 支持最新系统(macOS Tahoe 26)",
+  "legendYellow": "黄色：支持部分系统",
+  "legendRed": "红色：完全不兼容",
+  "noAcpiImported": "未导入 ACPI",
+  "personalizedEfiTitle": "EFI 个性化设置",
+  "applySettings": "应用设置",
+  "configureEFIError": "配置EFI发生错误!\n请更换EFI输出路径",
+  "selectConfigItems": "选择应用的配置项",
+  "newVersionFound": "发现新版本",
+  "versionTag": "版本号：{tag}",
+  "publishedAtDate": "发布时间：{date}",
+  "downloadNow": "立即下载",
+  "close": "关闭",
+  "generatingEfiAndSsdt": "正在生成 EFI 与定制 SSDT，请稍后...",
+  "configuringEfiTitle": "正在配置 EFI",
+  "configureEfiSuccessTitle": "配置 EFI 成功",
+  "configureEfiErrorTitle": "配置 EFI 失败",
+  "outputDirectory": "输出目录:",
+  "openEfiDirectory": "打开EFI目录",
+  "select": "选择",
+  "selectFile": "选择文件",
+  "selectDirectory": "选择目录",
+  "hardwareReport": "硬件报告",
+  "acpiTablesDirectory": "ACPI 表目录",
+  "noAcpiFolderTip": "未选择 ACPI 表目录时，导入外部硬件报告后只能使用预制/原始 SSDT。",
+  "hasAcpiFolderTip": "将使用所选 ACPI 表目录进行定制 SSDT。",
+  "adminRightsRequired": "需要管理员权限",
+  "enterSystemPassword": "请输入电脑开机密码",
+  "import": "导入",
+  "optionalSelectIfMatching": "(可选项-对应则勾选)",
+  "selectIfMatching": "(对应则勾选,否则不勾选)",
+  "baseConfig": "基础配置",
+  "advanceConfig": "高级配置",
+  "connectorCustomization": "接口定制",
+  "displayEdid": "显示器EDID",
+  "nvidiaDgpu": "Nvidia独显",
+  "amdDgpu": "AMD独显",
+  "amdDgpuSpoof": "AMD独显仿冒",
+  "above4gTitle": "Above 4G Decoding设置",
+  "addNpciBootArg": "添加npci=0x2000启动参数",
+  "above4gTip": "主板 BIOS 中 Above 4G Decoding 未开启时，建议勾选此参数；已开启时去掉该启动参数。",
+  "personalizedEfiIntroTip": "当前内容为可选项，输出 EFI 时会根据当前设置生成对应文件",
+  "ssdtType": "SSDT类型:",
+  "customSsdt": "定制SSDT",
+  "presetSsdt": "预制SSDT",
+  "cpuTypeLabel": "CPU类型:",
+  "platformTypeLabel": "平台类型:",
+  "selectAll": "勾选所有",
+  "basicOfficialRecommend": "* 核心(官方推荐)",
+  "recommendFixes": "* 推荐(功能修复)",
+  "optionalEnhancements": "* 可选(功能完善)",
+  "personalizedPlatformTip": "当前 CPU 类型、平台类型和平台信息来自硬件信息识别结果；如果识别有误，可以在下方手动微调。",
+  "pciPathLabel": "显卡PCI路径:",
+  "pciPathHint": "填写PCI路径",
+  "spoofGpuIdLabel": "仿冒显卡ID:",
+  "selectSpoofGpuPlaceholder": "选择需要仿冒的显卡设备",
+  "gpuSpoofDataLoadError": "显卡仿冒数据加载失败",
+  "injectEdidTitle": "注入显示器EDID(通常为256位或512位):",
+  "injectEdidHint": "填写显示器EDID(通常为256位或512位,可以包含空格,换行符)",
+  "edidHexError": "EDID数据包含非十六进制字符,请检查!",
+  "edidLengthError": "当前EDID数据长度非256位整数倍,请检查!",
+  "edidInvalidToast": "EDID数据不正确,请检查确认后再输入!",
+  "details": "详细信息",
+  "clearAllSelection": "清除全选",
+  "applySelected": "应用选中 ({count} 项)",
+  "getModdedOclp": "获取修改版OCLP",
+  "getIntelModdedOclp": "获取Intel专用修改版OCLP",
+  "soundDriverCardTitle": "声卡驱动:",
+  "soundDriverDefaultTip": "(默认使用AppleALC驱动)",
+  "hpetAcpiPathTitle": "高精度计时器ACPI路径(用于修复声卡IRQ问题):",
+  "selectAudioLayoutTitle": "选择声卡布局ID(数据库:{published} v{version})",
+  "pickerScrollConfirmTip": "(鼠标滑轮选择后,点击确认即可)",
+  "nicDriverCardTitle": "网卡驱动:",
+  "nicDriverDefaultTip": "(默认不添加网卡驱动)",
+  "wifiBtCardTitle": "WiFi蓝牙驱动:",
+  "wifiBtDefaultTip": "(默认不配置WiFi驱动,请自行配置添加)",
+  "usbCardTitle": "USB驱动:",
+  "usbDefaultTip": "(默认使用USBInjectAll)",
+  "selectUtbMap": "选择UTBMap",
+  "selectUtbMapHint": "选择使用USBToolBox工具定制好的UTBMap.kext驱动",
+  "releaseUsbOwnershipText": "启用'UEFI->Quirks->ReleaseUsbOwnership'怪癖,从固件驱动程序中释放USB控制器的所有权,虽然大部分的主板都有自动释放USB所有权的功能(可以在主板BIOS设置中将XHCI EHCI hand-off开启即可),但是有些固件做不到(比如某些H110,B150,B250,联想Q270等OEM主板)。具体表现是,可能在启动mac系统时因USB问题卡住,无法进入系统,或者开机USB键盘鼠标无法正常使用。此怪癖,除非必要，否则不建议使用",
+  "bootArgsCardTitle": "引导参数:",
+  "bootArgsDefaultTip": "(默认开启-v代码模式,不需要可以去掉-v勾选)",
+  "debugCategory": "调试类型",
+  "amfiSipCategory": "AMFI/SIP相关",
+  "igpuCategory": "核显相关",
+  "dgpuCategory": "独显相关",
+  "blackScreenFixCategory": "黑屏修复",
+  "above4gCategory": "Above 4G Decoding",
+  "touchpadFixCategory": "触摸板修复",
+  "othersCategory": "其他",
+  "optionalKextsCardTitle": "可选Kexts驱动:",
+  "optionalKextsDefaultTip": "(可选驱动,非必要不添加)",
+  "graphicsCategory": "显卡",
+  "powerManagementCategory": "电源管理",
+  "sleepCategory": "睡眠",
+  "diskCategory": "磁盘",
+  "cpuCategory": "CPU相关",
+  "amdPlatformCategory": "AMD平台",
+  "usbCategory": "USB相关",
+  "sdCardCategory": "SD卡",
+  "optionalSettingsCardTitle": "可选项设置:",
+  "optionalSettingsDefaultTip": "(通常保持默认即可,除非有特殊需求时才需要修改)",
+  "tabBrand": "品牌",
+  "tabSpecialMotherboard": "特殊主板",
+  "tabSipSetting": "SIP设置",
+  "tabCpuRename": "CPU改名",
+  "tabUiScale": "OpenCore引导UI缩放设置",
+  "tabAcpiConfig": "ACPI配置",
+  "tabBooterConfig": "Booter配置",
+  "tabKernelConfig": "Kernel配置",
+  "tabUefiConfig": "UEFI配置",
+  "processEfiTitle": "加工EFI",
+  "processEfiSubTitle": "(对RapidEFI配置的EFI再次加工)",
+  "processEfiExpanderText": "RapidEFI工具配置的EFI,会在EFI输出文件夹生成一个名为configModel的文件,请将此文件导入工具如下指定区域,即可再次编辑当前EFI\n\n此功能仅支持RapidEFI V3.0.0以上版本,不支持以前旧版本",
+  "clearCurrentConfig": "清除当前配置",
+  "importConfigModelFile": "导入configModel文件",
+  "importingConfigModel": "正在导入configModel...",
+  "releaseToReimport": "松开鼠标重新导入configModel",
+  "dragConfigModelArea": "拖拽configModel文件到这里\n或点击选择文件",
+  "importFailedToast": "导入的配置数据不符合要求，请重新导入 configModel 文件",
+  "changeEfiTitle": "更改EFI标题",
+  "modifyCurrentEfiName": "修改当前EFI名称",
+  "originalEfiName": "原EFI名称: {name}",
+  "@originalEfiName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "enterModifiedName": "请输入修改后的名称",
+  "deleteRecord": "删除此记录",
+  "exportThisEfi": "导出此EFI",
+  "releaseToIdentifyHardware": "释放后自动识别硬件报告和 ACPI 表",
+  "dragHardwareReportHere": "拖入当前工具导出的硬件报告文件夹\n(自动识别sysInfo.txt和ACPI目录)",
+  "invalidHardwareReportToast": "未识别到有效硬件报告文件",
+  "optionalSuffix": "{title}(可选)",
+  "@optionalSuffix": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notSelected": "未选择",
+  "verifyingAdminPassword": "正在验证管理员密码...",
+  "hardwareReportAcpiMissing": "已导入外部硬件报告，但未提供 ACPI 表目录，不能定制 SSDT。",
+  "hwMemory": "内存",
+  "hwCompatible": "兼容",
+  "hwDeviceID": "设备ID: {id}",
+  "@hwDeviceID": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "hwType": "类型: {type}",
+  "@hwType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCapacity": "容量: {cap}",
+  "@hwCapacity": {
+    "placeholders": {
+      "cap": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInterface": "接口: {bus}",
+  "@hwInterface": {
+    "placeholders": {
+      "bus": {
+        "type": "String"
+      }
+    }
+  },
+  "hwModel": "型号: {model}",
+  "@hwModel": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      }
+    }
+  },
+  "hwStorage": "硬盘",
+  "hwStorageController": "存储\n控制器",
+  "hwBluetooth": "蓝牙",
+  "hwAudioCard": "声卡",
+  "hwAudioLayoutId": "布局ID:",
+  "hwNetworkCard": "网卡",
+  "hwMonitor": "显示器",
+  "hwResolution": "分辨率: {res} @ {hz} Hz",
+  "@hwResolution": {
+    "placeholders": {
+      "res": {
+        "type": "String"
+      },
+      "hz": {
+        "type": "String"
+      }
+    }
+  },
+  "hwMonitorSize": "({size}英寸)",
+  "@hwMonitorSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "hwConnectedGpu": "连接显卡: {gpu}",
+  "@hwConnectedGpu": {
+    "placeholders": {
+      "gpu": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInput": "输入",
+  "hwSDCard": "SD卡",
+  "hwDevice": "设备: {dev}",
+  "@hwDevice": {
+    "placeholders": {
+      "dev": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSerialNumber": "序列号: {sn}",
+  "@hwSerialNumber": {
+    "placeholders": {
+      "sn": {
+        "type": "String"
+      }
+    }
+  },
+  "hwBuiltIn": "内建: {builtin}",
+  "@hwBuiltIn": {
+    "placeholders": {
+      "builtin": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSecureBoot": "安全启动: {status}",
+  "@hwSecureBoot": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCSM": "CSM: {status}",
+  "@hwCSM": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwResizableBar": "Resizable BAR: {status}",
+  "@hwResizableBar": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAbove4G": "Above 4G Decoding: {status}",
+  "@hwAbove4G": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAHCI": "AHCI: {status}",
+  "@hwAHCI": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAHCIUnknown": "AHCI: 未知",
+  "hwEnabled": "已开启",
+  "hwDisabled": "已关闭",
+  "hwCurrentBiosSettings": "当前BIOS设置",
+  "hwBiosNote": "黑苹果注意事项：\n1.所有红色文字，请留意在BIOS中将其关闭或开启保持蓝色\n2.所有蓝色文字，绝大多数情况表示合适的设置\n安全启动(Secure Boot):  必须关闭(否则无法正常启动未签名的固件程序，比如OC引导)\nCSM(兼容性支持)：大多数情况建议关闭(Intel 4，5代移动端核显平台，X99平台，以及部分RX460等显卡可能需要开启CSM,否则花屏或无法启动)\nResizable BAR： 建议在BIOS中关闭(如果BIOS没有关闭，请确保在Booter->Quirks中将ResizeAppleGpuBars设置为0，以避免启动问题)\nAbove 4G Decoding：建议在BIOS中开启，同时去掉工具自动勾选的npci=0x2000参数。若BIOS设置中没有此项，建议勾选添加启动参数npci=0x2000或npci=0x3000。注意BIOS中Above 4G Decoding设置与启动参数npci=0x2000或npci=0x3000，两者二选一!\nAHCI(SATA磁盘模式)：必须开启(若不开启，可能无法识别硬盘或出现禁止符号，无法进一步安装)",
+  "hwBit": "{arch} 位",
+  "@hwBit": {
+    "placeholders": {
+      "arch": {
+        "type": "String"
+      }
+    }
+  },
+  "hwVirtualizationEnabled": "虚拟化: 已启用",
+  "hwVirtualizationDisabled": "虚拟化: 未启用",
+  "hwCoresThreads": "{cores}核心{threads}线程",
+  "@hwCoresThreads": {
+    "placeholders": {
+      "cores": {
+        "type": "String"
+      },
+      "threads": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInstructionSet": "指令集: {simd}",
+  "@hwInstructionSet": {
+    "placeholders": {
+      "simd": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCore": "核心: {core}",
+  "@hwCore": {
+    "placeholders": {
+      "core": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSpoofIDRequired": "需要仿冒ID: {id}",
+  "@hwSpoofIDRequired": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "hwGPU": "显卡",
+  "hwIncompatible": "不兼容",
+  "hwDeviceType": "{type}",
+  "@hwDeviceType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "hwMotherboard": "主板",
+  "hwBrand": "品牌: {brand}",
+  "@hwBrand": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "hwChipset": "芯片组: {chipset}",
+  "@hwChipset": {
+    "placeholders": {
+      "chipset": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAppleALCSnippet": "AppleALC 支持多个布局 ID，不同 ID 可能影响音频接口可用性。",
+  "manualNvidiaInfoText": "Nvidia支持的显卡系列如下:\n• Tesla 系列（8000 - 300 系列）: 原生免驱最高支持macOS High Sierra 10.13.x(可能需要修正NVCAP),更高需要OCLP补丁(不支持Metal)\n例如:8600GT,9600GT,GT210,GT220,GT240 等,显卡太老,而且可能需要修正NVCAP,不建议使用!\n• Kepler 系列（600 - 800 系列）: 原生免驱最高支持macOS Big Sur 11.x,更高需要OCLP补丁(支持Metal,真驱动)\nKepler核心: GT630,GT635,GT640,GTX650,GTX660,GTX680,GT710,GT720,GT730,GT740,GTX760,GTX Titan Z,GTX Titan Black等\nKepler核心专业卡: NVS 510,Quadro 410,Quadro K420,Quadro K600,Quadro K2000等\n• Fermi, Maxwell, Pascal 系列: Webdriver最高支持macOS High Sierra 10.13.x, macOS Big Sur 11.x以上系统需要勾选如下启动参数,然后OCLP补丁(不支持Metal,假驱动)\nFermi系列: GT605,GT610,GT620,GT630,GT705,GT710,GT720,GT730,GT740等\nMaxwell系列: GTX750,GTX750Ti,GTX950,GTX960,GTX970,GTX980等\nPascal系列: GTX1050,GTX1060,GTX1070,GTX1080等\nNvidia不支持的显卡系列如下(11以上系列都不支持):\n• 16 ~ 50系列: GTX1650,GTX1660,RTX 2050,RTX 2060,RTX 3050,RTX 3060,RTX 4050,RTX 4060,RTX 5060,RTX 5070等",
+  "manualEdidInfoText": "1. 通常用于修复Intel 6～10代核显(这里不处理独显EDID)黑屏无信号问题(通常表现是键盘指示灯大小写灯亮,显示器黑屏无信号)\n2. 500系台式机主板(H510/B560/H570/Q570/Z590/W580)使用核显HDMI输出时,必须注入真实显示器EDID,否则大概率黑屏\n3. 如何获取显示器EDID:\nWindows环境使用RapidEFI工具或者hdinfo工具获取显示器EDID(也可以使用三方工具获取,但需要自行处理EDID格式):\n1). 打开RapidEFI-v4.x及以上版本,点击\"配置EFI\"-> \"自动配置EFI\"-> \"详细配置\"(如果使用hdinfo,点击\"详细配置\")\n2). 等待自动获取硬件信息完成,点击显示器右边EDID代码,即可获取EDID(会提示成功复制到剪切板)\n3). 返回此页面,粘贴EDID到输入框即可\n4. 注入EDID前,请先在\"高级配置\"中勾选需要注入的AAPL0X接口; 如果不确定接口,可按实际HDMI修复方案选择\n5. EDID数据通常为128字节(256位)或者256字节(512位),如果不是,请检查确认后再输入!",
+  "manualIgpuConnectorSupported": "当前Framebuffer: {fb}。按WhateverGreen官方表生成 framebuffer-conX-alldata。",
+  "@manualIgpuConnectorSupported": {
+    "placeholders": {
+      "fb": {
+        "type": "String"
+      }
+    }
+  },
+  "manualIgpuConnectorUnsupported": "当前Framebuffer不支持结构化推荐值; 已有原始值可删除后重新选择受支持的核显基础配置。",
+  "manualAddConnectorTooltip": "添加接口定制",
+  "manualConnectorLabel": "接口",
+  "manualIndexLabel": "索引号",
+  "manualBusIdLabel": "总线ID",
+  "manualConnectorTypeLabel": "接口类型",
+  "manualOldConnector": "{label}(老接口)",
+  "@manualOldConnector": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "manualDeleteConnectorTooltip": "删除 con{index} 定制",
+  "@manualDeleteConnectorTooltip": {
+    "placeholders": {
+      "index": {
+        "type": "String"
+      }
+    }
+  },
+  "manualUnparseableValue": "原始值不可解析",
+  "manualDeleteAndReadd": "请删除后重新添加结构化接口定制",
+  "manualDeleteUnparseableTooltip": "删除不可解析接口定制",
+  "manualBatteryDriver": "电池驱动",
+  "manualKeyboardTouchpadDriver": "键盘触摸板驱动",
+  "manualSensorDriver": "传感器驱动(除非必要,否则不建议勾选)",
+  "manualKernelTrimStrategy": "SSD固态硬盘Trim策略",
+  "manualKernelPowerManagement": "电源管理",
+  "manualKernelDummyPowerManagement": "禁用电源管理(DummyPowerManagement),修复CPU电源管理导致的重启问题(表现为出现AppleIntelCPUPowerManagement内核崩溃日志,或卡开机Logo,或刚进入系统就重启等问题).对于4代及以上平台,是NullCpuPowerManagement.kext的首选替代品",
+  "manualKernelQuirksDefault": "Kernel - Quirks 建议保持默认配置,除非必要或者清楚每一项的含义",
+  "manualUefiProvideConsoleGop": "ProvideConsoleGop怪癖默认开启,可以用于修复OpenCore启动UI不显示问题.如果仍然不显示启动UI,可以尝试去掉勾选",
+  "manualUefiDriversHfs": "UEFI-Drivers(修复HFS驱动导致OpenCore启动UI不显示问题)",
+  "manualUefiOutputBootUI": "UEFI - Output (修复OpenCore启动UI不显示问题)",
+  "manualSpecialMotherboardTip": "可选项-符合描述的主板型号可以勾选",
+  "manualCsrSettingTip": "可选项-根据需求设置,默认关闭SIP",
+  "manualRenameCpuNameTip": "可选项-自定义CPU名称",
+  "manualRenameCpuNameLabel": "输入CPU名称(不填则显示Win下CPU名称):",
+  "manualRenameCpuNameHint": "在此输入CPU名称",
+  "manualBrandTip": "可选项-符合描述的品牌建议勾选",
+  "manualBooterPlan1": "方案一",
+  "manualBooterPlan2": "方案二",
+  "manualBooterPlan3": "方案三",
+  "manualBooterPlan4": "方案四",
+  "manualBooterEbFix": "卡EB修复(可选项 - 通常默认即可):",
+  "manualAcpiPatch": "ACPI - Patch补丁",
+  "manualAcpiSsdt": "ACPI - SSDT补丁",
+  "manualBluetoothNvram": "蓝牙NVRAM参数:",
+  "manualUsbWifiGithub": "访问作者chris1111的仓库",
+  "manualUsbWifiKexts": "添加USB WiFi所需Kexts驱动(注意除了勾选此驱动外,还需要在macOS系统安装配套Wireless USB Big Sur Adapter客户端程序,如果不生效,建议重启一次电脑)",
+  "manualWifiCardSupport": "工具提供的驱动支持macOS Mojave 10.14 ~ macOS Sequoia 15系统！注意Monterey 12及以上系统还需要使用OCLP补丁后方可正常使用！！！",
+  "manualWifiAtheros": "高通(Atheros)",
+  "manualWifiIntel": "英特尔(Intel)",
+  "manualWifiBrcm": "博通(Brcm)",
+  "manualWifiBluetoothDriver": "蓝牙驱动",
+  "manualWifiItlwmPlan": "方案二,使用itlwm驱动(需配合HeliPort客户端),英特尔(Intel系列)Z大WiFi驱动.注意与方案一冲突，可能造成启动崩溃，不可同时使用!!!",
+  "manualWifiAirportItlwmPlan": "方案一，使用AirportItlwm驱动,英特尔(Intel系列)Z大WiFi驱动,加入以下所有WiFi驱动(体积较大,谨慎选择).注意与方案二冲突，可能造成启动崩溃，不可同时使用!!!",
+  "manualWifiAddAllDrivers": "加入以下所有WiFi驱动(体积较大,谨慎选择)",
+  "manualLaptopMainly": "(主要用于笔记本)",
+  "manualLaptopRelatedDrivers": "笔记本相关驱动:",
+  "manualLaptopOtherFixes": "其他修复",
+  "manualLaptopOtherFixesTip": "其他修复(除非必要,否则不建议勾选)",
+  "manualMotherboardSelectAll": "全选 / 全不选",
+  "manualMotherboardDetails": "详细信息",
+  "manualMotherboardSelectedCount": "({selected}/{total} 已选)",
+  "@manualMotherboardSelectedCount": {
+    "placeholders": {
+      "selected": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "manualMotherboardAppliedCount": "已从 {model} 应用 {count} 项配置",
+  "@manualMotherboardAppliedCount": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      },
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "manualMotherboardFromMbconfs": "来自 mbconfs",
+  "manualIgpuRemark": "⚠️ 备注",
+  "manualIgpuSelectCpu": "选择 CPU",
+  "manualIgpuLoadConfig": "从 CPU 型号加载核显配置",
+  "manualIgpuSelectProperties": "选择要应用的属性",
+  "manualIgpuPresetScheme": "预设方案",
+  "manualIgpuSelectGen": "选择代数",
+  "manualIgpuSelectedCpu": "已选：{model}  {igpu}",
+  "@manualIgpuSelectedCpu": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      },
+      "igpu": {
+        "type": "String"
+      }
+    }
+  },
+  "manualIgpuCpuModel": "CPU 型号",
+  "manualIgpuMatchOrNot": "对应则勾选，否则不勾选",
+  "manualIgpuCpuGen": "CPU 代数",
+  "manualIgpuByCpuModel": "按 CPU 型号",
+  "manualIgpuName": "核显",
+  "manualIgpuLoadedConfig": "已从 {model} 加载 {igpu} 核显配置，写入 {count} 项属性",
+  "@manualIgpuLoadedConfig": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      },
+      "igpu": {
+        "type": "String"
+      },
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "manualIgpuFromModel": "来自 {model} ({igpu})",
+  "@manualIgpuFromModel": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      },
+      "igpu": {
+        "type": "String"
+      }
+    }
+  },
+  "manualIgpuSelectInstruction": "选择 CPU 代数和型号，勾选要应用的属性",
+  "manualIgpuModel": "型号",
+  "manualFakeGpuSelect": "选择需要仿冒的显卡设备",
+  "settingsThemeColors": "色彩主题",
+  "settingsThemeDefault": "默认",
+  "sharedInvalidInput": "输入不合法",
+  "sharedRequiresHexChars": "需要{length}位十六进制字符",
+  "@sharedRequiresHexChars": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      }
+    }
+  },
+  "sharedExample73BF": "例如: 73BF",
+  "sharedTipsLengthMustMatch": "tips 长度必须和 choices 一致",
+  "sharedCpuInfo": "[CPU信息]: \n{description}",
+  "@sharedCpuInfo": {
+    "placeholders": {
+      "description": {
+        "type": "String"
+      }
+    }
+  },
+  "sharedMacosLastSupported": "原生支持的macOS最后版本:  {version}",
+  "@sharedMacosLastSupported": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "sharedBiosDisable": "[Bios官方推荐关闭项]: \n{description}",
+  "@sharedBiosDisable": {
+    "placeholders": {
+      "description": {
+        "type": "String"
+      }
+    }
+  },
+  "sharedOclpSupported": "补丁支持的macOS版本:  {version}",
+  "@sharedOclpSupported": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "sharedBiosEnable": "[Bios官方推荐开启项]: \n{description}",
+  "@sharedBiosEnable": {
+    "placeholders": {
+      "description": {
+        "type": "String"
+      }
+    }
+  },
+  "sharedMacosInitialSupport": "原生支持的macOS最初版本:  {version}",
+  "@sharedMacosInitialSupport": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "sharedInvalidAcpiPath": "无效ACPI路径",
+  "sharedFillAcpiPath": "填写ACPI路径",
+  "sharedFillPciPath": "填写PCI路径",
+  "sharedInvalidPciPath": "无效PCI路径",
+  "sharedGetModifiedOclp": "获取修改版OCLP",
+  "hwConfigModelGenerated": "ConfigModel 已生成: {details}",
+  "@hwConfigModelGenerated": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  },
+  "hwGetInfoFailed": "硬件信息获取失败: {e}",
+  "@hwGetInfoFailed": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAdminPwdIncorrect": "管理员密码不正确，无法导出 ACPI 表",
+  "hwNoNativeInfoExportable": "暂无可导出的本机硬件信息",
+  "hwOutputtingOpencore": "正在输出 OpenCore EFI...",
+  "hwAcpiExportFailedErr": "本机 ACPI 表导出失败: {error}",
+  "@hwAcpiExportFailedErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSsdtProcessFailed": "SSDT 定制流程失败.",
+  "hwConfigRuleRefactoring": "硬件自动生成 ConfigModel 规则重构中",
+  "hwQueryUnsupported": "当前平台不支持硬件信息查询",
+  "hwPreparingSsdt": "准备定制 SSDT: {items}",
+  "@hwPreparingSsdt": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "hwImportedExtReportHint": "当前为导入的外部硬件报告，请先刷新本机硬件信息后再导出",
+  "hwRefreshingInfo": "正在刷新硬件信息",
+  "hwSsdtProcessEnded": "SSDT 定制流程结束.",
+  "hwInfoUnsupported": "硬件信息暂不支持",
+  "hwEfiWrittenExtracting": "EFI 已写入，开始提取 ACPI 并定制 SSDT...",
+  "hwConfigEfiFailed": "配置 EFI 失败: {error}",
+  "@hwConfigEfiFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "hwReportFolderCleanFailed": "硬件报告文件夹清理失败",
+  "hwReportFolderCleanFailedErr": "硬件报告文件夹清理失败: {error}",
+  "@hwReportFolderCleanFailedErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "hwExportingNativeReport": "正在导出本机硬件报告...",
+  "hwAdminAuthCanceled": "已取消管理员授权，未导出 ACPI 表",
+  "hwImportedNoAcpiDir": "已导入外部硬件报告但未提供 ACPI 表目录，已禁用定制 SSDT。",
+  "hwExportAcpiUnsupported": "当前平台不支持导出 ACPI 表",
+  "hwReportExportedTo": "硬件报告已导出到 {reportDirectory}，{msg}",
+  "@hwReportExportedTo": {
+    "placeholders": {
+      "reportDirectory": {
+        "type": "String"
+      },
+      "msg": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInfoNotJson": "硬件信息文件不是 JSON 对象",
+  "hwUnsupported": "不支持",
+  "hwAcpiTempCleanFailed": "ACPI 表临时目录清理失败: {error}",
+  "@hwAcpiTempCleanFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "hwEfiConfigDone": "EFI 配置完成.",
+  "hwEfiConfigError": "配置 EFI 发生错误: {error}",
+  "@hwEfiConfigError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "hwNativeAcpiExportFailed": "本机 ACPI 表导出失败",
+  "hwAcpiToolNotReady": "ACPI 导出工具未准备就绪",
+  "hwFailed": "失败",
+  "hwImportReportFailed": "导入硬件报告失败: {e}",
+  "@hwImportReportFailed": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "hwNativeAcpiExportDone": "本机 ACPI 表导出完成: {dir}",
+  "@hwNativeAcpiExportDone": {
+    "placeholders": {
+      "dir": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAcpiExportFailedNoValid": "ACPI 表导出失败：未找到有效 ACPI 表",
+  "hwUsingOriginalSsdt": "使用 EFI 原始 SSDT，跳过 SSDT 定制.",
+  "hwWaitingRefresh": "等待刷新硬件信息",
+  "hwInfoLoaded": "硬件信息加载完成",
+  "hwAcpiExportedTo": "ACPI 表已导出到 {path}",
+  "@hwAcpiExportedTo": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "hwStartConfigEfi": "开始配置 EFI...",
+  "hwInfoLoadFailed": "硬件信息加载失败",
+  "hwCache": "缓存",
+  "hwInfoImportDone": "硬件信息导入完成",
+  "hwReportAndAcpiExported": "硬件报告和 ACPI 表已导出到 {reportDirectory}",
+  "@hwReportAndAcpiExported": {
+    "placeholders": {
+      "reportDirectory": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAcpiDirInvalid": "ACPI 表目录无效，定制 SSDT 不可用",
+  "hwExportingNativeAcpi": "正在导出本机 ACPI 表...",
+  "hwGeneratingConfigModel": "正在根据硬件信息生成 ConfigModel...",
+  "hwInfoImported": "硬件信息已导入",
+  "hwAcpiExportFailedOrUnsup": "ACPI 表导出失败或不支持",
+  "hwReportFolderCreateFailed": "硬件报告文件夹创建失败",
+  "hwNoAdminPwd": "未输入管理员密码，无法导出 ACPI 表",
+  "hwEfiConfigFailedCheck": "EFI 配置失败，请检查输出路径或日志.",
+  "hwLoadingInfo": "正在加载硬件信息",
+  "hwDone": "完成",
+  "hwAcpiExportFailedProcess": "ACPI 表导出失败：导出进程执行失败",
+  "hwIgpuType": "核心显卡",
+  "hwGpuCompatible": "兼容",
+  "hwGpuIncompatibleNoDisplay": "不兼容,没有直连内屏",
+  "hwGpuIncompatible": "不兼容",
+  "hwLaptop": "笔记本",
+  "hwGpuLoadingCompat": "兼容性加载中",
+  "hwGpuLimitedCompat": "有限兼容",
+  "hwClickToCopy": "点击复制",
+  "hwCopiedToClipboard": "已复制到剪切板"
+}

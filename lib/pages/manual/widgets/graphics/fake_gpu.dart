@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/device_id_textfield.dart';
 import 'package:rapidefi/pages/shared/widgets/path_textfield.dart';
 import 'package:rapidefi/utils/hardware/analysis/gpu_compatibility_data.dart';
@@ -28,7 +29,7 @@ class _FakeGPUState extends State<FakeGPU> {
       TextEditingController(text: dgpuFakeID);
   final FocusNode _focusNodePci = FocusNode();
   final FocusNode _focusNodeFakeId = FocusNode();
-  final String placeholder = '选择需要仿冒的显卡设备';
+  late String placeholder;
   String? _selectedComboBoxValue;
   late final Future<void> _gpuCompatibilityFuture =
       GpuCompatibilityData.ensureLoaded();
@@ -60,12 +61,16 @@ class _FakeGPUState extends State<FakeGPU> {
     }
 
     dgpuPath = nextPath;
-    _controllerPci.text = dgpuPath;
     if (!keepLocalFakeId) {
       dgpuFakeID = nextFakeId;
-      _controllerFakeId.text = dgpuFakeID;
-      _syncSelectedComboBoxValue();
     }
+    if (_controllerPci.text != dgpuPath) {
+      _controllerPci.text = dgpuPath;
+    }
+    if (_controllerFakeId.text != dgpuFakeID) {
+      _controllerFakeId.text = dgpuFakeID;
+    }
+    _syncSelectedComboBoxValue();
   }
 
   @override
@@ -77,47 +82,37 @@ class _FakeGPUState extends State<FakeGPU> {
     super.dispose();
   }
 
-  void _syncSelectedComboBoxValue({
-    List<GpuCompatibilityRecord>? records,
-  }) {
-    if (dgpuFakeID.isEmpty) {
+  void _syncSelectedComboBoxValue({List<GpuCompatibilityRecord>? records}) {
+    final list = records ??
+        (GpuCompatibilityData.isLoaded
+            ? GpuCompatibilityData.amdIdentityOverrideRecordsSync()
+            : const <GpuCompatibilityRecord>[]);
+    if (list.isEmpty || dgpuFakeID.isEmpty) {
       _selectedComboBoxValue = placeholder;
       return;
     }
 
-    final normalizedFakeId = dgpuFakeID.toUpperCase();
-    final candidates = records ??
-        (GpuCompatibilityData.isLoaded
-            ? GpuCompatibilityData.amdIdentityOverrideRecordsSync()
-            : const <GpuCompatibilityRecord>[]);
-    for (final record in candidates) {
-      if (record.id == _selectedComboBoxValue &&
-          (record.spoofDeviceIdPart ?? '').toUpperCase() ==
-              normalizedFakeId) {
-        return;
-      }
-    }
+    final normalized = dgpuFakeID.toLowerCase();
+    final index = list.indexWhere(
+      (record) => (record.spoofDeviceIdPart ?? '').toLowerCase() == normalized,
+    );
 
-    for (final record in candidates) {
-      if ((record.spoofDeviceIdPart ?? '').toUpperCase() == normalizedFakeId) {
-        _selectedComboBoxValue = record.id;
-        return;
-      }
-    }
-
-    _selectedComboBoxValue = placeholder;
+    _selectedComboBoxValue = index >= 0 ? list[index].id : placeholder;
   }
 
+
   void _emitChanged() {
-    widget.onChanged?.call(_controllerPci.text, _controllerFakeId.text);
+    widget.onChanged?.call(dgpuPath, dgpuFakeID);
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    placeholder = l10n.selectSpoofGpuPlaceholder;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        spacing: 15,
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 8),
@@ -132,9 +127,9 @@ class _FakeGPUState extends State<FakeGPU> {
               mainAxisSize: MainAxisSize.min,
               spacing: 15,
               children: [
-                const Text(
-                  '显卡PCI路径:',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                Text(
+                  l10n.pciPathLabel,
+                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                 ),
                 Flexible(
                   child: IntrinsicWidth(
@@ -145,9 +140,10 @@ class _FakeGPUState extends State<FakeGPU> {
                       ),
                       child: PathTextField(
                         pathType: PathType.pci,
-                        hintText: '填写PCI路径',
+                        hintText: l10n.pciPathHint,
                         onChanged: (value, _) {
                           _controllerPci.text = value;
+                          dgpuPath = value;
                           _emitChanged();
                         },
                       ),
@@ -165,9 +161,9 @@ class _FakeGPUState extends State<FakeGPU> {
                 mainAxisSize: MainAxisSize.min,
                 spacing: 15,
                 children: [
-                  const Text(
-                    ' 仿冒显卡ID:',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  Text(
+                    ' ${l10n.spoofGpuIdLabel}',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                   ),
                   DeviceIdTextField(
                     controller: _controllerFakeId,
@@ -175,7 +171,7 @@ class _FakeGPUState extends State<FakeGPU> {
                     onChanged: (value, _) {
                       setState(() {
                         dgpuFakeID = value;
-                        _selectedComboBoxValue = placeholder;
+                        _syncSelectedComboBoxValue();
                       });
                       _emitChanged();
                     },
@@ -192,6 +188,7 @@ class _FakeGPUState extends State<FakeGPU> {
   }
 
   Widget _buildIdentityOverrideGpuCombo() {
+    final l10n = AppLocalizations.of(context)!;
     return FutureBuilder<void>(
       future: _gpuCompatibilityFuture,
       builder: (context, snapshot) {
@@ -201,17 +198,11 @@ class _FakeGPUState extends State<FakeGPU> {
             ? GpuCompatibilityData.amdIdentityOverrideRecordsSync()
             : const <GpuCompatibilityRecord>[];
 
-        if (records.isNotEmpty &&
-            _selectedComboBoxValue == placeholder &&
-            dgpuFakeID.isNotEmpty) {
-          _syncSelectedComboBoxValue(records: records);
-        }
-
         final value = records.any((record) => record.id == _selectedComboBoxValue)
             ? _selectedComboBoxValue
             : placeholder;
         final placeholderText =
-            snapshot.hasError ? '显卡仿冒数据加载失败' : placeholder;
+            snapshot.hasError ? l10n.gpuSpoofDataLoadError : placeholder;
 
         return ComboBox<String>(
           isExpanded: false,

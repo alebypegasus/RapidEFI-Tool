@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/catalogs/bluetooth_nvram/bluetooth_nvram_option.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/nvram/nvram_add.dart';
@@ -40,7 +41,7 @@ class _BluetoothWidgetState extends State<BluetoothWidget> {
       children: [
         Text(tip, style: TextStyle(fontSize: 13)),
         ChoiceList(
-          subTitle: '蓝牙NVRAM参数:',
+          subTitle: AppLocalizations.of(context)!.manualBluetoothNvram,
           choices: nvramOptions.map((option) => option.title).toList(),
           selectedChoices: [
             if (selectedNvramOption != null) selectedNvramOption.title

@@ -10,7 +10,8 @@ class PickerLocalizationsDelegate
       PickerLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => PickerLocalizations.isSupported(locale);
+  bool isSupported(Locale locale) => true;
+
 
   @override
   Future<PickerLocalizations> load(Locale locale) {

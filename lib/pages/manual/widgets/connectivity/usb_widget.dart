@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/models/uefi/uefi_quirks.dart';
@@ -37,9 +38,9 @@ class _USBWidgetState extends State<USBWidget> {
   late UefiQuirks uefiQuirks = widget.uefiQuirks ?? UefiQuirks();
   late String? utbMapPath = widget.utbMapPath;
 
-  Widget chooseUTBMap() {
+  Widget chooseUTBMap(AppLocalizations l10n) {
     return ChooseFileWidget(
-      buttonText: '选择UTBMap',
+      buttonText: l10n.selectUtbMap,
       onValid: (filePath) async {
         return filePath.endsWith('UTBMap.kext');
       },
@@ -48,7 +49,7 @@ class _USBWidgetState extends State<USBWidget> {
         widget.onUTBMapPathChanged?.call(filePath);
       },
       directoryPath: '',
-      hintText: utbMapPath ?? '选择使用USBToolBox工具定制好的UTBMap.kext驱动',
+      hintText: utbMapPath ?? l10n.selectUtbMapHint,
       allowedExtensions: Device.isMacOS ? null : const ['kext'],
       openFile: Device.isMacOS ? true : !Device.isWindows,
     );
@@ -56,13 +57,13 @@ class _USBWidgetState extends State<USBWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final choices = USBWidget.choices;
     final bool owner = uefiQuirks.releaseUsbOwnership;
-    const releaseUsbOwnershipText =
-        "启用'UEFI->Quirks->ReleaseUsbOwnership'怪癖,从固件驱动程序中释放USB控制器的所有权,虽然大部分的主板都有自动释放USB所有权的功能(可以在主板BIOS设置中将XHCI EHCI hand-off开启即可),但是有些固件做不到(比如某些H110,B150,B250,联想Q270等OEM主板)。具体表现是,可能在启动mac系统时因USB问题卡住,无法进入系统,或者开机USB键盘鼠标无法正常使用。此怪癖,除非必要，否则不建议使用";
+    final releaseUsbOwnershipText = l10n.releaseUsbOwnershipText;
     return KextChoiceListCard(
-      title: "USB驱动:",
-      cardSubTitle: "(默认使用USBInjectAll)",
+      title: l10n.usbCardTitle,
+      cardSubTitle: l10n.usbDefaultTip,
       choices: choices,
       selectedChoices: usbDriverType?.bundlePath.isNotEmpty == true
           ? [usbDriverType!]
@@ -78,7 +79,7 @@ class _USBWidgetState extends State<USBWidget> {
         },
       ),
       footer: usbDriverType?.bundlePath == ConfigKernel.USBToolBox.bundlePath
-          ? chooseUTBMap()
+          ? chooseUTBMap(l10n)
           : const SizedBox.shrink(),
       onChanged: (List<KernelKext> value) {
         usbDriverType = value.firstOrNull;

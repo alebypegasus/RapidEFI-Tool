@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 import 'package:rapidefi/utils/config/models/enums/platform_type_enum.dart';
 import 'package:rapidefi/widgets/button_segment_widget.dart';
@@ -31,8 +32,9 @@ class _PlantformWidgetState extends State<PlantformWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return TitleCard(
-      title: "平台选择:",
+      title: l10n.platformSelection,
       content: ButtonSegmentWidget(
         initialSelection: {platformType.value},
         labels: PlatformType.values.map((type) => type.value).toList(),
@@ -58,3 +60,4 @@ class _PlantformWidgetState extends State<PlantformWidget> {
     );
   }
 }
+

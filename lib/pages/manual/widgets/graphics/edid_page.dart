@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/custom_textfield.dart';
 
 class EDIDPage extends StatefulWidget {
@@ -16,17 +17,6 @@ class EDIDPage extends StatefulWidget {
 class _EDIDPageState extends State<EDIDPage> {
   late final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  final String tip = r'''
-  1. 通常用于修复Intel 6～10代核显(这里不处理独显EDID)黑屏无信号问题(通常表现是键盘指示灯大小写灯亮,显示器黑屏无信号)
-  2. 500系台式机主板(H510/B560/H570/Q570/Z590/W580)使用核显HDMI输出时,必须注入真实显示器EDID,否则大概率黑屏
-  3. 如何获取显示器EDID:
-     Windows环境使用RapidEFI工具或者hdinfo工具获取显示器EDID(也可以使用三方工具获取,但需要自行处理EDID格式):
-     1). 打开RapidEFI-v4.x及以上版本,点击"配置EFI"-> "自动配置EFI"-> "详细配置"(如果使用hdinfo,点击"详细配置")
-     2). 等待自动获取硬件信息完成,点击显示器右边EDID代码,即可获取EDID(会提示成功复制到剪切板)
-     3). 返回此页面,粘贴EDID到输入框即可
-  4. 注入EDID前,请先在"高级配置"中勾选需要注入的AAPL0X接口; 如果不确定接口,可按实际HDMI修复方案选择
-  5. EDID数据通常为128字节(256位)或者256字节(512位),如果不是,请检查确认后再输入!
-  ''';
 
   String? _edidError;
 
@@ -62,6 +52,7 @@ class _EDIDPageState extends State<EDIDPage> {
   }
 
   void _validateAndFormatEdid() {
+    final l10n = AppLocalizations.of(context)!;
     final originalText = _controller.text;
     final edidText = _cleanEdid(originalText);
 
@@ -69,9 +60,9 @@ class _EDIDPageState extends State<EDIDPage> {
     if (edidText.isNotEmpty) {
       final isHex = RegExp(r'^[0-9A-Fa-f]+$').hasMatch(edidText);
       if (!isHex) {
-        error = 'EDID数据包含非十六进制字符,请检查!';
+        error = l10n.edidHexError;
       } else if (edidText.length % 256 != 0) {
-        error = '当前EDID数据长度为${edidText.length}位,非256位整数倍,请检查!';
+        error = l10n.edidLengthError;
       }
     }
 
@@ -83,12 +74,13 @@ class _EDIDPageState extends State<EDIDPage> {
     });
 
     if (error != null) {
-      showToast('EDID数据不正确,请检查确认后再输入!');
+      showToast(l10n.edidInvalidToast);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return SingleChildScrollView(
@@ -97,7 +89,7 @@ class _EDIDPageState extends State<EDIDPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            tip,
+            l10n.manualEdidInfoText,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w300,
@@ -105,9 +97,9 @@ class _EDIDPageState extends State<EDIDPage> {
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            '注入显示器EDID(通常为256位或512位):',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          Text(
+            l10n.injectEdidTitle,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 10),
           CustomTextField(
@@ -119,11 +111,12 @@ class _EDIDPageState extends State<EDIDPage> {
               FilteringTextInputFormatter.allow(RegExp(r'[A-Fa-f0-9]')),
             ],
             keyboardType: TextInputType.text,
-            hintText: '填写显示器EDID(通常为256位或512位,可以包含空格,换行符)',
+            hintText: l10n.injectEdidHint,
             hintStyle: TextStyle(
               fontSize: 12,
               color: isDarkMode ? Colors.grey.shade500 : Colors.grey.shade400,
             ),
+
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
             ),

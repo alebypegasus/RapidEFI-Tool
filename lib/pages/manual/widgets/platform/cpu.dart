@@ -1,4 +1,6 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
+
 import 'package:rapidefi/widgets/button_segment_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/tip_switch.dart';
@@ -41,8 +43,9 @@ class _CPUWidgetState extends State<CPUWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return TitleCard(
-      title: "CPU选择:",
+      title: l10n.cpuSelection,
       content: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -74,8 +77,8 @@ class _CPUWidgetState extends State<CPUWidget> {
             const SizedBox(width: 10),
             if (cpuType == CpuType.intel)
               TipSwitch(
-                tip: "奔腾或赛扬处理器需要仿冒CPU,请务必开启!\n注意:奔腾赛扬核显通常是无法驱动的!!!",
-                title: '奔腾赛扬',
+                tip: l10n.pentiumCeleronTip,
+                title: l10n.pentiumCeleron,
                 checked: widget.pentiumOrCeleron,
                 onChanged: (value) {
                   widget.onPentiumChanged?.call(value);
@@ -86,4 +89,5 @@ class _CPUWidgetState extends State<CPUWidget> {
       ),
     );
   }
+
 }

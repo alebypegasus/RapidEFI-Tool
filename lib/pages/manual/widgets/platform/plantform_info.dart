@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/model/platform_entity.dart';
 import 'package:rapidefi/pages/shared/widgets/hackintosh_info_widget.dart';
 import 'package:rapidefi/pages/shared/widgets/tip_switch.dart';
@@ -72,11 +73,12 @@ class _PlantFormInfoWidgetState extends State<PlantFormInfoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final hasInfos = widget.infos.isNotEmpty;
     final currentValue = hasInfos ? widget.infos[selectedIndex] : null;
 
     return TitleCard(
-      title: "平台信息:",
+      title: l10n.platformInfo,
       subTitle: "",
       content: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -112,9 +114,8 @@ class _PlantFormInfoWidgetState extends State<PlantFormInfoWidget> {
             const SizedBox(width: 10),
             if (widget.showMobileComet)
               TipSwitch(
-                tip:
-                    "10代Comet Lake架构的U62 CPU(例如: i3-10110U,i5-10210U,i5-10310U,\n i7-10510U,i7-10610U,i7-10710U,i7-10810U),请务必勾选!!!",
-                title: 'U62类型CPU',
+                tip: l10n.u62CpuTip,
+                title: l10n.u62CpuTitle,
                 checked: isMobileCometLake,
                 onChanged: (value) {
                   setState(() {
@@ -134,3 +135,4 @@ class _PlantFormInfoWidgetState extends State<PlantFormInfoWidget> {
     );
   }
 }
+

@@ -122,10 +122,42 @@ class AppTheme extends ChangeNotifier {
     notifyListeners();
   }
 
-  Locale? _locale;
-  Locale? get locale => _locale;
+  Locale? get locale {
+    final languageTag = SpUtil.getString(Constant.languageKey, defValue: 'system');
+    if (languageTag == null || languageTag == 'system' || languageTag.isEmpty) {
+      return null;
+    }
+    final parts = languageTag.split('_');
+    if (parts.length > 1) {
+      return Locale(parts[0], parts[1]);
+    }
+    return Locale(parts[0]);
+  }
+
+  String get languageTag => SpUtil.getString(Constant.languageKey, defValue: 'system') ?? 'system';
+
   set locale(Locale? locale) {
-    _locale = locale;
+    final tag = locale == null
+        ? 'system'
+        : locale.countryCode != null && locale.countryCode!.isNotEmpty
+            ? '${locale.languageCode}_${locale.countryCode}'
+            : locale.languageCode;
+    SpUtil.putString(Constant.languageKey, tag);
     notifyListeners();
   }
+
+
+  void setLanguageTag(String tag) {
+    if (tag == 'system') {
+      locale = null;
+    } else {
+      final parts = tag.split('_');
+      if (parts.length > 1) {
+        locale = Locale(parts[0], parts[1]);
+      } else {
+        locale = Locale(parts[0]);
+      }
+    }
+  }
 }
+

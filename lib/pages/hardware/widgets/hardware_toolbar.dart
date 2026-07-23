@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 
 class HardwareToolbar extends StatelessWidget {
@@ -35,6 +36,7 @@ class HardwareToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
       child: Column(
@@ -42,24 +44,24 @@ class HardwareToolbar extends StatelessWidget {
         children: [
           Row(children: [
             if (showHardwareActions) ...[
-              _btn('刷新硬件信息', () => onRefresh(), isLoading),
+              _btn(l10n.refreshHardwareInfo, () => onRefresh(), isLoading),
               const SizedBox(width: 8),
             ],
-            _btn('导入硬件资料', onImport, false),
+            _btn(l10n.importHardwareInfo, onImport, false),
             const SizedBox(width: 8),
             if (showHardwareActions) ...[
-              _btn('导出硬件报告', onExport, false),
+              _btn(l10n.exportHardwareReport, onExport, false),
               const SizedBox(width: 8),
             ],
             if (showAcpiExportAction) ...[
-              _btn('导出 ACPI 表', onExportAcpi, false),
+              _btn(l10n.exportAcpiTables, onExportAcpi, false),
               const SizedBox(width: 8),
             ],
-            _btn('EFI设置', onPersonalizedEfi, false),
+            _btn(l10n.efiSettings, onPersonalizedEfi, false),
             const SizedBox(width: 8),
-            _btn('输出EFI', onOutputEfi, false),
+            _btn(l10n.outputEFI, onOutputEfi, false),
             const Spacer(),
-            _segmentedSwitch(context),
+            _segmentedSwitch(context, l10n),
           ]),
         ],
       ),
@@ -68,12 +70,11 @@ class HardwareToolbar extends StatelessWidget {
 
   Widget _btn(String text, VoidCallback onTap, bool disabled) {
     return SizedBox(
-      width: 100,
       height: 30,
       child: ElevatedButton(
         onPressed: disabled ? null : onTap,
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           textStyle: const TextStyle(fontSize: 13),
         ),
@@ -82,7 +83,7 @@ class HardwareToolbar extends StatelessWidget {
     );
   }
 
-  Widget _segmentedSwitch(BuildContext context) {
+  Widget _segmentedSwitch(BuildContext context, AppLocalizations l10n) {
     final colors = hardwareThemeColors(context);
     return Container(
       height: 30,
@@ -92,11 +93,12 @@ class HardwareToolbar extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        _segment(context, '简要', !detailed, () => onDetailedChanged(false)),
-        _segment(context, '详细', detailed, () => onDetailedChanged(true)),
+        _segment(context, l10n.summaryView, !detailed, () => onDetailedChanged(false)),
+        _segment(context, l10n.detailedView, detailed, () => onDetailedChanged(true)),
       ]),
     );
   }
+
 
   Widget _segment(
       BuildContext context, String text, bool selected, VoidCallback onTap) {

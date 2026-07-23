@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 
 class BiosSection extends StatelessWidget {
   final Map<String, dynamic> rawInfo;
@@ -21,16 +22,16 @@ class BiosSection extends StatelessWidget {
 
     final items = <Widget>[
       if (secureBoot != null)
-        _status('安全启动: ${secureBoot ? '已开启' : '已关闭'}', good: !secureBoot),
-      if (csm != null) _status('CSM: ${csm ? '已开启' : '已关闭'}', good: !csm),
+        _status(AppLocalizations.of(context)!.hwSecureBoot(secureBoot ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled), good: !secureBoot),
+      if (csm != null) _status(AppLocalizations.of(context)!.hwCSM(csm ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled), good: !csm),
       if (resizableBar != null)
-        _status('Resizable BAR: ${resizableBar ? '已开启' : '已关闭'}',
+        _status(AppLocalizations.of(context)!.hwResizableBar(resizableBar ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled),
             good: !resizableBar),
       if (above4g != null)
-        _status('Above 4G Decoding: ${above4g ? '已开启' : '已关闭'}', good: above4g),
+        _status(AppLocalizations.of(context)!.hwAbove4G(above4g ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled), good: above4g),
       ahci == null
-          ? _unknown('AHCI: 未知')
-          : _status('AHCI: ${ahci ? '已开启' : '已关闭'}', good: ahci),
+          ? _unknown(AppLocalizations.of(context)!.hwAHCIUnknown)
+          : _status(AppLocalizations.of(context)!.hwAHCI(ahci ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled), good: ahci),
     ];
     if (items.isEmpty) return const SizedBox.shrink();
 
@@ -44,29 +45,20 @@ class BiosSection extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
           width: double.infinity,
-          child: Text('当前BIOS设置',
+          child: Text(AppLocalizations.of(context)!.hwCurrentBiosSettings,
               textAlign: TextAlign.center,
               style: TextStyle(color: colors.textColor, fontSize: 14)),
         ),
         const SizedBox(height: 8),
         Wrap(spacing: 30, runSpacing: 6, children: items),
         const SizedBox(height: 8),
-        Text(_biosNote,
+        Text(AppLocalizations.of(context)!.hwBiosNote,
             style:
                 TextStyle(fontSize: 12, height: 1.45, color: colors.textColor)),
       ]),
     );
   }
 
-  static const _biosNote = '黑苹果注意事项：\n'
-      '1.所有红色文字，请留意在BIOS中将其关闭或开启保持蓝色\n'
-      '2.所有蓝色文字，绝大多数情况表示合适的设置\n'
-      '\n'
-      '安全启动(Secure Boot):  必须关闭(否则无法正常启动未签名的固件程序，比如OC引导)\n'
-      'CSM(兼容性支持)：大多数情况建议关闭(Intel 4，5代移动端核显平台，X99平台，以及部分RX460等显卡可能需要开启CSM,否则花屏或无法启动)\n'
-      'Resizable BAR： 建议在BIOS中关闭(如果BIOS没有关闭，请确保在Booter->Quirks中将ResizeAppleGpuBars设置为0，以避免启动问题)\n'
-      'Above 4G Decoding：建议在BIOS中开启，同时去掉工具自动勾选的npci=0x2000参数。若BIOS设置中没有此项，建议勾选添加启动参数npci=0x2000或npci=0x3000。注意BIOS中Above 4G Decoding设置与启动参数npci=0x2000或npci=0x3000，两者二选一!\n'
-      'AHCI(SATA磁盘模式)：必须开启(若不开启，可能无法识别硬盘或出现禁止符号，无法进一步安装)';
 
   Widget _status(String text, {required bool good}) {
     return SelectableText(text,

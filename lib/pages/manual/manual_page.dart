@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' hide Colors;
 import 'package:provider/provider.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/manual_config_controller.dart';
 import 'package:rapidefi/pages/manual/sections/manual_sections.dart';
 import 'package:rapidefi/utils/config/build/efi_build_options.dart';
@@ -61,6 +62,7 @@ class _ManualPageState extends State<ManualPage> {
   @override
   Widget build(BuildContext context) {
     _controller.activateSession();
+    final l10n = AppLocalizations.of(context)!;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ManualConfigController>.value(
@@ -77,19 +79,19 @@ class _ManualPageState extends State<ManualPage> {
           width: 120,
           height: 36,
           radius: 18,
-          child: const Text(
-            '生成EFI',
-            style: TextStyle(color: Colors.white),
+          child: Text(
+            l10n.generateEFI,
+            style: const TextStyle(color: Colors.white),
           ),
           onTap: () async {
-            CustomToast.show(context, "配置EFI中,请稍后");
+            CustomToast.show(context, l10n.configuringEFI);
             final success = await _controller.exportEfi(
               options: EfiBuildOptions(
                 acpiSourceDirectory: widget.acpiSourceDirectory,
               ),
             );
             CustomToast.dismiss();
-            showToast(success ? "配置EFI成功" : "配置EFI发生错误!\n请更换EFI输出路径");
+            showToast(success ? l10n.configureEFISuccess : l10n.configureEFIError);
           },
         ),
         floatingActionButtonLocation: CustomFloatingActionButtonLocation(15),
@@ -103,15 +105,17 @@ class _ManualPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isLoading = context.select<ManualConfigController, bool>(
       (controller) => controller.isLoading,
     );
 
     if (isLoading) {
-      return const Center(
-        child: Text('数据加载中...'),
+      return Center(
+        child: Text(l10n.loadingData),
       );
     }
+
 
     final children = ManualSections.children;
 

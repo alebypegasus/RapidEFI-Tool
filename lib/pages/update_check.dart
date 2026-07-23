@@ -3,6 +3,7 @@
 //
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/link_button_row.dart';
 import 'package:rapidefi/pages/shared/widgets/markdown_viewer.dart';
 import 'package:rapidefi/utils/app_info.dart';
@@ -53,6 +54,7 @@ class UpdateDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final release = _ctx.release;
     final asset = release.assetForCurrentPlatform();
     final colorScheme = Theme.of(context).colorScheme;
@@ -72,13 +74,13 @@ class UpdateDialog extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  '${_ctx.repoConfig.repo}发现新版本',
+                  '${_ctx.repoConfig.repo} ${l10n.newVersionFound}',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               const SizedBox(height: 6),
-              Text('版本号：${release.tag}'),
-              Text('发布时间：${release.publishedAt}'),
+              Text(l10n.versionTag(release.tag)),
+              Text(l10n.publishedAtDate(release.publishedAt)),
               const Divider(height: 18, thickness: 0.2),
               Expanded(
                   child: MarkdownViewer(
@@ -96,12 +98,12 @@ class UpdateDialog extends StatelessWidget {
                     items: [
                       LinkButtonItem(
                         url: _ctx.repoConfig.releasesUrl,
-                        buttonText: '访问 GitHub',
+                        buttonText: l10n.visitGithub,
                       ),
                       if (asset != null)
                         LinkButtonItem(
                           url: asset.downloadUrl,
-                          buttonText: '立即下载',
+                          buttonText: l10n.downloadNow,
                         ),
                     ],
                   ),
@@ -111,7 +113,7 @@ class UpdateDialog extends StatelessWidget {
                     radius: 6,
                     backgroundColor: Colors.grey.withValues(alpha: 0.1),
                     onTap: () => Navigator.of(context).pop(),
-                    child: const Text('关闭'),
+                    child: Text(l10n.close),
                   ),
                 ],
               ),
@@ -122,3 +124,4 @@ class UpdateDialog extends StatelessWidget {
     );
   }
 }
+

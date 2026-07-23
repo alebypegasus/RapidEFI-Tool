@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:rapidefi/utils/config/services/apple_alc_resolver.dart';
@@ -118,6 +119,7 @@ class _SoundWidgetState extends State<SoundWidget> {
   }
 
   Widget configalcid() {
+    final l10n = AppLocalizations.of(context)!;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -130,7 +132,7 @@ class _SoundWidgetState extends State<SoundWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
-                  'ALC布局ID:',
+                  'ALC Layout ID:',
                 ),
                 IncrementalInput(
                   number: _selectedLayoutId,
@@ -147,8 +149,8 @@ class _SoundWidgetState extends State<SoundWidget> {
                       isDarkMode ? Colors.grey[850] : Colors.grey[50],
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  label: const Text(
-                    "查询布局ID",
+                  label: Text(
+                    l10n.queryLayoutId,
                   ),
                   onPressed: () {
                     showPickerModal(context);
@@ -160,9 +162,9 @@ class _SoundWidgetState extends State<SoundWidget> {
               mainAxisSize: MainAxisSize.min,
               spacing: 15,
               children: [
-                const Text(
-                  '高精度计时器ACPI路径(用于修复声卡IRQ问题):',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                Text(
+                  l10n.hpetAcpiPathTitle,
+                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                 ),
                 CustomTextField(
                   controller: _controller,
@@ -185,7 +187,7 @@ class _SoundWidgetState extends State<SoundWidget> {
                 ),
                 TipSwitch(
                   tip: tip,
-                  title: '修复IRQ',
+                  title: l10n.fixIrq,
                   checked: _enableHpetPatch,
                   onChanged: (value) {
                     setState(() {
@@ -211,6 +213,7 @@ class _SoundWidgetState extends State<SoundWidget> {
   }
 
   void showPickerModal(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final selecteds = AppleALCResolver.findAlcidPositionBySelection(
       _lastPickerSelection,
@@ -223,14 +226,14 @@ class _SoundWidgetState extends State<SoundWidget> {
         spacing: 5,
         children: [
           Text(
-            "选择声卡布局ID(数据库:${AppleALCResolver.published} v${AppleALCResolver.version})",
+            l10n.selectAudioLayoutTitle(AppleALCResolver.published, AppleALCResolver.version),
             style: TextStyle(
               fontSize: 20,
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
           Text(
-            "(鼠标滑轮选择后,点击确认即可)",
+            l10n.pickerScrollConfirmTip,
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey[600],
@@ -264,10 +267,11 @@ class _SoundWidgetState extends State<SoundWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final soundChoices = [ConfigKernel.AppleALC, ConfigKernel.VoodooHDA];
     return KextChoiceListCard(
-      title: "声卡驱动:",
-      cardSubTitle: '(默认使用AppleALC驱动)',
+      title: l10n.soundDriverCardTitle,
+      cardSubTitle: l10n.soundDriverDefaultTip,
       choices: soundChoices,
       selectedChoices:
           soundDriverType != null && soundDriverType!.bundlePath.isNotEmpty

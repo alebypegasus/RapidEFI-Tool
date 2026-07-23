@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/device_properties/device_property_item.dart';
 import 'package:rapidefi/utils/config/models/device_properties/igpu_model.dart';
 import 'package:rapidefi/utils/config/services/config_service.dart';
@@ -46,13 +47,11 @@ class IgpuWidget extends StatefulWidget {
 
 class _IgpuWidgetState extends State<IgpuWidget> with TickerProviderStateMixin {
   late final TabController _tabController;
-  late final List<String> tabName;
 
   @override
   void initState() {
     super.initState();
-    tabName = ["基础配置", "高级配置", "接口定制", "显示器EDID"];
-    _tabController = TabController(vsync: this, length: tabName.length);
+    _tabController = TabController(vsync: this, length: 4);
   }
 
   List<Widget> _buildPages() {
@@ -100,9 +99,16 @@ class _IgpuWidgetState extends State<IgpuWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final tabName = [
+      l10n.baseConfig,
+      l10n.advanceConfig,
+      l10n.connectorCustomization,
+      l10n.displayEdid,
+    ];
     return TabbedTitleCard(
-      title: "核显配置:",
-      subTitle: "(对应则勾选,否则不勾选)",
+      title: l10n.igpuConfigTitle,
+      subTitle: l10n.selectIfMatching,
       initiallyExpanded: false,
       height: 560,
       content: const OclpLinkButton(),

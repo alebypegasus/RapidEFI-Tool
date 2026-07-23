@@ -1,0 +1,771 @@
+{
+  "@@locale": "ja",
+  "appName": "RapidEFI",
+  "recent": "最近",
+  "efiRelated": "EFI関連",
+  "toolsAndGuides": "ツールとガイド",
+  "navHistory": "履歴",
+  "navConfigureEFI": "EFI構成",
+  "navProcessEFI": "EFI加工",
+  "navCustomSSDT": "カスタムSSDT",
+  "navOCLPPatch": "OCLP-Xパッチ",
+  "navTahoeGuide": "macOS Tahoe 26",
+  "navSettings": "設定",
+  "navSponsor": "開発者を支援",
+  "searchPlaceholder": "検索",
+  "darkMode": "ダークモード",
+  "clickAgainToExit": "もう一度クリックして終了",
+  "currentOpenCoreVersion": "現在のOpenCoreバージョン: {version}",
+  "copyrightTitle": "著作権表示",
+  "copyrightText": "Copyright (C) 2024 JeoJay\n\n利用規約:\n以下の条件に従い、個人または組織での使用が許可されます:\n\n1. 非営利目的:\n本ソフトウェアは完全無料でオープンソースであり、非営利目的に限られます。本ソフトウェアの販売は禁止されています。\n\n2. 帰属の明記:\n第三者のウェブサイトでの再配布、引用、または使用を行う場合は、出所を明示し、以下の情報を含める必要があります:\nDeveloped by JeoJay. Copyright (C) 2024 JeoJay. All rights reserved.\n\n3. 著作権表示の改変禁止:\n本ソフトウェアのコンテンツを再利用または使用する際、元の著作権表示および出所情報を変更または削除することはできません。\n\n免責事項:\n本ソフトウェアは「現状有姿」で提供され、明示的または黙示的な保証は行われません。著作権者は、本ソフトウェアの使用から生じるいかなる直接的または間接的な損害についても責任を負いません。",
+  "themeModeTitle": "ダークモード:",
+  "themeModeSystem": "システムに同期",
+  "themeModeLight": "オフ",
+  "themeModeDark": "オン",
+  "themeColorTitle": "テーマカラー:",
+  "appFontTitle": "アプリのフォント:",
+  "efiSettingsTitle": "EFI出力オプション:",
+  "addOpenCoreTheme": "EFI構成時にOpenCoreブートテーマを追加",
+  "generateConfigModel": "EFIフォルダにconfigModelファイルを生成",
+  "zipEFI": "EFIをZipファイルに圧縮",
+  "languageTitle": "言語設定:",
+  "languageSystem": "システムに同期",
+  "languageEn": "English",
+  "languagePtBR": "Português (Brasil)",
+  "languagePtPT": "Português (Portugal)",
+  "languageZhCN": "中文 (简体)",
+  "languageZhTW": "中文 (繁體)",
+  "languageJa": "日本語",
+  "versionUpdateTitle": "バージョン更新:",
+  "currentVersion": "現在のバージョン: {version}",
+  "checkUpdate": "更新を確認",
+  "checkingUpdate": "確認中...",
+  "settingSnippet": "1. 「EFI構成時にOpenCoreブートテーマを追加」オプションはデフォルトで有効です。出力EFIフォルダにブートテーマが含まれます。テーマが不要な場合はチェックを外してください。\n\n2. 「EFIフォルダにconfigModelファイルを生成」オプションはデフォルトで有効です。このファイルは「EFI加工」セクションで現在のEFIを再編集・調整するために使用できます。\n\n3. 「EFIをZipファイルに圧縮」オプションは生成されたEFIをZipファイルに圧縮します。Zipファイルの圧縮により、特に性能の低いハードウェアでは出力完了までの時間に影響を与える場合があります。",
+  "fontMicrosoftYaHei": "Microsoft YaHei",
+  "fontSarasaGothic": "Sarasa Gothic",
+  "fontSourceHanSerif": "Source Han Serif",
+  "cpuArchitecture": "CPU アーキテクチャ",
+  "desktop": "デスクトップ",
+  "laptop": "ノート PC",
+  "hedt": "サーバー",
+  "nuc": "ミニ PC",
+  "amd": "AMD プロセッサ",
+  "smbios": "SMBIOS モデル",
+  "generateEFI": "EFI 生成",
+  "clearSelection": "選択をクリア",
+  "exportConfig": "構成をエクスポート",
+  "selectTargetFolder": "出力先フォルダを選択",
+  "efiGenerateSuccess": "EFI の生成に成功しました！",
+  "efiGenerateFailed": "EFI の生成に失敗しました: {error}",
+  "cancel": "キャンセル",
+  "confirm": "確定",
+  "save": "保存",
+  "delete": "削除",
+  "openFolder": "フォルダを開く",
+  "date": "日付",
+  "actions": "操作",
+  "historyTitle": "履歴",
+  "historyDescription": "RapidEFIで生成されたEFIは、ビルドが成功するたびに自動的にバックアップされます。必要に応じて、これらの記録に基づいて再編集および調整を行うことができます。",
+  "clearAllHistory": "すべての履歴を消去",
+  "clearingHistory": "履歴を消去中...",
+  "noHistory": "履歴がありません",
+  "editEFI": "EFIを編集",
+  "configuringEFI": "EFIを構成中、お待ちください...",
+  "configureEFISuccess": "EFI の構成に成功しました",
+  "configureEFIFailed": "EFIの構成エラーが発生しました！\n出力先フォルダを変更してください。",
+  "sponsorTitle": "開発者を支援",
+  "visitBilibili": "作者のBilibili",
+  "visitGithub": "GitHub を表示",
+  "buyCoffeeTitle": "開発者にコーヒーを一杯奢る",
+  "buyCoffeeText": "このツールが役立った場合は、開発者を自由に支援してください！サポートありがとうございます！\n\n作者の連絡先: QQ 766264141 または WX: JeoJay127。これ以外のプライベートな連絡先はありません。詐欺にご注意ください！",
+  "successCasesTitle": "RapidEFI成功事例",
+  "tahoeGuideTitle": "macOS Tahoe 26 ガイド",
+  "oclpIntro": "概要",
+  "oclpGpu": "GPU パッチ",
+  "oclpWifi": "WiFi パッチ",
+  "ssdtPlatform": "プラットフォームパッチ",
+  "ssdtAudio": "オーディオパッチ",
+  "ssdtGpuSpoof": "GPU 偽装",
+  "ssdtDisableDevice": "デバイス無効化",
+  "ssdtBrightness": "輝度パッチ",
+  "manualEFIConfig": "手動EFI構成",
+  "autoEFIConfig": "自動EFI構成",
+  "cpuSelection": "CPU 選択:",
+  "platformSelection": "プラットフォーム選択:",
+  "platformInfo": "プラットフォーム情報:",
+  "targetMacOSVersion": "ターゲット macOS バージョン:",
+  "smbiosModelSetup": "SMBIOS モデル設定:",
+  "motherboardModelConfig": "マザーボードモデル構成:",
+  "selectMotherboardModelTip": "(マザーボードモデルを選択して構成を適用)",
+  "platformGen": "プラットフォーム世代",
+  "vendor": "ブランド",
+  "motherboardModel": "マザーボードモデル",
+  "pleaseSelect": "選択してください",
+  "selected": "選択済み: ",
+  "applySelectedConfig": "選択した構成を適用",
+  "noMatchingConfigEntries": "一致する構成項目はありません",
+  "pentiumCeleron": "Pentium / Celeron",
+  "pentiumCeleronTip": "Pentium または Celeron プロセッサは CPU 偽装が必要です。有効にしてください。\n注意: Pentium/Celeron の内蔵グラフィックスは通常サポートされません。",
+  "u62CpuTitle": "U62 タイプ CPU",
+  "u62CpuTip": "第10世代 Comet Lake U62 CPU (例: i3-10110U, i5-10210U 等) - 有効にしてください",
+  "macOSVersionSnippet": "生成された EFI は選択した macOS バージョンから OS X El Capitan 10.11 まで下位互換性があります。",
+  "amdCores": "AMD コア数:",
+  "ryzen7000to9000": "7000~9000 シリーズ CPU",
+  "useAmdIgpuOutput": "AMD iGPU を画面出力に使用",
+  "igpuConfigTitle": "iGPU 構成",
+  "dgpuConfigTitle": "dGPU 構成",
+  "audioDriver": "オーディオドライバー:",
+  "defaultAppleALCDriver": "(デフォルト: AppleALC ドライバーを使用)",
+  "alcLayoutId": "ALC レイアウト ID:",
+  "queryLayoutId": "レイアウトIDを検索",
+  "hpetAcpiPath": "HPET ACPI パス (オーディオ IRQ 修正):",
+  "fixIrq": "IRQ修正",
+  "selectAudioLayoutIdTitle": "オーディオレイアウト ID を選択",
+  "selectAudioLayoutIdTip": "(マウスホイールで選択後、確定をクリック)",
+  "ethernetDriver": "イーサネットドライバー:",
+  "defaultNoEthernetDriver": "(デフォルト: イーサネットドライバーなし)",
+  "loadingData": "データを読み込み中...",
+  "refreshHardwareInfo": "ハードウェア情報を更新",
+  "importHardwareInfo": "ハードウェアデータをインポート",
+  "exportHardwareReport": "ハードウェアレポートを出力",
+  "exportAcpiTables": "ACPI テーブルを出力",
+  "efiSettings": "EFI 設定",
+  "outputEFI": "EFI を出力",
+  "summaryView": "概要",
+  "detailedView": "詳細",
+  "legendGreen": "緑: 最新 OS をサポート (macOS Tahoe 26)",
+  "legendYellow": "黄: 一部の OS バージョンをサポート",
+  "legendRed": "赤: 完全非互換",
+  "noAcpiImported": "ACPI 未インポート",
+  "personalizedEfiTitle": "カスタム EFI 設定",
+  "applySettings": "設定を適用",
+  "configureEFIError": "EFI の構成中にエラーが発生しました。\n出力パスを変更してください",
+  "selectConfigItems": "一括適用する構成項目を選択",
+  "newVersionFound": "新しいバージョンが利用可能です",
+  "versionTag": "バージョン: {tag}",
+  "publishedAtDate": "リリース日: {date}",
+  "downloadNow": "今すぐダウンロード",
+  "close": "閉じる",
+  "generatingEfiAndSsdt": "EFI とカスタム SSDT を生成中...",
+  "configuringEfiTitle": "EFI を構成中",
+  "configureEfiSuccessTitle": "EFI の構成に成功しました",
+  "configureEfiErrorTitle": "EFI の構成に失敗しました",
+  "outputDirectory": "出力ディレクトリ:",
+  "openEfiDirectory": "EFI ディレクトリを開く",
+  "select": "選択",
+  "selectFile": "ファイルを選択",
+  "selectDirectory": "ディレクトリを選択",
+  "hardwareReport": "ハードウェアレポート",
+  "acpiTablesDirectory": "ACPI テーブルディレクトリ",
+  "noAcpiFolderTip": "ACPI テーブルディレクトリがない場合、インポートしたレポートからカスタム SSDT を生成できません。",
+  "hasAcpiFolderTip": "選択した ACPI テーブルディレクトリを使用してカスタム SSDT を生成します。",
+  "adminRightsRequired": "管理者権限が必要です",
+  "enterSystemPassword": "システムパスワードを入力してください",
+  "import": "インポート",
+  "optionalSelectIfMatching": "(オプション - 該当する場合チェック)",
+  "selectIfMatching": "(該当する場合チェック)",
+  "baseConfig": "基本構成",
+  "advanceConfig": "詳細構成",
+  "connectorCustomization": "コネクタカスタマイズ",
+  "displayEdid": "ディスプレイ EDID",
+  "nvidiaDgpu": "Nvidia dGPU",
+  "amdDgpu": "AMD dGPU",
+  "amdDgpuSpoof": "AMD dGPU 偽装",
+  "above4gTitle": "Above 4G Decoding 設定",
+  "addNpciBootArg": "ブート引数 npci=0x2000 を追加",
+  "above4gTip": "BIOS で Above 4G Decoding が無効な場合に推奨。有効な場合はチェックを外してください。",
+  "personalizedEfiIntroTip": "すべての項目はオプションです。出力 EFI はこれらの設定に基づいて生成されます。",
+  "ssdtType": "SSDT タイプ:",
+  "customSsdt": "カスタム SSDT",
+  "presetSsdt": "プリセット SSDT",
+  "cpuTypeLabel": "CPU タイプ:",
+  "platformTypeLabel": "プラットフォームタイプ:",
+  "selectAll": "すべて選択",
+  "basicOfficialRecommend": "* 基本 (公式推奨)",
+  "recommendFixes": "* 推奨 (機能修復)",
+  "optionalEnhancements": "* オプション (機能向上)",
+  "personalizedPlatformTip": "CPU、プラットフォーム、情報が自動検出されました。誤りがある場合は手動で変更できます。",
+  "pciPathLabel": "GPU PCI パス:",
+  "pciPathHint": "PCI パスを入力",
+  "spoofGpuIdLabel": "偽装 GPU ID:",
+  "selectSpoofGpuPlaceholder": "偽装する GPU を選択",
+  "gpuSpoofDataLoadError": "GPU 偽装データの読み込みに失敗しました",
+  "injectEdidTitle": "ディスプレイ EDID を注入 (256 または 512 16進文字):",
+  "injectEdidHint": "ディスプレイ EDID を入力 (16進形式、スペース可)",
+  "edidInvalidToast": "EDIDデータが無効です。確認してから入力してください!",
+  "details": "詳細情報",
+  "clearAllSelection": "全選択解除",
+  "applySelected": "選択を適用 ({count} 項目)",
+  "getModdedOclp": "改造版OCLPを取得",
+  "getIntelModdedOclp": "Intel専用改造版OCLPを取得",
+  "soundDriverCardTitle": "オーディオドライバ:",
+  "soundDriverDefaultTip": "(デフォルトはAppleALCドライバ)",
+  "hpetAcpiPathTitle": "高精度タイマーACPIパス(オーディオIRQ修正用):",
+  "selectAudioLayoutTitle": "オーディオレイアウトID選択 (DB: {published} v{version})",
+  "pickerScrollConfirmTip": "(ホイールで選択後、確定をクリック)",
+  "nicDriverCardTitle": "ネットワークドライバ:",
+  "nicDriverDefaultTip": "(デフォルトはネットワークドライバなし)",
+  "wifiBtCardTitle": "Wi-Fi & Bluetoothドライバ:",
+  "wifiBtDefaultTip": "(デフォルトはWi-Fiドライバなし)",
+  "usbCardTitle": "USBドライバ:",
+  "usbDefaultTip": "(デフォルトはUSBInjectAll)",
+  "selectUtbMap": "UTBMapを選択",
+  "selectUtbMapHint": "USBToolBoxで作成したUTBMap.kextを選択",
+  "releaseUsbOwnershipText": "'UEFI->Quirks->ReleaseUsbOwnership'を有効化...",
+  "bootArgsCardTitle": "ブート引数:",
+  "bootArgsDefaultTip": "(デフォルトは-vモード有効)",
+  "debugCategory": "デバッグ",
+  "amfiSipCategory": "AMFI/SIP関連",
+  "igpuCategory": "内蔵グラフィックス",
+  "dgpuCategory": "独立グラフィックス",
+  "blackScreenFixCategory": "画面暗转修正",
+  "above4gCategory": "Above 4G Decoding",
+  "touchpadFixCategory": "タッチパッド修正",
+  "othersCategory": "その他",
+  "optionalKextsCardTitle": "オプションKexts:",
+  "optionalKextsDefaultTip": "(オプションのドライバ)",
+  "graphicsCategory": "グラフィックス",
+  "powerManagementCategory": "電源管理",
+  "sleepCategory": "スリープ",
+  "diskCategory": "ディスク",
+  "cpuCategory": "CPU関連",
+  "amdPlatformCategory": "AMDプラットフォーム",
+  "usbCategory": "USB関連",
+  "sdCardCategory": "SDカード",
+  "optionalSettingsCardTitle": "オプション設定:",
+  "optionalSettingsDefaultTip": "(通常はデフォルトのまま)",
+  "tabBrand": "ブランド",
+  "tabSpecialMotherboard": "特殊マザーボード",
+  "tabSipSetting": "SIP設定",
+  "tabCpuRename": "CPU名変更",
+  "tabUiScale": "OpenCore UIスケール",
+  "tabAcpiConfig": "ACPI設定",
+  "tabBooterConfig": "Booter設定",
+  "tabKernelConfig": "Kernel設定",
+  "tabUefiConfig": "UEFI設定",
+  "processEfiTitle": "EFI加工",
+  "processEfiSubTitle": "(RapidEFIで設定したEFIを再加工)",
+  "processEfiExpanderText": "RapidEFIで設定されたEFIは、出力フォルダにconfigModelファイルを生成します。このファイルをここに読み込むことで再編集できます。",
+  "clearCurrentConfig": "現在の設定をクリア",
+  "importConfigModelFile": "configModelファイルを読み込む",
+  "importingConfigModel": "configModelを読み込み中...",
+  "releaseToReimport": "ドロップしてconfigModelを再読み込み",
+  "dragConfigModelArea": "ここにconfigModelファイルをドラッグ\nまたはクリックして選択",
+  "importFailedToast": "読み込んだ設定データが無効です。正しいconfigModelファイルを読み込んでください。",
+  "changeEfiTitle": "EFIタイトルの変更",
+  "modifyCurrentEfiName": "現在のEFI名を変更",
+  "originalEfiName": "元のEFI名: {name}",
+  "@originalEfiName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "enterModifiedName": "変更後の名前を入力してください",
+  "deleteRecord": "この記録を削除",
+  "exportThisEfi": "このEFIをエクスポート",
+  "releaseToIdentifyHardware": "ドロップしてハードウェアレポートとACPIテーブルを自動認識します",
+  "dragHardwareReportHere": "このツールでエクスポートされたハードウェアレポートフォルダをドラッグします\n(sysInfo.txtとACPIディレクトリを自動認識)",
+  "invalidHardwareReportToast": "有効なハードウェアレポートファイルが認識されませんでした",
+  "optionalSuffix": "{title} (オプション)",
+  "@optionalSuffix": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "notSelected": "未選択",
+  "verifyingAdminPassword": "管理者パスワードを検証中...",
+  "hardwareReportAcpiMissing": "外部ハードウェアレポートがインポートされましたが、ACPIテーブルディレクトリが提供されていないため、SSDTをカスタマイズできません。",
+  "hwMemory": "メモリ",
+  "hwCompatible": "互換性あり",
+  "hwDeviceID": "デバイスID: {id}",
+  "@hwDeviceID": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "hwType": "種類: {type}",
+  "@hwType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCapacity": "容量: {cap}",
+  "@hwCapacity": {
+    "placeholders": {
+      "cap": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInterface": "インターフェース: {bus}",
+  "@hwInterface": {
+    "placeholders": {
+      "bus": {
+        "type": "String"
+      }
+    }
+  },
+  "hwModel": "モデル: {model}",
+  "@hwModel": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      }
+    }
+  },
+  "hwStorage": "ストレージ",
+  "hwStorageController": "ストレージ\nコントローラー",
+  "hwBluetooth": "Bluetooth",
+  "hwAudioCard": "オーディオカード",
+  "hwAudioLayoutId": "レイアウトID:",
+  "hwNetworkCard": "ネットワークカード",
+  "hwMonitor": "モニター",
+  "hwResolution": "解像度: {res} @ {hz} Hz",
+  "@hwResolution": {
+    "placeholders": {
+      "res": {
+        "type": "String"
+      },
+      "hz": {
+        "type": "String"
+      }
+    }
+  },
+  "hwMonitorSize": "({size}インチ)",
+  "@hwMonitorSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "hwConnectedGpu": "接続GPU: {gpu}",
+  "@hwConnectedGpu": {
+    "placeholders": {
+      "gpu": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInput": "入力",
+  "hwSDCard": "SDカード",
+  "hwDevice": "デバイス: {dev}",
+  "@hwDevice": {
+    "placeholders": {
+      "dev": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSerialNumber": "シリアル番号: {sn}",
+  "@hwSerialNumber": {
+    "placeholders": {
+      "sn": {
+        "type": "String"
+      }
+    }
+  },
+  "hwBuiltIn": "内蔵: {builtin}",
+  "@hwBuiltIn": {
+    "placeholders": {
+      "builtin": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSecureBoot": "セキュアブート: {status}",
+  "@hwSecureBoot": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCSM": "CSM: {status}",
+  "@hwCSM": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwResizableBar": "Resizable BAR: {status}",
+  "@hwResizableBar": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAbove4G": "Above 4G Decoding: {status}",
+  "@hwAbove4G": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAHCI": "AHCI: {status}",
+  "@hwAHCI": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAHCIUnknown": "AHCI: 不明",
+  "hwEnabled": "有効",
+  "hwDisabled": "無効",
+  "hwCurrentBiosSettings": "現在のBIOS設定",
+  "hwBiosNote": "Hackintoshの注意事項：\n1. 赤いテキストについては、BIOSで設定を変更して青色になるようにしてください。\n2. 青いテキストは、ほとんどの場合で適切な設定を示しています。\nセキュアブート: 必ず無効にしてください (そうしないと、OCのような署名されていないブートローダーは正常に起動できません)。\nCSM: ほとんどの場合、無効にすることを推奨します (Intel 第4/第5世代モバイルiGPU、X99プラットフォーム、一部のRX460ではCSMを有効にする必要があります)。\nResizable BAR: BIOSで無効にすることを推奨します。\nAbove 4G Decoding: BIOSで有効にし、npciパラメータを削除することを推奨します。\nAHCI (SATAディスクモード): 必ず有効にしてください。",
+  "hwBit": "{arch} ビット",
+  "@hwBit": {
+    "placeholders": {
+      "arch": {
+        "type": "String"
+      }
+    }
+  },
+  "hwVirtualizationEnabled": "仮想化: 有効",
+  "hwVirtualizationDisabled": "仮想化: 無効",
+  "hwCoresThreads": "{cores}コア{threads}スレッド",
+  "@hwCoresThreads": {
+    "placeholders": {
+      "cores": {
+        "type": "String"
+      },
+      "threads": {
+        "type": "String"
+      }
+    }
+  },
+  "hwInstructionSet": "命令セット: {simd}",
+  "@hwInstructionSet": {
+    "placeholders": {
+      "simd": {
+        "type": "String"
+      }
+    }
+  },
+  "hwCore": "コア: {core}",
+  "@hwCore": {
+    "placeholders": {
+      "core": {
+        "type": "String"
+      }
+    }
+  },
+  "hwSpoofIDRequired": "スプーフIDが必要: {id}",
+  "@hwSpoofIDRequired": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "hwGPU": "グラフィックカード",
+  "hwIncompatible": "非互換",
+  "hwDeviceType": "{type}",
+  "@hwDeviceType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "hwMotherboard": "マザーボード",
+  "hwBrand": "ブランド: {brand}",
+  "@hwBrand": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "hwChipset": "チップセット: {chipset}",
+  "@hwChipset": {
+    "placeholders": {
+      "chipset": {
+        "type": "String"
+      }
+    }
+  },
+  "hwAppleALCSnippet": "AppleALCは複数のレイアウトIDをサポートしています。異なるIDはオーディオインターフェイスの可用性に影響を与える可能性があります。",
+  "manualNvidiaInfoText": "サポートされているNvidia GPUシリーズは次のとおりです:\n• Teslaシリーズ（8000〜300シリーズ）: macOS High Sierra 10.13.xまでネイティブサポート（NVCAPの修正が必要な場合があります）、以降のバージョンではOCLPパッチが必要です（Metal非対応）\n例: 8600GT, 9600GT, GT210, GT220, GT240など。古すぎるため推奨されません!\n• Keplerシリーズ（600〜800シリーズ）: macOS Big Sur 11.xまでネイティブサポート、以降のバージョンではOCLPパッチが必要です（Metal対応、真のドライバー）\nKeplerコア: GT630, GT635, GT640, GTX650, GTX660, GTX680, GT710, GT720, GT730, GT740, GTX760, GTX Titan Z, GTX Titan Blackなど\nKeplerコアプロフェッショナルカード: NVS 510, Quadro 410, Quadro K420, Quadro K600, Quadro K2000など\n• Fermi, Maxwell, Pascalシリーズ: macOS High Sierra 10.13.xまでWebdriverサポート。macOS Big Sur 11.x以降の場合、以下の起動引数を確認してOCLPパッチを適用してください（Metal非対応、偽のドライバー）\nFermiシリーズ: GT605, GT610, GT620, GT630, GT705, GT710, GT720, GT730, GT740など\nMaxwellシリーズ: GTX750, GTX750Ti, GTX950, GTX960, GTX970, GTX980など\nPascalシリーズ: GTX1050, GTX1060, GTX1070, GTX1080など\n非対応のNvidia GPUシリーズ（11シリーズ以上は対応していません）:\n• 16〜50シリーズ: GTX1650, GTX1660, RTX 2050, RTX 2060, RTX 3050, RTX 3060, RTX 4050, RTX 4060, RTX 5060, RTX 5070など",
+  "manualEdidInfoText": "1. 通常、Intel 第6〜10世代iGPUのブラックスクリーン/信号なしの問題を修正するために使用されます（dGPUのEDIDはここでは処理されません）。（典型的な症状: キーボードのCaps Lockは機能するが、モニターは信号なしのブラックスクリーン）\n2. iGPUのHDMI出力を使用する500シリーズのデスクトップマザーボード（H510/B560/H570/Q570/Z590/W580）の場合、実際のモニターEDIDの注入が必須です。そうでない場合はブラックスクリーンの可能性が高くなります。\n3. モニターEDIDの取得方法:\nWindows環境で、RapidEFIツールまたはhdinfoツールを使用してEDIDを取得します（サードパーティ製ツールも使用できますが、EDIDのフォーマットはご自身で行う必要があります）:\n1). RapidEFI v4.x以降を開き、「EFI構成」->「EFI自動構成」->「詳細構成」をクリックします（hdinfoを使用する場合は「詳細構成」をクリック）。\n2). ハードウェア情報の自動検出が完了するのを待ち、モニターセクションの横にあるEDIDコードをクリックして取得します（クリップボードに正常にコピーされたというプロンプトが表示されます）。\n3). このページに戻り、入力ボックスにEDIDを貼り付けます。\n4. EDIDを注入する前に、「詳細構成」で対象のAAPL0Xインターフェイスを確認してください。不明な場合は、実際のHDMI修正プランに基づいて選択してください。\n5. EDIDデータは通常128バイト（256の16進文字）または256バイト（512の16進文字）です。そうでない場合は、入力前によく確認してください!",
+  "manualIgpuConnectorSupported": "現在のFramebuffer: {fb}。WhateverGreenのドキュメントに従ってframebuffer-conX-alldataを生成します。",
+  "@manualIgpuConnectorSupported": {
+    "placeholders": {
+      "fb": {
+        "type": "String"
+      }
+    }
+  },
+  "manualIgpuConnectorUnsupported": "現在のFramebufferは構造化された推奨事項をサポートしていません。既存の生値を削除し、サポートされているiGPU基本構成を再選択してください。",
+  "manualAddConnectorTooltip": "コネクタパッチを追加",
+  "manualConnectorLabel": "コネクタ",
+  "manualIndexLabel": "インデックス",
+  "manualBusIdLabel": "バスID",
+  "manualConnectorTypeLabel": "タイプ",
+  "manualOldConnector": "{label} (レガシー)",
+  "@manualOldConnector": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "manualDeleteConnectorTooltip": "con{index} パッチを削除",
+  "@manualDeleteConnectorTooltip": {
+    "placeholders": {
+      "index": {
+        "type": "String"
+      }
+    }
+  },
+  "manualUnparseableValue": "解析不可能な生値",
+  "manualDeleteAndReadd": "削除して構造化コネクタパッチを再追加してください",
+  "manualDeleteUnparseableTooltip": "解析不可能なパッチを削除",
+  "manualBatteryDriver": "バッテリードライバー",
+  "manualKeyboardTouchpadDriver": "キーボードとタッチパッドのドライバー",
+  "manualSensorDriver": "センサードライバー (必要な場合を除き推奨されません)",
+  "manualKernelTrimStrategy": "SSD Trim戦略",
+  "manualKernelPowerManagement": "電源管理",
+  "manualKernelDummyPowerManagement": "電源管理の無効化(DummyPowerManagement)。NullCpuPowerManagement.kextの代わり",
+  "manualKernelQuirksDefault": "Kernel - Quirksはデフォルトを維持することをお勧めします",
+  "manualUefiProvideConsoleGop": "ProvideConsoleGopの癖はデフォルトで有効になっています",
+  "manualUefiDriversHfs": "UEFI-Drivers (HFSドライバーの問題を修正)",
+  "manualUefiOutputBootUI": "UEFI - Output (ブートUIの問題を修正)",
+  "manualSpecialMotherboardTip": "オプション - マザーボードが一致する場合はチェック",
+  "manualCsrSettingTip": "オプション - 必要に応じて設定、デフォルトでSIPは無効",
+  "manualRenameCpuNameTip": "オプション - CPU名をカスタマイズ",
+  "manualRenameCpuNameLabel": "CPU名を入力（空白でWindowsのCPU名を表示）:",
+  "manualRenameCpuNameHint": "ここにCPU名を入力",
+  "manualBrandTip": "オプション - ブランドが一致する場合はチェック",
+  "manualBooterPlan1": "プラン 1",
+  "manualBooterPlan2": "プラン 2",
+  "manualBooterPlan3": "プラン 3",
+  "manualBooterPlan4": "プラン 4",
+  "manualBooterEbFix": "EB修正（オプション - 通常はデフォルトでOK）:",
+  "manualAcpiPatch": "ACPI - パッチ",
+  "manualAcpiSsdt": "ACPI - SSDT",
+  "manualBluetoothNvram": "Bluetooth NVRAMパラメータ:",
+  "manualUsbWifiGithub": "chris1111のリポジトリにアクセス",
+  "manualUsbWifiKexts": "USB WiFiに必要なKextsを追加（クライアントのインストールも必要）",
+  "manualWifiCardSupport": "Monterey 12以降はOCLPパッチが必要です!!!",
+  "manualWifiAtheros": "Atheros",
+  "manualWifiIntel": "Intel",
+  "manualWifiBrcm": "Broadcom (Brcm)",
+  "manualWifiBluetoothDriver": "Bluetoothドライバー",
+  "manualWifiItlwmPlan": "プラン 2、itlwmを使用。プラン 1と競合します!!!",
+  "manualWifiAirportItlwmPlan": "プラン 1、AirportItlwmを使用。プラン 2と競合します!!!",
+  "manualWifiAddAllDrivers": "すべてのWiFiドライバーを追加（サイズが大きい）",
+  "manualLaptopMainly": "（主にラップトップ用）",
+  "manualLaptopRelatedDrivers": "ラップトップ関連ドライバー:",
+  "manualLaptopOtherFixes": "その他の修正",
+  "manualLaptopOtherFixesTip": "その他の修正（必要でない限り非推奨）",
+  "manualMotherboardSelectAll": "すべて選択 / 選択解除",
+  "manualMotherboardDetails": "詳細",
+  "manualMotherboardSelectedCount": "({selected}/{total} 選択済み)",
+  "manualMotherboardAppliedCount": "{model} から {count} 個の設定を適用",
+  "manualMotherboardFromMbconfs": "mbconfsから",
+  "manualIgpuRemark": "⚠️ 備考",
+  "manualIgpuSelectCpu": "CPUを選択",
+  "manualIgpuLoadConfig": "CPUモデルからiGPU設定を読み込む",
+  "manualIgpuSelectProperties": "適用するプロパティを選択",
+  "manualIgpuPresetScheme": "プリセットスキーム",
+  "manualIgpuSelectGen": "世代を選択",
+  "manualIgpuSelectedCpu": "選択中: {model}  {igpu}",
+  "manualIgpuCpuModel": "CPUモデル",
+  "manualIgpuMatchOrNot": "一致する場合はチェック",
+  "manualIgpuCpuGen": "CPU世代",
+  "manualIgpuByCpuModel": "CPUモデル別",
+  "manualIgpuName": "iGPU",
+  "manualIgpuLoadedConfig": "{model}から{igpu} iGPU設定を読み込み、{count}個のプロパティを書き込みました",
+  "manualIgpuFromModel": "{model} ({igpu}) から",
+  "manualIgpuSelectInstruction": "CPUの世代とモデルを選択し、適用するプロパティをチェックしてください",
+  "manualIgpuModel": "モデル",
+  "manualFakeGpuSelect": "スプーフィングするGPUを選択",
+  "settingsThemeColors": "カラーテーマ",
+  "settingsThemeDefault": "デフォルト",
+  "sharedInvalidInput": "無効な入力",
+  "sharedRequiresHexChars": "{length}桁の16進数文字が必要です",
+  "sharedExample73BF": "例: 73BF",
+  "sharedTipsLengthMustMatch": "tipsの長さはchoicesと一致する必要があります",
+  "sharedCpuInfo": "[CPU情報]: \n{description}",
+  "sharedMacosLastSupported": "ネイティブサポートされるmacOSの最終バージョン: {version}",
+  "sharedBiosDisable": "[BIOSで無効化を推奨]: \n{description}",
+  "sharedOclpSupported": "パッチでサポートされるmacOSのバージョン: {version}",
+  "sharedBiosEnable": "[BIOSで有効化を推奨]: \n{description}",
+  "sharedMacosInitialSupport": "ネイティブサポートされるmacOSの初期バージョン: {version}",
+  "sharedInvalidAcpiPath": "無効なACPIパス",
+  "sharedFillAcpiPath": "ACPIパスを入力",
+  "sharedFillPciPath": "PCIパスを入力",
+  "sharedInvalidPciPath": "無効なPCIパス",
+  "sharedGetModifiedOclp": "変更されたOCLPを取得",
+  "hwConfigModelGenerated": "ConfigModelが生成されました: {details}",
+  "hwGetInfoFailed": "ハードウェア情報の取得に失敗しました: {e}",
+  "hwAdminPwdIncorrect": "管理者パスワードが間違っています。ACPIテーブルをエクスポートできません",
+  "hwNoNativeInfoExportable": "エクスポート可能なネイティブハードウェア情報がありません",
+  "hwOutputtingOpencore": "OpenCore EFIを出力中...",
+  "hwAcpiExportFailedErr": "ネイティブACPIテーブルのエクスポートに失敗しました: {error}",
+  "hwSsdtProcessFailed": "SSDTカスタマイズプロセスが失敗しました。",
+  "hwConfigRuleRefactoring": "ハードウェアConfigModelの生成ルールをリファクタリング中",
+  "hwQueryUnsupported": "現在のプラットフォームはハードウェア情報のクエリをサポートしていません",
+  "hwPreparingSsdt": "SSDTをカスタマイズする準備中: {items}",
+  "hwImportedExtReportHint": "これはインポートされた外部ハードウェアレポートです。エクスポートする前にネイティブハードウェア情報を更新してください",
+  "hwRefreshingInfo": "ハードウェア情報を更新中",
+  "hwSsdtProcessEnded": "SSDTカスタマイズプロセスが終了しました。",
+  "hwInfoUnsupported": "ハードウェア情報には現在対応していません",
+  "hwEfiWrittenExtracting": "EFIの書き込みが完了しました。ACPIの抽出とSSDTのカスタマイズを開始します...",
+  "hwConfigEfiFailed": "EFIの構成に失敗しました: {error}",
+  "hwReportFolderCleanFailed": "ハードウェアレポートフォルダーのクリーンアップに失敗しました",
+  "hwReportFolderCleanFailedErr": "ハードウェアレポートフォルダーのクリーンアップに失敗しました: {error}",
+  "hwExportingNativeReport": "ネイティブハードウェアレポートをエクスポート中...",
+  "hwAdminAuthCanceled": "管理者の承認がキャンセルされました。ACPIテーブルはエクスポートされません",
+  "hwImportedNoAcpiDir": "外部ハードウェアレポートがインポートされましたが、ACPIテーブルディレクトリが指定されていません。SSDTカスタマイズは無効です。",
+  "hwExportAcpiUnsupported": "現在のプラットフォームはACPIテーブルのエクスポートをサポートしていません",
+  "hwReportExportedTo": "ハードウェアレポートが {reportDirectory} にエクスポートされました、{msg}",
+  "hwInfoNotJson": "ハードウェア情報ファイルがJSONオブジェクトではありません",
+  "hwUnsupported": "未対応",
+  "hwAcpiTempCleanFailed": "ACPIテーブルの一時ディレクトリのクリーンアップに失敗しました: {error}",
+  "hwEfiConfigDone": "EFIの設定が完了しました。",
+  "hwEfiConfigError": "EFIの設定中にエラーが発生しました: {error}",
+  "hwNativeAcpiExportFailed": "ネイティブACPIテーブルのエクスポートに失敗しました",
+  "hwAcpiToolNotReady": "ACPIエクスポートツールの準備ができていません",
+  "hwFailed": "失敗",
+  "hwImportReportFailed": "ハードウェアレポートのインポートに失敗しました: {e}",
+  "hwNativeAcpiExportDone": "ネイティブACPIテーブルのエクスポートが完了しました: {dir}",
+  "hwAcpiExportFailedNoValid": "ACPIテーブルのエクスポートに失敗しました: 有効なACPIテーブルが見つかりません",
+  "hwUsingOriginalSsdt": "EFIの元のSSDTを使用し、SSDTのカスタマイズをスキップします。",
+  "hwWaitingRefresh": "ハードウェア情報の更新を待機中",
+  "hwInfoLoaded": "ハードウェア情報が正常にロードされました",
+  "hwAcpiExportedTo": "ACPIテーブルが {path} にエクスポートされました",
+  "hwStartConfigEfi": "EFIの設定を開始します...",
+  "hwInfoLoadFailed": "ハードウェア情報の読み込みに失敗しました",
+  "hwCache": "キャッシュ",
+  "hwInfoImportDone": "ハードウェア情報のインポートが完了しました",
+  "hwReportAndAcpiExported": "ハードウェアレポートとACPIテーブルが {reportDirectory} にエクスポートされました",
+  "hwAcpiDirInvalid": "ACPIテーブルディレクトリが無効です。SSDTカスタマイズは利用できません",
+  "hwExportingNativeAcpi": "ネイティブACPIテーブルをエクスポート中...",
+  "hwGeneratingConfigModel": "ハードウェア情報に基づいてConfigModelを生成中...",
+  "hwInfoImported": "ハードウェア情報がインポートされました",
+  "hwAcpiExportFailedOrUnsup": "ACPIテーブルのエクスポートに失敗したか、サポートされていません",
+  "hwReportFolderCreateFailed": "ハードウェアレポートフォルダーの作成に失敗しました",
+  "hwNoAdminPwd": "管理者パスワードが入力されていません。ACPIテーブルをエクスポートできません",
+  "hwEfiConfigFailedCheck": "EFIの設定に失敗しました。出力パスまたはログを確認してください。",
+  "hwLoadingInfo": "ハードウェア情報をロード中",
+  "hwDone": "完了",
+  "hwAcpiExportFailedProcess": "ACPIテーブルのエクスポートに失敗しました: エクスポートプロセスの実行に失敗しました",
+  "hwIgpuType": "iGPU (内蔵グラフィックス)",
+  "hwGpuCompatible": "互換性あり",
+  "hwGpuIncompatibleNoDisplay": "互換性なし、直接画面出力なし",
+  "hwGpuIncompatible": "互換性なし",
+  "hwLaptop": "ノートPC",
+  "hwGpuLoadingCompat": "互換性を読み込み中",
+  "hwGpuLimitedCompat": "限定的な互換性",
+  "hwClickToCopy": "クリックしてコピー",
+  "hwCopiedToClipboard": "クリップボードにコピーしました",
+  "@hwConfigModelGenerated": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwGetInfoFailed": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportFailedErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwPreparingSsdt": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwConfigEfiFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwReportFolderCleanFailedErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwReportExportedTo": {
+    "placeholders": {
+      "reportDirectory": {
+        "type": "String"
+      },
+      "msg": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiTempCleanFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwEfiConfigError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwImportReportFailed": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwNativeAcpiExportDone": {
+    "placeholders": {
+      "dir": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportedTo": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwReportAndAcpiExported": {
+    "placeholders": {
+      "reportDirectory": {
+        "type": "String"
+      }
+    }
+  }
+}

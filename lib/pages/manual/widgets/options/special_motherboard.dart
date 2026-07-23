@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
 
@@ -43,7 +44,7 @@ class _MotherBoardWidgetState extends State<SpecialMotherBoardWidget> {
           selectedChoices: [specialMotherBoard.value],
           isMultipleSelection: false,
           allowToggle: true,
-          subTitle: "可选项-符合描述的主板型号可以勾选",
+          subTitle: AppLocalizations.of(context)!.manualSpecialMotherboardTip,
           onChanged: (List<String> value) {
             String? selectedValue = value.firstOrNull;
             specialMotherBoard = SpecialMotherboard.values.firstWhere(

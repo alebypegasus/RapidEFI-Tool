@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:rapidefi/utils/config/catalogs/efi_drivers/efi_driver_option.dart';
@@ -24,8 +25,8 @@ class UEFIWidget extends StatefulWidget {
 class _UEFIWidgetState extends State<UEFIWidget> {
   late List<String> choices;
   late List<String> selectedChoices;
-  String provideConsoleGopText =
-      'ProvideConsoleGop怪癖默认开启,可以用于修复OpenCore启动UI不显示问题.如果仍然不显示启动UI,可以尝试去掉勾选';
+  String get provideConsoleGopText =>
+      AppLocalizations.of(context)!.manualUefiProvideConsoleGop;
 
   List<EfiDriverOption> get _hfsOptions => widget.efiDriverOptions
       .where((option) => option.category == 'hfs')
@@ -51,7 +52,7 @@ class _UEFIWidgetState extends State<UEFIWidget> {
     return ScrollableChoiceListPanel(
       children: [
         ChoiceList(
-          subTitle: 'UEFI-Drivers(修复HFS驱动导致OpenCore启动UI不显示问题)',
+          subTitle: AppLocalizations.of(context)!.manualUefiDriversHfs,
           choices: choices,
           selectedChoices: selectedChoices,
           allowToggle: false,
@@ -69,7 +70,7 @@ class _UEFIWidgetState extends State<UEFIWidget> {
           },
         ),
         ChoiceList(
-          subTitle: 'UEFI - Output (修复OpenCore启动UI不显示问题)',
+          subTitle: AppLocalizations.of(context)!.manualUefiOutputBootUI,
           choices: [provideConsoleGopText],
           selectedChoices: [
             widget.uefi.uefiOutput.provideConsoleGop

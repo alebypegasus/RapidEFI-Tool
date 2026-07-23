@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/app_localizations.dart';
 //  custom_textfield.dart 
 //  Created by JeoJay127 
 //
@@ -137,7 +138,7 @@ class CustomTextField<T> extends StatefulWidget {
 
 class _CustomTextFieldState<T> extends State<CustomTextField<T>> {
   String? _effectiveErrorText;
-  final String defaultErrorText = '输入不合法';
+  String get defaultErrorText => AppLocalizations.of(context)!.sharedInvalidInput;
   late final VoidCallback _listener;
 
   @override

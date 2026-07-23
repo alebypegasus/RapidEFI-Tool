@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 import 'package:rapidefi/widgets/inkwell_widget.dart';
-import 'package:flutter/material.dart';
 
 class OutputWidget extends StatefulWidget {
   final ValueChanged onChanged;
@@ -21,8 +22,9 @@ class _OutputWidgetState extends State<OutputWidget> {
   late String outputDirectory = widget.directoryPath;
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return TitleCard(
-      title: "输出目录:",
+      title: l10n.outputDirectory,
       content: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         child: Row(
@@ -43,9 +45,9 @@ class _OutputWidgetState extends State<OutputWidget> {
               height: 34,
               width: 80,
               radius: 17,
-              child: const Text(
-                "选择",
-                style: TextStyle(color: Colors.white),
+              child: Text(
+                l10n.select,
+                style: const TextStyle(color: Colors.white),
               ),
               onTap: () async {
                 final picker = widget.onPickDirectory;
@@ -64,3 +66,4 @@ class _OutputWidgetState extends State<OutputWidget> {
     );
   }
 }
+

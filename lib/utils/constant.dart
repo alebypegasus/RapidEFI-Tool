@@ -14,6 +14,9 @@ class Constant {
 
   static const String appFontFamily = 'appFontFamily';
 
+  static const String languageKey = 'languageKey';
+
+
   static const String historyConfigModel = 'historyConfigModel';
 
   ///偏好设置
