@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_compatibility.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
@@ -25,6 +26,7 @@ class GpuSection extends StatelessWidget {
     final items = entries
         .map(
           (entry) => _GpuCompatibilityItem.from(
+            context,
             rawInfo,
             entry,
             connectedGpuNames: connectedGpuNames,
@@ -32,6 +34,7 @@ class GpuSection extends StatelessWidget {
           ),
         )
         .toList();
+    final l10n = AppLocalizations.of(context)!;
     final lines = entries.asMap().entries.map((indexedEntry) {
       final entry = indexedEntry.value;
       final item = items[indexedEntry.key];
@@ -53,7 +56,7 @@ class GpuSection extends StatelessWidget {
               SelectableText(
                 joinNonEmpty([
                   displayName,
-                  '设备ID: $deviceId',
+                  l10n.gpuDeviceId(deviceId),
                   '核心: ${gpuCodename(gpu)}',
                   gpu['Device Type'],
                 ], '    '),
@@ -68,7 +71,7 @@ class GpuSection extends StatelessWidget {
     }).toList();
     if (lines.isEmpty) return const SizedBox.shrink();
     return HardwareSection(
-      '显卡',
+      l10n.gpuCard,
       lines,
       trailing: _GpuCompatibilityPanel(items: items),
     );
@@ -105,13 +108,14 @@ class _GpuCompatibilityPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context)!;
 
-    // 单显卡：只显示兼容性
+    // Single GPU: only show compatibility
     if (items.length == 1) {
       final item = items.first;
       if (item.note.level == CompatibilityLevel.supported) {
         return _GpuCompatibilityStatusText(
-          note: CompatibilityNote.supported('兼容'),
+          note: CompatibilityNote.supported(l10n.gpuCompatible),
         );
       }
 
@@ -124,11 +128,12 @@ class _GpuCompatibilityPanel extends StatelessWidget {
             .every((item) => item.note.level != CompatibilityLevel.supported) &&
         !items.any((item) => item.isLoadingCompatibility)) {
       return _GpuCompatibilityStatusText(
-        note: CompatibilityNote.unsupported('不兼容'),
+        note: CompatibilityNote.unsupported(l10n.gpuIncompatible),
       );
     }
 
-    // 多显卡：判断是否存在不兼容 / 有限兼容
+    // Multiple GPUs: check for any problem GPU
+    // 是否存在不兼容 / 有限兼容
     final hasProblemGpu = items.any(
       (item) => item.note.level != CompatibilityLevel.supported,
     );
@@ -136,11 +141,12 @@ class _GpuCompatibilityPanel extends StatelessWidget {
     // 多显卡：如果全部兼容，只显示一个“兼容”
     if (!hasProblemGpu) {
       return _GpuCompatibilityStatusText(
-        note: CompatibilityNote.supported('兼容'),
+        note: CompatibilityNote.supported(l10n.gpuCompatible),
       );
     }
 
-    // 多显卡：只要有一个不兼容 / 有限兼容，列出所有显卡兼容性
+    // Multiple GPUs: list all when there's a problem GPU
+    // 不兼容 / 有限兼容，列出所有显卡兼容性
     final visibleItems = items;
 
     final colors = hardwareThemeColors(context);
@@ -242,13 +248,13 @@ class _GpuCompatibilityItem {
   final CompatibilityNote note;
   final GpuCompatibilityRecord? record;
 
-  bool get isLoadingCompatibility => note.text == '兼容性加载中';
+  bool get isLoadingCompatibility => note.text == '兼容性加载中' || note.text.isEmpty;
 
-  String get statusText {
+  String statusText(AppLocalizations l10n) {
     return switch (note.level) {
-      CompatibilityLevel.supported => '兼容',
-      CompatibilityLevel.limited => '有限兼容',
-      CompatibilityLevel.unsupported => '不兼容',
+      CompatibilityLevel.supported => l10n.gpuCompatible,
+      CompatibilityLevel.limited => l10n.gpuLimitedCompat,
+      CompatibilityLevel.unsupported => l10n.gpuIncompatible,
     };
   }
 
@@ -269,6 +275,7 @@ class _GpuCompatibilityItem {
   }
 
   factory _GpuCompatibilityItem.from(
+    BuildContext context,
     Map<String, dynamic> rawInfo,
     MapEntry<String, dynamic> entry, {
     required Set<String> connectedGpuNames,
@@ -280,7 +287,7 @@ class _GpuCompatibilityItem {
     final note = enforceInternalDisplay &&
             !_matchesConnectedInternalGpu(
                 entry.key, gpu, record, connectedGpuNames)
-        ? CompatibilityNote.unsupported('不兼容,没有直连内屏')
+        ? CompatibilityNote.unsupported(AppLocalizations.of(context)!.gpuIncompatibleNoDisplay)
         : baseNote;
     return _GpuCompatibilityItem(
       name: hardwareGpuDisplayName(entry.key, gpu, record: record),

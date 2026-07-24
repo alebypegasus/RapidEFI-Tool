@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 
 class UnderlineCopyText extends StatelessWidget {
   final String text;
@@ -28,11 +29,11 @@ class UnderlineCopyText extends StatelessWidget {
         style.color ?? DefaultTextStyle.of(context).style.color ?? Colors.black;
 
     return Tooltip(
-      message: '点击复制',
+      message: AppLocalizations.of(context)!.clickToCopy,
       child: InkWell(
         onTap: () {
           Clipboard.setData(ClipboardData(text: copyText));
-          showToast('已复制到剪切板');
+          showToast(AppLocalizations.of(context)!.copiedToClipboard);
           onCopied?.call();
         },
         child: IntrinsicWidth(

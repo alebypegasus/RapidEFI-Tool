@@ -871,5 +871,244 @@
         "type": "String"
       }
     }
-  }
+  },
+  "linkCantOpen": "Cannot open link",
+  "clickToCopy": "Click to copy",
+  "copiedToClipboard": "Copied to clipboard",
+  "gpuCard": "GPU",
+  "gpuDeviceId": "Device ID: {id}",
+  "gpuCoreCodename": "Core: {codename}",
+  "gpuCompatible": "Compatible",
+  "gpuIncompatible": "Incompatible",
+  "gpuIncompatibleNoDisplay": "Incompatible, no direct display",
+  "gpuLimitedCompat": "Limited compatibility",
+  "gpuLoadingCompat": "Loading compatibility",
+  "gpuSpoofId": "Spoof ID required: {id}",
+  "@gpuDeviceId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "@gpuCoreCodename": {
+    "placeholders": {
+      "codename": {
+        "type": "String"
+      }
+    }
+  },
+  "@gpuSpoofId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "bootArgVerbose": "Enable -v verbose mode (shows debug output during boot, useful for debugging startup issues)",
+  "bootArgKeepsyms": "Print kernel crash symbols to help diagnose issues. Usually used with debug=0x100. Strongly recommended during initial boot debugging.",
+  "bootArgDebug0x100": "Prevent automatic restart on kernel panic, allowing you to view crash logs. Strongly recommended during initial boot debugging.",
+  "bootArgWatchdog0": "Disable watchdog to prevent accidental panic-triggered restarts during boot debugging.",
+  "bootArgSlide0": "Disable KASLR to fix memory conflicts causing early boot kernel panics. Used for debugging.",
+  "bootArgNoCompatCheck": "Skip model compatibility check during boot to avoid the prohibited symbol. Note: does not bypass installer model check.",
+  "bootArgCpus1": "Enable only 1 CPU core (for X58/X79/X99/X299 multi-core server CPUs with kernel panic issues during early installation debugging).",
+  "bootArgBetaFix": "Fix issues that may appear in the latest macOS (mainly Beta), such as audio, Bluetooth, CPU frequency anomalies. Strongly recommended on Beta versions.",
+  "bootArgAmfi0x80": "Disable AMFI for newer GPUs (HD4000+, GT710+ Kepler) or when patching Wi-Fi drivers. Do NOT use with amfi_get_out_of_my_way=0x1. Only effective with SIP disabled.",
+  "bootArgAmfiGetOut": "Disable AMFI for older GPUs (e.g., GT240) or when patching Wi-Fi drivers. Do NOT use with amfi=0x80. Only effective with SIP disabled.",
+  "bootArgIpcControl": "Fix app crashes (e.g., Baidu Netdisk) after disabling AMFI. Only effective with SIP disabled.",
+  "bootArgAmfiPassBeta": "Ensure AMFIPass.kext works in the latest macOS Tahoe 26 to continue bypassing AMFI security checks.",
+  "bootArgRevpatch": "Fix macOS OTA update issues after disabling SIP or SecureBootModel, and fix custom CPU name display.",
+  "bootArgDisableGfxFirmware": "Disable Apple Graphics Firmware loading to avoid hangs during startup due to firmware load failure (Intel iGPU only).",
+  "bootArgWegNoIgpu": "Disable Intel iGPU (recommended when iGPU cannot be driven or doesn't support hardware acceleration).",
+  "bootArgIgfxVesa": "Disable Intel iGPU acceleration (use when system won't start after applying OCLP iGPU patch, debug only).",
+  "bootArgIgfxRpsc": "Fix and improve Intel iGPU performance (e.g., fix 4K HEVC encoding, resolution and FPS issues).",
+  "bootArgIgfxMpc": "Fix iGPU resolution issues by forcing maximum pixel clock override, removing macOS default resolution/refresh rate limits.",
+  "bootArgGfxfw2": "Enable full iGPU firmware loading to improve utilization and performance. May cause boot failure — use with caution.",
+  "bootArgCdclk": "Fix kernel panic on 10th gen Ice Lake due to Core Display Clock (CDCLK) frequency being too low.",
+  "bootArgIgfxdbeo": "Fix kernel panic on 10th gen Ice Lake where the driver incorrectly calculates DVMT pre-allocated memory size.",
+  "bootArgIceLakeDisplay": "Fix display corruption lasting 7–15 seconds on 10th gen Ice Lake laptops at boot.",
+  "bootArgIgfxNoTelemetry": "Disable iGPU telemetry module loading during boot. Some laptops (especially Chromebooks) may hang at boot when this module loads.",
+  "bootArgWegNoEgpu": "Disable discrete GPU (recommended when the dGPU on Intel dual-GPU laptops — typically NVIDIA — cannot be driven).",
+  "bootArgNvDisable": "Disable NVIDIA driver (only for debugging incompatible NVIDIA GPUs).",
+  "bootArgUnfairGva": "Fix hardware DRM support on AMD GPUs (enables DRM-protected content like streaming on supported AMD GPUs).",
+  "bootArgRadpg15": "Fix display corruption (scrambled/yellow screen) on older AMD GPUs (HD7750, HD7850 with GCN cores like HD77XX/HD78XX/HD79XX).",
+  "bootArgAmdNoAccel": "Disable ATI/AMD GPU acceleration (use when system won't start after OCLP GPU patch, debug only).",
+  "bootArgRaddvi": "Fix DVI output display on older AMD GPUs (290X, 370, etc.).",
+  "bootArgRadcodec": "Fix VDA hardware video encoding support for officially unsupported AMD GPUs (e.g., RX550 Lexa core).",
+  "bootArgNgfxFermi": "Fix GPU driver issues for older NVIDIA Fermi/Maxwell/Pascal cards (GT610, GTX750, GTX960, GTX1050) on macOS Big Sur 11+. Must apply OCLP GPU patch after entering system! Kepler does NOT need this.",
+  "bootArgApplbkl3": "Enable PWM backlight control for AMD Radeon RX 5000 series GPUs.",
+  "bootArgAgdpmodIgnore": "Fix black screen or display issues on some GPUs by completely ignoring AppleGraphicsDevicePolicy.kext restrictions. Use with WhateverGreen.kext.",
+  "bootArgAgdpmodPikera": "Fix black screen at boot for AMD Navi RX5XXX/RX6XXX GPUs (RX5500, RX5600, RX5700, RX6600, RX6800, RX6900, etc.) by replacing board-id with board-ix. Use with WhateverGreen.kext.",
+  "bootArgAgdpmodVit9696": "Fix black screen after sleep/wake on RX470/RX570 GPUs by disabling board-id check in AppleGraphicsDevicePolicy. Use with WhateverGreen.kext.",
+  "bootArgAmdNoDgpuAccel": "Fix black screen on Ventura+ for AMD RX5XX/RX5XXX/RX6XXX natively-supported GPUs on Intel 3rd gen or older. Apply OCLP GPU patch after booting, then remove this argument.",
+  "bootArgBrcmfx": "Fix slow speed on some Broadcom Wi-Fi cards by changing the country code to HK. You can also improve by changing the router channel.",
+  "bootArgVsmcgen": "Fix ramrod code hang and SMC emulator corruption issues.",
+  "bootArgSwdPanic": "Prevent device restart after sleep to help collect kernel crash logs and debug sleep issues.",
+  "bootArgCtrsmt": "Improve topology detection and scheduling for Intel 12th gen+ hybrid (P+E) CPUs. Performance gain not guaranteed — test before enabling. Requires CpuTopologyRebuild.kext.",
+  "bootArgDarkwake0": "Completely disable Darkwake mode and use traditional sleep mode. Primarily fixes wake black screen and automatic wake issues.",
+  "bootArgForceRenderStandby": "Disable iGPU RC6 render standby to fix NVMe kernel panic caused by iGPU RC6 during sleep.",
+  "bootArgI2cForcePolling": "Force I2C trackpad to use polling mode instead of interrupt-driven mode (interrupt mode usually requires SSDT customization).",
+  "kextLiluDesc": "Required base driver providing extensibility and compatibility for macOS. All plugin-type kexts depend on it.",
+  "kextVirtualSMCDesc": "Required SMC emulator. Simulates Apple SMC on non-Apple hardware, providing sensors, fan control, and power management. macOS cannot run without this.",
+  "kextWhateverGreenDesc": "GPU graphics driver support. Strongly recommended for most users. MacPro7,1 with AMD dGPUs (RX460, RX560+) may uncheck. Usually conflicts with NootRX/NootedRed — do not select together during installation.",
+  "kextAppleALCDesc": "Use AppleALC to spoof the built-in audio codec (more complete solution, preferred choice).",
+  "kextVoodooHDADesc": "Universal audio driver VoodooHDA (loaded during boot, only supports macOS Big Sur 11.2.3 and below; higher versions require injecting into the system kernel extension folder).",
+  "kextUSBInjectAllDesc": "Generic USB injection solution, the default choice when USB customization has not been done.",
+  "kextUSBToolBoxDesc": "USBToolBox solution, typically used together with a customized UTBMap.kext.",
+  "kextBatteryV1Desc": "Battery driver solution 1 (for laptops with 3rd gen Intel or older platforms).",
+  "kextBatteryV2Desc": "Battery driver solution 2 (for laptops with 3rd gen Intel or newer platforms).",
+  "kextAmbientLightDesc": "Ambient light sensor (automatic screen brightness). Do not use if you have no ambient light sensor, as it may cause issues.",
+  "kextAsusNBFnKeysDesc": "ASUS laptop fan control, power management and other system sensor optimizations. Not recommended for non-ASUS machines.",
+  "kextLenovoDesc": "Lenovo laptop fan control, power management and other system sensor optimizations. Not recommended for non-Lenovo machines.",
+  "kextDellDesc": "Dell laptop dedicated sensor for more accurate fan monitoring and control. Not recommended for non-Dell machines.",
+  "kextNootRXDesc": "Support officially unsupported RX6XXX dGPUs (RX6700, RX6750XT, RX6750GRE, etc.). Conflicts with WhateverGreen — do not select together during installation.",
+  "kextBatteryFixDesc": "Battery reading fix, repairs certain battery display issues.",
+  "kextNVMeFixDesc": "Improve compatibility for non-Apple NVMe SSDs and reduce idle power consumption. Incompatible NVMe drives may still crash. Compatible NVMe drives may kernel panic with this driver — use with caution.",
+  "kextFeatureUnlockDesc": "Unlock Universal Control, Sidecar, and other features on unsupported Mac models.",
+  "kextHibernationFixDesc": "Fix common hibernation and sleep-related issues.",
+  "kextHoRNDIS": "Allow macOS to use Android device network tethering via USB.",
+  "kextCPUFriendDesc": "CPU frequency scaling driver, primarily providing frequency scaling support for MacPro7,1 on 11th gen and newer platforms.",
+  "kextCPUFriendDataProviderDesc": "CPUFriend companion data driver, providing CPU frequency scaling data for specific machine models.",
+  "kextAppleIGHDA": "Fix Intel iGPU HDMI audio issues on some systems.",
+  "kextNoTouchID": "Fix inability to log in to Apple ID and iCloud, usually for laptops without a local wired network card.",
+  "kextAppleRTCDesc": "Fix conflicts between macOS AppleRTC and PC BIOS on newer platforms, e.g., RTC causing hangs, sudden restarts, or immediate wake from sleep.",
+  "kextPS2KBMouseDesc": "PS/2 keyboard and mouse driver (for desktop motherboards with PS/2 round ports).",
+  "kextPS2KeyboardDesc": "PS/2 keyboard driver (for desktop motherboards with PS/2 round keyboard ports).",
+  "kextPS2MouseDesc": "PS/2 mouse driver (for desktop motherboards with PS/2 round mouse ports).",
+  "kextMicrosoftSurfaceDesc": "Microsoft Surface dedicated keyboard and trackpad driver.",
+  "kextBrightnessKeysDesc": "Brightness shortcut key fix.",
+  "kextGenericUSBXHCIDesc": "USB 3.0 controller compatibility fix for older or AMD platforms.",
+  "kextXLNCUSBFixDesc": "Fix USB controller compatibility issues on older AMD platforms (FM1/FM2/AM3).",
+  "kextRealtekCardReaderDesc": "Realtek SD card reader driver (use with RealtekCardReaderFriend).",
+  "kextRadeonSensorDesc": "Optimize AMD Radeon GPU performance, but may cause system crashes or boot failure in some scenarios — use with caution.",
+  "hwStatusIdle": "Waiting to refresh hardware info",
+  "hwStatusLoading": "Loading hardware info",
+  "hwStatusRefreshing": "Refreshing hardware info",
+  "hwStatusComplete": "Hardware info loaded",
+  "hwStatusFailed": "Failed to load hardware info",
+  "hwStatusUnsupported": "Hardware info not supported",
+  "hwStatusImported": "Hardware info imported",
+  "hwPlatformUnsupported": "Current platform does not support hardware info query",
+  "hwFetchFailed": "Failed to fetch hardware info: {error}",
+  "hwExportWarning": "This is an imported report. Please refresh local hardware info before exporting.",
+  "hwNoLocalInfo": "No local hardware info available to export",
+  "hwFolderCleanFailed": "Failed to clean hardware report folder",
+  "hwFolderCleanFailedWithErr": "Failed to clean hardware report folder: {error}",
+  "hwFolderCreateFailed": "Failed to create hardware report folder",
+  "hwExporting": "Exporting local hardware report...",
+  "hwExportSuccess": "Hardware report and ACPI tables exported to {path}",
+  "hwExportSuccessWithErr": "Hardware report exported to {path}, {error}",
+  "hwAcpiExporting": "Exporting local ACPI tables...",
+  "hwAcpiExportFailed": "Failed to export local ACPI tables",
+  "hwAcpiExportSuccess": "Local ACPI tables exported: {path}",
+  "hwAcpiExportFailedWithErr": "Failed to export local ACPI tables: {error}",
+  "hwAcpiPlatformUnsupported": "Current platform does not support exporting ACPI tables",
+  "hwAcpiAuthCancelled": "Admin authorization cancelled. ACPI tables not exported.",
+  "hwAcpiNoPassword": "No admin password provided. Cannot export ACPI tables.",
+  "hwAcpiWrongPassword": "Incorrect admin password. Cannot export ACPI tables.",
+  "hwImportNotJson": "Hardware info file is not a JSON object",
+  "hwImportSuccess": "Hardware info imported",
+  "hwImportAcpiInvalid": "Invalid ACPI tables directory. Custom SSDT unavailable.",
+  "hwImportFailed": "Failed to import hardware report: {error}",
+  "hwConfigStart": "Starting EFI configuration...",
+  "hwConfigGenerating": "Generating ConfigModel from hardware info...",
+  "hwConfigSsdtPrep": "Preparing custom SSDT: {items}",
+  "hwConfigSsdtSkip": "Using original EFI SSDT. Skipping custom SSDT.",
+  "hwConfigSsdtDisabled": "Imported external hardware report without ACPI tables directory. Custom SSDT disabled.",
+  "hwConfigExporting": "Exporting OpenCore EFI...",
+  "hwConfigFailedMsg": "EFI configuration failed: {error}",
+  "hwConfigRebuilding": "Hardware auto-generation ConfigModel rules are being refactored",
+  "@hwFetchFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwFolderCleanFailedWithErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwExportSuccess": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwExportSuccessWithErr": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportSuccess": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportFailedWithErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwImportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwConfigSsdtPrep": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwConfigFailedMsg": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cpuUnknown": "Unknown",
+  "platDesktop": "Desktop",
+  "platLaptop": "Laptop",
+  "platMini": "Mini PC",
+  "platServer": "Server",
+  "csrEnabled": "Enable SIP to enhance system security. Recommended if not using OCLP for GPU/WiFi patches.",
+  "csrPartial": "Disable SIP Option 1",
+  "csrPartialDesc": "Partially disable SIP. Recommended for Big Sur or newer when using OCLP for GPU/WiFi patches.",
+  "csrFully": "Disable SIP Option 2",
+  "csrFullyDesc": "Fully disable SIP. Preferred for Big Sur or newer when using OCLP for GPU/WiFi patches.",
+  "uiScaleAuto": "Auto-adapt: Automatically adjust OpenCore boot UI scale based on display resolution.",
+  "uiScaleStandard": "Standard resolution: Suitable for 720p, 1080p, 1440p displays.",
+  "uiScaleHigh": "High resolution: Suitable for 4K/5K displays (fixes small UI elements in OpenCore boot menu).",
+  "procDefault": "Do not modify ProcessorType",
+  "procKeep": "Keep system default CPU type display",
+  "brandAsus": "ASUS",
+  "brandGigabyte": "GIGABYTE",
+  "brandAsrock": "ASRock",
+  "brandMsi": "MSI",
+  "brandDell": "Dell",
+  "brandLenovo": "Lenovo",
+  "brandSony": "VAIO",
+  "brandHp": "HP",
+  "brandGoogle": "Chromebook",
+  "brandMicrosoft": "Microsoft Surface",
+  "mbNormal": "Standard Motherboard",
+  "mbOemUsb": "Some OEM motherboards have USB ownership release issues: EHCI Hand-off failure"
 }

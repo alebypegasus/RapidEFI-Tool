@@ -1623,4 +1623,582 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get hwCopiedToClipboard => 'Copiado para a área de transferência';
+
+  @override
+  String get linkCantOpen => 'Não foi possível abrir o link';
+
+  @override
+  String get clickToCopy => 'Clique para copiar';
+
+  @override
+  String get copiedToClipboard => 'Copiado para a área de transferência';
+
+  @override
+  String get gpuCard => 'GPU';
+
+  @override
+  String gpuDeviceId(String id) {
+    return 'ID do Dispositivo: $id';
+  }
+
+  @override
+  String gpuCoreCodename(String codename) {
+    return 'Núcleo: $codename';
+  }
+
+  @override
+  String get gpuCompatible => 'Compatível';
+
+  @override
+  String get gpuIncompatible => 'Incompatível';
+
+  @override
+  String get gpuIncompatibleNoDisplay => 'Incompatível, sem vídeo direto';
+
+  @override
+  String get gpuLimitedCompat => 'Compatibilidade Limitada';
+
+  @override
+  String get gpuLoadingCompat => 'Carregando compatibilidade';
+
+  @override
+  String gpuSpoofId(String id) {
+    return 'ID de Spoof necessário: $id';
+  }
+
+  @override
+  String get bootArgVerbose =>
+      'Ativar modo detalhado -v (exibe saída de depuração durante a inicialização)';
+
+  @override
+  String get bootArgKeepsyms =>
+      'Imprime símbolos do kernel durante travamentos para ajudar no diagnóstico. Normalmente usado com debug=0x100.';
+
+  @override
+  String get bootArgDebug0x100 =>
+      'Impede reinicialização automática em caso de kernel panic, permitindo ver logs de travamento.';
+
+  @override
+  String get bootArgWatchdog0 =>
+      'Desabilitar o watchdog para evitar reinicializações acidentais durante o debug de boot.';
+
+  @override
+  String get bootArgSlide0 =>
+      'Desabilitar KASLR para corrigir conflitos de memória que causam kernel panics no boot inicial.';
+
+  @override
+  String get bootArgNoCompatCheck =>
+      'Ignorar verificação de compatibilidade de modelo durante o boot para evitar o símbolo de proibido.';
+
+  @override
+  String get bootArgCpus1 =>
+      'Habilitar apenas 1 núcleo de CPU (para CPUs de servidor X58/X79/X99/X299 com problemas de kernel panic).';
+
+  @override
+  String get bootArgBetaFix =>
+      'Corrigir problemas que podem aparecer no macOS mais recente (principalmente Beta), como anomalias de áudio, Bluetooth e frequência de CPU.';
+
+  @override
+  String get bootArgAmfi0x80 =>
+      'Desabilitar AMFI para GPUs mais recentes (HD4000+, GT710+ Kepler) ou ao aplicar patches de Wi-Fi. Não use com amfi_get_out_of_my_way=0x1. Requer SIP desabilitado.';
+
+  @override
+  String get bootArgAmfiGetOut =>
+      'Desabilitar AMFI para GPUs antigas (ex: GT240) ou ao aplicar patches de Wi-Fi. Não use com amfi=0x80. Requer SIP desabilitado.';
+
+  @override
+  String get bootArgIpcControl =>
+      'Corrigir travamentos de aplicativos (ex: Baidu Netdisk) após desabilitar AMFI. Requer SIP desabilitado.';
+
+  @override
+  String get bootArgAmfiPassBeta =>
+      'Garantir que AMFIPass.kext funcione no macOS Tahoe 26 mais recente para continuar ignorando verificações de segurança AMFI.';
+
+  @override
+  String get bootArgRevpatch =>
+      'Corrigir problemas de atualização OTA do macOS após desabilitar SIP ou SecureBootModel, e corrigir exibição de nome de CPU personalizado.';
+
+  @override
+  String get bootArgDisableGfxFirmware =>
+      'Desabilitar o carregamento do Apple Graphics Firmware para evitar travamentos durante a inicialização (apenas iGPU Intel).';
+
+  @override
+  String get bootArgWegNoIgpu =>
+      'Desabilitar iGPU Intel (recomendado quando o iGPU não pode ser ativado ou não suporta aceleração de hardware).';
+
+  @override
+  String get bootArgIgfxVesa =>
+      'Desabilitar aceleração do iGPU Intel (use quando o sistema não iniciar após aplicar patch OCLP, apenas para debug).';
+
+  @override
+  String get bootArgIgfxRpsc =>
+      'Corrigir e melhorar o desempenho do iGPU Intel (ex: codificação 4K HEVC, resolução e FPS).';
+
+  @override
+  String get bootArgIgfxMpc =>
+      'Corrigir problemas de resolução do iGPU forçando a substituição máxima do clock de pixel, removendo os limites padrão do macOS.';
+
+  @override
+  String get bootArgGfxfw2 =>
+      'Habilitar carregamento completo do firmware do iGPU para melhorar utilização e desempenho. Pode causar falha de boot — use com cautela.';
+
+  @override
+  String get bootArgCdclk =>
+      'Corrigir kernel panic no Ice Lake de 10ª geração devido à frequência do Core Display Clock (CDCLK) muito baixa.';
+
+  @override
+  String get bootArgIgfxdbeo =>
+      'Corrigir kernel panic no Ice Lake de 10ª geração onde o driver calcula incorretamente o tamanho da memória DVMT pré-alocada.';
+
+  @override
+  String get bootArgIceLakeDisplay =>
+      'Corrigir corrupção de exibição de 7 a 15 segundos em laptops Ice Lake de 10ª geração no boot.';
+
+  @override
+  String get bootArgIgfxNoTelemetry =>
+      'Desabilitar o carregamento do módulo de telemetria do iGPU durante o boot. Alguns laptops (especialmente Chromebooks) podem travar.';
+
+  @override
+  String get bootArgWegNoEgpu =>
+      'Desabilitar GPU dedicada (recomendado quando o dGPU em laptops Intel dual-GPU — normalmente NVIDIA — não pode ser ativado).';
+
+  @override
+  String get bootArgNvDisable =>
+      'Desabilitar driver NVIDIA (somente para depurar GPUs NVIDIA incompatíveis).';
+
+  @override
+  String get bootArgUnfairGva =>
+      'Corrigir suporte DRM de hardware em GPUs AMD (habilita conteúdo protegido por DRM como streaming em GPUs AMD suportadas).';
+
+  @override
+  String get bootArgRadpg15 =>
+      'Corrigir corrupção de exibição (tela embaralhada/amarela) em GPUs AMD antigas (HD7750, HD7850 com núcleos GCN).';
+
+  @override
+  String get bootArgAmdNoAccel =>
+      'Desabilitar aceleração GPU ATI/AMD (use quando o sistema não iniciar após o patch OCLP, apenas para debug).';
+
+  @override
+  String get bootArgRaddvi =>
+      'Corrigir saída DVI em GPUs AMD antigas (290X, 370, etc.).';
+
+  @override
+  String get bootArgRadcodec =>
+      'Corrigir suporte a codificação de vídeo de hardware VDA para GPUs AMD não suportadas oficialmente (ex: RX550 Lexa).';
+
+  @override
+  String get bootArgNgfxFermi =>
+      'Corrigir problemas de driver GPU para placas NVIDIA antigas Fermi/Maxwell/Pascal (GT610, GTX750, GTX960, GTX1050) no macOS Big Sur 11+. Deve aplicar patch OCLP após entrar no sistema! Kepler NÃO precisa disto.';
+
+  @override
+  String get bootArgApplbkl3 =>
+      'Habilitar controle de retroiluminação PWM para GPUs AMD Radeon RX 5000.';
+
+  @override
+  String get bootArgAgdpmodIgnore =>
+      'Corrigir tela preta ou problemas de exibição em algumas GPUs ignorando completamente as restrições do AppleGraphicsDevicePolicy.kext. Use com WhateverGreen.kext.';
+
+  @override
+  String get bootArgAgdpmodPikera =>
+      'Corrigir tela preta no boot para GPUs AMD Navi RX5XXX/RX6XXX (RX5500, RX5600, RX5700, RX6600, RX6800, RX6900, etc.). Use com WhateverGreen.kext.';
+
+  @override
+  String get bootArgAgdpmodVit9696 =>
+      'Corrigir tela preta após suspensão/retomada em GPUs RX470/RX570 desabilitando a verificação board-id. Use com WhateverGreen.kext.';
+
+  @override
+  String get bootArgAmdNoDgpuAccel =>
+      'Corrigir tela preta no Ventura+ para GPUs AMD RX5XX/RX5XXX/RX6XXX em Intel 3ª geração ou mais antigo. Aplicar patch OCLP após iniciar, depois remover este argumento.';
+
+  @override
+  String get bootArgBrcmfx =>
+      'Corrigir velocidade lenta em alguns cartões Wi-Fi Broadcom alterando o código de país para HK. Também é possível melhorar alterando o canal do roteador.';
+
+  @override
+  String get bootArgVsmcgen =>
+      'Corrigir travamento de código ramrod e problemas de corrupção do emulador SMC.';
+
+  @override
+  String get bootArgSwdPanic =>
+      'Evitar reinicialização do dispositivo após o sono para ajudar a coletar logs de kernel panic e depurar problemas de suspensão.';
+
+  @override
+  String get bootArgCtrsmt =>
+      'Melhorar a detecção de topologia e agendamento para CPUs híbridos Intel 12ª geração+ (P+E). O ganho de desempenho não é garantido — teste antes de ativar. Requer CpuTopologyRebuild.kext.';
+
+  @override
+  String get bootArgDarkwake0 =>
+      'Desabilitar completamente o modo Darkwake e usar o modo de sono tradicional. Corrige principalmente tela preta ao acordar e despertar automático.';
+
+  @override
+  String get bootArgForceRenderStandby =>
+      'Desabilitar o modo de espera de renderização RC6 do iGPU para corrigir kernel panic NVMe causado pelo RC6 do iGPU durante o sono.';
+
+  @override
+  String get bootArgI2cForcePolling =>
+      'Forçar o touchpad I2C a usar o modo de polling em vez do modo de interrupção (o modo de interrupção geralmente requer personalização SSDT).';
+
+  @override
+  String get kextLiluDesc =>
+      'Driver base obrigatório que fornece extensibilidade e compatibilidade para o macOS. Todos os kexts de plugin dependem dele.';
+
+  @override
+  String get kextVirtualSMCDesc =>
+      'Emulador SMC obrigatório. Simula o SMC da Apple em hardware não-Apple, fornecendo sensores, controle de ventilador e gerenciamento de energia. O macOS não pode funcionar sem isso.';
+
+  @override
+  String get kextWhateverGreenDesc =>
+      'Suporte ao driver de GPU. Fortemente recomendado para a maioria dos usuários. MacPro7,1 com dGPUs AMD (RX460, RX560+) pode desmarcar. Normalmente conflita com NootRX/NootedRed — não selecionar juntos na instalação.';
+
+  @override
+  String get kextAppleALCDesc =>
+      'Usar AppleALC para falsificar o codec de áudio integrado (solução mais completa, escolha preferida).';
+
+  @override
+  String get kextVoodooHDADesc =>
+      'Driver de áudio universal VoodooHDA (carregado no boot, apenas suporta macOS Big Sur 11.2.3 e abaixo; versões superiores requerem injeção no diretório de extensões do kernel do sistema).';
+
+  @override
+  String get kextUSBInjectAllDesc =>
+      'Solução de injeção USB genérica, a escolha padrão quando a personalização USB não foi feita.';
+
+  @override
+  String get kextUSBToolBoxDesc =>
+      'Solução USBToolBox, normalmente usada juntamente com um UTBMap.kext personalizado.';
+
+  @override
+  String get kextBatteryV1Desc =>
+      'Solução de driver de bateria 1 (para laptops com Intel 3ª geração ou plataformas mais antigas).';
+
+  @override
+  String get kextBatteryV2Desc =>
+      'Solução de driver de bateria 2 (para laptops com Intel 3ª geração ou plataformas mais recentes).';
+
+  @override
+  String get kextAmbientLightDesc =>
+      'Sensor de luz ambiente (brilho automático da tela). Não use se não tiver sensor de luz ambiente, pois pode causar problemas.';
+
+  @override
+  String get kextAsusNBFnKeysDesc =>
+      'Controle de ventilador, gerenciamento de energia e outras otimizações de sensor do sistema para laptops ASUS. Não recomendado para máquinas não-ASUS.';
+
+  @override
+  String get kextLenovoDesc =>
+      'Controle de ventilador, gerenciamento de energia e outras otimizações de sensor para laptops Lenovo. Não recomendado para máquinas não-Lenovo.';
+
+  @override
+  String get kextDellDesc =>
+      'Sensor dedicado para laptops Dell para monitoramento e controle mais preciso do ventilador. Não recomendado para máquinas não-Dell.';
+
+  @override
+  String get kextNootRXDesc =>
+      'Suporte a dGPUs RX6XXX não suportadas oficialmente (RX6700, RX6750XT, RX6750GRE, etc.). Conflita com WhateverGreen — não selecionar juntos na instalação.';
+
+  @override
+  String get kextBatteryFixDesc =>
+      'Correção de leitura de bateria, repara certos problemas de exibição de bateria.';
+
+  @override
+  String get kextNVMeFixDesc =>
+      'Melhorar compatibilidade para SSDs NVMe não-Apple e reduzir consumo de energia em repouso. Discos NVMe incompatíveis podem ainda travar. SSDs compatíveis podem sofrer kernel panic com este driver — use com cautela.';
+
+  @override
+  String get kextFeatureUnlockDesc =>
+      'Desbloquear Controle Universal, Sidecar e outros recursos em modelos de Mac não suportados.';
+
+  @override
+  String get kextHibernationFixDesc =>
+      'Corrigir problemas comuns relacionados à hibernação e suspensão.';
+
+  @override
+  String get kextHoRNDIS =>
+      'Permitir que o macOS use o compartilhamento de rede de dispositivos Android via USB.';
+
+  @override
+  String get kextCPUFriendDesc =>
+      'Driver de escalonamento de frequência de CPU, fornecendo principalmente suporte de escalonamento para MacPro7,1 em plataformas de 11ª geração e mais recentes.';
+
+  @override
+  String get kextCPUFriendDataProviderDesc =>
+      'Driver de dados complementar do CPUFriend, fornecendo dados de escalonamento de frequência de CPU para modelos de máquinas específicos.';
+
+  @override
+  String get kextAppleIGHDA =>
+      'Corrigir problemas de áudio HDMI do iGPU Intel em alguns sistemas.';
+
+  @override
+  String get kextNoTouchID =>
+      'Corrigir incapacidade de fazer login no Apple ID e iCloud, geralmente para laptops sem placa de rede cabeada.';
+
+  @override
+  String get kextAppleRTCDesc =>
+      'Corrigir conflitos entre AppleRTC do macOS e BIOS do PC em plataformas mais recentes, como travamentos, reinicializações repentinas ou despertar imediato do sono.';
+
+  @override
+  String get kextPS2KBMouseDesc =>
+      'Driver de teclado e mouse PS/2 (para placas-mãe de desktop com portas PS/2 redondas).';
+
+  @override
+  String get kextPS2KeyboardDesc =>
+      'Driver de teclado PS/2 (para placas-mãe de desktop com portas PS/2 redondas de teclado).';
+
+  @override
+  String get kextPS2MouseDesc =>
+      'Driver de mouse PS/2 (para placas-mãe de desktop com portas PS/2 redondas de mouse).';
+
+  @override
+  String get kextMicrosoftSurfaceDesc =>
+      'Driver dedicado de teclado e trackpad para Microsoft Surface.';
+
+  @override
+  String get kextBrightnessKeysDesc => 'Correção de tecla de atalho de brilho.';
+
+  @override
+  String get kextGenericUSBXHCIDesc =>
+      'Correção de compatibilidade do controlador USB 3.0 para plataformas antigas ou AMD.';
+
+  @override
+  String get kextXLNCUSBFixDesc =>
+      'Corrigir problemas de compatibilidade do controlador USB em plataformas AMD antigas (FM1/FM2/AM3).';
+
+  @override
+  String get kextRealtekCardReaderDesc =>
+      'Driver de leitor de cartão SD Realtek (use com RealtekCardReaderFriend).';
+
+  @override
+  String get kextRadeonSensorDesc =>
+      'Otimizar o desempenho da GPU AMD Radeon, mas pode causar travamentos ou falha de inicialização em alguns cenários — use com cautela.';
+
+  @override
+  String get hwStatusIdle =>
+      'Aguardando atualização das informações de hardware';
+
+  @override
+  String get hwStatusLoading => 'Carregando informações de hardware';
+
+  @override
+  String get hwStatusRefreshing => 'Atualizando informações de hardware';
+
+  @override
+  String get hwStatusComplete => 'Informações de hardware carregadas';
+
+  @override
+  String get hwStatusFailed => 'Falha ao carregar informações de hardware';
+
+  @override
+  String get hwStatusUnsupported => 'Informações de hardware não suportadas';
+
+  @override
+  String get hwStatusImported => 'Informações de hardware importadas';
+
+  @override
+  String get hwPlatformUnsupported =>
+      'A plataforma atual não suporta consulta de informações de hardware';
+
+  @override
+  String hwFetchFailed(String error) {
+    return 'Falha ao obter informações de hardware: $error';
+  }
+
+  @override
+  String get hwExportWarning =>
+      'Este é um relatório importado. Atualize as informações de hardware local antes de exportar.';
+
+  @override
+  String get hwNoLocalInfo =>
+      'Nenhuma informação de hardware local disponível para exportar';
+
+  @override
+  String get hwFolderCleanFailed =>
+      'Falha ao limpar pasta de relatório de hardware';
+
+  @override
+  String hwFolderCleanFailedWithErr(String error) {
+    return 'Falha ao limpar pasta de relatório de hardware: $error';
+  }
+
+  @override
+  String get hwFolderCreateFailed =>
+      'Falha ao criar pasta de relatório de hardware';
+
+  @override
+  String get hwExporting => 'Exportando relatório de hardware local...';
+
+  @override
+  String hwExportSuccess(String path) {
+    return 'Relatório de hardware e tabelas ACPI exportados para $path';
+  }
+
+  @override
+  String hwExportSuccessWithErr(String path, String error) {
+    return 'Relatório de hardware exportado para $path, $error';
+  }
+
+  @override
+  String get hwAcpiExporting => 'Exportando tabelas ACPI locais...';
+
+  @override
+  String get hwAcpiExportFailed => 'Falha ao exportar tabelas ACPI locais';
+
+  @override
+  String hwAcpiExportSuccess(String path) {
+    return 'Tabelas ACPI locais exportadas: $path';
+  }
+
+  @override
+  String hwAcpiExportFailedWithErr(String error) {
+    return 'Falha ao exportar tabelas ACPI locais: $error';
+  }
+
+  @override
+  String get hwAcpiPlatformUnsupported =>
+      'A plataforma atual não suporta exportação de tabelas ACPI';
+
+  @override
+  String get hwAcpiAuthCancelled =>
+      'Autorização de administrador cancelada. Tabelas ACPI não exportadas.';
+
+  @override
+  String get hwAcpiNoPassword =>
+      'Nenhuma senha de administrador fornecida. Não é possível exportar as tabelas ACPI.';
+
+  @override
+  String get hwAcpiWrongPassword =>
+      'Senha de administrador incorreta. Não é possível exportar as tabelas ACPI.';
+
+  @override
+  String get hwImportNotJson =>
+      'O arquivo de informações de hardware não é um objeto JSON';
+
+  @override
+  String get hwImportSuccess => 'Informações de hardware importadas';
+
+  @override
+  String get hwImportAcpiInvalid =>
+      'Diretório de tabelas ACPI inválido. SSDT personalizado indisponível.';
+
+  @override
+  String hwImportFailed(String error) {
+    return 'Falha ao importar relatório de hardware: $error';
+  }
+
+  @override
+  String get hwConfigStart => 'Iniciando configuração do EFI...';
+
+  @override
+  String get hwConfigGenerating =>
+      'Gerando ConfigModel a partir das informações de hardware...';
+
+  @override
+  String hwConfigSsdtPrep(String items) {
+    return 'Preparando SSDT personalizado: $items';
+  }
+
+  @override
+  String get hwConfigSsdtSkip =>
+      'Usando SSDT original do EFI. Pulando SSDT personalizado.';
+
+  @override
+  String get hwConfigSsdtDisabled =>
+      'Relatório de hardware externo importado sem diretório de tabelas ACPI. SSDT personalizado desativado.';
+
+  @override
+  String get hwConfigExporting => 'Exportando OpenCore EFI...';
+
+  @override
+  String hwConfigFailedMsg(String error) {
+    return 'Falha na configuração do EFI: $error';
+  }
+
+  @override
+  String get hwConfigRebuilding =>
+      'Regras de geração automática do ConfigModel de hardware estão sendo refatoradas';
+
+  @override
+  String get cpuUnknown => 'Desconhecido';
+
+  @override
+  String get platDesktop => 'Desktop';
+
+  @override
+  String get platLaptop => 'Notebook';
+
+  @override
+  String get platMini => 'Mini PC';
+
+  @override
+  String get platServer => 'Servidor';
+
+  @override
+  String get csrEnabled =>
+      'Ativar SIP para aumentar a segurança. Recomendado se não usar OCLP para patches de GPU/WiFi.';
+
+  @override
+  String get csrPartial => 'Desativar SIP (Opção 1)';
+
+  @override
+  String get csrPartialDesc =>
+      'Desativar parcialmente o SIP. Recomendado para Big Sur ou superior ao usar OCLP para patches de GPU/WiFi.';
+
+  @override
+  String get csrFully => 'Desativar SIP (Opção 2)';
+
+  @override
+  String get csrFullyDesc =>
+      'Desativar totalmente o SIP. Preferencial para Big Sur ou superior ao usar OCLP para patches de GPU/WiFi.';
+
+  @override
+  String get uiScaleAuto =>
+      'Auto-adaptar: Ajusta automaticamente a escala da interface do OpenCore com base na resolução do monitor.';
+
+  @override
+  String get uiScaleStandard =>
+      'Resolução padrão: Adequado para monitores 720p, 1080p, 1440p.';
+
+  @override
+  String get uiScaleHigh =>
+      'Alta resolução: Adequado para monitores 4K/5K (corrige elementos de interface pequenos no OpenCore).';
+
+  @override
+  String get procDefault => 'Não modificar ProcessorType';
+
+  @override
+  String get procKeep => 'Manter a exibição padrão do tipo de CPU do sistema';
+
+  @override
+  String get brandAsus => 'ASUS';
+
+  @override
+  String get brandGigabyte => 'GIGABYTE';
+
+  @override
+  String get brandAsrock => 'ASRock';
+
+  @override
+  String get brandMsi => 'MSI';
+
+  @override
+  String get brandDell => 'Dell';
+
+  @override
+  String get brandLenovo => 'Lenovo';
+
+  @override
+  String get brandSony => 'VAIO';
+
+  @override
+  String get brandHp => 'HP';
+
+  @override
+  String get brandGoogle => 'Chromebook';
+
+  @override
+  String get brandMicrosoft => 'Microsoft Surface';
+
+  @override
+  String get mbNormal => 'Placa-mãe Padrão';
+
+  @override
+  String get mbOemUsb =>
+      'Algumas placas-mãe OEM têm problemas de liberação de propriedade USB: falha no EHCI Hand-off';
 }

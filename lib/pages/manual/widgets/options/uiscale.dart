@@ -1,7 +1,9 @@
+import 'package:rapidefi/utils/config/models/enums/uiscale_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
-import 'package:rapidefi/utils/config/models/enums/uiscale_enum.dart';
+import 'package:rapidefi/l10n/enum_l10n.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 
 class UIScaleWidget extends StatefulWidget {
   final ValueChanged onChanged;
@@ -28,7 +30,7 @@ class _UIScaleWidgetState extends State<UIScaleWidget> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final choices = UIScale.values.map((e) => e.text.description).toList();
+    final choices = UIScale.values.map((e) => e.localizedDescription(AppLocalizations.of(context)!)).toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -37,14 +39,14 @@ class _UIScaleWidgetState extends State<UIScaleWidget> {
         ),
         ChoiceList(
           choices: choices,
-          selectedChoices: [uiScale.text.description],
+          selectedChoices: [uiScale.localizedDescription(AppLocalizations.of(context)!)],
           isMultipleSelection: false,
           allowToggle: false,
           subTitle: l10n.optionalSelectIfMatching,
           onChanged: (List<String> value) {
             String? selectedValue = value.firstOrNull;
             uiScale = UIScale.values.firstWhere(
-              (type) => type.text.description == selectedValue,
+              (type) => type.localizedDescription(AppLocalizations.of(context)!) == selectedValue,
             );
             setState(() {});
             widget.onChanged.call(uiScale);

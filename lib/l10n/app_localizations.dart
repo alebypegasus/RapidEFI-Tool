@@ -2903,6 +2903,918 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Copied to clipboard'**
   String get hwCopiedToClipboard;
+
+  /// No description provided for @linkCantOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot open link'**
+  String get linkCantOpen;
+
+  /// No description provided for @clickToCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to copy'**
+  String get clickToCopy;
+
+  /// No description provided for @copiedToClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied to clipboard'**
+  String get copiedToClipboard;
+
+  /// No description provided for @gpuCard.
+  ///
+  /// In en, this message translates to:
+  /// **'GPU'**
+  String get gpuCard;
+
+  /// No description provided for @gpuDeviceId.
+  ///
+  /// In en, this message translates to:
+  /// **'Device ID: {id}'**
+  String gpuDeviceId(String id);
+
+  /// No description provided for @gpuCoreCodename.
+  ///
+  /// In en, this message translates to:
+  /// **'Core: {codename}'**
+  String gpuCoreCodename(String codename);
+
+  /// No description provided for @gpuCompatible.
+  ///
+  /// In en, this message translates to:
+  /// **'Compatible'**
+  String get gpuCompatible;
+
+  /// No description provided for @gpuIncompatible.
+  ///
+  /// In en, this message translates to:
+  /// **'Incompatible'**
+  String get gpuIncompatible;
+
+  /// No description provided for @gpuIncompatibleNoDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Incompatible, no direct display'**
+  String get gpuIncompatibleNoDisplay;
+
+  /// No description provided for @gpuLimitedCompat.
+  ///
+  /// In en, this message translates to:
+  /// **'Limited compatibility'**
+  String get gpuLimitedCompat;
+
+  /// No description provided for @gpuLoadingCompat.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading compatibility'**
+  String get gpuLoadingCompat;
+
+  /// No description provided for @gpuSpoofId.
+  ///
+  /// In en, this message translates to:
+  /// **'Spoof ID required: {id}'**
+  String gpuSpoofId(String id);
+
+  /// No description provided for @bootArgVerbose.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable -v verbose mode (shows debug output during boot, useful for debugging startup issues)'**
+  String get bootArgVerbose;
+
+  /// No description provided for @bootArgKeepsyms.
+  ///
+  /// In en, this message translates to:
+  /// **'Print kernel crash symbols to help diagnose issues. Usually used with debug=0x100. Strongly recommended during initial boot debugging.'**
+  String get bootArgKeepsyms;
+
+  /// No description provided for @bootArgDebug0x100.
+  ///
+  /// In en, this message translates to:
+  /// **'Prevent automatic restart on kernel panic, allowing you to view crash logs. Strongly recommended during initial boot debugging.'**
+  String get bootArgDebug0x100;
+
+  /// No description provided for @bootArgWatchdog0.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable watchdog to prevent accidental panic-triggered restarts during boot debugging.'**
+  String get bootArgWatchdog0;
+
+  /// No description provided for @bootArgSlide0.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable KASLR to fix memory conflicts causing early boot kernel panics. Used for debugging.'**
+  String get bootArgSlide0;
+
+  /// No description provided for @bootArgNoCompatCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip model compatibility check during boot to avoid the prohibited symbol. Note: does not bypass installer model check.'**
+  String get bootArgNoCompatCheck;
+
+  /// No description provided for @bootArgCpus1.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable only 1 CPU core (for X58/X79/X99/X299 multi-core server CPUs with kernel panic issues during early installation debugging).'**
+  String get bootArgCpus1;
+
+  /// No description provided for @bootArgBetaFix.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix issues that may appear in the latest macOS (mainly Beta), such as audio, Bluetooth, CPU frequency anomalies. Strongly recommended on Beta versions.'**
+  String get bootArgBetaFix;
+
+  /// No description provided for @bootArgAmfi0x80.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable AMFI for newer GPUs (HD4000+, GT710+ Kepler) or when patching Wi-Fi drivers. Do NOT use with amfi_get_out_of_my_way=0x1. Only effective with SIP disabled.'**
+  String get bootArgAmfi0x80;
+
+  /// No description provided for @bootArgAmfiGetOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable AMFI for older GPUs (e.g., GT240) or when patching Wi-Fi drivers. Do NOT use with amfi=0x80. Only effective with SIP disabled.'**
+  String get bootArgAmfiGetOut;
+
+  /// No description provided for @bootArgIpcControl.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix app crashes (e.g., Baidu Netdisk) after disabling AMFI. Only effective with SIP disabled.'**
+  String get bootArgIpcControl;
+
+  /// No description provided for @bootArgAmfiPassBeta.
+  ///
+  /// In en, this message translates to:
+  /// **'Ensure AMFIPass.kext works in the latest macOS Tahoe 26 to continue bypassing AMFI security checks.'**
+  String get bootArgAmfiPassBeta;
+
+  /// No description provided for @bootArgRevpatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix macOS OTA update issues after disabling SIP or SecureBootModel, and fix custom CPU name display.'**
+  String get bootArgRevpatch;
+
+  /// No description provided for @bootArgDisableGfxFirmware.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Apple Graphics Firmware loading to avoid hangs during startup due to firmware load failure (Intel iGPU only).'**
+  String get bootArgDisableGfxFirmware;
+
+  /// No description provided for @bootArgWegNoIgpu.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Intel iGPU (recommended when iGPU cannot be driven or doesn\'t support hardware acceleration).'**
+  String get bootArgWegNoIgpu;
+
+  /// No description provided for @bootArgIgfxVesa.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Intel iGPU acceleration (use when system won\'t start after applying OCLP iGPU patch, debug only).'**
+  String get bootArgIgfxVesa;
+
+  /// No description provided for @bootArgIgfxRpsc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix and improve Intel iGPU performance (e.g., fix 4K HEVC encoding, resolution and FPS issues).'**
+  String get bootArgIgfxRpsc;
+
+  /// No description provided for @bootArgIgfxMpc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix iGPU resolution issues by forcing maximum pixel clock override, removing macOS default resolution/refresh rate limits.'**
+  String get bootArgIgfxMpc;
+
+  /// No description provided for @bootArgGfxfw2.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable full iGPU firmware loading to improve utilization and performance. May cause boot failure — use with caution.'**
+  String get bootArgGfxfw2;
+
+  /// No description provided for @bootArgCdclk.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix kernel panic on 10th gen Ice Lake due to Core Display Clock (CDCLK) frequency being too low.'**
+  String get bootArgCdclk;
+
+  /// No description provided for @bootArgIgfxdbeo.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix kernel panic on 10th gen Ice Lake where the driver incorrectly calculates DVMT pre-allocated memory size.'**
+  String get bootArgIgfxdbeo;
+
+  /// No description provided for @bootArgIceLakeDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix display corruption lasting 7–15 seconds on 10th gen Ice Lake laptops at boot.'**
+  String get bootArgIceLakeDisplay;
+
+  /// No description provided for @bootArgIgfxNoTelemetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable iGPU telemetry module loading during boot. Some laptops (especially Chromebooks) may hang at boot when this module loads.'**
+  String get bootArgIgfxNoTelemetry;
+
+  /// No description provided for @bootArgWegNoEgpu.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable discrete GPU (recommended when the dGPU on Intel dual-GPU laptops — typically NVIDIA — cannot be driven).'**
+  String get bootArgWegNoEgpu;
+
+  /// No description provided for @bootArgNvDisable.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable NVIDIA driver (only for debugging incompatible NVIDIA GPUs).'**
+  String get bootArgNvDisable;
+
+  /// No description provided for @bootArgUnfairGva.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix hardware DRM support on AMD GPUs (enables DRM-protected content like streaming on supported AMD GPUs).'**
+  String get bootArgUnfairGva;
+
+  /// No description provided for @bootArgRadpg15.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix display corruption (scrambled/yellow screen) on older AMD GPUs (HD7750, HD7850 with GCN cores like HD77XX/HD78XX/HD79XX).'**
+  String get bootArgRadpg15;
+
+  /// No description provided for @bootArgAmdNoAccel.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable ATI/AMD GPU acceleration (use when system won\'t start after OCLP GPU patch, debug only).'**
+  String get bootArgAmdNoAccel;
+
+  /// No description provided for @bootArgRaddvi.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix DVI output display on older AMD GPUs (290X, 370, etc.).'**
+  String get bootArgRaddvi;
+
+  /// No description provided for @bootArgRadcodec.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix VDA hardware video encoding support for officially unsupported AMD GPUs (e.g., RX550 Lexa core).'**
+  String get bootArgRadcodec;
+
+  /// No description provided for @bootArgNgfxFermi.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix GPU driver issues for older NVIDIA Fermi/Maxwell/Pascal cards (GT610, GTX750, GTX960, GTX1050) on macOS Big Sur 11+. Must apply OCLP GPU patch after entering system! Kepler does NOT need this.'**
+  String get bootArgNgfxFermi;
+
+  /// No description provided for @bootArgApplbkl3.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable PWM backlight control for AMD Radeon RX 5000 series GPUs.'**
+  String get bootArgApplbkl3;
+
+  /// No description provided for @bootArgAgdpmodIgnore.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix black screen or display issues on some GPUs by completely ignoring AppleGraphicsDevicePolicy.kext restrictions. Use with WhateverGreen.kext.'**
+  String get bootArgAgdpmodIgnore;
+
+  /// No description provided for @bootArgAgdpmodPikera.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix black screen at boot for AMD Navi RX5XXX/RX6XXX GPUs (RX5500, RX5600, RX5700, RX6600, RX6800, RX6900, etc.) by replacing board-id with board-ix. Use with WhateverGreen.kext.'**
+  String get bootArgAgdpmodPikera;
+
+  /// No description provided for @bootArgAgdpmodVit9696.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix black screen after sleep/wake on RX470/RX570 GPUs by disabling board-id check in AppleGraphicsDevicePolicy. Use with WhateverGreen.kext.'**
+  String get bootArgAgdpmodVit9696;
+
+  /// No description provided for @bootArgAmdNoDgpuAccel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix black screen on Ventura+ for AMD RX5XX/RX5XXX/RX6XXX natively-supported GPUs on Intel 3rd gen or older. Apply OCLP GPU patch after booting, then remove this argument.'**
+  String get bootArgAmdNoDgpuAccel;
+
+  /// No description provided for @bootArgBrcmfx.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix slow speed on some Broadcom Wi-Fi cards by changing the country code to HK. You can also improve by changing the router channel.'**
+  String get bootArgBrcmfx;
+
+  /// No description provided for @bootArgVsmcgen.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix ramrod code hang and SMC emulator corruption issues.'**
+  String get bootArgVsmcgen;
+
+  /// No description provided for @bootArgSwdPanic.
+  ///
+  /// In en, this message translates to:
+  /// **'Prevent device restart after sleep to help collect kernel crash logs and debug sleep issues.'**
+  String get bootArgSwdPanic;
+
+  /// No description provided for @bootArgCtrsmt.
+  ///
+  /// In en, this message translates to:
+  /// **'Improve topology detection and scheduling for Intel 12th gen+ hybrid (P+E) CPUs. Performance gain not guaranteed — test before enabling. Requires CpuTopologyRebuild.kext.'**
+  String get bootArgCtrsmt;
+
+  /// No description provided for @bootArgDarkwake0.
+  ///
+  /// In en, this message translates to:
+  /// **'Completely disable Darkwake mode and use traditional sleep mode. Primarily fixes wake black screen and automatic wake issues.'**
+  String get bootArgDarkwake0;
+
+  /// No description provided for @bootArgForceRenderStandby.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable iGPU RC6 render standby to fix NVMe kernel panic caused by iGPU RC6 during sleep.'**
+  String get bootArgForceRenderStandby;
+
+  /// No description provided for @bootArgI2cForcePolling.
+  ///
+  /// In en, this message translates to:
+  /// **'Force I2C trackpad to use polling mode instead of interrupt-driven mode (interrupt mode usually requires SSDT customization).'**
+  String get bootArgI2cForcePolling;
+
+  /// No description provided for @kextLiluDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Required base driver providing extensibility and compatibility for macOS. All plugin-type kexts depend on it.'**
+  String get kextLiluDesc;
+
+  /// No description provided for @kextVirtualSMCDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Required SMC emulator. Simulates Apple SMC on non-Apple hardware, providing sensors, fan control, and power management. macOS cannot run without this.'**
+  String get kextVirtualSMCDesc;
+
+  /// No description provided for @kextWhateverGreenDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'GPU graphics driver support. Strongly recommended for most users. MacPro7,1 with AMD dGPUs (RX460, RX560+) may uncheck. Usually conflicts with NootRX/NootedRed — do not select together during installation.'**
+  String get kextWhateverGreenDesc;
+
+  /// No description provided for @kextAppleALCDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use AppleALC to spoof the built-in audio codec (more complete solution, preferred choice).'**
+  String get kextAppleALCDesc;
+
+  /// No description provided for @kextVoodooHDADesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Universal audio driver VoodooHDA (loaded during boot, only supports macOS Big Sur 11.2.3 and below; higher versions require injecting into the system kernel extension folder).'**
+  String get kextVoodooHDADesc;
+
+  /// No description provided for @kextUSBInjectAllDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Generic USB injection solution, the default choice when USB customization has not been done.'**
+  String get kextUSBInjectAllDesc;
+
+  /// No description provided for @kextUSBToolBoxDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'USBToolBox solution, typically used together with a customized UTBMap.kext.'**
+  String get kextUSBToolBoxDesc;
+
+  /// No description provided for @kextBatteryV1Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery driver solution 1 (for laptops with 3rd gen Intel or older platforms).'**
+  String get kextBatteryV1Desc;
+
+  /// No description provided for @kextBatteryV2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery driver solution 2 (for laptops with 3rd gen Intel or newer platforms).'**
+  String get kextBatteryV2Desc;
+
+  /// No description provided for @kextAmbientLightDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ambient light sensor (automatic screen brightness). Do not use if you have no ambient light sensor, as it may cause issues.'**
+  String get kextAmbientLightDesc;
+
+  /// No description provided for @kextAsusNBFnKeysDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'ASUS laptop fan control, power management and other system sensor optimizations. Not recommended for non-ASUS machines.'**
+  String get kextAsusNBFnKeysDesc;
+
+  /// No description provided for @kextLenovoDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Lenovo laptop fan control, power management and other system sensor optimizations. Not recommended for non-Lenovo machines.'**
+  String get kextLenovoDesc;
+
+  /// No description provided for @kextDellDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Dell laptop dedicated sensor for more accurate fan monitoring and control. Not recommended for non-Dell machines.'**
+  String get kextDellDesc;
+
+  /// No description provided for @kextNootRXDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Support officially unsupported RX6XXX dGPUs (RX6700, RX6750XT, RX6750GRE, etc.). Conflicts with WhateverGreen — do not select together during installation.'**
+  String get kextNootRXDesc;
+
+  /// No description provided for @kextBatteryFixDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery reading fix, repairs certain battery display issues.'**
+  String get kextBatteryFixDesc;
+
+  /// No description provided for @kextNVMeFixDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Improve compatibility for non-Apple NVMe SSDs and reduce idle power consumption. Incompatible NVMe drives may still crash. Compatible NVMe drives may kernel panic with this driver — use with caution.'**
+  String get kextNVMeFixDesc;
+
+  /// No description provided for @kextFeatureUnlockDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock Universal Control, Sidecar, and other features on unsupported Mac models.'**
+  String get kextFeatureUnlockDesc;
+
+  /// No description provided for @kextHibernationFixDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix common hibernation and sleep-related issues.'**
+  String get kextHibernationFixDesc;
+
+  /// No description provided for @kextHoRNDIS.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow macOS to use Android device network tethering via USB.'**
+  String get kextHoRNDIS;
+
+  /// No description provided for @kextCPUFriendDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU frequency scaling driver, primarily providing frequency scaling support for MacPro7,1 on 11th gen and newer platforms.'**
+  String get kextCPUFriendDesc;
+
+  /// No description provided for @kextCPUFriendDataProviderDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'CPUFriend companion data driver, providing CPU frequency scaling data for specific machine models.'**
+  String get kextCPUFriendDataProviderDesc;
+
+  /// No description provided for @kextAppleIGHDA.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix Intel iGPU HDMI audio issues on some systems.'**
+  String get kextAppleIGHDA;
+
+  /// No description provided for @kextNoTouchID.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix inability to log in to Apple ID and iCloud, usually for laptops without a local wired network card.'**
+  String get kextNoTouchID;
+
+  /// No description provided for @kextAppleRTCDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix conflicts between macOS AppleRTC and PC BIOS on newer platforms, e.g., RTC causing hangs, sudden restarts, or immediate wake from sleep.'**
+  String get kextAppleRTCDesc;
+
+  /// No description provided for @kextPS2KBMouseDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'PS/2 keyboard and mouse driver (for desktop motherboards with PS/2 round ports).'**
+  String get kextPS2KBMouseDesc;
+
+  /// No description provided for @kextPS2KeyboardDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'PS/2 keyboard driver (for desktop motherboards with PS/2 round keyboard ports).'**
+  String get kextPS2KeyboardDesc;
+
+  /// No description provided for @kextPS2MouseDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'PS/2 mouse driver (for desktop motherboards with PS/2 round mouse ports).'**
+  String get kextPS2MouseDesc;
+
+  /// No description provided for @kextMicrosoftSurfaceDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Microsoft Surface dedicated keyboard and trackpad driver.'**
+  String get kextMicrosoftSurfaceDesc;
+
+  /// No description provided for @kextBrightnessKeysDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Brightness shortcut key fix.'**
+  String get kextBrightnessKeysDesc;
+
+  /// No description provided for @kextGenericUSBXHCIDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'USB 3.0 controller compatibility fix for older or AMD platforms.'**
+  String get kextGenericUSBXHCIDesc;
+
+  /// No description provided for @kextXLNCUSBFixDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix USB controller compatibility issues on older AMD platforms (FM1/FM2/AM3).'**
+  String get kextXLNCUSBFixDesc;
+
+  /// No description provided for @kextRealtekCardReaderDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Realtek SD card reader driver (use with RealtekCardReaderFriend).'**
+  String get kextRealtekCardReaderDesc;
+
+  /// No description provided for @kextRadeonSensorDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Optimize AMD Radeon GPU performance, but may cause system crashes or boot failure in some scenarios — use with caution.'**
+  String get kextRadeonSensorDesc;
+
+  /// No description provided for @hwStatusIdle.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting to refresh hardware info'**
+  String get hwStatusIdle;
+
+  /// No description provided for @hwStatusLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading hardware info'**
+  String get hwStatusLoading;
+
+  /// No description provided for @hwStatusRefreshing.
+  ///
+  /// In en, this message translates to:
+  /// **'Refreshing hardware info'**
+  String get hwStatusRefreshing;
+
+  /// No description provided for @hwStatusComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware info loaded'**
+  String get hwStatusComplete;
+
+  /// No description provided for @hwStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load hardware info'**
+  String get hwStatusFailed;
+
+  /// No description provided for @hwStatusUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware info not supported'**
+  String get hwStatusUnsupported;
+
+  /// No description provided for @hwStatusImported.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware info imported'**
+  String get hwStatusImported;
+
+  /// No description provided for @hwPlatformUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Current platform does not support hardware info query'**
+  String get hwPlatformUnsupported;
+
+  /// No description provided for @hwFetchFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch hardware info: {error}'**
+  String hwFetchFailed(String error);
+
+  /// No description provided for @hwExportWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This is an imported report. Please refresh local hardware info before exporting.'**
+  String get hwExportWarning;
+
+  /// No description provided for @hwNoLocalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'No local hardware info available to export'**
+  String get hwNoLocalInfo;
+
+  /// No description provided for @hwFolderCleanFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to clean hardware report folder'**
+  String get hwFolderCleanFailed;
+
+  /// No description provided for @hwFolderCleanFailedWithErr.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to clean hardware report folder: {error}'**
+  String hwFolderCleanFailedWithErr(String error);
+
+  /// No description provided for @hwFolderCreateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create hardware report folder'**
+  String get hwFolderCreateFailed;
+
+  /// No description provided for @hwExporting.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting local hardware report...'**
+  String get hwExporting;
+
+  /// No description provided for @hwExportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware report and ACPI tables exported to {path}'**
+  String hwExportSuccess(String path);
+
+  /// No description provided for @hwExportSuccessWithErr.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware report exported to {path}, {error}'**
+  String hwExportSuccessWithErr(String path, String error);
+
+  /// No description provided for @hwAcpiExporting.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting local ACPI tables...'**
+  String get hwAcpiExporting;
+
+  /// No description provided for @hwAcpiExportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to export local ACPI tables'**
+  String get hwAcpiExportFailed;
+
+  /// No description provided for @hwAcpiExportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Local ACPI tables exported: {path}'**
+  String hwAcpiExportSuccess(String path);
+
+  /// No description provided for @hwAcpiExportFailedWithErr.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to export local ACPI tables: {error}'**
+  String hwAcpiExportFailedWithErr(String error);
+
+  /// No description provided for @hwAcpiPlatformUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Current platform does not support exporting ACPI tables'**
+  String get hwAcpiPlatformUnsupported;
+
+  /// No description provided for @hwAcpiAuthCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin authorization cancelled. ACPI tables not exported.'**
+  String get hwAcpiAuthCancelled;
+
+  /// No description provided for @hwAcpiNoPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'No admin password provided. Cannot export ACPI tables.'**
+  String get hwAcpiNoPassword;
+
+  /// No description provided for @hwAcpiWrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect admin password. Cannot export ACPI tables.'**
+  String get hwAcpiWrongPassword;
+
+  /// No description provided for @hwImportNotJson.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware info file is not a JSON object'**
+  String get hwImportNotJson;
+
+  /// No description provided for @hwImportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware info imported'**
+  String get hwImportSuccess;
+
+  /// No description provided for @hwImportAcpiInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid ACPI tables directory. Custom SSDT unavailable.'**
+  String get hwImportAcpiInvalid;
+
+  /// No description provided for @hwImportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to import hardware report: {error}'**
+  String hwImportFailed(String error);
+
+  /// No description provided for @hwConfigStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting EFI configuration...'**
+  String get hwConfigStart;
+
+  /// No description provided for @hwConfigGenerating.
+  ///
+  /// In en, this message translates to:
+  /// **'Generating ConfigModel from hardware info...'**
+  String get hwConfigGenerating;
+
+  /// No description provided for @hwConfigSsdtPrep.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing custom SSDT: {items}'**
+  String hwConfigSsdtPrep(String items);
+
+  /// No description provided for @hwConfigSsdtSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Using original EFI SSDT. Skipping custom SSDT.'**
+  String get hwConfigSsdtSkip;
+
+  /// No description provided for @hwConfigSsdtDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Imported external hardware report without ACPI tables directory. Custom SSDT disabled.'**
+  String get hwConfigSsdtDisabled;
+
+  /// No description provided for @hwConfigExporting.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting OpenCore EFI...'**
+  String get hwConfigExporting;
+
+  /// No description provided for @hwConfigFailedMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'EFI configuration failed: {error}'**
+  String hwConfigFailedMsg(String error);
+
+  /// No description provided for @hwConfigRebuilding.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware auto-generation ConfigModel rules are being refactored'**
+  String get hwConfigRebuilding;
+
+  /// No description provided for @cpuUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get cpuUnknown;
+
+  /// No description provided for @platDesktop.
+  ///
+  /// In en, this message translates to:
+  /// **'Desktop'**
+  String get platDesktop;
+
+  /// No description provided for @platLaptop.
+  ///
+  /// In en, this message translates to:
+  /// **'Laptop'**
+  String get platLaptop;
+
+  /// No description provided for @platMini.
+  ///
+  /// In en, this message translates to:
+  /// **'Mini PC'**
+  String get platMini;
+
+  /// No description provided for @platServer.
+  ///
+  /// In en, this message translates to:
+  /// **'Server'**
+  String get platServer;
+
+  /// No description provided for @csrEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable SIP to enhance system security. Recommended if not using OCLP for GPU/WiFi patches.'**
+  String get csrEnabled;
+
+  /// No description provided for @csrPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable SIP Option 1'**
+  String get csrPartial;
+
+  /// No description provided for @csrPartialDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Partially disable SIP. Recommended for Big Sur or newer when using OCLP for GPU/WiFi patches.'**
+  String get csrPartialDesc;
+
+  /// No description provided for @csrFully.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable SIP Option 2'**
+  String get csrFully;
+
+  /// No description provided for @csrFullyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fully disable SIP. Preferred for Big Sur or newer when using OCLP for GPU/WiFi patches.'**
+  String get csrFullyDesc;
+
+  /// No description provided for @uiScaleAuto.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-adapt: Automatically adjust OpenCore boot UI scale based on display resolution.'**
+  String get uiScaleAuto;
+
+  /// No description provided for @uiScaleStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard resolution: Suitable for 720p, 1080p, 1440p displays.'**
+  String get uiScaleStandard;
+
+  /// No description provided for @uiScaleHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High resolution: Suitable for 4K/5K displays (fixes small UI elements in OpenCore boot menu).'**
+  String get uiScaleHigh;
+
+  /// No description provided for @procDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not modify ProcessorType'**
+  String get procDefault;
+
+  /// No description provided for @procKeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep system default CPU type display'**
+  String get procKeep;
+
+  /// No description provided for @brandAsus.
+  ///
+  /// In en, this message translates to:
+  /// **'ASUS'**
+  String get brandAsus;
+
+  /// No description provided for @brandGigabyte.
+  ///
+  /// In en, this message translates to:
+  /// **'GIGABYTE'**
+  String get brandGigabyte;
+
+  /// No description provided for @brandAsrock.
+  ///
+  /// In en, this message translates to:
+  /// **'ASRock'**
+  String get brandAsrock;
+
+  /// No description provided for @brandMsi.
+  ///
+  /// In en, this message translates to:
+  /// **'MSI'**
+  String get brandMsi;
+
+  /// No description provided for @brandDell.
+  ///
+  /// In en, this message translates to:
+  /// **'Dell'**
+  String get brandDell;
+
+  /// No description provided for @brandLenovo.
+  ///
+  /// In en, this message translates to:
+  /// **'Lenovo'**
+  String get brandLenovo;
+
+  /// No description provided for @brandSony.
+  ///
+  /// In en, this message translates to:
+  /// **'VAIO'**
+  String get brandSony;
+
+  /// No description provided for @brandHp.
+  ///
+  /// In en, this message translates to:
+  /// **'HP'**
+  String get brandHp;
+
+  /// No description provided for @brandGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Chromebook'**
+  String get brandGoogle;
+
+  /// No description provided for @brandMicrosoft.
+  ///
+  /// In en, this message translates to:
+  /// **'Microsoft Surface'**
+  String get brandMicrosoft;
+
+  /// No description provided for @mbNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard Motherboard'**
+  String get mbNormal;
+
+  /// No description provided for @mbOemUsb.
+  ///
+  /// In en, this message translates to:
+  /// **'Some OEM motherboards have USB ownership release issues: EHCI Hand-off failure'**
+  String get mbOemUsb;
 }
 
 class _AppLocalizationsDelegate

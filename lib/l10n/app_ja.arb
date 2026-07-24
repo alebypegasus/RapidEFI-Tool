@@ -767,5 +767,244 @@
         "type": "String"
       }
     }
-  }
+  },
+  "linkCantOpen": "リンクを開けません",
+  "clickToCopy": "クリックしてコピー",
+  "copiedToClipboard": "クリップボードにコピーしました",
+  "gpuCard": "GPU",
+  "gpuDeviceId": "デバイスID: {id}",
+  "gpuCoreCodename": "コア: {codename}",
+  "gpuCompatible": "互換性あり",
+  "gpuIncompatible": "互換性なし",
+  "gpuIncompatibleNoDisplay": "互換性なし、直接出力なし",
+  "gpuLimitedCompat": "限定的な互換性",
+  "gpuLoadingCompat": "互換性を読み込み中",
+  "gpuSpoofId": "スプーフIDが必要: {id}",
+  "@gpuDeviceId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "@gpuCoreCodename": {
+    "placeholders": {
+      "codename": {
+        "type": "String"
+      }
+    }
+  },
+  "@gpuSpoofId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "bootArgVerbose": "-v 詳細モードを有効化（ブート時のデバッグ出力を表示）",
+  "bootArgKeepsyms": "カーネルクラッシュ時にシンボル情報を出力。debug=0x100と併用。初回デバッグ時に強く推奨。",
+  "bootArgDebug0x100": "カーネルパニック時の自動再起動を防止し、クラッシュログを確認可能にする。初回デバッグ時に強く推奨。",
+  "bootArgWatchdog0": "ウォッチドッグを無効化し、デバッグ中の誤ったパニック再起動を防止。",
+  "bootArgSlide0": "KASLRを無効化し、メモリ競合によるカーネルパニックを修正。デバッグ用。",
+  "bootArgNoCompatCheck": "ブート時のモデル互換性チェックをスキップして禁止サインを回避。インストール時には効果なし。",
+  "bootArgCpus1": "CPUコアを1つのみ有効化（X58/X79/X99/X299などのサーバーCPUのカーネルパニック対策）。",
+  "bootArgBetaFix": "最新macOS（主にBeta版）で発生する可能性のある問題（音声、Bluetooth、CPU周波数の異常など）を修正。",
+  "bootArgAmfi0x80": "新しいGPU（HD4000以上、GT710などのKepler以上）またはWi-Fiドライバーのパッチ適用時にAMFIを無効化。SIP無効時のみ有効。",
+  "bootArgAmfiGetOut": "古いGPU（GT240など）またはWi-Fiパッチ適用時にAMFIを無効化。amfi=0x80と同時使用不可。SIP無効時のみ有効。",
+  "bootArgIpcControl": "AMFI無効後のアプリクラッシュ（百度クラウドなど）を修正。SIP無効時のみ有効。",
+  "bootArgAmfiPassBeta": "最新のmacOS Tahoe 26でAMFIPass.kextを正常に動作させてAMFIセキュリティチェックを回避。",
+  "bootArgRevpatch": "SIPまたはSecureBootModelを無効化後のmacOS OTA更新問題を修正し、カスタムCPU名の表示も修正。",
+  "bootArgDisableGfxFirmware": "Apple Graphics Firmwareのロードを無効化して起動時のハングを防止（Intel iGPUのみ）。",
+  "bootArgWegNoIgpu": "Intel iGPUを無効化（iGPUが動作しないか、ハードウェアアクセラレーションをサポートしない場合に推奨）。",
+  "bootArgIgfxVesa": "Intel iGPUアクセラレーションを無効化（OCLPパッチ後に起動しない場合、デバッグ専用）。",
+  "bootArgIgfxRpsc": "Intel iGPUのパフォーマンスを修正・改善（4K HEVCエンコード、解像度、FPS問題など）。",
+  "bootArgIgfxMpc": "iGPUの解像度問題を修正し、最大ピクセルクロック制限を解除してmacOSのデフォルト制限を取り除く。",
+  "bootArgGfxfw2": "iGPUの完全ファームウェアロードを有効化してパフォーマンスを向上。起動不能になる場合があるため注意。",
+  "bootArgCdclk": "10世代Ice LakeのCore Display Clock（CDCLK）周波数が低すぎることによるカーネルパニックを修正。",
+  "bootArgIgfxdbeo": "10世代Ice Lakeでドライバーがプリ割り当てDVMTメモリサイズを誤って計算することによるカーネルパニックを修正。",
+  "bootArgIceLakeDisplay": "10世代Ice Lakeノートパソコンの起動時に7〜15秒間続く画面乱れを修正。",
+  "bootArgIgfxNoTelemetry": "起動時のiGPUテレメトリモジュールのロードを無効化。一部のノートPC（特にChromebook）で起動時にフリーズすることがある。",
+  "bootArgWegNoEgpu": "外部GPU（dGPU）を無効化（Intel dual-GPUノートでdGPU（主にNVIDIA）が動作しない場合に推奨）。",
+  "bootArgNvDisable": "NVIDIAドライバーを無効化（互換性のないNVIDIA GPUのデバッグ専用）。",
+  "bootArgUnfairGva": "AMD GPUのハードウェアDRMサポートを修正（対応AMDGPUでDRM保護されたコンテンツを視聴可能にする）。",
+  "bootArgRadpg15": "古いAMD GPU（HD7750、HD7850などGCNコア）の表示乱れ（スクランブル/黄色い画面）を修正。",
+  "bootArgAmdNoAccel": "ATI/AMD GPUアクセラレーションを無効化（OCLPパッチ後に起動しない場合、デバッグ専用）。",
+  "bootArgRaddvi": "古いAMD GPU（290X、370など）のDVI出力表示を修正。",
+  "bootArgRadcodec": "公式非サポートのAMD GPU（RX550 Lexaコアなど）のVDAハードウェアビデオエンコードサポートを修正。",
+  "bootArgNgfxFermi": "macOS Big Sur 11以降でFermi/Maxwell/Pascal世代の古いNVIDIA GPU（GT610、GTX750、GTX960、GTX1050）のドライバー問題を修正。システム起動後にOCLPのGPUパッチ適用が必要！Keplerは不要。",
+  "bootArgApplbkl3": "AMD Radeon RX 5000シリーズGPUのPWMバックライト制御を有効化。",
+  "bootArgAgdpmodIgnore": "一部のGPUでのブラック画面や表示異常を修正するためAppleGraphicsDevicePolicy.kextの制限を完全に無視。WhateverGreen.kextと併用。",
+  "bootArgAgdpmodPikera": "AMD Navi RX5XXX/RX6XXX GPU（RX5500、RX5600、RX5700、RX6600、RX6800、RX6900など）の起動時ブラック画面を修正。WhateverGreen.kextと併用。",
+  "bootArgAgdpmodVit9696": "RX470/RX570 GPUでスリープ/ウェイク後のブラック画面を修正するためboard-idチェックを無効化。WhateverGreen.kextと併用。",
+  "bootArgAmdNoDgpuAccel": "Intel第3世代以下プラットフォームでVentura以降のAMD RX5XX/RX5XXX/RX6XXX GPUのブラック画面を修正。起動後にOCLPパッチを適用し、その後この引数を削除。",
+  "bootArgBrcmfx": "一部のBroadcom Wi-FiカードのHK（香港）に変更することで速度低下を修正。ルーターのチャンネル変更でも改善可能。",
+  "bootArgVsmcgen": "ramrodコードのハングとSMCエミュレーターの破損問題を修正。",
+  "bootArgSwdPanic": "スリープ後の再起動を防いで、カーネルクラッシュログの収集とスリープ問題のデバッグを容易にする。",
+  "bootArgCtrsmt": "Intel第12世代以降のハイブリッド（P+Eコア）CPUのトポロジー検出とスケジューリングを改善。パフォーマンス向上は保証されない。CpuTopologyRebuild.kext必須。",
+  "bootArgDarkwake0": "Darkwakeモードを完全に無効化し従来のスリープモードを使用。ウェイク時ブラック画面や自動ウェイク問題を主に修正。",
+  "bootArgForceRenderStandby": "iGPU RC6レンダリングスタンバイを無効化し、スリープ中にiGPU RC6が引き起こすNVMeカーネルパニックを修正。",
+  "bootArgI2cForcePolling": "I2Cトラックパッドを割り込み駆動モードではなくポーリングモードで動作させる（割り込みモードは通常SSDTのカスタマイズが必要）。",
+  "kextLiluDesc": "macOSに拡張性と互換性を提供する必須基盤ドライバー。すべてのプラグイン型kextの依存関係。",
+  "kextVirtualSMCDesc": "必須SMCエミュレーター。非Appleハードウェア上でApple SMCをシミュレートし、センサー、ファン制御、電源管理を提供。これがないとmacOSは動作しない。",
+  "kextWhateverGreenDesc": "GPUグラフィクスドライバーサポート。ほとんどのユーザーに強く推奨。MacPro7,1でAMD dGPU（RX460、RX560以上）は除外可能。NootRX/NootedRedとは通常競合するため、インストール時は同時選択不可。",
+  "kextAppleALCDesc": "AppleALCを使用してオンボードオーディオコーデックをスプーフィング（より完全なソリューション、推奨選択肢）。",
+  "kextVoodooHDADesc": "万能オーディオドライバーVoodooHDA（ブート時ロード、macOS Big Sur 11.2.3以下のみサポート。それ以上のバージョンはシステムカーネル拡張フォルダーへの注入が必要）。",
+  "kextUSBInjectAllDesc": "汎用USB注入ソリューション。USBカスタマイズを行っていない場合のデフォルト選択。",
+  "kextUSBToolBoxDesc": "USBToolBoxソリューション。カスタマイズされたUTBMap.kextと組み合わせて使用。",
+  "kextBatteryV1Desc": "バッテリードライバーソリューション1（Intel第3世代以下のノートPC向け）。",
+  "kextBatteryV2Desc": "バッテリードライバーソリューション2（Intel第3世代以降のノートPC向け）。",
+  "kextAmbientLightDesc": "環境光センサー（画面自動輝度）。環境光センサーがない場合は使用しないでください（問題が発生する可能性あり）。",
+  "kextAsusNBFnKeysDesc": "ASUSノートPCのファン制御、電源管理、その他システムセンサーの最適化。非ASUS機器には非推奨。",
+  "kextLenovoDesc": "Lenovoノートのファン制御、電源管理、その他システムセンサーの最適化。Lenovo以外の機器には非推奨。",
+  "kextDellDesc": "Dellノート専用センサー、より正確なファン監視と制御。Dell以外の機器には非推奨。",
+  "kextNootRXDesc": "公式非サポートのRX6XXX dGPU（RX6700、RX6750XT、RX6750GREなど）をサポート。WhateverGreenと競合するため、インストール時は同時選択不可。",
+  "kextBatteryFixDesc": "バッテリー読み取り修正、一部のバッテリー表示問題を修復。",
+  "kextNVMeFixDesc": "非Apple NVMe SSDの互換性を向上させ、アイドル時の消費電力を削減。互換性のないNVMeドライブはクラッシュが継続する場合あり。互換性の高いNVMeでもこのドライバーでカーネルパニックが発生することがあるため注意。",
+  "kextFeatureUnlockDesc": "非サポートのMacモデルでユニバーサルコントロール、Sidecarなどの機能をアンロック。",
+  "kextHibernationFixDesc": "一般的なハイバネーションとスリープ関連の問題を修正。",
+  "kextHoRNDIS": "macOSでUSB経由のAndroidデバイスのネットワークテザリングを使用可能にする。",
+  "kextCPUFriendDesc": "CPU周波数スケーリングドライバー。主に第11世代以降のプラットフォームでMacPro7,1の周波数スケーリングサポートを提供。",
+  "kextCPUFriendDataProviderDesc": "CPUFriendの補完データドライバー。特定のマシンモデルのCPU周波数スケーリングデータを提供。",
+  "kextAppleIGHDA": "一部のシステムでIntel iGPU HDMI音声問題を修正。",
+  "kextNoTouchID": "Apple IDとiCloudにログインできない問題を修正。通常は有線LANカードのないノートPC向け。",
+  "kextAppleRTCDesc": "新しいプラットフォームでmacOS AppleRTCとPC BIOS間の競合を修正（RTCによるハング、突然の再起動、スリープからの即時ウェイクなど）。",
+  "kextPS2KBMouseDesc": "PS/2キーボードとマウスドライバー（PS/2丸ポートを持つデスクトップマザーボード向け）。",
+  "kextPS2KeyboardDesc": "PS/2キーボードドライバー（PS/2丸ポートを持つデスクトップマザーボード向け）。",
+  "kextPS2MouseDesc": "PS/2マウスドライバー（PS/2丸ポートを持つデスクトップマザーボード向け）。",
+  "kextMicrosoftSurfaceDesc": "Microsoft Surface専用キーボードおよびトラックパッドドライバー。",
+  "kextBrightnessKeysDesc": "輝度ショートカットキーの修正。",
+  "kextGenericUSBXHCIDesc": "古いプラットフォームまたはAMDプラットフォームのUSB 3.0コントローラー互換性修正。",
+  "kextXLNCUSBFixDesc": "古いAMDプラットフォーム（FM1/FM2/AM3）のUSBコントローラー互換性問題を修正。",
+  "kextRealtekCardReaderDesc": "Realtek SDカードリーダードライバー（RealtekCardReaderFriendと組み合わせて使用）。",
+  "kextRadeonSensorDesc": "AMD Radeon GPUのパフォーマンスを最適化するが、一部のシナリオでシステムクラッシュや起動不能が発生する可能性あり — 注意して選択。",
+  "hwStatusIdle": "ハードウェア情報の更新を待機中",
+  "hwStatusLoading": "ハードウェア情報を読み込み中",
+  "hwStatusRefreshing": "ハードウェア情報を更新中",
+  "hwStatusComplete": "ハードウェア情報の読み込みが完了しました",
+  "hwStatusFailed": "ハードウェア情報の読み込みに失敗しました",
+  "hwStatusUnsupported": "ハードウェア情報は現在サポートされていません",
+  "hwStatusImported": "ハードウェア情報のインポートが完了しました",
+  "hwPlatformUnsupported": "現在のプラットフォームはハードウェア情報クエリをサポートしていません",
+  "hwFetchFailed": "ハードウェア情報の取得に失敗しました: {error}",
+  "hwExportWarning": "これはインポートされたレポートです。エクスポートする前にローカルハードウェア情報を更新してください。",
+  "hwNoLocalInfo": "エクスポート可能なローカルハードウェア情報がありません",
+  "hwFolderCleanFailed": "ハードウェアレポートフォルダーのクリーンアップに失敗しました",
+  "hwFolderCleanFailedWithErr": "ハードウェアレポートフォルダーのクリーンアップに失敗しました: {error}",
+  "hwFolderCreateFailed": "ハードウェアレポートフォルダーの作成に失敗しました",
+  "hwExporting": "ローカルハードウェアレポートをエクスポート中...",
+  "hwExportSuccess": "ハードウェアレポートとACPIテーブルが {path} にエクスポートされました",
+  "hwExportSuccessWithErr": "ハードウェアレポートは {path} にエクスポートされました、{error}",
+  "hwAcpiExporting": "ローカルACPIテーブルをエクスポート中...",
+  "hwAcpiExportFailed": "ローカルACPIテーブルのエクスポートに失敗しました",
+  "hwAcpiExportSuccess": "ローカルACPIテーブルのエクスポートが完了しました: {path}",
+  "hwAcpiExportFailedWithErr": "ローカルACPIテーブルのエクスポートに失敗しました: {error}",
+  "hwAcpiPlatformUnsupported": "現在のプラットフォームはACPIテーブルのエクスポートをサポートしていません",
+  "hwAcpiAuthCancelled": "管理者権限がキャンセルされました。ACPIテーブルはエクスポートされていません。",
+  "hwAcpiNoPassword": "管理者パスワードが入力されていません。ACPIテーブルをエクスポートできません。",
+  "hwAcpiWrongPassword": "管理者パスワードが正しくありません。ACPIテーブルをエクスポートできません。",
+  "hwImportNotJson": "ハードウェア情報ファイルがJSONオブジェクトではありません",
+  "hwImportSuccess": "ハードウェア情報がインポートされました",
+  "hwImportAcpiInvalid": "ACPIテーブルディレクトリが無効です。カスタムSSDTは利用できません。",
+  "hwImportFailed": "ハードウェアレポートのインポートに失敗しました: {error}",
+  "hwConfigStart": "EFIの構成を開始します...",
+  "hwConfigGenerating": "ハードウェア情報からConfigModelを生成中...",
+  "hwConfigSsdtPrep": "カスタムSSDTを準備中: {items}",
+  "hwConfigSsdtSkip": "EFIオリジナルのSSDTを使用し、カスタムSSDTをスキップします。",
+  "hwConfigSsdtDisabled": "外部ハードウェアレポートをインポートしましたが、ACPIテーブルディレクトリがありません。カスタムSSDTは無効です。",
+  "hwConfigExporting": "OpenCore EFIを出力中...",
+  "hwConfigFailedMsg": "EFI構成に失敗しました: {error}",
+  "hwConfigRebuilding": "ハードウェア自動生成ConfigModelルールをリファクタリング中",
+  "@hwFetchFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwFolderCleanFailedWithErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwExportSuccess": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwExportSuccessWithErr": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportSuccess": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportFailedWithErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwImportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwConfigSsdtPrep": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwConfigFailedMsg": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cpuUnknown": "不明",
+  "platDesktop": "デスクトップ",
+  "platLaptop": "ノートパソコン",
+  "platMini": "ミニPC",
+  "platServer": "サーバー",
+  "csrEnabled": "システムのセキュリティを強化するためにSIPを有効にします。GPU/WiFi用のOCLPを使用しない場合に推奨します。",
+  "csrPartial": "SIPを無効にする オプション1",
+  "csrPartialDesc": "SIPを部分的に無効にします。Big Sur以降でGPU/WiFi用のOCLPを使用する場合に推奨します。",
+  "csrFully": "SIPを無効にする オプション2",
+  "csrFullyDesc": "SIPを完全に無効にします。Big Sur以降でGPU/WiFi用のOCLPを使用する場合に優先的に選択します。",
+  "uiScaleAuto": "自動適応: ディスプレイ解像度に基づいてOpenCoreブートUIスケールを自動調整します。",
+  "uiScaleStandard": "標準解像度: 720p、1080p、1440pディスプレイに適しています。",
+  "uiScaleHigh": "高解像度: 4K/5Kディスプレイに適しています（OpenCoreブートメニューの小さなUI要素を修正します）。",
+  "procDefault": "ProcessorTypeを変更しない",
+  "procKeep": "システムのデフォルトCPUタイプ表示を維持する",
+  "brandAsus": "ASUS",
+  "brandGigabyte": "GIGABYTE",
+  "brandAsrock": "ASRock",
+  "brandMsi": "MSI",
+  "brandDell": "Dell",
+  "brandLenovo": "Lenovo",
+  "brandSony": "VAIO",
+  "brandHp": "HP",
+  "brandGoogle": "Chromebook",
+  "brandMicrosoft": "Microsoft Surface",
+  "mbNormal": "標準マザーボード",
+  "mbOemUsb": "一部のOEMマザーボードにはUSB所有権解放の問題があります：EHCIハンドオフの失敗"
 }

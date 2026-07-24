@@ -1553,4 +1553,522 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get hwCopiedToClipboard => '已复制到剪切板';
+
+  @override
+  String get linkCantOpen => '无法打开链接';
+
+  @override
+  String get clickToCopy => '点击复制';
+
+  @override
+  String get copiedToClipboard => '已复制到剪切板';
+
+  @override
+  String get gpuCard => '显卡';
+
+  @override
+  String gpuDeviceId(String id) {
+    return '设备ID: $id';
+  }
+
+  @override
+  String gpuCoreCodename(String codename) {
+    return '核心: $codename';
+  }
+
+  @override
+  String get gpuCompatible => '兼容';
+
+  @override
+  String get gpuIncompatible => '不兼容';
+
+  @override
+  String get gpuIncompatibleNoDisplay => '不兼容,没有直连内屏';
+
+  @override
+  String get gpuLimitedCompat => '有限兼容';
+
+  @override
+  String get gpuLoadingCompat => '兼容性加载中';
+
+  @override
+  String gpuSpoofId(String id) {
+    return '需要仿冒ID: $id';
+  }
+
+  @override
+  String get bootArgVerbose => '开启-v跑码（卡代码时方便定位发现错误，适用于调试引导阶段）';
+
+  @override
+  String get bootArgKeepsyms =>
+      '便于mac系统在发生内核崩溃时打印更多符号信息，有助于排查问题，此参数通常搭配debug=0x100使用（首次调试引导时，强烈建议勾选）';
+
+  @override
+  String get bootArgDebug0x100 => '防止在内核崩溃时自动重启，便于查看Panic崩溃日志（首次调试引导时，强烈建议勾选）';
+
+  @override
+  String get bootArgWatchdog0 => '禁用看门狗功能，防止误触发Panic崩溃重启（适用于调试引导时）';
+
+  @override
+  String get bootArgSlide0 =>
+      '禁用内核地址空间随机化（KASLR）保证内核和 kext（内核扩展）加载在同一套固定内存映射，避免因随机slide值导致的内存冲突早期启动内核崩溃问题（适用于调试引导时）';
+
+  @override
+  String get bootArgNoCompatCheck =>
+      '跳过首次启动macOS过程中机型检查，避免因SMBIOS过低或过高出现禁止符号，确保可以正常引导系统';
+
+  @override
+  String get bootArgCpus1 =>
+      '仅启用1个CPU核心（适用于X58,X79,X99,X299等多核心服务器CPU内核崩溃、早期安装调试阶段）';
+
+  @override
+  String get bootArgBetaFix =>
+      '修复在最新系统（主要是Beta版）可能出现的问题（系统驱动异常，比如：声卡，蓝牙，CPU频率等突然异常，尝鲜最新Beta版本系统时强烈建议勾选）';
+
+  @override
+  String get bootArgAmfi0x80 =>
+      '禁用AMFI，相对比较新的显卡（比如HD4000及以上，GT710等开普勒核心以上）或者WiFi打驱动时，此参数适用.注意和amfi_get_out_of_my_way=0x1参数不要同时使用！（禁用SIP才生效，开启SIP后自动移除该参数）';
+
+  @override
+  String get bootArgAmfiGetOut =>
+      '禁用AMFI，老平台老旧显卡（比如GT240）或者WiFi打驱动时，此参数适用.注意和amfi=0x80参数不要同时使用！（禁用SIP才生效，开启SIP后自动移除该参数）';
+
+  @override
+  String get bootArgIpcControl =>
+      '修复禁用AMFI后部分应用（例如：百度网盘）闪退问题（禁用SIP才生效.开启SIP后自动移除该参数）';
+
+  @override
+  String get bootArgAmfiPassBeta =>
+      '确保AMFIPass.kext在最新macOS Tahoe 26系统中能正常启用并激活功能，以便继续绕过AMFI（禁用AMFI）安全检查';
+
+  @override
+  String get bootArgRevpatch =>
+      '修复禁用SIP（系统完整性保护）或SecureBootModel（安全模型）后macOS系统OTA更新问题，以及修复自定义CPU名称显示问题';
+
+  @override
+  String get bootArgDisableGfxFirmware =>
+      '禁用Apple Graphics Firmware固件加载，避免启动过程中因固件加载失败或重试循环而卡住（仅适用于Intel核显）';
+
+  @override
+  String get bootArgWegNoIgpu => '禁用Intel核显（核显无法驱动，也不支持加速硬解时，建议勾选）';
+
+  @override
+  String get bootArgIgfxVesa =>
+      '禁用Intel 核显加速（例如：使用OCLP 打完核显补丁无法正常启动时，可以勾选，无加速，仅调试时用）';
+
+  @override
+  String get bootArgIgfxRpsc =>
+      '修复提升Intel核显性能（例如：修复核显4K hevc编码，分辨率及fps达不到理想值问题）';
+
+  @override
+  String get bootArgIgfxMpc =>
+      '修复核显分辨率问题，强制启用核显（IGPU）的最大像素时钟覆盖，解除 macOS 默认的分辨率、刷新率等限制';
+
+  @override
+  String get bootArgGfxfw2 => '启用核显完整固件加载，提高核显利用率，提升核显性能.添加此参数可能导致无法进系统，谨慎使用';
+
+  @override
+  String get bootArgCdclk =>
+      '修复10代Ice Lake平台上因Core Display Clock（CDCLK）频率过低而导致的内核崩溃问题';
+
+  @override
+  String get bootArgIgfxdbeo => '修复10代Ice Lake平台上因驱动错误地计算DVMT预分配内存大小而导致的内核崩溃问题';
+
+  @override
+  String get bootArgIceLakeDisplay => '修复10代Ice Lake平台上笔记本开机持续花屏7到15秒的问题';
+
+  @override
+  String get bootArgIgfxNoTelemetry =>
+      '禁用 iGPU（核显）在启动过程中加载遥测模块，某些笔记本（尤其是 Chromebook）在加载该模块时可能会导致系统在启动阶段卡死或冻结';
+
+  @override
+  String get bootArgWegNoEgpu => '禁用独显（通常intel双显卡笔记本独立显卡【常见于N卡】无法驱动时，建议勾选）';
+
+  @override
+  String get bootArgNvDisable => '禁用 NVIDIA 驱动（仅适用于调试不兼容N卡时）';
+
+  @override
+  String get bootArgUnfairGva =>
+      '修复AMD GPU上的硬件数字版权管理（DRM）支持问题（使得在支持的AMD GPU上体验受到DRM保护的数字内容）';
+
+  @override
+  String get bootArgRadpg15 =>
+      '修复HD7750、HD7850(主要核心为GCN系列HD77XX、HD78XX、HD79XX)等老A卡花屏、黄屏等显示异常问题';
+
+  @override
+  String get bootArgAmdNoAccel =>
+      '禁用ATI,AMD显卡加速（例如：使用OCLP 打完显卡补丁无法正常启动时，可以勾选，无加速，仅调试时用）';
+
+  @override
+  String get bootArgRaddvi => '修复校正老A卡（290X、370等）DVI接口输出显示';
+
+  @override
+  String get bootArgRadcodec => '修复官方不支持的AMD显卡（例如: RX550 Lexa核心）使其支持VDA硬件视频编码';
+
+  @override
+  String get bootArgNgfxFermi =>
+      '修复Fermi,Maxwell,Pascal架构老N卡(例如:GT610,GTX750,GTX960,GTX1050)BigSur 11以上系统显卡驱动问题(注意:进入系统后需要使用OCLP打显卡补丁!!!开普勒核心不需要此参数!!!)';
+
+  @override
+  String get bootArgApplbkl3 => '启用AMD Radeon RX 5000 系列显卡的PWM背光控制';
+
+  @override
+  String get bootArgAgdpmodIgnore =>
+      '修复部分显卡可能导致的黑屏或显示异常问题，完全忽略AppleGraphicsDevicePolicy.kext对图形卡的限制';
+
+  @override
+  String get bootArgAgdpmodPikera =>
+      '修复AMD Navi核心RX5XXX,RX6XXX系列显卡启动时黑屏问题(例如:RX5500,RX5600,RX5700,RX6600,RX6800,RX6900等),将board-id替换为board-ix,绕过AppleGraphicsDevicePolicy的某些限制';
+
+  @override
+  String get bootArgAgdpmodVit9696 =>
+      '修复部分RX470,RX570等显卡睡眠唤醒后黑屏问题，禁用AppleGraphicsDevicePolicy中的board-id检查';
+
+  @override
+  String get bootArgAmdNoDgpuAccel =>
+      '修复Intel 3代及以下平台AMD RX5XX,RX5XXX,RX6XXX系列免驱显卡在Ventura及以上系统黑屏问题(注意:进入系统后需要使用OCLP打显卡补丁!打完补丁后去掉该参数!)';
+
+  @override
+  String get bootArgBrcmfx => '修复部分博通无线网卡速率较慢问题(更改博通WiFi国家码为香港,也可以更改路由器信道改善)';
+
+  @override
+  String get bootArgVsmcgen => '修复卡ramrod代码,SMC模拟器损坏问题';
+
+  @override
+  String get bootArgSwdPanic => '避免设备进入睡眠模式后重启的问题，便于获取内核崩溃日志，排查睡眠问题';
+
+  @override
+  String get bootArgCtrsmt =>
+      '改善Intel 12代及之后大小核 CPU 的拓扑识别与调度，性能提升不保证，建议实测后启用（注意需要搭配CpuTopologyRebuild.kext使用才生效）';
+
+  @override
+  String get bootArgDarkwake0 =>
+      '完全禁用Darkwake模式，让系统进入传统睡眠模式，主要用于修复唤醒黑屏，自动唤醒等问题';
+
+  @override
+  String get bootArgForceRenderStandby =>
+      '禁用iGPU RC6渲染待机，修复睡眠时由于核显RC6引发NVMe内核恐慌问题';
+
+  @override
+  String get bootArgI2cForcePolling =>
+      '强制I2C类型触控板工作在轮询模式，而不是中断驱动模式（中断模式通常需要定制SSDT，相对复杂）';
+
+  @override
+  String get kextLiluDesc => '必备基础驱动，为macOS提供扩展性和兼容性，是所有插件型驱动的依赖基础';
+
+  @override
+  String get kextVirtualSMCDesc =>
+      '必备SMC模拟器，在非苹果硬件上模拟苹果SMC控制器，提供传感器、风扇、电源管理等功能，缺少该驱动不能正常运行macOS';
+
+  @override
+  String get kextWhateverGreenDesc =>
+      'GPU图形驱动支持，绝大多数强烈建议勾选(MacPro7,1机型且RX460,RX560等以上AMD独显用户可以去掉勾选),通常与NootRX,NootedRed驱动存在冲突，安装阶段不要同时选择';
+
+  @override
+  String get kextAppleALCDesc => '使用AppleALC仿冒内建声卡(相对较完美,优先选择)';
+
+  @override
+  String get kextVoodooHDADesc =>
+      '使用VoodooHDA万能声卡(引导中加载,仅支持macOS BigSur 11.2.3以下,更高版本需要打入系统内核扩展)';
+
+  @override
+  String get kextUSBInjectAllDesc => '通用USB注入方案，未定制USB时的默认选择';
+
+  @override
+  String get kextUSBToolBoxDesc => 'USBToolBox方案，通常配合定制好的UTBMap.kext使用';
+
+  @override
+  String get kextBatteryV1Desc => '电池驱动方案一(适用于3代及更老平台的笔记本)';
+
+  @override
+  String get kextBatteryV2Desc => '电池驱动方案二(适用于3代及更新平台的笔记本)';
+
+  @override
+  String get kextAmbientLightDesc => '环境光传感器(自动屏幕亮度),如果没有环境光传感器,请勿使用,否则可能会导致问题';
+
+  @override
+  String get kextAsusNBFnKeysDesc => '华硕(Asus)笔记本风扇控制、电源管理和其他系统传感器优化等,非华硕不建议使用';
+
+  @override
+  String get kextLenovoDesc => '联想(Lenovo)笔记本风扇控制、电源管理和其他系统传感器优化等,非联想机器不建议使用';
+
+  @override
+  String get kextDellDesc => '戴尔(Dell)笔记本专用传感器,对风扇进行更准确的监视和控制,非戴尔机器不建议使用';
+
+  @override
+  String get kextNootRXDesc =>
+      '用于支持RX6700、RX6750XT、RX6750GRE等官方不支持的RX6XXX系列独显,与WhateverGreen驱动存在冲突，安装阶段不要同时选择';
+
+  @override
+  String get kextBatteryFixDesc => '电池读数修复,修复部分电池显示问题';
+
+  @override
+  String get kextNVMeFixDesc =>
+      '提升非苹果NVMe固态硬盘兼容性，减少闲置能耗。不兼容的NVMe磁盘无法有效修复超时崩溃，兼容性良好的NVMe使用此驱动可能导致内核崩溃，谨慎使用';
+
+  @override
+  String get kextFeatureUnlockDesc => '解锁不受支持Mac上的通用控制、随航等功能';
+
+  @override
+  String get kextHibernationFixDesc => '修复常见休眠、睡眠相关问题';
+
+  @override
+  String get kextHoRNDIS => '允许macOS通过USB连接使用Android设备的网络共享功能';
+
+  @override
+  String get kextCPUFriendDesc => 'CPU变频驱动，主要提供11代及以上平台MacPro7,1变频支持';
+
+  @override
+  String get kextCPUFriendDataProviderDesc => 'CPUFriend配套数据驱动，提供具体机型的CPU变频数据';
+
+  @override
+  String get kextAppleIGHDA => '修复部分英特尔核显HDMI音频问题';
+
+  @override
+  String get kextNoTouchID => '修复无法登录Apple ID和iCloud的问题，通常用于没有本地有线网卡的笔记本';
+
+  @override
+  String get kextAppleRTCDesc =>
+      '修复新平台macOS AppleRTC与PC BIOS之间的冲突，例如RTC导致卡死、突然重启或休眠秒醒';
+
+  @override
+  String get kextPS2KBMouseDesc => 'PS接口类型键盘鼠标驱动(台式机主板PS圆口键鼠驱动)';
+
+  @override
+  String get kextPS2KeyboardDesc => 'PS接口类型键盘驱动(台式机主板PS圆口键盘驱动)';
+
+  @override
+  String get kextPS2MouseDesc => 'PS接口类型鼠标驱动(台式机主板PS圆口鼠标驱动)';
+
+  @override
+  String get kextMicrosoftSurfaceDesc => 'Microsoft Surface 专用键盘触摸板驱动';
+
+  @override
+  String get kextBrightnessKeysDesc => '亮度快捷键修复';
+
+  @override
+  String get kextGenericUSBXHCIDesc => '老平台或AMD平台USB 3.0控制器兼容性修复';
+
+  @override
+  String get kextXLNCUSBFixDesc => '修复AMD FM1/FM2/AM3等老平台USB控制器兼容性问题';
+
+  @override
+  String get kextRealtekCardReaderDesc =>
+      'Realtek系列SD卡读卡器驱动(搭配RealtekCardReaderFriend使用)';
+
+  @override
+  String get kextRadeonSensorDesc => '优化AMD Radeon显卡性能，但某些场景可能导致系统崩溃或无法启动，谨慎勾选';
+
+  @override
+  String get hwStatusIdle => '等待刷新硬件信息';
+
+  @override
+  String get hwStatusLoading => '正在加载硬件信息';
+
+  @override
+  String get hwStatusRefreshing => '正在刷新硬件信息';
+
+  @override
+  String get hwStatusComplete => '硬件信息加载完成';
+
+  @override
+  String get hwStatusFailed => '硬件信息加载失败';
+
+  @override
+  String get hwStatusUnsupported => '硬件信息暂不支持';
+
+  @override
+  String get hwStatusImported => '硬件信息导入完成';
+
+  @override
+  String get hwPlatformUnsupported => '当前平台不支持硬件信息查询';
+
+  @override
+  String hwFetchFailed(String error) {
+    return '硬件信息获取失败: $error';
+  }
+
+  @override
+  String get hwExportWarning => '当前为导入的外部硬件报告，请先刷新本机硬件信息后再导出';
+
+  @override
+  String get hwNoLocalInfo => '暂无可导出的本机硬件信息';
+
+  @override
+  String get hwFolderCleanFailed => '硬件报告文件夹清理失败';
+
+  @override
+  String hwFolderCleanFailedWithErr(String error) {
+    return '硬件报告文件夹清理失败: $error';
+  }
+
+  @override
+  String get hwFolderCreateFailed => '硬件报告文件夹创建失败';
+
+  @override
+  String get hwExporting => '正在导出本机硬件报告...';
+
+  @override
+  String hwExportSuccess(String path) {
+    return '硬件报告和 ACPI 表已导出到 $path';
+  }
+
+  @override
+  String hwExportSuccessWithErr(String path, String error) {
+    return '硬件报告已导出到 $path，$error';
+  }
+
+  @override
+  String get hwAcpiExporting => '正在导出本机 ACPI 表...';
+
+  @override
+  String get hwAcpiExportFailed => '本机 ACPI 表导出失败';
+
+  @override
+  String hwAcpiExportSuccess(String path) {
+    return '本机 ACPI 表导出完成: $path';
+  }
+
+  @override
+  String hwAcpiExportFailedWithErr(String error) {
+    return '本机 ACPI 表导出失败: $error';
+  }
+
+  @override
+  String get hwAcpiPlatformUnsupported => '当前平台不支持导出 ACPI 表';
+
+  @override
+  String get hwAcpiAuthCancelled => '已取消管理员授权，未导出 ACPI 表';
+
+  @override
+  String get hwAcpiNoPassword => '未输入管理员密码，无法导出 ACPI 表';
+
+  @override
+  String get hwAcpiWrongPassword => '管理员密码不正确，无法导出 ACPI 表';
+
+  @override
+  String get hwImportNotJson => '硬件信息文件不是 JSON 对象';
+
+  @override
+  String get hwImportSuccess => '硬件信息已导入';
+
+  @override
+  String get hwImportAcpiInvalid => 'ACPI 表目录无效，定制 SSDT 不可用';
+
+  @override
+  String hwImportFailed(String error) {
+    return '导入硬件报告失败: $error';
+  }
+
+  @override
+  String get hwConfigStart => '开始配置 EFI...';
+
+  @override
+  String get hwConfigGenerating => '正在根据硬件信息生成 ConfigModel...';
+
+  @override
+  String hwConfigSsdtPrep(String items) {
+    return '准备定制 SSDT: $items';
+  }
+
+  @override
+  String get hwConfigSsdtSkip => '使用 EFI 原始 SSDT，跳过 SSDT 定制.';
+
+  @override
+  String get hwConfigSsdtDisabled => '已导入外部硬件报告但未提供 ACPI 表目录，已禁用定制 SSDT。';
+
+  @override
+  String get hwConfigExporting => '正在输出 OpenCore EFI...';
+
+  @override
+  String hwConfigFailedMsg(String error) {
+    return '配置 EFI 失败: $error';
+  }
+
+  @override
+  String get hwConfigRebuilding => '硬件自动生成 ConfigModel 规则重构中';
+
+  @override
+  String get cpuUnknown => '未知';
+
+  @override
+  String get platDesktop => '台式机';
+
+  @override
+  String get platLaptop => '笔记本';
+
+  @override
+  String get platMini => '迷你主机';
+
+  @override
+  String get platServer => '服务器';
+
+  @override
+  String get csrEnabled => '开启SIP增强系统安全性,通常不需要使用OCLP打显卡，WiFi等驱动时,推荐勾选';
+
+  @override
+  String get csrPartial => '禁用SIP方案一';
+
+  @override
+  String get csrPartialDesc =>
+      '非彻底禁用SIP,通常在BigSur等以上系统需要使用OCLP打显卡,WiFi等驱动时,建议勾选';
+
+  @override
+  String get csrFully => '禁用SIP方案二';
+
+  @override
+  String get csrFullyDesc =>
+      '彻底禁用SIP,通常在BigSur等以上系统需要使用OCLP打显卡,WiFi等驱动时,优先选择此项';
+
+  @override
+  String get uiScaleAuto => '自适应显示器,根据显示器分辨率自动调整 OpenCore 引导界面的显示比例';
+
+  @override
+  String get uiScaleStandard => '标准分辨率显示器,适用于 720p、1080p、1440p 等标准分辨率显示器';
+
+  @override
+  String get uiScaleHigh =>
+      '高分辨率显示器,适用于 4K、5K 等高分辨率显示器(可以有效改善高分屏OpenCore引导页面UI元素过小的问题)';
+
+  @override
+  String get procDefault => '不修改 ProcessorType';
+
+  @override
+  String get procKeep => '保持系统默认 CPU 类型显示';
+
+  @override
+  String get brandAsus => '华硕';
+
+  @override
+  String get brandGigabyte => '技嘉';
+
+  @override
+  String get brandAsrock => '华擎';
+
+  @override
+  String get brandMsi => '微星';
+
+  @override
+  String get brandDell => '戴尔';
+
+  @override
+  String get brandLenovo => '联想';
+
+  @override
+  String get brandSony => '索尼';
+
+  @override
+  String get brandHp => '惠普';
+
+  @override
+  String get brandGoogle => '谷歌';
+
+  @override
+  String get brandMicrosoft => '微软';
+
+  @override
+  String get mbNormal => '常规主板';
+
+  @override
+  String get mbOemUsb => '部分OEM主板存在USB所有权释放问题:EHCI Hand-off失效';
 }

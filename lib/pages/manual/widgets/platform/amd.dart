@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/enum_l10n.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
@@ -152,7 +153,7 @@ class _AMDWidgetState extends State<AMDWidget> {
                       .where((e) => e.vendor == MotherboardVendor.amd)
                       .map((e) => RadioOptionData(
                             value: e.value,
-                            label: e.text.title,
+                            label: e.localizedTitle(AppLocalizations.of(context)!),
                           ))
                       .toList(),
                   onChanged: (value) {

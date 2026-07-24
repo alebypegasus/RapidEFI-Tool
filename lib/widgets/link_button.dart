@@ -2,6 +2,7 @@
 //  Created by JeoJay127 
 //
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomLinkButton extends StatelessWidget {
@@ -49,7 +50,7 @@ class CustomLinkButton extends StatelessWidget {
 
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('无法打开链接')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.linkCantOpen)),
       );
     }
   }

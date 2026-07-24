@@ -1,6 +1,7 @@
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/enums/csr_setting_enum.dart';
+import 'package:rapidefi/l10n/enum_l10n.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 
 class CSRWidget extends StatefulWidget {
@@ -29,7 +30,7 @@ class _CSRWidgetState extends State<CSRWidget> {
   Widget build(BuildContext context) {
     final choices = CsrSetting.values
         .where((element) => element != CsrSetting.none)
-        .map((e) => e.value)
+        .map((e) => e.localizedValue(AppLocalizations.of(context)!))
         .toList();
     final tips = CsrSetting.values
         .where((element) => element != CsrSetting.none)
@@ -42,14 +43,14 @@ class _CSRWidgetState extends State<CSRWidget> {
       ChoiceList(
         tips: tips,
         choices: choices,
-        selectedChoices: [csrsetting.value],
+        selectedChoices: [csrsetting.localizedValue(AppLocalizations.of(context)!)],
         isMultipleSelection: false,
         allowToggle: true,
         subTitle: AppLocalizations.of(context)!.manualCsrSettingTip,
         onChanged: (List<String> value) {
           String? selectedValue = value.firstOrNull;
           csrsetting = CsrSetting.values.firstWhere(
-            (type) => type.value == selectedValue,
+            (type) => type.localizedValue(AppLocalizations.of(context)!) == selectedValue,
             orElse: () => CsrSetting.none,
           );
           setState(() {});

@@ -188,10 +188,10 @@ class _HardwarePageState extends State<HardwarePage> {
           detailed: detailed,
           onRefresh: () {
             setState(() => _resetHardwareDerivedOptions());
-            _controller.refreshHardwareInfo(clearCache: true);
+            _controller.refreshHardwareInfo(context, clearCache: true);
           },
           onImport: _importHardwareMaterials,
-          onExport: _controller.exportHardwareInfo,
+          onExport: () => _controller.exportHardwareInfo(context),
           onExportAcpi: _exportLocalAcpiTables,
           onOutputEfi: _outputEfi,
           onPersonalizedEfi: _openPersonalizedEfi,
@@ -261,7 +261,7 @@ class _HardwarePageState extends State<HardwarePage> {
     );
     if (result == null || result.hardwareReportPath.isEmpty) return;
     setState(() => _resetHardwareDerivedOptions());
-    await _controller.importHardwareInfo(
+    await _controller.importHardwareInfo(context, 
       filePath: result.hardwareReportPath,
       acpiTablesPath: result.acpiTablesPath,
     );
@@ -400,7 +400,7 @@ class _HardwarePageState extends State<HardwarePage> {
       _bodyDragging = false;
       _resetHardwareDerivedOptions();
     });
-    await _controller.importHardwareInfo(
+    await _controller.importHardwareInfo(context, 
       filePath: reportFile.path,
       acpiTablesPath: _findAcpiDirectory(directory),
     );

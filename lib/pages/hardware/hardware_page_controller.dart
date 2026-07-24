@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:path/path.dart' as path;
 import 'package:rapidefi/pages/hardware/widgets/efi_build_progress_dialog.dart';
@@ -42,6 +43,11 @@ class _AcpiExportResult {
 }
 
 class HardwarePageController extends ChangeNotifier {
+  AppLocalizations? _l10n(BuildContext? context) {
+    if (context == null || !context.mounted) return null;
+    return AppLocalizations.of(context);
+  }
+
   static const String _idleStatus = '等待刷新硬件信息';
   static const String _loadingStatus = '正在加载硬件信息';
   static const String _refreshStatus = '正在刷新硬件信息';
@@ -107,7 +113,7 @@ class HardwarePageController extends ChangeNotifier {
     }
   }
 
-  Future<void> loadAllInfo() async {
+  Future<void> loadAllInfo([BuildContext? context]) async {
     if (_disposed) return;
     final hasCache = await HardwareInfo.loadCachedInfo('all');
     if (_disposed) return;
@@ -129,6 +135,7 @@ class HardwarePageController extends ChangeNotifier {
     }
     if (Platform.isWindows) {
       unawaited(refreshHardwareInfo(
+        context,
         clearCache: true,
         preserveCurrent: hasCache,
         force: true,
@@ -142,7 +149,7 @@ class HardwarePageController extends ChangeNotifier {
     }
   }
 
-  Future<void> refreshHardwareInfo({
+  Future<void> refreshHardwareInfo(BuildContext? context, {
     bool clearCache = true,
     bool preserveCurrent = false,
     bool force = false,
@@ -150,7 +157,7 @@ class HardwarePageController extends ChangeNotifier {
     if (_disposed) return;
     if (isLoading && !force) return;
     if (!Platform.isWindows) {
-      showToast('当前平台不支持硬件信息查询');
+      showToast(_l10n(context)?.hwPlatformUnsupported ?? '当前平台不支持硬件信息查询');
       loadStatus = _unsupportedStatus;
       isLoading = false;
       loadProgress = 0;
@@ -186,7 +193,7 @@ class HardwarePageController extends ChangeNotifier {
       _finishLoadStatus(DateTime.now().difference(startTime));
     } catch (e) {
       _failLoadStatus(e);
-      showToast('硬件信息获取失败: $e');
+      showToast(_l10n(context)?.hwFetchFailed(e.toString()) ?? '硬件信息获取失败: $e');
     }
   }
 
@@ -225,16 +232,16 @@ class HardwarePageController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> exportHardwareInfo() async {
+  Future<void> exportHardwareInfo(BuildContext? context) async {
     if (hasImportedHardware) {
-      showToast('当前为导入的外部硬件报告，请先刷新本机硬件信息后再导出');
+      showToast(_l10n(context)?.hwExportWarning ?? '当前为导入的外部硬件报告，请先刷新本机硬件信息后再导出');
       return;
     }
 
     final report = HardwareInfo.rawReport ??
         const JsonEncoder.withIndent('  ').convert(rawInfo ?? {});
     if (report.trim().isEmpty || report.trim() == '{}') {
-      showToast('暂无可导出的本机硬件信息');
+      showToast(_l10n(context)?.hwNoLocalInfo ?? '暂无可导出的本机硬件信息');
       return;
     }
 
@@ -251,7 +258,7 @@ class HardwarePageController extends ChangeNotifier {
         await reportRoot.delete(recursive: true);
       } catch (error) {
         Log.warning('硬件报告文件夹清理失败: $error');
-        showToast('硬件报告文件夹清理失败');
+        if (context != null && context.mounted) showToast(_l10n(context)?.hwFolderCleanFailed ?? '硬件报告文件夹清理失败');
         return;
       }
     }
@@ -260,7 +267,7 @@ class HardwarePageController extends ChangeNotifier {
       'RapidEFI-HardwareReport',
     );
     if (reportDirectory.isEmpty) {
-      showToast('硬件报告文件夹创建失败');
+      if (context != null && context.mounted) showToast(_l10n(context)?.hwFolderCreateFailed ?? '硬件报告文件夹创建失败');
       return;
     }
 
@@ -383,7 +390,7 @@ class HardwarePageController extends ChangeNotifier {
     }
   }
 
-  Future<void> importHardwareInfo({
+  Future<void> importHardwareInfo(BuildContext? context, {
     required String filePath,
     String acpiTablesPath = '',
   }) async {
@@ -405,12 +412,12 @@ class HardwarePageController extends ChangeNotifier {
       loadProgress = 1;
       loadStatus = _importedStatus;
       notifyListeners();
-      showToast('硬件信息已导入');
+      if (context != null && context.mounted) showToast(_l10n(context)?.hwImportSuccess ?? '硬件信息已导入');
       if (acpiTablesPath.trim().isNotEmpty && importedAcpiTablesPath.isEmpty) {
-        showToast('ACPI 表目录无效，定制 SSDT 不可用');
+        if (context != null && context.mounted) showToast(_l10n(context)?.hwImportAcpiInvalid ?? 'ACPI 表目录无效，定制 SSDT 不可用');
       }
     } catch (e) {
-      showToast('导入硬件报告失败: $e');
+      if (context != null && context.mounted) showToast(_l10n(context)?.hwImportFailed(e.toString()) ?? '导入硬件报告失败: $e');
     }
   }
 

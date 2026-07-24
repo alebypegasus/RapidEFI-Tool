@@ -148,13 +148,15 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
     _BootArgCategory category,
     ConfigOptionProvider provider,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     return ChoiceListCategory<String>(
       name: _getCategoryName(context, category.nameKey),
       tips: BootArgChoiceMapper.tips(category.options),
-      choices: BootArgChoiceMapper.choices(category.options),
+      choices: BootArgChoiceMapper.choices(category.options, l10n),
       selectedChoices: BootArgChoiceMapper.selectedChoices(
         options: category.options,
         selectedBootArgs: provider.selectedBootArgs,
+        l10n: l10n,
       ),
       onChanged: (List<String> value) {
         provider.updateBootArgsForOptions(
@@ -162,6 +164,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
           BootArgChoiceMapper.selectedModels(
             options: category.options,
             selectedChoices: value,
+            l10n: l10n,
           ),
         );
       },

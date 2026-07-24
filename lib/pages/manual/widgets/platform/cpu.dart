@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/enum_l10n.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 
@@ -27,10 +28,7 @@ class CPUWidget extends StatefulWidget {
 class _CPUWidgetState extends State<CPUWidget> {
   late CpuType cpuType = widget.cpuType;
 
-  final choices = CpuType.values
-      .where((e) => e != CpuType.unknown)
-      .map((e) => e.text.title)
-      .toList();
+  
 
   @override
   void didUpdateWidget(covariant CPUWidget oldWidget) {
@@ -43,6 +41,10 @@ class _CPUWidgetState extends State<CPUWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final choices = CpuType.values
+        .where((e) => e != CpuType.unknown)
+        .map((e) => e.localizedTitle(AppLocalizations.of(context)!))
+        .toList();
     final l10n = AppLocalizations.of(context)!;
     return TitleCard(
       title: l10n.cpuSelection,
@@ -54,12 +56,12 @@ class _CPUWidgetState extends State<CPUWidget> {
           children: [
             ButtonSegmentWidget(
               labels: choices,
-              initialSelection: {cpuType.text.title},
+              initialSelection: {cpuType.localizedTitle(AppLocalizations.of(context)!)},
               onSelectionChanged: (value) {
                 final selectedValue = value.first;
 
                 final selectedCpuType = CpuType.values.firstWhere(
-                  (type) => type.text.title == selectedValue,
+                  (type) => type.localizedTitle(AppLocalizations.of(context)!) == selectedValue,
                   orElse: () => CpuType.intel,
                 );
 

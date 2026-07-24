@@ -1,7 +1,9 @@
+import 'package:rapidefi/utils/config/models/enums/processor_type_enum.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
-import 'package:rapidefi/utils/config/models/enums/processor_type_enum.dart';
+import 'package:rapidefi/l10n/enum_l10n.dart';
+import 'package:rapidefi/l10n/app_localizations.dart';
 
 class RenameCPUNameWidget extends StatefulWidget {
   final Function(ProcessorType, String?) onChanged;
@@ -74,11 +76,11 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
   Widget build(BuildContext context) {
     final choices = ProcessorType.values
         .where((element) => element != ProcessorType.none)
-        .map((e) => e.text.description)
+        .map((e) => e.localizedDescription(AppLocalizations.of(context)!))
         .toList();
     final tips = ProcessorType.values
         .where((element) => element != ProcessorType.none)
-        .map((e) => e.text.title)
+        .map((e) => e.localizedTitle(AppLocalizations.of(context)!))
         .toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +91,7 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
         ChoiceList(
           tips: tips,
           choices: choices,
-          selectedChoices: [processorType.text.description],
+          selectedChoices: [processorType.localizedDescription(AppLocalizations.of(context)!)],
           isMultipleSelection: false,
           allowToggle: true,
           subTitle: AppLocalizations.of(context)!.manualRenameCpuNameTip,
@@ -99,7 +101,7 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
           onChanged: (List<String> value) {
             String? selectedValue = value.firstOrNull;
             processorType = ProcessorType.values.firstWhere(
-              (type) => type.text.description == selectedValue,
+              (type) => type.localizedDescription(AppLocalizations.of(context)!) == selectedValue,
               orElse: () => ProcessorType.none,
             );
             if (processorType == ProcessorType.none) {

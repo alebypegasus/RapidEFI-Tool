@@ -6,7 +6,9 @@ String hardwareGpuDisplayName(
   Map<String, dynamic> gpu, {
   GpuCompatibilityRecord? record,
 }) {
-  final isIntegratedGpu = gpu['Device Type'] == '核心显卡';
+  // Device Type can be '核心显卡' (Chinese hardware data) or 'Integrated GPU' (English)
+  final deviceType = gpu['Device Type']?.toString() ?? '';
+  final isIntegratedGpu = deviceType == '核心显卡' || deviceType.toLowerCase().contains('integrated');
   final compatibilityRecord =
       record ?? GpuCompatibilityData.findSync(safeStr(gpu['Device ID']));
 

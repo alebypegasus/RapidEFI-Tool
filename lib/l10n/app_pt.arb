@@ -767,5 +767,244 @@
         "type": "String"
       }
     }
-  }
+  },
+  "linkCantOpen": "Não foi possível abrir o link",
+  "clickToCopy": "Clique para copiar",
+  "copiedToClipboard": "Copiado para a área de transferência",
+  "gpuCard": "GPU",
+  "gpuDeviceId": "ID do Dispositivo: {id}",
+  "gpuCoreCodename": "Núcleo: {codename}",
+  "gpuCompatible": "Compatível",
+  "gpuIncompatible": "Incompatível",
+  "gpuIncompatibleNoDisplay": "Incompatível, sem vídeo direto",
+  "gpuLimitedCompat": "Compatibilidade Limitada",
+  "gpuLoadingCompat": "Carregando compatibilidade",
+  "gpuSpoofId": "ID de Spoof necessário: {id}",
+  "@gpuDeviceId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "@gpuCoreCodename": {
+    "placeholders": {
+      "codename": {
+        "type": "String"
+      }
+    }
+  },
+  "@gpuSpoofId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "bootArgVerbose": "Ativar modo detalhado -v (exibe saída de depuração durante a inicialização)",
+  "bootArgKeepsyms": "Imprime símbolos do kernel durante travamentos para ajudar no diagnóstico. Normalmente usado com debug=0x100.",
+  "bootArgDebug0x100": "Impede reinicialização automática em caso de kernel panic, permitindo ver logs de travamento.",
+  "bootArgWatchdog0": "Desabilitar o watchdog para evitar reinicializações acidentais durante o debug de boot.",
+  "bootArgSlide0": "Desabilitar KASLR para corrigir conflitos de memória que causam kernel panics no boot inicial.",
+  "bootArgNoCompatCheck": "Ignorar verificação de compatibilidade de modelo durante o boot para evitar o símbolo de proibido.",
+  "bootArgCpus1": "Habilitar apenas 1 núcleo de CPU (para CPUs de servidor X58/X79/X99/X299 com problemas de kernel panic).",
+  "bootArgBetaFix": "Corrigir problemas que podem aparecer no macOS mais recente (principalmente Beta), como anomalias de áudio, Bluetooth e frequência de CPU.",
+  "bootArgAmfi0x80": "Desabilitar AMFI para GPUs mais recentes (HD4000+, GT710+ Kepler) ou ao aplicar patches de Wi-Fi. Não use com amfi_get_out_of_my_way=0x1. Requer SIP desabilitado.",
+  "bootArgAmfiGetOut": "Desabilitar AMFI para GPUs antigas (ex: GT240) ou ao aplicar patches de Wi-Fi. Não use com amfi=0x80. Requer SIP desabilitado.",
+  "bootArgIpcControl": "Corrigir travamentos de aplicativos (ex: Baidu Netdisk) após desabilitar AMFI. Requer SIP desabilitado.",
+  "bootArgAmfiPassBeta": "Garantir que AMFIPass.kext funcione no macOS Tahoe 26 mais recente para continuar ignorando verificações de segurança AMFI.",
+  "bootArgRevpatch": "Corrigir problemas de atualização OTA do macOS após desabilitar SIP ou SecureBootModel, e corrigir exibição de nome de CPU personalizado.",
+  "bootArgDisableGfxFirmware": "Desabilitar o carregamento do Apple Graphics Firmware para evitar travamentos durante a inicialização (apenas iGPU Intel).",
+  "bootArgWegNoIgpu": "Desabilitar iGPU Intel (recomendado quando o iGPU não pode ser ativado ou não suporta aceleração de hardware).",
+  "bootArgIgfxVesa": "Desabilitar aceleração do iGPU Intel (use quando o sistema não iniciar após aplicar patch OCLP, apenas para debug).",
+  "bootArgIgfxRpsc": "Corrigir e melhorar o desempenho do iGPU Intel (ex: codificação 4K HEVC, resolução e FPS).",
+  "bootArgIgfxMpc": "Corrigir problemas de resolução do iGPU forçando a substituição máxima do clock de pixel, removendo os limites padrão do macOS.",
+  "bootArgGfxfw2": "Habilitar carregamento completo do firmware do iGPU para melhorar utilização e desempenho. Pode causar falha de boot — use com cautela.",
+  "bootArgCdclk": "Corrigir kernel panic no Ice Lake de 10ª geração devido à frequência do Core Display Clock (CDCLK) muito baixa.",
+  "bootArgIgfxdbeo": "Corrigir kernel panic no Ice Lake de 10ª geração onde o driver calcula incorretamente o tamanho da memória DVMT pré-alocada.",
+  "bootArgIceLakeDisplay": "Corrigir corrupção de exibição de 7 a 15 segundos em laptops Ice Lake de 10ª geração no boot.",
+  "bootArgIgfxNoTelemetry": "Desabilitar o carregamento do módulo de telemetria do iGPU durante o boot. Alguns laptops (especialmente Chromebooks) podem travar.",
+  "bootArgWegNoEgpu": "Desabilitar GPU dedicada (recomendado quando o dGPU em laptops Intel dual-GPU — normalmente NVIDIA — não pode ser ativado).",
+  "bootArgNvDisable": "Desabilitar driver NVIDIA (somente para depurar GPUs NVIDIA incompatíveis).",
+  "bootArgUnfairGva": "Corrigir suporte DRM de hardware em GPUs AMD (habilita conteúdo protegido por DRM como streaming em GPUs AMD suportadas).",
+  "bootArgRadpg15": "Corrigir corrupção de exibição (tela embaralhada/amarela) em GPUs AMD antigas (HD7750, HD7850 com núcleos GCN).",
+  "bootArgAmdNoAccel": "Desabilitar aceleração GPU ATI/AMD (use quando o sistema não iniciar após o patch OCLP, apenas para debug).",
+  "bootArgRaddvi": "Corrigir saída DVI em GPUs AMD antigas (290X, 370, etc.).",
+  "bootArgRadcodec": "Corrigir suporte a codificação de vídeo de hardware VDA para GPUs AMD não suportadas oficialmente (ex: RX550 Lexa).",
+  "bootArgNgfxFermi": "Corrigir problemas de driver GPU para placas NVIDIA antigas Fermi/Maxwell/Pascal (GT610, GTX750, GTX960, GTX1050) no macOS Big Sur 11+. Deve aplicar patch OCLP após entrar no sistema! Kepler NÃO precisa disto.",
+  "bootArgApplbkl3": "Habilitar controle de retroiluminação PWM para GPUs AMD Radeon RX 5000.",
+  "bootArgAgdpmodIgnore": "Corrigir tela preta ou problemas de exibição em algumas GPUs ignorando completamente as restrições do AppleGraphicsDevicePolicy.kext. Use com WhateverGreen.kext.",
+  "bootArgAgdpmodPikera": "Corrigir tela preta no boot para GPUs AMD Navi RX5XXX/RX6XXX (RX5500, RX5600, RX5700, RX6600, RX6800, RX6900, etc.). Use com WhateverGreen.kext.",
+  "bootArgAgdpmodVit9696": "Corrigir tela preta após suspensão/retomada em GPUs RX470/RX570 desabilitando a verificação board-id. Use com WhateverGreen.kext.",
+  "bootArgAmdNoDgpuAccel": "Corrigir tela preta no Ventura+ para GPUs AMD RX5XX/RX5XXX/RX6XXX em Intel 3ª geração ou mais antigo. Aplicar patch OCLP após iniciar, depois remover este argumento.",
+  "bootArgBrcmfx": "Corrigir velocidade lenta em alguns cartões Wi-Fi Broadcom alterando o código de país para HK. Também é possível melhorar alterando o canal do roteador.",
+  "bootArgVsmcgen": "Corrigir travamento de código ramrod e problemas de corrupção do emulador SMC.",
+  "bootArgSwdPanic": "Evitar reinicialização do dispositivo após o sono para ajudar a coletar logs de kernel panic e depurar problemas de suspensão.",
+  "bootArgCtrsmt": "Melhorar a detecção de topologia e agendamento para CPUs híbridos Intel 12ª geração+ (P+E). O ganho de desempenho não é garantido — teste antes de ativar. Requer CpuTopologyRebuild.kext.",
+  "bootArgDarkwake0": "Desabilitar completamente o modo Darkwake e usar o modo de sono tradicional. Corrige principalmente tela preta ao acordar e despertar automático.",
+  "bootArgForceRenderStandby": "Desabilitar o modo de espera de renderização RC6 do iGPU para corrigir kernel panic NVMe causado pelo RC6 do iGPU durante o sono.",
+  "bootArgI2cForcePolling": "Forçar o touchpad I2C a usar o modo de polling em vez do modo de interrupção (o modo de interrupção geralmente requer personalização SSDT).",
+  "kextLiluDesc": "Driver base obrigatório que fornece extensibilidade e compatibilidade para o macOS. Todos os kexts de plugin dependem dele.",
+  "kextVirtualSMCDesc": "Emulador SMC obrigatório. Simula o SMC da Apple em hardware não-Apple, fornecendo sensores, controle de ventilador e gerenciamento de energia. O macOS não pode funcionar sem isso.",
+  "kextWhateverGreenDesc": "Suporte ao driver de GPU. Fortemente recomendado para a maioria dos usuários. MacPro7,1 com dGPUs AMD (RX460, RX560+) pode desmarcar. Normalmente conflita com NootRX/NootedRed — não selecionar juntos na instalação.",
+  "kextAppleALCDesc": "Usar AppleALC para falsificar o codec de áudio integrado (solução mais completa, escolha preferida).",
+  "kextVoodooHDADesc": "Driver de áudio universal VoodooHDA (carregado no boot, apenas suporta macOS Big Sur 11.2.3 e abaixo; versões superiores requerem injeção no diretório de extensões do kernel do sistema).",
+  "kextUSBInjectAllDesc": "Solução de injeção USB genérica, a escolha padrão quando a personalização USB não foi feita.",
+  "kextUSBToolBoxDesc": "Solução USBToolBox, normalmente usada juntamente com um UTBMap.kext personalizado.",
+  "kextBatteryV1Desc": "Solução de driver de bateria 1 (para laptops com Intel 3ª geração ou plataformas mais antigas).",
+  "kextBatteryV2Desc": "Solução de driver de bateria 2 (para laptops com Intel 3ª geração ou plataformas mais recentes).",
+  "kextAmbientLightDesc": "Sensor de luz ambiente (brilho automático da tela). Não use se não tiver sensor de luz ambiente, pois pode causar problemas.",
+  "kextAsusNBFnKeysDesc": "Controle de ventilador, gerenciamento de energia e outras otimizações de sensor do sistema para laptops ASUS. Não recomendado para máquinas não-ASUS.",
+  "kextLenovoDesc": "Controle de ventilador, gerenciamento de energia e outras otimizações de sensor para laptops Lenovo. Não recomendado para máquinas não-Lenovo.",
+  "kextDellDesc": "Sensor dedicado para laptops Dell para monitoramento e controle mais preciso do ventilador. Não recomendado para máquinas não-Dell.",
+  "kextNootRXDesc": "Suporte a dGPUs RX6XXX não suportadas oficialmente (RX6700, RX6750XT, RX6750GRE, etc.). Conflita com WhateverGreen — não selecionar juntos na instalação.",
+  "kextBatteryFixDesc": "Correção de leitura de bateria, repara certos problemas de exibição de bateria.",
+  "kextNVMeFixDesc": "Melhorar compatibilidade para SSDs NVMe não-Apple e reduzir consumo de energia em repouso. Discos NVMe incompatíveis podem ainda travar. SSDs compatíveis podem sofrer kernel panic com este driver — use com cautela.",
+  "kextFeatureUnlockDesc": "Desbloquear Controle Universal, Sidecar e outros recursos em modelos de Mac não suportados.",
+  "kextHibernationFixDesc": "Corrigir problemas comuns relacionados à hibernação e suspensão.",
+  "kextHoRNDIS": "Permitir que o macOS use o compartilhamento de rede de dispositivos Android via USB.",
+  "kextCPUFriendDesc": "Driver de escalonamento de frequência de CPU, fornecendo principalmente suporte de escalonamento para MacPro7,1 em plataformas de 11ª geração e mais recentes.",
+  "kextCPUFriendDataProviderDesc": "Driver de dados complementar do CPUFriend, fornecendo dados de escalonamento de frequência de CPU para modelos de máquinas específicos.",
+  "kextAppleIGHDA": "Corrigir problemas de áudio HDMI do iGPU Intel em alguns sistemas.",
+  "kextNoTouchID": "Corrigir incapacidade de fazer login no Apple ID e iCloud, geralmente para laptops sem placa de rede cabeada.",
+  "kextAppleRTCDesc": "Corrigir conflitos entre AppleRTC do macOS e BIOS do PC em plataformas mais recentes, como travamentos, reinicializações repentinas ou despertar imediato do sono.",
+  "kextPS2KBMouseDesc": "Driver de teclado e mouse PS/2 (para placas-mãe de desktop com portas PS/2 redondas).",
+  "kextPS2KeyboardDesc": "Driver de teclado PS/2 (para placas-mãe de desktop com portas PS/2 redondas de teclado).",
+  "kextPS2MouseDesc": "Driver de mouse PS/2 (para placas-mãe de desktop com portas PS/2 redondas de mouse).",
+  "kextMicrosoftSurfaceDesc": "Driver dedicado de teclado e trackpad para Microsoft Surface.",
+  "kextBrightnessKeysDesc": "Correção de tecla de atalho de brilho.",
+  "kextGenericUSBXHCIDesc": "Correção de compatibilidade do controlador USB 3.0 para plataformas antigas ou AMD.",
+  "kextXLNCUSBFixDesc": "Corrigir problemas de compatibilidade do controlador USB em plataformas AMD antigas (FM1/FM2/AM3).",
+  "kextRealtekCardReaderDesc": "Driver de leitor de cartão SD Realtek (use com RealtekCardReaderFriend).",
+  "kextRadeonSensorDesc": "Otimizar o desempenho da GPU AMD Radeon, mas pode causar travamentos ou falha de inicialização em alguns cenários — use com cautela.",
+  "hwStatusIdle": "Aguardando atualização das informações de hardware",
+  "hwStatusLoading": "Carregando informações de hardware",
+  "hwStatusRefreshing": "Atualizando informações de hardware",
+  "hwStatusComplete": "Informações de hardware carregadas",
+  "hwStatusFailed": "Falha ao carregar informações de hardware",
+  "hwStatusUnsupported": "Informações de hardware não suportadas",
+  "hwStatusImported": "Informações de hardware importadas",
+  "hwPlatformUnsupported": "A plataforma atual não suporta consulta de informações de hardware",
+  "hwFetchFailed": "Falha ao obter informações de hardware: {error}",
+  "hwExportWarning": "Este é um relatório importado. Atualize as informações de hardware local antes de exportar.",
+  "hwNoLocalInfo": "Nenhuma informação de hardware local disponível para exportar",
+  "hwFolderCleanFailed": "Falha ao limpar pasta de relatório de hardware",
+  "hwFolderCleanFailedWithErr": "Falha ao limpar pasta de relatório de hardware: {error}",
+  "hwFolderCreateFailed": "Falha ao criar pasta de relatório de hardware",
+  "hwExporting": "Exportando relatório de hardware local...",
+  "hwExportSuccess": "Relatório de hardware e tabelas ACPI exportados para {path}",
+  "hwExportSuccessWithErr": "Relatório de hardware exportado para {path}, {error}",
+  "hwAcpiExporting": "Exportando tabelas ACPI locais...",
+  "hwAcpiExportFailed": "Falha ao exportar tabelas ACPI locais",
+  "hwAcpiExportSuccess": "Tabelas ACPI locais exportadas: {path}",
+  "hwAcpiExportFailedWithErr": "Falha ao exportar tabelas ACPI locais: {error}",
+  "hwAcpiPlatformUnsupported": "A plataforma atual não suporta exportação de tabelas ACPI",
+  "hwAcpiAuthCancelled": "Autorização de administrador cancelada. Tabelas ACPI não exportadas.",
+  "hwAcpiNoPassword": "Nenhuma senha de administrador fornecida. Não é possível exportar as tabelas ACPI.",
+  "hwAcpiWrongPassword": "Senha de administrador incorreta. Não é possível exportar as tabelas ACPI.",
+  "hwImportNotJson": "O arquivo de informações de hardware não é um objeto JSON",
+  "hwImportSuccess": "Informações de hardware importadas",
+  "hwImportAcpiInvalid": "Diretório de tabelas ACPI inválido. SSDT personalizado indisponível.",
+  "hwImportFailed": "Falha ao importar relatório de hardware: {error}",
+  "hwConfigStart": "Iniciando configuração do EFI...",
+  "hwConfigGenerating": "Gerando ConfigModel a partir das informações de hardware...",
+  "hwConfigSsdtPrep": "Preparando SSDT personalizado: {items}",
+  "hwConfigSsdtSkip": "Usando SSDT original do EFI. Pulando SSDT personalizado.",
+  "hwConfigSsdtDisabled": "Relatório de hardware externo importado sem diretório de tabelas ACPI. SSDT personalizado desativado.",
+  "hwConfigExporting": "Exportando OpenCore EFI...",
+  "hwConfigFailedMsg": "Falha na configuração do EFI: {error}",
+  "hwConfigRebuilding": "Regras de geração automática do ConfigModel de hardware estão sendo refatoradas",
+  "@hwFetchFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwFolderCleanFailedWithErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwExportSuccess": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwExportSuccessWithErr": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportSuccess": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwAcpiExportFailedWithErr": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwImportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwConfigSsdtPrep": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "@hwConfigFailedMsg": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cpuUnknown": "Desconhecido",
+  "platDesktop": "Desktop",
+  "platLaptop": "Notebook",
+  "platMini": "Mini PC",
+  "platServer": "Servidor",
+  "csrEnabled": "Ativar SIP para aumentar a segurança. Recomendado se não usar OCLP para patches de GPU/WiFi.",
+  "csrPartial": "Desativar SIP (Opção 1)",
+  "csrPartialDesc": "Desativar parcialmente o SIP. Recomendado para Big Sur ou superior ao usar OCLP para patches de GPU/WiFi.",
+  "csrFully": "Desativar SIP (Opção 2)",
+  "csrFullyDesc": "Desativar totalmente o SIP. Preferencial para Big Sur ou superior ao usar OCLP para patches de GPU/WiFi.",
+  "uiScaleAuto": "Auto-adaptar: Ajusta automaticamente a escala da interface do OpenCore com base na resolução do monitor.",
+  "uiScaleStandard": "Resolução padrão: Adequado para monitores 720p, 1080p, 1440p.",
+  "uiScaleHigh": "Alta resolução: Adequado para monitores 4K/5K (corrige elementos de interface pequenos no OpenCore).",
+  "procDefault": "Não modificar ProcessorType",
+  "procKeep": "Manter a exibição padrão do tipo de CPU do sistema",
+  "brandAsus": "ASUS",
+  "brandGigabyte": "GIGABYTE",
+  "brandAsrock": "ASRock",
+  "brandMsi": "MSI",
+  "brandDell": "Dell",
+  "brandLenovo": "Lenovo",
+  "brandSony": "VAIO",
+  "brandHp": "HP",
+  "brandGoogle": "Chromebook",
+  "brandMicrosoft": "Microsoft Surface",
+  "mbNormal": "Placa-mãe Padrão",
+  "mbOemUsb": "Algumas placas-mãe OEM têm problemas de liberação de propriedade USB: falha no EHCI Hand-off"
 }
