@@ -317,7 +317,7 @@ jobs:
         if: matrix.os == 'macos'
         run: |
           cd "${{ matrix.build_dir }}"
-          npm install -g create-dmg
+          brew install create-dmg
           create-dmg \
             --overwrite \
             --window-size 600 400 \
