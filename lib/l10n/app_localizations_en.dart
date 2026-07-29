@@ -2180,4 +2180,1979 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get mbOemUsb =>
       'Some OEM motherboards have USB ownership release issues: EHCI Hand-off failure';
+
+  @override
+  String get navAppGuide => 'App Guide';
+
+  @override
+  String get appGuideTitle => 'RapidEFI User Guide';
+
+  @override
+  String get logMsg001 => '=> Failed to find LPC(B)! Operation terminated!';
+
+  @override
+  String get logMsg002 =>
+      'No valid DSDT found! Please select a DSDT file or a file directory containing DSDT first!';
+
+  @override
+  String get logMsg003 =>
+      'The iasl tool preparation failed! Please update or use the built-in iasl tool first!';
+
+  @override
+  String get logMsg004 => 'No valid .aml file found!\\n';
+
+  @override
+  String get logMsg005 =>
+      'No valid DSDT found! Please select a DSDT file or a file directory containing DSDT first!';
+
+  @override
+  String get logMsg006 =>
+      'Multiple DSDT files are currently detected and only one is allowed to be processed at a time. Please keep one DSDT file and remove the others and try again.\\n';
+
+  @override
+  String get logMsg007 =>
+      'Invalid DSDT file! Please reselect a valid DSDT file!';
+
+  @override
+  String logMsg008(String arg0) {
+    return '$arg0 Decompilation failed!\\n';
+  }
+
+  @override
+  String logMsg009(String arg0) {
+    return 'Compilation result: $arg0';
+  }
+
+  @override
+  String logMsg010(String arg0) {
+    return 'Error occurred while processing IntObj type: $arg0';
+  }
+
+  @override
+  String logMsg011(String arg0) {
+    return 'Error processing MethodObj type: $arg0';
+  }
+
+  @override
+  String get logMsg012 => 'No IRQ information found!';
+
+  @override
+  String get logMsg013 =>
+      'The current options or custom IRQs are empty! Unable to generate IRQ patch!';
+
+  @override
+  String get logMsg014 => '=> No IRQ information found!';
+
+  @override
+  String get logMsg015 =>
+      'Custom IRQ list format wrong! ! ! Separate devices with spaces and IRQs with commas! ! !';
+
+  @override
+  String logMsg016(String arg0) {
+    return '=> _HID parsing error: $arg0';
+  }
+
+  @override
+  String get logMsg017 => 'No valid device found, skipping HPET operation!';
+
+  @override
+  String get logMsg018 =>
+      'No valid IRQs were provided or the IRQs are empty! Operation aborted!';
+
+  @override
+  String logMsg019(String arg0) {
+    return '=> Unable to locate $arg0._CRS! Operation terminated!';
+  }
+
+  @override
+  String logMsg020(String arg0) {
+    return '=> Unable to locate $arg0._CRS!';
+  }
+
+  @override
+  String get logMsg021 => '=> _CRS appears to have been named XCRS!';
+
+  @override
+  String get logMsg022 =>
+      '=> Please disable the renaming of the device from _CRS to XCRS in DSDT and try again after restarting!\\n';
+
+  @override
+  String get logMsg023 => '=> Unable to determine memory access type!';
+
+  @override
+  String get logMsg024 => '=> Cannot convert Base or Length to integer!';
+
+  @override
+  String get logMsg025 => '=> Not found!';
+
+  @override
+  String logMsg026(String arg0, String arg1) {
+    return '=> Use default value $arg0 => $arg1';
+  }
+
+  @override
+  String get logMsg027 => '=> Not found!';
+
+  @override
+  String get logMsg028 => '=> Nothing to patch!';
+
+  @override
+  String logMsg029(String arg0, String arg1) {
+    return 'Missing IRQ patch ending ($arg1) for $arg0! Skipped…';
+  }
+
+  @override
+  String get logMsg030 =>
+      'The following may not be unique and are disabled by default! \\n';
+
+  @override
+  String get logMsg031 => 'No valid UID provided, abort operation!';
+
+  @override
+  String logMsg032(String arg0) {
+    return '$arg0 is a custom UID that may require manual customization or may not be supported at all!';
+  }
+
+  @override
+  String get logMsg033 => 'No valid iGPU path found in passed ACPI table!\\n';
+
+  @override
+  String logMsg034(String arg0) {
+    return 'Note: iGPU path is guessed as $arg0\\n Please verify before use!';
+  }
+
+  @override
+  String logMsg035(String arg0) {
+    return 'Note: The iGPU path has been manually set to $arg0. Please be sure to confirm whether the path is correct before use!';
+  }
+
+  @override
+  String get logMsg036 =>
+      '=> Named EC device found, no need to counterfeit!\\n';
+
+  @override
+  String get logMsg037 =>
+      'USBX attribute patch cannot be empty! Operation terminated!';
+
+  @override
+  String get logMsg038 => 'No valid processor device found!';
+
+  @override
+  String get logMsg039 =>
+      '=> A valid PNP0B00 (RTC) device has been found and verified, no patch or SSDT required! Operation terminated!';
+
+  @override
+  String get logMsg040 =>
+      '=> ACPI000E (AWAC) device not found, no patch or SSDT required! Operation terminated!';
+
+  @override
+  String get logMsg041 => '=> No device found! Operation terminated!';
+
+  @override
+  String get logMsg042 => 'No match found for the following path:';
+
+  @override
+  String get logMsg043 => 'No matches found!';
+
+  @override
+  String get logMsg044 =>
+      'Note that the device path must start with the following PciRoot() to match the current ACPI table:';
+
+  @override
+  String logMsg045(String arg0) {
+    return '=> Not found, does not appear to be a valid $arg0 table!\\n';
+  }
+
+  @override
+  String logMsg046(String arg0) {
+    return '$arg0 value not found! Operation aborted!';
+  }
+
+  @override
+  String get logMsg047 =>
+      'Reset Register Address value not found! Operation aborted!';
+
+  @override
+  String logMsg048(String arg0) {
+    return 'Unable to resolve Processor ID in $arg0, aborting patching';
+  }
+
+  @override
+  String logMsg049(String arg0) {
+    return 'First CPU in $arg0 already matched, no need to patch the APIC table!';
+  }
+
+  @override
+  String get logMsg050 => '=> No match for Processor found! Operation aborted!';
+
+  @override
+  String get logMsg051 => 'Please select IMEI patch!';
+
+  @override
+  String logMsg052(String arg0) {
+    return '=> IMEI device found at $arg0, no need to bridge for spoofing! Operation aborted!';
+  }
+
+  @override
+  String get logMsg053 => '=> PCI root device not found! Operation aborted!';
+
+  @override
+  String get logMsg054 =>
+      '=> SSDT spoofing IMEI is not enabled, device-id must be set via DeviceProperties!';
+
+  @override
+  String get logMsg055 =>
+      'UNC (PNP0A03) device not found! No SSDT-UNC patch required! Operation aborted! \\n';
+
+  @override
+  String logMsg056(String arg0) {
+    return '=> $arg0: _STA method does not exist!';
+  }
+
+  @override
+  String get logMsg057 =>
+      '=> DMA (PNP0200) device not found in any of the above ACPI tables! Operation aborted! \\n';
+
+  @override
+  String get logMsg058 =>
+      '=> The _PTS method is not found, the _PTS scheduling entry and rename patch will not be generated!';
+
+  @override
+  String get logMsg059 =>
+      '=> The _WAK method is not found, the _WAK scheduling entry and rename patch will not be generated!';
+
+  @override
+  String get logMsg060 =>
+      '=> Scheduleable _PTS/_WAK method not found, SSDT-SleepHook skipped!\\n';
+
+  @override
+  String get logMsg061 =>
+      '=> _SST method not found in any of the above ACPI tables! Operation aborted! \\n';
+
+  @override
+  String get logMsg062 =>
+      '=> The PNP0C0D device was not found in any of the above ACPI tables! Operation aborted! \\n';
+
+  @override
+  String get logMsg063 =>
+      '=> System state is not supported: [systemStatesNotSupported]';
+
+  @override
+  String get logMsg064 =>
+      '=> Note: The current firmware does not support the _S3 state. If the BIOS setting does not disable the S3 function, then the machine does not support S3 sleep!';
+
+  @override
+  String get logMsg065 =>
+      '=> Note: This is an AOAC machine, and macOS does not support S3 sleep!';
+
+  @override
+  String get logMsg066 =>
+      '=> It is currently not detected whether it is an AOAC machine, please confirm by yourself!';
+
+  @override
+  String get logMsg067 => 'Low Power S0 Idle (V5) value not found!';
+
+  @override
+  String get logMsg068 =>
+      'Currently an AOAC machine, macOS does not support S3 sleep!';
+
+  @override
+  String get logMsg069 =>
+      '=> Name or Method _S3 not found, the current configuration does not support S3 sleep! The operation has been terminated!';
+
+  @override
+  String logMsg070(String arg0) {
+    return '=> Method $arg0 found!';
+  }
+
+  @override
+  String get logMsg071 =>
+      '=> The current method has been renamed and may not be the original ACPI table! Please re-obtain the original ACPI table and try again!\\n';
+
+  @override
+  String get logMsg072 =>
+      '=> The LID (PNP0C0D) device was not found in any of the above ACPI tables! Operation terminated!\\n';
+
+  @override
+  String get logMsg073 =>
+      '=> Method _LID was not found in any of the above ACPI tables! Operation terminated!\\n';
+
+  @override
+  String get logMsg074 =>
+      '=> The PWRB (PNP0C0C) device was not found in the above ACPI table! Just fake one! \\n';
+
+  @override
+  String logMsg075(String arg0) {
+    return '=> No need to counterfeit SLPB device, PNP0C0E device has been found at $arg0!';
+  }
+
+  @override
+  String logMsg076(String arg0) {
+    return '=> PNP0C0E Device $arg0 has _STA method!';
+  }
+
+  @override
+  String logMsg077(String arg0) {
+    return '=> PNP0C0E Device $arg0 does not exist _STA method!';
+  }
+
+  @override
+  String get logMsg078 =>
+      '=> No matching XHC/XHCI/XDCI/CNVW devices found! Operation terminated! \\n';
+
+  @override
+  String get logMsg079 => '=> GPRW method not found!';
+
+  @override
+  String get logMsg080 =>
+      '=> XPRW method found! The current method has been renamed and may not be the original ACPI table! Please re-obtain the original ACPI table and try again!\\n';
+
+  @override
+  String get logMsg081 => '=> XPRW method not found! Operation terminated!';
+
+  @override
+  String get logMsg082 => '=> UPRW method not found!';
+
+  @override
+  String get logMsg083 =>
+      '=> XPRW method found! The current method has been renamed and may not be the original ACPI table! Please re-obtain the original ACPI table and try again!\\n';
+
+  @override
+  String get logMsg084 => '=> XPRW method not found! Operation terminated!';
+
+  @override
+  String get logMsg085 => '=> GPI0 device not found! Operation terminated! \\n';
+
+  @override
+  String get logMsg086 => '=> _STA method not found! Operation terminated! \\n';
+
+  @override
+  String get logMsg087 =>
+      '=> The current Processor processor naming scheme complies with the CPU naming specification! No need for this SSDT! The operation has been terminated!';
+
+  @override
+  String get logMsg088 =>
+      '=> There is no PLTF device, the current Intel platform does not require this SSDT! The operation has been terminated...';
+
+  @override
+  String get logMsg089 =>
+      '=> No CPU device meeting the requirements was found, no SSDT-CPUR patch required! Operation terminated!';
+
+  @override
+  String get logMsg090 =>
+      '=> SSDT spoofing IMEI is not enabled, device-id must be set via DeviceProperties!';
+
+  @override
+  String get logMsg091 =>
+      'No valid ACPI device path provided! Operation aborted!';
+
+  @override
+  String logMsg092(String arg0) {
+    return 'The corresponding _ON or _OFF method for $arg0 was not found in DSDT or SSDT! Operation aborted!';
+  }
+
+  @override
+  String logMsg093(String arg0) {
+    return 'The _PS3 or _DSM method corresponding to $arg0 was not found in the DSDT or SSDT! Operation aborted!';
+  }
+
+  @override
+  String logMsg094(String arg0) {
+    return '=> There is a _PRT method for device $arg0, which may have hidden the real device and will inject a BRG0 bridge device!';
+  }
+
+  @override
+  String logMsg095(String arg0) {
+    return '=> Device $arg0 does not exist!';
+  }
+
+  @override
+  String logMsg096(String arg0) {
+    return 'Current device path $arg0 may hide the real device!';
+  }
+
+  @override
+  String logMsg097(String arg0) {
+    return '=> There is an overflow in the _ADR address of the graphics card device $arg0!';
+  }
+
+  @override
+  String logMsg098(String arg0) {
+    return '=> Backtrack to the parent device path: $arg0 and inject a BRG0 bridge device!';
+  }
+
+  @override
+  String logMsg099(String arg0) {
+    return 'Unknown masking method: $arg0, operation aborted.';
+  }
+
+  @override
+  String logMsg100(String arg0) {
+    return 'Some methods not found: $arg0';
+  }
+
+  @override
+  String get logMsg101 =>
+      '=> Unable to find a valid bus device, the operation has been terminated!';
+
+  @override
+  String get logMsg102 =>
+      'No valid graphics card ACPI path provided! Operation terminated!';
+
+  @override
+  String get logMsg103 =>
+      'No valid counterfeit graphics card ID provided! Operation terminated!';
+
+  @override
+  String get logMsg104 =>
+      'No valid counterfeit graphics card name provided! No counterfeit names will be injected!';
+
+  @override
+  String logMsg105(String arg0) {
+    return 'Current graphics card path $arg0 may hide the real device!';
+  }
+
+  @override
+  String logMsg106(String arg0) {
+    return '=> Device $arg0 has a _PRT method, which may have hidden the real device and will inject a GFX0 device!';
+  }
+
+  @override
+  String logMsg107(String arg0) {
+    return '=> Device $arg0 not found in DSDT or SSDT! Operation aborted!';
+  }
+
+  @override
+  String logMsg108(String arg0) {
+    return '=> There is an overflow in the _ADR address of the graphics card device $arg0!';
+  }
+
+  @override
+  String logMsg109(String arg0) {
+    return '=> Backtrack to the parent device path: $arg0 and inject a GFX0 device!';
+  }
+
+  @override
+  String get logMsg110 =>
+      'There is an address _ADR overflow in the device path!';
+
+  @override
+  String get logMsg111 =>
+      'The following devices may affect property injection:';
+
+  @override
+  String get logMsg112 => 'Locating LPC(B)/SBRG…';
+
+  @override
+  String logMsg113(String arg0, String arg1) {
+    return '=> $arg1 found in $arg0';
+  }
+
+  @override
+  String logMsg114(String arg0, String arg1) {
+    return '=> $arg1 found in $arg0';
+  }
+
+  @override
+  String logMsg115(String arg0, String arg1) {
+    return '=> $arg1 found in $arg0';
+  }
+
+  @override
+  String logMsg116(String arg0) {
+    return 'DSDT path provided: $arg0';
+  }
+
+  @override
+  String logMsg117(String arg0) {
+    return 'The supplied DSDT path is invalid: $arg0';
+  }
+
+  @override
+  String logMsg118(String arg0) {
+    return 'Collecting valid ACPI tables from directory $arg0...';
+  }
+
+  @override
+  String logMsg119(String arg0, String arg1) {
+    return 'A total of $arg0 ACPI tables were found, of which $arg1 are valid:';
+  }
+
+  @override
+  String get logMsg120 => 'Several files with DSDT signatures were verified:';
+
+  @override
+  String logMsg121(String arg0) {
+    return 'About to decompile $arg0 to verify if pre-made patches need to be applied...';
+  }
+
+  @override
+  String get logMsg122 => '=> No need to apply pre-made patches!\\n';
+
+  @override
+  String logMsg123(String arg0) {
+    return 'Loading $arg0...';
+  }
+
+  @override
+  String get logMsg124 => 'Processing completed!\\n';
+
+  @override
+  String get logMsg125 => 'The file or folder passed in does not exist!\\n';
+
+  @override
+  String get logMsg126 => 'Handling problematic DSDT files...';
+
+  @override
+  String get logMsg127 => 'Check available pre-made patches…';
+
+  @override
+  String logMsg128(String arg0) {
+    return 'Loading $arg0 file into memory...';
+  }
+
+  @override
+  String get logMsg129 => 'Processing patches one by one...\\n';
+
+  @override
+  String get logMsg130 => '=> Positioned, applying…';
+
+  @override
+  String get logMsg131 =>
+      '=> The DSDT file from the previous question was decompiled successfully!';
+
+  @override
+  String logMsg132(String arg0) {
+    return '=> The patch has been applied to the modified file and the file is saved in the Results folder:\\n $arg0';
+  }
+
+  @override
+  String logMsg133(String arg0) {
+    return 'Loading valid ACPI tables in $arg0...';
+  }
+
+  @override
+  String get logMsg134 => 'Decompilation of all valid ACPI tables completed!';
+
+  @override
+  String logMsg135(String arg0) {
+    return 'Total time taken: $arg0 seconds\\n';
+  }
+
+  @override
+  String logMsg136(String arg0) {
+    return 'Compiling $arg0.aml successfully!';
+  }
+
+  @override
+  String logMsg137(String arg0) {
+    return 'Delete $arg0.dsl source file';
+  }
+
+  @override
+  String logMsg138(String arg0) {
+    return '=> Scope not found for device $arg0';
+  }
+
+  @override
+  String logMsg139(String arg0) {
+    return '=> Unable to locate $arg0';
+  }
+
+  @override
+  String logMsg140(String arg0, String arg1) {
+    return 'Locating $arg0 ($arg1) device...';
+  }
+
+  @override
+  String logMsg141(String arg0) {
+    return '=> Unable to target any $arg0 devices';
+  }
+
+  @override
+  String logMsg142(String arg0) {
+    return '=> found $arg0';
+  }
+
+  @override
+  String get logMsg143 => '=> Looking for verification _STA…';
+
+  @override
+  String get logMsg144 =>
+      '=> _STA has been renamed to XSTA! Skip other checks…';
+
+  @override
+  String get logMsg145 =>
+      '=> Please disable the renaming of the device from _STA to XSTA in DSDT and try again after restarting!\\n';
+
+  @override
+  String logMsg146(String arg0, String arg1) {
+    return '=> $arg0 variable $arg1';
+  }
+
+  @override
+  String get logMsg147 => '=> _STA method/name not found';
+
+  @override
+  String logMsg148(String arg0) {
+    return '=> Found _STA method at index $arg0!';
+  }
+
+  @override
+  String get logMsg149 => '=> Generating _STA to XSTA rename';
+
+  @override
+  String get logMsg150 =>
+      '=> There are multiple return statements, or the return value is not Return (0x0F)';
+
+  @override
+  String get logMsg151 => 'Gathering ACPI device information...';
+
+  @override
+  String get logMsg152 => 'Gathering ACPI device paths...';
+
+  @override
+  String get logMsg153 => 'Rechecking orphaned devices...';
+
+  @override
+  String logMsg154(String arg0) {
+    return 'Current custom IRQs: $arg0';
+  }
+
+  @override
+  String get logMsg155 => '=> Example: RTC:0 IPIC:2 TMR:8,11 \\n';
+
+  @override
+  String logMsg156(String arg0) {
+    return '=> Found _HID: $arg0';
+  }
+
+  @override
+  String get logMsg157 => 'Locating PNP0103 (HPET) device…';
+
+  @override
+  String logMsg158(String arg0) {
+    return '=> positioned at $arg0';
+  }
+
+  @override
+  String get logMsg159 => 'Locating _CRS method/name for HPET...';
+
+  @override
+  String logMsg160(String arg0) {
+    return '=> Located at $arg0._CRS';
+  }
+
+  @override
+  String logMsg161(String arg0) {
+    return '=> Found at index: $arg0';
+  }
+
+  @override
+  String logMsg162(String arg0) {
+    return '=> Type: $arg0';
+  }
+
+  @override
+  String get logMsg163 => '=> Checking Memory32Fixed…';
+
+  @override
+  String logMsg164(String arg0, String arg1, String arg2) {
+    return '=> Get $arg0 $arg1 => $arg2';
+  }
+
+  @override
+  String get logMsg165 => 'Creating IRQ patch...';
+
+  @override
+  String get logMsg166 => 'Checking IRQ…';
+
+  @override
+  String get logMsg167 => 'IRQ is empty! Skip...\\n';
+
+  @override
+  String get logMsg168 => 'No match found.';
+
+  @override
+  String logMsg169(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg170 => 'Creating a fake HPET device...';
+
+  @override
+  String logMsg171(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg172(String arg0) {
+    return '=> UID used: $arg0';
+  }
+
+  @override
+  String logMsg173(String arg0) {
+    return '=> Applicable platforms: $arg0';
+  }
+
+  @override
+  String get logMsg174 =>
+      'No valid iGPU path provided, trying to find automatically...';
+
+  @override
+  String get logMsg175 => 'Looking for iGPU device at 0x00020000…';
+
+  @override
+  String logMsg176(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String logMsg177(String arg0) {
+    return '=> iGPU device found at $arg0!';
+  }
+
+  @override
+  String get logMsg178 => 'iGPU device not found by address!';
+
+  @override
+  String get logMsg179 => 'Searching for common iGPU names…';
+
+  @override
+  String logMsg180(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String logMsg181(String arg0) {
+    return '=> Possible iGPU device found at $arg0';
+  }
+
+  @override
+  String logMsg182(String arg0) {
+    return 'Possible iGPU device found at $arg0\\n';
+  }
+
+  @override
+  String logMsg183(String arg0) {
+    return 'It has been manually set to $arg0 according to the given iGPU path \\n';
+  }
+
+  @override
+  String logMsg184(String arg0) {
+    return 'Invalid iGPU path: $arg0';
+  }
+
+  @override
+  String get logMsg185 => 'Checking ACPI table for native PNLF device...';
+
+  @override
+  String logMsg186(String arg0, String arg1) {
+    return '=> Native PNLF device found at $arg0: $arg1';
+  }
+
+  @override
+  String get logMsg187 =>
+      '=> Native PNLF needs to be renamed to XNLF, renaming patch is being generated...';
+
+  @override
+  String get logMsg188 => '=> Native PNLF device not found!';
+
+  @override
+  String get logMsg189 => '=> No need to generate PNLF to XNLF rename patch!';
+
+  @override
+  String logMsg190(String arg0) {
+    return 'Name (NBCF, 0x00) detected in $arg0, generating patch...';
+  }
+
+  @override
+  String logMsg191(String arg0) {
+    return 'Name (NBCF, Zero) detected in $arg0, generating patch...';
+  }
+
+  @override
+  String get logMsg192 => 'Locating PNP0C09(EC) device...';
+
+  @override
+  String logMsg193(String arg0, String arg1) {
+    return '=> $arg1 PNP0C09 (EC) devices found at $arg0';
+  }
+
+  @override
+  String get logMsg194 => '=> Verifying...';
+
+  @override
+  String logMsg195(String arg0) {
+    return '=> found $arg0';
+  }
+
+  @override
+  String get logMsg196 =>
+      '=> PNP0C09 (EC) device named EC, renaming in progress';
+
+  @override
+  String get logMsg197 => '=> Valid PNP0C09 (EC) device';
+
+  @override
+  String get logMsg198 => '=> _STA is correctly enabled, skipping rename';
+
+  @override
+  String get logMsg199 => '=> Invalid PNP0C09 (EC) device';
+
+  @override
+  String get logMsg200 =>
+      '=> No valid PNP0C09 (EC) device found, just fake an EC device';
+
+  @override
+  String logMsg201(String arg0) {
+    return 'Creating $arg0.dsl…';
+  }
+
+  @override
+  String logMsg202(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg203 => 'Determining CPU naming scheme...';
+
+  @override
+  String logMsg204(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String logMsg205(String arg0) {
+    return '=> Processor found: $arg0';
+  }
+
+  @override
+  String logMsg206(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg207 => '=> No Processor object found...';
+
+  @override
+  String get logMsg208 => '=> ACPI0007 device not found…';
+
+  @override
+  String logMsg209(String arg0) {
+    return '=> $arg0 ACPI0007 devices found';
+  }
+
+  @override
+  String logMsg210(String arg0) {
+    return '=> Found parent device at $arg0, processing...';
+  }
+
+  @override
+  String logMsg211(String arg0) {
+    return '=> Checking $arg0…';
+  }
+
+  @override
+  String get logMsg212 => '=> Not found! jump over…';
+
+  @override
+  String get logMsg213 => '=> Not found! jump over…';
+
+  @override
+  String logMsg214(String arg0) {
+    return 'Processing $arg0 valid processor devices...';
+  }
+
+  @override
+  String get logMsg215 => 'Failed to obtain LPC Name...';
+
+  @override
+  String logMsg216(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg217 => '=> Need to counterfeit RTC!';
+
+  @override
+  String get logMsg218 => '=> Checking _CRS…';
+
+  @override
+  String get logMsg219 => '=> _CRS is a buffer, checking RTC range...';
+
+  @override
+  String get logMsg220 =>
+      '=> Unable to adjust value, unable to verify RTC range.';
+
+  @override
+  String get logMsg221 => '=> 收集值失败, 无法验证 RTC 范围.';
+
+  @override
+  String get logMsg222 => '=> _CRS is a method and cannot verify RTC range!';
+
+  @override
+  String get logMsg223 => '=> Generating _CRS to XCRS rename…';
+
+  @override
+  String logMsg224(String arg0) {
+    return '=> Found at index $arg0';
+  }
+
+  @override
+  String get logMsg225 => '=> not found';
+
+  @override
+  String logMsg226(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String logMsg227(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg228 => 'Collecting RHUB/HUBN/URTH devices...';
+
+  @override
+  String logMsg229(String arg0) {
+    return '=> $arg0 devices found';
+  }
+
+  @override
+  String get logMsg230 => '=> Need to be renamed!';
+
+  @override
+  String logMsg231(String arg0) {
+    return '=> Check $arg0: whether the _STA method exists';
+  }
+
+  @override
+  String logMsg232(String arg0) {
+    return '=> Found _STA method at index $arg0!';
+  }
+
+  @override
+  String get logMsg233 => '=> Generate patch from _STA to XSTA';
+
+  @override
+  String get logMsg234 => '=> _STA method not found!';
+
+  @override
+  String logMsg235(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg236 =>
+      '=> There is an _ADR address overflow in the device path!';
+
+  @override
+  String get logMsg237 =>
+      '=> The following devices may require bridging adjustments to function properly:';
+
+  @override
+  String get logMsg238 => 'Collecting PCI bridge devices...';
+
+  @override
+  String get logMsg239 =>
+      'PCI bridge device is empty! The operation has been terminated!';
+
+  @override
+  String get logMsg240 => 'Building bridge device...';
+
+  @override
+  String get logMsg241 => 'PCI bridge device is empty! jump over…';
+
+  @override
+  String get logMsg242 => 'Matching device paths…';
+
+  @override
+  String get logMsg243 => 'No match found!';
+
+  @override
+  String logMsg244(String arg0) {
+    return '=> matches $arg0, no bridging required';
+  }
+
+  @override
+  String get logMsg245 => 'No match found!\\n';
+
+  @override
+  String get logMsg246 => 'No bridging required!\\n';
+
+  @override
+  String get logMsg247 => 'Resolving bridge device...';
+
+  @override
+  String get logMsg248 => '=> Unable to parse!';
+
+  @override
+  String get logMsg249 => 'Error while parsing bridge device!\\n';
+
+  @override
+  String logMsg250(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg251 => 'Locating ACPI0008 (ALS) device...';
+
+  @override
+  String logMsg252(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String logMsg253(String arg0, String arg1) {
+    return '=> Found ALS device at $arg0 table: $arg1!';
+  }
+
+  @override
+  String get logMsg254 => '=> No need to counterfeit!\\n';
+
+  @override
+  String logMsg255(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg256 => '_STA is correctly enabled, no patch required! \\n';
+
+  @override
+  String get logMsg257 => 'Not found, no patch required!\\n';
+
+  @override
+  String get logMsg258 =>
+      'ACPI0008 (ALS) device not found, counterfeit device required…';
+
+  @override
+  String logMsg259(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg260 => 'Detecting XOSI scheme...';
+
+  @override
+  String logMsg261(String arg0, String arg1) {
+    return '=> Automatically detected: $arg0 ($arg1)';
+  }
+
+  @override
+  String get logMsg262 => 'Checking OSID method...';
+
+  @override
+  String logMsg263(String arg0, String arg1) {
+    return '=> Found method $arg1 at offset $arg0';
+  }
+
+  @override
+  String get logMsg264 => '=> Not found, no need to rename OSID to XSID';
+
+  @override
+  String get logMsg265 => 'Creating _OSI to XOSI rename…';
+
+  @override
+  String logMsg266(String arg0) {
+    return 'Looking for $arg0 table…';
+  }
+
+  @override
+  String logMsg267(String arg0) {
+    return 'Found $arg0 table, verifying signature...';
+  }
+
+  @override
+  String logMsg268(String arg0) {
+    return '=> $arg0 table signature verification passed!';
+  }
+
+  @override
+  String logMsg269(String arg0) {
+    return 'Checking $arg0 value...';
+  }
+
+  @override
+  String logMsg270(String arg0, String arg1) {
+    return 'Obtained $arg0 value: $arg1';
+  }
+
+  @override
+  String logMsg271(String arg0) {
+    return 'Obtained Reset Register Address value: $arg0';
+  }
+
+  @override
+  String get logMsg272 =>
+      'The ACPI patches that need to be patched are as follows:';
+
+  @override
+  String get logMsg273 => 'Patching APIC table...';
+
+  @override
+  String logMsg274(String arg0, String arg1) {
+    return '=> Corrected APIC Processor ID: $arg0 → $arg1';
+  }
+
+  @override
+  String get logMsg275 => '=> APIC table patching completed!';
+
+  @override
+  String logMsg276(String arg0) {
+    return 'Creating $arg0.dsl…';
+  }
+
+  @override
+  String get logMsg277 => 'Checking DMAR table reserved memory area...';
+
+  @override
+  String get logMsg278 =>
+      '=> No reserved memory area found, no need to patch DMAR!\\n';
+
+  @override
+  String logMsg279(String arg0) {
+    return 'Found $arg0 reserved memory areas, generating new table...';
+  }
+
+  @override
+  String get logMsg280 => 'Looking for IMEI device at address 0x00160000...';
+
+  @override
+  String get logMsg281 =>
+      'IMEI device not found, need to counterfeit the device…';
+
+  @override
+  String get logMsg282 => 'Verifying parent device...';
+
+  @override
+  String get logMsg283 => 'Looking for iGPU device at 0x00020000…';
+
+  @override
+  String get logMsg284 => '=> iGPU device not found!';
+
+  @override
+  String get logMsg285 => 'Trying to locate PCI root device...';
+
+  @override
+  String logMsg286(String arg0) {
+    return '=> PCI root device found: $arg0';
+  }
+
+  @override
+  String logMsg287(String arg0) {
+    return '=> Found iGPU device: $arg0';
+  }
+
+  @override
+  String logMsg288(String arg0) {
+    return '=> Use parent device: $arg0';
+  }
+
+  @override
+  String get logMsg289 => 'Collecting fake device-id schemes...';
+
+  @override
+  String logMsg290(String arg0) {
+    return '=> Counterfeit as 7 series motherboard IMEI (device-id: $arg0) to match the 3rd generation Ivy Bridge processor';
+  }
+
+  @override
+  String logMsg291(String arg0) {
+    return '=> Counterfeit as 6 series motherboard IMEI (device-id: $arg0) to match the 2nd generation Sandy Bridge processor';
+  }
+
+  @override
+  String logMsg292(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg293 => 'Looking for UNC (PNP0A03) device...';
+
+  @override
+  String logMsg294(String arg0) {
+    return '=> $arg0 UNC devices found';
+  }
+
+  @override
+  String logMsg295(String arg0, String arg1) {
+    return '=> UNC device $arg0: $arg1';
+  }
+
+  @override
+  String logMsg296(String arg0) {
+    return '=> Check whether $arg0: _STA method exists';
+  }
+
+  @override
+  String logMsg297(String arg0, String arg1) {
+    return '=> Found $arg1: _STA method at index $arg0!';
+  }
+
+  @override
+  String logMsg298(String arg0) {
+    return '=> Generate $arg0: _STA to XSTA patch';
+  }
+
+  @override
+  String logMsg299(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg300(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg301 => 'Checking if DTGP method exists...';
+
+  @override
+  String get logMsg302 => '=> DTGP method not found!';
+
+  @override
+  String get logMsg303 =>
+      '=> DTGP method not found in any of the above ACPI tables! \\n';
+
+  @override
+  String logMsg304(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg305(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg306 => 'Looking for DMA (PNP0200) device...';
+
+  @override
+  String get logMsg307 => '=> DMA (PNP0200) device not found!';
+
+  @override
+  String logMsg308(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg309(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg310 => 'Checking for existence of _PTS method...';
+
+  @override
+  String logMsg311(String arg0) {
+    return '=> Method $arg0 found!';
+  }
+
+  @override
+  String get logMsg312 => '=> _PTS method not found!';
+
+  @override
+  String get logMsg313 => 'Checking for existence of _WAK method...';
+
+  @override
+  String logMsg314(String arg0) {
+    return '=> Method $arg0 found!';
+  }
+
+  @override
+  String get logMsg315 => '=> _WAK method not found!';
+
+  @override
+  String logMsg316(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String logMsg317(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg318 => 'Checking for existence of _SST method...';
+
+  @override
+  String logMsg319(String arg0) {
+    return '=> Found _SST method at $arg0!';
+  }
+
+  @override
+  String get logMsg320 => '=> _SST method not found!';
+
+  @override
+  String logMsg321(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String logMsg322(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg323 => 'Checking for presence of PNP0C0D device...';
+
+  @override
+  String logMsg324(String arg0) {
+    return '=> PNP0C0D device found at $arg0!';
+  }
+
+  @override
+  String get logMsg325 => '=> PNP0C0D device not found!';
+
+  @override
+  String logMsg326(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String logMsg327(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String logMsg328(String arg0) {
+    return 'Checking for existence of $arg0...';
+  }
+
+  @override
+  String logMsg329(String arg0, String arg1) {
+    return '=> Found $arg1 at $arg0';
+  }
+
+  @override
+  String logMsg330(String arg0, String arg1) {
+    return '=> Found $arg1 at $arg0';
+  }
+
+  @override
+  String logMsg331(String arg0) {
+    return '=> $arg0 not found';
+  }
+
+  @override
+  String get logMsg332 => 'All ACPI tables checked!';
+
+  @override
+  String get logMsg333 => '=> Support system state: [systemStatesFound]';
+
+  @override
+  String get logMsg334 =>
+      '=> The current firmware supports common system states! After fixing the sleep problem, macOS can support S3 sleep!';
+
+  @override
+  String get logMsg335 => 'Checking Low Power S0 Idle (V5) value...';
+
+  @override
+  String logMsg336(String arg0) {
+    return 'Get Low Power S0 Idle (V5): $arg0';
+  }
+
+  @override
+  String get logMsg337 =>
+      'It is not currently an AOAC machine and does not affect macOS system S3 sleep!';
+
+  @override
+  String get logMsg338 => 'Checking for existence of _S3...';
+
+  @override
+  String logMsg339(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String logMsg340(String arg0) {
+    return '=> Name _S3 found at $arg0!';
+  }
+
+  @override
+  String logMsg341(String arg0) {
+    return '=> Found Method _S3 at $arg0!';
+  }
+
+  @override
+  String get logMsg342 => '=> Name or Method _S3 not found';
+
+  @override
+  String logMsg343(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg344(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg345(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg346 => 'Looking for LID (PNP0C0D) device...';
+
+  @override
+  String logMsg347(String arg0) {
+    return '=> PNP0C0D device found at $arg0!';
+  }
+
+  @override
+  String get logMsg348 => '=> LID (PNP0C0D) device not found!';
+
+  @override
+  String logMsg349(String arg0) {
+    return '=> Found Method _LID at $arg0!';
+  }
+
+  @override
+  String get logMsg350 => '=> Method _LID not found!';
+
+  @override
+  String get logMsg351 => 'Checking for existence of _TTS method...';
+
+  @override
+  String logMsg352(String arg0) {
+    return '=> Method $arg0 found!';
+  }
+
+  @override
+  String get logMsg353 => '=> _TTS method not found!';
+
+  @override
+  String get logMsg354 => 'Checking for existence of ZTTS method...';
+
+  @override
+  String get logMsg355 => '=> ZTTS method not found!';
+
+  @override
+  String logMsg356(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String logMsg357(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg358 => 'Looking for PWRB (PNP0C0C) device...';
+
+  @override
+  String get logMsg359 => '=> PWRB (PNP0C0C) device not found!';
+
+  @override
+  String logMsg360(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg361(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg362 => 'Looking for SLPB (PNP0C0E) device...';
+
+  @override
+  String get logMsg363 => '=> SLPB (PNP0C0E) device not found!';
+
+  @override
+  String get logMsg364 =>
+      '=> The SLPB (PNP0C0E) device was not found in the above ACPI table! Just fake one! \\n';
+
+  @override
+  String logMsg365(String arg0) {
+    return 'Creating $arg0.sdl...';
+  }
+
+  @override
+  String logMsg366(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg367(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg368(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String get logMsg369 => 'Looking for PNP0C01 device...';
+
+  @override
+  String get logMsg370 => '=> PNP0C01 device not found!';
+
+  @override
+  String get logMsg371 =>
+      '=> The PNP0C01 device was not found in any of the above ACPI tables!\\n';
+
+  @override
+  String logMsg372(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg373 => 'Collecting XHC/XHCI/XDCI/CNVW devices...';
+
+  @override
+  String logMsg374(String arg0) {
+    return '=> Checking if $arg0 device supports PMEE...';
+  }
+
+  @override
+  String logMsg375(String arg0) {
+    return '=> $arg0 does not support PMEE, skipped';
+  }
+
+  @override
+  String logMsg376(String arg0) {
+    return '=> $arg0 supports PMEE';
+  }
+
+  @override
+  String logMsg377(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg378 => 'Checking for existence of GPRW method...';
+
+  @override
+  String get logMsg379 => 'Checking for existence of XPRW method...';
+
+  @override
+  String logMsg380(String arg0) {
+    return '=> GPRW method found at $arg0!';
+  }
+
+  @override
+  String logMsg381(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg382 => 'Checking for existence of UPRW method...';
+
+  @override
+  String get logMsg383 => 'Checking for existence of XPRW method...';
+
+  @override
+  String logMsg384(String arg0) {
+    return '=> UPRW method found at $arg0!';
+  }
+
+  @override
+  String logMsg385(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg386 => 'Checking for presence of GPI0 device...';
+
+  @override
+  String logMsg387(String arg0) {
+    return '=> GPI0 device found at $arg0!';
+  }
+
+  @override
+  String get logMsg388 => 'Checking for existence of _STA method...';
+
+  @override
+  String logMsg389(String arg0, String arg1) {
+    return '=> Found $arg1: _STA method at index $arg0!';
+  }
+
+  @override
+  String logMsg390(String arg0) {
+    return '=> Generate $arg0: _STA to XSTA patch';
+  }
+
+  @override
+  String logMsg391(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg392 => 'Determining CPU naming scheme...';
+
+  @override
+  String logMsg393(String arg0) {
+    return 'Checking $arg0…';
+  }
+
+  @override
+  String logMsg394(String arg0) {
+    return '=> Processor found: $arg0';
+  }
+
+  @override
+  String get logMsg395 => '=> No Processor object found...';
+
+  @override
+  String get logMsg396 => '=> ACPI0007 device not found…';
+
+  @override
+  String logMsg397(String arg0) {
+    return '=> $arg0 ACPI0007 devices found';
+  }
+
+  @override
+  String logMsg398(String arg0) {
+    return '=> Found parent device at $arg0, processing...';
+  }
+
+  @override
+  String logMsg399(String arg0) {
+    return '=> Checking $arg0…';
+  }
+
+  @override
+  String get logMsg400 => '=> Not found! jump over…';
+
+  @override
+  String get logMsg401 => '=> Not found! jump over…';
+
+  @override
+  String logMsg402(String arg0) {
+    return 'Processing $arg0 valid processor devices...';
+  }
+
+  @override
+  String logMsg403(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg404(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg405(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg406(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg407(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg408(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg409(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg410(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg411 => 'Collecting fake device-id schemes...';
+
+  @override
+  String logMsg412(String arg0) {
+    return '=> Counterfeit as 7 series motherboard IMEI (device-id: $arg0) to match the 3rd generation Ivy Bridge processor';
+  }
+
+  @override
+  String logMsg413(String arg0) {
+    return '=> Counterfeit as 6 series motherboard IMEI (device-id: $arg0) to match the 2nd generation Sandy Bridge processor';
+  }
+
+  @override
+  String logMsg414(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg415(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg416(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg417(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg418(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg419(String arg0) {
+    return 'Checking device $arg0 for an _ON or _OFF method...';
+  }
+
+  @override
+  String logMsg420(String arg0) {
+    return 'Checking device $arg0 for _PS3 or _DSM methods...';
+  }
+
+  @override
+  String logMsg421(String arg0) {
+    return 'Checking device $arg0...';
+  }
+
+  @override
+  String logMsg422(String arg0) {
+    return '=> The _PRT method corresponding to $arg0 was not found in DSDT or SSDT!';
+  }
+
+  @override
+  String logMsg423(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String logMsg424(String arg0, String arg1) {
+    return '=> $arg0 device path that needs to be blocked: $arg1';
+  }
+
+  @override
+  String logMsg425(String arg0) {
+    return '=> Shielding method: $arg0 method';
+  }
+
+  @override
+  String logMsg426(String arg0) {
+    return '=> Device relative path has been converted to absolute path: $arg0';
+  }
+
+  @override
+  String logMsg427(String arg0, String arg1, String arg2) {
+    return '=> Find $arg1.$arg2 method in $arg0';
+  }
+
+  @override
+  String logMsg428(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg429 => 'Collecting possible bus devices...';
+
+  @override
+  String logMsg430(String arg0) {
+    return 'Creating precompiled $arg0.dsl...';
+  }
+
+  @override
+  String logMsg431(String arg0) {
+    return 'Checking graphics device $arg0...';
+  }
+
+  @override
+  String logMsg432(String arg0) {
+    return '=> The _PRT method corresponding to $arg0 was not found in DSDT or SSDT!';
+  }
+
+  @override
+  String logMsg433(String arg0) {
+    return 'Creating $arg0.dsl...';
+  }
+
+  @override
+  String logMsg434(String arg0) {
+    return '=> Graphics card device path: $arg0';
+  }
+
+  @override
+  String logMsg435(String arg0) {
+    return '=> Counterfeit graphics card ID: $arg0';
+  }
+
+  @override
+  String logMsg436(String arg0) {
+    return '=> Counterfeit graphics card name: $arg0';
+  }
+
+  @override
+  String get logMsg437 => '=> Not found!';
+
+  @override
+  String logMsg438(String arg0) {
+    return '=> PCI path matched: $arg0';
+  }
+
+  @override
+  String logMsg439(String arg0, String arg1, String arg2) {
+    return '=> Update $arg0 \"$arg1\" to $arg2';
+  }
+
+  @override
+  String logMsg440(String arg0, String arg1, String arg2) {
+    return '=> $arg0 \"$arg1\" already exists in $arg2, skip...';
+  }
+
+  @override
+  String logMsg441(String arg0, String arg1, String arg2) {
+    return '=> Add $arg0 \"$arg1\" to $arg2';
+  }
+
+  @override
+  String logMsg442(String arg0, String arg1, String arg2) {
+    return '=> Update the value of key \"$arg0\" to \"$arg1\" in $arg2';
+  }
+
+  @override
+  String logMsg443(String arg0, String arg1) {
+    return '=> The value of key \"$arg0\" is already up to date, skipping $arg1';
+  }
+
+  @override
+  String logMsg444(String arg0, String arg1, String arg2) {
+    return '=> Add key \"$arg0\" value \"$arg1\" to $arg2';
+  }
+
+  @override
+  String logMsg445(String arg0) {
+    return 'Hardware reporting folder cleanup failed: $arg0';
+  }
+
+  @override
+  String get logMsg446 => 'Native ACPI table export failed';
+
+  @override
+  String logMsg447(String arg0) {
+    return 'Native ACPI table export failed: $arg0';
+  }
+
+  @override
+  String logMsg448(String arg0) {
+    return 'Native ACPI table export failed: $arg0';
+  }
+
+  @override
+  String logMsg449(String arg0) {
+    return 'ACPI table temporary directory cleanup failed: $arg0';
+  }
+
+  @override
+  String get logMsg450 => 'Exporting native hardware report...';
+
+  @override
+  String get logMsg451 => 'Exporting native ACPI tables...';
+
+  @override
+  String logMsg452(String arg0) {
+    return 'Native ACPI table export completed: $arg0';
+  }
+
+  @override
+  String logMsg453(String arg0) {
+    return 'Source file does not exist: $arg0';
+  }
+
+  @override
+  String logMsg454(String arg0) {
+    return 'Error saving file: $arg0';
+  }
+
+  @override
+  String logMsg455(String arg0) {
+    return 'Current OC version: $arg0';
+  }
+
+  @override
+  String logMsg456(String arg0) {
+    return 'ZIP file does not exist: $arg0';
+  }
+
+  @override
+  String logMsg457(String arg0) {
+    return '$arg0 file successfully decompressed';
+  }
+
+  @override
+  String logMsg458(String arg0, String arg1) {
+    return 'Error while decompressing file $arg0: $arg1';
+  }
+
+  @override
+  String logMsg459(String arg0) {
+    return 'File or directory does not exist: $arg0';
+  }
+
+  @override
+  String logMsg460(String arg0) {
+    return 'Compression completed: $arg0';
+  }
+
+  @override
+  String logMsg461(String arg0) {
+    return 'Compression error: $arg0';
+  }
+
+  @override
+  String logMsg462(String arg0) {
+    return 'Delete directory: $arg0';
+  }
+
+  @override
+  String logMsg463(String arg0) {
+    return 'Delete file: $arg0';
+  }
+
+  @override
+  String logMsg464(String arg0, String arg1) {
+    return 'Delete failed: $arg0, $arg1';
+  }
+
+  @override
+  String logMsg465(String arg0) {
+    return 'File successfully saved to: $arg0';
+  }
+
+  @override
+  String logMsg466(String arg0) {
+    return 'Source directory does not exist: $arg0';
+  }
+
+  @override
+  String logMsg467(String arg0) {
+    return 'Folder prepared: $arg0';
+  }
+
+  @override
+  String logMsg468(String arg0) {
+    return 'Error creating folder: $arg0';
+  }
+
+  @override
+  String logMsg469(String arg0) {
+    return 'Failed to open directory, path does not exist: $arg0';
+  }
+
+  @override
+  String logMsg470(String arg0, String arg1) {
+    return 'Failed to open directory: $arg0, $arg1';
+  }
 }

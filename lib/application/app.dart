@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:rapidefi/l10n/app_localizations.dart';
+import 'package:rapidefi/l10n/l10n_helper.dart';
 
 
 import 'package:flutter/services.dart';
@@ -17,6 +18,7 @@ import 'package:rapidefi/pages/process_page.dart';
 import 'package:rapidefi/pages/settings/setting_page.dart';
 import 'package:rapidefi/pages/ssdt_tab_page.dart';
 import 'package:rapidefi/pages/tahoe/tahoe_guide.dart';
+import 'package:rapidefi/pages/app_guide_page.dart';
 import 'package:rapidefi/utils/constant.dart';
 import 'package:rapidefi/utils/device_util.dart';
 import 'package:rapidefi/utils/image_util.dart';
@@ -149,6 +151,7 @@ class _AppChrome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalLocalizations.init(context);
     _syncAndroidSystemUi(context);
 
     return Directionality(
@@ -238,6 +241,7 @@ class _AppState extends State<App> {
       _paneItem(l10n, _mainNavDestinations[3]),
       _paneItem(l10n, _mainNavDestinations[4]),
       _paneItem(l10n, _mainNavDestinations[5]),
+      _paneItem(l10n, _mainNavDestinations[6]),
     ];
 
     final footerItems = [
@@ -545,6 +549,12 @@ final List<_NavDestination> _mainNavDestinations = [
     icon: FluentIcons.system,
     titleGetter: (l10n) => l10n.navTahoeGuide,
   ),
+  _NavDestination(
+    index: 6,
+    path: '/guide',
+    icon: FluentIcons.book_answers,
+    titleGetter: (l10n) => l10n.navAppGuide,
+  ),
 ];
 
 final List<_NavDestination> _footerNavDestinations = [
@@ -576,6 +586,9 @@ final GlobalKey<NavigatorState> _processNavigatorKey =
 
 final GlobalKey<NavigatorState> _ssdtNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'ssdtBranchNavigator');
+
+final GlobalKey<NavigatorState> _appGuideNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'appGuideBranchNavigator');
 
 final GlobalKey<NavigatorState> _oclpNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'oclpBranchNavigator');
@@ -640,6 +653,15 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: '/oclp',
               builder: (context, state) => const OCLPTabPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _appGuideNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/guide',
+              builder: (context, state) => const AppGuidePage(),
             ),
           ],
         ),

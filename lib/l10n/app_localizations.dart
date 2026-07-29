@@ -3815,6 +3815,2838 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Some OEM motherboards have USB ownership release issues: EHCI Hand-off failure'**
   String get mbOemUsb;
+
+  /// No description provided for @navAppGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'App Guide'**
+  String get navAppGuide;
+
+  /// No description provided for @appGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'RapidEFI User Guide'**
+  String get appGuideTitle;
+
+  /// No description provided for @logMsg001.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Failed to find LPC(B)! Operation terminated!'**
+  String get logMsg001;
+
+  /// No description provided for @logMsg002.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid DSDT found! Please select a DSDT file or a file directory containing DSDT first!'**
+  String get logMsg002;
+
+  /// No description provided for @logMsg003.
+  ///
+  /// In en, this message translates to:
+  /// **'The iasl tool preparation failed! Please update or use the built-in iasl tool first!'**
+  String get logMsg003;
+
+  /// No description provided for @logMsg004.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid .aml file found!\\n'**
+  String get logMsg004;
+
+  /// No description provided for @logMsg005.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid DSDT found! Please select a DSDT file or a file directory containing DSDT first!'**
+  String get logMsg005;
+
+  /// No description provided for @logMsg006.
+  ///
+  /// In en, this message translates to:
+  /// **'Multiple DSDT files are currently detected and only one is allowed to be processed at a time. Please keep one DSDT file and remove the others and try again.\\n'**
+  String get logMsg006;
+
+  /// No description provided for @logMsg007.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid DSDT file! Please reselect a valid DSDT file!'**
+  String get logMsg007;
+
+  /// No description provided for @logMsg008.
+  ///
+  /// In en, this message translates to:
+  /// **'{arg0} Decompilation failed!\\n'**
+  String logMsg008(String arg0);
+
+  /// No description provided for @logMsg009.
+  ///
+  /// In en, this message translates to:
+  /// **'Compilation result: {arg0}'**
+  String logMsg009(String arg0);
+
+  /// No description provided for @logMsg010.
+  ///
+  /// In en, this message translates to:
+  /// **'Error occurred while processing IntObj type: {arg0}'**
+  String logMsg010(String arg0);
+
+  /// No description provided for @logMsg011.
+  ///
+  /// In en, this message translates to:
+  /// **'Error processing MethodObj type: {arg0}'**
+  String logMsg011(String arg0);
+
+  /// No description provided for @logMsg012.
+  ///
+  /// In en, this message translates to:
+  /// **'No IRQ information found!'**
+  String get logMsg012;
+
+  /// No description provided for @logMsg013.
+  ///
+  /// In en, this message translates to:
+  /// **'The current options or custom IRQs are empty! Unable to generate IRQ patch!'**
+  String get logMsg013;
+
+  /// No description provided for @logMsg014.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No IRQ information found!'**
+  String get logMsg014;
+
+  /// No description provided for @logMsg015.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom IRQ list format wrong! ! ! Separate devices with spaces and IRQs with commas! ! !'**
+  String get logMsg015;
+
+  /// No description provided for @logMsg016.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _HID parsing error: {arg0}'**
+  String logMsg016(String arg0);
+
+  /// No description provided for @logMsg017.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid device found, skipping HPET operation!'**
+  String get logMsg017;
+
+  /// No description provided for @logMsg018.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid IRQs were provided or the IRQs are empty! Operation aborted!'**
+  String get logMsg018;
+
+  /// No description provided for @logMsg019.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to locate {arg0}._CRS! Operation terminated!'**
+  String logMsg019(String arg0);
+
+  /// No description provided for @logMsg020.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to locate {arg0}._CRS!'**
+  String logMsg020(String arg0);
+
+  /// No description provided for @logMsg021.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _CRS appears to have been named XCRS!'**
+  String get logMsg021;
+
+  /// No description provided for @logMsg022.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Please disable the renaming of the device from _CRS to XCRS in DSDT and try again after restarting!\\n'**
+  String get logMsg022;
+
+  /// No description provided for @logMsg023.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to determine memory access type!'**
+  String get logMsg023;
+
+  /// No description provided for @logMsg024.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Cannot convert Base or Length to integer!'**
+  String get logMsg024;
+
+  /// No description provided for @logMsg025.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found!'**
+  String get logMsg025;
+
+  /// No description provided for @logMsg026.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Use default value {arg0} => {arg1}'**
+  String logMsg026(String arg0, String arg1);
+
+  /// No description provided for @logMsg027.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found!'**
+  String get logMsg027;
+
+  /// No description provided for @logMsg028.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Nothing to patch!'**
+  String get logMsg028;
+
+  /// No description provided for @logMsg029.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing IRQ patch ending ({arg1}) for {arg0}! Skipped…'**
+  String logMsg029(String arg0, String arg1);
+
+  /// No description provided for @logMsg030.
+  ///
+  /// In en, this message translates to:
+  /// **'The following may not be unique and are disabled by default! \\n'**
+  String get logMsg030;
+
+  /// No description provided for @logMsg031.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid UID provided, abort operation!'**
+  String get logMsg031;
+
+  /// No description provided for @logMsg032.
+  ///
+  /// In en, this message translates to:
+  /// **'{arg0} is a custom UID that may require manual customization or may not be supported at all!'**
+  String logMsg032(String arg0);
+
+  /// No description provided for @logMsg033.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid iGPU path found in passed ACPI table!\\n'**
+  String get logMsg033;
+
+  /// No description provided for @logMsg034.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: iGPU path is guessed as {arg0}\\n Please verify before use!'**
+  String logMsg034(String arg0);
+
+  /// No description provided for @logMsg035.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: The iGPU path has been manually set to {arg0}. Please be sure to confirm whether the path is correct before use!'**
+  String logMsg035(String arg0);
+
+  /// No description provided for @logMsg036.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Named EC device found, no need to counterfeit!\\n'**
+  String get logMsg036;
+
+  /// No description provided for @logMsg037.
+  ///
+  /// In en, this message translates to:
+  /// **'USBX attribute patch cannot be empty! Operation terminated!'**
+  String get logMsg037;
+
+  /// No description provided for @logMsg038.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid processor device found!'**
+  String get logMsg038;
+
+  /// No description provided for @logMsg039.
+  ///
+  /// In en, this message translates to:
+  /// **'=> A valid PNP0B00 (RTC) device has been found and verified, no patch or SSDT required! Operation terminated!'**
+  String get logMsg039;
+
+  /// No description provided for @logMsg040.
+  ///
+  /// In en, this message translates to:
+  /// **'=> ACPI000E (AWAC) device not found, no patch or SSDT required! Operation terminated!'**
+  String get logMsg040;
+
+  /// No description provided for @logMsg041.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No device found! Operation terminated!'**
+  String get logMsg041;
+
+  /// No description provided for @logMsg042.
+  ///
+  /// In en, this message translates to:
+  /// **'No match found for the following path:'**
+  String get logMsg042;
+
+  /// No description provided for @logMsg043.
+  ///
+  /// In en, this message translates to:
+  /// **'No matches found!'**
+  String get logMsg043;
+
+  /// No description provided for @logMsg044.
+  ///
+  /// In en, this message translates to:
+  /// **'Note that the device path must start with the following PciRoot() to match the current ACPI table:'**
+  String get logMsg044;
+
+  /// No description provided for @logMsg045.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found, does not appear to be a valid {arg0} table!\\n'**
+  String logMsg045(String arg0);
+
+  /// No description provided for @logMsg046.
+  ///
+  /// In en, this message translates to:
+  /// **'{arg0} value not found! Operation aborted!'**
+  String logMsg046(String arg0);
+
+  /// No description provided for @logMsg047.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Register Address value not found! Operation aborted!'**
+  String get logMsg047;
+
+  /// No description provided for @logMsg048.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to resolve Processor ID in {arg0}, aborting patching'**
+  String logMsg048(String arg0);
+
+  /// No description provided for @logMsg049.
+  ///
+  /// In en, this message translates to:
+  /// **'First CPU in {arg0} already matched, no need to patch the APIC table!'**
+  String logMsg049(String arg0);
+
+  /// No description provided for @logMsg050.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No match for Processor found! Operation aborted!'**
+  String get logMsg050;
+
+  /// No description provided for @logMsg051.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select IMEI patch!'**
+  String get logMsg051;
+
+  /// No description provided for @logMsg052.
+  ///
+  /// In en, this message translates to:
+  /// **'=> IMEI device found at {arg0}, no need to bridge for spoofing! Operation aborted!'**
+  String logMsg052(String arg0);
+
+  /// No description provided for @logMsg053.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PCI root device not found! Operation aborted!'**
+  String get logMsg053;
+
+  /// No description provided for @logMsg054.
+  ///
+  /// In en, this message translates to:
+  /// **'=> SSDT spoofing IMEI is not enabled, device-id must be set via DeviceProperties!'**
+  String get logMsg054;
+
+  /// No description provided for @logMsg055.
+  ///
+  /// In en, this message translates to:
+  /// **'UNC (PNP0A03) device not found! No SSDT-UNC patch required! Operation aborted! \\n'**
+  String get logMsg055;
+
+  /// No description provided for @logMsg056.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0}: _STA method does not exist!'**
+  String logMsg056(String arg0);
+
+  /// No description provided for @logMsg057.
+  ///
+  /// In en, this message translates to:
+  /// **'=> DMA (PNP0200) device not found in any of the above ACPI tables! Operation aborted! \\n'**
+  String get logMsg057;
+
+  /// No description provided for @logMsg058.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The _PTS method is not found, the _PTS scheduling entry and rename patch will not be generated!'**
+  String get logMsg058;
+
+  /// No description provided for @logMsg059.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The _WAK method is not found, the _WAK scheduling entry and rename patch will not be generated!'**
+  String get logMsg059;
+
+  /// No description provided for @logMsg060.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Scheduleable _PTS/_WAK method not found, SSDT-SleepHook skipped!\\n'**
+  String get logMsg060;
+
+  /// No description provided for @logMsg061.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _SST method not found in any of the above ACPI tables! Operation aborted! \\n'**
+  String get logMsg061;
+
+  /// No description provided for @logMsg062.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The PNP0C0D device was not found in any of the above ACPI tables! Operation aborted! \\n'**
+  String get logMsg062;
+
+  /// No description provided for @logMsg063.
+  ///
+  /// In en, this message translates to:
+  /// **'=> System state is not supported: [systemStatesNotSupported]'**
+  String get logMsg063;
+
+  /// No description provided for @logMsg064.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Note: The current firmware does not support the _S3 state. If the BIOS setting does not disable the S3 function, then the machine does not support S3 sleep!'**
+  String get logMsg064;
+
+  /// No description provided for @logMsg065.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Note: This is an AOAC machine, and macOS does not support S3 sleep!'**
+  String get logMsg065;
+
+  /// No description provided for @logMsg066.
+  ///
+  /// In en, this message translates to:
+  /// **'=> It is currently not detected whether it is an AOAC machine, please confirm by yourself!'**
+  String get logMsg066;
+
+  /// No description provided for @logMsg067.
+  ///
+  /// In en, this message translates to:
+  /// **'Low Power S0 Idle (V5) value not found!'**
+  String get logMsg067;
+
+  /// No description provided for @logMsg068.
+  ///
+  /// In en, this message translates to:
+  /// **'Currently an AOAC machine, macOS does not support S3 sleep!'**
+  String get logMsg068;
+
+  /// No description provided for @logMsg069.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Name or Method _S3 not found, the current configuration does not support S3 sleep! The operation has been terminated!'**
+  String get logMsg069;
+
+  /// No description provided for @logMsg070.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Method {arg0} found!'**
+  String logMsg070(String arg0);
+
+  /// No description provided for @logMsg071.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The current method has been renamed and may not be the original ACPI table! Please re-obtain the original ACPI table and try again!\\n'**
+  String get logMsg071;
+
+  /// No description provided for @logMsg072.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The LID (PNP0C0D) device was not found in any of the above ACPI tables! Operation terminated!\\n'**
+  String get logMsg072;
+
+  /// No description provided for @logMsg073.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Method _LID was not found in any of the above ACPI tables! Operation terminated!\\n'**
+  String get logMsg073;
+
+  /// No description provided for @logMsg074.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The PWRB (PNP0C0C) device was not found in the above ACPI table! Just fake one! \\n'**
+  String get logMsg074;
+
+  /// No description provided for @logMsg075.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No need to counterfeit SLPB device, PNP0C0E device has been found at {arg0}!'**
+  String logMsg075(String arg0);
+
+  /// No description provided for @logMsg076.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PNP0C0E Device {arg0} has _STA method!'**
+  String logMsg076(String arg0);
+
+  /// No description provided for @logMsg077.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PNP0C0E Device {arg0} does not exist _STA method!'**
+  String logMsg077(String arg0);
+
+  /// No description provided for @logMsg078.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No matching XHC/XHCI/XDCI/CNVW devices found! Operation terminated! \\n'**
+  String get logMsg078;
+
+  /// No description provided for @logMsg079.
+  ///
+  /// In en, this message translates to:
+  /// **'=> GPRW method not found!'**
+  String get logMsg079;
+
+  /// No description provided for @logMsg080.
+  ///
+  /// In en, this message translates to:
+  /// **'=> XPRW method found! The current method has been renamed and may not be the original ACPI table! Please re-obtain the original ACPI table and try again!\\n'**
+  String get logMsg080;
+
+  /// No description provided for @logMsg081.
+  ///
+  /// In en, this message translates to:
+  /// **'=> XPRW method not found! Operation terminated!'**
+  String get logMsg081;
+
+  /// No description provided for @logMsg082.
+  ///
+  /// In en, this message translates to:
+  /// **'=> UPRW method not found!'**
+  String get logMsg082;
+
+  /// No description provided for @logMsg083.
+  ///
+  /// In en, this message translates to:
+  /// **'=> XPRW method found! The current method has been renamed and may not be the original ACPI table! Please re-obtain the original ACPI table and try again!\\n'**
+  String get logMsg083;
+
+  /// No description provided for @logMsg084.
+  ///
+  /// In en, this message translates to:
+  /// **'=> XPRW method not found! Operation terminated!'**
+  String get logMsg084;
+
+  /// No description provided for @logMsg085.
+  ///
+  /// In en, this message translates to:
+  /// **'=> GPI0 device not found! Operation terminated! \\n'**
+  String get logMsg085;
+
+  /// No description provided for @logMsg086.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _STA method not found! Operation terminated! \\n'**
+  String get logMsg086;
+
+  /// No description provided for @logMsg087.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The current Processor processor naming scheme complies with the CPU naming specification! No need for this SSDT! The operation has been terminated!'**
+  String get logMsg087;
+
+  /// No description provided for @logMsg088.
+  ///
+  /// In en, this message translates to:
+  /// **'=> There is no PLTF device, the current Intel platform does not require this SSDT! The operation has been terminated...'**
+  String get logMsg088;
+
+  /// No description provided for @logMsg089.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No CPU device meeting the requirements was found, no SSDT-CPUR patch required! Operation terminated!'**
+  String get logMsg089;
+
+  /// No description provided for @logMsg090.
+  ///
+  /// In en, this message translates to:
+  /// **'=> SSDT spoofing IMEI is not enabled, device-id must be set via DeviceProperties!'**
+  String get logMsg090;
+
+  /// No description provided for @logMsg091.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid ACPI device path provided! Operation aborted!'**
+  String get logMsg091;
+
+  /// No description provided for @logMsg092.
+  ///
+  /// In en, this message translates to:
+  /// **'The corresponding _ON or _OFF method for {arg0} was not found in DSDT or SSDT! Operation aborted!'**
+  String logMsg092(String arg0);
+
+  /// No description provided for @logMsg093.
+  ///
+  /// In en, this message translates to:
+  /// **'The _PS3 or _DSM method corresponding to {arg0} was not found in the DSDT or SSDT! Operation aborted!'**
+  String logMsg093(String arg0);
+
+  /// No description provided for @logMsg094.
+  ///
+  /// In en, this message translates to:
+  /// **'=> There is a _PRT method for device {arg0}, which may have hidden the real device and will inject a BRG0 bridge device!'**
+  String logMsg094(String arg0);
+
+  /// No description provided for @logMsg095.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Device {arg0} does not exist!'**
+  String logMsg095(String arg0);
+
+  /// No description provided for @logMsg096.
+  ///
+  /// In en, this message translates to:
+  /// **'Current device path {arg0} may hide the real device!'**
+  String logMsg096(String arg0);
+
+  /// No description provided for @logMsg097.
+  ///
+  /// In en, this message translates to:
+  /// **'=> There is an overflow in the _ADR address of the graphics card device {arg0}!'**
+  String logMsg097(String arg0);
+
+  /// No description provided for @logMsg098.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Backtrack to the parent device path: {arg0} and inject a BRG0 bridge device!'**
+  String logMsg098(String arg0);
+
+  /// No description provided for @logMsg099.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown masking method: {arg0}, operation aborted.'**
+  String logMsg099(String arg0);
+
+  /// No description provided for @logMsg100.
+  ///
+  /// In en, this message translates to:
+  /// **'Some methods not found: {arg0}'**
+  String logMsg100(String arg0);
+
+  /// No description provided for @logMsg101.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to find a valid bus device, the operation has been terminated!'**
+  String get logMsg101;
+
+  /// No description provided for @logMsg102.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid graphics card ACPI path provided! Operation terminated!'**
+  String get logMsg102;
+
+  /// No description provided for @logMsg103.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid counterfeit graphics card ID provided! Operation terminated!'**
+  String get logMsg103;
+
+  /// No description provided for @logMsg104.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid counterfeit graphics card name provided! No counterfeit names will be injected!'**
+  String get logMsg104;
+
+  /// No description provided for @logMsg105.
+  ///
+  /// In en, this message translates to:
+  /// **'Current graphics card path {arg0} may hide the real device!'**
+  String logMsg105(String arg0);
+
+  /// No description provided for @logMsg106.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Device {arg0} has a _PRT method, which may have hidden the real device and will inject a GFX0 device!'**
+  String logMsg106(String arg0);
+
+  /// No description provided for @logMsg107.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Device {arg0} not found in DSDT or SSDT! Operation aborted!'**
+  String logMsg107(String arg0);
+
+  /// No description provided for @logMsg108.
+  ///
+  /// In en, this message translates to:
+  /// **'=> There is an overflow in the _ADR address of the graphics card device {arg0}!'**
+  String logMsg108(String arg0);
+
+  /// No description provided for @logMsg109.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Backtrack to the parent device path: {arg0} and inject a GFX0 device!'**
+  String logMsg109(String arg0);
+
+  /// No description provided for @logMsg110.
+  ///
+  /// In en, this message translates to:
+  /// **'There is an address _ADR overflow in the device path!'**
+  String get logMsg110;
+
+  /// No description provided for @logMsg111.
+  ///
+  /// In en, this message translates to:
+  /// **'The following devices may affect property injection:'**
+  String get logMsg111;
+
+  /// No description provided for @logMsg112.
+  ///
+  /// In en, this message translates to:
+  /// **'Locating LPC(B)/SBRG…'**
+  String get logMsg112;
+
+  /// No description provided for @logMsg113.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg1} found in {arg0}'**
+  String logMsg113(String arg0, String arg1);
+
+  /// No description provided for @logMsg114.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg1} found in {arg0}'**
+  String logMsg114(String arg0, String arg1);
+
+  /// No description provided for @logMsg115.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg1} found in {arg0}'**
+  String logMsg115(String arg0, String arg1);
+
+  /// No description provided for @logMsg116.
+  ///
+  /// In en, this message translates to:
+  /// **'DSDT path provided: {arg0}'**
+  String logMsg116(String arg0);
+
+  /// No description provided for @logMsg117.
+  ///
+  /// In en, this message translates to:
+  /// **'The supplied DSDT path is invalid: {arg0}'**
+  String logMsg117(String arg0);
+
+  /// No description provided for @logMsg118.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting valid ACPI tables from directory {arg0}...'**
+  String logMsg118(String arg0);
+
+  /// No description provided for @logMsg119.
+  ///
+  /// In en, this message translates to:
+  /// **'A total of {arg0} ACPI tables were found, of which {arg1} are valid:'**
+  String logMsg119(String arg0, String arg1);
+
+  /// No description provided for @logMsg120.
+  ///
+  /// In en, this message translates to:
+  /// **'Several files with DSDT signatures were verified:'**
+  String get logMsg120;
+
+  /// No description provided for @logMsg121.
+  ///
+  /// In en, this message translates to:
+  /// **'About to decompile {arg0} to verify if pre-made patches need to be applied...'**
+  String logMsg121(String arg0);
+
+  /// No description provided for @logMsg122.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No need to apply pre-made patches!\\n'**
+  String get logMsg122;
+
+  /// No description provided for @logMsg123.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading {arg0}...'**
+  String logMsg123(String arg0);
+
+  /// No description provided for @logMsg124.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing completed!\\n'**
+  String get logMsg124;
+
+  /// No description provided for @logMsg125.
+  ///
+  /// In en, this message translates to:
+  /// **'The file or folder passed in does not exist!\\n'**
+  String get logMsg125;
+
+  /// No description provided for @logMsg126.
+  ///
+  /// In en, this message translates to:
+  /// **'Handling problematic DSDT files...'**
+  String get logMsg126;
+
+  /// No description provided for @logMsg127.
+  ///
+  /// In en, this message translates to:
+  /// **'Check available pre-made patches…'**
+  String get logMsg127;
+
+  /// No description provided for @logMsg128.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading {arg0} file into memory...'**
+  String logMsg128(String arg0);
+
+  /// No description provided for @logMsg129.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing patches one by one...\\n'**
+  String get logMsg129;
+
+  /// No description provided for @logMsg130.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Positioned, applying…'**
+  String get logMsg130;
+
+  /// No description provided for @logMsg131.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The DSDT file from the previous question was decompiled successfully!'**
+  String get logMsg131;
+
+  /// No description provided for @logMsg132.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The patch has been applied to the modified file and the file is saved in the Results folder:\\n {arg0}'**
+  String logMsg132(String arg0);
+
+  /// No description provided for @logMsg133.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading valid ACPI tables in {arg0}...'**
+  String logMsg133(String arg0);
+
+  /// No description provided for @logMsg134.
+  ///
+  /// In en, this message translates to:
+  /// **'Decompilation of all valid ACPI tables completed!'**
+  String get logMsg134;
+
+  /// No description provided for @logMsg135.
+  ///
+  /// In en, this message translates to:
+  /// **'Total time taken: {arg0} seconds\\n'**
+  String logMsg135(String arg0);
+
+  /// No description provided for @logMsg136.
+  ///
+  /// In en, this message translates to:
+  /// **'Compiling {arg0}.aml successfully!'**
+  String logMsg136(String arg0);
+
+  /// No description provided for @logMsg137.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {arg0}.dsl source file'**
+  String logMsg137(String arg0);
+
+  /// No description provided for @logMsg138.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Scope not found for device {arg0}'**
+  String logMsg138(String arg0);
+
+  /// No description provided for @logMsg139.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to locate {arg0}'**
+  String logMsg139(String arg0);
+
+  /// No description provided for @logMsg140.
+  ///
+  /// In en, this message translates to:
+  /// **'Locating {arg0} ({arg1}) device...'**
+  String logMsg140(String arg0, String arg1);
+
+  /// No description provided for @logMsg141.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to target any {arg0} devices'**
+  String logMsg141(String arg0);
+
+  /// No description provided for @logMsg142.
+  ///
+  /// In en, this message translates to:
+  /// **'=> found {arg0}'**
+  String logMsg142(String arg0);
+
+  /// No description provided for @logMsg143.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Looking for verification _STA…'**
+  String get logMsg143;
+
+  /// No description provided for @logMsg144.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _STA has been renamed to XSTA! Skip other checks…'**
+  String get logMsg144;
+
+  /// No description provided for @logMsg145.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Please disable the renaming of the device from _STA to XSTA in DSDT and try again after restarting!\\n'**
+  String get logMsg145;
+
+  /// No description provided for @logMsg146.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} variable {arg1}'**
+  String logMsg146(String arg0, String arg1);
+
+  /// No description provided for @logMsg147.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _STA method/name not found'**
+  String get logMsg147;
+
+  /// No description provided for @logMsg148.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found _STA method at index {arg0}!'**
+  String logMsg148(String arg0);
+
+  /// No description provided for @logMsg149.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Generating _STA to XSTA rename'**
+  String get logMsg149;
+
+  /// No description provided for @logMsg150.
+  ///
+  /// In en, this message translates to:
+  /// **'=> There are multiple return statements, or the return value is not Return (0x0F)'**
+  String get logMsg150;
+
+  /// No description provided for @logMsg151.
+  ///
+  /// In en, this message translates to:
+  /// **'Gathering ACPI device information...'**
+  String get logMsg151;
+
+  /// No description provided for @logMsg152.
+  ///
+  /// In en, this message translates to:
+  /// **'Gathering ACPI device paths...'**
+  String get logMsg152;
+
+  /// No description provided for @logMsg153.
+  ///
+  /// In en, this message translates to:
+  /// **'Rechecking orphaned devices...'**
+  String get logMsg153;
+
+  /// No description provided for @logMsg154.
+  ///
+  /// In en, this message translates to:
+  /// **'Current custom IRQs: {arg0}'**
+  String logMsg154(String arg0);
+
+  /// No description provided for @logMsg155.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Example: RTC:0 IPIC:2 TMR:8,11 \\n'**
+  String get logMsg155;
+
+  /// No description provided for @logMsg156.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found _HID: {arg0}'**
+  String logMsg156(String arg0);
+
+  /// No description provided for @logMsg157.
+  ///
+  /// In en, this message translates to:
+  /// **'Locating PNP0103 (HPET) device…'**
+  String get logMsg157;
+
+  /// No description provided for @logMsg158.
+  ///
+  /// In en, this message translates to:
+  /// **'=> positioned at {arg0}'**
+  String logMsg158(String arg0);
+
+  /// No description provided for @logMsg159.
+  ///
+  /// In en, this message translates to:
+  /// **'Locating _CRS method/name for HPET...'**
+  String get logMsg159;
+
+  /// No description provided for @logMsg160.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Located at {arg0}._CRS'**
+  String logMsg160(String arg0);
+
+  /// No description provided for @logMsg161.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found at index: {arg0}'**
+  String logMsg161(String arg0);
+
+  /// No description provided for @logMsg162.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Type: {arg0}'**
+  String logMsg162(String arg0);
+
+  /// No description provided for @logMsg163.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Checking Memory32Fixed…'**
+  String get logMsg163;
+
+  /// No description provided for @logMsg164.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Get {arg0} {arg1} => {arg2}'**
+  String logMsg164(String arg0, String arg1, String arg2);
+
+  /// No description provided for @logMsg165.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating IRQ patch...'**
+  String get logMsg165;
+
+  /// No description provided for @logMsg166.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking IRQ…'**
+  String get logMsg166;
+
+  /// No description provided for @logMsg167.
+  ///
+  /// In en, this message translates to:
+  /// **'IRQ is empty! Skip...\\n'**
+  String get logMsg167;
+
+  /// No description provided for @logMsg168.
+  ///
+  /// In en, this message translates to:
+  /// **'No match found.'**
+  String get logMsg168;
+
+  /// No description provided for @logMsg169.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg169(String arg0);
+
+  /// No description provided for @logMsg170.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating a fake HPET device...'**
+  String get logMsg170;
+
+  /// No description provided for @logMsg171.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg171(String arg0);
+
+  /// No description provided for @logMsg172.
+  ///
+  /// In en, this message translates to:
+  /// **'=> UID used: {arg0}'**
+  String logMsg172(String arg0);
+
+  /// No description provided for @logMsg173.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Applicable platforms: {arg0}'**
+  String logMsg173(String arg0);
+
+  /// No description provided for @logMsg174.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid iGPU path provided, trying to find automatically...'**
+  String get logMsg174;
+
+  /// No description provided for @logMsg175.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for iGPU device at 0x00020000…'**
+  String get logMsg175;
+
+  /// No description provided for @logMsg176.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg176(String arg0);
+
+  /// No description provided for @logMsg177.
+  ///
+  /// In en, this message translates to:
+  /// **'=> iGPU device found at {arg0}!'**
+  String logMsg177(String arg0);
+
+  /// No description provided for @logMsg178.
+  ///
+  /// In en, this message translates to:
+  /// **'iGPU device not found by address!'**
+  String get logMsg178;
+
+  /// No description provided for @logMsg179.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching for common iGPU names…'**
+  String get logMsg179;
+
+  /// No description provided for @logMsg180.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg180(String arg0);
+
+  /// No description provided for @logMsg181.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Possible iGPU device found at {arg0}'**
+  String logMsg181(String arg0);
+
+  /// No description provided for @logMsg182.
+  ///
+  /// In en, this message translates to:
+  /// **'Possible iGPU device found at {arg0}\\n'**
+  String logMsg182(String arg0);
+
+  /// No description provided for @logMsg183.
+  ///
+  /// In en, this message translates to:
+  /// **'It has been manually set to {arg0} according to the given iGPU path \\n'**
+  String logMsg183(String arg0);
+
+  /// No description provided for @logMsg184.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid iGPU path: {arg0}'**
+  String logMsg184(String arg0);
+
+  /// No description provided for @logMsg185.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking ACPI table for native PNLF device...'**
+  String get logMsg185;
+
+  /// No description provided for @logMsg186.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Native PNLF device found at {arg0}: {arg1}'**
+  String logMsg186(String arg0, String arg1);
+
+  /// No description provided for @logMsg187.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Native PNLF needs to be renamed to XNLF, renaming patch is being generated...'**
+  String get logMsg187;
+
+  /// No description provided for @logMsg188.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Native PNLF device not found!'**
+  String get logMsg188;
+
+  /// No description provided for @logMsg189.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No need to generate PNLF to XNLF rename patch!'**
+  String get logMsg189;
+
+  /// No description provided for @logMsg190.
+  ///
+  /// In en, this message translates to:
+  /// **'Name (NBCF, 0x00) detected in {arg0}, generating patch...'**
+  String logMsg190(String arg0);
+
+  /// No description provided for @logMsg191.
+  ///
+  /// In en, this message translates to:
+  /// **'Name (NBCF, Zero) detected in {arg0}, generating patch...'**
+  String logMsg191(String arg0);
+
+  /// No description provided for @logMsg192.
+  ///
+  /// In en, this message translates to:
+  /// **'Locating PNP0C09(EC) device...'**
+  String get logMsg192;
+
+  /// No description provided for @logMsg193.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg1} PNP0C09 (EC) devices found at {arg0}'**
+  String logMsg193(String arg0, String arg1);
+
+  /// No description provided for @logMsg194.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Verifying...'**
+  String get logMsg194;
+
+  /// No description provided for @logMsg195.
+  ///
+  /// In en, this message translates to:
+  /// **'=> found {arg0}'**
+  String logMsg195(String arg0);
+
+  /// No description provided for @logMsg196.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PNP0C09 (EC) device named EC, renaming in progress'**
+  String get logMsg196;
+
+  /// No description provided for @logMsg197.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Valid PNP0C09 (EC) device'**
+  String get logMsg197;
+
+  /// No description provided for @logMsg198.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _STA is correctly enabled, skipping rename'**
+  String get logMsg198;
+
+  /// No description provided for @logMsg199.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Invalid PNP0C09 (EC) device'**
+  String get logMsg199;
+
+  /// No description provided for @logMsg200.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No valid PNP0C09 (EC) device found, just fake an EC device'**
+  String get logMsg200;
+
+  /// No description provided for @logMsg201.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl…'**
+  String logMsg201(String arg0);
+
+  /// No description provided for @logMsg202.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg202(String arg0);
+
+  /// No description provided for @logMsg203.
+  ///
+  /// In en, this message translates to:
+  /// **'Determining CPU naming scheme...'**
+  String get logMsg203;
+
+  /// No description provided for @logMsg204.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg204(String arg0);
+
+  /// No description provided for @logMsg205.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Processor found: {arg0}'**
+  String logMsg205(String arg0);
+
+  /// No description provided for @logMsg206.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg206(String arg0);
+
+  /// No description provided for @logMsg207.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No Processor object found...'**
+  String get logMsg207;
+
+  /// No description provided for @logMsg208.
+  ///
+  /// In en, this message translates to:
+  /// **'=> ACPI0007 device not found…'**
+  String get logMsg208;
+
+  /// No description provided for @logMsg209.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} ACPI0007 devices found'**
+  String logMsg209(String arg0);
+
+  /// No description provided for @logMsg210.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found parent device at {arg0}, processing...'**
+  String logMsg210(String arg0);
+
+  /// No description provided for @logMsg211.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Checking {arg0}…'**
+  String logMsg211(String arg0);
+
+  /// No description provided for @logMsg212.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found! jump over…'**
+  String get logMsg212;
+
+  /// No description provided for @logMsg213.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found! jump over…'**
+  String get logMsg213;
+
+  /// No description provided for @logMsg214.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing {arg0} valid processor devices...'**
+  String logMsg214(String arg0);
+
+  /// No description provided for @logMsg215.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to obtain LPC Name...'**
+  String get logMsg215;
+
+  /// No description provided for @logMsg216.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg216(String arg0);
+
+  /// No description provided for @logMsg217.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Need to counterfeit RTC!'**
+  String get logMsg217;
+
+  /// No description provided for @logMsg218.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Checking _CRS…'**
+  String get logMsg218;
+
+  /// No description provided for @logMsg219.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _CRS is a buffer, checking RTC range...'**
+  String get logMsg219;
+
+  /// No description provided for @logMsg220.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to adjust value, unable to verify RTC range.'**
+  String get logMsg220;
+
+  /// No description provided for @logMsg221.
+  ///
+  /// In en, this message translates to:
+  /// **'=> 收集值失败, 无法验证 RTC 范围.'**
+  String get logMsg221;
+
+  /// No description provided for @logMsg222.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _CRS is a method and cannot verify RTC range!'**
+  String get logMsg222;
+
+  /// No description provided for @logMsg223.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Generating _CRS to XCRS rename…'**
+  String get logMsg223;
+
+  /// No description provided for @logMsg224.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found at index {arg0}'**
+  String logMsg224(String arg0);
+
+  /// No description provided for @logMsg225.
+  ///
+  /// In en, this message translates to:
+  /// **'=> not found'**
+  String get logMsg225;
+
+  /// No description provided for @logMsg226.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg226(String arg0);
+
+  /// No description provided for @logMsg227.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg227(String arg0);
+
+  /// No description provided for @logMsg228.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting RHUB/HUBN/URTH devices...'**
+  String get logMsg228;
+
+  /// No description provided for @logMsg229.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} devices found'**
+  String logMsg229(String arg0);
+
+  /// No description provided for @logMsg230.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Need to be renamed!'**
+  String get logMsg230;
+
+  /// No description provided for @logMsg231.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Check {arg0}: whether the _STA method exists'**
+  String logMsg231(String arg0);
+
+  /// No description provided for @logMsg232.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found _STA method at index {arg0}!'**
+  String logMsg232(String arg0);
+
+  /// No description provided for @logMsg233.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Generate patch from _STA to XSTA'**
+  String get logMsg233;
+
+  /// No description provided for @logMsg234.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _STA method not found!'**
+  String get logMsg234;
+
+  /// No description provided for @logMsg235.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg235(String arg0);
+
+  /// No description provided for @logMsg236.
+  ///
+  /// In en, this message translates to:
+  /// **'=> There is an _ADR address overflow in the device path!'**
+  String get logMsg236;
+
+  /// No description provided for @logMsg237.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The following devices may require bridging adjustments to function properly:'**
+  String get logMsg237;
+
+  /// No description provided for @logMsg238.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting PCI bridge devices...'**
+  String get logMsg238;
+
+  /// No description provided for @logMsg239.
+  ///
+  /// In en, this message translates to:
+  /// **'PCI bridge device is empty! The operation has been terminated!'**
+  String get logMsg239;
+
+  /// No description provided for @logMsg240.
+  ///
+  /// In en, this message translates to:
+  /// **'Building bridge device...'**
+  String get logMsg240;
+
+  /// No description provided for @logMsg241.
+  ///
+  /// In en, this message translates to:
+  /// **'PCI bridge device is empty! jump over…'**
+  String get logMsg241;
+
+  /// No description provided for @logMsg242.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching device paths…'**
+  String get logMsg242;
+
+  /// No description provided for @logMsg243.
+  ///
+  /// In en, this message translates to:
+  /// **'No match found!'**
+  String get logMsg243;
+
+  /// No description provided for @logMsg244.
+  ///
+  /// In en, this message translates to:
+  /// **'=> matches {arg0}, no bridging required'**
+  String logMsg244(String arg0);
+
+  /// No description provided for @logMsg245.
+  ///
+  /// In en, this message translates to:
+  /// **'No match found!\\n'**
+  String get logMsg245;
+
+  /// No description provided for @logMsg246.
+  ///
+  /// In en, this message translates to:
+  /// **'No bridging required!\\n'**
+  String get logMsg246;
+
+  /// No description provided for @logMsg247.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolving bridge device...'**
+  String get logMsg247;
+
+  /// No description provided for @logMsg248.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to parse!'**
+  String get logMsg248;
+
+  /// No description provided for @logMsg249.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while parsing bridge device!\\n'**
+  String get logMsg249;
+
+  /// No description provided for @logMsg250.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg250(String arg0);
+
+  /// No description provided for @logMsg251.
+  ///
+  /// In en, this message translates to:
+  /// **'Locating ACPI0008 (ALS) device...'**
+  String get logMsg251;
+
+  /// No description provided for @logMsg252.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg252(String arg0);
+
+  /// No description provided for @logMsg253.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found ALS device at {arg0} table: {arg1}!'**
+  String logMsg253(String arg0, String arg1);
+
+  /// No description provided for @logMsg254.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No need to counterfeit!\\n'**
+  String get logMsg254;
+
+  /// No description provided for @logMsg255.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg255(String arg0);
+
+  /// No description provided for @logMsg256.
+  ///
+  /// In en, this message translates to:
+  /// **'_STA is correctly enabled, no patch required! \\n'**
+  String get logMsg256;
+
+  /// No description provided for @logMsg257.
+  ///
+  /// In en, this message translates to:
+  /// **'Not found, no patch required!\\n'**
+  String get logMsg257;
+
+  /// No description provided for @logMsg258.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI0008 (ALS) device not found, counterfeit device required…'**
+  String get logMsg258;
+
+  /// No description provided for @logMsg259.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg259(String arg0);
+
+  /// No description provided for @logMsg260.
+  ///
+  /// In en, this message translates to:
+  /// **'Detecting XOSI scheme...'**
+  String get logMsg260;
+
+  /// No description provided for @logMsg261.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Automatically detected: {arg0} ({arg1})'**
+  String logMsg261(String arg0, String arg1);
+
+  /// No description provided for @logMsg262.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking OSID method...'**
+  String get logMsg262;
+
+  /// No description provided for @logMsg263.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found method {arg1} at offset {arg0}'**
+  String logMsg263(String arg0, String arg1);
+
+  /// No description provided for @logMsg264.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found, no need to rename OSID to XSID'**
+  String get logMsg264;
+
+  /// No description provided for @logMsg265.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating _OSI to XOSI rename…'**
+  String get logMsg265;
+
+  /// No description provided for @logMsg266.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for {arg0} table…'**
+  String logMsg266(String arg0);
+
+  /// No description provided for @logMsg267.
+  ///
+  /// In en, this message translates to:
+  /// **'Found {arg0} table, verifying signature...'**
+  String logMsg267(String arg0);
+
+  /// No description provided for @logMsg268.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} table signature verification passed!'**
+  String logMsg268(String arg0);
+
+  /// No description provided for @logMsg269.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0} value...'**
+  String logMsg269(String arg0);
+
+  /// No description provided for @logMsg270.
+  ///
+  /// In en, this message translates to:
+  /// **'Obtained {arg0} value: {arg1}'**
+  String logMsg270(String arg0, String arg1);
+
+  /// No description provided for @logMsg271.
+  ///
+  /// In en, this message translates to:
+  /// **'Obtained Reset Register Address value: {arg0}'**
+  String logMsg271(String arg0);
+
+  /// No description provided for @logMsg272.
+  ///
+  /// In en, this message translates to:
+  /// **'The ACPI patches that need to be patched are as follows:'**
+  String get logMsg272;
+
+  /// No description provided for @logMsg273.
+  ///
+  /// In en, this message translates to:
+  /// **'Patching APIC table...'**
+  String get logMsg273;
+
+  /// No description provided for @logMsg274.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Corrected APIC Processor ID: {arg0} → {arg1}'**
+  String logMsg274(String arg0, String arg1);
+
+  /// No description provided for @logMsg275.
+  ///
+  /// In en, this message translates to:
+  /// **'=> APIC table patching completed!'**
+  String get logMsg275;
+
+  /// No description provided for @logMsg276.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl…'**
+  String logMsg276(String arg0);
+
+  /// No description provided for @logMsg277.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking DMAR table reserved memory area...'**
+  String get logMsg277;
+
+  /// No description provided for @logMsg278.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No reserved memory area found, no need to patch DMAR!\\n'**
+  String get logMsg278;
+
+  /// No description provided for @logMsg279.
+  ///
+  /// In en, this message translates to:
+  /// **'Found {arg0} reserved memory areas, generating new table...'**
+  String logMsg279(String arg0);
+
+  /// No description provided for @logMsg280.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for IMEI device at address 0x00160000...'**
+  String get logMsg280;
+
+  /// No description provided for @logMsg281.
+  ///
+  /// In en, this message translates to:
+  /// **'IMEI device not found, need to counterfeit the device…'**
+  String get logMsg281;
+
+  /// No description provided for @logMsg282.
+  ///
+  /// In en, this message translates to:
+  /// **'Verifying parent device...'**
+  String get logMsg282;
+
+  /// No description provided for @logMsg283.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for iGPU device at 0x00020000…'**
+  String get logMsg283;
+
+  /// No description provided for @logMsg284.
+  ///
+  /// In en, this message translates to:
+  /// **'=> iGPU device not found!'**
+  String get logMsg284;
+
+  /// No description provided for @logMsg285.
+  ///
+  /// In en, this message translates to:
+  /// **'Trying to locate PCI root device...'**
+  String get logMsg285;
+
+  /// No description provided for @logMsg286.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PCI root device found: {arg0}'**
+  String logMsg286(String arg0);
+
+  /// No description provided for @logMsg287.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found iGPU device: {arg0}'**
+  String logMsg287(String arg0);
+
+  /// No description provided for @logMsg288.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Use parent device: {arg0}'**
+  String logMsg288(String arg0);
+
+  /// No description provided for @logMsg289.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting fake device-id schemes...'**
+  String get logMsg289;
+
+  /// No description provided for @logMsg290.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Counterfeit as 7 series motherboard IMEI (device-id: {arg0}) to match the 3rd generation Ivy Bridge processor'**
+  String logMsg290(String arg0);
+
+  /// No description provided for @logMsg291.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Counterfeit as 6 series motherboard IMEI (device-id: {arg0}) to match the 2nd generation Sandy Bridge processor'**
+  String logMsg291(String arg0);
+
+  /// No description provided for @logMsg292.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg292(String arg0);
+
+  /// No description provided for @logMsg293.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for UNC (PNP0A03) device...'**
+  String get logMsg293;
+
+  /// No description provided for @logMsg294.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} UNC devices found'**
+  String logMsg294(String arg0);
+
+  /// No description provided for @logMsg295.
+  ///
+  /// In en, this message translates to:
+  /// **'=> UNC device {arg0}: {arg1}'**
+  String logMsg295(String arg0, String arg1);
+
+  /// No description provided for @logMsg296.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Check whether {arg0}: _STA method exists'**
+  String logMsg296(String arg0);
+
+  /// No description provided for @logMsg297.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found {arg1}: _STA method at index {arg0}!'**
+  String logMsg297(String arg0, String arg1);
+
+  /// No description provided for @logMsg298.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Generate {arg0}: _STA to XSTA patch'**
+  String logMsg298(String arg0);
+
+  /// No description provided for @logMsg299.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg299(String arg0);
+
+  /// No description provided for @logMsg300.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg300(String arg0);
+
+  /// No description provided for @logMsg301.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking if DTGP method exists...'**
+  String get logMsg301;
+
+  /// No description provided for @logMsg302.
+  ///
+  /// In en, this message translates to:
+  /// **'=> DTGP method not found!'**
+  String get logMsg302;
+
+  /// No description provided for @logMsg303.
+  ///
+  /// In en, this message translates to:
+  /// **'=> DTGP method not found in any of the above ACPI tables! \\n'**
+  String get logMsg303;
+
+  /// No description provided for @logMsg304.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg304(String arg0);
+
+  /// No description provided for @logMsg305.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg305(String arg0);
+
+  /// No description provided for @logMsg306.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for DMA (PNP0200) device...'**
+  String get logMsg306;
+
+  /// No description provided for @logMsg307.
+  ///
+  /// In en, this message translates to:
+  /// **'=> DMA (PNP0200) device not found!'**
+  String get logMsg307;
+
+  /// No description provided for @logMsg308.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg308(String arg0);
+
+  /// No description provided for @logMsg309.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg309(String arg0);
+
+  /// No description provided for @logMsg310.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of _PTS method...'**
+  String get logMsg310;
+
+  /// No description provided for @logMsg311.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Method {arg0} found!'**
+  String logMsg311(String arg0);
+
+  /// No description provided for @logMsg312.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _PTS method not found!'**
+  String get logMsg312;
+
+  /// No description provided for @logMsg313.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of _WAK method...'**
+  String get logMsg313;
+
+  /// No description provided for @logMsg314.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Method {arg0} found!'**
+  String logMsg314(String arg0);
+
+  /// No description provided for @logMsg315.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _WAK method not found!'**
+  String get logMsg315;
+
+  /// No description provided for @logMsg316.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg316(String arg0);
+
+  /// No description provided for @logMsg317.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg317(String arg0);
+
+  /// No description provided for @logMsg318.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of _SST method...'**
+  String get logMsg318;
+
+  /// No description provided for @logMsg319.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found _SST method at {arg0}!'**
+  String logMsg319(String arg0);
+
+  /// No description provided for @logMsg320.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _SST method not found!'**
+  String get logMsg320;
+
+  /// No description provided for @logMsg321.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg321(String arg0);
+
+  /// No description provided for @logMsg322.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg322(String arg0);
+
+  /// No description provided for @logMsg323.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for presence of PNP0C0D device...'**
+  String get logMsg323;
+
+  /// No description provided for @logMsg324.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PNP0C0D device found at {arg0}!'**
+  String logMsg324(String arg0);
+
+  /// No description provided for @logMsg325.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PNP0C0D device not found!'**
+  String get logMsg325;
+
+  /// No description provided for @logMsg326.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg326(String arg0);
+
+  /// No description provided for @logMsg327.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg327(String arg0);
+
+  /// No description provided for @logMsg328.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of {arg0}...'**
+  String logMsg328(String arg0);
+
+  /// No description provided for @logMsg329.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found {arg1} at {arg0}'**
+  String logMsg329(String arg0, String arg1);
+
+  /// No description provided for @logMsg330.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found {arg1} at {arg0}'**
+  String logMsg330(String arg0, String arg1);
+
+  /// No description provided for @logMsg331.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} not found'**
+  String logMsg331(String arg0);
+
+  /// No description provided for @logMsg332.
+  ///
+  /// In en, this message translates to:
+  /// **'All ACPI tables checked!'**
+  String get logMsg332;
+
+  /// No description provided for @logMsg333.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Support system state: [systemStatesFound]'**
+  String get logMsg333;
+
+  /// No description provided for @logMsg334.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The current firmware supports common system states! After fixing the sleep problem, macOS can support S3 sleep!'**
+  String get logMsg334;
+
+  /// No description provided for @logMsg335.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking Low Power S0 Idle (V5) value...'**
+  String get logMsg335;
+
+  /// No description provided for @logMsg336.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Low Power S0 Idle (V5): {arg0}'**
+  String logMsg336(String arg0);
+
+  /// No description provided for @logMsg337.
+  ///
+  /// In en, this message translates to:
+  /// **'It is not currently an AOAC machine and does not affect macOS system S3 sleep!'**
+  String get logMsg337;
+
+  /// No description provided for @logMsg338.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of _S3...'**
+  String get logMsg338;
+
+  /// No description provided for @logMsg339.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg339(String arg0);
+
+  /// No description provided for @logMsg340.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Name _S3 found at {arg0}!'**
+  String logMsg340(String arg0);
+
+  /// No description provided for @logMsg341.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found Method _S3 at {arg0}!'**
+  String logMsg341(String arg0);
+
+  /// No description provided for @logMsg342.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Name or Method _S3 not found'**
+  String get logMsg342;
+
+  /// No description provided for @logMsg343.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg343(String arg0);
+
+  /// No description provided for @logMsg344.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg344(String arg0);
+
+  /// No description provided for @logMsg345.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg345(String arg0);
+
+  /// No description provided for @logMsg346.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for LID (PNP0C0D) device...'**
+  String get logMsg346;
+
+  /// No description provided for @logMsg347.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PNP0C0D device found at {arg0}!'**
+  String logMsg347(String arg0);
+
+  /// No description provided for @logMsg348.
+  ///
+  /// In en, this message translates to:
+  /// **'=> LID (PNP0C0D) device not found!'**
+  String get logMsg348;
+
+  /// No description provided for @logMsg349.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found Method _LID at {arg0}!'**
+  String logMsg349(String arg0);
+
+  /// No description provided for @logMsg350.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Method _LID not found!'**
+  String get logMsg350;
+
+  /// No description provided for @logMsg351.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of _TTS method...'**
+  String get logMsg351;
+
+  /// No description provided for @logMsg352.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Method {arg0} found!'**
+  String logMsg352(String arg0);
+
+  /// No description provided for @logMsg353.
+  ///
+  /// In en, this message translates to:
+  /// **'=> _TTS method not found!'**
+  String get logMsg353;
+
+  /// No description provided for @logMsg354.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of ZTTS method...'**
+  String get logMsg354;
+
+  /// No description provided for @logMsg355.
+  ///
+  /// In en, this message translates to:
+  /// **'=> ZTTS method not found!'**
+  String get logMsg355;
+
+  /// No description provided for @logMsg356.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg356(String arg0);
+
+  /// No description provided for @logMsg357.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg357(String arg0);
+
+  /// No description provided for @logMsg358.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for PWRB (PNP0C0C) device...'**
+  String get logMsg358;
+
+  /// No description provided for @logMsg359.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PWRB (PNP0C0C) device not found!'**
+  String get logMsg359;
+
+  /// No description provided for @logMsg360.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg360(String arg0);
+
+  /// No description provided for @logMsg361.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg361(String arg0);
+
+  /// No description provided for @logMsg362.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for SLPB (PNP0C0E) device...'**
+  String get logMsg362;
+
+  /// No description provided for @logMsg363.
+  ///
+  /// In en, this message translates to:
+  /// **'=> SLPB (PNP0C0E) device not found!'**
+  String get logMsg363;
+
+  /// No description provided for @logMsg364.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The SLPB (PNP0C0E) device was not found in the above ACPI table! Just fake one! \\n'**
+  String get logMsg364;
+
+  /// No description provided for @logMsg365.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.sdl...'**
+  String logMsg365(String arg0);
+
+  /// No description provided for @logMsg366.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg366(String arg0);
+
+  /// No description provided for @logMsg367.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg367(String arg0);
+
+  /// No description provided for @logMsg368.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg368(String arg0);
+
+  /// No description provided for @logMsg369.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for PNP0C01 device...'**
+  String get logMsg369;
+
+  /// No description provided for @logMsg370.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PNP0C01 device not found!'**
+  String get logMsg370;
+
+  /// No description provided for @logMsg371.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The PNP0C01 device was not found in any of the above ACPI tables!\\n'**
+  String get logMsg371;
+
+  /// No description provided for @logMsg372.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg372(String arg0);
+
+  /// No description provided for @logMsg373.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting XHC/XHCI/XDCI/CNVW devices...'**
+  String get logMsg373;
+
+  /// No description provided for @logMsg374.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Checking if {arg0} device supports PMEE...'**
+  String logMsg374(String arg0);
+
+  /// No description provided for @logMsg375.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} does not support PMEE, skipped'**
+  String logMsg375(String arg0);
+
+  /// No description provided for @logMsg376.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} supports PMEE'**
+  String logMsg376(String arg0);
+
+  /// No description provided for @logMsg377.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg377(String arg0);
+
+  /// No description provided for @logMsg378.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of GPRW method...'**
+  String get logMsg378;
+
+  /// No description provided for @logMsg379.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of XPRW method...'**
+  String get logMsg379;
+
+  /// No description provided for @logMsg380.
+  ///
+  /// In en, this message translates to:
+  /// **'=> GPRW method found at {arg0}!'**
+  String logMsg380(String arg0);
+
+  /// No description provided for @logMsg381.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg381(String arg0);
+
+  /// No description provided for @logMsg382.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of UPRW method...'**
+  String get logMsg382;
+
+  /// No description provided for @logMsg383.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of XPRW method...'**
+  String get logMsg383;
+
+  /// No description provided for @logMsg384.
+  ///
+  /// In en, this message translates to:
+  /// **'=> UPRW method found at {arg0}!'**
+  String logMsg384(String arg0);
+
+  /// No description provided for @logMsg385.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg385(String arg0);
+
+  /// No description provided for @logMsg386.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for presence of GPI0 device...'**
+  String get logMsg386;
+
+  /// No description provided for @logMsg387.
+  ///
+  /// In en, this message translates to:
+  /// **'=> GPI0 device found at {arg0}!'**
+  String logMsg387(String arg0);
+
+  /// No description provided for @logMsg388.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for existence of _STA method...'**
+  String get logMsg388;
+
+  /// No description provided for @logMsg389.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found {arg1}: _STA method at index {arg0}!'**
+  String logMsg389(String arg0, String arg1);
+
+  /// No description provided for @logMsg390.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Generate {arg0}: _STA to XSTA patch'**
+  String logMsg390(String arg0);
+
+  /// No description provided for @logMsg391.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg391(String arg0);
+
+  /// No description provided for @logMsg392.
+  ///
+  /// In en, this message translates to:
+  /// **'Determining CPU naming scheme...'**
+  String get logMsg392;
+
+  /// No description provided for @logMsg393.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking {arg0}…'**
+  String logMsg393(String arg0);
+
+  /// No description provided for @logMsg394.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Processor found: {arg0}'**
+  String logMsg394(String arg0);
+
+  /// No description provided for @logMsg395.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No Processor object found...'**
+  String get logMsg395;
+
+  /// No description provided for @logMsg396.
+  ///
+  /// In en, this message translates to:
+  /// **'=> ACPI0007 device not found…'**
+  String get logMsg396;
+
+  /// No description provided for @logMsg397.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} ACPI0007 devices found'**
+  String logMsg397(String arg0);
+
+  /// No description provided for @logMsg398.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Found parent device at {arg0}, processing...'**
+  String logMsg398(String arg0);
+
+  /// No description provided for @logMsg399.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Checking {arg0}…'**
+  String logMsg399(String arg0);
+
+  /// No description provided for @logMsg400.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found! jump over…'**
+  String get logMsg400;
+
+  /// No description provided for @logMsg401.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found! jump over…'**
+  String get logMsg401;
+
+  /// No description provided for @logMsg402.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing {arg0} valid processor devices...'**
+  String logMsg402(String arg0);
+
+  /// No description provided for @logMsg403.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg403(String arg0);
+
+  /// No description provided for @logMsg404.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg404(String arg0);
+
+  /// No description provided for @logMsg405.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg405(String arg0);
+
+  /// No description provided for @logMsg406.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg406(String arg0);
+
+  /// No description provided for @logMsg407.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg407(String arg0);
+
+  /// No description provided for @logMsg408.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg408(String arg0);
+
+  /// No description provided for @logMsg409.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg409(String arg0);
+
+  /// No description provided for @logMsg410.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg410(String arg0);
+
+  /// No description provided for @logMsg411.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting fake device-id schemes...'**
+  String get logMsg411;
+
+  /// No description provided for @logMsg412.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Counterfeit as 7 series motherboard IMEI (device-id: {arg0}) to match the 3rd generation Ivy Bridge processor'**
+  String logMsg412(String arg0);
+
+  /// No description provided for @logMsg413.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Counterfeit as 6 series motherboard IMEI (device-id: {arg0}) to match the 2nd generation Sandy Bridge processor'**
+  String logMsg413(String arg0);
+
+  /// No description provided for @logMsg414.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg414(String arg0);
+
+  /// No description provided for @logMsg415.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg415(String arg0);
+
+  /// No description provided for @logMsg416.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg416(String arg0);
+
+  /// No description provided for @logMsg417.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg417(String arg0);
+
+  /// No description provided for @logMsg418.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg418(String arg0);
+
+  /// No description provided for @logMsg419.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking device {arg0} for an _ON or _OFF method...'**
+  String logMsg419(String arg0);
+
+  /// No description provided for @logMsg420.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking device {arg0} for _PS3 or _DSM methods...'**
+  String logMsg420(String arg0);
+
+  /// No description provided for @logMsg421.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking device {arg0}...'**
+  String logMsg421(String arg0);
+
+  /// No description provided for @logMsg422.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The _PRT method corresponding to {arg0} was not found in DSDT or SSDT!'**
+  String logMsg422(String arg0);
+
+  /// No description provided for @logMsg423.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg423(String arg0);
+
+  /// No description provided for @logMsg424.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} device path that needs to be blocked: {arg1}'**
+  String logMsg424(String arg0, String arg1);
+
+  /// No description provided for @logMsg425.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Shielding method: {arg0} method'**
+  String logMsg425(String arg0);
+
+  /// No description provided for @logMsg426.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Device relative path has been converted to absolute path: {arg0}'**
+  String logMsg426(String arg0);
+
+  /// No description provided for @logMsg427.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Find {arg1}.{arg2} method in {arg0}'**
+  String logMsg427(String arg0, String arg1, String arg2);
+
+  /// No description provided for @logMsg428.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg428(String arg0);
+
+  /// No description provided for @logMsg429.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting possible bus devices...'**
+  String get logMsg429;
+
+  /// No description provided for @logMsg430.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating precompiled {arg0}.dsl...'**
+  String logMsg430(String arg0);
+
+  /// No description provided for @logMsg431.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking graphics device {arg0}...'**
+  String logMsg431(String arg0);
+
+  /// No description provided for @logMsg432.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The _PRT method corresponding to {arg0} was not found in DSDT or SSDT!'**
+  String logMsg432(String arg0);
+
+  /// No description provided for @logMsg433.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating {arg0}.dsl...'**
+  String logMsg433(String arg0);
+
+  /// No description provided for @logMsg434.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Graphics card device path: {arg0}'**
+  String logMsg434(String arg0);
+
+  /// No description provided for @logMsg435.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Counterfeit graphics card ID: {arg0}'**
+  String logMsg435(String arg0);
+
+  /// No description provided for @logMsg436.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Counterfeit graphics card name: {arg0}'**
+  String logMsg436(String arg0);
+
+  /// No description provided for @logMsg437.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Not found!'**
+  String get logMsg437;
+
+  /// No description provided for @logMsg438.
+  ///
+  /// In en, this message translates to:
+  /// **'=> PCI path matched: {arg0}'**
+  String logMsg438(String arg0);
+
+  /// No description provided for @logMsg439.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Update {arg0} \"{arg1}\" to {arg2}'**
+  String logMsg439(String arg0, String arg1, String arg2);
+
+  /// No description provided for @logMsg440.
+  ///
+  /// In en, this message translates to:
+  /// **'=> {arg0} \"{arg1}\" already exists in {arg2}, skip...'**
+  String logMsg440(String arg0, String arg1, String arg2);
+
+  /// No description provided for @logMsg441.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Add {arg0} \"{arg1}\" to {arg2}'**
+  String logMsg441(String arg0, String arg1, String arg2);
+
+  /// No description provided for @logMsg442.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Update the value of key \"{arg0}\" to \"{arg1}\" in {arg2}'**
+  String logMsg442(String arg0, String arg1, String arg2);
+
+  /// No description provided for @logMsg443.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The value of key \"{arg0}\" is already up to date, skipping {arg1}'**
+  String logMsg443(String arg0, String arg1);
+
+  /// No description provided for @logMsg444.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Add key \"{arg0}\" value \"{arg1}\" to {arg2}'**
+  String logMsg444(String arg0, String arg1, String arg2);
+
+  /// No description provided for @logMsg445.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware reporting folder cleanup failed: {arg0}'**
+  String logMsg445(String arg0);
+
+  /// No description provided for @logMsg446.
+  ///
+  /// In en, this message translates to:
+  /// **'Native ACPI table export failed'**
+  String get logMsg446;
+
+  /// No description provided for @logMsg447.
+  ///
+  /// In en, this message translates to:
+  /// **'Native ACPI table export failed: {arg0}'**
+  String logMsg447(String arg0);
+
+  /// No description provided for @logMsg448.
+  ///
+  /// In en, this message translates to:
+  /// **'Native ACPI table export failed: {arg0}'**
+  String logMsg448(String arg0);
+
+  /// No description provided for @logMsg449.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI table temporary directory cleanup failed: {arg0}'**
+  String logMsg449(String arg0);
+
+  /// No description provided for @logMsg450.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting native hardware report...'**
+  String get logMsg450;
+
+  /// No description provided for @logMsg451.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting native ACPI tables...'**
+  String get logMsg451;
+
+  /// No description provided for @logMsg452.
+  ///
+  /// In en, this message translates to:
+  /// **'Native ACPI table export completed: {arg0}'**
+  String logMsg452(String arg0);
+
+  /// No description provided for @logMsg453.
+  ///
+  /// In en, this message translates to:
+  /// **'Source file does not exist: {arg0}'**
+  String logMsg453(String arg0);
+
+  /// No description provided for @logMsg454.
+  ///
+  /// In en, this message translates to:
+  /// **'Error saving file: {arg0}'**
+  String logMsg454(String arg0);
+
+  /// No description provided for @logMsg455.
+  ///
+  /// In en, this message translates to:
+  /// **'Current OC version: {arg0}'**
+  String logMsg455(String arg0);
+
+  /// No description provided for @logMsg456.
+  ///
+  /// In en, this message translates to:
+  /// **'ZIP file does not exist: {arg0}'**
+  String logMsg456(String arg0);
+
+  /// No description provided for @logMsg457.
+  ///
+  /// In en, this message translates to:
+  /// **'{arg0} file successfully decompressed'**
+  String logMsg457(String arg0);
+
+  /// No description provided for @logMsg458.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while decompressing file {arg0}: {arg1}'**
+  String logMsg458(String arg0, String arg1);
+
+  /// No description provided for @logMsg459.
+  ///
+  /// In en, this message translates to:
+  /// **'File or directory does not exist: {arg0}'**
+  String logMsg459(String arg0);
+
+  /// No description provided for @logMsg460.
+  ///
+  /// In en, this message translates to:
+  /// **'Compression completed: {arg0}'**
+  String logMsg460(String arg0);
+
+  /// No description provided for @logMsg461.
+  ///
+  /// In en, this message translates to:
+  /// **'Compression error: {arg0}'**
+  String logMsg461(String arg0);
+
+  /// No description provided for @logMsg462.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete directory: {arg0}'**
+  String logMsg462(String arg0);
+
+  /// No description provided for @logMsg463.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete file: {arg0}'**
+  String logMsg463(String arg0);
+
+  /// No description provided for @logMsg464.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete failed: {arg0}, {arg1}'**
+  String logMsg464(String arg0, String arg1);
+
+  /// No description provided for @logMsg465.
+  ///
+  /// In en, this message translates to:
+  /// **'File successfully saved to: {arg0}'**
+  String logMsg465(String arg0);
+
+  /// No description provided for @logMsg466.
+  ///
+  /// In en, this message translates to:
+  /// **'Source directory does not exist: {arg0}'**
+  String logMsg466(String arg0);
+
+  /// No description provided for @logMsg467.
+  ///
+  /// In en, this message translates to:
+  /// **'Folder prepared: {arg0}'**
+  String logMsg467(String arg0);
+
+  /// No description provided for @logMsg468.
+  ///
+  /// In en, this message translates to:
+  /// **'Error creating folder: {arg0}'**
+  String logMsg468(String arg0);
+
+  /// No description provided for @logMsg469.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to open directory, path does not exist: {arg0}'**
+  String logMsg469(String arg0);
+
+  /// No description provided for @logMsg470.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to open directory: {arg0}, {arg1}'**
+  String logMsg470(String arg0, String arg1);
 }
 
 class _AppLocalizationsDelegate

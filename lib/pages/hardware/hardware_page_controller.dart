@@ -1,3 +1,5 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -257,7 +259,7 @@ class HardwarePageController extends ChangeNotifier {
       try {
         await reportRoot.delete(recursive: true);
       } catch (error) {
-        Log.warning('硬件报告文件夹清理失败: $error');
+        Log.warning(l10nGlobal.logMsg445(error.toString()));
         if (context != null && context.mounted) showToast(_l10n(context)?.hwFolderCleanFailed ?? '硬件报告文件夹清理失败');
         return;
       }
@@ -271,7 +273,7 @@ class HardwarePageController extends ChangeNotifier {
       return;
     }
 
-    Log('正在导出本机硬件报告...');
+    Log(l10nGlobal.logMsg450);
     await FileUtils.saveToFile(
       content: report,
       fileName: 'sysInfo.txt',
@@ -315,7 +317,7 @@ class HardwarePageController extends ChangeNotifier {
     Directory? tempDirectory;
     var tempMoved = false;
     try {
-      Log('正在导出本机 ACPI 表...');
+      Log(l10nGlobal.logMsg451);
       final baseDirectory = Directory(reportDirectory);
       await baseDirectory.create(recursive: true);
       final acpiDirectoryPath = path.join(reportDirectory, folderName);
@@ -340,7 +342,7 @@ class HardwarePageController extends ChangeNotifier {
       );
       final exported = dumpPath != null && dumpPath.isNotEmpty;
       if (!exported) {
-        Log.warning('本机 ACPI 表导出失败');
+        Log.warning(l10nGlobal.logMsg446);
         return const _AcpiExportResult(failureMessage: 'ACPI 表导出失败或不支持');
       }
 
@@ -350,22 +352,22 @@ class HardwarePageController extends ChangeNotifier {
       }
       await tempDirectory.rename(acpiDirectoryPath);
       tempMoved = true;
-      Log('本机 ACPI 表导出完成: $acpiDirectoryPath');
+      Log(l10nGlobal.logMsg452(acpiDirectoryPath.toString()));
       return _AcpiExportResult(path: acpiDirectoryPath);
     } on AcpiDumpException catch (error) {
-      Log.warning('本机 ACPI 表导出失败: $error');
+      Log.warning(l10nGlobal.logMsg447(error.toString()));
       return _AcpiExportResult(
         failureMessage: _acpiDumpFailureMessage(error),
       );
     } catch (error) {
-      Log.warning('本机 ACPI 表导出失败: $error');
+      Log.warning(l10nGlobal.logMsg448(error.toString()));
       return const _AcpiExportResult(failureMessage: 'ACPI 表导出失败或不支持');
     } finally {
       if (!tempMoved && tempDirectory != null && await tempDirectory.exists()) {
         try {
           await tempDirectory.delete(recursive: true);
         } catch (error) {
-          Log.warning('ACPI 表临时目录清理失败: $error');
+          Log.warning(l10nGlobal.logMsg449(error.toString()));
         }
       }
     }

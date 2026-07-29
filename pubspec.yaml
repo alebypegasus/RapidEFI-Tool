@@ -96,6 +96,7 @@ flutter:
   assets:
       - assets/data/
       - assets/tahoe/
+      - assets/guide/
       - assets/ssdt/
       - assets/ssdt/images/
       - assets/oclp/

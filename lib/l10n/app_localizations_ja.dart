@@ -2106,4 +2106,1944 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get mbOemUsb => '一部のOEMマザーボードにはUSB所有権解放の問題があります：EHCIハンドオフの失敗';
+
+  @override
+  String get navAppGuide => 'アプリガイド';
+
+  @override
+  String get appGuideTitle => 'RapidEFI ユーザーガイド';
+
+  @override
+  String get logMsg001 => '=> LPC(B) が見つかりませんでした!作戦終了！';
+
+  @override
+  String get logMsg002 =>
+      '有効な DSDT が見つかりません!最初に DSDT ファイルまたは DSDT を含むファイル ディレクトリを選択してください。';
+
+  @override
+  String get logMsg003 =>
+      'IASL ツールの準備に失敗しました。まず、組み込みの iasl ツールを更新するか、使用してください。';
+
+  @override
+  String get logMsg004 => '有効な .aml ファイルが見つかりません!\\n';
+
+  @override
+  String get logMsg005 =>
+      '有効な DSDT が見つかりません!最初に DSDT ファイルまたは DSDT を含むファイル ディレクトリを選択してください。';
+
+  @override
+  String get logMsg006 =>
+      '現在複数の DSDT ファイルが検出されており、一度に処理できるのは 1 つだけです。 DSDT ファイルを 1 つ保持し、他のファイルを削除して再試行してください。\\n';
+
+  @override
+  String get logMsg007 => 'DSDT ファイルが無効です!有効な DSDT ファイルを再選択してください。';
+
+  @override
+  String logMsg008(String arg0) {
+    return '$arg0 逆コンパイルに失敗しました!\\n';
+  }
+
+  @override
+  String logMsg009(String arg0) {
+    return 'コンパイル結果: $arg0';
+  }
+
+  @override
+  String logMsg010(String arg0) {
+    return 'IntObj 型の処理中にエラーが発生しました: $arg0';
+  }
+
+  @override
+  String logMsg011(String arg0) {
+    return 'MethodObj タイプの処理中にエラーが発生しました: $arg0';
+  }
+
+  @override
+  String get logMsg012 => 'IRQ 情報が見つかりません!';
+
+  @override
+  String get logMsg013 => '現在のオプションまたはカスタム IRQ は空です。 IRQ パッチを生成できません!';
+
+  @override
+  String get logMsg014 => '=> IRQ 情報が見つかりません!';
+
+  @override
+  String get logMsg015 =>
+      'カスタム IRQ リストの形式が間違っています! ！ ！デバイスはスペースで区切って、IRQ はカンマで区切ってください。 ！ ！';
+
+  @override
+  String logMsg016(String arg0) {
+    return '=> _HID 解析エラー: $arg0';
+  }
+
+  @override
+  String get logMsg017 => '有効なデバイスが見つからないため、HPET 操作をスキップします。';
+
+  @override
+  String get logMsg018 => '有効な IRQ が指定されていないか、IRQ が空です。操作は中止されました!';
+
+  @override
+  String logMsg019(String arg0) {
+    return '=> $arg0._CRS が見つかりません!作戦終了！';
+  }
+
+  @override
+  String logMsg020(String arg0) {
+    return '=> $arg0._CRS が見つかりません!';
+  }
+
+  @override
+  String get logMsg021 => '=> _CRS は XCRS という名前になったようです。';
+
+  @override
+  String get logMsg022 =>
+      '=> DSDT でのデバイスの _CRS から XCRS への名前変更を無効にし、再起動後に再試行してください。\\n';
+
+  @override
+  String get logMsg023 => '=> メモリアクセスタイプを決定できません!';
+
+  @override
+  String get logMsg024 => '=> Base または Length を整数に変換できません!';
+
+  @override
+  String get logMsg025 => '=> 見つかりません!';
+
+  @override
+  String logMsg026(String arg0, String arg1) {
+    return '=> デフォルト値 $arg0 を使用 => $arg1';
+  }
+
+  @override
+  String get logMsg027 => '=> 見つかりません!';
+
+  @override
+  String get logMsg028 => '=> パッチするものは何もありません。';
+
+  @override
+  String logMsg029(String arg0, String arg1) {
+    return '$arg0 の IRQ パッチ末尾 ($arg1) がありません!スキップされました…';
+  }
+
+  @override
+  String get logMsg030 => '以下は一意ではない可能性があり、デフォルトでは無効になっています。 \\n';
+
+  @override
+  String get logMsg031 => '有効な UID が指定されていません。操作を中止してください。';
+
+  @override
+  String logMsg032(String arg0) {
+    return '$arg0 はカスタム UID です。手動でのカスタマイズが必要か、まったくサポートされていない可能性があります。';
+  }
+
+  @override
+  String get logMsg033 => '渡された ACPI テーブルに有効な iGPU パスが見つかりません!\\n';
+
+  @override
+  String logMsg034(String arg0) {
+    return '注: iGPU パスは $arg0 と推測されます\\n 使用する前に確認してください。';
+  }
+
+  @override
+  String logMsg035(String arg0) {
+    return '注: iGPU パスは手動で $arg0 に設定されています。使用する前にパスが正しいか必ず確認してください。';
+  }
+
+  @override
+  String get logMsg036 => '=> 指定された EC デバイスが見つかりました。偽造する必要はありません!\\n';
+
+  @override
+  String get logMsg037 => 'USBX 属性パッチを空にすることはできません。作戦終了！';
+
+  @override
+  String get logMsg038 => '有効なプロセッサ デバイスが見つかりません!';
+
+  @override
+  String get logMsg039 =>
+      '=> 有効な PNP0B00 (RTC) デバイスが検出および検証されました。パッチや SSDT は必要ありません。作戦終了！';
+
+  @override
+  String get logMsg040 =>
+      '=> ACPI000E (AWAC) デバイスが見つかりません。パッチも SSDT も必要ありません。作戦終了！';
+
+  @override
+  String get logMsg041 => '=> デバイスが見つかりません!作戦終了！';
+
+  @override
+  String get logMsg042 => '次のパスに一致するものが見つかりません:';
+
+  @override
+  String get logMsg043 => '一致するものが見つかりませんでした!';
+
+  @override
+  String get logMsg044 =>
+      '現在の ACPI テーブルと一致させるには、デバイス パスが次の PciRoot() で始まる必要があることに注意してください。';
+
+  @override
+  String logMsg045(String arg0) {
+    return '=> 見つかりません。有効な $arg0 テーブルではないようです!\\n';
+  }
+
+  @override
+  String logMsg046(String arg0) {
+    return '$arg0 値が見つかりません!操作は中止されました!';
+  }
+
+  @override
+  String get logMsg047 => 'リセット レジスタ アドレス値が見つかりません!操作は中止されました!';
+
+  @override
+  String logMsg048(String arg0) {
+    return '$arg0 のプロセッサ ID を解決できません。パッチ適用を中止します。';
+  }
+
+  @override
+  String logMsg049(String arg0) {
+    return '$arg0 の最初の CPU はすでに一致しているため、APIC テーブルにパッチを適用する必要はありません。';
+  }
+
+  @override
+  String get logMsg050 => '=> 一致するプロセッサが見つかりません!操作は中止されました!';
+
+  @override
+  String get logMsg051 => 'IMEIパッチを選択してください。';
+
+  @override
+  String logMsg052(String arg0) {
+    return '=> IMEI デバイスが $arg0 で見つかりました。スプーフィングのためにブリッジする必要はありません。操作は中止されました!';
+  }
+
+  @override
+  String get logMsg053 => '=> PCI ルートデバイスが見つかりません!操作は中止されました!';
+
+  @override
+  String get logMsg054 =>
+      '=> SSDT スプーフィング IMEI が有効になっていないため、デバイス ID を DeviceProperties 経由で設定する必要があります。';
+
+  @override
+  String get logMsg055 =>
+      'UNC (PNP0A03) デバイスが見つかりません! SSDT-UNC パッチは必要ありません。操作は中止されました! \\n';
+
+  @override
+  String logMsg056(String arg0) {
+    return '=> $arg0: _STA メソッドが存在しません。';
+  }
+
+  @override
+  String get logMsg057 =>
+      '=> DMA (PNP0200) デバイスが上記の ACPI テーブルのいずれにも見つかりません。操作は中止されました! \\n';
+
+  @override
+  String get logMsg058 =>
+      '=> _PTS メソッドが見つからないため、_PTS スケジューリング エントリと名前変更パッチは生成されません。';
+
+  @override
+  String get logMsg059 =>
+      '=> _WAK メソッドが見つからないため、_WAK スケジューリング エントリと名前変更パッチは生成されません。';
+
+  @override
+  String get logMsg060 =>
+      '=> スケジュール可能な _PTS/_WAK メソッドが見つからないため、SSDT-SleepHook がスキップされました!\\n';
+
+  @override
+  String get logMsg061 =>
+      '=> _SST メソッドが上記の ACPI テーブルのいずれにも見つかりません!操作は中止されました! \\n';
+
+  @override
+  String get logMsg062 =>
+      '=> PNP0C0D デバイスは上記の ACPI テーブルのいずれにも見つかりませんでした。操作は中止されました! \\n';
+
+  @override
+  String get logMsg063 =>
+      '=> システムステータスはサポートされていません: [systemStatesNotSupported]';
+
+  @override
+  String get logMsg064 =>
+      '=> 注: 現在のファームウェアは _S3 状態をサポートしていません。 BIOS 設定で S3 機能が無効になっていない場合、マシンは S3 スリープをサポートしていません。';
+
+  @override
+  String get logMsg065 => '=> 注: これは AOAC マシンであり、macOS は S3 スリープをサポートしていません。';
+
+  @override
+  String get logMsg066 => '=> 現在AOAC機かどうかは検出されておりませんので、ご自身でご確認ください！';
+
+  @override
+  String get logMsg067 => '低電力 S0 アイドル (V5) 値が見つかりません。';
+
+  @override
+  String get logMsg068 => '現在 AOAC マシンである macOS は S3 スリープをサポートしていません。';
+
+  @override
+  String get logMsg069 =>
+      '=> 名前またはメソッド _S3 が見つかりません。現在の構成は S3 スリープをサポートしていません。作戦は終了しました！';
+
+  @override
+  String logMsg070(String arg0) {
+    return '=> メソッド $arg0 が見つかりました!';
+  }
+
+  @override
+  String get logMsg071 =>
+      '=> 現在のメソッドは名前が変更されており、元の ACPI テーブルではない可能性があります。元の ACPI テーブルを再取得して、再試行してください。\\n';
+
+  @override
+  String get logMsg072 =>
+      '=> LID (PNP0C0D) デバイスが上記の ACPI テーブルのいずれにも見つかりませんでした。操作は終了しました!\\n';
+
+  @override
+  String get logMsg073 =>
+      '=> メソッド _LID が上記の ACPI テーブルのいずれにも見つかりませんでした。操作は終了しました!\\n';
+
+  @override
+  String get logMsg074 =>
+      '=> PWRB (PNP0C0C) デバイスが上記の ACPI テーブルに見つかりませんでした。偽物だけ！ \\n';
+
+  @override
+  String logMsg075(String arg0) {
+    return '=> SLPB デバイスを偽造する必要はありません。PNP0C0E デバイスが $arg0 で見つかりました。';
+  }
+
+  @override
+  String logMsg076(String arg0) {
+    return '=> PNP0C0E デバイス $arg0 には _STA メソッドがあります。';
+  }
+
+  @override
+  String logMsg077(String arg0) {
+    return '=> PNP0C0E デバイス $arg0 には _STA メソッドが存在しません。';
+  }
+
+  @override
+  String get logMsg078 => '=> 一致する XHC/XHCI/XDCI/CNVW デバイスが見つかりません。作戦終了！ \\n';
+
+  @override
+  String get logMsg079 => '=> GPRW メソッドが見つかりません!';
+
+  @override
+  String get logMsg080 =>
+      '=> XPRWメソッドが見つかりました!現在のメソッドは名前が変更されており、元の ACPI テーブルではない可能性があります。元の ACPI テーブルを再取得して、再試行してください。\\n';
+
+  @override
+  String get logMsg081 => '=> XPRW メソッドが見つかりません!作戦終了！';
+
+  @override
+  String get logMsg082 => '=> UPRW メソッドが見つかりません!';
+
+  @override
+  String get logMsg083 =>
+      '=> XPRWメソッドが見つかりました!現在のメソッドは名前が変更されており、元の ACPI テーブルではない可能性があります。元の ACPI テーブルを再取得して、再試行してください。\\n';
+
+  @override
+  String get logMsg084 => '=> XPRW メソッドが見つかりません!作戦終了！';
+
+  @override
+  String get logMsg085 => '=> GPI0 デバイスが見つかりません!作戦終了！ \\n';
+
+  @override
+  String get logMsg086 => '=> _STA メソッドが見つかりません!作戦終了！ \\n';
+
+  @override
+  String get logMsg087 =>
+      '=> 現在のプロセッサの命名スキームは CPU の命名仕様に準拠しています。このSSDTは必要ありません。作戦は終了しました！';
+
+  @override
+  String get logMsg088 =>
+      '=> PLTF デバイスはありません。現在の Intel プラットフォームではこの SSDT は必要ありません。作戦は中止されました...';
+
+  @override
+  String get logMsg089 =>
+      '=> 要件を満たす CPU デバイスが見つからないため、SSDT-CPUR パッチは必要ありません。作戦終了！';
+
+  @override
+  String get logMsg090 =>
+      '=> SSDT スプーフィング IMEI が有効になっていないため、デバイス ID を DeviceProperties 経由で設定する必要があります。';
+
+  @override
+  String get logMsg091 => '有効な ACPI デバイス パスが指定されていません。操作は中止されました!';
+
+  @override
+  String logMsg092(String arg0) {
+    return '$arg0 に対応する _ON または _OFF メソッドが DSDT または SSDT で見つかりませんでした。操作は中止されました!';
+  }
+
+  @override
+  String logMsg093(String arg0) {
+    return '$arg0 に対応する _PS3 または _DSM メソッドが DSDT または SSDT で見つかりませんでした。操作は中止されました!';
+  }
+
+  @override
+  String logMsg094(String arg0) {
+    return '=> デバイス $arg0 には _PRT メソッドがあります。これは実際のデバイスを隠している可能性があり、BRG0 ブリッジ デバイスを挿入します。';
+  }
+
+  @override
+  String logMsg095(String arg0) {
+    return '=> デバイス $arg0 は存在しません!';
+  }
+
+  @override
+  String logMsg096(String arg0) {
+    return '現在のデバイス パス $arg0 は実際のデバイスを隠している可能性があります。';
+  }
+
+  @override
+  String logMsg097(String arg0) {
+    return '=> グラフィックス カード デバイス $arg0 の _ADR アドレスにオーバーフローがあります。';
+  }
+
+  @override
+  String logMsg098(String arg0) {
+    return '=> 親デバイスのパス: $arg0 に戻り、BRG0 ブリッジ デバイスを挿入します。';
+  }
+
+  @override
+  String logMsg099(String arg0) {
+    return '不明なマスキング方法: $arg0、操作は中止されました。';
+  }
+
+  @override
+  String logMsg100(String arg0) {
+    return 'いくつかのメソッドが見つかりません: $arg0';
+  }
+
+  @override
+  String get logMsg101 => '=> 有効なバスデバイスが見つからないため、操作は終了しました。';
+
+  @override
+  String get logMsg102 => '有効なグラフィックス カードの ACPI パスが指定されていません。作戦終了！';
+
+  @override
+  String get logMsg103 => '有効な偽造グラフィックス カード ID が提供されていません。作戦終了！';
+
+  @override
+  String get logMsg104 => '有効な偽造グラフィックス カード名が指定されていません。偽名は挿入されません。';
+
+  @override
+  String logMsg105(String arg0) {
+    return '現在のグラフィックス カード パス $arg0 は実際のデバイスを隠している可能性があります。';
+  }
+
+  @override
+  String logMsg106(String arg0) {
+    return '=> デバイス $arg0 には _PRT メソッドがあり、実際のデバイスが隠蔽されている可能性があり、GFX0 デバイスを挿入します。';
+  }
+
+  @override
+  String logMsg107(String arg0) {
+    return '=> デバイス $arg0 が DSDT または SSDT に見つかりません!操作は中止されました!';
+  }
+
+  @override
+  String logMsg108(String arg0) {
+    return '=> グラフィックス カード デバイス $arg0 の _ADR アドレスにオーバーフローがあります。';
+  }
+
+  @override
+  String logMsg109(String arg0) {
+    return '=> 親デバイスのパス: $arg0 に戻り、GFX0 デバイスを挿入します。';
+  }
+
+  @override
+  String get logMsg110 => 'デバイス パスにアドレス _ADR オーバーフローがあります。';
+
+  @override
+  String get logMsg111 => '次のデバイスはプロパティの注入に影響を与える可能性があります。';
+
+  @override
+  String get logMsg112 => 'LPC(B)/SBRG を見つけています…';
+
+  @override
+  String logMsg113(String arg0, String arg1) {
+    return '=> $arg0 で $arg1 が見つかりました';
+  }
+
+  @override
+  String logMsg114(String arg0, String arg1) {
+    return '=> $arg0 で $arg1 が見つかりました';
+  }
+
+  @override
+  String logMsg115(String arg0, String arg1) {
+    return '=> $arg0 で $arg1 が見つかりました';
+  }
+
+  @override
+  String logMsg116(String arg0) {
+    return '指定された DSDT パス: $arg0';
+  }
+
+  @override
+  String logMsg117(String arg0) {
+    return '指定された DSDT パスは無効です: $arg0';
+  }
+
+  @override
+  String logMsg118(String arg0) {
+    return 'ディレクトリ $arg0 から有効な ACPI テーブルを収集しています...';
+  }
+
+  @override
+  String logMsg119(String arg0, String arg1) {
+    return '合計 $arg0 個の ACPI テーブルが見つかり、そのうち $arg1 が有効です。';
+  }
+
+  @override
+  String get logMsg120 => 'DSDT 署名を持ついくつかのファイルが検証されました。';
+
+  @override
+  String logMsg121(String arg0) {
+    return '事前に作成されたパッチを適用する必要があるかどうかを確認するために、$arg0 を逆コンパイルしようとしています...';
+  }
+
+  @override
+  String get logMsg122 => '=> 事前に作成されたパッチを適用する必要はありません!\\n';
+
+  @override
+  String logMsg123(String arg0) {
+    return '$arg0 を読み込んでいます...';
+  }
+
+  @override
+  String get logMsg124 => '処理が完了しました!\\n';
+
+  @override
+  String get logMsg125 => '渡されたファイルまたはフォルダは存在しません!\\n';
+
+  @override
+  String get logMsg126 => '問題のある DSDT ファイルを処理しています...';
+
+  @override
+  String get logMsg127 => '利用可能な既成パッチを確認してください…';
+
+  @override
+  String logMsg128(String arg0) {
+    return '$arg0 ファイルをメモリにロードしています...';
+  }
+
+  @override
+  String get logMsg129 => 'パッチを 1 つずつ処理しています...\\n';
+
+  @override
+  String get logMsg130 => '=> 位置決め、適用中…';
+
+  @override
+  String get logMsg131 => '=> 前の質問の DSDT ファイルは正常に逆コンパイルされました。';
+
+  @override
+  String logMsg132(String arg0) {
+    return '=> 修正されたファイルにパッチが適用され、ファイルは結果フォルダに保存されます:\\n $arg0';
+  }
+
+  @override
+  String logMsg133(String arg0) {
+    return '有効な ACPI テーブルを $arg0 にロードしています...';
+  }
+
+  @override
+  String get logMsg134 => 'すべての有効な ACPI テーブルの逆コンパイルが完了しました。';
+
+  @override
+  String logMsg135(String arg0) {
+    return '合計所要時間: $arg0 秒\\n';
+  }
+
+  @override
+  String logMsg136(String arg0) {
+    return '$arg0.aml を正常にコンパイルしました。';
+  }
+
+  @override
+  String logMsg137(String arg0) {
+    return '$arg0.dsl ソース ファイルを削除します';
+  }
+
+  @override
+  String logMsg138(String arg0) {
+    return '=> デバイス $arg0 のスコープが見つかりません';
+  }
+
+  @override
+  String logMsg139(String arg0) {
+    return '=> $arg0 が見つかりません';
+  }
+
+  @override
+  String logMsg140(String arg0, String arg1) {
+    return '$arg0 ($arg1) デバイスを見つけています...';
+  }
+
+  @override
+  String logMsg141(String arg0) {
+    return '=> $arg0 デバイスをターゲットにできません';
+  }
+
+  @override
+  String logMsg142(String arg0) {
+    return '=> $arg0 が見つかりました';
+  }
+
+  @override
+  String get logMsg143 => '=> 認証を求めています _STA…';
+
+  @override
+  String get logMsg144 => '=> _STA は XSTA に名前が変更されました!他のチェックはスキップしてください…';
+
+  @override
+  String get logMsg145 =>
+      '=> DSDT での _STA から XSTA へのデバイスの名前変更を無効にし、再起動後に再試行してください。\\n';
+
+  @override
+  String logMsg146(String arg0, String arg1) {
+    return '=> $arg0 変数 $arg1';
+  }
+
+  @override
+  String get logMsg147 => '=> _STA メソッド/名前が見つかりません';
+
+  @override
+  String logMsg148(String arg0) {
+    return '=> インデックス $arg0 で _STA メソッドが見つかりました!';
+  }
+
+  @override
+  String get logMsg149 => '=> _STA から XSTA への名前変更の生成';
+
+  @override
+  String get logMsg150 => '=> return文が複数ある、または戻り値がReturn(0x0F)ではない';
+
+  @override
+  String get logMsg151 => 'ACPI デバイス情報を収集しています...';
+
+  @override
+  String get logMsg152 => 'ACPI デバイス パスを収集しています...';
+
+  @override
+  String get logMsg153 => '孤立したデバイスを再チェックしています...';
+
+  @override
+  String logMsg154(String arg0) {
+    return '現在のカスタム IRQ: $arg0';
+  }
+
+  @override
+  String get logMsg155 => '=> 例: RTC:0 IPIC:2 TMR:8,11 \\n';
+
+  @override
+  String logMsg156(String arg0) {
+    return '=> _HID が見つかりました: $arg0';
+  }
+
+  @override
+  String get logMsg157 => 'PNP0103 (HPET) デバイスを見つけています…';
+
+  @override
+  String logMsg158(String arg0) {
+    return '=> $arg0 に配置';
+  }
+
+  @override
+  String get logMsg159 => 'HPET の _CRS メソッド/名前を見つけています...';
+
+  @override
+  String logMsg160(String arg0) {
+    return '=> $arg0._CRS にあります';
+  }
+
+  @override
+  String logMsg161(String arg0) {
+    return '=> インデックスで見つかりました: $arg0';
+  }
+
+  @override
+  String logMsg162(String arg0) {
+    return '=> タイプ: $arg0';
+  }
+
+  @override
+  String get logMsg163 => '=> Memory32Fixed をチェック中…';
+
+  @override
+  String logMsg164(String arg0, String arg1, String arg2) {
+    return '=> $arg0 $arg1 を取得 => $arg2';
+  }
+
+  @override
+  String get logMsg165 => 'IRQ パッチを作成しています...';
+
+  @override
+  String get logMsg166 => 'IRQをチェック中…';
+
+  @override
+  String get logMsg167 => 'IRQ が空です!スキップ...\\n';
+
+  @override
+  String get logMsg168 => '一致するものが見つかりませんでした。';
+
+  @override
+  String logMsg169(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg170 => '偽の HPET デバイスを作成しています...';
+
+  @override
+  String logMsg171(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg172(String arg0) {
+    return '=> 使用される UID: $arg0';
+  }
+
+  @override
+  String logMsg173(String arg0) {
+    return '=> 適用可能なプラットフォーム: $arg0';
+  }
+
+  @override
+  String get logMsg174 => '有効な iGPU パスが指定されていません。自動的に検索しようとしています...';
+
+  @override
+  String get logMsg175 => '0x00020000 で iGPU デバイスを探しています…';
+
+  @override
+  String logMsg176(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String logMsg177(String arg0) {
+    return '=> iGPU デバイスが $arg0 で見つかりました!';
+  }
+
+  @override
+  String get logMsg178 => 'iGPU デバイスがアドレスで見つかりません!';
+
+  @override
+  String get logMsg179 => '一般的な iGPU 名を検索しています…';
+
+  @override
+  String logMsg180(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String logMsg181(String arg0) {
+    return '=> 可能性のある iGPU デバイスが $arg0 で見つかりました';
+  }
+
+  @override
+  String logMsg182(String arg0) {
+    return 'iGPU デバイスの可能性が $arg0 で見つかりました\\n';
+  }
+
+  @override
+  String logMsg183(String arg0) {
+    return '指定された iGPU パスに従って、手動で $arg0 に設定されました \\n';
+  }
+
+  @override
+  String logMsg184(String arg0) {
+    return '無効な iGPU パス: $arg0';
+  }
+
+  @override
+  String get logMsg185 => 'ネイティブ PNLF デバイスの ACPI テーブルをチェックしています...';
+
+  @override
+  String logMsg186(String arg0, String arg1) {
+    return '=> ネイティブ PNLF デバイスが $arg0 で見つかりました: $arg1';
+  }
+
+  @override
+  String get logMsg187 =>
+      '=> ネイティブ PNLF の名前を XNLF に変更する必要があります。名前変更パッチが生成されています...';
+
+  @override
+  String get logMsg188 => '=> ネイティブ PNLF デバイスが見つかりません!';
+
+  @override
+  String get logMsg189 => '=> PNLF から XNLF への名前変更パッチを生成する必要はありません。';
+
+  @override
+  String logMsg190(String arg0) {
+    return '$arg0 で名前 (NBCF、0x00) が検出されました。パッチを生成しています...';
+  }
+
+  @override
+  String logMsg191(String arg0) {
+    return '$arg0 で名前 (NBCF、ゼロ) が検出され、パッチを生成しています...';
+  }
+
+  @override
+  String get logMsg192 => 'PNP0C09(EC) デバイスを見つけています...';
+
+  @override
+  String logMsg193(String arg0, String arg1) {
+    return '=> $arg1 PNP0C09 (EC) デバイスが $arg0 で見つかりました';
+  }
+
+  @override
+  String get logMsg194 => '=> 検証中...';
+
+  @override
+  String logMsg195(String arg0) {
+    return '=> $arg0 が見つかりました';
+  }
+
+  @override
+  String get logMsg196 => '=> PNP0C09 (EC) EC という名前のデバイス、名前変更が進行中';
+
+  @override
+  String get logMsg197 => '=> 有効な PNP0C09 (EC) デバイス';
+
+  @override
+  String get logMsg198 => '=> _STA は正しく有効になっており、名前の変更はスキップされます';
+
+  @override
+  String get logMsg199 => '=> 無効な PNP0C09 (EC) デバイス';
+
+  @override
+  String get logMsg200 => '=> 有効な PNP0C09 (EC) デバイスが見つかりません。EC デバイスを偽装してください';
+
+  @override
+  String logMsg201(String arg0) {
+    return '$arg0.dsl を作成中…';
+  }
+
+  @override
+  String logMsg202(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg203 => 'CPU 命名スキームを決定しています...';
+
+  @override
+  String logMsg204(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String logMsg205(String arg0) {
+    return '=> プロセッサが見つかりました: $arg0';
+  }
+
+  @override
+  String logMsg206(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg207 => '=> プロセッサ オブジェクトが見つかりません...';
+
+  @override
+  String get logMsg208 => '=> ACPI0007 デバイスが見つかりません…';
+
+  @override
+  String logMsg209(String arg0) {
+    return '=> $arg0 ACPI0007 デバイスが見つかりました';
+  }
+
+  @override
+  String logMsg210(String arg0) {
+    return '=> $arg0 で親デバイスが見つかりました。処理中...';
+  }
+
+  @override
+  String logMsg211(String arg0) {
+    return '=> $arg0 をチェック中…';
+  }
+
+  @override
+  String get logMsg212 => '=> 見つかりません!飛び越える…';
+
+  @override
+  String get logMsg213 => '=> 見つかりません!飛び越える…';
+
+  @override
+  String logMsg214(String arg0) {
+    return '$arg0 個の有効なプロセッサ デバイスを処理しています...';
+  }
+
+  @override
+  String get logMsg215 => 'LPC 名の取得に失敗しました...';
+
+  @override
+  String logMsg216(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg217 => '=> RTC を偽造する必要があります!';
+
+  @override
+  String get logMsg218 => '=> _CRS をチェック中…';
+
+  @override
+  String get logMsg219 => '=> _CRS はバッファであり、RTC 範囲をチェックしています...';
+
+  @override
+  String get logMsg220 => '=> 値を調整できず、RTC 範囲を確認できません。';
+
+  @override
+  String get logMsg221 => '=> 値の収集に失敗しました。RTC 範囲を確認できません。';
+
+  @override
+  String get logMsg222 => '=> _CRS はメソッドであるため、RTC 範囲を検証できません。';
+
+  @override
+  String get logMsg223 => '=> _CRS から XCRS への名前変更を生成中…';
+
+  @override
+  String logMsg224(String arg0) {
+    return '=> インデックス $arg0 で見つかりました';
+  }
+
+  @override
+  String get logMsg225 => '=> 見つかりません';
+
+  @override
+  String logMsg226(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg227(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg228 => 'RHUB/HUBN/URTH デバイスを収集しています...';
+
+  @override
+  String logMsg229(String arg0) {
+    return '=> $arg0 個のデバイスが見つかりました';
+  }
+
+  @override
+  String get logMsg230 => '=> 名前を変更する必要があります!';
+
+  @override
+  String logMsg231(String arg0) {
+    return '=> $arg0 を確認: _STA メソッドが存在するかどうか';
+  }
+
+  @override
+  String logMsg232(String arg0) {
+    return '=> インデックス $arg0 で _STA メソッドが見つかりました!';
+  }
+
+  @override
+  String get logMsg233 => '=> _STA から XSTA へのパッチを生成';
+
+  @override
+  String get logMsg234 => '=> _STA メソッドが見つかりません!';
+
+  @override
+  String logMsg235(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg236 => '=> デバイス パスに _ADR アドレス オーバーフローがあります。';
+
+  @override
+  String get logMsg237 => '=> 次のデバイスが正しく機能するには、ブリッジの調整が必要な場合があります。';
+
+  @override
+  String get logMsg238 => 'PCI ブリッジ デバイスを収集しています...';
+
+  @override
+  String get logMsg239 => 'PCI ブリッジデバイスが空です!作戦は終了しました！';
+
+  @override
+  String get logMsg240 => 'ブリッジデバイスを構築しています...';
+
+  @override
+  String get logMsg241 => 'PCI ブリッジデバイスが空です!飛び越える…';
+
+  @override
+  String get logMsg242 => 'デバイスパスが一致しています…';
+
+  @override
+  String get logMsg243 => '一致するものが見つかりませんでした!';
+
+  @override
+  String logMsg244(String arg0) {
+    return '=> $arg0 と一致します。ブリッジングは必要ありません';
+  }
+
+  @override
+  String get logMsg245 => '一致するものが見つかりません!\\n';
+
+  @override
+  String get logMsg246 => 'ブリッジは必要ありません!\\n';
+
+  @override
+  String get logMsg247 => 'ブリッジデバイスを解決しています...';
+
+  @override
+  String get logMsg248 => '=> 解析できません!';
+
+  @override
+  String get logMsg249 => 'ブリッジ デバイスの解析中にエラーが発生しました!\\n';
+
+  @override
+  String logMsg250(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg251 => 'ACPI0008 (ALS) デバイスを見つけています...';
+
+  @override
+  String logMsg252(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String logMsg253(String arg0, String arg1) {
+    return '=> $arg0 テーブルで ALS デバイスが見つかりました: $arg1!';
+  }
+
+  @override
+  String get logMsg254 => '=> 偽造する必要はありません!\\n';
+
+  @override
+  String logMsg255(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg256 => '_STA は正しく有効になっており、パッチは必要ありません。 \\n';
+
+  @override
+  String get logMsg257 => '見つかりません。パッチは必要ありません!\\n';
+
+  @override
+  String get logMsg258 => 'ACPI0008 (ALS) デバイスが見つかりません。偽造デバイスが必要です…';
+
+  @override
+  String logMsg259(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg260 => 'XOSI スキームを検出しています...';
+
+  @override
+  String logMsg261(String arg0, String arg1) {
+    return '=> 自動検出: $arg0 ($arg1)';
+  }
+
+  @override
+  String get logMsg262 => 'OSID メソッドを確認しています...';
+
+  @override
+  String logMsg263(String arg0, String arg1) {
+    return '=> オフセット $arg0 でメソッド $arg1 が見つかりました';
+  }
+
+  @override
+  String get logMsg264 => '=> 見つからないため、OSID の名前を XSID に変更する必要はありません';
+
+  @override
+  String get logMsg265 => '_OSI を作成して XOSI に名前変更しています…';
+
+  @override
+  String logMsg266(String arg0) {
+    return '$arg0 テーブルを探しています…';
+  }
+
+  @override
+  String logMsg267(String arg0) {
+    return '$arg0 テーブルが見つかりました。署名を検証しています...';
+  }
+
+  @override
+  String logMsg268(String arg0) {
+    return '=> $arg0 テーブルの署名検証に合格しました。';
+  }
+
+  @override
+  String logMsg269(String arg0) {
+    return '$arg0 値をチェックしています...';
+  }
+
+  @override
+  String logMsg270(String arg0, String arg1) {
+    return '取得した $arg0 値: $arg1';
+  }
+
+  @override
+  String logMsg271(String arg0) {
+    return '取得したリセット レジスタ アドレス値: $arg0';
+  }
+
+  @override
+  String get logMsg272 => 'パッチを適用する必要がある ACPI パッチは次のとおりです。';
+
+  @override
+  String get logMsg273 => 'APIC テーブルにパッチを適用しています...';
+
+  @override
+  String logMsg274(String arg0, String arg1) {
+    return '=> 修正された APIC プロセッサ ID: $arg0 → $arg1';
+  }
+
+  @override
+  String get logMsg275 => '=> APIC テーブルのパッチ適用が完了しました。';
+
+  @override
+  String logMsg276(String arg0) {
+    return '$arg0.dsl を作成中…';
+  }
+
+  @override
+  String get logMsg277 => 'DMAR テーブルの予約済みメモリ領域をチェックしています...';
+
+  @override
+  String get logMsg278 => '=> 予約されたメモリ領域が見つかりません。DMAR にパッチを適用する必要はありません!\\n';
+
+  @override
+  String logMsg279(String arg0) {
+    return '$arg0 の予約済みメモリ領域が見つかりました。新しいテーブルを生成しています...';
+  }
+
+  @override
+  String get logMsg280 => 'アドレス 0x00160000 で IMEI デバイスを探しています...';
+
+  @override
+  String get logMsg281 => 'IMEI デバイスが見つかりません。デバイスを偽造する必要があります…';
+
+  @override
+  String get logMsg282 => '親デバイスを確認しています...';
+
+  @override
+  String get logMsg283 => '0x00020000 で iGPU デバイスを探しています…';
+
+  @override
+  String get logMsg284 => '=> iGPU デバイスが見つかりません!';
+
+  @override
+  String get logMsg285 => 'PCI ルート デバイスを見つけようとしています...';
+
+  @override
+  String logMsg286(String arg0) {
+    return '=> PCI ルートデバイスが見つかりました: $arg0';
+  }
+
+  @override
+  String logMsg287(String arg0) {
+    return '=> iGPU デバイスが見つかりました: $arg0';
+  }
+
+  @override
+  String logMsg288(String arg0) {
+    return '=> 親デバイスを使用: $arg0';
+  }
+
+  @override
+  String get logMsg289 => '偽のデバイス ID スキームを収集しています...';
+
+  @override
+  String logMsg290(String arg0) {
+    return '=> 第 3 世代 Ivy Bridge プロセッサーに一致する 7 シリーズ マザーボード IMEI (device-id: $arg0) として偽造';
+  }
+
+  @override
+  String logMsg291(String arg0) {
+    return '=> 第 2 世代 Sandy Bridge プロセッサに一致する 6 シリーズ マザーボード IMEI (device-id: $arg0) として偽造';
+  }
+
+  @override
+  String logMsg292(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg293 => 'UNC (PNP0A03) デバイスを探しています...';
+
+  @override
+  String logMsg294(String arg0) {
+    return '=> $arg0 UNC デバイスが見つかりました';
+  }
+
+  @override
+  String logMsg295(String arg0, String arg1) {
+    return '=> UNC デバイス $arg0: $arg1';
+  }
+
+  @override
+  String logMsg296(String arg0) {
+    return '=> $arg0: _STA メソッドが存在するかどうかを確認します';
+  }
+
+  @override
+  String logMsg297(String arg0, String arg1) {
+    return '=> $arg1 が見つかりました: インデックス $arg0 で _STA メソッド!';
+  }
+
+  @override
+  String logMsg298(String arg0) {
+    return '=> $arg0 を生成: _STA から XSTA へのパッチ';
+  }
+
+  @override
+  String logMsg299(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg300(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg301 => 'DTGP メソッドが存在するかどうかを確認しています...';
+
+  @override
+  String get logMsg302 => '=> DTGP メソッドが見つかりません!';
+
+  @override
+  String get logMsg303 => '=> DTGP メソッドが上記の ACPI テーブルのいずれにも見つかりません。 \\n';
+
+  @override
+  String logMsg304(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg305(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg306 => 'DMA (PNP0200) デバイスを探しています...';
+
+  @override
+  String get logMsg307 => '=> DMA (PNP0200) デバイスが見つかりません!';
+
+  @override
+  String logMsg308(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg309(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg310 => '_PTS メソッドの存在を確認しています...';
+
+  @override
+  String logMsg311(String arg0) {
+    return '=> メソッド $arg0 が見つかりました!';
+  }
+
+  @override
+  String get logMsg312 => '=> _PTS メソッドが見つかりません!';
+
+  @override
+  String get logMsg313 => '_WAK メソッドの存在を確認しています...';
+
+  @override
+  String logMsg314(String arg0) {
+    return '=> メソッド $arg0 が見つかりました!';
+  }
+
+  @override
+  String get logMsg315 => '=> _WAK メソッドが見つかりません!';
+
+  @override
+  String logMsg316(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg317(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg318 => '_SST メソッドの存在を確認しています...';
+
+  @override
+  String logMsg319(String arg0) {
+    return '=> $arg0 に _SST メソッドが見つかりました!';
+  }
+
+  @override
+  String get logMsg320 => '=> _SST メソッドが見つかりません!';
+
+  @override
+  String logMsg321(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg322(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg323 => 'PNP0C0D デバイスの存在を確認しています...';
+
+  @override
+  String logMsg324(String arg0) {
+    return '=> PNP0C0D デバイスが $arg0 で見つかりました!';
+  }
+
+  @override
+  String get logMsg325 => '=> PNP0C0D デバイスが見つかりません!';
+
+  @override
+  String logMsg326(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg327(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String logMsg328(String arg0) {
+    return '$arg0 の存在を確認しています...';
+  }
+
+  @override
+  String logMsg329(String arg0, String arg1) {
+    return '=> $arg0 で $arg1 が見つかりました';
+  }
+
+  @override
+  String logMsg330(String arg0, String arg1) {
+    return '=> $arg0 で $arg1 が見つかりました';
+  }
+
+  @override
+  String logMsg331(String arg0) {
+    return '=> $arg0 が見つかりません';
+  }
+
+  @override
+  String get logMsg332 => 'すべての ACPI テーブルがチェックされました。';
+
+  @override
+  String get logMsg333 => '=> システム状態のサポート: [systemStatesFound]';
+
+  @override
+  String get logMsg334 =>
+      '=> 現在のファームウェアは一般的なシステム状態をサポートしています。スリープの問題を修正した後、macOS は S3 スリープをサポートできるようになります。';
+
+  @override
+  String get logMsg335 => '低電力 S0 アイドル (V5) 値を確認しています...';
+
+  @override
+  String logMsg336(String arg0) {
+    return '低電力 S0 アイドルの取得 (V5): $arg0';
+  }
+
+  @override
+  String get logMsg337 => '現在は AOAC マシンではないため、macOS システム S3 のスリープには影響しません。';
+
+  @override
+  String get logMsg338 => '_S3 の存在を確認しています...';
+
+  @override
+  String logMsg339(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String logMsg340(String arg0) {
+    return '=> $arg0 で _S3 という名前が見つかりました!';
+  }
+
+  @override
+  String logMsg341(String arg0) {
+    return '=> $arg0 でメソッド _S3 が見つかりました!';
+  }
+
+  @override
+  String get logMsg342 => '=> 名前またはメソッド _S3 が見つかりません';
+
+  @override
+  String logMsg343(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg344(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg345(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg346 => 'LID (PNP0C0D) デバイスを探しています...';
+
+  @override
+  String logMsg347(String arg0) {
+    return '=> PNP0C0D デバイスが $arg0 で見つかりました!';
+  }
+
+  @override
+  String get logMsg348 => '=> LID (PNP0C0D) デバイスが見つかりません!';
+
+  @override
+  String logMsg349(String arg0) {
+    return '=> $arg0 でメソッド _LID が見つかりました!';
+  }
+
+  @override
+  String get logMsg350 => '=> メソッド _LID が見つかりません!';
+
+  @override
+  String get logMsg351 => '_TTS メソッドの存在を確認しています...';
+
+  @override
+  String logMsg352(String arg0) {
+    return '=> メソッド $arg0 が見つかりました!';
+  }
+
+  @override
+  String get logMsg353 => '=> _TTS メソッドが見つかりません!';
+
+  @override
+  String get logMsg354 => 'ZTTS メソッドの存在を確認しています...';
+
+  @override
+  String get logMsg355 => '=> ZTTS メソッドが見つかりません!';
+
+  @override
+  String logMsg356(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg357(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg358 => 'PWRB (PNP0C0C) デバイスを探しています...';
+
+  @override
+  String get logMsg359 => '=> PWRB (PNP0C0C) デバイスが見つかりません!';
+
+  @override
+  String logMsg360(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg361(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg362 => 'SLPB (PNP0C0E) デバイスを探しています...';
+
+  @override
+  String get logMsg363 => '=> SLPB (PNP0C0E) デバイスが見つかりません!';
+
+  @override
+  String get logMsg364 =>
+      '=> SLPB (PNP0C0E) デバイスが上記の ACPI テーブルに見つかりませんでした。偽物だけ！ \\n';
+
+  @override
+  String logMsg365(String arg0) {
+    return '$arg0.sdl を作成しています...';
+  }
+
+  @override
+  String logMsg366(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg367(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg368(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String get logMsg369 => 'PNP0C01 デバイスを探しています...';
+
+  @override
+  String get logMsg370 => '=> PNP0C01 デバイスが見つかりません!';
+
+  @override
+  String get logMsg371 => '=> PNP0C01 デバイスは上記の ACPI テーブルのいずれにも見つかりませんでした!\\n';
+
+  @override
+  String logMsg372(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg373 => 'XHC/XHCI/XDCI/CNVW デバイスを収集しています...';
+
+  @override
+  String logMsg374(String arg0) {
+    return '=> $arg0 デバイスが PMEE をサポートしているかどうかを確認しています...';
+  }
+
+  @override
+  String logMsg375(String arg0) {
+    return '=> $arg0 は PMEE をサポートしていないため、スキップされます';
+  }
+
+  @override
+  String logMsg376(String arg0) {
+    return '=> $arg0 は PMEE をサポートします';
+  }
+
+  @override
+  String logMsg377(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg378 => 'GPRW メソッドの存在を確認しています...';
+
+  @override
+  String get logMsg379 => 'XPRW メソッドの存在を確認しています...';
+
+  @override
+  String logMsg380(String arg0) {
+    return '=> GPRW メソッドが $arg0 で見つかりました!';
+  }
+
+  @override
+  String logMsg381(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg382 => 'UPRW メソッドの存在を確認しています...';
+
+  @override
+  String get logMsg383 => 'XPRW メソッドの存在を確認しています...';
+
+  @override
+  String logMsg384(String arg0) {
+    return '=> $arg0 で UPRW メソッドが見つかりました!';
+  }
+
+  @override
+  String logMsg385(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg386 => 'GPI0 デバイスの存在を確認しています...';
+
+  @override
+  String logMsg387(String arg0) {
+    return '=> GPI0 デバイスが $arg0 で見つかりました!';
+  }
+
+  @override
+  String get logMsg388 => '_STA メソッドの存在を確認しています...';
+
+  @override
+  String logMsg389(String arg0, String arg1) {
+    return '=> $arg1 が見つかりました: インデックス $arg0 で _STA メソッド!';
+  }
+
+  @override
+  String logMsg390(String arg0) {
+    return '=> $arg0 を生成: _STA から XSTA へのパッチ';
+  }
+
+  @override
+  String logMsg391(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg392 => 'CPU 命名スキームを決定しています...';
+
+  @override
+  String logMsg393(String arg0) {
+    return '$arg0 をチェックしています…';
+  }
+
+  @override
+  String logMsg394(String arg0) {
+    return '=> プロセッサが見つかりました: $arg0';
+  }
+
+  @override
+  String get logMsg395 => '=> プロセッサ オブジェクトが見つかりません...';
+
+  @override
+  String get logMsg396 => '=> ACPI0007 デバイスが見つかりません…';
+
+  @override
+  String logMsg397(String arg0) {
+    return '=> $arg0 ACPI0007 デバイスが見つかりました';
+  }
+
+  @override
+  String logMsg398(String arg0) {
+    return '=> $arg0 で親デバイスが見つかりました。処理中...';
+  }
+
+  @override
+  String logMsg399(String arg0) {
+    return '=> $arg0 をチェック中…';
+  }
+
+  @override
+  String get logMsg400 => '=> 見つかりません!飛び越える…';
+
+  @override
+  String get logMsg401 => '=> 見つかりません!飛び越える…';
+
+  @override
+  String logMsg402(String arg0) {
+    return '$arg0 個の有効なプロセッサ デバイスを処理しています...';
+  }
+
+  @override
+  String logMsg403(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg404(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg405(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg406(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg407(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg408(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg409(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg410(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg411 => '偽のデバイス ID スキームを収集しています...';
+
+  @override
+  String logMsg412(String arg0) {
+    return '=> 第 3 世代 Ivy Bridge プロセッサーに一致する 7 シリーズ マザーボード IMEI (device-id: $arg0) として偽造';
+  }
+
+  @override
+  String logMsg413(String arg0) {
+    return '=> 第 2 世代 Sandy Bridge プロセッサに一致する 6 シリーズ マザーボード IMEI (device-id: $arg0) として偽造';
+  }
+
+  @override
+  String logMsg414(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg415(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg416(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg417(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg418(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg419(String arg0) {
+    return 'デバイス $arg0 の _ON または _OFF メソッドを確認しています...';
+  }
+
+  @override
+  String logMsg420(String arg0) {
+    return 'デバイス $arg0 の _PS3 または _DSM メソッドをチェックしています...';
+  }
+
+  @override
+  String logMsg421(String arg0) {
+    return 'デバイス $arg0 をチェックしています...';
+  }
+
+  @override
+  String logMsg422(String arg0) {
+    return '=> $arg0 に対応する _PRT メソッドが DSDT または SSDT で見つかりませんでした。';
+  }
+
+  @override
+  String logMsg423(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg424(String arg0, String arg1) {
+    return '=> ブロックする必要がある $arg0 デバイス パス: $arg1';
+  }
+
+  @override
+  String logMsg425(String arg0) {
+    return '=> シールド方法: $arg0 メソッド';
+  }
+
+  @override
+  String logMsg426(String arg0) {
+    return '=> デバイスの相対パスが絶対パスに変換されました: $arg0';
+  }
+
+  @override
+  String logMsg427(String arg0, String arg1, String arg2) {
+    return '=> $arg0 で $arg1.$arg2 メソッドを検索します';
+  }
+
+  @override
+  String logMsg428(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String get logMsg429 => '使用可能なバス デバイスを収集しています...';
+
+  @override
+  String logMsg430(String arg0) {
+    return 'プリコンパイルされた $arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg431(String arg0) {
+    return 'グラフィックス デバイス $arg0 をチェックしています...';
+  }
+
+  @override
+  String logMsg432(String arg0) {
+    return '=> $arg0 に対応する _PRT メソッドが DSDT または SSDT で見つかりませんでした。';
+  }
+
+  @override
+  String logMsg433(String arg0) {
+    return '$arg0.dsl を作成しています...';
+  }
+
+  @override
+  String logMsg434(String arg0) {
+    return '=> グラフィックス カード デバイス パス: $arg0';
+  }
+
+  @override
+  String logMsg435(String arg0) {
+    return '=> 偽造グラフィックス カード ID: $arg0';
+  }
+
+  @override
+  String logMsg436(String arg0) {
+    return '=> 偽造グラフィックス カード名: $arg0';
+  }
+
+  @override
+  String get logMsg437 => '=> 見つかりません!';
+
+  @override
+  String logMsg438(String arg0) {
+    return '=> 一致した PCI パス: $arg0';
+  }
+
+  @override
+  String logMsg439(String arg0, String arg1, String arg2) {
+    return '=> $arg0「$arg1」を $arg2 に更新します';
+  }
+
+  @override
+  String logMsg440(String arg0, String arg1, String arg2) {
+    return '=> $arg0 \"$arg1\" は $arg2 にすでに存在します。スキップ...';
+  }
+
+  @override
+  String logMsg441(String arg0, String arg1, String arg2) {
+    return '=> $arg0「$arg1」を $arg2 に追加します';
+  }
+
+  @override
+  String logMsg442(String arg0, String arg1, String arg2) {
+    return '=> $arg2 のキー「$arg0」の値を「$arg1」に更新します';
+  }
+
+  @override
+  String logMsg443(String arg0, String arg1) {
+    return '=> キー「$arg0」の値はすでに最新であるため、$arg1 はスキップされます';
+  }
+
+  @override
+  String logMsg444(String arg0, String arg1, String arg2) {
+    return '=> キー「$arg0」値「$arg1」を $arg2 に追加します';
+  }
+
+  @override
+  String logMsg445(String arg0) {
+    return 'ハードウェア レポート フォルダーのクリーンアップに失敗しました: $arg0';
+  }
+
+  @override
+  String get logMsg446 => 'ネイティブ ACPI テーブルのエクスポートに失敗しました';
+
+  @override
+  String logMsg447(String arg0) {
+    return 'ネイティブ ACPI テーブルのエクスポートに失敗しました: $arg0';
+  }
+
+  @override
+  String logMsg448(String arg0) {
+    return 'ネイティブ ACPI テーブルのエクスポートに失敗しました: $arg0';
+  }
+
+  @override
+  String logMsg449(String arg0) {
+    return 'ACPI テーブルの一時ディレクトリのクリーンアップに失敗しました: $arg0';
+  }
+
+  @override
+  String get logMsg450 => 'ネイティブ ハードウェア レポートをエクスポートしています...';
+
+  @override
+  String get logMsg451 => 'ネイティブ ACPI テーブルをエクスポートしています...';
+
+  @override
+  String logMsg452(String arg0) {
+    return 'ネイティブ ACPI テーブルのエクスポートが完了しました: $arg0';
+  }
+
+  @override
+  String logMsg453(String arg0) {
+    return 'ソース ファイルが存在しません: $arg0';
+  }
+
+  @override
+  String logMsg454(String arg0) {
+    return 'ファイル保存エラー: $arg0';
+  }
+
+  @override
+  String logMsg455(String arg0) {
+    return '現在の OC バージョン: $arg0';
+  }
+
+  @override
+  String logMsg456(String arg0) {
+    return 'ZIP ファイルが存在しません: $arg0';
+  }
+
+  @override
+  String logMsg457(String arg0) {
+    return '$arg0 ファイルが正常に解凍されました';
+  }
+
+  @override
+  String logMsg458(String arg0, String arg1) {
+    return 'ファイル $arg0 の解凍中にエラーが発生しました: $arg1';
+  }
+
+  @override
+  String logMsg459(String arg0) {
+    return 'ファイルまたはディレクトリが存在しません: $arg0';
+  }
+
+  @override
+  String logMsg460(String arg0) {
+    return '圧縮が完了しました: $arg0';
+  }
+
+  @override
+  String logMsg461(String arg0) {
+    return '圧縮エラー: $arg0';
+  }
+
+  @override
+  String logMsg462(String arg0) {
+    return 'ディレクトリを削除: $arg0';
+  }
+
+  @override
+  String logMsg463(String arg0) {
+    return 'ファイルを削除: $arg0';
+  }
+
+  @override
+  String logMsg464(String arg0, String arg1) {
+    return '削除に失敗しました: $arg0、$arg1';
+  }
+
+  @override
+  String logMsg465(String arg0) {
+    return 'ファイルは次の場所に正常に保存されました: $arg0';
+  }
+
+  @override
+  String logMsg466(String arg0) {
+    return 'ソース ディレクトリが存在しません: $arg0';
+  }
+
+  @override
+  String logMsg467(String arg0) {
+    return '準備されたフォルダー: $arg0';
+  }
+
+  @override
+  String logMsg468(String arg0) {
+    return 'フォルダー作成エラー: $arg0';
+  }
+
+  @override
+  String logMsg469(String arg0) {
+    return 'ディレクトリを開けませんでした。パスが存在しません: $arg0';
+  }
+
+  @override
+  String logMsg470(String arg0, String arg1) {
+    return 'ディレクトリを開けませんでした: $arg0、$arg1';
+  }
 }

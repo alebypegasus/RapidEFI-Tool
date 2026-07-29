@@ -1,3 +1,5 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:archive/archive.dart';
@@ -43,7 +45,7 @@ class FileUtils {
       r'####\s+(v\d+\.\d+\.\d+)\s+([\s\S]*?)(?=\n####|\Z)',
     ).firstMatch(changelog);
     final version = match?.group(1) ?? '';
-    Log('当前OC版本: $version');
+    Log(l10nGlobal.logMsg455(version.toString()));
     return version;
   }
 
@@ -250,7 +252,7 @@ class _ArchiveOps {
   }) async {
     final zipFile = File(zipFilePath);
     if (!await zipFile.exists()) {
-      Log('ZIP文件不存在: $zipFilePath');
+      Log(l10nGlobal.logMsg456(zipFilePath.toString()));
       return;
     }
 
@@ -284,9 +286,9 @@ class _ArchiveOps {
         await zipFile.delete();
       }
       onProgress?.call(1);
-      Log('$zipFilePath 文件成功解压');
+      Log(l10nGlobal.logMsg457(zipFilePath.toString()));
     } catch (error) {
-      Log('解压 $zipFilePath 文件时出错: $error');
+      Log(l10nGlobal.logMsg458(zipFilePath.toString(), error.toString()));
     }
   }
 
@@ -300,7 +302,7 @@ class _ArchiveOps {
     final sourceIsFile = await sourceFile.exists();
     final sourceIsDirectory = await sourceDirectory.exists();
     if (!sourceIsFile && !sourceIsDirectory) {
-      Log('文件或目录不存在: $sourcePath');
+      Log(l10nGlobal.logMsg459(sourcePath.toString()));
       return false;
     }
 
@@ -333,10 +335,10 @@ class _ArchiveOps {
       await zipFile.parent.create(recursive: true);
       await zipFile.writeAsBytes(zipData);
       onProgress?.call(1);
-      Log('压缩完成: $zipFileName');
+      Log(l10nGlobal.logMsg460(zipFileName.toString()));
       return true;
     } catch (error) {
-      Log('压缩出错: $error');
+      Log(l10nGlobal.logMsg461(error.toString()));
       return false;
     }
   }
@@ -371,13 +373,13 @@ class _FileSystemOps {
     try {
       if (type == FileSystemEntityType.directory) {
         await Directory(entityPath).delete(recursive: true);
-        Log('删除目录: $entityPath');
+        Log(l10nGlobal.logMsg462(entityPath.toString()));
       } else {
         await File(entityPath).delete();
-        Log('删除文件: $entityPath');
+        Log(l10nGlobal.logMsg463(entityPath.toString()));
       }
     } catch (error) {
-      Log('删除失败: $entityPath, $error');
+      Log(l10nGlobal.logMsg464(entityPath.toString(), error.toString()));
     }
   }
 }
@@ -393,7 +395,7 @@ class _FileCopyOps {
     try {
       final sourceFile = File(sourceFilePath);
       if (!await sourceFile.exists()) {
-        Log.error('源文件不存在: $sourceFilePath');
+        Log.error(l10nGlobal.logMsg453(sourceFilePath.toString()));
         return false;
       }
 
@@ -401,10 +403,10 @@ class _FileCopyOps {
       final outputPath = path.join(outDirectory, fileName);
       await Directory(outDirectory).create(recursive: true);
       await sourceFile.copy(outputPath);
-      Log('文件已成功保存到: $outputPath');
+      Log(l10nGlobal.logMsg465(outputPath.toString()));
       return true;
     } catch (error) {
-      Log.error('保存文件时出错: $error');
+      Log.error(l10nGlobal.logMsg454(error.toString()));
       return false;
     }
   }
@@ -414,7 +416,7 @@ class _FileCopyOps {
     Directory destination,
   ) async {
     if (!await source.exists()) {
-      Log('源目录不存在: ${source.path}');
+      Log(l10nGlobal.logMsg466(source.path.toString()));
       return;
     }
 
@@ -512,10 +514,10 @@ class _PlatformPaths {
     try {
       final newDirectory = Directory(path.join(directory, folderName));
       await newDirectory.create(recursive: true);
-      Log('文件夹已准备: ${newDirectory.path}');
+      Log(l10nGlobal.logMsg467(newDirectory.path.toString()));
       return newDirectory.path;
     } catch (error) {
-      Log('创建文件夹时出错: $error');
+      Log(l10nGlobal.logMsg468(error.toString()));
       return '';
     }
   }
@@ -556,7 +558,7 @@ class _PlatformPaths {
     final file = File(targetPath);
     final exists = await directory.exists() || await file.exists();
     if (!exists) {
-      Log('打开目录失败，路径不存在: $targetPath');
+      Log(l10nGlobal.logMsg469(targetPath.toString()));
       return false;
     }
 
@@ -574,7 +576,7 @@ class _PlatformPaths {
         return true;
       }
     } catch (error) {
-      Log('打开目录失败: $targetPath, $error');
+      Log(l10nGlobal.logMsg470(targetPath.toString(), error.toString()));
     }
 
     return false;

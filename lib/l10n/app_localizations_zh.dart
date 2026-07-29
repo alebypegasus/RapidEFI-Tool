@@ -2071,4 +2071,1916 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get mbOemUsb => '部分OEM主板存在USB所有权释放问题:EHCI Hand-off失效';
+
+  @override
+  String get navAppGuide => '软件指南';
+
+  @override
+  String get appGuideTitle => 'RapidEFI 使用指南';
+
+  @override
+  String get logMsg001 => '=> 未能找到 LPC(B)！已终止操作！';
+
+  @override
+  String get logMsg002 => '未找到有效的 DSDT ！请先选择一个 DSDT 文件或包含 DSDT 的文件目录!';
+
+  @override
+  String get logMsg003 => 'iasl工具准备失败!请先更新或者使用内置的iasl工具!';
+
+  @override
+  String get logMsg004 => '未找到有效的 .aml 文件!\\n';
+
+  @override
+  String get logMsg005 => '未找到有效的 DSDT ！请先选择一个 DSDT 文件或包含 DSDT 的文件目录!';
+
+  @override
+  String get logMsg006 =>
+      '当前检测到多个 DSDT 文件，每次仅允许处理一个.请保留一个 DSDT 文件，其余请移除后再试.\\n';
+
+  @override
+  String get logMsg007 => '无效 DSDT 文件！请重新选择一个有效 DSDT 文件!';
+
+  @override
+  String logMsg008(String arg0) {
+    return '$arg0 反编译失败!\\n';
+  }
+
+  @override
+  String logMsg009(String arg0) {
+    return '编译结果 : $arg0';
+  }
+
+  @override
+  String logMsg010(String arg0) {
+    return '处理IntObj类型发生错误: $arg0';
+  }
+
+  @override
+  String logMsg011(String arg0) {
+    return '处理MethodObj类型发生错误: $arg0';
+  }
+
+  @override
+  String get logMsg012 => '没有发现任何 IRQ 信息!';
+
+  @override
+  String get logMsg013 => '当前选项或者自定义IRQs为空!无法生成IRQ补丁!';
+
+  @override
+  String get logMsg014 => '=> 未找到任何 IRQ 信息!';
+
+  @override
+  String get logMsg015 => '自定义 IRQ 列表格式错误！！!设备之间用空格分隔，IRQ之间用逗号分隔！！！';
+
+  @override
+  String logMsg016(String arg0) {
+    return '=> _HID 解析错误: $arg0';
+  }
+
+  @override
+  String get logMsg017 => '未找到有效的设备,跳过 HPET 操作!';
+
+  @override
+  String get logMsg018 => '未提供有效的 IRQs 或者 IRQs 为空! 已终止操作!';
+
+  @override
+  String logMsg019(String arg0) {
+    return '=> 无法定位 $arg0._CRS！已终止操作！';
+  }
+
+  @override
+  String logMsg020(String arg0) {
+    return '=> 无法定位 $arg0._CRS！';
+  }
+
+  @override
+  String get logMsg021 => '=> _CRS似乎已经被命名为 XCRS！';
+
+  @override
+  String get logMsg022 => '=> 请禁用DSDT中该设备的 _CRS 到 XCRS 的重命名，重启后再试!\\n';
+
+  @override
+  String get logMsg023 => '=> 无法确定内存访问类型！';
+
+  @override
+  String get logMsg024 => '=> 无法将 Base 或 Length 转换为整数！';
+
+  @override
+  String get logMsg025 => '=> 未找到！';
+
+  @override
+  String logMsg026(String arg0, String arg1) {
+    return '=> 使用默认值 $arg0 => $arg1';
+  }
+
+  @override
+  String get logMsg027 => '=> 未找到！';
+
+  @override
+  String get logMsg028 => '=> 没有需要修补的内容！';
+
+  @override
+  String logMsg029(String arg0, String arg1) {
+    return '缺少 $arg0 的 IRQ 补丁结尾（$arg1）！已跳过…';
+  }
+
+  @override
+  String get logMsg030 => '以下可能不是唯一的，默认已禁用！\\n';
+
+  @override
+  String get logMsg031 => '未提供有效的 UID，终止操作！';
+
+  @override
+  String logMsg032(String arg0) {
+    return '$arg0 是一个自定义的 UID，可能需要手动定制设置，或者可能根本不受支持!';
+  }
+
+  @override
+  String get logMsg033 => '在传递的 ACPI 表中未找到有效的 iGPU 路径!\\n';
+
+  @override
+  String logMsg034(String arg0) {
+    return '注意: iGPU 路径被猜测为 $arg0\\n    使用前请验证!';
+  }
+
+  @override
+  String logMsg035(String arg0) {
+    return '注意: iGPU 路径已手动设置为 $arg0  请在使用前务必确认该路径是否正确!';
+  }
+
+  @override
+  String get logMsg036 => '=> 已找到命名的 EC 设备, 无需仿冒!\\n';
+
+  @override
+  String get logMsg037 => 'USBX属性补丁不能为空! 已终止操作!';
+
+  @override
+  String get logMsg038 => '未找到有效的处理器设备！';
+
+  @override
+  String get logMsg039 => '=> 已找到有效的 PNP0B00 (RTC) 设备并通过验证,无需补丁及SSDT!已终止操作！';
+
+  @override
+  String get logMsg040 => '=> 未找到 ACPI000E (AWAC) 设备,无需补丁及SSDT!已终止操作!';
+
+  @override
+  String get logMsg041 => '=> 未找到任何设备！已终止操作！';
+
+  @override
+  String get logMsg042 => '未找到以下路径的匹配项：';
+
+  @override
+  String get logMsg043 => '未找到任何匹配项！';
+
+  @override
+  String get logMsg044 => '注意,设备路径必须以以下 PciRoot() 开头，才能与当前 ACPI 表匹配：';
+
+  @override
+  String logMsg045(String arg0) {
+    return '=> 未找到，似乎不是一个有效的 $arg0 表!\\n';
+  }
+
+  @override
+  String logMsg046(String arg0) {
+    return '未找到 $arg0 值! 已终止操作!';
+  }
+
+  @override
+  String get logMsg047 => '未找到 Reset Register Address 值! 已终止操作!';
+
+  @override
+  String logMsg048(String arg0) {
+    return '无法解析 $arg0 中的 Processor ID，终止修补';
+  }
+
+  @override
+  String logMsg049(String arg0) {
+    return '在 $arg0 中第一个 CPU 已匹配, 无需修补 APIC 表!';
+  }
+
+  @override
+  String get logMsg050 => '=> 未找到 Processor 匹配项! 已终止操作!';
+
+  @override
+  String get logMsg051 => '请选择IMEI补丁!';
+
+  @override
+  String logMsg052(String arg0) {
+    return '=> 已在 $arg0 找到 IMEI 设备, 无需桥接仿冒!已终止操作！';
+  }
+
+  @override
+  String get logMsg053 => '=> 未找到 PCI 根设备!已终止操作!';
+
+  @override
+  String get logMsg054 =>
+      '=> 未启用 SSDT 仿冒 IMEI，必须通过 DeviceProperties 设置 device-id!';
+
+  @override
+  String get logMsg055 => '未找到 UNC (PNP0A03) 设备!无需 SSDT-UNC 补丁!已终止操作！\\n';
+
+  @override
+  String logMsg056(String arg0) {
+    return '=> $arg0: _STA 方法不存在!';
+  }
+
+  @override
+  String get logMsg057 => '=> 在上述所有ACPI表中均未找到 DMA (PNP0200) 设备! 已终止操作！\\n';
+
+  @override
+  String get logMsg058 => '=> 未找到 _PTS 方法, 将不生成 _PTS 调度入口和重命名补丁!';
+
+  @override
+  String get logMsg059 => '=> 未找到 _WAK 方法, 将不生成 _WAK 调度入口和重命名补丁!';
+
+  @override
+  String get logMsg060 => '=> 未找到可调度的 _PTS/_WAK 方法, 已跳过 SSDT-SleepHook!\\n';
+
+  @override
+  String get logMsg061 => '=> 在上述所有ACPI表中均未找到 _SST 方法! 已终止操作！\\n';
+
+  @override
+  String get logMsg062 => '=> 在上述所有ACPI表中均未找到 PNP0C0D 设备! 已终止操作！\\n';
+
+  @override
+  String get logMsg063 => '=> 不支持系统状态: [systemStatesNotSupported] ';
+
+  @override
+  String get logMsg064 =>
+      '=> 注意: 当前固件不支持 _S3 状态, 如果BIOS设置没有禁用 S3 功能, 那么机器不支持S3睡眠!';
+
+  @override
+  String get logMsg065 => '=> 注意: 当前是AOAC机器,macOS不支持S3睡眠!';
+
+  @override
+  String get logMsg066 => '=> 当前未检测到是否是AOAC机器,请自行确认!';
+
+  @override
+  String get logMsg067 => '未找到 Low Power S0 Idle (V5) 值!';
+
+  @override
+  String get logMsg068 => '当前是 AOAC 机器, macOS不支持 S3 睡眠!';
+
+  @override
+  String get logMsg069 => '=> 未找到 Name 或 Method _S3,当前配置不支持S3睡眠! 已终止操作!';
+
+  @override
+  String logMsg070(String arg0) {
+    return '=> 已找到 $arg0 方法!';
+  }
+
+  @override
+  String get logMsg071 => '=> 当前方法已经被重命名,可能非原始ACPI表!请重新获取原始ACPI表后再尝试!\\n';
+
+  @override
+  String get logMsg072 => '=> 在上述ACPI表中均未找到 LID (PNP0C0D) 设备!已终止操作!\\n';
+
+  @override
+  String get logMsg073 => '=> 在上述ACPI表中均未找到 Method _LID!已终止操作!\\n';
+
+  @override
+  String get logMsg074 => '=> 在上述ACPI表中均未找到 PWRB (PNP0C0C) 设备!仿冒一个即可！\\n';
+
+  @override
+  String logMsg075(String arg0) {
+    return '=> 无需仿冒SLPB设备,已在 $arg0 找到 PNP0C0E 设备!';
+  }
+
+  @override
+  String logMsg076(String arg0) {
+    return '=> PNP0C0E 设备 $arg0 存在 _STA 方法!';
+  }
+
+  @override
+  String logMsg077(String arg0) {
+    return '=> PNP0C0E 设备 $arg0 不存在 _STA 方法!';
+  }
+
+  @override
+  String get logMsg078 => '=> 未找到任何符合条件的 XHC/XHCI/XDCI/CNVW 设备！已终止操作！\\n';
+
+  @override
+  String get logMsg079 => '=> 未找到 GPRW 方法！';
+
+  @override
+  String get logMsg080 =>
+      '=> 已找到 XPRW 方法！当前方法已经被重命名,可能非原始ACPI表!请重新获取原始ACPI表后再尝试!\\n';
+
+  @override
+  String get logMsg081 => '=> 未找到 XPRW 方法！已终止操作！';
+
+  @override
+  String get logMsg082 => '=> 未找到 UPRW 方法！';
+
+  @override
+  String get logMsg083 =>
+      '=> 已找到 XPRW 方法！当前方法已经被重命名,可能非原始ACPI表!请重新获取原始ACPI表后再尝试!\\n';
+
+  @override
+  String get logMsg084 => '=> 未找到 XPRW 方法！已终止操作！';
+
+  @override
+  String get logMsg085 => '=> 未找到 GPI0 设备！已终止操作！\\n';
+
+  @override
+  String get logMsg086 => '=> 未找到 _STA 方法！已终止操作！\\n';
+
+  @override
+  String get logMsg087 => '=> 当前Processor处理器命名方案符合CPU命名规范!无需此SSDT!已终止操作!';
+
+  @override
+  String get logMsg088 => '=> 不存在 PLTF 设备,当前Intel平台不需要此SSDT!已终止操作…';
+
+  @override
+  String get logMsg089 => '=> 未发现符合要求的 CPU 设备,无需 SSDT-CPUR 补丁!已终止操作!';
+
+  @override
+  String get logMsg090 =>
+      '=> 未启用 SSDT 仿冒 IMEI，必须通过 DeviceProperties 设置 device-id!';
+
+  @override
+  String get logMsg091 => '未提供有效 ACPI 设备路径! 已终止操作!';
+
+  @override
+  String logMsg092(String arg0) {
+    return '在 DSDT 或 SSDT 中未找到 $arg0 对应的 _ON 或 _OFF 方法! 已终止操作!';
+  }
+
+  @override
+  String logMsg093(String arg0) {
+    return '在 DSDT 或 SSDT 中未找到 $arg0 对应的 _PS3 或 _DSM 方法! 已终止操作!';
+  }
+
+  @override
+  String logMsg094(String arg0) {
+    return '=> 设备 $arg0 存在 _PRT 方法,可能已隐藏真实设备,将注入一个 BRG0 桥接设备!';
+  }
+
+  @override
+  String logMsg095(String arg0) {
+    return '=> 设备 $arg0 不存在!';
+  }
+
+  @override
+  String logMsg096(String arg0) {
+    return '当前设备路径 $arg0 可能隐藏真实设备!';
+  }
+
+  @override
+  String logMsg097(String arg0) {
+    return '=> 显卡设备 $arg0 的 _ADR 地址存在溢出情况!';
+  }
+
+  @override
+  String logMsg098(String arg0) {
+    return '=> 回溯至父设备路径: $arg0 并注入一个 BRG0 桥接设备!';
+  }
+
+  @override
+  String logMsg099(String arg0) {
+    return '未知的屏蔽方法: $arg0，操作已终止。';
+  }
+
+  @override
+  String logMsg100(String arg0) {
+    return '部分方法未找到: $arg0';
+  }
+
+  @override
+  String get logMsg101 => '=> 未能找到有效的总线设备,已终止操作!';
+
+  @override
+  String get logMsg102 => '未提供有效的显卡ACPI路径! 已终止操作!';
+
+  @override
+  String get logMsg103 => '未提供有效的仿冒显卡ID! 已终止操作!';
+
+  @override
+  String get logMsg104 => '未提供有效的仿冒显卡名称！不会注入仿冒名称!';
+
+  @override
+  String logMsg105(String arg0) {
+    return '当前显卡路径 $arg0 可能隐藏真实设备!';
+  }
+
+  @override
+  String logMsg106(String arg0) {
+    return '=> 设备 $arg0 存在 _PRT 方法,可能已隐藏真实设备,将注入一个 GFX0 设备!';
+  }
+
+  @override
+  String logMsg107(String arg0) {
+    return '=> 在 DSDT 或 SSDT 中未找到设备 $arg0! 已终止操作!';
+  }
+
+  @override
+  String logMsg108(String arg0) {
+    return '=> 显卡设备 $arg0 的 _ADR 地址存在溢出情况!';
+  }
+
+  @override
+  String logMsg109(String arg0) {
+    return '=> 回溯至父设备路径: $arg0 并注入一个 GFX0 设备!';
+  }
+
+  @override
+  String get logMsg110 => '设备路径中存在地址 _ADR 溢出的情况!';
+
+  @override
+  String get logMsg111 => '以下设备可能会影响属性注入:';
+
+  @override
+  String get logMsg112 => '正在定位 LPC(B)/SBRG…';
+
+  @override
+  String logMsg113(String arg0, String arg1) {
+    return '=> 在 $arg0 中找到 $arg1';
+  }
+
+  @override
+  String logMsg114(String arg0, String arg1) {
+    return '=> 在 $arg0 中找到 $arg1';
+  }
+
+  @override
+  String logMsg115(String arg0, String arg1) {
+    return '=> 在 $arg0 中找到 $arg1';
+  }
+
+  @override
+  String logMsg116(String arg0) {
+    return '提供的 DSDT 路径：$arg0';
+  }
+
+  @override
+  String logMsg117(String arg0) {
+    return '提供的 DSDT 路径无效：$arg0';
+  }
+
+  @override
+  String logMsg118(String arg0) {
+    return '正在从目录 $arg0 收集有效ACPI表...';
+  }
+
+  @override
+  String logMsg119(String arg0, String arg1) {
+    return '共找到 $arg0 个ACPI表, 其中 $arg1 个有效:';
+  }
+
+  @override
+  String get logMsg120 => '多个带有 DSDT 签名的文件已通过验证：';
+
+  @override
+  String logMsg121(String arg0) {
+    return '即将反编译 $arg0，以验证是否需要应用预制补丁…';
+  }
+
+  @override
+  String get logMsg122 => '=> 无需应用预制补丁!\\n';
+
+  @override
+  String logMsg123(String arg0) {
+    return '正在加载 $arg0...';
+  }
+
+  @override
+  String get logMsg124 => '已处理完成!\\n';
+
+  @override
+  String get logMsg125 => '传入的文件或文件夹不存在!\\n';
+
+  @override
+  String get logMsg126 => '处理有问题的 DSDT 文件 ...';
+
+  @override
+  String get logMsg127 => '检查可用的预制补丁…';
+
+  @override
+  String logMsg128(String arg0) {
+    return '正在将 $arg0 文件加载到内存…';
+  }
+
+  @override
+  String get logMsg129 => '正在逐个处理补丁…\\n';
+
+  @override
+  String get logMsg130 => '=> 已定位, 正在应用…';
+
+  @override
+  String get logMsg131 => '=> 先前问题DSDT文件反编译成功!';
+
+  @override
+  String logMsg132(String arg0) {
+    return '=> 补丁已应用到修改后的文件，文件保存在 Results 文件夹中：\\n   $arg0';
+  }
+
+  @override
+  String logMsg133(String arg0) {
+    return '正在加载 $arg0 中的有效ACPI表…';
+  }
+
+  @override
+  String get logMsg134 => '所有有效ACPI表反编译完成!';
+
+  @override
+  String logMsg135(String arg0) {
+    return '总耗时：$arg0 秒\\n';
+  }
+
+  @override
+  String logMsg136(String arg0) {
+    return '编译 $arg0.aml 成功!';
+  }
+
+  @override
+  String logMsg137(String arg0) {
+    return '删除 $arg0.dsl 源文件';
+  }
+
+  @override
+  String logMsg138(String arg0) {
+    return '=> 未找到设备 $arg0 的 Scope';
+  }
+
+  @override
+  String logMsg139(String arg0) {
+    return '=> 无法定位 $arg0';
+  }
+
+  @override
+  String logMsg140(String arg0, String arg1) {
+    return '正在定位 $arg0 ($arg1) 设备…';
+  }
+
+  @override
+  String logMsg141(String arg0) {
+    return '=> 无法定位到任何 $arg0 设备';
+  }
+
+  @override
+  String logMsg142(String arg0) {
+    return '=> 找到 $arg0';
+  }
+
+  @override
+  String get logMsg143 => '=> 正在查找验证 _STA…';
+
+  @override
+  String get logMsg144 => '=> _STA 已经重命名为 XSTA！跳过其他检查…';
+
+  @override
+  String get logMsg145 => '=> 请禁用DSDT中该设备的 _STA 到 XSTA 的重命名，重启后再试!\\n';
+
+  @override
+  String logMsg146(String arg0, String arg1) {
+    return '=> $arg0 变量$arg1';
+  }
+
+  @override
+  String get logMsg147 => '=> 未找到 _STA 方法/名称';
+
+  @override
+  String logMsg148(String arg0) {
+    return '=> 在索引 $arg0 处找到 _STA 方法!';
+  }
+
+  @override
+  String get logMsg149 => '=> 正在生成 _STA 到 XSTA 的重命名';
+
+  @override
+  String get logMsg150 => '=> 存在多个返回语句，或者返回值不是 Return (0x0F)';
+
+  @override
+  String get logMsg151 => '正在收集 ACPI 设备信息…';
+
+  @override
+  String get logMsg152 => '正在收集 ACPI 设备路径…';
+
+  @override
+  String get logMsg153 => '正在重新检查孤立设备…';
+
+  @override
+  String logMsg154(String arg0) {
+    return '当前自定义IRQs: $arg0';
+  }
+
+  @override
+  String get logMsg155 => '=> 示例：RTC:0 IPIC:2 TMR:8,11 \\n';
+
+  @override
+  String logMsg156(String arg0) {
+    return '=> 找到 _HID: $arg0';
+  }
+
+  @override
+  String get logMsg157 => '正在定位 PNP0103 (HPET) 设备…';
+
+  @override
+  String logMsg158(String arg0) {
+    return '=> 定位于 $arg0';
+  }
+
+  @override
+  String get logMsg159 => '正在定位 HPET 的 _CRS 方法/名称…';
+
+  @override
+  String logMsg160(String arg0) {
+    return '=> 定位于 $arg0._CRS';
+  }
+
+  @override
+  String logMsg161(String arg0) {
+    return '=> 在索引: $arg0 处找到';
+  }
+
+  @override
+  String logMsg162(String arg0) {
+    return '=> 类型: $arg0';
+  }
+
+  @override
+  String get logMsg163 => '=> 正在检查 Memory32Fixed…';
+
+  @override
+  String logMsg164(String arg0, String arg1, String arg2) {
+    return '=> 获取到 $arg0 $arg1 => $arg2';
+  }
+
+  @override
+  String get logMsg165 => '正在创建 IRQ 补丁…';
+
+  @override
+  String get logMsg166 => '正在检查 IRQ…';
+
+  @override
+  String get logMsg167 => 'IRQ 为空!跳过…\\n';
+
+  @override
+  String get logMsg168 => '未找到匹配项。';
+
+  @override
+  String logMsg169(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg170 => '正在创建一个仿冒 HPET 设备…';
+
+  @override
+  String logMsg171(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg172(String arg0) {
+    return '=> 使用的UID: $arg0';
+  }
+
+  @override
+  String logMsg173(String arg0) {
+    return '=> 适用平台: $arg0';
+  }
+
+  @override
+  String get logMsg174 => '未提供有效 iGPU 路径，尝试自动查找...';
+
+  @override
+  String get logMsg175 => '正在寻找位于 0x00020000 的 iGPU 设备…';
+
+  @override
+  String logMsg176(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String logMsg177(String arg0) {
+    return '=> 在 $arg0 处找到 iGPU 设备!';
+  }
+
+  @override
+  String get logMsg178 => '未通过地址找到 iGPU 设备!';
+
+  @override
+  String get logMsg179 => '正在搜索常见的 iGPU 名称…';
+
+  @override
+  String logMsg180(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String logMsg181(String arg0) {
+    return '=> 在 $arg0 处发现了可能的 iGPU 设备';
+  }
+
+  @override
+  String logMsg182(String arg0) {
+    return '在 $arg0 处发现了可能的 iGPU 设备\\n';
+  }
+
+  @override
+  String logMsg183(String arg0) {
+    return '已按照给定iGPU路径,手动设置为 $arg0 \\n';
+  }
+
+  @override
+  String logMsg184(String arg0) {
+    return '无效的 iGPU 路径：$arg0';
+  }
+
+  @override
+  String get logMsg185 => '正在检查 ACPI 表中是否存在原生 PNLF 设备…';
+
+  @override
+  String logMsg186(String arg0, String arg1) {
+    return '=> 已在 $arg0 找到原生 PNLF 设备: $arg1';
+  }
+
+  @override
+  String get logMsg187 => '=> 需要将原生 PNLF 重命名为 XNLF, 正在生成重命名补丁…';
+
+  @override
+  String get logMsg188 => '=> 未找到原生 PNLF 设备!';
+
+  @override
+  String get logMsg189 => '=> 无需生成 PNLF to XNLF 重命名补丁!';
+
+  @override
+  String logMsg190(String arg0) {
+    return '在 $arg0 中检测到 Name (NBCF, 0x00), 正在生成补丁…';
+  }
+
+  @override
+  String logMsg191(String arg0) {
+    return '在 $arg0 中检测到 Name (NBCF, Zero), 正在生成补丁…';
+  }
+
+  @override
+  String get logMsg192 => '正在定位 PNP0C09（EC）设备…';
+
+  @override
+  String logMsg193(String arg0, String arg1) {
+    return '=> 在 $arg0 找到 $arg1 个 PNP0C09（EC）设备';
+  }
+
+  @override
+  String get logMsg194 => '=> 校验中...';
+
+  @override
+  String logMsg195(String arg0) {
+    return '=> 找到 $arg0';
+  }
+
+  @override
+  String get logMsg196 => ' => PNP0C09（EC）设备命名为 EC，正在重命名';
+
+  @override
+  String get logMsg197 => '=> 有效的 PNP0C09（EC）设备';
+
+  @override
+  String get logMsg198 => '=> _STA 已正确启用, 跳过重命名';
+
+  @override
+  String get logMsg199 => '=> 无效的 PNP0C09（EC）设备';
+
+  @override
+  String get logMsg200 => '=> 未找到有效的 PNP0C09（EC）设备, 只需仿冒一个EC设备即可';
+
+  @override
+  String logMsg201(String arg0) {
+    return '正在创建 $arg0.dsl…';
+  }
+
+  @override
+  String logMsg202(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg203 => '正在确定 CPU 命名方案…';
+
+  @override
+  String logMsg204(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String logMsg205(String arg0) {
+    return '=> 已找到 Processor 处理器：$arg0';
+  }
+
+  @override
+  String logMsg206(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg207 => '=> 未找到任何 Processor 对象…';
+
+  @override
+  String get logMsg208 => '=> 未找到 ACPI0007 设备…';
+
+  @override
+  String logMsg209(String arg0) {
+    return '=> 已找到 $arg0 个 ACPI0007 设备';
+  }
+
+  @override
+  String logMsg210(String arg0) {
+    return '=> 在 $arg0 找到父设备，正在处理…';
+  }
+
+  @override
+  String logMsg211(String arg0) {
+    return '=> 正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg212 => '=> 未找到！跳过…';
+
+  @override
+  String get logMsg213 => '=> 未找到！跳过…';
+
+  @override
+  String logMsg214(String arg0) {
+    return '正在处理 $arg0 个有效的处理器设备…';
+  }
+
+  @override
+  String get logMsg215 => '获取LPC Name失败...';
+
+  @override
+  String logMsg216(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg217 => '=> 需要仿冒 RTC!';
+
+  @override
+  String get logMsg218 => '=> 正在检查 _CRS…';
+
+  @override
+  String get logMsg219 => '=> _CRS 是一个缓冲区, 正在检查 RTC 范围…';
+
+  @override
+  String get logMsg220 => '=> 无法调整值, 无法验证 RTC 范围.';
+
+  @override
+  String get logMsg221 => '=> 收集值失败, 无法验证 RTC 范围.';
+
+  @override
+  String get logMsg222 => '=> _CRS 是一个方法, 无法验证 RTC 范围!';
+
+  @override
+  String get logMsg223 => '=> 正在生成 _CRS 到 XCRS 的重命名…';
+
+  @override
+  String logMsg224(String arg0) {
+    return '=> 在索引 $arg0 处找到';
+  }
+
+  @override
+  String get logMsg225 => '=>  未找到';
+
+  @override
+  String logMsg226(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg227(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg228 => '正在收集 RHUB/HUBN/URTH 设备...';
+
+  @override
+  String logMsg229(String arg0) {
+    return '=> 找到 $arg0 个设备';
+  }
+
+  @override
+  String get logMsg230 => '=>  需要重命名!';
+
+  @override
+  String logMsg231(String arg0) {
+    return '=>  检查 $arg0: 是否存在 _STA 方法';
+  }
+
+  @override
+  String logMsg232(String arg0) {
+    return '=>  在索引 $arg0 找到 _STA 方法!';
+  }
+
+  @override
+  String get logMsg233 => '=>  生成 _STA 到 XSTA 的补丁';
+
+  @override
+  String get logMsg234 => '=>  未找到 _STA 方法!';
+
+  @override
+  String logMsg235(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg236 => '=> 设备路径中存在 _ADR 地址溢出！';
+
+  @override
+  String get logMsg237 => '=> 以下设备可能需要调整桥接才能正常工作：';
+
+  @override
+  String get logMsg238 => '正在收集 PCI 桥接设备…';
+
+  @override
+  String get logMsg239 => 'PCI 桥接设备为空！已经终止操作！';
+
+  @override
+  String get logMsg240 => '正在构建桥接设备…';
+
+  @override
+  String get logMsg241 => 'PCI 桥接设备为空！跳过…';
+
+  @override
+  String get logMsg242 => '正在匹配设备路径…';
+
+  @override
+  String get logMsg243 => '未找到匹配项!';
+
+  @override
+  String logMsg244(String arg0) {
+    return '=> 匹配到 $arg0, 无需桥接';
+  }
+
+  @override
+  String get logMsg245 => '未找到匹配项!\\n';
+
+  @override
+  String get logMsg246 => '无需桥接!\\n';
+
+  @override
+  String get logMsg247 => '正在解析桥接设备…';
+
+  @override
+  String get logMsg248 => '=> 无法解析!';
+
+  @override
+  String get logMsg249 => '解析桥接设备时出错!\\n';
+
+  @override
+  String logMsg250(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg251 => '正在定位 ACPI0008（ALS）设备…';
+
+  @override
+  String logMsg252(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String logMsg253(String arg0, String arg1) {
+    return '=> 在$arg0 表: $arg1 处找到ALS设备!';
+  }
+
+  @override
+  String get logMsg254 => '=> 不需要仿冒!\\n';
+
+  @override
+  String logMsg255(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg256 => '已正确启用_STA,无需补丁！\\n';
+
+  @override
+  String get logMsg257 => '未找到，不需要补丁!\\n';
+
+  @override
+  String get logMsg258 => '未找到 ACPI0008（ALS）设备, 需要仿冒设备…';
+
+  @override
+  String logMsg259(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg260 => '正在检测XOSI方案...';
+
+  @override
+  String logMsg261(String arg0, String arg1) {
+    return '=> 已自动检测到：$arg0（$arg1）';
+  }
+
+  @override
+  String get logMsg262 => '正在检查 OSID 方法…';
+
+  @override
+  String logMsg263(String arg0, String arg1) {
+    return '=> 在偏移量 $arg0 处找到了 $arg1 方法';
+  }
+
+  @override
+  String get logMsg264 => '=> 未找到，无需将 OSID 重命名为 XSID';
+
+  @override
+  String get logMsg265 => '正在创建 _OSI 到 XOSI 的重命名…';
+
+  @override
+  String logMsg266(String arg0) {
+    return '正在查找 $arg0 表…';
+  }
+
+  @override
+  String logMsg267(String arg0) {
+    return '已找到 $arg0 表,正在验证签名…';
+  }
+
+  @override
+  String logMsg268(String arg0) {
+    return '=> $arg0 表签名验证通过!';
+  }
+
+  @override
+  String logMsg269(String arg0) {
+    return '正在检查 $arg0 值…';
+  }
+
+  @override
+  String logMsg270(String arg0, String arg1) {
+    return '获取到 $arg0 值 : $arg1';
+  }
+
+  @override
+  String logMsg271(String arg0) {
+    return '获取到 Reset Register Address 值 : $arg0';
+  }
+
+  @override
+  String get logMsg272 => '需要修补的ACPI 补丁如下: ';
+
+  @override
+  String get logMsg273 => '正在修补 APIC 表…';
+
+  @override
+  String logMsg274(String arg0, String arg1) {
+    return '=> 修正 APIC Processor ID: $arg0 → $arg1';
+  }
+
+  @override
+  String get logMsg275 => '=> APIC 表修补完成!';
+
+  @override
+  String logMsg276(String arg0) {
+    return '正在创建 $arg0.dsl…';
+  }
+
+  @override
+  String get logMsg277 => '正在检查 DMAR 表保留内存区域…';
+
+  @override
+  String get logMsg278 => '=> 未发现保留内存区域, 无需修补 DMAR!\\n';
+
+  @override
+  String logMsg279(String arg0) {
+    return '发现 $arg0 个保留内存区域, 正在生成新表…';
+  }
+
+  @override
+  String get logMsg280 => '正在通过地址 0x00160000 查找 IMEI 设备...';
+
+  @override
+  String get logMsg281 => '未找到 IMEI 设备, 需要仿冒该设备…';
+
+  @override
+  String get logMsg282 => '正在校验父设备...';
+
+  @override
+  String get logMsg283 => '正在寻找位于 0x00020000 的 iGPU 设备…';
+
+  @override
+  String get logMsg284 => '=> 未找到 iGPU 设备!';
+
+  @override
+  String get logMsg285 => '正在尝试定位 PCI 根设备...';
+
+  @override
+  String logMsg286(String arg0) {
+    return '=> 找到 PCI 根设备: $arg0';
+  }
+
+  @override
+  String logMsg287(String arg0) {
+    return '=> 找到 iGPU 设备: $arg0';
+  }
+
+  @override
+  String logMsg288(String arg0) {
+    return '=> 使用父设备: $arg0';
+  }
+
+  @override
+  String get logMsg289 => '正在收集仿冒device-id方案…';
+
+  @override
+  String logMsg290(String arg0) {
+    return '=> 仿冒为7系主板IMEI (device-id: $arg0),以匹配第3代 Ivy Bridge处理器';
+  }
+
+  @override
+  String logMsg291(String arg0) {
+    return '=> 仿冒为6系主板IMEI (device-id: $arg0),以匹配第2代Sandy Bridge处理器';
+  }
+
+  @override
+  String logMsg292(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg293 => '正在查找 UNC (PNP0A03) 设备...';
+
+  @override
+  String logMsg294(String arg0) {
+    return '=> 共找到 $arg0 个 UNC 设备';
+  }
+
+  @override
+  String logMsg295(String arg0, String arg1) {
+    return '=> 第 $arg0 个 UNC 设备: $arg1';
+  }
+
+  @override
+  String logMsg296(String arg0) {
+    return '=> 检查 $arg0: _STA 方法是否存在';
+  }
+
+  @override
+  String logMsg297(String arg0, String arg1) {
+    return '=> 在索引 $arg0 找到 $arg1: _STA 方法!';
+  }
+
+  @override
+  String logMsg298(String arg0) {
+    return '=> 生成 $arg0: _STA 到 XSTA 的补丁';
+  }
+
+  @override
+  String logMsg299(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg300(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg301 => '正在检查是否存在 DTGP 方法...';
+
+  @override
+  String get logMsg302 => '=> 未找到 DTGP 方法!';
+
+  @override
+  String get logMsg303 => '=> 在上述所有ACPI表中均未找到 DTGP 方法! \\n';
+
+  @override
+  String logMsg304(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg305(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg306 => '正在查找 DMA (PNP0200) 设备...';
+
+  @override
+  String get logMsg307 => '=> 未找到 DMA (PNP0200) 设备!';
+
+  @override
+  String logMsg308(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg309(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg310 => '正在检查是否存在 _PTS 方法...';
+
+  @override
+  String logMsg311(String arg0) {
+    return '=> 已找到 $arg0 方法!';
+  }
+
+  @override
+  String get logMsg312 => '=> 未找到 _PTS 方法!';
+
+  @override
+  String get logMsg313 => '正在检查是否存在 _WAK 方法...';
+
+  @override
+  String logMsg314(String arg0) {
+    return '=> 已找到 $arg0 方法!';
+  }
+
+  @override
+  String get logMsg315 => '=> 未找到 _WAK 方法!';
+
+  @override
+  String logMsg316(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg317(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg318 => '正在检查是否存在 _SST 方法...';
+
+  @override
+  String logMsg319(String arg0) {
+    return '=> 已在 $arg0 找到 _SST 方法!';
+  }
+
+  @override
+  String get logMsg320 => '=> 未找到 _SST 方法!';
+
+  @override
+  String logMsg321(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg322(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg323 => '正在检查是否存在 PNP0C0D 设备...';
+
+  @override
+  String logMsg324(String arg0) {
+    return '=> 已在 $arg0 找到 PNP0C0D 设备!';
+  }
+
+  @override
+  String get logMsg325 => '=> 未找到 PNP0C0D 设备!';
+
+  @override
+  String logMsg326(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg327(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String logMsg328(String arg0) {
+    return '正在检查是否存在 $arg0...';
+  }
+
+  @override
+  String logMsg329(String arg0, String arg1) {
+    return '=> 已在 $arg0 找到 $arg1';
+  }
+
+  @override
+  String logMsg330(String arg0, String arg1) {
+    return '=> 已在 $arg0 找到 $arg1';
+  }
+
+  @override
+  String logMsg331(String arg0) {
+    return '=> 未找到 $arg0';
+  }
+
+  @override
+  String get logMsg332 => '已检查所有ACPI表!';
+
+  @override
+  String get logMsg333 => '=> 支持系统状态: [systemStatesFound] ';
+
+  @override
+  String get logMsg334 => '=> 当前固件支持常见系统状态!修复睡眠问题后,macOS可支持S3睡眠!';
+
+  @override
+  String get logMsg335 => '正在检查 Low Power S0 Idle (V5) 值…';
+
+  @override
+  String logMsg336(String arg0) {
+    return '获取到 Low Power S0 Idle (V5) : $arg0';
+  }
+
+  @override
+  String get logMsg337 => '当前不是 AOAC 机器, 不影响macOS系统 S3 睡眠!';
+
+  @override
+  String get logMsg338 => '正在检查是否存在 _S3...';
+
+  @override
+  String logMsg339(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String logMsg340(String arg0) {
+    return '=> 已在 $arg0 找到 Name _S3!';
+  }
+
+  @override
+  String logMsg341(String arg0) {
+    return '=> 已在 $arg0 找到 Method _S3!';
+  }
+
+  @override
+  String get logMsg342 => '=> 未找到 Name或Method _S3';
+
+  @override
+  String logMsg343(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg344(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg345(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg346 => '正在查找 LID (PNP0C0D) 设备...';
+
+  @override
+  String logMsg347(String arg0) {
+    return '=> 已在 $arg0 找到 PNP0C0D 设备!';
+  }
+
+  @override
+  String get logMsg348 => '=> 未找到 LID (PNP0C0D) 设备!';
+
+  @override
+  String logMsg349(String arg0) {
+    return '=> 已在 $arg0 找到 Method _LID!';
+  }
+
+  @override
+  String get logMsg350 => '=> 未找到 Method _LID!';
+
+  @override
+  String get logMsg351 => '正在检查是否存在 _TTS方法...';
+
+  @override
+  String logMsg352(String arg0) {
+    return '=> 已找到 $arg0 方法!';
+  }
+
+  @override
+  String get logMsg353 => '=> 未找到 _TTS 方法!';
+
+  @override
+  String get logMsg354 => '正在检查是否存在 ZTTS 方法...';
+
+  @override
+  String get logMsg355 => '=> 未找到 ZTTS 方法!';
+
+  @override
+  String logMsg356(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg357(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg358 => '正在查找 PWRB (PNP0C0C) 设备...';
+
+  @override
+  String get logMsg359 => '=> 未找到 PWRB (PNP0C0C) 设备!';
+
+  @override
+  String logMsg360(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg361(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg362 => '正在查找 SLPB (PNP0C0E) 设备...';
+
+  @override
+  String get logMsg363 => '=> 未找到 SLPB (PNP0C0E) 设备!';
+
+  @override
+  String get logMsg364 => '=> 在上述ACPI表中均未找到 SLPB (PNP0C0E) 设备!仿冒一个即可！\\n';
+
+  @override
+  String logMsg365(String arg0) {
+    return '正在创建 $arg0.sdl...';
+  }
+
+  @override
+  String logMsg366(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg367(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg368(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg369 => '正在查找 PNP0C01 设备...';
+
+  @override
+  String get logMsg370 => '=> 未找到 PNP0C01 设备!';
+
+  @override
+  String get logMsg371 => '=> 在上述所有ACPI表中均未找到 PNP0C01 设备!\\n';
+
+  @override
+  String logMsg372(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg373 => '正在收集 XHC/XHCI/XDCI/CNVW 设备...';
+
+  @override
+  String logMsg374(String arg0) {
+    return '=> 正在检查 $arg0 设备是否支持 PMEE...';
+  }
+
+  @override
+  String logMsg375(String arg0) {
+    return '=> $arg0 不支持 PMEE，已跳过';
+  }
+
+  @override
+  String logMsg376(String arg0) {
+    return '=> $arg0 支持 PMEE';
+  }
+
+  @override
+  String logMsg377(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg378 => '正在检查是否存在 GPRW 方法...';
+
+  @override
+  String get logMsg379 => '正在检查是否存在 XPRW 方法...';
+
+  @override
+  String logMsg380(String arg0) {
+    return '=> 已在 $arg0 找到 GPRW 方法！';
+  }
+
+  @override
+  String logMsg381(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg382 => '正在检查是否存在 UPRW 方法...';
+
+  @override
+  String get logMsg383 => '正在检查是否存在 XPRW 方法...';
+
+  @override
+  String logMsg384(String arg0) {
+    return '=> 已在 $arg0 找到 UPRW 方法！';
+  }
+
+  @override
+  String logMsg385(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg386 => '正在检查是否存在 GPI0 设备...';
+
+  @override
+  String logMsg387(String arg0) {
+    return '=> 已在 $arg0 找到 GPI0 设备！';
+  }
+
+  @override
+  String get logMsg388 => '正在检查是否存在 _STA 方法...';
+
+  @override
+  String logMsg389(String arg0, String arg1) {
+    return '=> 在索引 $arg0 找到 $arg1: _STA 方法!';
+  }
+
+  @override
+  String logMsg390(String arg0) {
+    return '=> 生成 $arg0: _STA 到 XSTA 的补丁';
+  }
+
+  @override
+  String logMsg391(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg392 => '正在确定 CPU 命名方案…';
+
+  @override
+  String logMsg393(String arg0) {
+    return '正在检查 $arg0…';
+  }
+
+  @override
+  String logMsg394(String arg0) {
+    return '=> 已找到 Processor 处理器：$arg0';
+  }
+
+  @override
+  String get logMsg395 => '=> 未找到任何 Processor 对象…';
+
+  @override
+  String get logMsg396 => '=> 未找到 ACPI0007 设备…';
+
+  @override
+  String logMsg397(String arg0) {
+    return '=> 已找到 $arg0 个 ACPI0007 设备';
+  }
+
+  @override
+  String logMsg398(String arg0) {
+    return '=> 在 $arg0 找到父设备，正在处理…';
+  }
+
+  @override
+  String logMsg399(String arg0) {
+    return '=> 正在检查 $arg0…';
+  }
+
+  @override
+  String get logMsg400 => '=> 未找到！跳过…';
+
+  @override
+  String get logMsg401 => '=> 未找到！跳过…';
+
+  @override
+  String logMsg402(String arg0) {
+    return '正在处理 $arg0 个有效的处理器设备…';
+  }
+
+  @override
+  String logMsg403(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg404(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg405(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg406(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg407(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg408(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg409(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg410(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg411 => '正在收集仿冒device-id方案…';
+
+  @override
+  String logMsg412(String arg0) {
+    return '=> 仿冒为7系主板IMEI (device-id: $arg0),以匹配第3代 Ivy Bridge处理器';
+  }
+
+  @override
+  String logMsg413(String arg0) {
+    return '=> 仿冒为6系主板IMEI (device-id: $arg0),以匹配第2代Sandy Bridge处理器';
+  }
+
+  @override
+  String logMsg414(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg415(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg416(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg417(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg418(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg419(String arg0) {
+    return '正在检查设备 $arg0 是否存在 _ON 或 _OFF 方法...';
+  }
+
+  @override
+  String logMsg420(String arg0) {
+    return '正在检查设备 $arg0 是否存在 _PS3 或 _DSM 方法...';
+  }
+
+  @override
+  String logMsg421(String arg0) {
+    return '正在检查设备 $arg0...';
+  }
+
+  @override
+  String logMsg422(String arg0) {
+    return '=> 在 DSDT 或 SSDT 中未找到 $arg0 对应的 _PRT 方法!';
+  }
+
+  @override
+  String logMsg423(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg424(String arg0, String arg1) {
+    return '=> 需要屏蔽的 $arg0 设备路径:  $arg1';
+  }
+
+  @override
+  String logMsg425(String arg0) {
+    return '=> 屏蔽方法: $arg0 方法';
+  }
+
+  @override
+  String logMsg426(String arg0) {
+    return '=> 设备相对路径已转换成绝对路径: $arg0';
+  }
+
+  @override
+  String logMsg427(String arg0, String arg1, String arg2) {
+    return '=> 在 $arg0 中找到 $arg1.$arg2 方法';
+  }
+
+  @override
+  String logMsg428(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String get logMsg429 => '正在收集可能的总线设备…';
+
+  @override
+  String logMsg430(String arg0) {
+    return '正在创建预编译 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg431(String arg0) {
+    return '正在检查显卡设备 $arg0...';
+  }
+
+  @override
+  String logMsg432(String arg0) {
+    return '=> 在 DSDT 或 SSDT 中未找到 $arg0 对应的 _PRT 方法!';
+  }
+
+  @override
+  String logMsg433(String arg0) {
+    return '正在创建 $arg0.dsl...';
+  }
+
+  @override
+  String logMsg434(String arg0) {
+    return '=> 显卡设备路径:  $arg0';
+  }
+
+  @override
+  String logMsg435(String arg0) {
+    return '=> 仿冒显卡ID:  $arg0';
+  }
+
+  @override
+  String logMsg436(String arg0) {
+    return '=> 仿冒显卡名称:  $arg0';
+  }
+
+  @override
+  String get logMsg437 => '=> 未找到!';
+
+  @override
+  String logMsg438(String arg0) {
+    return '=> 已匹配到PCI路径: $arg0';
+  }
+
+  @override
+  String logMsg439(String arg0, String arg1, String arg2) {
+    return '=> 更新$arg0 \"$arg1\" 到 $arg2';
+  }
+
+  @override
+  String logMsg440(String arg0, String arg1, String arg2) {
+    return '=> $arg0 \"$arg1\" 已存在于 $arg2，跳过...';
+  }
+
+  @override
+  String logMsg441(String arg0, String arg1, String arg2) {
+    return '=> 添加$arg0 \"$arg1\" 到 $arg2';
+  }
+
+  @override
+  String logMsg442(String arg0, String arg1, String arg2) {
+    return '=> 更新键 \"$arg0\" 的值为 \"$arg1\" 于 $arg2';
+  }
+
+  @override
+  String logMsg443(String arg0, String arg1) {
+    return '=> 键 \"$arg0\" 的值已是最新，跳过 $arg1';
+  }
+
+  @override
+  String logMsg444(String arg0, String arg1, String arg2) {
+    return '=> 添加键 \"$arg0\" 值 \"$arg1\" 到 $arg2';
+  }
+
+  @override
+  String logMsg445(String arg0) {
+    return '硬件报告文件夹清理失败: $arg0';
+  }
+
+  @override
+  String get logMsg446 => '本机 ACPI 表导出失败';
+
+  @override
+  String logMsg447(String arg0) {
+    return '本机 ACPI 表导出失败: $arg0';
+  }
+
+  @override
+  String logMsg448(String arg0) {
+    return '本机 ACPI 表导出失败: $arg0';
+  }
+
+  @override
+  String logMsg449(String arg0) {
+    return 'ACPI 表临时目录清理失败: $arg0';
+  }
+
+  @override
+  String get logMsg450 => '正在导出本机硬件报告...';
+
+  @override
+  String get logMsg451 => '正在导出本机 ACPI 表...';
+
+  @override
+  String logMsg452(String arg0) {
+    return '本机 ACPI 表导出完成: $arg0';
+  }
+
+  @override
+  String logMsg453(String arg0) {
+    return '源文件不存在: $arg0';
+  }
+
+  @override
+  String logMsg454(String arg0) {
+    return '保存文件时出错: $arg0';
+  }
+
+  @override
+  String logMsg455(String arg0) {
+    return '当前OC版本: $arg0';
+  }
+
+  @override
+  String logMsg456(String arg0) {
+    return 'ZIP文件不存在: $arg0';
+  }
+
+  @override
+  String logMsg457(String arg0) {
+    return '$arg0 文件成功解压';
+  }
+
+  @override
+  String logMsg458(String arg0, String arg1) {
+    return '解压 $arg0 文件时出错: $arg1';
+  }
+
+  @override
+  String logMsg459(String arg0) {
+    return '文件或目录不存在: $arg0';
+  }
+
+  @override
+  String logMsg460(String arg0) {
+    return '压缩完成: $arg0';
+  }
+
+  @override
+  String logMsg461(String arg0) {
+    return '压缩出错: $arg0';
+  }
+
+  @override
+  String logMsg462(String arg0) {
+    return '删除目录: $arg0';
+  }
+
+  @override
+  String logMsg463(String arg0) {
+    return '删除文件: $arg0';
+  }
+
+  @override
+  String logMsg464(String arg0, String arg1) {
+    return '删除失败: $arg0, $arg1';
+  }
+
+  @override
+  String logMsg465(String arg0) {
+    return '文件已成功保存到: $arg0';
+  }
+
+  @override
+  String logMsg466(String arg0) {
+    return '源目录不存在: $arg0';
+  }
+
+  @override
+  String logMsg467(String arg0) {
+    return '文件夹已准备: $arg0';
+  }
+
+  @override
+  String logMsg468(String arg0) {
+    return '创建文件夹时出错: $arg0';
+  }
+
+  @override
+  String logMsg469(String arg0) {
+    return '打开目录失败，路径不存在: $arg0';
+  }
+
+  @override
+  String logMsg470(String arg0, String arg1) {
+    return '打开目录失败: $arg0, $arg1';
+  }
 }
