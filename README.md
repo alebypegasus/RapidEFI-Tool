@@ -4,8 +4,8 @@
 
 <div align="center">
 
-![Release](https://img.shields.io/github/v/release/JeoJay127/RapidEFI-Tool?label=Release)
-![Downloads](https://img.shields.io/github/downloads/JeoJay127/RapidEFI-Tool/total?label=Downloads)
+![Release](https://img.shields.io/github/v/release/alebypegasus/RapidEFI-Tool?label=Release)
+![Downloads](https://img.shields.io/github/downloads/alebypegasus/RapidEFI-Tool/total?label=Downloads)
 
 </div>
 
@@ -28,7 +28,7 @@ The configuration logic follows the official OpenCore documentation and Dortania
 
 | Windows | macOS | Linux |
 | :---: | :---: | :---: |
-| [Download](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-Windows.zip) | [Download](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-macOS.dmg) | [Download](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-Linux.tar.gz) |
+| [Download](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-Windows.zip) | [Download](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-macOS.dmg) | [Download](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-Linux.tar.gz) |
 
 ## Key Features
 
@@ -58,7 +58,7 @@ A lógica de configuração segue a documentação oficial do OpenCore e o Guia 
 
 | Windows | macOS | Linux |
 | :---: | :---: | :---: |
-| [Baixar](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-Windows.zip) | [Baixar](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-macOS.dmg) | [Baixar](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-Linux.tar.gz) |
+| [Baixar](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-Windows.zip) | [Baixar](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-macOS.dmg) | [Baixar](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-Linux.tar.gz) |
 
 ## Principais Recursos
 
@@ -88,7 +88,7 @@ RapidEFI 的配置逻辑遵循 OpenCore 官方文档与 Dortania OpenCore 安装
 
 | Windows | macOS | Linux |
 | :---: | :---: | :---: |
-| [下载](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-Windows.zip) | [下载](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-macOS.dmg) | [下载](https://github.com/JeoJay127/RapidEFI-Tool/releases/latest/download/RapidEFI-Linux.tar.gz) |
+| [下载](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-Windows.zip) | [下载](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-macOS.dmg) | [下载](https://github.com/alebypegasus/RapidEFI-Tool/releases/latest/download/RapidEFI-Linux.tar.gz) |
 
 ## 主要优势与特点
 
