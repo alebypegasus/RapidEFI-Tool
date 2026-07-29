@@ -11,12 +11,32 @@
         "initial_support": "OS X 10.5.6, Leopard",
         "last_supported": "macOS 12 Monterey",
         "oclp_supported": "macOS Tahoe 26",
-        "note": [
-            "Nehalem首次发布于2008年,45nm工艺;Westmere首次于2010年发布，32nm工艺,是Nehalem架构的改进版本",
-            "Nehalem架构的处理器涵盖了多个型号,包括桌面(LGA1156)、服务器和工作站（LGA1366）",
-            "Apple在macOS Ventua 13.x中移除了USB1.1驱动,初始安装时建议使用免驱PCI转USB3.0拓展卡或者USB3.0拓展卡完成安装,安装之后再使用oclp打USB1.1补丁",
-            "绝大多数X58主板不支持UEFI,需要模拟UEFI"
-        ],
+        "note": {
+            "ch": [
+                "Nehalem首次发布于2008年,45nm工艺;Westmere首次于2010年发布，32nm工艺,是Nehalem架构的改进版本",
+                "Nehalem架构的处理器涵盖了多个型号,包括桌面(LGA1156)、服务器和工作站（LGA1366）",
+                "Apple在macOS Ventua 13.x中移除了USB1.1驱动,初始安装时建议使用免驱PCI转USB3.0拓展卡或者USB3.0拓展卡完成安装,安装之后再使用oclp打USB1.1补丁",
+                "绝大多数X58主板不支持UEFI,需要模拟UEFI"
+            ],
+            "en": [
+                "Nehalem was first released in 2008 with a 45nm process; Westmere was first released in 2010 with a 32nm process and is an improved version of the Nehalem architecture.",
+                "Nehalem architecture processors cover multiple models, including desktop (LGA1156), server and workstation (LGA1366)",
+                "Apple has removed the USB1.1 driver in macOS Ventua 13.x. During the initial installation, it is recommended to use a driver-free PCI to USB3.0 expansion card or a USB3.0 expansion card to complete the installation. After installation, use oclp to apply the USB1.1 patch.",
+                "The vast majority of X58 motherboards do not support UEFI and need to simulate UEFI"
+            ],
+            "pt": [
+                "Nehalem foi lançado pela primeira vez em 2008 com um processo de 45 nm; Westmere foi lançado pela primeira vez em 2010 com um processo de 32 nm e é uma versão melhorada da arquitetura Nehalem.",
+                "Os processadores da arquitetura Nehalem cobrem vários modelos, incluindo desktop (LGA1156), servidor e estação de trabalho (LGA1366)",
+                "A Apple removeu o driver USB1.1 do macOS Ventua 13.x. Durante a instalação inicial, é recomendado usar uma placa de expansão PCI para USB3.0 sem driver ou uma placa de expansão USB3.0 para concluir a instalação. Após a instalação, use oclp para aplicar o patch USB1.1.",
+                "A grande maioria das placas-mãe X58 não suporta UEFI e precisa simular UEFI"
+            ],
+            "ja": [
+                "Nehalem は 45nm プロセスで 2008 年に初めてリリースされました。 Westmere は 32nm プロセスで 2010 年に初めてリリースされ、Nehalem アーキテクチャの改良版です。",
+                "Nehalem アーキテクチャ プロセッサは、デスクトップ (LGA1156)、サーバー、ワークステーション (LGA1366) を含む複数のモデルをカバーします。",
+                "Apple は、macOS Ventua 13.x の USB1.1 ドライバーを削除しました。初期インストール中は、ドライバー不要の PCI to USB3.0 拡張カードまたは USB3.0 拡張カードを使用してインストールを完了することをお勧めします。インストール後、oclp を使用して USB1.1 パッチを適用します。",
+                "X58 マザーボードの大部分は UEFI をサポートしていないため、UEFI をシミュレートする必要があります"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/nehalem.html",
             "bios": {
@@ -44,6 +64,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭，如果找不到此选项，然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock，您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -64,6 +108,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -84,11 +146,28 @@
         "initial_support": "OS X 10.9, Mavericks",
         "last_supported": "macOS 12 Monterey",
         "oclp_supported": "macOS Tahoe 26",
-        "note": [
-            "Ivy Bridge-E处理器于2013年推出，22纳米制程技术",
-            "主要应用于高性能计算领域，包括工作站和高端桌面系统",
-            "缺少AVX2指令集,原生不支持macOS Ventura及以上系统"
-        ],
+        "note": {
+            "ch": [
+                "Ivy Bridge-E处理器于2013年推出，22纳米制程技术",
+                "主要应用于高性能计算领域，包括工作站和高端桌面系统",
+                "缺少AVX2指令集,原生不支持macOS Ventura及以上系统"
+            ],
+            "en": [
+                "Ivy Bridge-E processor launched in 2013, 22nm process technology",
+                "Mainly used in high-performance computing, including workstations and high-end desktop systems",
+                "It lacks the AVX2 instruction set and does not natively support macOS Ventura and above systems."
+            ],
+            "pt": [
+                "Processador Ivy Bridge-E lançado em 2013, tecnologia de processo de 22 nm",
+                "Usado principalmente em computação de alto desempenho, incluindo estações de trabalho e sistemas de desktop de última geração",
+                "Ele não possui o conjunto de instruções AVX2 e não oferece suporte nativo ao macOS Ventura e sistemas superiores."
+            ],
+            "ja": [
+                "2013年に発売されたIvy Bridge-Eプロセッサ、22nmプロセステクノロジー",
+                "主にワークステーションやハイエンド デスクトップ システムなどのハイ パフォーマンス コンピューティングで使用されます。",
+                "AVX2 命令セットが欠如しており、macOS Ventura 以降のシステムをネイティブにサポートしていません。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/ivy-bridge-e.html",
             "bios": {
@@ -116,6 +195,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭，如果找不到此选项，然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock，您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -136,6 +239,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -156,11 +277,28 @@
         "initial_support": "OS X 10.9, Mavericks",
         "last_supported": "macOS 12 Monterey",
         "oclp_supported": "macOS Tahoe 26",
-        "note": [
-            "Ivy Bridge-E处理器于2013年推出，22纳米制程技术",
-            "主要应用于高性能计算领域，包括工作站和高端桌面系统",
-            "缺少AVX2指令集,原生不支持macOS Ventura及以上系统"
-        ],
+        "note": {
+            "ch": [
+                "Ivy Bridge-E处理器于2013年推出，22纳米制程技术",
+                "主要应用于高性能计算领域，包括工作站和高端桌面系统",
+                "缺少AVX2指令集,原生不支持macOS Ventura及以上系统"
+            ],
+            "en": [
+                "Ivy Bridge-E processor launched in 2013, 22nm process technology",
+                "Mainly used in high-performance computing, including workstations and high-end desktop systems",
+                "It lacks the AVX2 instruction set and does not natively support macOS Ventura and above systems."
+            ],
+            "pt": [
+                "Processador Ivy Bridge-E lançado em 2013, tecnologia de processo de 22 nm",
+                "Usado principalmente em computação de alto desempenho, incluindo estações de trabalho e sistemas de desktop de última geração",
+                "Ele não possui o conjunto de instruções AVX2 e não oferece suporte nativo ao macOS Ventura e sistemas superiores."
+            ],
+            "ja": [
+                "2013年に発売されたIvy Bridge-Eプロセッサ、22nmプロセステクノロジー",
+                "主にワークステーションやハイエンド デスクトップ システムなどのハイ パフォーマンス コンピューティングで使用されます。",
+                "AVX2 命令セットが欠如しており、macOS Ventura 以降のシステムをネイティブにサポートしていません。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/ivy-bridge-e.html",
             "bios": {
@@ -188,6 +326,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭，如果找不到此选项，然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock，您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -208,6 +370,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -228,11 +408,28 @@
         "initial_support": "OS X 10.11, El Capitan",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Haswell-E处理器于2014年推出，22纳米制程技术",
-            "增加了AVX2指令集,原生支持macOS Ventura及以上系统",
-            "主要应用于高性能计算领域，包括工作站和高端桌面系统"
-        ],
+        "note": {
+            "ch": [
+                "Haswell-E处理器于2014年推出，22纳米制程技术",
+                "增加了AVX2指令集,原生支持macOS Ventura及以上系统",
+                "主要应用于高性能计算领域，包括工作站和高端桌面系统"
+            ],
+            "en": [
+                "Haswell-E processor launched in 2014, 22nm process technology",
+                "Added AVX2 instruction set, natively supports macOS Ventura and above systems",
+                "Mainly used in high-performance computing, including workstations and high-end desktop systems"
+            ],
+            "pt": [
+                "Processador Haswell-E lançado em 2014, tecnologia de processo de 22 nm",
+                "Adicionado conjunto de instruções AVX2, suporte nativo para macOS Ventura e sistemas superiores",
+                "Usado principalmente em computação de alto desempenho, incluindo estações de trabalho e sistemas de desktop de última geração"
+            ],
+            "ja": [
+                "2014 年に発売された Haswell-E プロセッサ、22nm プロセス テクノロジ",
+                "AVX2 命令セットを追加し、macOS Ventura 以降のシステムをネイティブにサポート",
+                "主にワークステーションやハイエンド デスクトップ システムなどのハイ パフォーマンス コンピューティングで使用されます。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/haswell-e.html",
             "bios": {
@@ -260,6 +457,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭，如果找不到此选项，然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock，您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -280,6 +501,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G e superior (endereço base alto de E/S mapeado na memória. Certifique-se de que \"MMIOH Base\" esteja definido como 12 TB ou inferior para resolver possíveis problemas)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G 以上のデコード (メモリ マップド I/O の高ベース アドレス。考えられる問題を解決するには、「MMIOH Base」が 12 TB 以下に設定されていることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -300,10 +539,24 @@
         "initial_support": "OS X 10.11, El Capitan",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Broadwell-E处理器于2016年推出，14纳米制程技术",
-            "主要应用于高性能计算领域，包括工作站和高端桌面系统"
-        ],
+        "note": {
+            "ch": [
+                "Broadwell-E处理器于2016年推出，14纳米制程技术",
+                "主要应用于高性能计算领域，包括工作站和高端桌面系统"
+            ],
+            "en": [
+                "Broadwell-E processor launched in 2016, 14nm process technology",
+                "Mainly used in high-performance computing, including workstations and high-end desktop systems"
+            ],
+            "pt": [
+                "Processador Broadwell-E lançado em 2016, tecnologia de processo de 14 nm",
+                "Usado principalmente em computação de alto desempenho, incluindo estações de trabalho e sistemas de desktop de última geração"
+            ],
+            "ja": [
+                "2016 年に発売された Broadwell-E プロセッサ、14nm プロセス テクノロジ",
+                "主にワークステーションやハイエンド デスクトップ システムなどのハイ パフォーマンス コンピューティングで使用されます。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/broadwell-e.html",
             "bios": {
@@ -331,6 +584,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭，如果找不到此选项，然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock，您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -351,6 +628,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G e superior (endereço base alto de E/S mapeado na memória. Certifique-se de que \"MMIOH Base\" esteja definido como 12 TB ou inferior para resolver possíveis problemas)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G 以上のデコード (メモリ マップド I/O の高ベース アドレス。考えられる問題を解決するには、「MMIOH Base」が 12 TB 以下に設定されていることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -371,10 +666,24 @@
         "initial_support": "macOS 10.13, High Sierra",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Skylake-X/W处理器于2017年推出，14纳米制程技术",
-            "主要应用于高性能计算领域，包括工作站和高端桌面系统"
-        ],
+        "note": {
+            "ch": [
+                "Skylake-X/W处理器于2017年推出，14纳米制程技术",
+                "主要应用于高性能计算领域，包括工作站和高端桌面系统"
+            ],
+            "en": [
+                "Skylake-X/W processor launched in 2017, 14nm process technology",
+                "Mainly used in high-performance computing, including workstations and high-end desktop systems"
+            ],
+            "pt": [
+                "Processador Skylake-X/W lançado em 2017, tecnologia de processo de 14 nm",
+                "Usado principalmente em computação de alto desempenho, incluindo estações de trabalho e sistemas de desktop de última geração"
+            ],
+            "ja": [
+                "2017 年に発売された Skylake-X/W プロセッサ、14nm プロセス テクノロジ",
+                "主にワークステーションやハイエンド デスクトップ システムなどのハイ パフォーマンス コンピューティングで使用されます。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/skylake-x.html",
             "bios": {
@@ -402,6 +711,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭，如果找不到此选项，然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock，您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -422,6 +755,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G e superior (endereço base alto de E/S mapeado na memória. Certifique-se de que \"MMIOH Base\" esteja definido como 12 TB ou inferior para resolver possíveis problemas)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G 以上のデコード (メモリ マップド I/O の高ベース アドレス。考えられる問題を解決するには、「MMIOH Base」が 12 TB 以下に設定されていることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -442,10 +793,24 @@
         "initial_support": "macOS 10.13, High Sierra",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Cascade Lake-X/W处理器于2019年推出，14纳米制程技术",
-            "主要应用于高性能计算领域，包括工作站和高端桌面系统"
-        ],
+        "note": {
+            "ch": [
+                "Cascade Lake-X/W处理器于2019年推出，14纳米制程技术",
+                "主要应用于高性能计算领域，包括工作站和高端桌面系统"
+            ],
+            "en": [
+                "Cascade Lake-X/W processor launched in 2019, 14nm process technology",
+                "Mainly used in high-performance computing, including workstations and high-end desktop systems"
+            ],
+            "pt": [
+                "Processador Cascade Lake-X/W lançado em 2019, tecnologia de processo de 14 nm",
+                "Usado principalmente em computação de alto desempenho, incluindo estações de trabalho e sistemas de desktop de última geração"
+            ],
+            "ja": [
+                "2019年に発売されたCascade Lake-X/Wプロセッサ、14nmプロセステクノロジー",
+                "主にワークステーションやハイエンド デスクトップ システムなどのハイ パフォーマンス コンピューティングで使用されます。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config-HEDT/skylake-x.html",
             "bios": {
@@ -475,6 +840,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭，如果找不到此选项，然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock，您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -495,6 +886,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G e superior (endereço base alto de E/S mapeado na memória. Certifique-se de que \"MMIOH Base\" esteja definido como 12 TB ou inferior para resolver possíveis problemas)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G 以上のデコード (メモリ マップド I/O の高ベース アドレス。考えられる問題を解決するには、「MMIOH Base」が 12 TB 以下に設定されていることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [

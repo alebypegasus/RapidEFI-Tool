@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 
@@ -30,7 +31,7 @@ class _AboutPageState extends State<AboutPage> {
               icon: FluentIcons.my_movies_t_v,
             ),
             LinkButtonItem(
-              url: 'https://github.com/JeoJay127/RapidEFI-Tool',
+              url: 'https://github.com/alebypegasus/RapidEFI-Tool',
               buttonText: l10n.visitGithub,
               icon: FluentIcons.open_source,
             ),
@@ -77,7 +78,7 @@ class _AboutPageState extends State<AboutPage> {
             mainAxisAlignment: MainAxisAlignment.end,
             items: [
               LinkButtonItem(
-                url: 'https://github.com/JeoJay127/RapidEFI-Tool/blob/main/成功案例.md',
+                url: l10nGlobal.autoGen5817,
                 buttonText: l10n.successCasesTitle,
                 icon: FluentIcons.open_source,
               ),

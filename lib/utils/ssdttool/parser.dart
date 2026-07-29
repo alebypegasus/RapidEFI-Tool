@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 //  parser.dart
 //  Created by JeoJay127
 //
@@ -91,7 +92,7 @@ class PlistParser {
       final document = XmlDocument.parse(content);
       final dictElement = document.findAllElements('dict').firstOrNull;
       if (dictElement == null) {
-        throw ArgumentError('未找到根字典元素');
+        throw ArgumentError(l10nGlobal.autoGen5640);
       }
       final data = _parseDict(dictElement);
       return PlistParseResult(status: PlistParseStatus.success, data: data);

@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 Map<String, dynamic> safeMap(dynamic value) {
   if (value is Map) {
     return value.map((key, value) => MapEntry(key.toString(), value));
@@ -42,8 +43,8 @@ bool isTruthy(dynamic value) {
       text == '1' ||
       text == 'on' ||
       text == 'yes' ||
-      text == '已启用' ||
-      text == '开启';
+      text == l10nGlobal.autoGen5003 ||
+      text == l10nGlobal.autoGen5004;
 }
 
 bool? isTruthyOrNull(dynamic value) {
@@ -99,7 +100,7 @@ String networkAdapterType({
   String? name,
 }) {
   final normalizedName = safeStr(name).toLowerCase();
-  if (normalizedName.isEmpty) return '未知';
+  if (normalizedName.isEmpty) return l10nGlobal.autoGen5005;
 
   if (normalizedName.contains('wi-fi') ||
       normalizedName.contains('802.11') ||
@@ -111,7 +112,7 @@ String networkAdapterType({
     return 'WiFi';
   }
 
-  return '有线网卡';
+  return l10nGlobal.autoGen5006;
 }
 
 String deviceIdPart(String deviceId) {
@@ -186,7 +187,7 @@ String fmtDiskCap(Map<String, dynamic> disk) {
   return fmtDisk(
     firstOf(
       disk,
-      const [
+      [
         'Size',
         'Capacity',
         'Total Size',

@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/widgets.dart';
 
 /// 当前只内置英文和中文，并保留自定义语言注册入口。
@@ -53,11 +54,11 @@ class PickerLocalizations {
     },
     'ja': <String, String>{
       'cancelText': 'キャンセル',
-      'confirmText': '確認',
+      'confirmText': l10nGlobal.autoGen5827,
     },
     'zh': <String, String>{
-      'cancelText': '取消',
-      'confirmText': '确定',
+      'cancelText': l10nGlobal.autoGen5828,
+      'confirmText': l10nGlobal.autoGen5829,
     },
   };
 

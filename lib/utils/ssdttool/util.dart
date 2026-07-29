@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 //  util.dart
 //  Created by JeoJay127
 //
@@ -11,7 +12,7 @@ class Util {
     final homeDir =
         Platform.environment['HOME'] ?? Platform.environment['USERPROFILE'];
     if (homeDir == null) {
-      throw UnsupportedError('无法获取主目录');
+      throw UnsupportedError(l10nGlobal.autoGen5615);
     }
     const desktopFolder = 'Desktop';
     if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
@@ -50,7 +51,7 @@ class Util {
     final source = Directory(sourceDir);
     final target = Directory(targetDir);
 
-    if (!await source.exists()) throw Exception('源目录不存在');
+    if (!await source.exists()) throw Exception(l10nGlobal.autoGen5616);
     if (!await target.exists()) await target.create(recursive: true);
 
     await for (final entity in source.list(recursive: true)) {
@@ -73,7 +74,7 @@ class Util {
   }) async {
     try {
       String baseDir = getDesktopDirectory();
-      if (baseDir.isEmpty) throw Exception('无法获取桌面目录');
+      if (baseDir.isEmpty) throw Exception(l10nGlobal.autoGen5617);
 
       if (filePath == null || filePath.isEmpty) {
         return baseDir;

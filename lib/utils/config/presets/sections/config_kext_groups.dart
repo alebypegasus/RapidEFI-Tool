@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/models/kernel/kext_group.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 
@@ -6,7 +7,7 @@ class ConfigKextGroups {
 
   static final cpuFriend = KextGroup(
     id: 'cpu_friend',
-    title: 'CPU变频驱动,这里主要提供11至14代 MacPro7,1变频支持',
+    title: getL10nById(5528),
     description: '',
     kexts: [
       ConfigKernel.CPUFriend,
@@ -17,7 +18,7 @@ class ConfigKextGroups {
   static final realtekCardReader = KextGroup(
     id: 'realtek_card_reader',
     title: 'RealtekCardReader',
-    description: 'Realtek SD 读卡器及其配套驱动',
+    description: getL10nById(5529),
     kexts: [
       ConfigKernel.RealtekCardReader,
       ConfigKernel.RealtekCardReaderFriend,
@@ -26,7 +27,7 @@ class ConfigKextGroups {
 
   static final appleIntelCpuPowerManagement = KextGroup(
     id: 'apple_intel_cpu_power_management',
-    title: '修复Intel 3代以及更老平台Ventura 13及以上系统CPU电源管理',
+    title: getL10nById(5457),
     description: '',
     kexts: [
       ConfigKernel.AppleIntelCPUPowerManagement,
@@ -37,8 +38,7 @@ class ConfigKextGroups {
   static final applePs2SmartTouchPad = KextGroup(
     id: 'apple_ps2_smart_touchpad',
     title: 'ApplePS2SmartTouchPad',
-    description:
-        '适用于3代及以下老平台,基于PS/2总线协议连接的输入设备,如键盘、鼠标、触摸板等.能实现一定程度的多点触控功能，但支持有限。',
+    description: getL10nById(5530),
     kexts: [
       ConfigKernel.ApplePS2SmartTouchPad,
       ConfigKernel.ApplePS2SmartTouchPadApplePS2Controller,
@@ -49,8 +49,7 @@ class ConfigKextGroups {
   static final voodooPs2Controller = KextGroup(
     id: 'voodoo_ps2_controller',
     title: 'VoodooPS2Controller',
-    description:
-        '适用于3代及以上平台,基于PS/2总线协议连接的输入设备,如键盘、鼠标、触摸板等.通过子驱动提供对 PS/2 触摸板的支持，并且能实现一定程度的多点触控功能，但支持有限。',
+    description: getL10nById(5531),
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooInput,
@@ -63,8 +62,7 @@ class ConfigKextGroups {
   static final voodooPs2ControllerWithI2c = KextGroup(
     id: 'voodoo_ps2_controller_with_i2c',
     title: 'VoodooPS2Controller + VoodooI2C',
-    description:
-        'PS2键盘,适用于基于I2C总线协议连接的触摸板、触摸屏、传感器和其他输入设备。提供多点触控手势支持，模拟 macOS 原生的触控体验。',
+    description: getL10nById(5532),
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooPS2Keyboard,
@@ -79,8 +77,7 @@ class ConfigKextGroups {
   static final voodooPs2ControllerWithRmi = KextGroup(
     id: 'voodoo_ps2_controller_with_rmi',
     title: 'VoodooPS2Controller + VoodooRMI',
-    description:
-        'PS2键盘,适用于基于RMI4协议总线协议连接的Synaptics触摸板。专注于更好地支持 Synaptics 设备，提供类似 macOS 原生触摸板的多点触控和手势功能。',
+    description: getL10nById(5533),
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooPS2Keyboard,
@@ -96,8 +93,7 @@ class ConfigKextGroups {
   static final voodooPs2ControllerWithRmiI2c = KextGroup(
     id: 'voodoo_ps2_controller_with_rmi_i2c',
     title: 'VoodooPS2Controller + VoodooRMII2C + VoodooI2C',
-    description:
-        'PS2键盘,适用于基于I2C总线的触摸设备和使用RMI4协议的Synaptics触摸板。RMII2C结合 VoodooI2C 和 VoodooRMI 的优势。',
+    description: getL10nById(5534),
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooPS2Keyboard,
@@ -113,7 +109,7 @@ class ConfigKextGroups {
   static final voodooPS2KeyboardAndMouse = KextGroup(
     id: 'voodoo_ps2_keyboard_and_mouse',
     title: 'VoodooPS2KeyboardAndMouse',
-    description: '基于PS/2总线协议连接的圆口键盘、鼠标驱动',
+    description: getL10nById(5535),
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooPS2Keyboard,
@@ -124,7 +120,7 @@ class ConfigKextGroups {
   static final bigSurface = KextGroup(
     id: 'big_surface',
     title: 'BigSurface',
-    description: 'Microsoft Surface 专用键盘、触摸板、触摸屏驱动组合。',
+    description: getL10nById(5536),
     kexts: [
       ConfigKernel.BigSurfaceVoodooGPIO,
       ConfigKernel.BigSurfaceVoodooSerial,
@@ -136,9 +132,7 @@ class ConfigKextGroups {
 
   static final brcm94360 = KextGroup(
     id: 'brcm94360',
-    title: '博通BCM94360免驱系列',
-    description:
-        'Apple AirPort和Fenvi免驱卡,Ventura及以下免驱,补丁支持Sonoma 14及Sequoia 15! 注意:Sonoma 14及以上系统需要使用OCLP打补丁方可正常使用！！！',
+    title: getL10nById(5537), description: getL10nById(5538),
     kexts: [
       ConfigKernel.IOSkywalkFamily,
       ConfigKernel.IO80211FamilyLegacy,
@@ -148,9 +142,7 @@ class ConfigKextGroups {
 
   static final brcm943xx = KextGroup(
     id: 'brcm943xx',
-    title: '博通BCM943XX非免驱系列',
-    description:
-        'Apple AirPort和Fenvi以外的卡,Catalina及以下免驱,补丁支持Sonoma 14及Sequoia 15! 注意:Sonoma 14及以上系统需要使用OCLP打补丁方可正常使用！！！',
+    title: getL10nById(5539), description: getL10nById(5540),
     kexts: [
       ConfigKernel.IOSkywalkFamily,
       ConfigKernel.IO80211FamilyLegacy,
@@ -163,8 +155,7 @@ class ConfigKextGroups {
 
   static final brcm4331 = KextGroup(
     id: 'brcm4331',
-    title: '老款博通BCM4331',
-    description: '注意Monterey 12以上系统需要使用OCLP补丁后方可正常使用！！！',
+    title: getL10nById(5541), description: getL10nById(5542),
     kexts: [
       ConfigKernel.corecaptureElCap,
       ConfigKernel.IO80211ElCap,
@@ -174,8 +165,7 @@ class ConfigKextGroups {
 
   static final brcm43224 = KextGroup(
     id: 'brcm43224',
-    title: '老款博通BCM43224',
-    description: '注意Monterey 12以上系统需要使用OCLP补丁后方可正常使用！！！',
+    title: getL10nById(5543), description: getL10nById(5542),
     kexts: [
       ConfigKernel.corecaptureElCap,
       ConfigKernel.IO80211ElCap,
@@ -185,8 +175,7 @@ class ConfigKextGroups {
 
   static final atherosWifiModels = KextGroup(
     id: 'atheros_wifi_models',
-    title: '高通(Atheros) WiFi 型号驱动',
-    description: '高通 WiFi 手动选择项',
+    title: getL10nById(5544), description: getL10nById(5545),
     kexts: [
       ConfigKernel.AirPortAtheros40_9285,
       ConfigKernel.AirPortAtheros40_9380,
@@ -199,8 +188,7 @@ class ConfigKextGroups {
 
   static final atherosWifiLegacySupport = KextGroup(
     id: 'atheros_wifi_legacy_support',
-    title: '高通(Atheros) WiFi Big Sur 及以下依赖',
-    description: 'macOS Big Sur 11 及以下系统使用 HS80211Family 配合具体型号驱动',
+    title: getL10nById(5546), description: getL10nById(5547),
     kexts: [
       ConfigKernel.HS80211Family,
     ],
@@ -208,8 +196,7 @@ class ConfigKextGroups {
 
   static final atherosWifiModernSupport = KextGroup(
     id: 'atheros_wifi_modern_support',
-    title: '高通(Atheros) WiFi Monterey 及以上依赖',
-    description: 'macOS Monterey 12 及以上系统使用 IO80211ElCap 组合',
+    title: getL10nById(5548), description: getL10nById(5549),
     kexts: [
       ConfigKernel.corecaptureElCap,
       ConfigKernel.IO80211ElCap,

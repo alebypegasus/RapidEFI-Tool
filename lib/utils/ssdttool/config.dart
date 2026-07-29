@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 //  config.dart
 //  Created by JeoJay127
 //
@@ -11,13 +12,13 @@ enum ACPIMatchMode {
 
 /// ACPI 匹配模式扩展
 extension ACPIMathModeExtension on ACPIMatchMode {
-  String get value => ["最宽松", "仅长度", "表ID和长度,禁用标准化头部", "表ID和长度,启用标准化头部"][index];
+  String get value => [l10nGlobal.autoGen5746, l10nGlobal.autoGen5747, l10nGlobal.autoGen5748, l10nGlobal.autoGen5749][index];
 }
 
 enum PlistType { openCore, clover, unknown }
 
 extension PlistTypeExtension on PlistType {
-  String get value => ['OpenCore', 'Clover', '未知'][index];
+  String get value => ['OpenCore', 'Clover', l10nGlobal.autoGen5005][index];
 }
 
 final osiStrings = {
@@ -49,25 +50,25 @@ final osiStrings = {
 final PNLFUIDs = [
   {
     "UID": 14,
-    "Platform": "Intel第1代Arrandale,第2代Sandy Bridge,第3代Ivy Bridge",
+    "Platform": l10nGlobal.autoGen5750,
     "PWMMax": "0x0710",
   },
-  {"UID": 15, "Platform": "Intel第4代Haswell,第5代Broadwell", "PWMMax": "0x0AD9"},
+  {"UID": 15, "Platform": l10nGlobal.autoGen5751, "PWMMax": "0x0AD9"},
   {
     "UID": 16,
-    "Platform": "Intel第6代Skylake,第7代Kaby Lake, 某些第4代Haswell",
+    "Platform": l10nGlobal.autoGen5752,
     "PWMMax": "0x056C",
   },
-  {"UID": 17, "Platform": "自定义亮度,通常用于一些非标准设备或特殊需求设置", "PWMMax": "0x07A1"},
-  {"UID": 18, "Platform": "自定义亮度,通常用于一些非标准设备或特殊需求设置", "PWMMax": "0x1499"},
+  {"UID": 17, "Platform": l10nGlobal.autoGen5753, "PWMMax": "0x07A1"},
+  {"UID": 18, "Platform": l10nGlobal.autoGen5753, "PWMMax": "0x1499"},
   {
     "UID": 19,
-    "Platform": "Intel第8代CoffeeLake ~ 10代,以及AMD笔记本",
+    "Platform": l10nGlobal.autoGen5754,
     "PWMMax": "0xFFFF",
   },
   {
     "UID": 99,
-    "Platform": "其他（需要自定义 applbkl-name / applbkl-data 设备属性）,可能不受支持",
+    "Platform": l10nGlobal.autoGen5755,
     "PWMMax": "",
   },
 ];

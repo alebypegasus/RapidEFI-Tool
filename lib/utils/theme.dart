@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:fluent_ui/fluent_ui.dart';
@@ -14,15 +15,15 @@ Map<String, ThemeMode> get themeModeMap => {
       'dark': ThemeMode.dark,
     };
 Map<String, String> get themeModeCHMap => {
-      'system': '跟随系统',
-      'light': '关闭',
-      'dark': '开启',
+      'system': l10nGlobal.autoGen5775,
+      'light': l10nGlobal.autoGen5776,
+      'dark': l10nGlobal.autoGen5004,
     };
 
 Map<String, String> get appFontFamilyMap => {
-      'msyh': '微软雅黑',
-      'Sarasa-Gothic-Mono-Nerd-SC-Regular': '更纱黑体',
-      'NotoSerifSC-Regular': '思源宋体',
+      'msyh': l10nGlobal.autoGen5777,
+      'Sarasa-Gothic-Mono-Nerd-SC-Regular': l10nGlobal.autoGen5778,
+      'NotoSerifSC-Regular': l10nGlobal.autoGen5779,
     };
 
 List<String> get themeModeCHList => themeModeCHMap.values.toList();

@@ -198,7 +198,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
           HardwareConfigBuildContext(
             hardwareInfo: info,
             rawInfo: widget.rawInfo,
-            options: const HardwareConfigOptions(),
+            options: HardwareConfigOptions(),
           ),
         );
       } catch (_) {}
@@ -301,7 +301,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
     return HardwareConfigBuildContext(
       hardwareInfo: info,
       rawInfo: widget.rawInfo,
-      options: const HardwareConfigOptions(),
+      options: HardwareConfigOptions(),
     ).hasI2cInputDevice;
   }
 
@@ -511,7 +511,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             Row(
               children: [
                 SizedBox(
-                  width: 64,
+                  width: 140,
                   child: Text(
                     l10n.ssdtType,
                     style: TextStyle(
@@ -578,7 +578,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             Row(
               children: [
                 SizedBox(
-                  width: 64,
+                  width: 140,
                   child: Text(
                     l10n.platformInfo,
                     style: TextStyle(
@@ -665,7 +665,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          width: 64,
+          width: 140,
           child: Text(
             label,
             style: TextStyle(

@@ -38,7 +38,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          AppLocalizations.of(context)!.sharedCpuInfo(platformEntity.note.descriptionList),
+          AppLocalizations.of(context)!.sharedCpuInfo(platformEntity.note.getByLocale(Localizations.localeOf(context).languageCode).descriptionList),
           style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.normal,
@@ -48,7 +48,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          AppLocalizations.of(context)!.sharedBiosEnable(platformEntity.config.bios.enable.ch.toList().descriptionList),
+          AppLocalizations.of(context)!.sharedBiosEnable(platformEntity.config.bios.enable.getByLocale(Localizations.localeOf(context).languageCode).descriptionList),
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.normal,
@@ -58,7 +58,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          AppLocalizations.of(context)!.sharedBiosDisable(platformEntity.config.bios.disable.ch.toList().descriptionList),
+          AppLocalizations.of(context)!.sharedBiosDisable(platformEntity.config.bios.disable.getByLocale(Localizations.localeOf(context).languageCode).descriptionList),
           style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.normal,

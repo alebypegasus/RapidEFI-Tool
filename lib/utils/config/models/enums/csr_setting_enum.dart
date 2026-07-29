@@ -1,31 +1,30 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum CsrSetting {
   none(
     nvramValue: '',
-    text: EnumText(
-      title: '',
+    text: const EnumText(
+      fallbackTitle: '',
     ),
   ),
   enabled(
     nvramValue: '00000000',
-    text: EnumText(
-      title: '开启SIP增强系统安全性,通常不需要使用OCLP打显卡，WiFi等驱动时,推荐勾选',
+    text: const EnumText(
+      titleId: 5136,
     ),
   ),
   partialDisabled(
     nvramValue: '03080000',
-    text: EnumText(
-      title: '禁用SIP方案一',
-      description: '非彻底禁用SIP,通常在BigSur等以上系统需要使用OCLP打显卡,WiFi等驱动时,建议勾选',
+    text: const EnumText(
+      titleId: 5137, descId: 5138,
     ),
   ),
   fullyDisabled(
     nvramValue: 'FF0F0000',
-    text: EnumText(
-      title: '禁用SIP方案二',
-      description: '彻底禁用SIP,通常在BigSur等以上系统需要使用OCLP打显卡,WiFi等驱动时,优先选择此项',
+    text: const EnumText(
+      titleId: 5139, descId: 5140,
     ),
   );
 

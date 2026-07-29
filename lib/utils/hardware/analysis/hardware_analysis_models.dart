@@ -1,7 +1,8 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 enum CompatibilityLevel { supported, limited, unsupported }
 
 class CompatibilityNote {
-  const CompatibilityNote(this.level, this.text);
+  CompatibilityNote(this.level, this.text);
 
   factory CompatibilityNote.supported(String text) =>
       CompatibilityNote(CompatibilityLevel.supported, text);
@@ -18,9 +19,9 @@ class CompatibilityNote {
   String get detailText {
     final lines = text.split('\n');
     if (lines.isNotEmpty &&
-        (lines.first == '兼容' ||
-            lines.first == '有限兼容' ||
-            lines.first == '不兼容')) {
+        (lines.first == l10nGlobal.autoGen5000 ||
+            lines.first == l10nGlobal.autoGen5001 ||
+            lines.first == l10nGlobal.autoGen5002)) {
       return lines.skip(1).join('\n').trim();
     }
     return text.trim();
@@ -28,7 +29,7 @@ class CompatibilityNote {
 }
 
 class HardwareSupportSnapshot {
-  const HardwareSupportSnapshot({
+  HardwareSupportSnapshot({
     required this.cpu,
     required this.gpu,
     required this.audio,
@@ -48,7 +49,7 @@ class HardwareSupportSnapshot {
 }
 
 class AudioEntry {
-  const AudioEntry({
+  AudioEntry({
     required this.name,
     required this.deviceId,
     required this.codecDeviceId,
@@ -72,7 +73,7 @@ class AudioEntry {
 }
 
 class AudioCodecLookup {
-  const AudioCodecLookup({
+  AudioCodecLookup({
     this.model = '',
     this.known = false,
     this.supported = false,
@@ -84,7 +85,7 @@ class AudioCodecLookup {
 }
 
 class AudioLayoutAnalysis {
-  const AudioLayoutAnalysis({
+  AudioLayoutAnalysis({
     required this.model,
     required this.layouts,
     required this.selectedLayout,
@@ -96,7 +97,7 @@ class AudioLayoutAnalysis {
 }
 
 class NetworkEntryAnalysis {
-  const NetworkEntryAnalysis({
+  NetworkEntryAnalysis({
     required this.name,
     required this.deviceId,
     required this.displayType,
@@ -118,7 +119,7 @@ class NetworkEntryAnalysis {
 }
 
 class BluetoothEntryAnalysis {
-  const BluetoothEntryAnalysis({
+  BluetoothEntryAnalysis({
     required this.name,
     required this.deviceId,
     required this.busType,
@@ -136,7 +137,7 @@ class BluetoothEntryAnalysis {
 }
 
 class StorageControllerEntryAnalysis {
-  const StorageControllerEntryAnalysis({
+  StorageControllerEntryAnalysis({
     required this.name,
     required this.deviceId,
     required this.isNvme,
@@ -152,7 +153,7 @@ class StorageControllerEntryAnalysis {
 }
 
 class SdCardEntryAnalysis {
-  const SdCardEntryAnalysis({
+  SdCardEntryAnalysis({
     required this.name,
     required this.deviceId,
     required this.device,

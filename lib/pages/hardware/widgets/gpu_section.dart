@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_compatibility.dart';
@@ -94,7 +95,7 @@ class GpuSection extends StatelessWidget {
     final board = safeMap(rawInfo['Motherboard']);
     final platform = safeStr(board['Platform']).toLowerCase();
 
-    return platform == 'laptop' || platform == '笔记本';
+    return platform == 'laptop' || platform == l10nGlobal.autoGen5031;
   }
 }
 
@@ -248,7 +249,7 @@ class _GpuCompatibilityItem {
   final CompatibilityNote note;
   final GpuCompatibilityRecord? record;
 
-  bool get isLoadingCompatibility => note.text == '兼容性加载中' || note.text.isEmpty;
+  bool get isLoadingCompatibility => note.text == l10nGlobal.autoGen5011 || note.text.isEmpty;
 
   String statusText(AppLocalizations l10n) {
     return switch (note.level) {

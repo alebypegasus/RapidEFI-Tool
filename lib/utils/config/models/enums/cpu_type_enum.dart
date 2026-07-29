@@ -1,10 +1,11 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum CpuType {
-  intel(EnumText(title: 'Intel')),
-  amd(EnumText(title: 'AMD')),
-  unknown(EnumText(title: '未知'));
+  intel(const EnumText(fallbackTitle: 'Intel')),
+  amd(const EnumText(fallbackTitle: 'AMD')),
+  unknown(const EnumText(titleId: 5005));
 
   const CpuType(this.text);
 

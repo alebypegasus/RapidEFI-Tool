@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 // ignore_for_file: constant_identifier_names
 
 import 'dart:async';
@@ -18,7 +19,7 @@ import 'model/allinfo.dart';
 Map<String, dynamic> _decodeAndNormalizeHardwareInfo(String report) {
   final decoded = jsonDecode(report);
   if (decoded is! Map<String, dynamic>) {
-    throw const FormatException('硬件信息缓存不是 JSON 对象');
+    throw FormatException(l10nGlobal.autoGen5049);
   }
   final rawInfo = Map<String, dynamic>.from(decoded);
   HardwareInfo._normalizeSysInfo(rawInfo);
@@ -101,7 +102,7 @@ class HardwareInfo {
   static Future<bool> loadCachedInfo(String taskId) async {
     if (_allHardwareInfo != null && _rawInfo != null) {
       _hardwareCache[taskId] = _allHardwareInfo!;
-      _sendProgressMessage('硬件信息已从缓存加载');
+      _sendProgressMessage(l10nGlobal.autoGen5050);
       return true;
     }
 
@@ -132,7 +133,7 @@ class HardwareInfo {
         loadAnalysis: false,
         normalized: true,
       );
-      _sendProgressMessage('硬件信息已从本地缓存加载');
+      _sendProgressMessage(l10nGlobal.autoGen5051);
       return true;
     }();
 
@@ -151,7 +152,7 @@ class HardwareInfo {
     Map<String, dynamic> rawInfo,
   ) async {
     await _loadRawInfo(taskId, rawInfo, persist: false);
-    _sendProgressMessage('硬件信息已从导入文件加载');
+    _sendProgressMessage(l10nGlobal.autoGen5052);
   }
 
   static Future<void> _loadRawInfo(
@@ -213,9 +214,9 @@ class HardwareInfo {
     required List<WindowsSystemInfoType> requiredValues,
     bool simple = true,
   }) async {
-    _sendProgressMessage('初始化硬件信息');
+    _sendProgressMessage(l10nGlobal.autoGen5053);
     if (!Platform.isWindows) {
-      _sendProgressMessage('不支持当前系统，仅支持 Windows');
+      _sendProgressMessage(l10nGlobal.autoGen5054);
       throw UnsupportedError('Only support Windows!');
     }
 
@@ -223,12 +224,12 @@ class HardwareInfo {
 
     if (_allHardwareInfo != null) {
       _hardwareCache[taskId] = _allHardwareInfo!;
-      _sendProgressMessage('硬件信息已从缓存加载');
+      _sendProgressMessage(l10nGlobal.autoGen5050);
       return;
     }
 
     if (_initCompleter != null && _initCompleter?.isCompleted == false) {
-      _sendProgressMessage('正在查询硬件信息');
+      _sendProgressMessage(l10nGlobal.autoGen5055);
       await _initCompleter!.future;
       if (_allHardwareInfo != null) {
         _hardwareCache[taskId] = _allHardwareInfo!;
@@ -240,10 +241,10 @@ class HardwareInfo {
     _initCompleter = completer;
 
     try {
-      _sendProgressMessage('正在查询硬件信息');
+      _sendProgressMessage(l10nGlobal.autoGen5055);
       await _getHardwareInfo();
       _hardwareCache[taskId] = _allHardwareInfo!;
-      _sendProgressMessage('硬件信息查询完成');
+      _sendProgressMessage(l10nGlobal.autoGen5056);
     } catch (e) {
       _sendProgressMessage('获取硬件信息失败: $e');
       if (!completer.isCompleted) {
@@ -277,15 +278,15 @@ class HardwareInfo {
 
     final output = _decodeProcessOutput(result.stdout).trim();
     if (output.isEmpty) {
-      throw const FormatException('sysInfo.exe 未返回硬件信息');
+      throw FormatException(l10nGlobal.autoGen5057);
     }
 
     final decoded = jsonDecode(output);
     if (decoded is! Map<String, dynamic>) {
-      throw const FormatException('sysInfo.exe 返回内容不是 JSON 对象');
+      throw FormatException(l10nGlobal.autoGen5058);
     }
     await _loadRawInfo('all', decoded, persist: true);
-    _sendProgressMessage('sysInfo.exe 查询完成');
+    _sendProgressMessage(l10nGlobal.autoGen5059);
   }
 
   static String _decodeProcessOutput(Object? output) {
@@ -592,26 +593,26 @@ class HardwareInfo {
     final deviceId = _s(gpu['Device ID']);
 
     if (gpu_cd.GpuCodenameData.isIntelGpu(deviceId)) {
-      gpu['Device Type'] = '核心显卡';
+      gpu['Device Type'] = l10nGlobal.autoGen5060;
       return;
     }
 
     // 名称包含集显特征
     if (gpu_cd.GpuCodenameData.isIntegratedByName(gpuName)) {
-      gpu['Device Type'] = '核心显卡';
+      gpu['Device Type'] = l10nGlobal.autoGen5060;
       return;
     }
 
     if (cpuCodename != null &&
         codename.isNotEmpty &&
         codename.toLowerCase() == cpuCodename.toLowerCase()) {
-      gpu['Device Type'] = '核心显卡';
+      gpu['Device Type'] = l10nGlobal.autoGen5060;
       return;
     }
 
     // 独显特征
     if (gpu_cd.GpuCodenameData.isDiscreteByName(gpuName)) {
-      gpu['Device Type'] = '独立显卡';
+      gpu['Device Type'] = l10nGlobal.autoGen5061;
       return;
     }
   }
@@ -646,8 +647,8 @@ class HardwareInfo {
         text == 'enabled' ||
         text == 'enable' ||
         text == 'on' ||
-        text == '已开启' ||
-        text == '开启';
+        text == l10nGlobal.autoGen5062 ||
+        text == l10nGlobal.autoGen5004;
   }
 
   static bool? _enabledOrNull(dynamic value) {
@@ -680,8 +681,8 @@ class HardwareInfo {
     final text = value?.toString();
     if (text == null || text.isEmpty) return text;
     final lower = text.toLowerCase();
-    if (lower == 'discrete' || lower.contains('dedicated')) return '独立显卡';
-    if (lower == 'integrated' || lower.contains('internal')) return '核心显卡';
+    if (lower == 'discrete' || lower.contains('dedicated')) return l10nGlobal.autoGen5061;
+    if (lower == 'integrated' || lower.contains('internal')) return l10nGlobal.autoGen5060;
     return text;
   }
 }

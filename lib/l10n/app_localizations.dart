@@ -6647,6 +6647,4986 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to open directory: {arg0}, {arg1}'**
   String logMsg470(String arg0, String arg1);
+
+  /// No description provided for @autoGen5000.
+  ///
+  /// In en, this message translates to:
+  /// **'compatible'**
+  String get autoGen5000;
+
+  /// No description provided for @autoGen5001.
+  ///
+  /// In en, this message translates to:
+  /// **'Limited compatibility'**
+  String get autoGen5001;
+
+  /// No description provided for @autoGen5002.
+  ///
+  /// In en, this message translates to:
+  /// **'Not compatible'**
+  String get autoGen5002;
+
+  /// No description provided for @autoGen5003.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get autoGen5003;
+
+  /// No description provided for @autoGen5004.
+  ///
+  /// In en, this message translates to:
+  /// **'turn on'**
+  String get autoGen5004;
+
+  /// No description provided for @autoGen5005.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown'**
+  String get autoGen5005;
+
+  /// No description provided for @autoGen5006.
+  ///
+  /// In en, this message translates to:
+  /// **'Wired network card'**
+  String get autoGen5006;
+
+  /// No description provided for @autoGen5007.
+  ///
+  /// In en, this message translates to:
+  /// **'Limited compatibility\nSupports up to macOS Tahoe 26\nMissing AVX2'**
+  String get autoGen5007;
+
+  /// No description provided for @autoGen5008.
+  ///
+  /// In en, this message translates to:
+  /// **'Not compatible\nSupports up to macOS El Capitan 10.11\nMissing SSE4'**
+  String get autoGen5008;
+
+  /// No description provided for @autoGen5009.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing device ID'**
+  String get autoGen5009;
+
+  /// No description provided for @autoGen5010.
+  ///
+  /// In en, this message translates to:
+  /// **'NootedRed support'**
+  String get autoGen5010;
+
+  /// No description provided for @autoGen5011.
+  ///
+  /// In en, this message translates to:
+  /// **'Compatibility loading'**
+  String get autoGen5011;
+
+  /// No description provided for @autoGen5012.
+  ///
+  /// In en, this message translates to:
+  /// **'Low-end Intel CPU core graphics are not supported'**
+  String get autoGen5012;
+
+  /// No description provided for @autoGen5013.
+  ///
+  /// In en, this message translates to:
+  /// **'VGA output is not supported'**
+  String get autoGen5013;
+
+  /// No description provided for @autoGen5014.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterfeit support'**
+  String get autoGen5014;
+
+  /// No description provided for @autoGen5015.
+  ///
+  /// In en, this message translates to:
+  /// **'Native support'**
+  String get autoGen5015;
+
+  /// No description provided for @autoGen5016.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing AVX2 instruction set'**
+  String get autoGen5016;
+
+  /// No description provided for @autoGen5017.
+  ///
+  /// In en, this message translates to:
+  /// **'core'**
+  String get autoGen5017;
+
+  /// No description provided for @autoGen5018.
+  ///
+  /// In en, this message translates to:
+  /// **'independent'**
+  String get autoGen5018;
+
+  /// No description provided for @autoGen5019.
+  ///
+  /// In en, this message translates to:
+  /// **'Nuclear display'**
+  String get autoGen5019;
+
+  /// No description provided for @autoGen5020.
+  ///
+  /// In en, this message translates to:
+  /// **'ASUS'**
+  String get autoGen5020;
+
+  /// No description provided for @autoGen5021.
+  ///
+  /// In en, this message translates to:
+  /// **'Gigabyte'**
+  String get autoGen5021;
+
+  /// No description provided for @autoGen5022.
+  ///
+  /// In en, this message translates to:
+  /// **'ASRock'**
+  String get autoGen5022;
+
+  /// No description provided for @autoGen5023.
+  ///
+  /// In en, this message translates to:
+  /// **'MSI'**
+  String get autoGen5023;
+
+  /// No description provided for @autoGen5024.
+  ///
+  /// In en, this message translates to:
+  /// **'Dell'**
+  String get autoGen5024;
+
+  /// No description provided for @autoGen5025.
+  ///
+  /// In en, this message translates to:
+  /// **'Lenovo'**
+  String get autoGen5025;
+
+  /// No description provided for @autoGen5026.
+  ///
+  /// In en, this message translates to:
+  /// **'sony'**
+  String get autoGen5026;
+
+  /// No description provided for @autoGen5027.
+  ///
+  /// In en, this message translates to:
+  /// **'HP'**
+  String get autoGen5027;
+
+  /// No description provided for @autoGen5028.
+  ///
+  /// In en, this message translates to:
+  /// **'Google'**
+  String get autoGen5028;
+
+  /// No description provided for @autoGen5029.
+  ///
+  /// In en, this message translates to:
+  /// **'Microsoft'**
+  String get autoGen5029;
+
+  /// No description provided for @autoGen5030.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to identify platform type based on CPU information'**
+  String get autoGen5030;
+
+  /// No description provided for @autoGen5031.
+  ///
+  /// In en, this message translates to:
+  /// **'notebook'**
+  String get autoGen5031;
+
+  /// No description provided for @autoGen5032.
+  ///
+  /// In en, this message translates to:
+  /// **'Mini host'**
+  String get autoGen5032;
+
+  /// No description provided for @autoGen5033.
+  ///
+  /// In en, this message translates to:
+  /// **'workstation'**
+  String get autoGen5033;
+
+  /// No description provided for @autoGen5034.
+  ///
+  /// In en, this message translates to:
+  /// **'The platform code cannot be determined based on the CPU, motherboard, and core display.'**
+  String get autoGen5034;
+
+  /// No description provided for @autoGen5035.
+  ///
+  /// In en, this message translates to:
+  /// **'Device blocking skip:'**
+  String get autoGen5035;
+
+  /// No description provided for @autoGen5036.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing valid ACPI Path'**
+  String get autoGen5036;
+
+  /// No description provided for @autoGen5037.
+  ///
+  /// In en, this message translates to:
+  /// **'SSDT list to be customized:'**
+  String get autoGen5037;
+
+  /// No description provided for @autoGen5038.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI table extraction failed'**
+  String get autoGen5038;
+
+  /// No description provided for @autoGen5039.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI table load failed'**
+  String get autoGen5039;
+
+  /// No description provided for @autoGen5040.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom SSDT results are incomplete'**
+  String get autoGen5040;
+
+  /// No description provided for @autoGen5041.
+  ///
+  /// In en, this message translates to:
+  /// **'Exception occurred in custom SSDT'**
+  String get autoGen5041;
+
+  /// No description provided for @autoGen5042.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom SSDT temporary directory cleanup failed:'**
+  String get autoGen5042;
+
+  /// No description provided for @autoGen5043.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphics card device ID spoofing SSDT'**
+  String get autoGen5043;
+
+  /// No description provided for @autoGen5044.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to generate:'**
+  String get autoGen5044;
+
+  /// No description provided for @autoGen5045.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI Device Shield SSDT'**
+  String get autoGen5045;
+
+  /// No description provided for @autoGen5046.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom SSDT merge skipped,'**
+  String get autoGen5046;
+
+  /// No description provided for @autoGen5047.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to use the original SSDT in current EFI as a fallback.'**
+  String get autoGen5047;
+
+  /// No description provided for @autoGen5048.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphics card device ID spoofing skipped:'**
+  String get autoGen5048;
+
+  /// No description provided for @autoGen5049.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information cache is not a JSON object'**
+  String get autoGen5049;
+
+  /// No description provided for @autoGen5050.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information has been loaded from cache'**
+  String get autoGen5050;
+
+  /// No description provided for @autoGen5051.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information has been loaded from local cache'**
+  String get autoGen5051;
+
+  /// No description provided for @autoGen5052.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information has been loaded from the import file'**
+  String get autoGen5052;
+
+  /// No description provided for @autoGen5053.
+  ///
+  /// In en, this message translates to:
+  /// **'Initialize hardware information'**
+  String get autoGen5053;
+
+  /// No description provided for @autoGen5054.
+  ///
+  /// In en, this message translates to:
+  /// **'Current system is not supported, only Windows is supported'**
+  String get autoGen5054;
+
+  /// No description provided for @autoGen5055.
+  ///
+  /// In en, this message translates to:
+  /// **'Querying hardware information'**
+  String get autoGen5055;
+
+  /// No description provided for @autoGen5056.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information query completed'**
+  String get autoGen5056;
+
+  /// No description provided for @autoGen5057.
+  ///
+  /// In en, this message translates to:
+  /// **'sysInfo.exe did not return hardware information'**
+  String get autoGen5057;
+
+  /// No description provided for @autoGen5058.
+  ///
+  /// In en, this message translates to:
+  /// **'The content returned by sysInfo.exe is not a JSON object'**
+  String get autoGen5058;
+
+  /// No description provided for @autoGen5059.
+  ///
+  /// In en, this message translates to:
+  /// **'sysInfo.exe query completed'**
+  String get autoGen5059;
+
+  /// No description provided for @autoGen5060.
+  ///
+  /// In en, this message translates to:
+  /// **'core graphics card'**
+  String get autoGen5060;
+
+  /// No description provided for @autoGen5061.
+  ///
+  /// In en, this message translates to:
+  /// **'Discrete graphics card'**
+  String get autoGen5061;
+
+  /// No description provided for @autoGen5062.
+  ///
+  /// In en, this message translates to:
+  /// **'Already turned on'**
+  String get autoGen5062;
+
+  /// No description provided for @autoGen5063.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown graphics card'**
+  String get autoGen5063;
+
+  /// No description provided for @autoGen5064.
+  ///
+  /// In en, this message translates to:
+  /// **'integrated'**
+  String get autoGen5064;
+
+  /// No description provided for @autoGen5065.
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcom'**
+  String get autoGen5065;
+
+  /// No description provided for @autoGen5066.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm'**
+  String get autoGen5066;
+
+  /// No description provided for @autoGen5067.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel'**
+  String get autoGen5067;
+
+  /// No description provided for @autoGen5068.
+  ///
+  /// In en, this message translates to:
+  /// **'apple'**
+  String get autoGen5068;
+
+  /// No description provided for @autoGen5069.
+  ///
+  /// In en, this message translates to:
+  /// **'Zero moment'**
+  String get autoGen5069;
+
+  /// No description provided for @autoGen5070.
+  ///
+  /// In en, this message translates to:
+  /// **'Matsushita'**
+  String get autoGen5070;
+
+  /// No description provided for @autoGen5071.
+  ///
+  /// In en, this message translates to:
+  /// **'Taian'**
+  String get autoGen5071;
+
+  /// No description provided for @autoGen5072.
+  ///
+  /// In en, this message translates to:
+  /// **'Biostar'**
+  String get autoGen5072;
+
+  /// No description provided for @autoGen5073.
+  ///
+  /// In en, this message translates to:
+  /// **'Colorful'**
+  String get autoGen5073;
+
+  /// No description provided for @autoGen5074.
+  ///
+  /// In en, this message translates to:
+  /// **'Zotac'**
+  String get autoGen5074;
+
+  /// No description provided for @autoGen5075.
+  ///
+  /// In en, this message translates to:
+  /// **'Gengsheng'**
+  String get autoGen5075;
+
+  /// No description provided for @autoGen5076.
+  ///
+  /// In en, this message translates to:
+  /// **'Yingzhong'**
+  String get autoGen5076;
+
+  /// No description provided for @autoGen5077.
+  ///
+  /// In en, this message translates to:
+  /// **'Super Micro'**
+  String get autoGen5077;
+
+  /// No description provided for @autoGen5078.
+  ///
+  /// In en, this message translates to:
+  /// **'Onda'**
+  String get autoGen5078;
+
+  /// No description provided for @autoGen5079.
+  ///
+  /// In en, this message translates to:
+  /// **'Spartacus'**
+  String get autoGen5079;
+
+  /// No description provided for @autoGen5080.
+  ///
+  /// In en, this message translates to:
+  /// **'Panzheng'**
+  String get autoGen5080;
+
+  /// No description provided for @autoGen5081.
+  ///
+  /// In en, this message translates to:
+  /// **'South China'**
+  String get autoGen5081;
+
+  /// No description provided for @autoGen5082.
+  ///
+  /// In en, this message translates to:
+  /// **'Jingyue'**
+  String get autoGen5082;
+
+  /// No description provided for @autoGen5083.
+  ///
+  /// In en, this message translates to:
+  /// **'Ke Nao'**
+  String get autoGen5083;
+
+  /// No description provided for @autoGen5084.
+  ///
+  /// In en, this message translates to:
+  /// **'Guoshuo'**
+  String get autoGen5084;
+
+  /// No description provided for @autoGen5085.
+  ///
+  /// In en, this message translates to:
+  /// **'Jetway'**
+  String get autoGen5085;
+
+  /// No description provided for @autoGen5086.
+  ///
+  /// In en, this message translates to:
+  /// **'diamond'**
+  String get autoGen5086;
+
+  /// No description provided for @autoGen5087.
+  ///
+  /// In en, this message translates to:
+  /// **'top star'**
+  String get autoGen5087;
+
+  /// No description provided for @autoGen5088.
+  ///
+  /// In en, this message translates to:
+  /// **'Mingxuan'**
+  String get autoGen5088;
+
+  /// No description provided for @autoGen5089.
+  ///
+  /// In en, this message translates to:
+  /// **'Meijie'**
+  String get autoGen5089;
+
+  /// No description provided for @autoGen5090.
+  ///
+  /// In en, this message translates to:
+  /// **'Elite'**
+  String get autoGen5090;
+
+  /// No description provided for @autoGen5091.
+  ///
+  /// In en, this message translates to:
+  /// **'Foxconn'**
+  String get autoGen5091;
+
+  /// No description provided for @autoGen5092.
+  ///
+  /// In en, this message translates to:
+  /// **'abit'**
+  String get autoGen5092;
+
+  /// No description provided for @autoGen5093.
+  ///
+  /// In en, this message translates to:
+  /// **'Shuangmin'**
+  String get autoGen5093;
+
+  /// No description provided for @autoGen5094.
+  ///
+  /// In en, this message translates to:
+  /// **'Eunjie'**
+  String get autoGen5094;
+
+  /// No description provided for @autoGen5095.
+  ///
+  /// In en, this message translates to:
+  /// **'GALAXY'**
+  String get autoGen5095;
+
+  /// No description provided for @autoGen5096.
+  ///
+  /// In en, this message translates to:
+  /// **'holy flag'**
+  String get autoGen5096;
+
+  /// No description provided for @autoGen5097.
+  ///
+  /// In en, this message translates to:
+  /// **'Shark'**
+  String get autoGen5097;
+
+  /// No description provided for @autoGen5098.
+  ///
+  /// In en, this message translates to:
+  /// **'Seewo'**
+  String get autoGen5098;
+
+  /// No description provided for @autoGen5099.
+  ///
+  /// In en, this message translates to:
+  /// **'Advantech'**
+  String get autoGen5099;
+
+  /// No description provided for @autoGen5100.
+  ///
+  /// In en, this message translates to:
+  /// **'ADLINK'**
+  String get autoGen5100;
+
+  /// No description provided for @autoGen5101.
+  ///
+  /// In en, this message translates to:
+  /// **'Great Mechanic'**
+  String get autoGen5101;
+
+  /// No description provided for @autoGen5102.
+  ///
+  /// In en, this message translates to:
+  /// **'patriot'**
+  String get autoGen5102;
+
+  /// No description provided for @autoGen5103.
+  ///
+  /// In en, this message translates to:
+  /// **'ASL'**
+  String get autoGen5103;
+
+  /// No description provided for @autoGen5104.
+  ///
+  /// In en, this message translates to:
+  /// **'Erying'**
+  String get autoGen5104;
+
+  /// No description provided for @autoGen5105.
+  ///
+  /// In en, this message translates to:
+  /// **'sapphire'**
+  String get autoGen5105;
+
+  /// No description provided for @autoGen5106.
+  ///
+  /// In en, this message translates to:
+  /// **'Contech'**
+  String get autoGen5106;
+
+  /// No description provided for @autoGen5107.
+  ///
+  /// In en, this message translates to:
+  /// **'Qingyun'**
+  String get autoGen5107;
+
+  /// No description provided for @autoGen5108.
+  ///
+  /// In en, this message translates to:
+  /// **'Huawei'**
+  String get autoGen5108;
+
+  /// No description provided for @autoGen5109.
+  ///
+  /// In en, this message translates to:
+  /// **'Millet'**
+  String get autoGen5109;
+
+  /// No description provided for @autoGen5110.
+  ///
+  /// In en, this message translates to:
+  /// **'red rice'**
+  String get autoGen5110;
+
+  /// No description provided for @autoGen5111.
+  ///
+  /// In en, this message translates to:
+  /// **'glory'**
+  String get autoGen5111;
+
+  /// No description provided for @autoGen5112.
+  ///
+  /// In en, this message translates to:
+  /// **'Samsung'**
+  String get autoGen5112;
+
+  /// No description provided for @autoGen5113.
+  ///
+  /// In en, this message translates to:
+  /// **'mechanical revolution'**
+  String get autoGen5113;
+
+  /// No description provided for @autoGen5114.
+  ///
+  /// In en, this message translates to:
+  /// **'mechanic'**
+  String get autoGen5114;
+
+  /// No description provided for @autoGen5115.
+  ///
+  /// In en, this message translates to:
+  /// **'Thor'**
+  String get autoGen5115;
+
+  /// No description provided for @autoGen5116.
+  ///
+  /// In en, this message translates to:
+  /// **'Razer'**
+  String get autoGen5116;
+
+  /// No description provided for @autoGen5117.
+  ///
+  /// In en, this message translates to:
+  /// **'Acer'**
+  String get autoGen5117;
+
+  /// No description provided for @autoGen5118.
+  ///
+  /// In en, this message translates to:
+  /// **'Toshiba'**
+  String get autoGen5118;
+
+  /// No description provided for @autoGen5119.
+  ///
+  /// In en, this message translates to:
+  /// **'Fujitsu'**
+  String get autoGen5119;
+
+  /// No description provided for @autoGen5120.
+  ///
+  /// In en, this message translates to:
+  /// **'blue sky'**
+  String get autoGen5120;
+
+  /// No description provided for @autoGen5121.
+  ///
+  /// In en, this message translates to:
+  /// **'alien'**
+  String get autoGen5121;
+
+  /// No description provided for @autoGen5122.
+  ///
+  /// In en, this message translates to:
+  /// **'Shenzhou'**
+  String get autoGen5122;
+
+  /// No description provided for @autoGen5123.
+  ///
+  /// In en, this message translates to:
+  /// **'Haier'**
+  String get autoGen5123;
+
+  /// No description provided for @autoGen5124.
+  ///
+  /// In en, this message translates to:
+  /// **'Zhongbai'**
+  String get autoGen5124;
+
+  /// No description provided for @autoGen5125.
+  ///
+  /// In en, this message translates to:
+  /// **'Xuanlong'**
+  String get autoGen5125;
+
+  /// No description provided for @autoGen5126.
+  ///
+  /// In en, this message translates to:
+  /// **'future humans'**
+  String get autoGen5126;
+
+  /// No description provided for @autoGen5127.
+  ///
+  /// In en, this message translates to:
+  /// **'Cube'**
+  String get autoGen5127;
+
+  /// No description provided for @autoGen5128.
+  ///
+  /// In en, this message translates to:
+  /// **'Xuanpai Xuanji Star'**
+  String get autoGen5128;
+
+  /// No description provided for @autoGen5129.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for updates, please wait...'**
+  String get autoGen5129;
+
+  /// No description provided for @autoGen5130.
+  ///
+  /// In en, this message translates to:
+  /// **'Just checked for updates, please try again later'**
+  String get autoGen5130;
+
+  /// No description provided for @autoGen5131.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to check for updates, please try again later'**
+  String get autoGen5131;
+
+  /// No description provided for @autoGen5132.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to obtain release version list, please try again later'**
+  String get autoGen5132;
+
+  /// No description provided for @autoGen5133.
+  ///
+  /// In en, this message translates to:
+  /// **'Release version list is empty'**
+  String get autoGen5133;
+
+  /// No description provided for @autoGen5134.
+  ///
+  /// In en, this message translates to:
+  /// **'Desktop'**
+  String get autoGen5134;
+
+  /// No description provided for @autoGen5135.
+  ///
+  /// In en, this message translates to:
+  /// **'server'**
+  String get autoGen5135;
+
+  /// No description provided for @autoGen5136.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on SIP to enhance system security. It is recommended to check this box when you usually do not need to use OCLP to drive graphics cards, WiFi and other drivers.'**
+  String get autoGen5136;
+
+  /// No description provided for @autoGen5137.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable SIP solution one'**
+  String get autoGen5137;
+
+  /// No description provided for @autoGen5138.
+  ///
+  /// In en, this message translates to:
+  /// **'Unless SIP is completely disabled, it is usually recommended to check the box when systems such as BigSur and above need to use OCLP to drive graphics cards, WiFi, etc.'**
+  String get autoGen5138;
+
+  /// No description provided for @autoGen5139.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable SIP solution two'**
+  String get autoGen5139;
+
+  /// No description provided for @autoGen5140.
+  ///
+  /// In en, this message translates to:
+  /// **'Completely disable SIP. Usually when systems such as BigSur and above need to use OCLP to drive graphics cards, WiFi, etc., this option is preferred.'**
+  String get autoGen5140;
+
+  /// No description provided for @autoGen5141.
+  ///
+  /// In en, this message translates to:
+  /// **'Adaptive display, automatically adjusts the display ratio of the OpenCore boot interface according to the display resolution'**
+  String get autoGen5141;
+
+  /// No description provided for @autoGen5142.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard resolution monitor, suitable for 720p, 1080p, 1440p and other standard resolution monitors'**
+  String get autoGen5142;
+
+  /// No description provided for @autoGen5143.
+  ///
+  /// In en, this message translates to:
+  /// **'High-resolution display, suitable for high-resolution displays such as 4K and 5K (can effectively improve the problem of too small UI elements on the OpenCore boot page for high-resolution screens)'**
+  String get autoGen5143;
+
+  /// No description provided for @autoGen5144.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not modify ProcessorType'**
+  String get autoGen5144;
+
+  /// No description provided for @autoGen5145.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep system default CPU type display'**
+  String get autoGen5145;
+
+  /// No description provided for @autoGen5146.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel and AMD platform CPU name modification option 1 (usually applicable to CPUs with 6 cores and below)'**
+  String get autoGen5146;
+
+  /// No description provided for @autoGen5147.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel and AMD platform CPU name modification option 2 (usually applicable to 8-core and above CPUs)'**
+  String get autoGen5147;
+
+  /// No description provided for @autoGen5148.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel and AMD platform CPU name modification alternatives (usually applicable to i7 and i9 series CPUs with 8 cores and above)'**
+  String get autoGen5148;
+
+  /// No description provided for @autoGen5149.
+  ///
+  /// In en, this message translates to:
+  /// **'ASUS'**
+  String get autoGen5149;
+
+  /// No description provided for @autoGen5150.
+  ///
+  /// In en, this message translates to:
+  /// **'GIGABYTE'**
+  String get autoGen5150;
+
+  /// No description provided for @autoGen5151.
+  ///
+  /// In en, this message translates to:
+  /// **'ASRock'**
+  String get autoGen5151;
+
+  /// No description provided for @autoGen5152.
+  ///
+  /// In en, this message translates to:
+  /// **'MSI'**
+  String get autoGen5152;
+
+  /// No description provided for @autoGen5153.
+  ///
+  /// In en, this message translates to:
+  /// **'Dell'**
+  String get autoGen5153;
+
+  /// No description provided for @autoGen5154.
+  ///
+  /// In en, this message translates to:
+  /// **'Lenovo'**
+  String get autoGen5154;
+
+  /// No description provided for @autoGen5155.
+  ///
+  /// In en, this message translates to:
+  /// **'Sony(VAIO)'**
+  String get autoGen5155;
+
+  /// No description provided for @autoGen5156.
+  ///
+  /// In en, this message translates to:
+  /// **'HP'**
+  String get autoGen5156;
+
+  /// No description provided for @autoGen5157.
+  ///
+  /// In en, this message translates to:
+  /// **'Google(Chromebook)'**
+  String get autoGen5157;
+
+  /// No description provided for @autoGen5158.
+  ///
+  /// In en, this message translates to:
+  /// **'Microsoft Surface'**
+  String get autoGen5158;
+
+  /// No description provided for @autoGen5159.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular motherboard'**
+  String get autoGen5159;
+
+  /// No description provided for @autoGen5160.
+  ///
+  /// In en, this message translates to:
+  /// **'B850, B650, B550 and A520 motherboards, 550 series chipset notebooks'**
+  String get autoGen5160;
+
+  /// No description provided for @autoGen5161.
+  ///
+  /// In en, this message translates to:
+  /// **'TRx40 motherboard'**
+  String get autoGen5161;
+
+  /// No description provided for @autoGen5162.
+  ///
+  /// In en, this message translates to:
+  /// **'X570 motherboard'**
+  String get autoGen5162;
+
+  /// No description provided for @autoGen5163.
+  ///
+  /// In en, this message translates to:
+  /// **'X470 or B450 motherboard late 2020 or updated BIOS'**
+  String get autoGen5163;
+
+  /// No description provided for @autoGen5164.
+  ///
+  /// In en, this message translates to:
+  /// **'6 series chipset'**
+  String get autoGen5164;
+
+  /// No description provided for @autoGen5165.
+  ///
+  /// In en, this message translates to:
+  /// **'Check when mixing Intel 3rd generation CPU and 6 series chipset (for example: H61, HM65)'**
+  String get autoGen5165;
+
+  /// No description provided for @autoGen5166.
+  ///
+  /// In en, this message translates to:
+  /// **'7 series chipset'**
+  String get autoGen5166;
+
+  /// No description provided for @autoGen5167.
+  ///
+  /// In en, this message translates to:
+  /// **'Check when mixing Intel 2nd generation CPU and 7 series chipsets (for example: B75, HM76)'**
+  String get autoGen5167;
+
+  /// No description provided for @autoGen5168.
+  ///
+  /// In en, this message translates to:
+  /// **'H110,B150,B250,Q270, etc.'**
+  String get autoGen5168;
+
+  /// No description provided for @autoGen5169.
+  ///
+  /// In en, this message translates to:
+  /// **'Some OEM motherboards have USB ownership release issues: EHCI Hand-off fails'**
+  String get autoGen5169;
+
+  /// No description provided for @autoGen5170.
+  ///
+  /// In en, this message translates to:
+  /// **'Z490 and other BIOS updates in 2020'**
+  String get autoGen5170;
+
+  /// No description provided for @autoGen5171.
+  ///
+  /// In en, this message translates to:
+  /// **'6 series chipset (check when mixing Intel 3rd generation CPU and 6 series chipsets (for example: H61, HM65))'**
+  String get autoGen5171;
+
+  /// No description provided for @autoGen5172.
+  ///
+  /// In en, this message translates to:
+  /// **'7 series chipset (check when mixing Intel 2nd generation CPU and 7 series chipsets (for example: B75, HM76))'**
+  String get autoGen5172;
+
+  /// No description provided for @autoGen5173.
+  ///
+  /// In en, this message translates to:
+  /// **'H110, B150, B250, Q270, etc. (Some OEM motherboards have USB ownership release issues: EHCI Hand-off failure)'**
+  String get autoGen5173;
+
+  /// No description provided for @autoGen5174.
+  ///
+  /// In en, this message translates to:
+  /// **'from mbconfs'**
+  String get autoGen5174;
+
+  /// No description provided for @autoGen5175.
+  ///
+  /// In en, this message translates to:
+  /// **'DVI double chain'**
+  String get autoGen5175;
+
+  /// No description provided for @autoGen5176.
+  ///
+  /// In en, this message translates to:
+  /// **'DVI single chain'**
+  String get autoGen5176;
+
+  /// No description provided for @autoGen5177.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13'**
+  String get autoGen5177;
+
+  /// No description provided for @autoGen5178.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13, suitable for core graphics + independent graphics models'**
+  String get autoGen5178;
+
+  /// No description provided for @autoGen5179.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports OS X Mountain Lion 10.8 ~ macOS Catalina 10.15, suitable for Ivy Bridge architecture, only core graphics models'**
+  String get autoGen5179;
+
+  /// No description provided for @autoGen5180.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports OS X Mountain Lion 10.8 ~ macOS Catalina 10.15, suitable for Ivy Bridge architecture, core display decoding + independent display output models'**
+  String get autoGen5180;
+
+  /// No description provided for @autoGen5181.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports OS X Mavericks 10.9 ~ macOS Big Sur 11, suitable for Haswell architecture NVIDIA Maxwell and Pascal independent graphics'**
+  String get autoGen5181;
+
+  /// No description provided for @autoGen5182.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports OS X Mavericks 10.9 ~ macOS Big Sur 11, suitable for Haswell architecture only core display models'**
+  String get autoGen5182;
+
+  /// No description provided for @autoGen5183.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports OS X Mavericks 10.9 ~ macOS Big Sur 11, suitable for Haswell architecture core graphics + independent graphics models'**
+  String get autoGen5183;
+
+  /// No description provided for @autoGen5184.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS El Capitan 10.11 ~ macOS Monterey 12, suitable for models with core graphics (or independent graphics)'**
+  String get autoGen5184;
+
+  /// No description provided for @autoGen5185.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS El Capitan 10.11 ~ macOS Monterey 12, suitable for Broadwell architecture core display (or with independent display)'**
+  String get autoGen5185;
+
+  /// No description provided for @autoGen5186.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS Sierra 10.12 ~ macOS Ventura 13. Suitable for core display + independent display models. It should be noted that when using this model, most core display only users will experience abnormal screen color. This model is not recommended for core display only users.'**
+  String get autoGen5186;
+
+  /// No description provided for @autoGen5187.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS Sierra 10.12 ~ macOS Ventura 13, suitable for core display decoding + independent display output models'**
+  String get autoGen5187;
+
+  /// No description provided for @autoGen5188.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS 10.14 ~ macOS Sequoia 15, suitable for models with core graphics (or independent graphics)'**
+  String get autoGen5188;
+
+  /// No description provided for @autoGen5189.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS 10.15 ~ macOS Tahoe 26, suitable for i7-10700K and below processor core display (or with independent display) models'**
+  String get autoGen5189;
+
+  /// No description provided for @autoGen5190.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS 10.15 ~ macOS Tahoe 26, suitable for i9-10850K higher processor core display (or with independent display) models'**
+  String get autoGen5190;
+
+  /// No description provided for @autoGen5191.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS 10.5 ~ macOS El Capitan 10.11'**
+  String get autoGen5191;
+
+  /// No description provided for @autoGen5192.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS 10.6 ~ macOS High Sierra 10.13'**
+  String get autoGen5192;
+
+  /// No description provided for @autoGen5193.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS 10.7 ~ macOS High Sierra 10.13'**
+  String get autoGen5193;
+
+  /// No description provided for @autoGen5194.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS 10.8 ~ macOS Catalina 10.15'**
+  String get autoGen5194;
+
+  /// No description provided for @autoGen5195.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS 10.9 ~ macOS Big Sur 11'**
+  String get autoGen5195;
+
+  /// No description provided for @autoGen5196.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS High Sierra 10.13 ~ macOS Monterey 12'**
+  String get autoGen5196;
+
+  /// No description provided for @autoGen5197.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS Mojave 10.14 ~ macOS Monterey 12'**
+  String get autoGen5197;
+
+  /// No description provided for @autoGen5198.
+  ///
+  /// In en, this message translates to:
+  /// **'Support OS X El Capitan 10.11 ~ macOS Big Sur 11'**
+  String get autoGen5198;
+
+  /// No description provided for @autoGen5199.
+  ///
+  /// In en, this message translates to:
+  /// **'Support OS X El Capitan 10.11 ~ macOS Monterey 12'**
+  String get autoGen5199;
+
+  /// No description provided for @autoGen5200.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS Sierra 10.12 ~ macOS Monterey 12'**
+  String get autoGen5200;
+
+  /// No description provided for @autoGen5201.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS Sierra 10.12 ~ macOS Monterey 12 (core display HD 515 officially only supports macOS Monterey 12, counterfeit supports the latest macOS Sequoia 15)'**
+  String get autoGen5201;
+
+  /// No description provided for @autoGen5202.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS Sierra 10.12 ~ macOS Monterey 12 (the core display Iris 540 officially only supports macOS Monterey 12, and the counterfeit version supports the latest macOS Sequoia 15)'**
+  String get autoGen5202;
+
+  /// No description provided for @autoGen5203.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS Sierra 10.12 ~ macOS Monterey 12 (the core display Iris 550 officially only supports macOS Monterey 12, and the counterfeit version supports the latest macOS Sequoia 15)'**
+  String get autoGen5203;
+
+  /// No description provided for @autoGen5204.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS Sierra 10.12 ~ macOS Monterey 12 (core display HD530 officially only supports macOS Monterey 12, counterfeit supports the latest macOS Sequoia 15)'**
+  String get autoGen5204;
+
+  /// No description provided for @autoGen5205.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS High Sierra 10.13 ~ macOS Ventura 13'**
+  String get autoGen5205;
+
+  /// No description provided for @autoGen5206.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS Mojave 10.14 ~ macOS Sequoia 15'**
+  String get autoGen5206;
+
+  /// No description provided for @autoGen5207.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS Catalina 10.15 ~ macOS Tahoe 26'**
+  String get autoGen5207;
+
+  /// No description provided for @autoGen5208.
+  ///
+  /// In en, this message translates to:
+  /// **'Support macOS Catalina 10.15 ~ macOS Sequoia 15'**
+  String get autoGen5208;
+
+  /// No description provided for @autoGen5209.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS 10.9 ~ macOS Monterey 12, suitable for standalone graphics only models'**
+  String get autoGen5209;
+
+  /// No description provided for @autoGen5210.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS 10.13 ~ macOS Sequoia 15. Applicable to standalone graphics only models. For Intel 11th generation and above, this model is usually used. The CPU frequency conversion and turbo frequency are normal, and no additional Kext patch is needed (if the macOS system turbo frequency is not normal, please extract and use the native SSDT-PLUG)'**
+  String get autoGen5210;
+
+  /// No description provided for @autoGen5211.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS 10.15 ~ macOS Tahoe 26, suitable for A-card independent graphics models. Supported driver-free A-cards (such as RX560, RX570, RX5500, RX6600) will perfectly support VDA hard decoding. For Intel 11th generation and above, this model is usually used, the CPU turbo frequency is not normal, and an additional Kext patch is required. You can go to [Optional Kexts driver]->[CPU related]->[CPU variable frequency driver, mainly provides 11th generation and above platforms MacPro7,1 frequency conversion support] to check this option.'**
+  String get autoGen5211;
+
+  /// No description provided for @autoGen5212.
+  ///
+  /// In en, this message translates to:
+  /// **'macOS compatibility range not configured'**
+  String get autoGen5212;
+
+  /// No description provided for @autoGen5213.
+  ///
+  /// In en, this message translates to:
+  /// **'device-id must be 4 characters'**
+  String get autoGen5213;
+
+  /// No description provided for @autoGen5214.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable core display frame buffer (Framebuffer) patch master switch'**
+  String get autoGen5214;
+
+  /// No description provided for @autoGen5215.
+  ///
+  /// In en, this message translates to:
+  /// **'Modify the video memory to 1536M (1.5G video memory, Apple’s official default value, suitable for 3rd to 10th generation Intel core display platforms)'**
+  String get autoGen5215;
+
+  /// No description provided for @autoGen5216.
+  ///
+  /// In en, this message translates to:
+  /// **'Modify the video memory to 2048M (2G video memory, tool default value, suitable for 3rd to 10th generation Intel core display platforms)'**
+  String get autoGen5216;
+
+  /// No description provided for @autoGen5217.
+  ///
+  /// In en, this message translates to:
+  /// **'Modify the video memory to 3072M (3G video memory, suitable for 3rd to 10th generation Intel core display platforms)'**
+  String get autoGen5217;
+
+  /// No description provided for @autoGen5218.
+  ///
+  /// In en, this message translates to:
+  /// **'Modify the video memory to 4095M (4G video memory, suitable for 3rd to 10th generation Intel core display platforms)'**
+  String get autoGen5218;
+
+  /// No description provided for @autoGen5219.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the 1080P high-resolution screen blur problem on the 4th generation Haswell platform (for example, the high-resolution screen blur may be because the value is not large enough. This patch is a dedicated patch for Haswell core display. It is recommended to use this configuration for 1080P and below screens)'**
+  String get autoGen5219;
+
+  /// No description provided for @autoGen5220.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the problem of high-resolution screens such as 2K and 4K on the 4th generation Haswell platform (for example, the high-resolution screen may be blurred because the value is not large enough. This patch is a dedicated patch for Haswell core display. It is recommended to use this configuration for 2K and 4k screens)'**
+  String get autoGen5220;
+
+  /// No description provided for @autoGen5221.
+  ///
+  /// In en, this message translates to:
+  /// **'Ivy Bridge high-resolution screen candidate patch'**
+  String get autoGen5221;
+
+  /// No description provided for @autoGen5222.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con0 interface patch'**
+  String get autoGen5222;
+
+  /// No description provided for @autoGen5223.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con1 interface patch'**
+  String get autoGen5223;
+
+  /// No description provided for @autoGen5224.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con2 interface patching'**
+  String get autoGen5224;
+
+  /// No description provided for @autoGen5225.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con3 interface patch'**
+  String get autoGen5225;
+
+  /// No description provided for @autoGen5226.
+  ///
+  /// In en, this message translates to:
+  /// **'Ivy Bridge high-resolution screen candidate interface patch'**
+  String get autoGen5226;
+
+  /// No description provided for @autoGen5227.
+  ///
+  /// In en, this message translates to:
+  /// **'Sandy Bridge notebook high-resolution screen (1600x900 and above resolution) patch'**
+  String get autoGen5227;
+
+  /// No description provided for @autoGen5228.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional patches for Ironlake/Arrandale notebooks'**
+  String get autoGen5228;
+
+  /// No description provided for @autoGen5229.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix HDMI high-resolution screen 60 fps solution (In some cases, Intel core display may use HDMI 1.4 standard by default. Enable this parameter to force HDMI 2.0 to support higher resolution and refresh rate, such as supporting 4K@60HZ)'**
+  String get autoGen5229;
+
+  /// No description provided for @autoGen5230.
+  ///
+  /// In en, this message translates to:
+  /// **'Repair HDMI audio output (usually only the appropriate alcid is needed, this parameter can sometimes fix the problem of correct HDMI audio output)'**
+  String get autoGen5230;
+
+  /// No description provided for @autoGen5231.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable DP to HDMI conversion patch for digital sound (ensures the stability and reliability of the HDMI connection when the DisplayPort interface is connected to the HDMI interface through a converter)'**
+  String get autoGen5231;
+
+  /// No description provided for @autoGen5232.
+  ///
+  /// In en, this message translates to:
+  /// **'Force online status on all monitors, which is helpful for core display multi-screen output. In some cases, it can avoid problems such as a black screen after waking up from sleep or the need to plug and unplug the monitor cable to light up the screen when starting up (usually applicable to 8th generation Coffee Lake and above core displays)'**
+  String get autoGen5232;
+
+  /// No description provided for @autoGen5233.
+  ///
+  /// In en, this message translates to:
+  /// **'Improve core display performance (for example: fix the problem of core display 4K hevc encoding, resolution and fps not reaching ideal values)'**
+  String get autoGen5233;
+
+  /// No description provided for @autoGen5234.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable the full firmware loading of the core display, improve the utilization of the core display, and improve the performance of the core display. Adding this parameter may cause the system to be unable to enter, so use with caution'**
+  String get autoGen5234;
+
+  /// No description provided for @autoGen5235.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the endless loop problem caused by the 6th generation Skylake core display, the 7th generation Kaby Lake core display and the 8th generation Coffee Lake core display driver when trying to light up an external HDMI high-resolution display (specific symptoms are that after plugging in the HDMI cable, the notebook\'\'s internal screen turns black but has a backlight, the system becomes unresponsive, and there is no output on the external screen)'**
+  String get autoGen5235;
+
+  /// No description provided for @autoGen5236.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the kernel crash issue caused by low Core Display Clock (CDCLK) frequency on the 10th generation Ice Lake platform'**
+  String get autoGen5236;
+
+  /// No description provided for @autoGen5237.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed a kernel crash on the 10th generation Ice Lake platform caused by the driver incorrectly calculating the DVMT pre-allocated memory size'**
+  String get autoGen5237;
+
+  /// No description provided for @autoGen5238.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust the Brightness Slider (Brightness Slider) settings to make transitions smoother and more natural to improve user experience'**
+  String get autoGen5238;
+
+  /// No description provided for @autoGen5239.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the problem of a dark screen lasting 3 minutes after startup on notebooks running macOS 13.4 or above on the 7th generation Kaby Lake, 8th generation, and 9th generation Coffee Lake platforms.'**
+  String get autoGen5239;
+
+  /// No description provided for @autoGen5240.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the issue where notebooks running macOS 13.3 and below on 7th generation Kaby Lake, 8th generation, and 9th generation Coffee Lake platforms would have a dark screen for 3 minutes after booting.'**
+  String get autoGen5240;
+
+  /// No description provided for @autoGen5241.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the issue where the screen on the 10th generation Ice Lake platform persists for 7 to 15 seconds when the notebook is turned on'**
+  String get autoGen5241;
+
+  /// No description provided for @autoGen5242.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the problem that the 10th generation Ice Lake core display HDMI high-resolution display would have a black screen, no signal, and the resolution could not be output correctly in 4K@60Hz and some 2K/4K high refresh scenarios (forced to enable the \"max pixel clock override\" of the core display (IGPU))'**
+  String get autoGen5242;
+
+  /// No description provided for @autoGen5243.
+  ///
+  /// In en, this message translates to:
+  /// **'Used to repair nuclear display glitch effects or flickering screen problems (such as nuclear display HD530)'**
+  String get autoGen5243;
+
+  /// No description provided for @autoGen5244.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable the independent display (usually when the independent display of a dual-graphics laptop cannot be driven, the independent display needs to be disabled)'**
+  String get autoGen5244;
+
+  /// No description provided for @autoGen5245.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the problem of laptops (such as Dell XPS 15 9570 and other high-resolution screen notebooks) that the high-resolution screen internal screen returns the wrong maximum link rate value, resulting in a direct crash when the internal screen is lit (it is recommended to check this box for high-resolution screen notebooks)'**
+  String get autoGen5245;
+
+  /// No description provided for @autoGen5246.
+  ///
+  /// In en, this message translates to:
+  /// **'Inject the monitor EDID into the AAPL00 interface (usually the internal screen of a notebook) to fix the black screen problem of the interface (note: you need to inject the monitor EDID on the EDID configuration page first! You can fill in the EDID in the tool \"Display Configuration\" -> \"Display EDID\". For 500 series motherboards such as B560, when repairing the HDMI output, you must inject the monitor EDID, otherwise there is a high probability of a black screen. Sometimes, for other Intel platforms, the problem of blurred screen, purple screen or black screen may be repaired)'**
+  String get autoGen5246;
+
+  /// No description provided for @autoGen5247.
+  ///
+  /// In en, this message translates to:
+  /// **'Inject the monitor EDID into the AAPL01 interface to fix the black screen and no display problem of the interface (Note: You need to inject the monitor EDID on the EDID configuration page first! You can fill in the EDID in the tool \"Display Configuration\" -> \"Display EDID\". 500 series motherboards such as B560 must inject the monitor EDID when repairing the HDMI output, otherwise there is a high probability of a black screen. Sometimes, for other Intel platforms, the core display blurred screen, purple screen or black screen problem may be repaired)'**
+  String get autoGen5247;
+
+  /// No description provided for @autoGen5248.
+  ///
+  /// In en, this message translates to:
+  /// **'Inject the monitor EDID into the AAPL02 interface to fix the black screen and no display problem of the interface (Note: You need to inject the monitor EDID on the EDID configuration page first! You can fill in the EDID in the tool \"Display Configuration\" -> \"Display EDID\". 500 series motherboards such as B560 must inject the monitor EDID when repairing the HDMI output, otherwise there is a high probability of a black screen. Sometimes, for other Intel platforms, the core display blurred screen, purple screen or black screen problem may be repaired)'**
+  String get autoGen5248;
+
+  /// No description provided for @autoGen5249.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable LSPCON support and convert DisplayPort to HDMI 2.0 output (requires port 0~3 LSPCON signal converter, suitable for 6th generation Skylake ~ 10th generation Comet Lake, Ice Lake Intel platforms)'**
+  String get autoGen5249;
+
+  /// No description provided for @autoGen5250.
+  ///
+  /// In en, this message translates to:
+  /// **'Port 0 LSPCON signal converter (LSPCON support needs to be enabled)'**
+  String get autoGen5250;
+
+  /// No description provided for @autoGen5251.
+  ///
+  /// In en, this message translates to:
+  /// **'Port 1 LSPCON signal converter (LSPCON support needs to be enabled)'**
+  String get autoGen5251;
+
+  /// No description provided for @autoGen5252.
+  ///
+  /// In en, this message translates to:
+  /// **'Port 2 LSPCON signal converter (LSPCON support needs to be enabled)'**
+  String get autoGen5252;
+
+  /// No description provided for @autoGen5253.
+  ///
+  /// In en, this message translates to:
+  /// **'Port 3 LSPCON signal converter (LSPCON support needs to be enabled)'**
+  String get autoGen5253;
+
+  /// No description provided for @autoGen5254.
+  ///
+  /// In en, this message translates to:
+  /// **'Modify framebuffer memory to 9M (framebuffer memory size will affect high-resolution screens, usually used in conjunction with framebuffer-stolenmem)'**
+  String get autoGen5254;
+
+  /// No description provided for @autoGen5255.
+  ///
+  /// In en, this message translates to:
+  /// **'Modify the stolen memory to 19M (applicable to 1080P screen, tool default value, no need to check. If there is a DVMT parameter in the BIOS, it is recommended to modify it to 64M. If the DVMT parameter is changed in the BIOS, this parameter can be removed)'**
+  String get autoGen5255;
+
+  /// No description provided for @autoGen5256.
+  ///
+  /// In en, this message translates to:
+  /// **'Modify the stolen memory to 64M (applicable to 2k or 4k screens. If there is a DVMT parameter in the BIOS, it is recommended to modify it to 64M or above. If the DVMT parameter is changed in the BIOS, this parameter can be removed)'**
+  String get autoGen5256;
+
+  /// No description provided for @autoGen5257.
+  ///
+  /// In en, this message translates to:
+  /// **'Modify the stolen memory to 128M (applicable to 4k screens. If there is a DVMT parameter in the BIOS, it is recommended to modify it to 128M or 256M or above for high-resolution screens. If the DVMT parameters are changed in the BIOS, this parameter can be removed)'**
+  String get autoGen5257;
+
+  /// No description provided for @autoGen5258.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con0 HDMI port (requires HDMI interface No. 0)'**
+  String get autoGen5258;
+
+  /// No description provided for @autoGen5259.
+  ///
+  /// In en, this message translates to:
+  /// **'No. 0 HDMI interface, used to fix the black screen problem of 6th to 10th generation HDMI (need to enable the con0 HDMI port)'**
+  String get autoGen5259;
+
+  /// No description provided for @autoGen5260.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con1 HDMI port (requires HDMI interface No. 1)'**
+  String get autoGen5260;
+
+  /// No description provided for @autoGen5261.
+  ///
+  /// In en, this message translates to:
+  /// **'No. 1 HDMI interface, used to fix the black screen problem of 6th to 10th generation HDMI (need to enable the con1 HDMI port)'**
+  String get autoGen5261;
+
+  /// No description provided for @autoGen5262.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con2 HDMI port (requires HDMI interface No. 2)'**
+  String get autoGen5262;
+
+  /// No description provided for @autoGen5263.
+  ///
+  /// In en, this message translates to:
+  /// **'HDMI interface No. 2, used to fix the black screen problem of 6th to 10th generation HDMI (need to enable the con2 HDMI port)'**
+  String get autoGen5263;
+
+  /// No description provided for @autoGen5264.
+  ///
+  /// In en, this message translates to:
+  /// **'Video memory/DVMT parameters'**
+  String get autoGen5264;
+
+  /// No description provided for @autoGen5265.
+  ///
+  /// In en, this message translates to:
+  /// **'4th generation Haswell specific parameters'**
+  String get autoGen5265;
+
+  /// No description provided for @autoGen5266.
+  ///
+  /// In en, this message translates to:
+  /// **'3rd generation Ivy Bridge high-resolution screen candidate patch'**
+  String get autoGen5266;
+
+  /// No description provided for @autoGen5267.
+  ///
+  /// In en, this message translates to:
+  /// **'2nd generation Sandy Bridge high-resolution screen candidate patch'**
+  String get autoGen5267;
+
+  /// No description provided for @autoGen5268.
+  ///
+  /// In en, this message translates to:
+  /// **'Candidate patch for 1st generation Arrandale notebooks'**
+  String get autoGen5268;
+
+  /// No description provided for @autoGen5269.
+  ///
+  /// In en, this message translates to:
+  /// **'HDMI/interface repair'**
+  String get autoGen5269;
+
+  /// No description provided for @autoGen5270.
+  ///
+  /// In en, this message translates to:
+  /// **'10th generation Ice Lake fix'**
+  String get autoGen5270;
+
+  /// No description provided for @autoGen5271.
+  ///
+  /// In en, this message translates to:
+  /// **'Universal fix'**
+  String get autoGen5271;
+
+  /// No description provided for @autoGen5272.
+  ///
+  /// In en, this message translates to:
+  /// **'Ivy Bridge notebook high-resolution screen (1600x900 and above resolution) patch'**
+  String get autoGen5272;
+
+  /// No description provided for @autoGen5273.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con0 interface HDMI type correction patch to fix 6th to 10th generation HDMI black screen, purple screen, and audio problems'**
+  String get autoGen5273;
+
+  /// No description provided for @autoGen5274.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con1 interface HDMI type correction patch to fix 6th to 10th generation HDMI black screen, purple screen, and audio problems'**
+  String get autoGen5274;
+
+  /// No description provided for @autoGen5275.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable con2 interface HDMI type correction patch to fix 6th to 10th generation HDMI black screen, purple screen, and audio problems'**
+  String get autoGen5275;
+
+  /// No description provided for @autoGen5276.
+  ///
+  /// In en, this message translates to:
+  /// **'alc_codec.json format error: root node must be Map<String, dynamic>'**
+  String get autoGen5276;
+
+  /// No description provided for @autoGen5277.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable -v to run the code (convenient to locate errors when the code is stuck, suitable for debugging and booting stage)'**
+  String get autoGen5277;
+
+  /// No description provided for @autoGen5278.
+  ///
+  /// In en, this message translates to:
+  /// **'It is convenient for the mac system to print more symbol information when a kernel crash occurs, which is helpful for troubleshooting problems. This parameter is usually used with debug=0x100 (it is strongly recommended to check it when debugging and booting for the first time)'**
+  String get autoGen5278;
+
+  /// No description provided for @autoGen5279.
+  ///
+  /// In en, this message translates to:
+  /// **'Prevent automatic restart when the kernel crashes, making it easier to view Panic crash logs (it is strongly recommended to check this when debugging and booting for the first time)'**
+  String get autoGen5279;
+
+  /// No description provided for @autoGen5280.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable the watchdog function to prevent accidental triggering of Panic crash restart (applicable to debugging boot)'**
+  String get autoGen5280;
+
+  /// No description provided for @autoGen5281.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable kernel address space randomization (KASLR) to ensure that the kernel and kext (kernel extension) are loaded in the same fixed memory map to avoid early startup kernel crashes caused by memory conflicts caused by random slide values ​​(applicable to debugging boot)'**
+  String get autoGen5281;
+
+  /// No description provided for @autoGen5282.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip the model check during the first startup of macOS to avoid prohibition symbols due to too low or too high SMBIOS, and ensure that the system can be booted normally (note that this parameter cannot skip the model check during installation. A message similar to \"macOS is not supported\" will appear during installation. At this time, you can change the SMBIOS to a higher or lower level to support the new or old system)'**
+  String get autoGen5282;
+
+  /// No description provided for @autoGen5283.
+  ///
+  /// In en, this message translates to:
+  /// **'This parameter is applicable to disabling AMFI, relatively new graphics cards (such as HD4000 and above, GT710 and other Kepler cores and above) or WiFi drivers. Note not to use it with the amfi_get_out_of_my_way=0x1 parameter at the same time! (This parameter will only take effect if SIP is disabled, and this parameter will be automatically removed after SIP is enabled)'**
+  String get autoGen5283;
+
+  /// No description provided for @autoGen5284.
+  ///
+  /// In en, this message translates to:
+  /// **'Make sure AMFIPass.kext can be properly enabled and activated in the latest macOS Tahoe 26 system in order to continue bypassing AMFI (AMFI Disabled) security checks. (Note: 1. This parameter cannot be used at the same time as the disable AMFI parameter, and this parameter needs to be used with AMFIPass.kext. 2. This parameter is usually only used in the latest systems, do not add it unless necessary)'**
+  String get autoGen5284;
+
+  /// No description provided for @autoGen5285.
+  ///
+  /// In en, this message translates to:
+  /// **'This parameter is applicable when AMFI is disabled, old platforms, old graphics cards (such as GT240) or WiFi drivers are used. Note not to use the amfi=0x80 parameter at the same time! (It only takes effect when SIP is disabled, and this parameter is automatically removed after SIP is enabled)'**
+  String get autoGen5285;
+
+  /// No description provided for @autoGen5286.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the crash problem of some applications (for example: Baidu Netdisk) after disabling AMFI (it will only take effect if SIP is disabled, and this parameter will be automatically removed after SIP is enabled)'**
+  String get autoGen5286;
+
+  /// No description provided for @autoGen5287.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix problems that may occur in the latest system (mainly Beta version) (system driver exception, such as: sudden abnormality in sound card, Bluetooth, CPU frequency, etc. It is strongly recommended to check this when trying the latest Beta version system)'**
+  String get autoGen5287;
+
+  /// No description provided for @autoGen5288.
+  ///
+  /// In en, this message translates to:
+  /// **'Only enable 1 CPU core (applicable to X58, X79, X99, X299 and other multi-core server CPU core crashes, early installation and debugging stages)'**
+  String get autoGen5288;
+
+  /// No description provided for @autoGen5289.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off VT-d (disable IOMMU, you can check it when the BIOS does not turn off VT-d) to solve the problem of some motherboards getting stuck after starting or entering the system.'**
+  String get autoGen5289;
+
+  /// No description provided for @autoGen5290.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Apple Graphics Firmware loading to avoid getting stuck due to firmware loading failure or retry loop during startup (only applicable to Intel graphics)'**
+  String get autoGen5290;
+
+  /// No description provided for @autoGen5291.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Intel core display (it is recommended to check when the core display cannot be driven and accelerated hard decoding is not supported)'**
+  String get autoGen5291;
+
+  /// No description provided for @autoGen5292.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable independent graphics (usually when Intel dual graphics notebook independent graphics card [commonly used in N cards] cannot be driven, it is recommended to check it)'**
+  String get autoGen5292;
+
+  /// No description provided for @autoGen5293.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable NVIDIA driver (only applicable when debugging incompatible N cards)'**
+  String get autoGen5293;
+
+  /// No description provided for @autoGen5294.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Intel core graphics acceleration (for example: when using OCLP and unable to start normally after patching the core graphics patch, you can check it, no acceleration, only for debugging)'**
+  String get autoGen5294;
+
+  /// No description provided for @autoGen5295.
+  ///
+  /// In en, this message translates to:
+  /// **'Repair and improve Intel core display performance (for example: fix the problem of core display 4K hevc encoding, resolution and fps not reaching ideal values)'**
+  String get autoGen5295;
+
+  /// No description provided for @autoGen5296.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the issue with the maximum link rate value of Intel core display, which caused a direct crash when the screen was turned on ((especially on Skylake, Kaby Lake, Coffee Lake, Comet Lake, black screen and no signal, not reaching the expected 4K resolution, etc.)'**
+  String get autoGen5296;
+
+  /// No description provided for @autoGen5297.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the resolution problem of the core display, force the \"max pixel clock override\" of the IGPU to be enabled, and lift the default resolution, refresh rate and other restrictions of macOS'**
+  String get autoGen5297;
+
+  /// No description provided for @autoGen5298.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the problem of 4K black screen in HDMI output of some laptops (usually applicable to laptops, such as ThinkPad P71/7700HQ/HD630/4K stuck in `gIOScreenLockState3`)'**
+  String get autoGen5298;
+
+  /// No description provided for @autoGen5299.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the kernel crash issue caused by low Core Display Clock (CDCLK) frequency on the 10th generation Ice Lake platform'**
+  String get autoGen5299;
+
+  /// No description provided for @autoGen5300.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed a kernel crash issue on the 10th generation Ice Lake platform caused by the driver incorrectly calculating the DVMT pre-allocated memory size.'**
+  String get autoGen5300;
+
+  /// No description provided for @autoGen5301.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the issue where the screen on the 10th generation Ice Lake platform persists for 7 to 15 seconds when the notebook is turned on'**
+  String get autoGen5301;
+
+  /// No description provided for @autoGen5302.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable iGPU (core graphics) to load the telemetry module during the startup process. Some notebooks (especially Chromebooks) may cause the system to freeze or freeze during the startup phase when loading this module (applicable to Intel Skylake 6th generation and above notebooks)'**
+  String get autoGen5302;
+
+  /// No description provided for @autoGen5303.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the backlight register on macOS Ventura 13.4 and below, 7th generation KBL, 8th & 9th generation CFL notebook platforms, and fix the problem of black screen or dark screen lasting for 3 minutes (applicable to notebooks)'**
+  String get autoGen5303;
+
+  /// No description provided for @autoGen5304.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the backlight register on macOS Ventura 13.4 and above, 7th generation KBL, 8th & 9th generation CFL notebook platforms, and fix the problem of black screen or dark screen lasting for 3 minutes (applicable to notebooks)'**
+  String get autoGen5304;
+
+  /// No description provided for @autoGen5305.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust the brightness slider (brightness slider) settings to make transitions smoother and more natural to improve user experience (applicable to notebooks)'**
+  String get autoGen5305;
+
+  /// No description provided for @autoGen5306.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw the Apple logo in the second startup phase instead of copying the frame buffer. When connecting an external monitor, smoothly transition from the progress bar to the login desktop. In some cases, it can fix the black screen problem when entering the system. At the same time, it is helpful to plug and unplug the monitor cable to turn on the screen.'**
+  String get autoGen5306;
+
+  /// No description provided for @autoGen5307.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the ACPI Configuration begin problem of platform cards such as X58,'**
+  String get autoGen5307;
+
+  /// No description provided for @autoGen5308.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the ACPI Configuration begin problem of platform cards such as X58,'**
+  String get autoGen5308;
+
+  /// No description provided for @autoGen5309.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed hardware digital rights management (DRM) support issue on AMD GPUs (enables DRM-protected digital content, such as high-quality videos provided by streaming services, to be experienced on supported AMD GPUs)'**
+  String get autoGen5309;
+
+  /// No description provided for @autoGen5310.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable ATI and AMD graphics card acceleration (for example: when using OCLP and the graphics card cannot start normally after patching, you can check it, no acceleration, only for debugging)'**
+  String get autoGen5310;
+
+  /// No description provided for @autoGen5311.
+  ///
+  /// In en, this message translates to:
+  /// **'Repair HD7750, HD7850 (the main core is GCN series HD77XX, HD78XX, HD79XX) and other old A-card screen distortion, yellow screen and other abnormal display problems'**
+  String get autoGen5311;
+
+  /// No description provided for @autoGen5312.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the black screen or abnormal display problems that may be caused by some graphics cards, completely ignoring the restrictions or settings of AppleGraphicsDevicePolicy.kext on the graphics card. When you are not sure of the specific restrictions, avoid display problems or black screen phenomena caused by incompatible hardware configurations (such as specific board-id). Pay attention to this parameter, which will only take effect when used with WhateverGreen.kext. For native driver-free A cards, you can remove the WhateverGreen.kext driver, so this parameter does not need to be added.'**
+  String get autoGen5312;
+
+  /// No description provided for @autoGen5313.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the black screen problem when AMD Navi core RX5XXX, RX6XXX series graphics cards start up (for example: RX5500, RX5600, RX5700, RX6600, RX6800, RX6900, etc.), replace board-id with board-ix, and bypass some restrictions of AppleGraphicsDevicePolicy. Note: 1. It will only take effect when used with WhateverGreen.kext. 2. BIOS Turn off the Serial/COM Port in SuperIO settings. For native driver-free A cards, you can remove the WhateverGreen.kext driver, so this parameter does not need to be added.'**
+  String get autoGen5313;
+
+  /// No description provided for @autoGen5314.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the black screen problem after waking up from sleep for some graphics cards such as RX470 and RX570, disable the board-id check in AppleGraphicsDevicePolicy, and fix the black screen or abnormal display problems that may be caused by some graphics cards. Note that this parameter will only take effect when used with WhateverGreen.kext. For native driver-free A cards, the WhateverGreen.kext driver can be removed, so this parameter does not need to be added.'**
+  String get autoGen5314;
+
+  /// No description provided for @autoGen5315.
+  ///
+  /// In en, this message translates to:
+  /// **'Repair Intel 3rd generation and below platforms AMD RX5XX (for example: RX560, RX570, RX580) series, AMD RX5XXX, RX6XXX (for example: RX5500, RX6600) series driver-free graphics cards have a black screen problem in Ventura and above systems (Note: You need to use OCLP to patch the graphics card after entering the system! After patching the graphics card, remove the boot parameter or use the alternative config-after-post in the EFI directory to rename the config, and restart to drive the graphics card!)'**
+  String get autoGen5315;
+
+  /// No description provided for @autoGen5316.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix officially unsupported AMD graphics cards (for example: RX550 Lexa core) to support VDA hardware video encoding'**
+  String get autoGen5316;
+
+  /// No description provided for @autoGen5317.
+  ///
+  /// In en, this message translates to:
+  /// **'Repair Fermi, Maxwell, Pascal architecture old N card (for example: GT610, GTX750, GTX960, GTX1050) BigSur 11 or above system graphics card driver problem (Note: You need to use OCLP to patch the graphics card after entering the system!!! This parameter is not required for Kepler core!!!)'**
+  String get autoGen5317;
+
+  /// No description provided for @autoGen5318.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the problem of slow speed of some Broadcom wireless network cards (change the Broadcom WiFi country code to Hong Kong, you can also change the router channel to improve it)'**
+  String get autoGen5318;
+
+  /// No description provided for @autoGen5319.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix ramrod code, SMC simulator damage problem'**
+  String get autoGen5319;
+
+  /// No description provided for @autoGen5320.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the macOS system OTA update problem after disabling SIP (System Integrity Protection) or SecureBootModel (security model), and fix the custom CPU name display problem'**
+  String get autoGen5320;
+
+  /// No description provided for @autoGen5321.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid the problem of restarting the device after entering sleep mode, making it easier to obtain kernel crash logs and troubleshoot sleep problems.'**
+  String get autoGen5321;
+
+  /// No description provided for @autoGen5322.
+  ///
+  /// In en, this message translates to:
+  /// **'Improve the topology identification and scheduling of Intel 12th generation and later large and small core CPUs. Performance improvement is not guaranteed. It is recommended to enable it after actual testing (note that it needs to be used with CpuTopologyRebuild.kext to take effect)'**
+  String get autoGen5322;
+
+  /// No description provided for @autoGen5323.
+  ///
+  /// In en, this message translates to:
+  /// **'Completely disable Darkwake mode and let the system enter traditional sleep mode. It is mainly used to repair problems such as black screen wake-up and automatic wake-up.'**
+  String get autoGen5323;
+
+  /// No description provided for @autoGen5324.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable iGPU RC6 rendering standby and fix the problem of NVMe kernel panic caused by RC6 core display during sleep'**
+  String get autoGen5324;
+
+  /// No description provided for @autoGen5325.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable PWM backlight control for AMD Radeon RX 5000 series graphics cards'**
+  String get autoGen5325;
+
+  /// No description provided for @autoGen5326.
+  ///
+  /// In en, this message translates to:
+  /// **'Repair and correct the DVI interface output display of old A cards (290X, 370, etc.)'**
+  String get autoGen5326;
+
+  /// No description provided for @autoGen5327.
+  ///
+  /// In en, this message translates to:
+  /// **'Force the I2C type touch panel to work in polling mode instead of interrupt-driven mode (interrupt mode usually requires customized SSDT, which is relatively complicated. Sometimes the problem of the I2C touch panel being unusable can be fixed (it needs to be used with the VoodooI2C driver)'**
+  String get autoGen5327;
+
+  /// No description provided for @autoGen5328.
+  ///
+  /// In en, this message translates to:
+  /// **'DevirtualiseMmio (Some motherboards and firmware may have conflicts or incompatibility issues when handling the MMIO area. Enabling this option can help resolve these conflicts and improve system compatibility and stability. This option is usually combined with the OpenCore Debug version to customize MMIO to solve card EB caused by memory problems on some motherboards (for example: some X58, X79, X99, and AMD 7000 series processor motherboards))'**
+  String get autoGen5328;
+
+  /// No description provided for @autoGen5329.
+  ///
+  /// In en, this message translates to:
+  /// **'EnableWriteUnprotector (It is recommended to check it on firmware that does not support memory attribute table (MAT), especially OEM firmware. After turning it on, the write protection in the CR0 register will be deleted during execution to ensure normal writing of NVRAM. Usually applicable to platforms before the 7th generation)'**
+  String get autoGen5329;
+
+  /// No description provided for @autoGen5330.
+  ///
+  /// In en, this message translates to:
+  /// **'ProtectUefiServices (protects UEFI services from being overwritten by firmware, usually used to repair card EB problems caused by DevirtualiseMmio, etc. It is recommended to check it for Z390, Z490 motherboards, and 10th generation Ice Lake)'**
+  String get autoGen5330;
+
+  /// No description provided for @autoGen5331.
+  ///
+  /// In en, this message translates to:
+  /// **'SetupVirtualMap (Establishes continuous virtual memory for OC use and maps it to dispersed physical memory. Note: It is not recommended to check this option for 10th generation Comet Lake ASUS, Gigabyte, and AsRock motherboards.'**
+  String get autoGen5331;
+
+  /// No description provided for @autoGen5332.
+  ///
+  /// In en, this message translates to:
+  /// **'RebuildAppleMemoryMap (On firmware that supports memory attribute table (MAT), it is recommended to check it. It is usually used in conjunction with SyncRuntimePermissions. This item may conflict with EnableWriteUnprotector. It is recommended to choose one of the two. It is usually applicable to platforms after the 8th generation, and is also applicable to some old platforms)'**
+  String get autoGen5332;
+
+  /// No description provided for @autoGen5333.
+  ///
+  /// In en, this message translates to:
+  /// **'SyncRuntimePermissions (Fixes the problem that hardware cannot inject permissions when injecting memory. Generally, this problem exists in motherboards after 2018. If you cannot enter Windows because of this option, please turn it on. This item is usually used in conjunction with RebuildAppleMemoryMap)'**
+  String get autoGen5333;
+
+  /// No description provided for @autoGen5334.
+  ///
+  /// In en, this message translates to:
+  /// **'2nd generation CPU - 3rd generation motherboard hybrid'**
+  String get autoGen5334;
+
+  /// No description provided for @autoGen5335.
+  ///
+  /// In en, this message translates to:
+  /// **'3rd generation CPU - 2nd generation motherboard hybrid'**
+  String get autoGen5335;
+
+  /// No description provided for @autoGen5336.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the installation without driving the core display for the time being (this can avoid black screen and kernel crash problems caused by the core display buffer frame problem)'**
+  String get autoGen5336;
+
+  /// No description provided for @autoGen5337.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterfeit device ID'**
+  String get autoGen5337;
+
+  /// No description provided for @autoGen5338.
+  ///
+  /// In en, this message translates to:
+  /// **'Core display is only used for acceleration and calculation tasks, not as output display (independent graphics card output display)'**
+  String get autoGen5338;
+
+  /// No description provided for @autoGen5339.
+  ///
+  /// In en, this message translates to:
+  /// **'HD3000, HD P3000 and other core displays'**
+  String get autoGen5339;
+
+  /// No description provided for @autoGen5340.
+  ///
+  /// In en, this message translates to:
+  /// **'HD4000, HD P4000 and other core displays'**
+  String get autoGen5340;
+
+  /// No description provided for @autoGen5341.
+  ///
+  /// In en, this message translates to:
+  /// **'HD4400, HD4600, HD P4600 and other core displays'**
+  String get autoGen5341;
+
+  /// No description provided for @autoGen5342.
+  ///
+  /// In en, this message translates to:
+  /// **'Iris Pro 6200/6300 and other core displays'**
+  String get autoGen5342;
+
+  /// No description provided for @autoGen5343.
+  ///
+  /// In en, this message translates to:
+  /// **'HD5600 core display (P6200, P6300 can be counterfeited)'**
+  String get autoGen5343;
+
+  /// No description provided for @autoGen5344.
+  ///
+  /// In en, this message translates to:
+  /// **'HD6000, Iris 6100 and other core displays'**
+  String get autoGen5344;
+
+  /// No description provided for @autoGen5345.
+  ///
+  /// In en, this message translates to:
+  /// **'HD520, HD530 and other counterfeit HD620 core displays (applicable to Ventura and above systems)'**
+  String get autoGen5345;
+
+  /// No description provided for @autoGen5346.
+  ///
+  /// In en, this message translates to:
+  /// **'HD520, HD530 and other counterfeit HD620 core displays (applicable to Ventura and above systems, alternative)'**
+  String get autoGen5346;
+
+  /// No description provided for @autoGen5347.
+  ///
+  /// In en, this message translates to:
+  /// **'HD530, HD P530 and other 500 series core displays (applicable to Monterey and below systems)'**
+  String get autoGen5347;
+
+  /// No description provided for @autoGen5348.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 630, HD P630 and other core displays'**
+  String get autoGen5348;
+
+  /// No description provided for @autoGen5349.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 630, P630 and other counterfeit UHD630 core displays (Option 1)'**
+  String get autoGen5349;
+
+  /// No description provided for @autoGen5350.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 630, P630 and other counterfeit UHD630 core displays (Option 2)'**
+  String get autoGen5350;
+
+  /// No description provided for @autoGen5351.
+  ///
+  /// In en, this message translates to:
+  /// **'UHD 630 nuclear display output solution one'**
+  String get autoGen5351;
+
+  /// No description provided for @autoGen5352.
+  ///
+  /// In en, this message translates to:
+  /// **'UHD 630 core display output case 2'**
+  String get autoGen5352;
+
+  /// No description provided for @autoGen5353.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel HD Graphics (for example: i3 380M, i5 480M comes with built-in core display)'**
+  String get autoGen5353;
+
+  /// No description provided for @autoGen5354.
+  ///
+  /// In en, this message translates to:
+  /// **'HD3000 core display output display, suitable for resolutions of 1366x768 and below)'**
+  String get autoGen5354;
+
+  /// No description provided for @autoGen5355.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable support for resolutions above 1600X900'**
+  String get autoGen5355;
+
+  /// No description provided for @autoGen5356.
+  ///
+  /// In en, this message translates to:
+  /// **'HD3000 nuclear display output display, suitable for resolutions of 1600x900 and above)'**
+  String get autoGen5356;
+
+  /// No description provided for @autoGen5357.
+  ///
+  /// In en, this message translates to:
+  /// **'HD4000 core display driver solution one, suitable for 1366x768 and below resolution, LVDS link method'**
+  String get autoGen5357;
+
+  /// No description provided for @autoGen5358.
+  ///
+  /// In en, this message translates to:
+  /// **'HD4000 core display driver solution two, suitable for 1600x900 and above resolution LVDS link mode, multi-screen output may require more patch configurations)'**
+  String get autoGen5358;
+
+  /// No description provided for @autoGen5359.
+  ///
+  /// In en, this message translates to:
+  /// **'HD4000 core display driver solution three, suitable for monitors with eDP connection)'**
+  String get autoGen5359;
+
+  /// No description provided for @autoGen5360.
+  ///
+  /// In en, this message translates to:
+  /// **'HD4200, HD4400, HD4600 core display'**
+  String get autoGen5360;
+
+  /// No description provided for @autoGen5361.
+  ///
+  /// In en, this message translates to:
+  /// **'HD5000, HD5100, HD5200 core display'**
+  String get autoGen5361;
+
+  /// No description provided for @autoGen5362.
+  ///
+  /// In en, this message translates to:
+  /// **'HD5500 core display'**
+  String get autoGen5362;
+
+  /// No description provided for @autoGen5363.
+  ///
+  /// In en, this message translates to:
+  /// **'HD5600 core display'**
+  String get autoGen5363;
+
+  /// No description provided for @autoGen5364.
+  ///
+  /// In en, this message translates to:
+  /// **'HD6000 core display'**
+  String get autoGen5364;
+
+  /// No description provided for @autoGen5365.
+  ///
+  /// In en, this message translates to:
+  /// **'HD520, HD530 and other counterfeit HD620 core displays (for Ventura and above systems)'**
+  String get autoGen5365;
+
+  /// No description provided for @autoGen5366.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 515, HD 520, HD 530, HD 540, HD 550, P530 core display (applicable to Monterey and below systems)'**
+  String get autoGen5366;
+
+  /// No description provided for @autoGen5367.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 515 nuclear display alternative'**
+  String get autoGen5367;
+
+  /// No description provided for @autoGen5368.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 510 core display'**
+  String get autoGen5368;
+
+  /// No description provided for @autoGen5369.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 615, HD 620, HD 630, HD 640, HD 650 core display'**
+  String get autoGen5369;
+
+  /// No description provided for @autoGen5370.
+  ///
+  /// In en, this message translates to:
+  /// **'HD/UHD 620 core display alternative'**
+  String get autoGen5370;
+
+  /// No description provided for @autoGen5371.
+  ///
+  /// In en, this message translates to:
+  /// **'UHD 617, UHD 620 core display'**
+  String get autoGen5371;
+
+  /// No description provided for @autoGen5372.
+  ///
+  /// In en, this message translates to:
+  /// **'UHD 630 core display'**
+  String get autoGen5372;
+
+  /// No description provided for @autoGen5373.
+  ///
+  /// In en, this message translates to:
+  /// **'UHD 620 core display'**
+  String get autoGen5373;
+
+  /// No description provided for @autoGen5374.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel lris Plus 655 core display'**
+  String get autoGen5374;
+
+  /// No description provided for @autoGen5375.
+  ///
+  /// In en, this message translates to:
+  /// **'G4/G7 series core display'**
+  String get autoGen5375;
+
+  /// No description provided for @autoGen5376.
+  ///
+  /// In en, this message translates to:
+  /// **'HD3000 nuclear display output display'**
+  String get autoGen5376;
+
+  /// No description provided for @autoGen5377.
+  ///
+  /// In en, this message translates to:
+  /// **'HD4000 nuclear display output display'**
+  String get autoGen5377;
+
+  /// No description provided for @autoGen5378.
+  ///
+  /// In en, this message translates to:
+  /// **'HD4200, HD4400, HD4600, HD P4600 and other core displays (it is recommended to check the 4th generation core display dedicated patch in the advanced configuration of the core display, and minor problems that may occur have been fixed)'**
+  String get autoGen5378;
+
+  /// No description provided for @autoGen5379.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 515 core display'**
+  String get autoGen5379;
+
+  /// No description provided for @autoGen5380.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 520/530 core display'**
+  String get autoGen5380;
+
+  /// No description provided for @autoGen5381.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 540/550 core display'**
+  String get autoGen5381;
+
+  /// No description provided for @autoGen5382.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 580 core display'**
+  String get autoGen5382;
+
+  /// No description provided for @autoGen5383.
+  ///
+  /// In en, this message translates to:
+  /// **'HD P530 core display (such as e3 1245v5 comes with built-in core display)'**
+  String get autoGen5383;
+
+  /// No description provided for @autoGen5384.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 615 core display'**
+  String get autoGen5384;
+
+  /// No description provided for @autoGen5385.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 630, HD P630 core display'**
+  String get autoGen5385;
+
+  /// No description provided for @autoGen5386.
+  ///
+  /// In en, this message translates to:
+  /// **'HD 640/650 core display'**
+  String get autoGen5386;
+
+  /// No description provided for @autoGen5387.
+  ///
+  /// In en, this message translates to:
+  /// **'HD/UHD 620 core display'**
+  String get autoGen5387;
+
+  /// No description provided for @autoGen5388.
+  ///
+  /// In en, this message translates to:
+  /// **'UHD 620/630 core display'**
+  String get autoGen5388;
+
+  /// No description provided for @autoGen5389.
+  ///
+  /// In en, this message translates to:
+  /// **'UHD 655 core display'**
+  String get autoGen5389;
+
+  /// No description provided for @autoGen5390.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename GPRW to XPRW to fix the instant wake-up problem (note: it may cause the USB keyboard to be unable to wake up the device, you can wake it up through the power key)'**
+  String get autoGen5390;
+
+  /// No description provided for @autoGen5391.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename UPRW to XPRW to fix the instant wake-up problem (note: it may cause the USB keyboard to be unable to wake up the device, you can wake it up through the power key)'**
+  String get autoGen5391;
+
+  /// No description provided for @autoGen5392.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable GPI0 devices to support I2C trackpads'**
+  String get autoGen5392;
+
+  /// No description provided for @autoGen5393.
+  ///
+  /// In en, this message translates to:
+  /// **'A necessary driver for macOS kernel extensions, which mainly provides scalability and compatibility for macOS, which allows other developers to write kernel extensions for extending macOS.'**
+  String get autoGen5393;
+
+  /// No description provided for @autoGen5394.
+  ///
+  /// In en, this message translates to:
+  /// **'For example, WhateverGreen, AppleALC, VirtualSMC, etc. can implement various modifications and enhancements to macOS through Lilu.kext, such as supporting different graphics cards, sound cards, virtual machine management, etc.'**
+  String get autoGen5394;
+
+  /// No description provided for @autoGen5395.
+  ///
+  /// In en, this message translates to:
+  /// **'Lilu.kext is usually the first macOS kernel extension loaded, as other plugins may need to rely on its functionality. This ensures that the plugin loads correctly when macOS starts'**
+  String get autoGen5395;
+
+  /// No description provided for @autoGen5396.
+  ///
+  /// In en, this message translates to:
+  /// **'Essential basic drivers'**
+  String get autoGen5396;
+
+  /// No description provided for @autoGen5397.
+  ///
+  /// In en, this message translates to:
+  /// **'On real Apple hardware, SMC is responsible for managing system management functions such as hardware sensors, fan control, power management, temperature sensors, and battery status. VirtualSMC provides these features on non-Apple hardware to ensure macOS can run properly on these systems'**
+  String get autoGen5397;
+
+  /// No description provided for @autoGen5398.
+  ///
+  /// In en, this message translates to:
+  /// **'Often used in conjunction with other kernel extensions such as Lilu.kext, WhateverGreen, etc. to create a near-real Mac environment on non-Apple hardware'**
+  String get autoGen5398;
+
+  /// No description provided for @autoGen5399.
+  ///
+  /// In en, this message translates to:
+  /// **'The driver is missing and macOS cannot run properly.'**
+  String get autoGen5399;
+
+  /// No description provided for @autoGen5400.
+  ///
+  /// In en, this message translates to:
+  /// **'It mainly provides GPU graphics driver support. Most of them are strongly recommended to check (MacPro7, 1 models and RX460, RX560 and above AMD independent graphics users can remove the check). It usually conflicts with the NootRX and NootedRed drivers. Do not select them at the same time during the installation stage.'**
+  String get autoGen5400;
+
+  /// No description provided for @autoGen5401.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports a variety of graphics cards, including NVIDIA, AMD, and Intel graphics cards. This extension can fix and configure the correct Framebuffer so that the display and resolution work properly'**
+  String get autoGen5401;
+
+  /// No description provided for @autoGen5402.
+  ///
+  /// In en, this message translates to:
+  /// **'Provides support for HDMI and DisplayPort (DP) connections to ensure audio and video outputs work properly'**
+  String get autoGen5402;
+
+  /// No description provided for @autoGen5403.
+  ///
+  /// In en, this message translates to:
+  /// **'Use AppleALC to imitate the built-in sound card (relatively perfect, preferred choice)'**
+  String get autoGen5403;
+
+  /// No description provided for @autoGen5404.
+  ///
+  /// In en, this message translates to:
+  /// **'Use VoodooHDA universal sound card (loaded during boot, only supports macOS BigSur 11.2.3 and below. Higher macOS versions need to add this driver into the system kernel extension to take effect. According to the author\'\'s test, the highest support is macOS Tahoe 26.x official version)'**
+  String get autoGen5404;
+
+  /// No description provided for @autoGen5405.
+  ///
+  /// In en, this message translates to:
+  /// **'USB 3.0 controller compatibility fix for old platforms or AMD platforms'**
+  String get autoGen5405;
+
+  /// No description provided for @autoGen5406.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the restart problem caused by CPU power management of old platforms before Intel 3rd generation (shown as AppleIntelCPUPowerManagement kernel crash log, or stuck boot logo, or restarting just after entering the system, etc.)'**
+  String get autoGen5406;
+
+  /// No description provided for @autoGen5407.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix AMD Ryzen series CPU power management (only applicable to AMD Ryzen series, if there are restart problems caused by power management, you can consider removing the check box)'**
+  String get autoGen5407;
+
+  /// No description provided for @autoGen5408.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery drive solution 1 (applicable to notebooks of 3rd generation and older platforms)'**
+  String get autoGen5408;
+
+  /// No description provided for @autoGen5409.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery drive solution 2 (applicable to notebooks of 3rd generation and newer platforms)'**
+  String get autoGen5409;
+
+  /// No description provided for @autoGen5410.
+  ///
+  /// In en, this message translates to:
+  /// **'Ambient light sensor (automatic screen brightness), if you do not have an ambient light sensor, do not use it, otherwise it may cause problems'**
+  String get autoGen5410;
+
+  /// No description provided for @autoGen5411.
+  ///
+  /// In en, this message translates to:
+  /// **'Asus notebook fan control, power management and other system sensor optimization, etc. are not recommended for use by non-Asus'**
+  String get autoGen5411;
+
+  /// No description provided for @autoGen5412.
+  ///
+  /// In en, this message translates to:
+  /// **'Lenovo notebook fan control, power management and other system sensor optimization, etc. are not recommended for non-Lenovo machines.'**
+  String get autoGen5412;
+
+  /// No description provided for @autoGen5413.
+  ///
+  /// In en, this message translates to:
+  /// **'Special sensor for Dell laptops to more accurately monitor and control fans. Not recommended for non-Dell machines.'**
+  String get autoGen5413;
+
+  /// No description provided for @autoGen5414.
+  ///
+  /// In en, this message translates to:
+  /// **'Allows the sensor information of AMD processors (such as temperature, power consumption, frequency, etc.) to be exposed to macOS monitoring tools. This driver supports AMD Ryzen series processors and some AMD FX series processors. Other AMD processors may cause unexpected problems. At the same time, some platforms of Sequoia 15 and above systems may have compatibility issues, so choose carefully.'**
+  String get autoGen5414;
+
+  /// No description provided for @autoGen5415.
+  ///
+  /// In en, this message translates to:
+  /// **'Used to support RX6700, RX6750XT, RX6750GRE and other officially unsupported RX6XXX series independent graphics. There is a conflict with the WhateverGreen driver. Do not select both at the installation stage.'**
+  String get autoGen5415;
+
+  /// No description provided for @autoGen5416.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports Navi 21 (Big Sur and above), Navi 22/23 (Monterey and above), and also supports RX6650, RX6950 and other graphics cards'**
+  String get autoGen5416;
+
+  /// No description provided for @autoGen5417.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding this driver when installing macOS for the first time may result in the inability to enter the system. It is recommended to add it after completing the installation.'**
+  String get autoGen5417;
+
+  /// No description provided for @autoGen5418.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the slowness problem caused by AMD Ryzen 2000~5000 series core display Edge and Chrome browser not turning off hardware acceleration (only applicable to AMD Ryzen series, mainly reducing the use of OpenGL rendering, normal use of QQ, Chrome browser. Using this driver may cause other applications to not work properly, make your own decision)'**
+  String get autoGen5418;
+
+  /// No description provided for @autoGen5419.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery reading repair, fix some battery display problems'**
+  String get autoGen5419;
+
+  /// No description provided for @autoGen5420.
+  ///
+  /// In en, this message translates to:
+  /// **'Improved compatibility with non-Apple NVMe SSDs and reduced idle energy consumption'**
+  String get autoGen5420;
+
+  /// No description provided for @autoGen5421.
+  ///
+  /// In en, this message translates to:
+  /// **'Incompatible blacklisted NVMe disks from Samsung and others cannot effectively fix the timeout crash problem'**
+  String get autoGen5421;
+
+  /// No description provided for @autoGen5422.
+  ///
+  /// In en, this message translates to:
+  /// **'Using this driver with an NVMe SSD with good compatibility may cause a kernel crash, so use it with caution most of the time.'**
+  String get autoGen5422;
+
+  /// No description provided for @autoGen5423.
+  ///
+  /// In en, this message translates to:
+  /// **'Enhance the ability to bypass or disable AMFI. Note: Adding this driver may cause some applications to fail to open or crash. At this time, you can try to remove the driver and only use disable AMFI startup parameters (such as amfi=0x80)'**
+  String get autoGen5423;
+
+  /// No description provided for @autoGen5424.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the issue where NVMe solid state drives were recognized as external disks'**
+  String get autoGen5424;
+
+  /// No description provided for @autoGen5425.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock universal controls, navigation and other functions on unsupported Macs'**
+  String get autoGen5425;
+
+  /// No description provided for @autoGen5426.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix common hibernation and sleep related issues'**
+  String get autoGen5426;
+
+  /// No description provided for @autoGen5427.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow macOS to use the tethering feature of an Android device over a USB connection'**
+  String get autoGen5427;
+
+  /// No description provided for @autoGen5428.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU variable frequency driver, mainly provides MacPro7,1 frequency conversion support for 11th generation and above platforms'**
+  String get autoGen5428;
+
+  /// No description provided for @autoGen5429.
+  ///
+  /// In en, this message translates to:
+  /// **'CPUFriend is equipped with a data driver to provide CPU frequency conversion data for specific models.'**
+  String get autoGen5429;
+
+  /// No description provided for @autoGen5430.
+  ///
+  /// In en, this message translates to:
+  /// **'Optimize Intel 12th generation and later CPU size and core configurations'**
+  String get autoGen5430;
+
+  /// No description provided for @autoGen5431.
+  ///
+  /// In en, this message translates to:
+  /// **'It can improve single-core performance, but may lead to a decrease in multi-core performance. It is only applicable to 12th generation and above platforms.'**
+  String get autoGen5431;
+
+  /// No description provided for @autoGen5432.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU TSC synchronization solution one, usually preferred'**
+  String get autoGen5432;
+
+  /// No description provided for @autoGen5433.
+  ///
+  /// In en, this message translates to:
+  /// **'Commonly used in multi-core X79, X99, X299 and AMD platforms'**
+  String get autoGen5433;
+
+  /// No description provided for @autoGen5434.
+  ///
+  /// In en, this message translates to:
+  /// **'Used to fix problems such as stuck operation, stuck boot logo, abnormal audio and video synchronization, failure to wake up from sleep, etc.'**
+  String get autoGen5434;
+
+  /// No description provided for @autoGen5435.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU TSC synchronization solution 2, usually used on AMD Ryzen and some Intel platforms'**
+  String get autoGen5435;
+
+  /// No description provided for @autoGen5436.
+  ///
+  /// In en, this message translates to:
+  /// **'Used to fix problems such as operation lags, occasional crashes, audio and video synchronization abnormalities, sleep wake-up failures, etc.'**
+  String get autoGen5436;
+
+  /// No description provided for @autoGen5437.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the multi-core clock synchronization problem of AMD Ryzen platform CPU (only applicable to AMD Ryzen series, used to fix problems such as operation lag, stuck boot logo, etc. Adding this driver may cause unexpected problems, choose carefully)'**
+  String get autoGen5437;
+
+  /// No description provided for @autoGen5438.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU TSC synchronization solution three, usually used on older Intel platforms and older macOS systems'**
+  String get autoGen5438;
+
+  /// No description provided for @autoGen5439.
+  ///
+  /// In en, this message translates to:
+  /// **'Suitable for multi-core X79, X99, X299 and other platforms, used to fix problems such as operation lag and boot logo stuck'**
+  String get autoGen5439;
+
+  /// No description provided for @autoGen5440.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed some Intel Core Display HDMI audio issues'**
+  String get autoGen5440;
+
+  /// No description provided for @autoGen5441.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the problem of being unable to log in to Apple ID and iCloud, usually used for notebooks without local wired network cards'**
+  String get autoGen5441;
+
+  /// No description provided for @autoGen5442.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix conflicts between the new platform macOS AppleRTC and PC BIOS, such as RTC causing freezes, sudden restarts, or sudden wake-ups from hibernation.'**
+  String get autoGen5442;
+
+  /// No description provided for @autoGen5443.
+  ///
+  /// In en, this message translates to:
+  /// **'PS interface type keyboard and mouse driver (desktop motherboard PS round port keyboard and mouse driver)'**
+  String get autoGen5443;
+
+  /// No description provided for @autoGen5444.
+  ///
+  /// In en, this message translates to:
+  /// **'PS interface type keyboard driver (desktop motherboard PS round port keyboard driver)'**
+  String get autoGen5444;
+
+  /// No description provided for @autoGen5445.
+  ///
+  /// In en, this message translates to:
+  /// **'PS interface type mouse driver (desktop motherboard PS round port mouse driver)'**
+  String get autoGen5445;
+
+  /// No description provided for @autoGen5446.
+  ///
+  /// In en, this message translates to:
+  /// **'Microsoft Surface dedicated keyboard touchpad driver'**
+  String get autoGen5446;
+
+  /// No description provided for @autoGen5447.
+  ///
+  /// In en, this message translates to:
+  /// **'Brightness shortcut key fix'**
+  String get autoGen5447;
+
+  /// No description provided for @autoGen5448.
+  ///
+  /// In en, this message translates to:
+  /// **'Optimize AMD Radeon graphics card performance, but certain scenarios may cause the system to crash or fail to start, so check carefully'**
+  String get autoGen5448;
+
+  /// No description provided for @autoGen5449.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow RadeonGadget.app to read AMD graphics card GPU temperature and other information'**
+  String get autoGen5449;
+
+  /// No description provided for @autoGen5450.
+  ///
+  /// In en, this message translates to:
+  /// **'Export AMD GPU temperature and other information to VirtualSMC for monitoring tools to read'**
+  String get autoGen5450;
+
+  /// No description provided for @autoGen5451.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed USB controller compatibility issues on older platforms such as AMD FM1/FM2/AM3'**
+  String get autoGen5451;
+
+  /// No description provided for @autoGen5452.
+  ///
+  /// In en, this message translates to:
+  /// **'Universal USB injection solution, the default choice when USB is not customized'**
+  String get autoGen5452;
+
+  /// No description provided for @autoGen5453.
+  ///
+  /// In en, this message translates to:
+  /// **'USBToolBox solution, usually used with customized UTBMap.kext'**
+  String get autoGen5453;
+
+  /// No description provided for @autoGen5454.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the USB3.0 problem on Intel 3rd generation and later updated platforms (required for 300 series chipsets (H370, B360, H310, Z390 [not required for 10.14 and above systems], X79, X99, ASRock Intel motherboards [except B460/Z490+])'**
+  String get autoGen5454;
+
+  /// No description provided for @autoGen5455.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix EHCI USB2.0 compatibility issues on AMD FM1, FM2, AM3 and other old platforms'**
+  String get autoGen5455;
+
+  /// No description provided for @autoGen5456.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix XHCI USB3.0 compatibility issues on AMD FM1, FM2, AM3 and other old platforms'**
+  String get autoGen5456;
+
+  /// No description provided for @autoGen5457.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix CPU power management of Intel 3rd generation and older platforms Ventura 13 and above systems'**
+  String get autoGen5457;
+
+  /// No description provided for @autoGen5458.
+  ///
+  /// In en, this message translates to:
+  /// **'Realtek series SD card reader driver (used with RealtekCardReaderFriend)'**
+  String get autoGen5458;
+
+  /// No description provided for @autoGen5459.
+  ///
+  /// In en, this message translates to:
+  /// **'RealtekCardReader supporting driver to improve Realtek card reader compatibility'**
+  String get autoGen5459;
+
+  /// No description provided for @autoGen5460.
+  ///
+  /// In en, this message translates to:
+  /// **'SDHC memory card device driver, supports eMMC and MMC memory cards'**
+  String get autoGen5460;
+
+  /// No description provided for @autoGen5461.
+  ///
+  /// In en, this message translates to:
+  /// **'100M wired network card driver'**
+  String get autoGen5461;
+
+  /// No description provided for @autoGen5462.
+  ///
+  /// In en, this message translates to:
+  /// **'Support RTL8101E, RTL8102E, RTL8103E, RTL8401E, RTL8105E, RTL8402, RTL8106E, RTL8106EUS, RTL8107E, RTL8139 network cards'**
+  String get autoGen5462;
+
+  /// No description provided for @autoGen5463.
+  ///
+  /// In en, this message translates to:
+  /// **'Usually used for traditional old platforms'**
+  String get autoGen5463;
+
+  /// No description provided for @autoGen5464.
+  ///
+  /// In en, this message translates to:
+  /// **'Gigabit network card driver'**
+  String get autoGen5464;
+
+  /// No description provided for @autoGen5465.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Intel 82540 ~ 82547, 82578 ~ 82579, 82574L, 82571 ~ 82574, 82583, I217-V and other network cards'**
+  String get autoGen5465;
+
+  /// No description provided for @autoGen5466.
+  ///
+  /// In en, this message translates to:
+  /// **'Gigabit wired network card driver'**
+  String get autoGen5466;
+
+  /// No description provided for @autoGen5467.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports BCM5722, BCM5754, BCM5754M, BCM5755, BCM5755M, BCM57788, BCM5787, BCM5787M, BCM5906, BCM5906M and other network cards'**
+  String get autoGen5467;
+
+  /// No description provided for @autoGen5468.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports AR8131, AR8132, AR8151, AR8152 and other network cards'**
+  String get autoGen5468;
+
+  /// No description provided for @autoGen5469.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports Realtek RTL8111 / 8168 B / C / D / E / F / G / H, supports Killer E2500 and above network cards'**
+  String get autoGen5469;
+
+  /// No description provided for @autoGen5470.
+  ///
+  /// In en, this message translates to:
+  /// **'RealtekRTL8111 new version driver may only support 10.13.x and above systems'**
+  String get autoGen5470;
+
+  /// No description provided for @autoGen5471.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports AR816x, AR817x, Killer E220x, Killer E2400 and other network cards'**
+  String get autoGen5471;
+
+  /// No description provided for @autoGen5472.
+  ///
+  /// In en, this message translates to:
+  /// **'Gigabit (support 2.5G) wired network card driver'**
+  String get autoGen5472;
+
+  /// No description provided for @autoGen5473.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports all IGC-compliant devices (i225, i226, i226-V and other wired network cards). The PCI ID of some devices may not be in the IOPCIMatch list. Add it yourself for testing.'**
+  String get autoGen5473;
+
+  /// No description provided for @autoGen5474.
+  ///
+  /// In en, this message translates to:
+  /// **'Compared with the AppleEthernetE1000 driver, it has better performance and stability (i226-V may cause kernel panic when using AppleEthernetE1000 in Monterey system)'**
+  String get autoGen5474;
+
+  /// No description provided for @autoGen5475.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Intel 82575, 82576, 82580, dh89xxcc, i350, i354, i210 and i211 network cards'**
+  String get autoGen5475;
+
+  /// No description provided for @autoGen5476.
+  ///
+  /// In en, this message translates to:
+  /// **'There may be instability issues, it is recommended to stay in the Big Sur version and use SmallTree'**
+  String get autoGen5476;
+
+  /// No description provided for @autoGen5477.
+  ///
+  /// In en, this message translates to:
+  /// **'Typically applicable to macOS Monterey 12 and above systems'**
+  String get autoGen5477;
+
+  /// No description provided for @autoGen5478.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Intel 5 Series: 82578LM, 82578LC, 82578DM, 82578DC'**
+  String get autoGen5478;
+
+  /// No description provided for @autoGen5479.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Intel 6 and 7 Series: 82579LM, 82579V'**
+  String get autoGen5479;
+
+  /// No description provided for @autoGen5480.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Intel 8 and 9 Series: I217LM, I217V, I218LM, I218V, I218LM2, I218V2, I218LM3'**
+  String get autoGen5480;
+
+  /// No description provided for @autoGen5481.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Intel 100 Series: I219V, I219LM, I219V2, I219LM2, I219LM3'**
+  String get autoGen5481;
+
+  /// No description provided for @autoGen5482.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Intel 200 Series: I219LM, I219V'**
+  String get autoGen5482;
+
+  /// No description provided for @autoGen5483.
+  ///
+  /// In en, this message translates to:
+  /// **'Support Intel 300 Series: I219LM, I219V'**
+  String get autoGen5483;
+
+  /// No description provided for @autoGen5484.
+  ///
+  /// In en, this message translates to:
+  /// **'The driver is maintained by acidanthera. OS X 10.6 ~ 10.8 uses IntelSnowMausi'**
+  String get autoGen5484;
+
+  /// No description provided for @autoGen5485.
+  ///
+  /// In en, this message translates to:
+  /// **'This driver is provided by Laura Müller. OS X 10.6 ~ 10.8 uses IntelSnowMausi'**
+  String get autoGen5485;
+
+  /// No description provided for @autoGen5486.
+  ///
+  /// In en, this message translates to:
+  /// **'RTL8125 old driver, supports Realtek RTL8125 series Ethernet cards'**
+  String get autoGen5486;
+
+  /// No description provided for @autoGen5487.
+  ///
+  /// In en, this message translates to:
+  /// **'Gigabit (supports 2.5G, 5G) wired network card driver'**
+  String get autoGen5487;
+
+  /// No description provided for @autoGen5488.
+  ///
+  /// In en, this message translates to:
+  /// **'New driver for RTL812x, supports Realtek RTL8125, RTL8126 series Ethernet cards'**
+  String get autoGen5488;
+
+  /// No description provided for @autoGen5489.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported models: RTL8125A, RTL8125B, RTL8125BP, RTL8125CP, RTL8126A'**
+  String get autoGen5489;
+
+  /// No description provided for @autoGen5490.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports Intel i211 wired network card, this model is common on AMD motherboards'**
+  String get autoGen5490;
+
+  /// No description provided for @autoGen5491.
+  ///
+  /// In en, this message translates to:
+  /// **'Generally applicable to macOS Big Sur and below, macOS Monterey may be unstable'**
+  String get autoGen5491;
+
+  /// No description provided for @autoGen5492.
+  ///
+  /// In en, this message translates to:
+  /// **'Compatibility: OS'**
+  String get autoGen5492;
+
+  /// No description provided for @autoGen5493.
+  ///
+  /// In en, this message translates to:
+  /// **'10G (support 10G) wired network card driver'**
+  String get autoGen5493;
+
+  /// No description provided for @autoGen5494.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports Intel X520,'**
+  String get autoGen5494;
+
+  /// No description provided for @autoGen5495.
+  ///
+  /// In en, this message translates to:
+  /// **'Only supports macOS 10.13 and above systems'**
+  String get autoGen5495;
+
+  /// No description provided for @autoGen5496.
+  ///
+  /// In en, this message translates to:
+  /// **'It is recommended to turn off WoL in BIOS UEFI settings'**
+  String get autoGen5496;
+
+  /// No description provided for @autoGen5497.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the issue where disk utility does not recognize SATA disks during installation of Catalina 10.15 and below systems'**
+  String get autoGen5497;
+
+  /// No description provided for @autoGen5498.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the issue where Disk Utility does not recognize SATA disks during the installation process of Big Sur 11 and above systems'**
+  String get autoGen5498;
+
+  /// No description provided for @autoGen5499.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix compatibility issues related to AMD platform Adobe Family Bucket'**
+  String get autoGen5499;
+
+  /// No description provided for @autoGen5500.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports macOS High Sierra 10.13 ~ macOS Tathoe 26.x (usually used with HeliPort client)'**
+  String get autoGen5500;
+
+  /// No description provided for @autoGen5501.
+  ///
+  /// In en, this message translates to:
+  /// **'macOS Sequoia 15.x (Note: The Sequoia 15 system needs to be patched with the OCLP Intel-specific modified version before it can be used normally!!!)'**
+  String get autoGen5501;
+
+  /// No description provided for @autoGen5502.
+  ///
+  /// In en, this message translates to:
+  /// **'macOS Sonoma 14.4 and above'**
+  String get autoGen5502;
+
+  /// No description provided for @autoGen5503.
+  ///
+  /// In en, this message translates to:
+  /// **'Mainly fixes some Bluetooth device problems (applicable to some Broadcom and other USB Bluetooth devices)'**
+  String get autoGen5503;
+
+  /// No description provided for @autoGen5504.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm WiFi, supports macOS Big Sur 11.x and below'**
+  String get autoGen5504;
+
+  /// No description provided for @autoGen5505.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros)-AR9285'**
+  String get autoGen5505;
+
+  /// No description provided for @autoGen5506.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros)-AR9380'**
+  String get autoGen5506;
+
+  /// No description provided for @autoGen5507.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros)-AR9485'**
+  String get autoGen5507;
+
+  /// No description provided for @autoGen5508.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros)-AR9565'**
+  String get autoGen5508;
+
+  /// No description provided for @autoGen5509.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros)-AR9463'**
+  String get autoGen5509;
+
+  /// No description provided for @autoGen5510.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros)-AR9462'**
+  String get autoGen5510;
+
+  /// No description provided for @autoGen5511.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Touch ID to reduce system resource waste and improve stability'**
+  String get autoGen5511;
+
+  /// No description provided for @autoGen5512.
+  ///
+  /// In en, this message translates to:
+  /// **'Usually suitable for notebooks with fingerprint recognition and below macOS Big Sur 11'**
+  String get autoGen5512;
+
+  /// No description provided for @autoGen5513.
+  ///
+  /// In en, this message translates to:
+  /// **'The TRIM policy is configured by default (that is, SetApfsTrimTimeout = -1)'**
+  String get autoGen5513;
+
+  /// No description provided for @autoGen5514.
+  ///
+  /// In en, this message translates to:
+  /// **'1. The APFS system performs TRIM operations based on the default TRIM timeout of macOS, which is applicable to most SSDs that support TRIM.'**
+  String get autoGen5514;
+
+  /// No description provided for @autoGen5515.
+  ///
+  /// In en, this message translates to:
+  /// **'2. On SSDs that support TRIM, macOS automatically manages the execution of TRIM, which helps clean up deleted data blocks, making SSD writing more efficient, avoiding frequent write amplification, and improving writing speed.'**
+  String get autoGen5515;
+
+  /// No description provided for @autoGen5516.
+  ///
+  /// In en, this message translates to:
+  /// **'3.TRIM will regularly clean up unused blocks to reduce SSD wear and tear, thus extending SSD service life.'**
+  String get autoGen5516;
+
+  /// No description provided for @autoGen5517.
+  ///
+  /// In en, this message translates to:
+  /// **'4. Some third-party SSDs that do not fully support TRIM may experience delays or even freezes when executing TRIM, causing the boot process to become very slow.'**
+  String get autoGen5517;
+
+  /// No description provided for @autoGen5518.
+  ///
+  /// In en, this message translates to:
+  /// **'Completely disable TRIM functionality (i.e. set SetApfsTrimTimeout = 0)'**
+  String get autoGen5518;
+
+  /// No description provided for @autoGen5519.
+  ///
+  /// In en, this message translates to:
+  /// **'Benefits of disabling TRIM:'**
+  String get autoGen5519;
+
+  /// No description provided for @autoGen5520.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Improve boot speed. For third-party SSDs that do not support or partially support TRIM, macOS may cause delays due to trying TRIM operations during startup. Disabling TRIM can eliminate this delay and improve boot speed.'**
+  String get autoGen5520;
+
+  /// No description provided for @autoGen5521.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Improve compatibility. Some SSDs with poor compatibility can reduce the risk of abnormal crashes.'**
+  String get autoGen5521;
+
+  /// No description provided for @autoGen5522.
+  ///
+  /// In en, this message translates to:
+  /// **'3. Extend the life of non-TRIM SSDs. On SSDs that do not support TRIM, forcibly enabling TRIM may accelerate wear and affect life. Disabling TRIM can extend the life of such SSDs.'**
+  String get autoGen5522;
+
+  /// No description provided for @autoGen5523.
+  ///
+  /// In en, this message translates to:
+  /// **'Disadvantages of disabling TRIM:'**
+  String get autoGen5523;
+
+  /// No description provided for @autoGen5524.
+  ///
+  /// In en, this message translates to:
+  /// **'1. SSD performance declines. Some SSDs do not have the TRIM garbage collection mechanism. The SSD cannot clean and mark free blocks in time after deleting data, which may cause the writing speed to slow down.'**
+  String get autoGen5524;
+
+  /// No description provided for @autoGen5525.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Disk space management efficiency is reduced. After disabling it, the SSD controller requires more time and resources for garbage collection, which may lead to increased fragmentation and reduced space management efficiency.'**
+  String get autoGen5525;
+
+  /// No description provided for @autoGen5526.
+  ///
+  /// In en, this message translates to:
+  /// **'3. Shorten the life of the SSD. For SSDs that support TRIM, after disabling TRIM, the SSD cannot optimize the writing process, which will increase the wear of the storage blocks, thus shortening the life of the SSD that supports TRIM.'**
+  String get autoGen5526;
+
+  /// No description provided for @autoGen5527.
+  ///
+  /// In en, this message translates to:
+  /// **'Although disabling TRIM can bring some boot speed improvements, for modern SSDs that support TRIM, it is recommended to keep TRIM turned on for long-term performance and stability. This speed increase is usually small and will only have a significant effect on some incompatible SSDs.'**
+  String get autoGen5527;
+
+  /// No description provided for @autoGen5528.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU variable frequency driver, here mainly provides 11th to 14th generation MacPro7,1 variable frequency support'**
+  String get autoGen5528;
+
+  /// No description provided for @autoGen5529.
+  ///
+  /// In en, this message translates to:
+  /// **'Realtek SD card reader and its supporting driver'**
+  String get autoGen5529;
+
+  /// No description provided for @autoGen5530.
+  ///
+  /// In en, this message translates to:
+  /// **'Suitable for 3rd generation and below old platforms, input devices connected based on PS/2 bus protocol, such as keyboard, mouse, touchpad, etc. It can realize a certain degree of multi-touch function, but the support is limited.'**
+  String get autoGen5530;
+
+  /// No description provided for @autoGen5531.
+  ///
+  /// In en, this message translates to:
+  /// **'Suitable for 3rd generation and above platforms, input devices connected based on PS/2 bus protocol, such as keyboard, mouse, touchpad, etc. Provide support for PS/2 touchpad through sub-driver, and can achieve a certain degree of multi-touch function, but the support is limited.'**
+  String get autoGen5531;
+
+  /// No description provided for @autoGen5532.
+  ///
+  /// In en, this message translates to:
+  /// **'PS2 keyboard is suitable for touchpads, touch screens, sensors and other input devices connected based on I2C bus protocol. Provides multi-touch gesture support to simulate the native touch experience of macOS.'**
+  String get autoGen5532;
+
+  /// No description provided for @autoGen5533.
+  ///
+  /// In en, this message translates to:
+  /// **'PS2 keyboard, suitable for Synaptics touchpad connected based on RMI4 protocol bus protocol. Focus on better supporting Synaptics devices, providing multi-touch and gesture capabilities similar to macOS\'\'s native touchpad.'**
+  String get autoGen5533;
+
+  /// No description provided for @autoGen5534.
+  ///
+  /// In en, this message translates to:
+  /// **'PS2 keyboard, suitable for I2C bus-based touch devices and Synaptics touchpads using RMI4 protocol. RMII2C combines the advantages of VoodooI2C and VoodooRMI.'**
+  String get autoGen5534;
+
+  /// No description provided for @autoGen5535.
+  ///
+  /// In en, this message translates to:
+  /// **'Round keyboard and mouse driver based on PS/2 bus protocol connection'**
+  String get autoGen5535;
+
+  /// No description provided for @autoGen5536.
+  ///
+  /// In en, this message translates to:
+  /// **'Microsoft Surface dedicated keyboard, touchpad, and touch screen driver combination.'**
+  String get autoGen5536;
+
+  /// No description provided for @autoGen5537.
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcom BCM94360 driver-free series'**
+  String get autoGen5537;
+
+  /// No description provided for @autoGen5538.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple AirPort and Fenvi driver-free cards, Ventura and below are driver-free, and the patch supports Sonoma 14 and Sequoia 15! Note: Sonoma 14 and above systems need to be patched with OCLP before they can be used normally! ! !'**
+  String get autoGen5538;
+
+  /// No description provided for @autoGen5539.
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcom BCM943XX non-driver-free series'**
+  String get autoGen5539;
+
+  /// No description provided for @autoGen5540.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards other than Apple AirPort and Fenvi, Catalina and below are driver-free, and the patch supports Sonoma 14 and Sequoia 15! Note: Sonoma 14 and above systems need to be patched with OCLP before they can be used normally! ! !'**
+  String get autoGen5540;
+
+  /// No description provided for @autoGen5541.
+  ///
+  /// In en, this message translates to:
+  /// **'Old Broadcom BCM4331'**
+  String get autoGen5541;
+
+  /// No description provided for @autoGen5542.
+  ///
+  /// In en, this message translates to:
+  /// **'Note that Monterey 12 or above systems need to use the OCLP patch before they can be used normally! ! !'**
+  String get autoGen5542;
+
+  /// No description provided for @autoGen5543.
+  ///
+  /// In en, this message translates to:
+  /// **'Old Broadcom BCM43224'**
+  String get autoGen5543;
+
+  /// No description provided for @autoGen5544.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros) WiFi model driver'**
+  String get autoGen5544;
+
+  /// No description provided for @autoGen5545.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm WiFi manual option'**
+  String get autoGen5545;
+
+  /// No description provided for @autoGen5546.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros) WiFi Big Sur and following dependencies'**
+  String get autoGen5546;
+
+  /// No description provided for @autoGen5547.
+  ///
+  /// In en, this message translates to:
+  /// **'macOS Big Sur 11 and below systems use HS80211Family to match specific model drivers'**
+  String get autoGen5547;
+
+  /// No description provided for @autoGen5548.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualcomm (Atheros) WiFi Monterey and above dependencies'**
+  String get autoGen5548;
+
+  /// No description provided for @autoGen5549.
+  ///
+  /// In en, this message translates to:
+  /// **'macOS Monterey 12 and above systems use IO80211ElCap combination'**
+  String get autoGen5549;
+
+  /// No description provided for @autoGen5550.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed battery recognition issue in \"System Preferences\" for Surface Pro 7 and Book 3 series'**
+  String get autoGen5550;
+
+  /// No description provided for @autoGen5551.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the problem of POST error when starting the real-time clock of some HP brand computers.'**
+  String get autoGen5551;
+
+  /// No description provided for @autoGen5552.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable RTC wake-up plan and fix the problem of automatic wake-up after sleep'**
+  String get autoGen5552;
+
+  /// No description provided for @autoGen5553.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation 0-Penryn-775 platform'**
+  String get autoGen5553;
+
+  /// No description provided for @autoGen5554.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation 1-Lynnfield-1156 platform'**
+  String get autoGen5554;
+
+  /// No description provided for @autoGen5555.
+  ///
+  /// In en, this message translates to:
+  /// **'2nd generation-Sandy Bridge-1155 platform'**
+  String get autoGen5555;
+
+  /// No description provided for @autoGen5556.
+  ///
+  /// In en, this message translates to:
+  /// **'3rd generation-Ivy Bridge-1155 platform'**
+  String get autoGen5556;
+
+  /// No description provided for @autoGen5557.
+  ///
+  /// In en, this message translates to:
+  /// **'4th generation-Haswell-1150 platform'**
+  String get autoGen5557;
+
+  /// No description provided for @autoGen5558.
+  ///
+  /// In en, this message translates to:
+  /// **'5th generation-Broadwell-1150 platform'**
+  String get autoGen5558;
+
+  /// No description provided for @autoGen5559.
+  ///
+  /// In en, this message translates to:
+  /// **'6th generation-Skylake-1151 platform'**
+  String get autoGen5559;
+
+  /// No description provided for @autoGen5560.
+  ///
+  /// In en, this message translates to:
+  /// **'7th Generation-Kaby Lake-1151 Platform'**
+  String get autoGen5560;
+
+  /// No description provided for @autoGen5561.
+  ///
+  /// In en, this message translates to:
+  /// **'8th generation-Coffee Lake-1151 platform'**
+  String get autoGen5561;
+
+  /// No description provided for @autoGen5562.
+  ///
+  /// In en, this message translates to:
+  /// **'9th generation-Coffee Lake-1151 platform'**
+  String get autoGen5562;
+
+  /// No description provided for @autoGen5563.
+  ///
+  /// In en, this message translates to:
+  /// **'10th Generation-Comet Lake-1200 Platform'**
+  String get autoGen5563;
+
+  /// No description provided for @autoGen5564.
+  ///
+  /// In en, this message translates to:
+  /// **'11th Generation-Rocket Lake-1200 Platform'**
+  String get autoGen5564;
+
+  /// No description provided for @autoGen5565.
+  ///
+  /// In en, this message translates to:
+  /// **'12th generation-Alder Lake-1700 platform'**
+  String get autoGen5565;
+
+  /// No description provided for @autoGen5566.
+  ///
+  /// In en, this message translates to:
+  /// **'13th generation-Raptor Lake-1700 platform'**
+  String get autoGen5566;
+
+  /// No description provided for @autoGen5567.
+  ///
+  /// In en, this message translates to:
+  /// **'14th generation-Raptor Lake Refresh-1700 platform'**
+  String get autoGen5567;
+
+  /// No description provided for @autoGen5568.
+  ///
+  /// In en, this message translates to:
+  /// **'15th Generation-Arrow Lake-1851 Platform'**
+  String get autoGen5568;
+
+  /// No description provided for @autoGen5569.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation 0-Penryn-Notebook'**
+  String get autoGen5569;
+
+  /// No description provided for @autoGen5570.
+  ///
+  /// In en, this message translates to:
+  /// **'1st Generation-Clarksfield&Arrandale-Notebook'**
+  String get autoGen5570;
+
+  /// No description provided for @autoGen5571.
+  ///
+  /// In en, this message translates to:
+  /// **'2nd generation-Sandy Bridge-notebook'**
+  String get autoGen5571;
+
+  /// No description provided for @autoGen5572.
+  ///
+  /// In en, this message translates to:
+  /// **'3rd generation-Ivy Bridge-notebook'**
+  String get autoGen5572;
+
+  /// No description provided for @autoGen5573.
+  ///
+  /// In en, this message translates to:
+  /// **'4th Generation-Haswell-Laptop'**
+  String get autoGen5573;
+
+  /// No description provided for @autoGen5574.
+  ///
+  /// In en, this message translates to:
+  /// **'5th generation-Broadwell-notebook'**
+  String get autoGen5574;
+
+  /// No description provided for @autoGen5575.
+  ///
+  /// In en, this message translates to:
+  /// **'6th generation-Skylake-notebook'**
+  String get autoGen5575;
+
+  /// No description provided for @autoGen5576.
+  ///
+  /// In en, this message translates to:
+  /// **'7th generation-Kaby Lake-notebook'**
+  String get autoGen5576;
+
+  /// No description provided for @autoGen5577.
+  ///
+  /// In en, this message translates to:
+  /// **'8th Generation-Coffee Lake-Notebook'**
+  String get autoGen5577;
+
+  /// No description provided for @autoGen5578.
+  ///
+  /// In en, this message translates to:
+  /// **'9th Generation-Coffee Lake-Notebook'**
+  String get autoGen5578;
+
+  /// No description provided for @autoGen5579.
+  ///
+  /// In en, this message translates to:
+  /// **'10th Generation-Comet Lake-Laptop'**
+  String get autoGen5579;
+
+  /// No description provided for @autoGen5580.
+  ///
+  /// In en, this message translates to:
+  /// **'10th Generation-Ice Lake-Laptop'**
+  String get autoGen5580;
+
+  /// No description provided for @autoGen5581.
+  ///
+  /// In en, this message translates to:
+  /// **'11th generation-Tiger Lake-notebook'**
+  String get autoGen5581;
+
+  /// No description provided for @autoGen5582.
+  ///
+  /// In en, this message translates to:
+  /// **'12th generation-Alder Lake-notebook'**
+  String get autoGen5582;
+
+  /// No description provided for @autoGen5583.
+  ///
+  /// In en, this message translates to:
+  /// **'13th generation-Raptor Lake-notebook'**
+  String get autoGen5583;
+
+  /// No description provided for @autoGen5584.
+  ///
+  /// In en, this message translates to:
+  /// **'14th generation-Raptor Lake Refresh-notebook'**
+  String get autoGen5584;
+
+  /// No description provided for @autoGen5585.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation 0-Penryn-mini host'**
+  String get autoGen5585;
+
+  /// No description provided for @autoGen5586.
+  ///
+  /// In en, this message translates to:
+  /// **'1st generation-Clarksfield&Arrandale-mini host'**
+  String get autoGen5586;
+
+  /// No description provided for @autoGen5587.
+  ///
+  /// In en, this message translates to:
+  /// **'2nd generation-Sandy Bridge-mini host'**
+  String get autoGen5587;
+
+  /// No description provided for @autoGen5588.
+  ///
+  /// In en, this message translates to:
+  /// **'3rd generation-Ivy Bridge-mini host'**
+  String get autoGen5588;
+
+  /// No description provided for @autoGen5589.
+  ///
+  /// In en, this message translates to:
+  /// **'4th generation-Haswell-mini host'**
+  String get autoGen5589;
+
+  /// No description provided for @autoGen5590.
+  ///
+  /// In en, this message translates to:
+  /// **'5th generation-Broadwell-mini host'**
+  String get autoGen5590;
+
+  /// No description provided for @autoGen5591.
+  ///
+  /// In en, this message translates to:
+  /// **'6th generation-Skylake-mini host'**
+  String get autoGen5591;
+
+  /// No description provided for @autoGen5592.
+  ///
+  /// In en, this message translates to:
+  /// **'7th generation-Kaby Lake-mini host'**
+  String get autoGen5592;
+
+  /// No description provided for @autoGen5593.
+  ///
+  /// In en, this message translates to:
+  /// **'8th generation-Coffee Lake-mini host'**
+  String get autoGen5593;
+
+  /// No description provided for @autoGen5594.
+  ///
+  /// In en, this message translates to:
+  /// **'9th generation-Coffee Lake-mini host'**
+  String get autoGen5594;
+
+  /// No description provided for @autoGen5595.
+  ///
+  /// In en, this message translates to:
+  /// **'10th generation-Comet Lake-mini host'**
+  String get autoGen5595;
+
+  /// No description provided for @autoGen5596.
+  ///
+  /// In en, this message translates to:
+  /// **'10th generation-Ice Lake-mini host'**
+  String get autoGen5596;
+
+  /// No description provided for @autoGen5597.
+  ///
+  /// In en, this message translates to:
+  /// **'11th generation-Tiger Lake-mini host'**
+  String get autoGen5597;
+
+  /// No description provided for @autoGen5598.
+  ///
+  /// In en, this message translates to:
+  /// **'12th generation-Alder Lake-mini host'**
+  String get autoGen5598;
+
+  /// No description provided for @autoGen5599.
+  ///
+  /// In en, this message translates to:
+  /// **'13th generation-Raptor Lake-mini host'**
+  String get autoGen5599;
+
+  /// No description provided for @autoGen5600.
+  ///
+  /// In en, this message translates to:
+  /// **'14th generation-Raptor Lake Refresh-mini host'**
+  String get autoGen5600;
+
+  /// No description provided for @autoGen5601.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation 1-Nehalem&Westmere-X58 platform'**
+  String get autoGen5601;
+
+  /// No description provided for @autoGen5602.
+  ///
+  /// In en, this message translates to:
+  /// **'2nd generation-Sandy Bridge-E-X79 platform'**
+  String get autoGen5602;
+
+  /// No description provided for @autoGen5603.
+  ///
+  /// In en, this message translates to:
+  /// **'3rd generation-Ivy Bridge-E-X79 platform'**
+  String get autoGen5603;
+
+  /// No description provided for @autoGen5604.
+  ///
+  /// In en, this message translates to:
+  /// **'4th generation-Haswell-E-X99 platform'**
+  String get autoGen5604;
+
+  /// No description provided for @autoGen5605.
+  ///
+  /// In en, this message translates to:
+  /// **'5th generation-Broadwell-E-X99 platform'**
+  String get autoGen5605;
+
+  /// No description provided for @autoGen5606.
+  ///
+  /// In en, this message translates to:
+  /// **'6th generation-Skylake-X&W-X299 platform'**
+  String get autoGen5606;
+
+  /// No description provided for @autoGen5607.
+  ///
+  /// In en, this message translates to:
+  /// **'10th Generation-Cascade Lake-X&W Platform'**
+  String get autoGen5607;
+
+  /// No description provided for @autoGen5608.
+  ///
+  /// In en, this message translates to:
+  /// **'Bulldozer(15h) and Jaguar(16h)-Notebook'**
+  String get autoGen5608;
+
+  /// No description provided for @autoGen5609.
+  ///
+  /// In en, this message translates to:
+  /// **'Ryzen-notebook'**
+  String get autoGen5609;
+
+  /// No description provided for @autoGen5610.
+  ///
+  /// In en, this message translates to:
+  /// **'Bulldozer(15h) and Jaguar(16h)-mini host'**
+  String get autoGen5610;
+
+  /// No description provided for @autoGen5611.
+  ///
+  /// In en, this message translates to:
+  /// **'Ryzen-mini host'**
+  String get autoGen5611;
+
+  /// No description provided for @autoGen5612.
+  ///
+  /// In en, this message translates to:
+  /// **'Ryzen and Threadripper(17h and 19h)-Server'**
+  String get autoGen5612;
+
+  /// No description provided for @autoGen5613.
+  ///
+  /// In en, this message translates to:
+  /// **'test'**
+  String get autoGen5613;
+
+  /// No description provided for @autoGen5614.
+  ///
+  /// In en, this message translates to:
+  /// **'nvram test'**
+  String get autoGen5614;
+
+  /// No description provided for @autoGen5615.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to get home directory'**
+  String get autoGen5615;
+
+  /// No description provided for @autoGen5616.
+  ///
+  /// In en, this message translates to:
+  /// **'Source directory does not exist'**
+  String get autoGen5616;
+
+  /// No description provided for @autoGen5617.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to get desktop directory'**
+  String get autoGen5617;
+
+  /// No description provided for @autoGen5618.
+  ///
+  /// In en, this message translates to:
+  /// **'Path check fails and returns empty path'**
+  String get autoGen5618;
+
+  /// No description provided for @autoGen5619.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to obtain plist file information and the returned result was incomplete.'**
+  String get autoGen5619;
+
+  /// No description provided for @autoGen5620.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTE: NormalizeHeaders is enabled and the table ID contains non-printable characters!'**
+  String get autoGen5620;
+
+  /// No description provided for @autoGen5621.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: NormalizeHeaders is not enabled and the table ID contains the \'\'?\'\' character!'**
+  String get autoGen5621;
+
+  /// No description provided for @autoGen5622.
+  ///
+  /// In en, this message translates to:
+  /// **'No target config.plist file selected!'**
+  String get autoGen5622;
+
+  /// No description provided for @autoGen5623.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Unable to determine config.plist type!'**
+  String get autoGen5623;
+
+  /// No description provided for @autoGen5624.
+  ///
+  /// In en, this message translates to:
+  /// **'=> SSDT table not found! jump over...'**
+  String get autoGen5624;
+
+  /// No description provided for @autoGen5625.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Duplicate SSDT table not found!'**
+  String get autoGen5625;
+
+  /// No description provided for @autoGen5626.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Patch not found! jump over...'**
+  String get autoGen5626;
+
+  /// No description provided for @autoGen5627.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Duplicate Patch not found!'**
+  String get autoGen5627;
+
+  /// No description provided for @autoGen5628.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Drop patch not found! jump over...'**
+  String get autoGen5628;
+
+  /// No description provided for @autoGen5629.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Duplicate Drop patch not found!'**
+  String get autoGen5629;
+
+  /// No description provided for @autoGen5630.
+  ///
+  /// In en, this message translates to:
+  /// **'=> No Quirks configuration found that needs to be updated! jump over...'**
+  String get autoGen5630;
+
+  /// No description provided for @autoGen5631.
+  ///
+  /// In en, this message translates to:
+  /// **'=> Checking target Quirks configuration...'**
+  String get autoGen5631;
+
+  /// No description provided for @autoGen5632.
+  ///
+  /// In en, this message translates to:
+  /// **'Backing up current config configuration file...'**
+  String get autoGen5632;
+
+  /// No description provided for @autoGen5633.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing to copy SSDT files...'**
+  String get autoGen5633;
+
+  /// No description provided for @autoGen5634.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuration saved successfully!'**
+  String get autoGen5634;
+
+  /// No description provided for @autoGen5635.
+  ///
+  /// In en, this message translates to:
+  /// **'The merge is complete!'**
+  String get autoGen5635;
+
+  /// No description provided for @autoGen5636.
+  ///
+  /// In en, this message translates to:
+  /// **'Merge failed!'**
+  String get autoGen5636;
+
+  /// No description provided for @autoGen5637.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: Potential errors are found during the merge process, please check and fix them!'**
+  String get autoGen5637;
+
+  /// No description provided for @autoGen5638.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: The current configuration is not set up to override the target EFI mode!'**
+  String get autoGen5638;
+
+  /// No description provided for @autoGen5639.
+  ///
+  /// In en, this message translates to:
+  /// **'You need to do the following manually:'**
+  String get autoGen5639;
+
+  /// No description provided for @autoGen5640.
+  ///
+  /// In en, this message translates to:
+  /// **'Root dictionary element not found'**
+  String get autoGen5640;
+
+  /// No description provided for @autoGen5641.
+  ///
+  /// In en, this message translates to:
+  /// **'Eliminate IRQ conflicts, often used for sound card repairs'**
+  String get autoGen5641;
+
+  /// No description provided for @autoGen5642.
+  ///
+  /// In en, this message translates to:
+  /// **'• HPET (High Precision Event Timer) is a hardware module used for system timing.\n• Under macOS, some motherboard HPET devices may cause IRQ (interrupt request) conflicts, which will affect the normal operation of the audio device, causing the system to be unstable or even unable to start.\n• This patch adjusts HPET-related ACPI device definitions to avoid IRQ conflicts, ensure that macOS can correctly use HPET timers, fix sound card issues, and improve system stability.'**
+  String get autoGen5642;
+
+  /// No description provided for @autoGen5643.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterfeit EC and inject USB power attributes (applicable to Intel 6th generation and above desktop computers)'**
+  String get autoGen5643;
+
+  /// No description provided for @autoGen5644.
+  ///
+  /// In en, this message translates to:
+  /// **'• Applicable to Intel 6th generation and above desktop computers\n• This patch will disable the system\'\'s original EC device and then create a virtual EC device to \"trick\" macOS into thinking that a compatible EC exists, thus solving startup problems caused by missing EC devices. \n• Added necessary USB power properties to fix potential issues. Equivalent to merge: SSDT-EC-DESKTOP.aml + SSDT-USBX.aml'**
+  String get autoGen5644;
+
+  /// No description provided for @autoGen5645.
+  ///
+  /// In en, this message translates to:
+  /// **'Only counterfeits EC, does not affect existing EC, and injects USB power attributes at the same time (applicable to Intel 6th generation and above notebooks)'**
+  String get autoGen5645;
+
+  /// No description provided for @autoGen5646.
+  ///
+  /// In en, this message translates to:
+  /// **'• Applicable to Intel 6th generation and above notebooks\n• Suitable for notebooks, it does not delete or modify the existing EC, but creates a new virtual EC separately to avoid damaging the original EC device and preventing functional abnormalities such as notebook power management and keyboard backlight.\n• Added necessary USB power properties to fix potential issues. Equivalent to merge: SSDT-EC-LAPTOP.aml + SSDT-USBX.aml'**
+  String get autoGen5646;
+
+  /// No description provided for @autoGen5647.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterfeit EC (applicable to Intel 5th generation and below desktop computers)'**
+  String get autoGen5647;
+
+  /// No description provided for @autoGen5648.
+  ///
+  /// In en, this message translates to:
+  /// **'• Suitable for Intel 5th generation and below desktops\n• This patch will disable the system\'\'s original EC device and then create a virtual EC device to \"trick\" macOS into thinking that a compatible EC exists, thus solving startup problems caused by missing EC devices.'**
+  String get autoGen5648;
+
+  /// No description provided for @autoGen5649.
+  ///
+  /// In en, this message translates to:
+  /// **'Only counterfeit EC, does not affect existing EC (applicable to Intel 5th generation and below notebooks)'**
+  String get autoGen5649;
+
+  /// No description provided for @autoGen5650.
+  ///
+  /// In en, this message translates to:
+  /// **'• Applicable to Intel 5th generation and below notebooks\n• It does not delete or modify the existing EC, but creates a new virtual EC separately to avoid damaging the original EC device and preventing functional abnormalities such as notebook power management and keyboard backlight.'**
+  String get autoGen5650;
+
+  /// No description provided for @autoGen5651.
+  ///
+  /// In en, this message translates to:
+  /// **'USB power attribute correction (applicable to Intel 6th generation and newer platforms)'**
+  String get autoGen5651;
+
+  /// No description provided for @autoGen5652.
+  ///
+  /// In en, this message translates to:
+  /// **'• Applicable to Intel Skylake 6th generation and above, server Haswell-E 4th generation and above, AMD Ryzen and other platforms\n• Starting with Intel Skylake and newer processors, macOS requires specific USB power properties to ensure that USB devices are properly powered and recognized.\n• This patch corrects the power management of USB ports to comply with macOS requirements and solves problems such as abnormal USB device recognition, insufficient power supply, and inability to hot-plug.\n• For notebooks: SSDT-EC-LAPTOP.aml + SSDT-USBX.aml The combination of the two is equivalent to SSDT-EC-USBX-LAPTOP.aml\n• For desktop: SSDT-EC-DESKTOP.aml + SSDT-USBX.aml The combination of the two is equivalent to SSDT-EC-USBX-DESKTOP.aml'**
+  String get autoGen5652;
+
+  /// No description provided for @autoGen5653.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU core identification, enabling frequency adjustment and energy saving correction'**
+  String get autoGen5653;
+
+  /// No description provided for @autoGen5654.
+  ///
+  /// In en, this message translates to:
+  /// **'• SSDT-PLUG is suitable for Intel Haswell 4th generation ~ 11th generation, server Haswell-E 4th generation and above platforms (when customizing SSDT-PLUG, the tool automatically detects and generates it!)\n• SSDT-PLUG-ALT is suitable for Intel Alder Lake 12th generation and above, and AMD Ryzen platform (when customizing SSDT-PLUG, the tool automatically detects and generates it and renames it to SSDT-PLUG-ALT!)\n• macOS relies on the CPU power management plug-in (PluginType) to adjust the CPU frequency and improve energy efficiency and battery life.\n• This patch will modify the CPU definition so that macOS thinks it is a plugin-type = 1 processor required by Apple devices, thereby correctly loading CPU frequency management and improving performance and power consumption control.'**
+  String get autoGen5654;
+
+  /// No description provided for @autoGen5655.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable NVRAM support (usually for Intel native 300 series motherboards)'**
+  String get autoGen5655;
+
+  /// No description provided for @autoGen5656.
+  ///
+  /// In en, this message translates to:
+  /// **'• Applicable to Intel Coffee Lake 8th generation ~ 9th generation platforms\n• Native 300 series motherboards (such as Z370, B360) may not use NVRAM correctly under macOS, causing some functions (such as iMessage, volume memory, boot parameters, etc.) to not be saved.\n• This patch enables the motherboard\'\'s PMC (Power Management Controller), allowing macOS to use native NVRAM normally without the need for an additional EmuVariableUEFI driver.'**
+  String get autoGen5656;
+
+  /// No description provided for @autoGen5657.
+  ///
+  /// In en, this message translates to:
+  /// **'Add PNLF device for backlight support (notebooks and all-in-ones only)'**
+  String get autoGen5657;
+
+  /// No description provided for @autoGen5658.
+  ///
+  /// In en, this message translates to:
+  /// **'• macOS requires a PNLF device (Panel Brightness) to correctly control notebook screen brightness.\n• This patch will create a PNLF device in ACPI, allowing macOS to adjust screen brightness and display brightness control options in System Preferences.\n• Suitable for notebooks and some all-in-one computers to solve the problem of unavailable brightness adjustment.\n• UID = 14, applicable to: Intel 1st generation Arrandale, 2nd generation Sandy Bridge, 3rd generation Ivy Bridge\n  Note: Some machines using UID: 14 will encounter limited maximum brightness or other problems. In order to solve these problems, the correct device path of the iGPU (integrated graphics card) must be set, and the IGPU register information may need to be supplemented.\n• UID = 15, applicable to: Intel 4th generation Haswell, 5th generation Broadwell\n• UID = 16, applicable to: Intel 6th generation Skylake, 7th generation Kaby Lake, some 4th generation Haswell\n• UID = 17, applicable to: Custom brightness, usually used for some non-standard devices or Hackintosh settings with special needs\n• UID = 18, suitable for: Custom brightness, usually used for some non-standard devices or Hackintosh settings with special needs\n• UID = 19, applicable to: Intel 8th generation CoffeeLake and above, below 10th generation, and AMD notebooks\n• UID = 99, applies to: Others (requires custom applbkl-name / applbkl-data device properties), may not work at all'**
+  String get autoGen5658;
+
+  /// No description provided for @autoGen5659.
+  ///
+  /// In en, this message translates to:
+  /// **'Provides sensor support required for screen backlight adjustment (only applicable to notebooks and all-in-one computers)'**
+  String get autoGen5659;
+
+  /// No description provided for @autoGen5660.
+  ///
+  /// In en, this message translates to:
+  /// **'• Used to simulate and enable Apple\'\'s native sensor (Ambient Light Sensor, ALS) function to automatically adjust screen brightness\n• If your device really has ALS (such as some high-end notebooks) and there are problems, you can try to add SSDT-ALS0 to correct the automatic brightness adjustment function, otherwise it is not recommended to add\n• Applicable to: All-in-one PCs (AIOs) and laptops only'**
+  String get autoGen5660;
+
+  /// No description provided for @autoGen5661.
+  ///
+  /// In en, this message translates to:
+  /// **'macOS disguises itself as Windows and unlocks blocked devices (such as I2C touchpads)'**
+  String get autoGen5661;
+
+  /// No description provided for @autoGen5662.
+  ///
+  /// In en, this message translates to:
+  /// **'• _OSI (Operating System Interface) is a method of ACPI that allows the operating system to report which features it supports.\n• Some motherboard firmware may decide whether to enable certain devices based on the _OSI return value, which may not be recognized by macOS, resulting in loss of functionality.\n• The patch \"tricks\" the firmware into thinking that macOS is also Windows, thus activating hidden features such as: I2C touchpad, battery management, etc.'**
+  String get autoGen5662;
+
+  /// No description provided for @autoGen5663.
+  ///
+  /// In en, this message translates to:
+  /// **'USB port reset and fix'**
+  String get autoGen5663;
+
+  /// No description provided for @autoGen5664.
+  ///
+  /// In en, this message translates to:
+  /// **'• Some OEMs violate the ACPI specification, which causes problems when booting macOS. To resolve this issue, the RHUB device needs to be shut down and force macOS to rebuild the port manually.\n• This patch resets the USB controller (including EHC1, EHC2 and other USB device shielding and renaming) when macOS starts, so that all USB ports can be correctly identified, and is used with USB mapping (such as: UTBMap.kext) to ensure that USB devices work properly.\n• Usually suitable for desktop 400 series motherboards (Asus, etc.) and mobile IceLake platforms (Dell, Lenovo, etc.).'**
+  String get autoGen5664;
+
+  /// No description provided for @autoGen5665.
+  ///
+  /// In en, this message translates to:
+  /// **'Create bridge for missing PCI device path'**
+  String get autoGen5665;
+
+  /// No description provided for @autoGen5666.
+  ///
+  /// In en, this message translates to:
+  /// **'• The PCI device paths of some motherboards or devices may not be recognized correctly under macOS, causing the device to not work properly, such as graphics cards, sound cards, wireless network cards, etc.\n• This patch will create the correct PCI bridges for these devices, ensuring that macOS can correctly recognize and use these PCI devices.'**
+  String get autoGen5666;
+
+  /// No description provided for @autoGen5667.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct the APIC table to solve the CPU kernel panic problem (applicable to HEDT server platform)'**
+  String get autoGen5667;
+
+  /// No description provided for @autoGen5668.
+  ///
+  /// In en, this message translates to:
+  /// **'• Repair or rewrite the Processor ID in the APIC table to ensure that macOS can correctly identify the number and number of CPU cores and avoid kernel panic or core identification errors.\n• The original APIC table needs to be dropped in the firmware before the patched table can be loaded.\n• Applicable to X58, X79, X99, X299 and other Intel server (HEDT) platforms.'**
+  String get autoGen5668;
+
+  /// No description provided for @autoGen5669.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove DMAR reserved memory area, fix system startup problems and network card compatibility issues'**
+  String get autoGen5669;
+
+  /// No description provided for @autoGen5670.
+  ///
+  /// In en, this message translates to:
+  /// **'• DMAR (DMA Remapping Table) is part of Intel VT-d virtualization technology for IOMMU (Input-Output Memory Management Unit) support.\n• This patch will remove the reserved memory area in the DMAR table that is causing the problem, thus preventing macOS from misreading the DMAR and causing the system to fail to boot.\n• Provide support for VT-d compatibility so that VT-d works properly in macOS Big Sur and newer, especially involving hardware driven by DriverKit.\n• macOS supports VT-d, but there are compatibility issues with the DMAR table provided by some motherboards or BIOS, which may cause macOS to cause kernel crashes, startup lags, system instability and other issues when parsing the ACPI DMAR table (stuck in AppleACPICPU, IOPCI, AppleVTD related log locations).\n• Supported hardware range: I225 network card, Aquantia network card, some WiFi devices, etc.\n• The original DMAR table needs to be dropped in the firmware before the patched table can be loaded.\n• Applicable CPU: Any processor that supports VT-d technology.'**
+  String get autoGen5670;
+
+  /// No description provided for @autoGen5671.
+  ///
+  /// In en, this message translates to:
+  /// **'Add system bus SMBus support'**
+  String get autoGen5671;
+
+  /// No description provided for @autoGen5672.
+  ///
+  /// In en, this message translates to:
+  /// **'• macOS requires an SMBus (System Management Bus) device to properly run certain services, such as:\n  I2C touchpad, battery management, light-sensing automatic brightness adjustment, some Wi-Fi/Bluetooth devices\n• SSDT-SBUS-MCHC makes macOS think this is a native Apple device by adding SBUS (System Management Bus) and MCHC (Memory Controller) devices to ACPI, ensuring that related functions work properly.\n• If the device I2C touchpad, battery information, and automatic brightness adjustment cannot be used, you can try to enable this patch.'**
+  String get autoGen5672;
+
+  /// No description provided for @autoGen5673.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the problem of core graphics acceleration failure (usually applicable to Ivy Bridge and Sandy Bridge)'**
+  String get autoGen5673;
+
+  /// No description provided for @autoGen5674.
+  ///
+  /// In en, this message translates to:
+  /// **'• Intel Management Engine (IMEI for short) is a hardware interface used to connect to the management engine. It is only needed when old platforms (Sandy/Ivy) and some motherboards lack MEI/IMEI/HECI devices.\n• Applicable to Intel 3rd generation Ivy Bridge processor and 6 series motherboard when mixed (for example: i3 3225 processor, H61 motherboard), core graphics acceleration problem\n• Applicable to Intel 2nd generation Sandy Bridge processor and 7 series motherboard when mixed (for example: i5 2500k processor, B75 motherboard), core graphics acceleration problem\n• Intel 3rd generation Ivy Bridge processors paired with 7 series motherboards, and Intel 2nd generation Sandy Bridge processors paired with 6 series motherboards do not require this SSDT!\n• Intel 4th generation Haswell and newer platforms can usually implement MEI/IMEI/HECI devices correctly and do not need this SSDT!'**
+  String get autoGen5674;
+
+  /// No description provided for @autoGen5675.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the problem of shutting down and restarting or shutting down without power supply'**
+  String get autoGen5675;
+
+  /// No description provided for @autoGen5676.
+  ///
+  /// In en, this message translates to:
+  /// **'• Fixed the problem that some motherboards sometimes do not completely turn off the power to the USB controller when macOS is shutting down (S5), resulting in failure to shut down normally (shutdown becomes restarting or shutdown without power)\n• Requires ACPI rename patch: _PTS -> ZPTS'**
+  String get autoGen5676;
+
+  /// No description provided for @autoGen5677.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the current system status, mainly to check whether S3 sleep is supported (non-customized SSDT)'**
+  String get autoGen5677;
+
+  /// No description provided for @autoGen5678.
+  ///
+  /// In en, this message translates to:
+  /// **'• Check whether the current machine is an AOAC machine (non-customized SSDT)\n• Check the system status in the current BIOS settings, mainly to check whether S3 sleep is supported (non-customized SSDT)\n• Note: Only non-AOAC machines are compatible with S3 sleep. AOAC machines conflict with S3 sleep and do not support S3 sleep!\n• If the check result shows that the system status of a non-AOAC machine (AOAC machine does not support S3 sleep, do not read below) does not support S3 sleep, there may be the following situations:\n  1. The motherboard firmware supports S3 sleep, but S3 sleep is not enabled in the BIOS settings. After it is enabled, S3 sleep can be supported.\n  2. The motherboard firmware does not physically castrate S3, but the DSDT does not define the _S3 method. Completing the _S3 method has a probability of fixing the S3 sleep problem.\n  3. The motherboard firmware physically castrates S3 and does not support S3 sleep at all. Even if the _S3 method is completed, the S3 sleep problem cannot be repaired.'**
+  String get autoGen5678;
+
+  /// No description provided for @autoGen5679.
+  ///
+  /// In en, this message translates to:
+  /// **'Check whether it is an AOAC machine (non-customized SSDT)'**
+  String get autoGen5679;
+
+  /// No description provided for @autoGen5680.
+  ///
+  /// In en, this message translates to:
+  /// **'• Check whether it is an AOAC machine (non-customized SSDT) based on FACP.aml\n• Note: Only non-AOAC machines are compatible with S3 sleep. AOAC machines conflict with S3 sleep and do not support S3 sleep! AOAC machines are common in notebooks.\n• Once the AOAC machine enters S3 sleep, it may appear that it cannot be woken up after sleeping and appears in a crash state, and can only be forced to shut down. It is recommended to disable S3 sleep.\n• AOAC machines recommend considering the following solutions:\n  1. Unlock BIOS and disable AOAC (usually difficult to do, but the most stable)\n  2. Disable S3 sleep (disable S3 sleep in BIOS, or SSDT-S3-DISABLE to disable S3 sleep)\n  3. Turn off the independent graphics power supply\n  4. Use NVMeFix.kext to enable APST of SSD\n  5. Enable ASPM (BIOS advanced options enable ASPM, SSDT patch enables L1)'**
+  String get autoGen5680;
+
+  /// No description provided for @autoGen5681.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the problem of waking up from sleep due to USB controller'**
+  String get autoGen5681;
+
+  /// No description provided for @autoGen5682.
+  ///
+  /// In en, this message translates to:
+  /// **'• Rename GPRW to XPRW to fix the instant wake-up problem (note: it may cause the USB keyboard to be unable to wake up the device, you can wake it up through the power key)\n• SSDT-GPRW is more commonly used because most platforms use the GPRW method and very few platforms provide and use the UPRW method.\n• Available for Skylake and newer platforms'**
+  String get autoGen5682;
+
+  /// No description provided for @autoGen5683.
+  ///
+  /// In en, this message translates to:
+  /// **'• Rename GPRW to XPRW to fix the instant wake-up problem (note: it may cause the USB keyboard to be unable to wake up the device, you can wake it up through the power key)\n• SSDT-UPRW is rarely used because most platforms use the GPRW method and very few platforms provide and use the UPRW method.\n• Available for Skylake and newer platforms'**
+  String get autoGen5683;
+
+  /// No description provided for @autoGen5684.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix sleep button sleep problem (applicable to notebooks)'**
+  String get autoGen5684;
+
+  /// No description provided for @autoGen5685.
+  ///
+  /// In en, this message translates to:
+  /// **'• When some computers enter sleep through the sleep button SLPB (PNP0C0E), ACPI transmits incorrect parameters, causing macOS to mistakenly think it is a shutdown. This may lead to: direct restart, crash after sleep, or successful sleep but damaged system status.\n• Pretend \"lid is closed\" when pressing the sleep button, forcing dangerous PNP0C0E sleep into safe and stable PNP0C0D sleep\n• Typically suitable for laptops'**
+  String get autoGen5685;
+
+  /// No description provided for @autoGen5686.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed the issue where you need to press any key to turn on the screen after waking up'**
+  String get autoGen5686;
+
+  /// No description provided for @autoGen5687.
+  ///
+  /// In en, this message translates to:
+  /// **'• Fixed the issue where some machines need to press any key to turn on the screen after waking up'**
+  String get autoGen5687;
+
+  /// No description provided for @autoGen5688.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the abnormal breathing light problem of the power button after waking up (applicable to Lenovo notebooks)'**
+  String get autoGen5688;
+
+  /// No description provided for @autoGen5689.
+  ///
+  /// In en, this message translates to:
+  /// **'• Fixed an issue where the breathing light on side A and the breathing light on the power button did not return to normal after waking up on some Lenovo notebooks\n• Fixed the issue where the F4 microphone indicator light status is abnormal after waking up on some Lenovo laptops\n• Mainly applicable to Lenovo series notebooks, other brands of notebooks are usually not applicable'**
+  String get autoGen5689;
+
+  /// No description provided for @autoGen5690.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable system S3 sleep state (fix S3 sleep wake-up crash, restart or shutdown issues)'**
+  String get autoGen5690;
+
+  /// No description provided for @autoGen5691.
+  ///
+  /// In en, this message translates to:
+  /// **'• Only disable S3 sleep state under macOS system to avoid system crash, restart or shutdown when macOS system wakes up\n• When disabled, only macOS no longer supports S3 sleep (clicking the sleep button or the monitor enters power-saving mode, the screen turns off, but the host will still run and the fan will not stop running)\n• After disabling the S3 sleep state in macOS, you no longer need to modify any system settings of macOS, and you do not need to turn off the energy-saving mode (before this, you may need to modify the system settings -> turn off the display when inactive -> never)\n• Applicable scenarios: When the sleep problem is not repaired, the energy-saving mode is turned on in the macOS system settings (\"Turn off the display when inactive -> 10 minutes\"). After the system enters sleep state, when the macOS system is awakened, the system may crash, restart or shut down. At this time, you can disable the S3 sleep state to fix the problem.\n• Requires ACPI rename patch: _S3 -> XS3'**
+  String get autoGen5691;
+
+  /// No description provided for @autoGen5692.
+  ///
+  /// In en, this message translates to:
+  /// **'Hot restart is changed to cold restart to fix the problem of some hardware being unavailable.'**
+  String get autoGen5692;
+
+  /// No description provided for @autoGen5693.
+  ///
+  /// In en, this message translates to:
+  /// **'• Hot restart is changed to cold restart, which fixes the problem that some hardware becomes unavailable after restarting from Windows to macOS on some platforms. (For example: sound card, WiFi, Bluetooth)\n• Note: No SSDT-FACP.aml is generated! Only ACPI-Patch is generated!'**
+  String get autoGen5693;
+
+  /// No description provided for @autoGen5694.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphics device ID mapping'**
+  String get autoGen5694;
+
+  /// No description provided for @autoGen5695.
+  ///
+  /// In en, this message translates to:
+  /// **'• Used for AMD graphics card device ID mapping scenarios, injecting compatible device IDs through ACPI to allow the system to load the corresponding graphics driver.\n• Recommended only for models explicitly marked in the RapidEFI compatibility data as requiring device ID mapping.'**
+  String get autoGen5695;
+
+  /// No description provided for @autoGen5696.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI device shielding'**
+  String get autoGen5696;
+
+  /// No description provided for @autoGen5697.
+  ///
+  /// In en, this message translates to:
+  /// **'• Used to handle PCI devices at the ACPI layer that are not suitable for handing over to the macOS driver, such as incompatible graphics cards, NVMe controllers, or other expansion devices.\n• Laptops try power-level deactivation first; if the firmware does not support the power supply method, it downgrades to the driver layer for avoidance.\n• Desktops, NUCs, and HEDTs use universal circumvention methods by default to avoid relying on independent graphics power methods that usually do not exist in the machine firmware.\n• All scenarios require a valid ACPI Path; if the hardware reports a missing ACPI Path, the device is automatically skipped.'**
+  String get autoGen5697;
+
+  /// No description provided for @autoGen5698.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterfeit wired network card equipment (applicable to notebooks without wired network cards)'**
+  String get autoGen5698;
+
+  /// No description provided for @autoGen5699.
+  ///
+  /// In en, this message translates to:
+  /// **'• Provides NullEthernet fake virtual network card for Hackintosh systems to solve the dependence of iMessage, Facetime, iCloud and other Apple services on built-in network equipment'**
+  String get autoGen5699;
+
+  /// No description provided for @autoGen5700.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix laptop I2C touchpad problem (applicable to laptops)'**
+  String get autoGen5700;
+
+  /// No description provided for @autoGen5701.
+  ///
+  /// In en, this message translates to:
+  /// **'• By repairing the ACPI hardware node mounting, ensuring that the device is enabled in the macOS system, and fixing the problem that some I2C touchpads cannot be recognized normally.\n• SSDT-GPI0 solves the problem of driver mounting hardware devices. SSDT-XOSI is mainly used to fix the problem of incompatibility between BIOS/ACPI initialization logic and operating system recognition (sometimes it can fix the touchpad problem)'**
+  String get autoGen5701;
+
+  /// No description provided for @autoGen5702.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU renaming for B850, B650, B550, A520 chipsets (only for Ryzen platforms)'**
+  String get autoGen5702;
+
+  /// No description provided for @autoGen5703.
+  ///
+  /// In en, this message translates to:
+  /// **'• Applicable to CPU renaming of B850, B650, B550, and A520 chipsets to fix the crash problem caused by the AMD platform not being able to recognize the CPU (recommended only when using pre-made SSDT patches)\n• When customizing the SSDT patch, it is recommended to use the customized SSDT-PLUG! (AMD Ryzen platform automatically changes its name to SSDT-PLUG-ALT when customizing the SSDT)'**
+  String get autoGen5703;
+
+  /// No description provided for @autoGen5704.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix power management (applicable to Intel 12th generation and above, some AMD Ryzen and other platforms)'**
+  String get autoGen5704;
+
+  /// No description provided for @autoGen5705.
+  ///
+  /// In en, this message translates to:
+  /// **'• macOS relies on the CPU power management plug-in (PluginType) to adjust the CPU frequency and improve energy efficiency and battery life.\n• This patch will modify the CPU definition so that macOS thinks it is a plugin-type = 1 processor required by Apple devices, thereby correctly loading CPU frequency management and improving performance and power consumption control.\n• Applicable to Intel Alder Lake 12th generation and above, and some AMD Ryzen platforms'**
+  String get autoGen5705;
+
+  /// No description provided for @autoGen5706.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable AWAC (Modern Timer) (available for Intel Coffee Lake 8th generation and above)'**
+  String get autoGen5706;
+
+  /// No description provided for @autoGen5707.
+  ///
+  /// In en, this message translates to:
+  /// **'• Disable AWAC (Modern Timer) while enabling or spoofing legacy RTC\n• Compatible with Intel Coffee Lake 8th generation and above'**
+  String get autoGen5707;
+
+  /// No description provided for @autoGen5708.
+  ///
+  /// In en, this message translates to:
+  /// **'Required by all native X99 (C612) motherboards and most native X79 (C602) motherboards'**
+  String get autoGen5708;
+
+  /// No description provided for @autoGen5709.
+  ///
+  /// In en, this message translates to:
+  /// **'• This SSDT is applicable to all X99 motherboards and most X79 motherboards. Its main function is to disable unused devices in ACPI to prevent IOPCIFamily from causing kernel panic.\n• Applicable motherboards: All native X99 (C612) motherboards and most native X79 (C602) motherboards.'**
+  String get autoGen5709;
+
+  /// No description provided for @autoGen5710.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable or fake legacy RTC timer, and fix RTC range (applies to all native X99 (C612) and X299 motherboards)'**
+  String get autoGen5710;
+
+  /// No description provided for @autoGen5711.
+  ///
+  /// In en, this message translates to:
+  /// **'• Enable or fake legacy RTC timers and fix RTC range.\n• Solve incorrect boot time, RTC related errors, sleep wake-up issues, etc.\n• This SSDT is applicable to all X99(C612) motherboards as well as X299 motherboards'**
+  String get autoGen5711;
+
+  /// No description provided for @autoGen5712.
+  ///
+  /// In en, this message translates to:
+  /// **'Add DTGP support'**
+  String get autoGen5712;
+
+  /// No description provided for @autoGen5713.
+  ///
+  /// In en, this message translates to:
+  /// **'• Inject hardware device attributes to fix some ACPI issues with graphics cards, sound cards, thunderbolt cards, etc. (When there is no DTGP method support, these attribute injections may fail or not work!)'**
+  String get autoGen5713;
+
+  /// No description provided for @autoGen5714.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterfeiting a standard DMA controller'**
+  String get autoGen5714;
+
+  /// No description provided for @autoGen5715.
+  ///
+  /// In en, this message translates to:
+  /// **'• A virtual device controller (PNP0200) that imitates a standard DMA Controller (Direct Memory Access Controller), completes the ACPI resource table, and allows macOS to properly identify LPC bus devices and DMA functions.\n• Typically not required for HEDT/server platforms\n• Add missing parts, this is just a perfect solution, not necessary!'**
+  String get autoGen5715;
+
+  /// No description provided for @autoGen5716.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterfeiting a standard PWRB controller'**
+  String get autoGen5716;
+
+  /// No description provided for @autoGen5717.
+  ///
+  /// In en, this message translates to:
+  /// **'• Counterfeit a standard Power Button (PNP0C0C) device to allow macOS to recognize the system power button normally and support sleep and wake-up\n• There is no PNP0C0C in some BIOS/motherboard ACPI trees, and macOS cannot handle the power button correctly, which may result in the inability to sleep, the inability to wake up, and the unavailability of the menu bar power button.\n• Add missing parts, this is just a perfect solution, not necessary!'**
+  String get autoGen5717;
+
+  /// No description provided for @autoGen5718.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterfeiting a standard SLPB controller'**
+  String get autoGen5718;
+
+  /// No description provided for @autoGen5719.
+  ///
+  /// In en, this message translates to:
+  /// **'• Counterfeit a standard Sleep Button (PNP0C0E) device to allow macOS to correctly identify the system sleep button and implement sleep and wake functions\n• There is no PNP0C0E in some BIOS/motherboard ACPI trees, and macOS cannot handle the sleep button correctly, which may result in the inability to sleep, the inability to wake up, and the unavailability of the sleep button in the menu bar.\n• This part is required for PNP0C0E sleep correction method!\n• Add missing parts, this is just a perfect solution, not necessary!'**
+  String get autoGen5719;
+
+  /// No description provided for @autoGen5720.
+  ///
+  /// In en, this message translates to:
+  /// **'MEM2 device required to imitate an IGPU'**
+  String get autoGen5720;
+
+  /// No description provided for @autoGen5721.
+  ///
+  /// In en, this message translates to:
+  /// **'• Add MEM2 ACPI device required by IGPU and fix IGPU related issues\n• Supplement core display memory mapping to avoid driver initialization failure\n• Applicable scope: Haswell ~ Kaby Lake, core graphics system only. Usually only discrete graphics do not need this SSDT!'**
+  String get autoGen5721;
+
+  /// No description provided for @autoGen5722.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid path'**
+  String get autoGen5722;
+
+  /// No description provided for @autoGen5723.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid .aml or .dat file found'**
+  String get autoGen5723;
+
+  /// No description provided for @autoGen5724.
+  ///
+  /// In en, this message translates to:
+  /// **'Decompiling SSDT.aml files in batches...'**
+  String get autoGen5724;
+
+  /// No description provided for @autoGen5725.
+  ///
+  /// In en, this message translates to:
+  /// **'Decompiling DSDT.aml and SSDT.aml files in batches...'**
+  String get autoGen5725;
+
+  /// No description provided for @autoGen5726.
+  ///
+  /// In en, this message translates to:
+  /// **'Decompiling failed .aml files individually...'**
+  String get autoGen5726;
+
+  /// No description provided for @autoGen5727.
+  ///
+  /// In en, this message translates to:
+  /// **'Decompiling other .aml files...'**
+  String get autoGen5727;
+
+  /// No description provided for @autoGen5728.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: Try not to include Chinese or special characters in the path or file name, otherwise it may cause unexpected problems!'**
+  String get autoGen5728;
+
+  /// No description provided for @autoGen5729.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI export tool is not ready'**
+  String get autoGen5729;
+
+  /// No description provided for @autoGen5730.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting ACPI tables...'**
+  String get autoGen5730;
+
+  /// No description provided for @autoGen5731.
+  ///
+  /// In en, this message translates to:
+  /// **'The current platform does not support exporting ACPI tables'**
+  String get autoGen5731;
+
+  /// No description provided for @autoGen5732.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for sudo password authorization...'**
+  String get autoGen5732;
+
+  /// No description provided for @autoGen5733.
+  ///
+  /// In en, this message translates to:
+  /// **'Administrator authorization has been canceled'**
+  String get autoGen5733;
+
+  /// No description provided for @autoGen5734.
+  ///
+  /// In en, this message translates to:
+  /// **'Administrator password not entered'**
+  String get autoGen5734;
+
+  /// No description provided for @autoGen5735.
+  ///
+  /// In en, this message translates to:
+  /// **'Administrator password is incorrect'**
+  String get autoGen5735;
+
+  /// No description provided for @autoGen5736.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI table export process failed'**
+  String get autoGen5736;
+
+  /// No description provided for @autoGen5737.
+  ///
+  /// In en, this message translates to:
+  /// **'The ACPI table extracted by the current platform is empty or does not support exporting the ACPI table.'**
+  String get autoGen5737;
+
+  /// No description provided for @autoGen5738.
+  ///
+  /// In en, this message translates to:
+  /// **'=> DSDT not found, exporting by signature...'**
+  String get autoGen5738;
+
+  /// No description provided for @autoGen5739.
+  ///
+  /// In en, this message translates to:
+  /// **'DSDT table export failed'**
+  String get autoGen5739;
+
+  /// No description provided for @autoGen5740.
+  ///
+  /// In en, this message translates to:
+  /// **'Updating table name...'**
+  String get autoGen5740;
+
+  /// No description provided for @autoGen5741.
+  ///
+  /// In en, this message translates to:
+  /// **'Export ACPI table successfully!'**
+  String get autoGen5741;
+
+  /// No description provided for @autoGen5742.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid ACPI table provided!'**
+  String get autoGen5742;
+
+  /// No description provided for @autoGen5743.
+  ///
+  /// In en, this message translates to:
+  /// **'The hexadecimal data to be located was not found!'**
+  String get autoGen5743;
+
+  /// No description provided for @autoGen5744.
+  ///
+  /// In en, this message translates to:
+  /// **'Unique fill ID not found!'**
+  String get autoGen5744;
+
+  /// No description provided for @autoGen5745.
+  ///
+  /// In en, this message translates to:
+  /// **'=> getScopeOfDevice: invalid table parameter'**
+  String get autoGen5745;
+
+  /// No description provided for @autoGen5746.
+  ///
+  /// In en, this message translates to:
+  /// **'loosest'**
+  String get autoGen5746;
+
+  /// No description provided for @autoGen5747.
+  ///
+  /// In en, this message translates to:
+  /// **'length only'**
+  String get autoGen5747;
+
+  /// No description provided for @autoGen5748.
+  ///
+  /// In en, this message translates to:
+  /// **'Table ID and length, disable normalized headers'**
+  String get autoGen5748;
+
+  /// No description provided for @autoGen5749.
+  ///
+  /// In en, this message translates to:
+  /// **'Table ID and length, enable normalized headers'**
+  String get autoGen5749;
+
+  /// No description provided for @autoGen5750.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel 1st generation Arrandale, 2nd generation Sandy Bridge, 3rd generation Ivy Bridge'**
+  String get autoGen5750;
+
+  /// No description provided for @autoGen5751.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel 4th generation Haswell, 5th generation Broadwell'**
+  String get autoGen5751;
+
+  /// No description provided for @autoGen5752.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel 6th generation Skylake, 7th generation Kaby Lake, some 4th generation Haswell'**
+  String get autoGen5752;
+
+  /// No description provided for @autoGen5753.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom brightness, usually used for some non-standard equipment or special needs settings'**
+  String get autoGen5753;
+
+  /// No description provided for @autoGen5754.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel 8th generation CoffeeLake ~ 10th generation, and AMD notebooks'**
+  String get autoGen5754;
+
+  /// No description provided for @autoGen5755.
+  ///
+  /// In en, this message translates to:
+  /// **'Others (requires custom applbkl-name / applbkl-data device properties), may not be supported'**
+  String get autoGen5755;
+
+  /// No description provided for @autoGen5756.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI tools currently only support Windows/macOS/Linux platforms'**
+  String get autoGen5756;
+
+  /// No description provided for @autoGen5757.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: The old version of iasl-legacy only supports macOS 10.6 and earlier versions. There may be compatibility issues with current mainstream systems, so use with caution!!!'**
+  String get autoGen5757;
+
+  /// No description provided for @autoGen5758.
+  ///
+  /// In en, this message translates to:
+  /// **'Use [iasl-legacy old version compiler]'**
+  String get autoGen5758;
+
+  /// No description provided for @autoGen5759.
+  ///
+  /// In en, this message translates to:
+  /// **'Compilation failed!'**
+  String get autoGen5759;
+
+  /// No description provided for @autoGen5760.
+  ///
+  /// In en, this message translates to:
+  /// **'It is recommended to change to a new version of iasl or enable forced compilation and try again!'**
+  String get autoGen5760;
+
+  /// No description provided for @autoGen5761.
+  ///
+  /// In en, this message translates to:
+  /// **'exist'**
+  String get autoGen5761;
+
+  /// No description provided for @autoGen5762.
+  ///
+  /// In en, this message translates to:
+  /// **'does not exist'**
+  String get autoGen5762;
+
+  /// No description provided for @autoGen5763.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: Intel 1st generation Arrandale, 2nd generation Sandy Bridge, 3rd generation Ivy Bridge use UID: 14 ​​by default, but some machines using UID: 14 ​​will encounter limited maximum brightness or other problems. In order to solve these problems, the correct device path of the iGPU (integrated graphics card) must be set, and the IGPU register information may need to be supplemented.'**
+  String get autoGen5763;
+
+  /// No description provided for @autoGen5764.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the iGPU ACPI path to use. The character limit for each path element is 4 alphanumeric characters (starting with a letter or underscore), separated by spaces. For example: SB.PCI0.GFX0'**
+  String get autoGen5764;
+
+  /// No description provided for @autoGen5765.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: NBCF patch has been generated (depends on BrightnessKeys.kext driver), enabled by default! If you encounter problems during use, please disable this patch!'**
+  String get autoGen5765;
+
+  /// No description provided for @autoGen5766.
+  ///
+  /// In en, this message translates to:
+  /// **'The following bridge cannot be resolved:'**
+  String get autoGen5766;
+
+  /// No description provided for @autoGen5767.
+  ///
+  /// In en, this message translates to:
+  /// **'=> The current firmware supports common system states! If it is not an AOAC machine, after fixing the sleep problem, macOS can support S3 sleep, otherwise it does not support S3 sleep!'**
+  String get autoGen5767;
+
+  /// No description provided for @autoGen5768.
+  ///
+  /// In en, this message translates to:
+  /// **'patch'**
+  String get autoGen5768;
+
+  /// No description provided for @autoGen5769.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection to server timed out'**
+  String get autoGen5769;
+
+  /// No description provided for @autoGen5770.
+  ///
+  /// In en, this message translates to:
+  /// **'Download canceled'**
+  String get autoGen5770;
+
+  /// No description provided for @autoGen5771.
+  ///
+  /// In en, this message translates to:
+  /// **'Read response timeout'**
+  String get autoGen5771;
+
+  /// No description provided for @autoGen5772.
+  ///
+  /// In en, this message translates to:
+  /// **'Kext copied successfully'**
+  String get autoGen5772;
+
+  /// No description provided for @autoGen5773.
+  ///
+  /// In en, this message translates to:
+  /// **'The web platform downloads directly by default, and does not currently support selecting the default path.'**
+  String get autoGen5773;
+
+  /// No description provided for @autoGen5774.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuration file root node is not a JSON object'**
+  String get autoGen5774;
+
+  /// No description provided for @autoGen5775.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the system'**
+  String get autoGen5775;
+
+  /// No description provided for @autoGen5776.
+  ///
+  /// In en, this message translates to:
+  /// **'closure'**
+  String get autoGen5776;
+
+  /// No description provided for @autoGen5777.
+  ///
+  /// In en, this message translates to:
+  /// **'Microsoft Yahei'**
+  String get autoGen5777;
+
+  /// No description provided for @autoGen5778.
+  ///
+  /// In en, this message translates to:
+  /// **'Update black body'**
+  String get autoGen5778;
+
+  /// No description provided for @autoGen5779.
+  ///
+  /// In en, this message translates to:
+  /// **'Siyuan Songti'**
+  String get autoGen5779;
+
+  /// No description provided for @autoGen5780.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting to refresh hardware information'**
+  String get autoGen5780;
+
+  /// No description provided for @autoGen5781.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading hardware information'**
+  String get autoGen5781;
+
+  /// No description provided for @autoGen5782.
+  ///
+  /// In en, this message translates to:
+  /// **'Refreshing hardware information'**
+  String get autoGen5782;
+
+  /// No description provided for @autoGen5783.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information loading completed'**
+  String get autoGen5783;
+
+  /// No description provided for @autoGen5784.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information loading failed'**
+  String get autoGen5784;
+
+  /// No description provided for @autoGen5785.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information is not supported yet'**
+  String get autoGen5785;
+
+  /// No description provided for @autoGen5786.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information import completed'**
+  String get autoGen5786;
+
+  /// No description provided for @autoGen5787.
+  ///
+  /// In en, this message translates to:
+  /// **'fail'**
+  String get autoGen5787;
+
+  /// No description provided for @autoGen5788.
+  ///
+  /// In en, this message translates to:
+  /// **'Not supported'**
+  String get autoGen5788;
+
+  /// No description provided for @autoGen5789.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get autoGen5789;
+
+  /// No description provided for @autoGen5790.
+  ///
+  /// In en, this message translates to:
+  /// **'cache'**
+  String get autoGen5790;
+
+  /// No description provided for @autoGen5791.
+  ///
+  /// In en, this message translates to:
+  /// **'The current platform does not support hardware information query'**
+  String get autoGen5791;
+
+  /// No description provided for @autoGen5792.
+  ///
+  /// In en, this message translates to:
+  /// **'The current report is an imported external hardware report. Please refresh the local hardware information before exporting.'**
+  String get autoGen5792;
+
+  /// No description provided for @autoGen5793.
+  ///
+  /// In en, this message translates to:
+  /// **'There is currently no exportable local hardware information.'**
+  String get autoGen5793;
+
+  /// No description provided for @autoGen5794.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware reports folder cleanup failed'**
+  String get autoGen5794;
+
+  /// No description provided for @autoGen5795.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware reporting folder creation failed'**
+  String get autoGen5795;
+
+  /// No description provided for @autoGen5796.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI table export failed or not supported'**
+  String get autoGen5796;
+
+  /// No description provided for @autoGen5797.
+  ///
+  /// In en, this message translates to:
+  /// **'Administrator authorization has been canceled and the ACPI table has not been exported'**
+  String get autoGen5797;
+
+  /// No description provided for @autoGen5798.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to export ACPI table without entering administrator password'**
+  String get autoGen5798;
+
+  /// No description provided for @autoGen5799.
+  ///
+  /// In en, this message translates to:
+  /// **'The administrator password is incorrect and the ACPI table cannot be exported.'**
+  String get autoGen5799;
+
+  /// No description provided for @autoGen5800.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI table export failed: No valid ACPI table found'**
+  String get autoGen5800;
+
+  /// No description provided for @autoGen5801.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI table export failed: Export process failed.'**
+  String get autoGen5801;
+
+  /// No description provided for @autoGen5802.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information file is not a JSON object'**
+  String get autoGen5802;
+
+  /// No description provided for @autoGen5803.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware information has been imported'**
+  String get autoGen5803;
+
+  /// No description provided for @autoGen5804.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI table catalog is invalid, custom SSDT is not available'**
+  String get autoGen5804;
+
+  /// No description provided for @autoGen5805.
+  ///
+  /// In en, this message translates to:
+  /// **'Start configuring EFI...'**
+  String get autoGen5805;
+
+  /// No description provided for @autoGen5806.
+  ///
+  /// In en, this message translates to:
+  /// **'Generating ConfigModel based on hardware information...'**
+  String get autoGen5806;
+
+  /// No description provided for @autoGen5807.
+  ///
+  /// In en, this message translates to:
+  /// **'Use EFI raw SSDT, skip SSDT customization.'**
+  String get autoGen5807;
+
+  /// No description provided for @autoGen5808.
+  ///
+  /// In en, this message translates to:
+  /// **'External hardware report imported but no ACPI table catalog provided, custom SSDT disabled.'**
+  String get autoGen5808;
+
+  /// No description provided for @autoGen5809.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting OpenCore EFI...'**
+  String get autoGen5809;
+
+  /// No description provided for @autoGen5810.
+  ///
+  /// In en, this message translates to:
+  /// **'EFI written, start extracting ACPI and customizing SSDT...'**
+  String get autoGen5810;
+
+  /// No description provided for @autoGen5811.
+  ///
+  /// In en, this message translates to:
+  /// **'The SSDT customization process ends.'**
+  String get autoGen5811;
+
+  /// No description provided for @autoGen5812.
+  ///
+  /// In en, this message translates to:
+  /// **'SSDT customization process failed.'**
+  String get autoGen5812;
+
+  /// No description provided for @autoGen5813.
+  ///
+  /// In en, this message translates to:
+  /// **'EFI configuration completed.'**
+  String get autoGen5813;
+
+  /// No description provided for @autoGen5814.
+  ///
+  /// In en, this message translates to:
+  /// **'EFI configuration failed, please check the output path or logs.'**
+  String get autoGen5814;
+
+  /// No description provided for @autoGen5815.
+  ///
+  /// In en, this message translates to:
+  /// **'The hardware automatically generates ConfigModel rules and is being reconstructed.'**
+  String get autoGen5815;
+
+  /// No description provided for @autoGen5816.
+  ///
+  /// In en, this message translates to:
+  /// **'The length of tips must be the same as choices'**
+  String get autoGen5816;
+
+  /// No description provided for @autoGen5817.
+  ///
+  /// In en, this message translates to:
+  /// **'https://github.com/alebypegasus/RapidEFI-Tool/blob/main/Success Stories.md'**
+  String get autoGen5817;
+
+  /// No description provided for @autoGen5818.
+  ///
+  /// In en, this message translates to:
+  /// **'assets/ssdt/platformpatch.md'**
+  String get autoGen5818;
+
+  /// No description provided for @autoGen5819.
+  ///
+  /// In en, this message translates to:
+  /// **'assets/ssdt/sound card patch.md'**
+  String get autoGen5819;
+
+  /// No description provided for @autoGen5820.
+  ///
+  /// In en, this message translates to:
+  /// **'assets/ssdt/graphics card counterfeit.md'**
+  String get autoGen5820;
+
+  /// No description provided for @autoGen5821.
+  ///
+  /// In en, this message translates to:
+  /// **'assets/ssdt/shielding device.md'**
+  String get autoGen5821;
+
+  /// No description provided for @autoGen5822.
+  ///
+  /// In en, this message translates to:
+  /// **'assets/ssdt/brightnesspatch.md'**
+  String get autoGen5822;
+
+  /// No description provided for @autoGen5823.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth driver instructions:\n  1. When Intel WiFi is checked, the Intel Bluetooth driver will be automatically added according to the macOS version, no need to check it manually! ! !\n  2. When Broadcom WiFi is checked, the Broadcom Bluetooth driver will be automatically added according to the macOS version, no need to manually check it! ! !\n  3. When Atheros WiFi is checked, the Atheros Bluetooth driver will be added automatically, no need to check it manually! ! !\n  4. If the WiFi model is not checked or the Bluetooth model is not explained, you need to check it manually! ! !\n  5. Since Bluetooth uses the USB channel, if it still does not work properly after adding drivers and patches, please make sure the USB is well customized! ! !'**
+  String get autoGen5823;
+
+  /// No description provided for @autoGen5824.
+  ///
+  /// In en, this message translates to:
+  /// **'Common HPET paths:\n  \\_SB.PCI0.LPCB.HPET\n  \\_SB.PCI0.LPC.HPET\n  \\_SB.PCI0.HPET\n  This option is used to fix some sound card IRQ problems! Note: If your sound card does not have IRQ problems, please do not use this function!!!'**
+  String get autoGen5824;
+
+  /// No description provided for @autoGen5825.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported macOS versions:\n    • Wireless USB Big Sur Adapter-V18 version supports macOS Catalina 10.15.x ~ macOS Tahoe 26.x (requires OCLP USB patch)\n    • Wireless USB Big Sur Adapter-V15 version supports OS X Mavericks 10.9 ~ macOS Catalina 10.15.x\n  Supported USB WiFi is as follows:\n    • The main chip is Realtek 802.11n and 802.11ac USB Wi-Fi Adapter. For more specific models, please refer to the author\'\'s instructions.'**
+  String get autoGen5825;
+
+  /// No description provided for @autoGen5826.
+  ///
+  /// In en, this message translates to:
+  /// **'AMD discrete graphics counterfeit (device properties):\n   1. You need to fill in the PCI path of the graphics card, for example: PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)\n   2. You need to fill in the counterfeit device ID of the graphics card (4 digits in hexadecimal), for example: 73BF\n   3. After the graphics card is counterfeited, you still need to consider the startup parameters required by the AMD graphics card (you can go to Independent Graphics Configuration -> AMD Independent Graphics -> Check as needed)\n   4. The tool has pre-prepared some graphics card device IDs. If not, please find it yourself or contact the author for supplementary information.'**
+  String get autoGen5826;
+
+  /// No description provided for @autoGen5827.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get autoGen5827;
+
+  /// No description provided for @autoGen5828.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get autoGen5828;
+
+  /// No description provided for @autoGen5829.
+  ///
+  /// In en, this message translates to:
+  /// **'Sure'**
+  String get autoGen5829;
 }
 
 class _AppLocalizationsDelegate

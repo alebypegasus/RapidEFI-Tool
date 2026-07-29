@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 // ignore_for_file: constant_identifier_names
 
 import '../../models/device_properties/device_property_item.dart';
@@ -12,14 +13,14 @@ class ConfigDp {
     key: 'device-id',
     dataType: 'data',
     value: '3A1C0000',
-    comment: '2代CPU - 3代主板混合',
+    comment: () => l10nGlobal.autoGen5334,
   );
 
   static DevicePropertyItem ivyBridge_imei = DevicePropertyItem(
     key: 'device-id',
     dataType: 'data',
     value: '3A1E0000',
-    comment: '3代CPU - 2代主板混合',
+    comment: () => l10nGlobal.autoGen5335,
   );
 
   ///2代，不驱动核显
@@ -27,7 +28,7 @@ class ConfigDp {
     key: 'AAPL,snb-platform-id',
     dataType: 'data',
     value: '11223344',
-    comment: '暂不驱动核显完成安装(可以避免核显缓冲帧问题导致黑屏,内核崩溃问题)',
+    comment: () => l10nGlobal.autoGen5336,
     display: false,
   );
 
@@ -39,7 +40,7 @@ class ConfigDp {
   static DevicePropertyItem device_id = DevicePropertyItem(
     key: 'device-id',
     dataType: 'data',
-    value: '仿冒设备ID',
+    value: l10nGlobal.autoGen5337,
   );
 
   ///2代,计算
@@ -47,7 +48,7 @@ class ConfigDp {
       key: 'AAPL,snb-platform-id',
       dataType: 'data',
       value: '',
-      comment: '核显仅用于加速、计算任务，不作为输出显示(独立显卡输出显示)',
+      comment: () => l10nGlobal.autoGen5338,
       display: false);
 
   ///3代及以上,计算
@@ -56,7 +57,7 @@ class ConfigDp {
 
   static DevicePropertyItem intel_desktop_display_2th =
       display_none_2th.copyWith(
-          value: '10000300', comment: 'HD3000、HD P3000等核显', display: true);
+          value: '10000300', comment: () => l10nGlobal.autoGen5339, display: true);
 
   static DevicePropertyItem intel_desktop_display_fakeid_2th =
       device_id.copyWith(
@@ -105,7 +106,7 @@ class ConfigDp {
   ///3代,核显输出
   static DevicePropertyItem intel_desktop_display_3th =
       display_none_3th.copyWith(
-          value: '0A006601', comment: 'HD4000、HD P4000等核显', display: true);
+          value: '0A006601', comment: () => l10nGlobal.autoGen5340, display: true);
 
   static DevicePropertyItem intel_desktop_display_fakeid_3th =
       device_id.copyWith(
@@ -150,7 +151,7 @@ class ConfigDp {
   ///4代,核显输出
   static DevicePropertyItem intel_desktop_display_4th =
       intel_desktop_display_3th.copyWith(
-          value: '0300220D', comment: 'HD4400、HD4600、HD P4600等核显');
+          value: '0300220D', comment: () => l10nGlobal.autoGen5341);
 
   static DevicePropertyItem intel_desktop_display_fakeid_4th =
       device_id.copyWith(
@@ -188,7 +189,7 @@ class ConfigDp {
   ///5代,核显输出
   static DevicePropertyItem intel_desktop_display_5th_1 =
       intel_desktop_display_3th.copyWith(
-          value: '07002216', comment: 'Iris Pro 6200/6300等核显');
+          value: '07002216', comment: () => l10nGlobal.autoGen5342);
 
   static DevicePropertyItem intel_desktop_display_fakeid_5th_1 =
       device_id.copyWith(
@@ -197,7 +198,7 @@ class ConfigDp {
 
   static DevicePropertyItem intel_desktop_display_5th_2 =
       intel_desktop_display_3th.copyWith(
-          value: '03001216', comment: 'HD5600核显(P6200,P6300可仿冒此设备)');
+          value: '03001216', comment: () => l10nGlobal.autoGen5343);
 
   static DevicePropertyItem intel_desktop_display_fakeid_5th_2 =
       device_id.copyWith(
@@ -206,7 +207,7 @@ class ConfigDp {
 
   static DevicePropertyItem intel_desktop_display_5th_3 =
       intel_desktop_display_3th.copyWith(
-          value: '00002B16', comment: 'HD6000,Iris 6100等核显');
+          value: '00002B16', comment: () => l10nGlobal.autoGen5344);
 
   static DevicePropertyItem intel_desktop_display_fakeid_5th_3 =
       device_id.copyWith(
@@ -262,7 +263,7 @@ class ConfigDp {
   ///6代,核显输出
   static DevicePropertyItem intel_desktop_display_6th_1 =
       intel_desktop_display_3th.copyWith(
-          value: '00001659', comment: 'HD520,HD530等仿冒HD620核显(适用于Ventura以上系统)');
+          value: '00001659', comment: () => l10nGlobal.autoGen5345);
 
   static DevicePropertyItem intel_desktop_display_fakeid_6th_1 =
       device_id.copyWith(
@@ -272,7 +273,7 @@ class ConfigDp {
   static DevicePropertyItem intel_desktop_display_6th_2 =
       intel_desktop_display_3th.copyWith(
           value: '00001B59',
-          comment: 'HD520,HD530等仿冒HD620核显(适用于Ventura以上系统,备选方案)');
+          comment: () => l10nGlobal.autoGen5346);
 
   static DevicePropertyItem intel_desktop_display_fakeid_6th_2 =
       device_id.copyWith(
@@ -282,7 +283,7 @@ class ConfigDp {
   static DevicePropertyItem intel_desktop_display_6th_3 =
       intel_desktop_display_3th.copyWith(
           value: '00001219',
-          comment: 'HD530、HD P530等500系列核显(适用于Monterey及以下系统)');
+          comment: () => l10nGlobal.autoGen5347);
 
   static DevicePropertyItem intel_desktop_display_fakeid_6th_3 =
       device_id.copyWith(
@@ -338,7 +339,7 @@ class ConfigDp {
   ///7代,核显输出
   static DevicePropertyItem intel_desktop_display_7th_1 =
       intel_desktop_display_3th.copyWith(
-          value: '00001259', comment: 'HD 630、HD P630等核显');
+          value: '00001259', comment: () => l10nGlobal.autoGen5348);
 
   static DevicePropertyItem intel_desktop_display_fakeid_7th_1 =
       device_id.copyWith(
@@ -347,7 +348,7 @@ class ConfigDp {
 
   static DevicePropertyItem intel_desktop_display_7th_2 =
       intel_desktop_display_3th.copyWith(
-          value: '07009B3E', comment: 'HD 630、P630等仿冒UHD630核显(方案一)');
+          value: '07009B3E', comment: () => l10nGlobal.autoGen5349);
 
   static DevicePropertyItem intel_desktop_display_fakeid_7th_2 =
       device_id.copyWith(
@@ -356,7 +357,7 @@ class ConfigDp {
 
   static DevicePropertyItem intel_desktop_display_7th_3 =
       intel_desktop_display_3th.copyWith(
-          value: '00009B3E', comment: 'HD 630、P630等仿冒UHD630核显(方案二)');
+          value: '00009B3E', comment: () => l10nGlobal.autoGen5350);
 
   static DevicePropertyItem intel_desktop_display_fakeid_7th_3 =
       device_id.copyWith(
@@ -411,7 +412,7 @@ class ConfigDp {
   ///8代,核显输出
   static DevicePropertyItem intel_desktop_display_8th_1 =
       intel_desktop_display_3th.copyWith(
-          value: '07009B3E', comment: 'UHD 630核显显示输出方案一');
+          value: '07009B3E', comment: () => l10nGlobal.autoGen5351);
 
   static DevicePropertyItem intel_desktop_display_fakeid_8th_1 =
       device_id.copyWith(
@@ -420,7 +421,7 @@ class ConfigDp {
 
   static DevicePropertyItem intel_desktop_display_8th_2 =
       intel_desktop_display_3th.copyWith(
-          value: '00009B3E', comment: 'UHD 630核显方显示输出案二');
+          value: '00009B3E', comment: () => l10nGlobal.autoGen5352);
 
   static DevicePropertyItem intel_desktop_display_fakeid_8th_2 =
       intel_desktop_display_fakeid_8th_1.copyWith();
@@ -476,7 +477,7 @@ class ConfigDp {
     key: 'framebuffer-patch-enable',
     dataType: 'data',
     value: '01000000',
-    comment: 'Intel HD Graphics(比如:i3 380M,i5 480M自带核显)',
+    comment: () => l10nGlobal.autoGen5353,
   );
 
   static DevicePropertyItem framebuffe_singlelink = DevicePropertyItem(
@@ -496,21 +497,21 @@ class ConfigDp {
     key: 'AAPL,snb-platform-id',
     dataType: 'data',
     value: '00000100',
-    comment: 'HD3000核显输出显示,适用于1366x768及以下分辨率)',
+    comment: () => l10nGlobal.autoGen5354,
   );
 
   static DevicePropertyItem AAPL00_DualLink = DevicePropertyItem(
     key: 'AAPL00,DualLink',
     dataType: 'data',
     value: '01000000',
-    comment: '启用支持1600X900以上分辨率',
+    comment: () => l10nGlobal.autoGen5355,
   );
 
   static DevicePropertyItem intel_laptop_device_id = DevicePropertyItem(
     key: 'device-id',
     dataType: 'data',
     value: '16010000',
-    comment: '仿冒设备ID',
+    comment: () => l10nGlobal.autoGen5337,
   );
 
   static DevicePropertyItem intel_laptop_imei_2th = sandyBridge_imei.copyWith();
@@ -528,7 +529,7 @@ class ConfigDp {
     intel_desktop.copyWith(
       propertyItems: [
         intel_laptop_display_2th.copyWith(
-            comment: 'HD3000核显输出显示,适用于1600x900及以上分辨率)'),
+            comment: () => l10nGlobal.autoGen5356),
         AAPL00_DualLink
       ],
     )
@@ -544,19 +545,19 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '03006601',
-    comment: 'HD4000核显驱动方案一,适用于1366x768及以下分辨率,LVDS链接方式',
+    comment: () => l10nGlobal.autoGen5357,
   );
 
   static DevicePropertyItem intel_laptop_display_3th_2 =
       intel_laptop_display_3th_1.copyWith(
     value: '04006601',
-    comment: 'HD4000核显驱动方案二,适用于1600x900及以上分辨率LVDS链接方式,多屏输出可能需要更多补丁配置)',
+    comment: () => l10nGlobal.autoGen5358,
   );
 
   static DevicePropertyItem intel_laptop_display_3th_3 =
       intel_laptop_display_3th_1.copyWith(
     value: '09006601',
-    comment: 'HD4000核显驱动方案三,适用于以eDP连接方式的显示器)',
+    comment: () => l10nGlobal.autoGen5359,
   );
 
   static DevicePropertyItem intel_laptop_device_id_3th =
@@ -603,13 +604,13 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '0600260A',
-    comment: 'HD4200、HD4400、HD4600核显',
+    comment: () => l10nGlobal.autoGen5360,
   );
 
   static DevicePropertyItem intel_laptop_display_4th_2 =
       intel_laptop_display_3th_1.copyWith(
     value: '0500260A',
-    comment: 'HD5000、HD5100、HD5200核显',
+    comment: () => l10nGlobal.autoGen5361,
   );
 
   static DevicePropertyItem intel_laptop_display_4th_3 = display_none_3th;
@@ -640,7 +641,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '06002616',
-    comment: 'HD5500核显',
+    comment: () => l10nGlobal.autoGen5362,
   );
 
   static DevicePropertyItem intel_laptop_display_5th_4 = display_none_3th;
@@ -668,7 +669,7 @@ class ConfigDp {
   static List<IgpuPropertyModel> intel_laptop_5th_2 = [
     intel_desktop.copyWith(
       propertyItems: [
-        intel_laptop_display_5th.copyWith(comment: 'HD5600核显'),
+        intel_laptop_display_5th.copyWith(comment: () => l10nGlobal.autoGen5363),
         intel_laptop_device_id_5th_2
       ],
     ),
@@ -677,7 +678,7 @@ class ConfigDp {
     intel_desktop.copyWith(
       propertyItems: [
         intel_laptop_display_5th.copyWith(
-            value: '00002B16', comment: 'HD6000核显'),
+            value: '00002B16', comment: () => l10nGlobal.autoGen5364),
         intel_laptop_device_id_5th_3
       ],
     ),
@@ -692,7 +693,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '00001659',
-    comment: 'HD520,HD530等仿冒HD620核显(用于Ventura以上系统)',
+    comment: () => l10nGlobal.autoGen5365,
   );
   static DevicePropertyItem intel_laptop_device_id_6th_1 =
       intel_laptop_device_id.copyWith(
@@ -701,7 +702,7 @@ class ConfigDp {
   static DevicePropertyItem intel_laptop_display_6th_2 =
       intel_laptop_display_6th_1.copyWith(
     value: '00001619',
-    comment: 'HD 515、HD 520、HD 530、 HD 540、 HD 550、P530核显(适用于Monterey及以下系统)',
+    comment: () => l10nGlobal.autoGen5366,
   );
   static DevicePropertyItem intel_laptop_device_id_6th_2 =
       intel_laptop_device_id.copyWith(
@@ -711,13 +712,13 @@ class ConfigDp {
   static DevicePropertyItem intel_laptop_display_6th_3 =
       intel_laptop_display_6th_1.copyWith(
     value: '00001E19',
-    comment: 'HD 515核显备选方案',
+    comment: () => l10nGlobal.autoGen5367,
   );
 
   static DevicePropertyItem intel_laptop_display_6th_4 =
       intel_laptop_display_6th_1.copyWith(
     value: '00001B19',
-    comment: 'HD 510核显',
+    comment: () => l10nGlobal.autoGen5368,
   );
   static DevicePropertyItem intel_laptop_device_id_6th_4 =
       intel_laptop_device_id.copyWith(
@@ -758,7 +759,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '00001B59',
-    comment: 'HD 615、 HD 620、HD 630、 HD 640、HD 650核显',
+    comment: () => l10nGlobal.autoGen5369,
   );
   static DevicePropertyItem intel_laptop_device_id_7th_1 =
       intel_laptop_device_id.copyWith(
@@ -768,7 +769,7 @@ class ConfigDp {
   static DevicePropertyItem intel_laptop_display_7th_2 =
       intel_nuc_display_7th_1.copyWith(
     value: '00001659',
-    comment: 'HD/UHD 620核显备选方案',
+    comment: () => l10nGlobal.autoGen5370,
   );
   static DevicePropertyItem intel_laptop_device_id_7th_2 =
       intel_laptop_device_id.copyWith(
@@ -778,7 +779,7 @@ class ConfigDp {
   static DevicePropertyItem intel_laptop_display_7th_3 =
       intel_laptop_display_6th_1.copyWith(
     value: '0000C087',
-    comment: 'UHD 617、UHD 620核显',
+    comment: () => l10nGlobal.autoGen5371,
   );
   static DevicePropertyItem intel_laptop_device_id_7th_3 =
       intel_laptop_device_id.copyWith(
@@ -814,7 +815,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '0900A53E',
-    comment: 'UHD 630核显',
+    comment: () => l10nGlobal.autoGen5372,
   );
   static DevicePropertyItem intel_laptop_device_id_8th_1 =
       intel_laptop_device_id.copyWith(
@@ -824,7 +825,7 @@ class ConfigDp {
   static DevicePropertyItem intel_laptop_display_8th_2 =
       intel_laptop_display_8th_1.copyWith(
     value: '00009B3E',
-    comment: 'UHD 620核显',
+    comment: () => l10nGlobal.autoGen5373,
   );
   static DevicePropertyItem intel_laptop_device_id_8th_2 =
       intel_laptop_device_id.copyWith(
@@ -834,7 +835,7 @@ class ConfigDp {
   static DevicePropertyItem intel_laptop_display_8th_3 =
       intel_laptop_display_6th_1.copyWith(
     value: '0400A53E',
-    comment: 'Intel lris Plus 655核显',
+    comment: () => l10nGlobal.autoGen5374,
   );
   static DevicePropertyItem intel_laptop_device_id_8th_3 =
       intel_laptop_device_id.copyWith(
@@ -870,7 +871,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '0900A53E',
-    comment: 'UHD 630核显',
+    comment: () => l10nGlobal.autoGen5372,
   );
   static DevicePropertyItem intel_laptop_device_id_9th_1 =
       intel_laptop_device_id.copyWith(
@@ -880,7 +881,7 @@ class ConfigDp {
   static DevicePropertyItem intel_laptop_display_9th_2 =
       intel_laptop_display_9th_1.copyWith(
     value: '00009B3E',
-    comment: 'UHD 620核显',
+    comment: () => l10nGlobal.autoGen5373,
   );
   static DevicePropertyItem intel_laptop_device_id_9th_2 =
       intel_laptop_device_id.copyWith(
@@ -928,7 +929,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '0000528A',
-    comment: 'G4/G7系列核显',
+    comment: () => l10nGlobal.autoGen5375,
   );
   static DevicePropertyItem intel_laptop_device_id_iceLake =
       intel_laptop_device_id.copyWith(
@@ -964,7 +965,7 @@ class ConfigDp {
   static DevicePropertyItem intel_nuc_display_2th =
       intel_laptop_display_2th.copyWith(
     value: '10000300',
-    comment: 'HD3000核显输出显示',
+    comment: () => l10nGlobal.autoGen5376,
   );
 
   static DevicePropertyItem intel_nuc_device_id =
@@ -988,7 +989,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '0B006601',
-    comment: 'HD4000核显输出显示',
+    comment: () => l10nGlobal.autoGen5377,
   );
   static DevicePropertyItem intel_nuc_device_id_3th =
       intel_laptop_device_id.copyWith(
@@ -1013,8 +1014,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '0300220D',
-    comment:
-        'HD4200,HD4400,HD4600,HD P4600等核显(建议在核显高级配置中勾选4代核显专用补丁,已修补可能出现的小问题)',
+    comment: () => l10nGlobal.autoGen5378,
   );
   static DevicePropertyItem intel_nuc_device_id_4th =
       intel_laptop_device_id.copyWith(
@@ -1039,7 +1039,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '02002616',
-    comment: 'HD5500核显',
+    comment: () => l10nGlobal.autoGen5362,
   );
 
   static DevicePropertyItem intel_nuc_display_5th_4 = display_none_3th;
@@ -1067,7 +1067,7 @@ class ConfigDp {
   static List<IgpuPropertyModel> intel_nuc_5th_2 = [
     intel_desktop.copyWith(
       propertyItems: [
-        intel_nuc_display_5th.copyWith(comment: 'HD5600核显'),
+        intel_nuc_display_5th.copyWith(comment: () => l10nGlobal.autoGen5363),
         intel_nuc_device_id_5th_2
       ],
     )
@@ -1075,7 +1075,7 @@ class ConfigDp {
   static List<IgpuPropertyModel> intel_nuc_5th_3 = [
     intel_desktop.copyWith(
       propertyItems: [
-        intel_nuc_display_5th.copyWith(value: '00002B16', comment: 'HD6000核显'),
+        intel_nuc_display_5th.copyWith(value: '00002B16', comment: () => l10nGlobal.autoGen5364),
         intel_nuc_device_id_5th_3
       ],
     )
@@ -1090,7 +1090,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '00001B59',
-    comment: 'HD520,HD530等仿冒HD620核显(用于Ventura以上系统)',
+    comment: () => l10nGlobal.autoGen5365,
   );
   static DevicePropertyItem intel_nuc_device_id_6th_1 =
       intel_laptop_device_id.copyWith(
@@ -1099,13 +1099,13 @@ class ConfigDp {
   static DevicePropertyItem intel_nuc_display_6th_2 =
       intel_laptop_display_6th_1.copyWith(
     value: '00001E19',
-    comment: 'HD 515核显',
+    comment: () => l10nGlobal.autoGen5379,
   );
 
   static DevicePropertyItem intel_nuc_display_6th_3 =
       intel_laptop_display_6th_1.copyWith(
     value: '02001619',
-    comment: 'HD 520/530核显',
+    comment: () => l10nGlobal.autoGen5380,
   );
   static DevicePropertyItem intel_nuc_device_id_6th_3 =
       intel_laptop_device_id.copyWith(
@@ -1115,7 +1115,7 @@ class ConfigDp {
   static DevicePropertyItem intel_nuc_display_6th_4 =
       intel_laptop_display_6th_1.copyWith(
     value: '02002619',
-    comment: 'HD 540/550核显',
+    comment: () => l10nGlobal.autoGen5381,
   );
   static DevicePropertyItem intel_nuc_device_id_6th_4 =
       intel_laptop_device_id.copyWith(
@@ -1124,13 +1124,13 @@ class ConfigDp {
   static DevicePropertyItem intel_nuc_display_6th_5 =
       intel_laptop_display_6th_1.copyWith(
     value: '05003B19',
-    comment: 'HD 580核显',
+    comment: () => l10nGlobal.autoGen5382,
   );
 
   static DevicePropertyItem intel_nuc_display_6th_6 =
       intel_laptop_display_6th_1.copyWith(
     value: '00001619',
-    comment: 'HD P530核显(比如e3 1245v5自带核显)',
+    comment: () => l10nGlobal.autoGen5383,
   );
   static DevicePropertyItem intel_nuc_device_id_6th_6 =
       intel_laptop_device_id.copyWith(
@@ -1179,13 +1179,13 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '00001E59',
-    comment: 'HD 615核显',
+    comment: () => l10nGlobal.autoGen5384,
   );
 
   static DevicePropertyItem intel_nuc_display_7th_2 =
       intel_nuc_display_7th_1.copyWith(
     value: '00001B59',
-    comment: 'HD 630,HD P630核显',
+    comment: () => l10nGlobal.autoGen5385,
   );
   static DevicePropertyItem intel_nuc_device_id_7th_2 =
       intel_laptop_device_id.copyWith(
@@ -1195,13 +1195,13 @@ class ConfigDp {
   static DevicePropertyItem intel_nuc_display_7th_3 =
       intel_laptop_display_6th_1.copyWith(
     value: '02002659',
-    comment: 'HD 640/650核显',
+    comment: () => l10nGlobal.autoGen5386,
   );
 
   static DevicePropertyItem intel_nuc_display_7th_4 =
       intel_laptop_display_6th_1.copyWith(
     value: '00001659',
-    comment: 'HD/UHD 620核显',
+    comment: () => l10nGlobal.autoGen5387,
   );
   static DevicePropertyItem intel_nuc_device_id_7th_4 =
       intel_laptop_device_id.copyWith(
@@ -1240,7 +1240,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '00009B3E',
-    comment: 'UHD 620/630核显',
+    comment: () => l10nGlobal.autoGen5388,
   );
   static DevicePropertyItem intel_nuc_device_id_8th_1 =
       intel_laptop_device_id.copyWith(
@@ -1250,7 +1250,7 @@ class ConfigDp {
   static DevicePropertyItem intel_nuc_display_8th_2 =
       intel_nuc_display_7th_1.copyWith(
     value: '0000A53E',
-    comment: 'UHD 655核显',
+    comment: () => l10nGlobal.autoGen5389,
   );
   static DevicePropertyItem intel_nuc_device_id_8th_2 =
       intel_laptop_device_id.copyWith(
@@ -1260,7 +1260,7 @@ class ConfigDp {
   static DevicePropertyItem intel_nuc_display_8th_3 =
       intel_laptop_display_6th_1.copyWith(
     value: '0400A53E',
-    comment: 'Intel lris Plus 655核显',
+    comment: () => l10nGlobal.autoGen5374,
   );
   static DevicePropertyItem intel_nuc_device_id_8th_3 =
       intel_laptop_device_id.copyWith(
@@ -1294,7 +1294,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '00009B3E',
-    comment: 'UHD 620/630核显',
+    comment: () => l10nGlobal.autoGen5388,
   );
   static DevicePropertyItem intel_nuc_device_id_9th_1 =
       intel_laptop_device_id.copyWith(
@@ -1304,7 +1304,7 @@ class ConfigDp {
   static DevicePropertyItem intel_nuc_display_9th_2 =
       intel_nuc_display_9th_1.copyWith(
     value: '0000A53E',
-    comment: 'UHD 655核显',
+    comment: () => l10nGlobal.autoGen5389,
   );
   static DevicePropertyItem intel_nuc_device_id_9th_2 =
       intel_laptop_device_id.copyWith(
@@ -1351,7 +1351,7 @@ class ConfigDp {
     key: 'AAPL,ig-platform-id',
     dataType: 'data',
     value: '0000528A',
-    comment: 'G4/G7系列核显',
+    comment: () => l10nGlobal.autoGen5375,
   );
   static DevicePropertyItem intel_nuc_device_id_iceLake =
       intel_laptop_device_id.copyWith(

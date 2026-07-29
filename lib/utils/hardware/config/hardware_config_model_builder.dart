@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/config_model.dart';
 import 'package:rapidefi/utils/config/models/enums/brand_enum.dart';
 import 'package:rapidefi/utils/config/models/enums/cpu_type_enum.dart';
@@ -30,7 +31,7 @@ typedef HardwareConfigStageApplier = void Function(
 );
 
 class HardwareConfigStage {
-  const HardwareConfigStage({
+  HardwareConfigStage({
     required this.id,
     required this.apply,
   });
@@ -40,7 +41,7 @@ class HardwareConfigStage {
 }
 
 class HardwareConfigModelBuilder {
-  const HardwareConfigModelBuilder({
+  HardwareConfigModelBuilder({
     required this.hardwareInfo,
     required this.rawInfo,
   });
@@ -116,7 +117,7 @@ class HardwareConfigModelBuilder {
       ];
 
   ConfigModel _resolveBaseModel(HardwareConfigBuildContext context) {
-    final selection = const HardwarePlatformResolver().resolve(context);
+    final selection = HardwarePlatformResolver().resolve(context);
     return Configs().configsRepository.createWithPlatformCode(
           cpuType: selection.cpuType,
           platformType: selection.platformType,
@@ -505,8 +506,8 @@ class HardwareConfigModelBuilder {
 
   bool _isIntegratedGpu(String name, Map<String, dynamic> gpu) {
     final type = safeStr(gpu['Device Type']).toLowerCase();
-    if (type.contains('integrated') || type.contains('核心')) return true;
-    if (type.contains('discrete') || type.contains('独立')) return false;
+    if (type.contains('integrated') || type.contains(l10nGlobal.autoGen5017)) return true;
+    if (type.contains('discrete') || type.contains(l10nGlobal.autoGen5018)) return false;
 
     final text = [
       name,
@@ -836,11 +837,11 @@ class HardwareConfigModelBuilder {
     final type = safeStr(gpu['Device Type']).toLowerCase();
     if (type == 'integrated' ||
         type.contains('integrated') ||
-        type.contains('核显') ||
-        type.contains('核心')) {
+        type.contains(l10nGlobal.autoGen5019) ||
+        type.contains(l10nGlobal.autoGen5017)) {
       return false;
     }
-    if (type == 'discrete' || type.contains('独立')) return true;
+    if (type == 'discrete' || type.contains(l10nGlobal.autoGen5018)) return true;
 
     final text = [
       name,
@@ -977,36 +978,36 @@ class HardwareConfigModelBuilder {
   Brand _resolveMotherboardBrand(String text) {
     if (text.isEmpty) return Brand.none;
 
-    if (_containsAny(text, const ['asustek', 'asus', '华硕'])) {
+    if (_containsAny(text, ['asustek', 'asus', l10nGlobal.autoGen5020])) {
       return Brand.asus;
     }
-    if (_containsAny(text, const ['gigabyte', '技嘉'])) {
+    if (_containsAny(text, ['gigabyte', l10nGlobal.autoGen5021])) {
       return Brand.gigabyte;
     }
-    if (_containsAny(text, const ['asrock', 'as rock', '华擎'])) {
+    if (_containsAny(text, ['asrock', 'as rock', l10nGlobal.autoGen5022])) {
       return Brand.asrock;
     }
-    if (_containsAny(text, const ['micro-star', 'micro star', 'msi', '微星'])) {
+    if (_containsAny(text, ['micro-star', 'micro star', 'msi', l10nGlobal.autoGen5023])) {
       return Brand.msi;
     }
-    if (_containsAny(text, const ['dell', 'alienware', '戴尔'])) {
+    if (_containsAny(text, ['dell', 'alienware', l10nGlobal.autoGen5024])) {
       return Brand.dell;
     }
     if (_containsAny(
-        text, const ['lenovo', 'thinkpad', 'thinkbook', 'ideapad', '联想'])) {
+        text, ['lenovo', 'thinkpad', 'thinkbook', 'ideapad', l10nGlobal.autoGen5025])) {
       return Brand.lenovo;
     }
-    if (_containsAny(text, const ['vaio', 'sony', '索尼'])) {
+    if (_containsAny(text, ['vaio', 'sony', l10nGlobal.autoGen5026])) {
       return Brand.vaio;
     }
     if (_containsAny(
-        text, const ['hewlett-packard', 'hewlett packard', 'hp ', '惠普'])) {
+        text, ['hewlett-packard', 'hewlett packard', 'hp ', l10nGlobal.autoGen5027])) {
       return Brand.hp;
     }
-    if (_containsAny(text, const ['chromebook', 'google', '谷歌'])) {
+    if (_containsAny(text, ['chromebook', 'google', l10nGlobal.autoGen5028])) {
       return Brand.chrome;
     }
-    if (_containsAny(text, const ['microsoft', 'surface', '微软'])) {
+    if (_containsAny(text, ['microsoft', 'surface', l10nGlobal.autoGen5029])) {
       return Brand.microsoft;
     }
 

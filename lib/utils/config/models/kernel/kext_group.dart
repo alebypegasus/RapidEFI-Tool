@@ -5,7 +5,7 @@ class KextGroup {
   final String title;
   final String description;
   final List<KernelKext> kexts;
-  const KextGroup({
+  KextGroup({
     required this.id,
     required this.title,
     this.description = '',

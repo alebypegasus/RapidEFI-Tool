@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/presets/platform_profiles/configs_intel_laptop.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_device_properties.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_platform_info.dart';
@@ -576,13 +577,13 @@ class Configs {
 
   static final Map<String, PlatformEntry> _intelDesktop = {
     'penryn': PlatformEntry(
-        label: '0代-Penryn-775平台',
+        labelBuilder: () => l10nGlobal.autoGen5553,
         smbiosOptions: [iMac10_1, MacPro6_1, MacPro7_1, iMacPro1_1]),
     'lynnfield': PlatformEntry(
-        label: '1代-Lynnfield-1156平台',
+        labelBuilder: () => l10nGlobal.autoGen5554,
         smbiosOptions: [iMac11_1, iMac11_2, MacPro7_1, iMacPro1_1, MacPro6_1]),
     'sandy_bridge':
-        PlatformEntry(label: '2代-Sandy Bridge-1155平台', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5555, smbiosOptions: [
       iMac12_2,
       iMac20_1,
       MacPro7_1,
@@ -593,7 +594,7 @@ class Configs {
       ConfigDp.intel_desktop_display_none_2th,
       ConfigDp.intel_desktop_computing_2th
     ]),
-    'ivy_bridge': PlatformEntry(label: '3代-Ivy Bridge-1155平台', smbiosOptions: [
+    'ivy_bridge': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5556, smbiosOptions: [
       iMac20_1,
       iMac13_1,
       iMac13_2,
@@ -607,7 +608,7 @@ class Configs {
       ConfigDp.intel_desktop_display_none_3th,
       ConfigDp.intel_desktop_computing_3th
     ]),
-    'haswell': PlatformEntry(label: '4代-Haswell-1150平台', smbiosOptions: [
+    'haswell': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5557, smbiosOptions: [
       iMac20_1,
       iMac14_4,
       iMac15_1,
@@ -621,7 +622,7 @@ class Configs {
       ConfigDp.intel_desktop_display_none_4th,
       ConfigDp.intel_desktop_computing_4th
     ]),
-    'broadwell': PlatformEntry(label: '5代-Broadwell-1150平台', smbiosOptions: [
+    'broadwell': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5558, smbiosOptions: [
       iMac20_1,
       iMac16_1,
       iMac16_2,
@@ -637,7 +638,7 @@ class Configs {
       ConfigDp.intel_desktop_display_none_5th,
       ConfigDp.intel_desktop_computing_5th
     ]),
-    'skylake': PlatformEntry(label: '6代-Skylake-1151平台', smbiosOptions: [
+    'skylake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5559, smbiosOptions: [
       iMac20_1,
       iMac17_1,
       iMac19_1,
@@ -652,7 +653,7 @@ class Configs {
       ConfigDp.intel_desktop_display_none_6th,
       ConfigDp.intel_desktop_computing_6th
     ]),
-    'kaby_lake': PlatformEntry(label: '7代-Kaby Lake-1151平台', smbiosOptions: [
+    'kaby_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5560, smbiosOptions: [
       iMac20_1,
       iMac19_1,
       iMac18_3,
@@ -667,7 +668,7 @@ class Configs {
       ConfigDp.intel_desktop_computing_7th
     ]),
     'coffee_lake_8th':
-        PlatformEntry(label: '8代-Coffee Lake-1151平台', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5561, smbiosOptions: [
       iMac20_1,
       iMac19_1,
       iMac19_2,
@@ -682,7 +683,7 @@ class Configs {
       ConfigDp.intel_desktop_computing_8th
     ]),
     'coffee_lake_9th':
-        PlatformEntry(label: '9代-Coffee Lake-1151平台', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5562, smbiosOptions: [
       iMac20_1,
       iMac19_1,
       iMac19_2,
@@ -695,7 +696,7 @@ class Configs {
       ConfigDp.intel_desktop_display_none_8th,
       ConfigDp.intel_desktop_computing_8th
     ]),
-    'comet_lake': PlatformEntry(label: '10代-Comet Lake-1200平台', smbiosOptions: [
+    'comet_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5563, smbiosOptions: [
       iMac20_1,
       iMac20_2,
       MacPro7_1,
@@ -707,22 +708,22 @@ class Configs {
       ConfigDp.intel_desktop_computing_10th
     ]),
     'rocket_lake': PlatformEntry(
-        label: '11代-Rocket Lake-1200平台',
+        labelBuilder: () => l10nGlobal.autoGen5564,
         smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'alder_lake': PlatformEntry(
-        label: '12代-Alder Lake-1700平台', smbiosOptions: [MacPro7_1, iMacPro1_1]),
+        labelBuilder: () => l10nGlobal.autoGen5565, smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'raptor_lake': PlatformEntry(
-        label: '13代-Raptor Lake-1700平台',
+        labelBuilder: () => l10nGlobal.autoGen5566,
         smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'raptor_lake_refresh': PlatformEntry(
-        label: '14代-Raptor Lake Refresh-1700平台',
+        labelBuilder: () => l10nGlobal.autoGen5567,
         smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'arrow_lake': PlatformEntry(
-        label: '15代-Arrow Lake-1851平台', smbiosOptions: [MacPro7_1, iMacPro1_1]),
+        labelBuilder: () => l10nGlobal.autoGen5568, smbiosOptions: [MacPro7_1, iMacPro1_1]),
   };
 
   static final Map<String, PlatformEntry> _intelLaptop = {
-    'penryn': PlatformEntry(label: '0代-Penryn-笔记本', smbiosOptions: [
+    'penryn': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5569, smbiosOptions: [
       MacBookPro5_1,
       MacBookPro5_2,
       MacBookPro5_3,
@@ -735,7 +736,7 @@ class Configs {
       MacBookPro16_4
     ]),
     'clarksfield_arrandale':
-        PlatformEntry(label: '1代-Clarksfield&Arrandale-笔记本', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5570, smbiosOptions: [
       MacBookPro6_1,
       MacBookPro6_2,
       MacBookPro9_2,
@@ -747,7 +748,7 @@ class Configs {
     ], igpuModes: [
       ConfigDp.intel_laptop_1th
     ]),
-    'sandy_bridge': PlatformEntry(label: '2代-Sandy Bridge-笔记本', smbiosOptions: [
+    'sandy_bridge': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5571, smbiosOptions: [
       MacBookAir4_1,
       MacBookAir4_2,
       MacBookPro8_1,
@@ -764,7 +765,7 @@ class Configs {
       ConfigDp.intel_laptop_2th_2,
       ConfigDp.intel_laptop_2th_3
     ]),
-    'ivy_bridge': PlatformEntry(label: '3代-Ivy Bridge-笔记本', smbiosOptions: [
+    'ivy_bridge': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5572, smbiosOptions: [
       MacBookPro10_2,
       MacBookAir5_1,
       MacBookAir5_2,
@@ -780,7 +781,7 @@ class Configs {
       ConfigDp.intel_laptop_3th_3,
       ConfigDp.intel_laptop_3th_4
     ]),
-    'haswell': PlatformEntry(label: '4代-Haswell-笔记本', smbiosOptions: [
+    'haswell': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5573, smbiosOptions: [
       MacBookPro16_3,
       MacBookAir6_1,
       MacBookAir6_2,
@@ -794,7 +795,7 @@ class Configs {
       ConfigDp.intel_laptop_4th_2,
       ConfigDp.intel_laptop_4th_3
     ]),
-    'broadwell': PlatformEntry(label: '5代-Broadwell-笔记本', smbiosOptions: [
+    'broadwell': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5574, smbiosOptions: [
       MacBookPro16_3,
       MacBookAir7_1,
       MacBookAir7_2,
@@ -813,7 +814,7 @@ class Configs {
       ConfigDp.intel_laptop_5th_3,
       ConfigDp.intel_laptop_5th_4
     ]),
-    'skylake': PlatformEntry(label: '6代-Skylake-笔记本', smbiosOptions: [
+    'skylake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5575, smbiosOptions: [
       MacBookPro16_3,
       MacBookPro13_1,
       MacBookPro13_2,
@@ -829,7 +830,7 @@ class Configs {
       ConfigDp.intel_laptop_6th_4,
       ConfigDp.intel_laptop_6th_5
     ]),
-    'kaby_lake': PlatformEntry(label: '7代-Kaby Lake-笔记本', smbiosOptions: [
+    'kaby_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5576, smbiosOptions: [
       MacBookPro16_3,
       MacBookPro14_1,
       MacBookPro14_2,
@@ -844,7 +845,7 @@ class Configs {
       ConfigDp.intel_laptop_7th_4
     ]),
     'coffee_lake_8th':
-        PlatformEntry(label: '8代-Coffee Lake-笔记本', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5577, smbiosOptions: [
       MacBookPro16_3,
       MacBookPro15_1,
       MacBookPro15_2,
@@ -860,7 +861,7 @@ class Configs {
       ConfigDp.intel_laptop_8th_4
     ]),
     'coffee_lake_9th':
-        PlatformEntry(label: '9代-Coffee Lake-笔记本', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5578, smbiosOptions: [
       MacBookPro16_1,
       MacBookPro16_2,
       MacBookPro16_3,
@@ -870,7 +871,7 @@ class Configs {
       ConfigDp.intel_laptop_9th_2,
       ConfigDp.intel_laptop_9th_3
     ]),
-    'comet_lake': PlatformEntry(label: '10代-Comet Lake-笔记本', smbiosOptions: [
+    'comet_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5579, smbiosOptions: [
       MacBookPro16_1,
       MacBookPro16_2,
       MacBookPro16_3,
@@ -880,7 +881,7 @@ class Configs {
       ConfigDp.intel_laptop_10th_2,
       ConfigDp.intel_laptop_10th_3
     ]),
-    'ice_lake': PlatformEntry(label: '10代-Ice Lake-笔记本', smbiosOptions: [
+    'ice_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5580, smbiosOptions: [
       MacBookAir9_1,
       MacBookPro16_1,
       MacBookPro16_2,
@@ -890,26 +891,26 @@ class Configs {
       ConfigDp.intel_laptop_iceLake_1,
       ConfigDp.intel_laptop_iceLake_2
     ]),
-    'tiger_lake': PlatformEntry(label: '11代-Tiger Lake-笔记本', smbiosOptions: [
+    'tiger_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5581, smbiosOptions: [
       MacBookPro16_1,
       MacBookPro16_2,
       MacBookPro16_3,
       MacBookPro16_4
     ]),
-    'alder_lake': PlatformEntry(label: '12代-Alder Lake-笔记本', smbiosOptions: [
+    'alder_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5582, smbiosOptions: [
       MacBookPro16_1,
       MacBookPro16_2,
       MacBookPro16_3,
       MacBookPro16_4
     ]),
-    'raptor_lake': PlatformEntry(label: '13代-Raptor Lake-笔记本', smbiosOptions: [
+    'raptor_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5583, smbiosOptions: [
       MacBookPro16_1,
       MacBookPro16_2,
       MacBookPro16_3,
       MacBookPro16_4
     ]),
     'raptor_lake_refresh':
-        PlatformEntry(label: '14代-Raptor Lake Refresh-笔记本', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5584, smbiosOptions: [
       MacBookPro16_1,
       MacBookPro16_2,
       MacBookPro16_3,
@@ -918,7 +919,7 @@ class Configs {
   };
 
   static final Map<String, PlatformEntry> _intelNuc = {
-    'penryn': PlatformEntry(label: '0代-Penryn-迷你主机', smbiosOptions: [
+    'penryn': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5585, smbiosOptions: [
       Macmini3_1,
       Macmini4_1,
       iMac10_1,
@@ -929,7 +930,7 @@ class Configs {
       MacBookPro16_4
     ]),
     'clarksfield_arrandale':
-        PlatformEntry(label: '1代-Clarksfield&Arrandale-迷你主机', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5586, smbiosOptions: [
       Macmini7_1,
       Macmini8_1,
       MacBookPro6_1,
@@ -941,7 +942,7 @@ class Configs {
       ConfigDp.intel_nuc_1th
     ]),
     'sandy_bridge':
-        PlatformEntry(label: '2代-Sandy Bridge-迷你主机', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5587, smbiosOptions: [
       Macmini5_1,
       Macmini5_2,
       Macmini5_3,
@@ -954,7 +955,7 @@ class Configs {
       ConfigDp.intel_nuc_2th_1,
       ConfigDp.intel_nuc_2th_2
     ]),
-    'ivy_bridge': PlatformEntry(label: '3代-Ivy Bridge-迷你主机', smbiosOptions: [
+    'ivy_bridge': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5588, smbiosOptions: [
       Macmini6_1,
       Macmini6_2,
       Macmini7_1,
@@ -966,7 +967,7 @@ class Configs {
       ConfigDp.intel_nuc_3th_1,
       ConfigDp.intel_nuc_3th_2
     ]),
-    'haswell': PlatformEntry(label: '4代-Haswell-迷你主机', smbiosOptions: [
+    'haswell': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5589, smbiosOptions: [
       Macmini7_1,
       Macmini8_1,
       MacBookPro16_1,
@@ -976,7 +977,7 @@ class Configs {
       ConfigDp.intel_nuc_4th_1,
       ConfigDp.intel_nuc_4th_2
     ]),
-    'broadwell': PlatformEntry(label: '5代-Broadwell-迷你主机', smbiosOptions: [
+    'broadwell': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5590, smbiosOptions: [
       iMac16_1,
       Macmini7_1,
       Macmini8_1,
@@ -989,7 +990,7 @@ class Configs {
       ConfigDp.intel_nuc_5th_3,
       ConfigDp.intel_nuc_5th_4
     ]),
-    'skylake': PlatformEntry(label: '6代-Skylake-迷你主机', smbiosOptions: [
+    'skylake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5591, smbiosOptions: [
       iMac17_1,
       Macmini8_1,
       MacBookPro16_1,
@@ -1004,7 +1005,7 @@ class Configs {
       ConfigDp.intel_nuc_6th_6,
       ConfigDp.intel_nuc_6th_7
     ]),
-    'kaby_lake': PlatformEntry(label: '7代-Kaby Lake-迷你主机', smbiosOptions: [
+    'kaby_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5592, smbiosOptions: [
       iMac19_1,
       Macmini8_1,
       MacBookPro16_1,
@@ -1018,7 +1019,7 @@ class Configs {
       ConfigDp.intel_nuc_7th_5
     ]),
     'coffee_lake_8th':
-        PlatformEntry(label: '8代-Coffee Lake-迷你主机', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5593, smbiosOptions: [
       Macmini8_1,
       iMac19_1,
       iMac19_2,
@@ -1034,7 +1035,7 @@ class Configs {
       ConfigDp.intel_nuc_8th_4
     ]),
     'coffee_lake_9th':
-        PlatformEntry(label: '9代-Coffee Lake-迷你主机', smbiosOptions: [
+        PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5594, smbiosOptions: [
       Macmini8_1,
       iMac19_1,
       iMac19_2,
@@ -1048,7 +1049,7 @@ class Configs {
       ConfigDp.intel_nuc_9th_2,
       ConfigDp.intel_nuc_9th_3
     ]),
-    'comet_lake': PlatformEntry(label: '10代-Comet Lake-迷你主机', smbiosOptions: [
+    'comet_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5595, smbiosOptions: [
       MacBookPro16_1,
       MacBookPro16_3,
       MacBookPro16_4,
@@ -1060,7 +1061,7 @@ class Configs {
       ConfigDp.intel_nuc_10th_2,
       ConfigDp.intel_nuc_10th_3
     ]),
-    'ice_lake': PlatformEntry(label: '10代-Ice Lake-迷你主机', smbiosOptions: [
+    'ice_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5596, smbiosOptions: [
       MacBookAir9_1,
       MacBookPro16_2,
       MacBookPro16_1,
@@ -1072,7 +1073,7 @@ class Configs {
       ConfigDp.intel_nuc_iceLake_1,
       ConfigDp.intel_nuc_iceLake_2
     ]),
-    'tiger_lake': PlatformEntry(label: '11代-Tiger Lake-迷你主机', smbiosOptions: [
+    'tiger_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5597, smbiosOptions: [
       MacPro7_1,
       iMacPro1_1,
       iMac20_1,
@@ -1080,7 +1081,7 @@ class Configs {
       MacBookPro16_2,
       MacBookPro16_4
     ]),
-    'alder_lake': PlatformEntry(label: '12代-Alder Lake-迷你主机', smbiosOptions: [
+    'alder_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5598, smbiosOptions: [
       MacPro7_1,
       iMacPro1_1,
       iMac20_1,
@@ -1088,7 +1089,7 @@ class Configs {
       MacBookPro16_2,
       MacBookPro16_4
     ]),
-    'raptor_lake': PlatformEntry(label: '13代-Raptor Lake-迷你主机', smbiosOptions: [
+    'raptor_lake': PlatformEntry(labelBuilder: () => l10nGlobal.autoGen5599, smbiosOptions: [
       MacPro7_1,
       iMacPro1_1,
       iMac20_1,
@@ -1097,7 +1098,7 @@ class Configs {
       MacBookPro16_4
     ]),
     'raptor_lake_refresh': PlatformEntry(
-        label: '14代-Raptor Lake Refresh-迷你主机',
+        labelBuilder: () => l10nGlobal.autoGen5600,
         smbiosOptions: [
           MacPro7_1,
           iMacPro1_1,
@@ -1110,36 +1111,36 @@ class Configs {
 
   static final Map<String, PlatformEntry> _intelHedt = {
     'nehalem_westmere': PlatformEntry(
-        label: '1代-Nehalem&Westmere-X58平台',
+        labelBuilder: () => l10nGlobal.autoGen5601,
         smbiosOptions: [MacPro6_1, MacPro7_1, iMacPro1_1]),
     'sandy_bridge_e': PlatformEntry(
-        label: '2代-Sandy Bridge-E-X79平台',
+        labelBuilder: () => l10nGlobal.autoGen5602,
         smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'ivy_bridge_e': PlatformEntry(
-        label: '3代-Ivy Bridge-E-X79平台', smbiosOptions: [MacPro7_1, iMacPro1_1]),
+        labelBuilder: () => l10nGlobal.autoGen5603, smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'haswell_e': PlatformEntry(
-        label: '4代-Haswell-E-X99平台', smbiosOptions: [MacPro7_1, iMacPro1_1]),
+        labelBuilder: () => l10nGlobal.autoGen5604, smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'broadwell_e': PlatformEntry(
-        label: '5代-Broadwell-E-X99平台', smbiosOptions: [MacPro7_1, iMacPro1_1]),
+        labelBuilder: () => l10nGlobal.autoGen5605, smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'skylake_x_w': PlatformEntry(
-        label: '6代-Skylake-X&W-X299平台', smbiosOptions: [MacPro7_1, iMacPro1_1]),
+        labelBuilder: () => l10nGlobal.autoGen5606, smbiosOptions: [MacPro7_1, iMacPro1_1]),
     'cascade_lake_x_w': PlatformEntry(
-        label: '10代-Cascade Lake-X&W平台',
+        labelBuilder: () => l10nGlobal.autoGen5607,
         smbiosOptions: [MacPro7_1, iMacPro1_1]),
   };
 
   static final Map<String, PlatformEntry> _amdDesktop = {
     'bulldozer_jaguar': PlatformEntry(
-        label: 'Bulldozer(15h) and Jaguar(16h)',
+        labelBuilder: () => 'Bulldozer(15h) and Jaguar(16h)',
         smbiosOptions: [MacPro7_1, MacPro6_1, iMacPro1_1, iMac14_2, iMac20_1]),
     'ryzen_threadripper': PlatformEntry(
-        label: 'Ryzen and Threadripper(17h and 19h)',
+        labelBuilder: () => 'Ryzen and Threadripper(17h and 19h)',
         smbiosOptions: [MacPro7_1, MacPro6_1, iMacPro1_1, iMac14_2, iMac20_1]),
   };
 
   static final Map<String, PlatformEntry> _amdLaptop = {
     'bulldozer_jaguar': PlatformEntry(
-        label: 'Bulldozer(15h) and Jaguar(16h)-笔记本',
+        labelBuilder: () => l10nGlobal.autoGen5608,
         smbiosOptions: [
           MacBookPro16_2,
           MacBookPro16_1,
@@ -1148,7 +1149,7 @@ class Configs {
           MacBookAir9_1
         ]),
     'ryzen': PlatformEntry(
-        label: 'Ryzen-笔记本',
+        labelBuilder: () => l10nGlobal.autoGen5609,
         smbiosOptions: [
           MacBookPro16_2,
           MacBookPro16_1,
@@ -1160,16 +1161,16 @@ class Configs {
 
   static final Map<String, PlatformEntry> _amdNuc = {
     'bulldozer_jaguar': PlatformEntry(
-        label: 'Bulldozer(15h) and Jaguar(16h)-迷你主机',
+        labelBuilder: () => l10nGlobal.autoGen5610,
         smbiosOptions: [iMac20_1, MacPro7_1, MacPro6_1, iMacPro1_1, iMac14_2]),
     'ryzen': PlatformEntry(
-        label: 'Ryzen-迷你主机',
+        labelBuilder: () => l10nGlobal.autoGen5611,
         smbiosOptions: [MacPro7_1, MacPro6_1, iMacPro1_1, iMac14_2, iMac20_1]),
   };
 
   static final Map<String, PlatformEntry> _amdHedt = {
     'ryzen_threadripper': PlatformEntry(
-        label: 'Ryzen and Threadripper(17h and 19h)-服务器',
+        labelBuilder: () => l10nGlobal.autoGen5612,
         smbiosOptions: [MacPro7_1, MacPro6_1, iMacPro1_1]),
   };
 }

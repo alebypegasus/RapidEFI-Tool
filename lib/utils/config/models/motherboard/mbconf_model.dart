@@ -33,7 +33,7 @@ class MbConfSelectableItem {
   /// 实际数据，类型依 category 而定（见下方说明）
   final Object data;
 
-  const MbConfSelectableItem({
+  MbConfSelectableItem({
     required this.category,
     required this.label,
     required this.data,
@@ -77,7 +77,7 @@ class MbKernelPatch {
   final Uint8List? replaceMask;
   final int skip;
 
-  const MbKernelPatch({
+  MbKernelPatch({
     required this.arch,
     required this.base,
     required this.comment,
@@ -103,7 +103,7 @@ class MbQuirkEntry {
   /// 要设置的值（bool 或 int）
   final dynamic value;
 
-  const MbQuirkEntry({required this.jsonKey, required this.value});
+  MbQuirkEntry({required this.jsonKey, required this.value});
 }
 
 /// DeviceProperties 的某条 PCI 路径
@@ -111,7 +111,7 @@ class MbDpPath {
   final String pciPath;
   final List<DevicePropertyItem> properties;
 
-  const MbDpPath({required this.pciPath, required this.properties});
+  MbDpPath({required this.pciPath, required this.properties});
 }
 
 /// Misc.Boot 或 Misc.Security 的单个键值对
@@ -119,7 +119,7 @@ class MbMiscEntry {
   final String key;
   final dynamic value;
 
-  const MbMiscEntry({required this.key, required this.value});
+  MbMiscEntry({required this.key, required this.value});
 }
 
 /// NVRAM 单个 GUID 及其键值对
@@ -127,7 +127,7 @@ class MbNvramGuid {
   final String guid;
   final Map<String, dynamic> entries;
 
-  const MbNvramGuid({required this.guid, required this.entries});
+  MbNvramGuid({required this.guid, required this.entries});
 }
 
 /// PlatformInfo 完整数据
@@ -141,7 +141,7 @@ class MbPlatformInfoData {
   final bool? customMemory;
   final Map<String, dynamic>? generic;
 
-  const MbPlatformInfoData({
+  MbPlatformInfoData({
     this.automatic,
     this.updateSMBIOSMode,
     this.updateDataHub,
@@ -164,7 +164,7 @@ class MbConfEntry {
   /// 全部可勾选条目（已按 category 预分组）
   final List<MbConfSelectableItem> items;
 
-  const MbConfEntry({
+  MbConfEntry({
     required this.platform,
     required this.vendor,
     required this.modelName,
@@ -178,11 +178,11 @@ class MbConfEntry {
 class MbConfVendor {
   final String name;
   final List<String> models;
-  const MbConfVendor({required this.name, required this.models});
+  MbConfVendor({required this.name, required this.models});
 }
 
 class MbConfPlatform {
   final String name;
   final List<MbConfVendor> vendors;
-  const MbConfPlatform({required this.name, required this.vendors});
+  MbConfPlatform({required this.name, required this.vendors});
 }

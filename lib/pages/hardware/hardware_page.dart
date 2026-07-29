@@ -780,7 +780,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          width: 88,
+          width: 140,
           child: Text(optional ? AppLocalizations.of(context)!.optionalSuffix(title) : title),
         ),
         Expanded(

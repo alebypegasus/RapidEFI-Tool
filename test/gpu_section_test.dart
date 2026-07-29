@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rapidefi/pages/hardware/widgets/gpu_section.dart';
@@ -21,7 +22,7 @@ void main() {
           'GPU': {
             'Intel(R) HD Graphics': {
               'Device ID': '8086-016A',
-              'Device Type': '核心显卡',
+              'Device Type': l10nGlobal.autoGen5060,
             },
           },
         }),
@@ -43,7 +44,7 @@ void main() {
           'GPU': {
             'Original dGPU Name': {
               'Device ID': '1002-6981',
-              'Device Type': '独立显卡',
+              'Device Type': l10nGlobal.autoGen5061,
             },
           },
         }),
@@ -65,15 +66,15 @@ void main() {
           'GPU': {
             'Radeon (TM) Pro WX 4100': {
               'Device ID': '1002-67E3',
-              'Device Type': '独立显卡',
+              'Device Type': l10nGlobal.autoGen5061,
             },
           },
         }),
       ),
     ));
 
-    expect(find.text('兼容'), findsOneWidget);
-    expect(find.textContaining('原生支持'), findsNothing);
+    expect(find.text(l10nGlobal.autoGen5000), findsOneWidget);
+    expect(find.textContaining(l10nGlobal.autoGen5015), findsNothing);
   });
 
   testWidgets('multi GPU keeps NootedRed whitelist compatibility visible',
@@ -124,11 +125,11 @@ void main() {
           'GPU': {
             'Intel UHD Graphics 630': {
               'Device ID': '8086-3E92',
-              'Device Type': '核心显卡',
+              'Device Type': l10nGlobal.autoGen5060,
             },
             'Radeon RX 580': {
               'Device ID': '1002-67DF',
-              'Device Type': '独立显卡',
+              'Device Type': l10nGlobal.autoGen5061,
             },
           },
           'Monitor': {
@@ -158,11 +159,11 @@ void main() {
           'GPU': {
             'GeForce RTX 3060 Ti GDDR6X': {
               'Device ID': '10DE-24C9',
-              'Device Type': '独立显卡',
+              'Device Type': l10nGlobal.autoGen5061,
             },
             'Radeon HD7750': {
               'Device ID': '10DE-104A',
-              'Device Type': '独立显卡',
+              'Device Type': l10nGlobal.autoGen5061,
             },
           },
           'Monitor': {
@@ -188,11 +189,11 @@ void main() {
           'GPU': {
             'Intel(R) HD Graphics Family': {
               'Device ID': '8086-0412',
-              'Device Type': '核心显卡',
+              'Device Type': l10nGlobal.autoGen5060,
             },
             'Radeon RX 560 Series': {
               'Device ID': '1002-67EF',
-              'Device Type': '独立显卡',
+              'Device Type': l10nGlobal.autoGen5061,
             },
           },
           'Monitor': {
@@ -220,11 +221,11 @@ void main() {
           'GPU': {
             'Intel UHD Graphics 630': {
               'Device ID': '8086-3E92',
-              'Device Type': '核心显卡',
+              'Device Type': l10nGlobal.autoGen5060,
             },
             'Radeon RX 580': {
               'Device ID': '1002-67DF',
-              'Device Type': '独立显卡',
+              'Device Type': l10nGlobal.autoGen5061,
             },
           },
           'Monitor': {
@@ -250,7 +251,7 @@ void main() {
           'GPU': {
             'Intel UHD Graphics 630': {
               'Device ID': '8086-3E92',
-              'Device Type': '核心显卡',
+              'Device Type': l10nGlobal.autoGen5060,
             },
           },
           'Monitor': {

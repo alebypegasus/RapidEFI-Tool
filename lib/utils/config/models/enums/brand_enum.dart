@@ -1,70 +1,71 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum Brand {
   none(
-    text: EnumText(
-      title: '',
+    text: const EnumText(
+      fallbackTitle: '',
     ),
   ),
   asus(
-    text: EnumText(
-      title: '华硕',
-      description: 'ASUS',
+    text: const EnumText(
+      titleId: 5020,
+      fallbackDesc: 'ASUS',
     ),
   ),
   gigabyte(
-    text: EnumText(
-      title: '技嘉',
-      description: 'GIGABYTE',
+    text: const EnumText(
+      titleId: 5021,
+      fallbackDesc: 'GIGABYTE',
     ),
   ),
   asrock(
-    text: EnumText(
-      title: '华擎',
-      description: 'ASRock',
+    text: const EnumText(
+      titleId: 5022,
+      fallbackDesc: 'ASRock',
     ),
   ),
   msi(
-    text: EnumText(
-      title: '微星',
-      description: 'MSI',
+    text: const EnumText(
+      titleId: 5023,
+      fallbackDesc: 'MSI',
     ),
   ),
   dell(
-    text: EnumText(
-      title: '戴尔',
-      description: 'Dell',
+    text: const EnumText(
+      titleId: 5024,
+      fallbackDesc: 'Dell',
     ),
   ),
   lenovo(
-    text: EnumText(
-      title: '联想',
-      description: 'Lenovo',
+    text: const EnumText(
+      titleId: 5025,
+      fallbackDesc: 'Lenovo',
     ),
   ),
   vaio(
-    text: EnumText(
-      title: '索尼',
-      description: 'VAIO',
+    text: const EnumText(
+      titleId: 5026,
+      fallbackDesc: 'VAIO',
     ),
   ),
   hp(
-    text: EnumText(
-      title: '惠普',
-      description: 'HP',
+    text: const EnumText(
+      titleId: 5027,
+      fallbackDesc: 'HP',
     ),
   ),
   chrome(
-    text: EnumText(
-      title: '谷歌',
-      description: 'Chromebook',
+    text: const EnumText(
+      titleId: 5028,
+      fallbackDesc: 'Chromebook',
     ),
   ),
   microsoft(
-    text: EnumText(
-      title: '微软',
-      description: 'Microsoft Surface',
+    text: const EnumText(
+      titleId: 5029,
+      fallbackDesc: 'Microsoft Surface',
     ),
   );
 
@@ -105,16 +106,16 @@ enum Brand {
         'Brand.chrome': Brand.chrome,
         'Brand.Microsoft': Brand.microsoft,
         'Microsoft': Brand.microsoft,
-        '华硕(ASUS)': Brand.asus,
-        '技嘉(GIGABYTE)': Brand.gigabyte,
-        '华擎(ASRock)': Brand.asrock,
-        '微星(MSI)': Brand.msi,
-        '戴尔(Dell)': Brand.dell,
-        '联想(Lenovo)': Brand.lenovo,
-        '索尼(VAIO)': Brand.vaio,
-        '惠普(HP)': Brand.hp,
-        '谷歌(Chromebook)': Brand.chrome,
-        '微软(Microsoft Surface)': Brand.microsoft,
+        l10nGlobal.autoGen5149: Brand.asus,
+        l10nGlobal.autoGen5150: Brand.gigabyte,
+        l10nGlobal.autoGen5151: Brand.asrock,
+        l10nGlobal.autoGen5152: Brand.msi,
+        l10nGlobal.autoGen5153: Brand.dell,
+        l10nGlobal.autoGen5154: Brand.lenovo,
+        l10nGlobal.autoGen5155: Brand.vaio,
+        l10nGlobal.autoGen5156: Brand.hp,
+        l10nGlobal.autoGen5157: Brand.chrome,
+        l10nGlobal.autoGen5158: Brand.microsoft,
       },
     );
   }

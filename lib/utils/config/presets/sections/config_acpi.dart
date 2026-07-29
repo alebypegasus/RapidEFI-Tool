@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_delete_item.dart';
 import 'package:rapidefi/utils/config/presets/patches/acpi_patch.dart';
 
@@ -27,17 +28,17 @@ class ConfigAcpi {
   static AcpiAddItem SSDT_GPRW = AcpiAddItem(
       enabled: true,
       path: 'SSDT-GPRW.aml',
-      note: '将GPRW重命名为XPRW,修复即时唤醒问题(注意:可能导致USB键盘无法唤醒设备,可以通过电源键唤醒)');
+      note: l10nGlobal.autoGen5390);
 
   static AcpiAddItem SSDT_UPRW = AcpiAddItem(
       enabled: true,
       path: 'SSDT-UPRW.aml',
-      note: '将UPRW重命名为XPRW,修复即时唤醒问题(注意:可能导致USB键盘无法唤醒设备,可以通过电源键唤醒)');
+      note: l10nGlobal.autoGen5391);
 
   static AcpiAddItem SSDT_GPI0 = AcpiAddItem(
     enabled: true,
     path: 'SSDT-GPI0.aml',
-    note: '启用 GPI0 设备以支持 I2C 触控板',
+    note: l10nGlobal.autoGen5392,
   );
 
   static List<AcpiDeleteItem> sandyBridgeAndIvyBridgeDeletePatches = [

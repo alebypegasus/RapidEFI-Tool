@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/gpu_compatibility_data.dart';
@@ -248,7 +249,7 @@ void main() {
           'Radeon PRO WX 3200',
           {
             'Device ID': '1002-6981',
-            'Device Type': '独立显卡',
+            'Device Type': l10nGlobal.autoGen5061,
           });
 
       expect(note.level, CompatibilityLevel.limited);

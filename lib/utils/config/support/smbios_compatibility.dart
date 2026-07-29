@@ -1,10 +1,11 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/models/platform_info/pi_generic.dart';
 import 'package:rapidefi/utils/config/support/macos_version.dart';
 
 class SMBIOSCompatibility {
   const SMBIOSCompatibility._();
 
-  static const Map<String, ({int min, int max})> _supportRanges = {
+  static final Map<String, ({int min, int max})> _supportRanges = {
     'iMac10,1': (min: 10, max: 17),
     'iMac11,1': (min: 10, max: 17),
     'iMac11,2': (min: 10, max: 17),
@@ -80,92 +81,80 @@ class SMBIOSCompatibility {
     'MacPro7,1': (min: 19, max: 25),
   };
 
-  static const Map<String, String> _supportDescriptions = {
-    'iMac10,1': '支持OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13',
-    'iMac11,1': '支持OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13',
-    'iMac11,2': '支持OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13',
-    'iMac12,2': '支持OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13,适用于核显+独显机型',
-    'iMac13,1':
-        '支持OS X Mountain Lion 10.8 ~ macOS Catalina 10.15,适用于Ivy Bridge架构,仅核显机型',
-    'iMac13,2':
-        '支持OS X Mountain Lion 10.8 ~ macOS Catalina 10.15,适用于Ivy Bridge架构,核显解码+独显输出机型',
-    'iMac14,2':
-        '支持OS X Mavericks 10.9 ~ macOS Big Sur 11,适用于Haswell架构NVIDIA Maxwell 和 Pascal独显',
-    'iMac14,4': '支持OS X Mavericks 10.9 ~ macOS Big Sur 11,适用于Haswell架构仅核显机型',
-    'iMac15,1': '支持OS X Mavericks 10.9 ~ macOS Big Sur 11,适用于Haswell架构核显+独显机型',
-    'iMac16,1': '支持macOS El Capitan 10.11 ~ macOS Monterey 12,适用于核显(或带独显)机型',
-    'iMac16,2':
-        '支持macOS El Capitan 10.11 ~ macOS Monterey 12,适用于Broadwell架构核显(或带独显)',
-    'iMac17,1':
-        '支持macOS El Capitan 10.11 ~ macOS Monterey 12,适用于Broadwell架构核显(或带独显)',
-    'iMac18,1':
-        '支持macOS Sierra 10.12 ~ macOS Ventura 13.适用于核显+独显机型.需要注意的是,使用此机型,多数仅核显用户会出现屏幕颜色不正常.仅核显用户,不推荐此机型',
-    'iMac18,3': '支持macOS Sierra 10.12 ~ macOS Ventura 13,适用于核显解码+独显输出机型',
-    'iMac19,2': '支持macOS 10.14 ~ macOS Sequoia 15,适用于核显(或带独显)机型',
-    'iMac19,1': '支持macOS 10.14 ~ macOS Sequoia 15,适用于核显(或带独显)机型',
-    'iMac20,1': '支持macOS 10.15 ~ macOS Tahoe 26,适用于i7-10700K及以下处理器核显(或带独显)机型',
-    'iMac20,2': '支持macOS 10.15 ~ macOS Tahoe 26,适用于i9-10850K更高处理器核显(或带独显)机型',
-    'MacBookPro5,1': '支持macOS 10.5 ~ macOS El Capitan 10.11',
-    'MacBookPro5,2': '支持macOS 10.5 ~ macOS El Capitan 10.11',
-    'MacBookPro5,3': '支持macOS 10.5 ~ macOS El Capitan 10.11',
-    'MacBookPro5,4': '支持macOS 10.5 ~ macOS El Capitan 10.11',
-    'MacBookPro6,1': '支持macOS 10.6 ~ macOS High Sierra 10.13',
-    'MacBookPro6,2': '支持macOS 10.6 ~ macOS High Sierra 10.13',
-    'MacBookAir4,1': '支持macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookAir4,2': '支持macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookPro8,1': '支持macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookPro8,2': '支持macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookPro8,3': '支持macOS 10.7 ~ macOS High Sierra 10.13',
-    'Macmini5,1': '支持macOS 10.7 ~ macOS High Sierra 10.13',
-    'Macmini5,2': '支持macOS 10.7 ~ macOS High Sierra 10.13',
-    'Macmini5,3': '支持macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookAir5,1': '支持macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookAir5,2': '支持macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookPro9,2': '支持macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookPro10,1': '支持macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookPro10,2': '支持macOS 10.8 ~ macOS Catalina 10.15',
-    'Macmini6,1': '支持macOS 10.8 ~ macOS Catalina 10.15',
-    'Macmini6,2': '支持macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookAir6,1': '支持macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookAir6,2': '支持macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookPro11,1': '支持macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookPro11,2': '支持macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookPro11,3': '支持macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookPro11,4': '支持macOS High Sierra 10.13 ~ macOS Monterey 12',
-    'MacBookPro11,5': '支持macOS High Sierra 10.13 ~ macOS Monterey 12',
-    'Macmini3,1': '支持macOS 10.5 ~ macOS El Capitan 10.11',
-    'Macmini4,1': '支持macOS 10.5 ~ macOS El Capitan 10.11',
-    'Macmini7,1': '支持macOS Mojave 10.14 ~ macOS Monterey 12',
-    'MacBook8,1': '支持OS X El Capitan 10.11 ~ macOS Big Sur 11',
-    'MacBookAir7,1': '支持OS X El Capitan 10.11 ~ macOS Monterey 12',
-    'MacBookAir7,2': '支持OS X El Capitan 10.11 ~ macOS Monterey 12',
-    'MacBookPro12,1': '支持macOS Sierra 10.12 ~ macOS Monterey 12',
-    'MacBook9,1':
-        '支持macOS Sierra 10.12 ~ macOS Monterey 12(核显HD 515官方仅支持macOS Monterey 12,仿冒支持最新macOS Sequoia 15)',
-    'MacBookPro13,1':
-        '支持macOS Sierra 10.12 ~ macOS Monterey 12(核显Iris 540官方仅支持macOS Monterey 12,仿冒支持最新macOS Sequoia 15)',
-    'MacBookPro13,2':
-        '支持macOS Sierra 10.12 ~ macOS Monterey 12(核显Iris 550官方仅支持macOS Monterey 12,仿冒支持最新macOS Sequoia 15)',
-    'MacBookPro13,3':
-        '支持macOS Sierra 10.12 ~ macOS Monterey 12(核显HD530官方仅支持macOS Monterey 12,仿冒支持最新macOS Sequoia 15)',
-    'MacBookPro14,1': '支持macOS High Sierra 10.13 ~ macOS Ventura 13',
-    'MacBookPro14,2': '支持macOS High Sierra 10.13 ~ macOS Ventura 13',
-    'MacBookPro14,3': '支持macOS High Sierra 10.13 ~ macOS Ventura 13',
-    'MacBookPro15,1': '支持macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'MacBookPro15,2': '支持macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'MacBookPro15,3': '支持macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'MacBookPro15,4': '支持macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'Macmini8,1': '支持macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'MacBookPro16,1': '支持macOS Catalina 10.15 ~ macOS Tahoe 26',
-    'MacBookPro16,3': '支持macOS Catalina 10.15 ~ macOS Sequoia 15',
-    'MacBookPro16,4': '支持macOS Catalina 10.15 ~ macOS Tahoe 26',
-    'MacBookAir9,1': '支持macOS Catalina 10.15 ~ macOS Sequoia 15',
-    'MacBookPro16,2': '支持macOS Catalina 10.15 ~ macOS Tahoe 26',
-    'MacPro6,1': '支持macOS 10.9 ~ macOS Monterey 12,适用于仅独显机型',
-    'iMacPro1,1':
-        '支持macOS 10.13 ~ macOS Sequoia 15.适用于仅独显机型.对于Intel 11代及以上,通常使用此机型,CPU变频和睿频正常,无需额外Kext补丁(如果macOS系统睿频不正常,请提取使用本机SSDT-PLUG)',
-    'MacPro7,1':
-        '支持macOS 10.15 ~ macOS Tahoe 26,适用于仅A卡独显机型.支持的免驱A卡(例如RX560,RX570,RX5500,RX6600),会完美支持VDA硬解.对于Intel 11代及以上,通常使用此机型,CPU睿频不正常,需额外Kext补丁.可以去【可选Kexts驱动】->【CPU相关】->[CPU变频驱动,主要提供11代及以上平台 MacPro7,1变频支持]勾选此项.',
+  static final Map<String, String Function()> _supportDescriptions = {
+    'iMac10,1': () => l10nGlobal.autoGen5177,
+    'iMac11,1': () => l10nGlobal.autoGen5177,
+    'iMac11,2': () => l10nGlobal.autoGen5177,
+    'iMac12,2': () => l10nGlobal.autoGen5178,
+    'iMac13,1': () => l10nGlobal.autoGen5179,
+    'iMac13,2': () => l10nGlobal.autoGen5180,
+    'iMac14,2': () => l10nGlobal.autoGen5181,
+    'iMac14,4': () => l10nGlobal.autoGen5182,
+    'iMac15,1': () => l10nGlobal.autoGen5183,
+    'iMac16,1': () => l10nGlobal.autoGen5184,
+    'iMac16,2': () => l10nGlobal.autoGen5185,
+    'iMac17,1': () => l10nGlobal.autoGen5185,
+    'iMac18,1': () => l10nGlobal.autoGen5186,
+    'iMac18,3': () => l10nGlobal.autoGen5187,
+    'iMac19,2': () => l10nGlobal.autoGen5188,
+    'iMac19,1': () => l10nGlobal.autoGen5188,
+    'iMac20,1': () => l10nGlobal.autoGen5189,
+    'iMac20,2': () => l10nGlobal.autoGen5190,
+    'MacBookPro5,1': () => l10nGlobal.autoGen5191,
+    'MacBookPro5,2': () => l10nGlobal.autoGen5191,
+    'MacBookPro5,3': () => l10nGlobal.autoGen5191,
+    'MacBookPro5,4': () => l10nGlobal.autoGen5191,
+    'MacBookPro6,1': () => l10nGlobal.autoGen5192,
+    'MacBookPro6,2': () => l10nGlobal.autoGen5192,
+    'MacBookAir4,1': () => l10nGlobal.autoGen5193,
+    'MacBookAir4,2': () => l10nGlobal.autoGen5193,
+    'MacBookPro8,1': () => l10nGlobal.autoGen5193,
+    'MacBookPro8,2': () => l10nGlobal.autoGen5193,
+    'MacBookPro8,3': () => l10nGlobal.autoGen5193,
+    'Macmini5,1': () => l10nGlobal.autoGen5193,
+    'Macmini5,2': () => l10nGlobal.autoGen5193,
+    'Macmini5,3': () => l10nGlobal.autoGen5193,
+    'MacBookAir5,1': () => l10nGlobal.autoGen5194,
+    'MacBookAir5,2': () => l10nGlobal.autoGen5194,
+    'MacBookPro9,2': () => l10nGlobal.autoGen5194,
+    'MacBookPro10,1': () => l10nGlobal.autoGen5194,
+    'MacBookPro10,2': () => l10nGlobal.autoGen5194,
+    'Macmini6,1': () => l10nGlobal.autoGen5194,
+    'Macmini6,2': () => l10nGlobal.autoGen5194,
+    'MacBookAir6,1': () => l10nGlobal.autoGen5195,
+    'MacBookAir6,2': () => l10nGlobal.autoGen5195,
+    'MacBookPro11,1': () => l10nGlobal.autoGen5195,
+    'MacBookPro11,2': () => l10nGlobal.autoGen5195,
+    'MacBookPro11,3': () => l10nGlobal.autoGen5195,
+    'MacBookPro11,4': () => l10nGlobal.autoGen5196,
+    'MacBookPro11,5': () => l10nGlobal.autoGen5196,
+    'Macmini3,1': () => l10nGlobal.autoGen5191,
+    'Macmini4,1': () => l10nGlobal.autoGen5191,
+    'Macmini7,1': () => l10nGlobal.autoGen5197,
+    'MacBook8,1': () => l10nGlobal.autoGen5198,
+    'MacBookAir7,1': () => l10nGlobal.autoGen5199,
+    'MacBookAir7,2': () => l10nGlobal.autoGen5199,
+    'MacBookPro12,1': () => l10nGlobal.autoGen5200,
+    'MacBook9,1': () => l10nGlobal.autoGen5201,
+    'MacBookPro13,1': () => l10nGlobal.autoGen5202,
+    'MacBookPro13,2': () => l10nGlobal.autoGen5203,
+    'MacBookPro13,3': () => l10nGlobal.autoGen5204,
+    'MacBookPro14,1': () => l10nGlobal.autoGen5205,
+    'MacBookPro14,2': () => l10nGlobal.autoGen5205,
+    'MacBookPro14,3': () => l10nGlobal.autoGen5205,
+    'MacBookPro15,1': () => l10nGlobal.autoGen5206,
+    'MacBookPro15,2': () => l10nGlobal.autoGen5206,
+    'MacBookPro15,3': () => l10nGlobal.autoGen5206,
+    'MacBookPro15,4': () => l10nGlobal.autoGen5206,
+    'Macmini8,1': () => l10nGlobal.autoGen5206,
+    'MacBookPro16,1': () => l10nGlobal.autoGen5207,
+    'MacBookPro16,3': () => l10nGlobal.autoGen5208,
+    'MacBookPro16,4': () => l10nGlobal.autoGen5207,
+    'MacBookAir9,1': () => l10nGlobal.autoGen5208,
+    'MacBookPro16,2': () => l10nGlobal.autoGen5207,
+    'MacPro6,1': () => l10nGlobal.autoGen5209,
+    'iMacPro1,1': () => l10nGlobal.autoGen5210,
+    'MacPro7,1': () => l10nGlobal.autoGen5211,
   };
 
   static ({int min, int max})? supportRange(PlatformInfoGeneric smbios) {
@@ -231,12 +220,12 @@ class SMBIOSCompatibility {
   static String supportSummary(PlatformInfoGeneric smbios) {
     final description = _supportDescriptions[smbios.systemProductName];
     if (description != null) {
-      return description;
+      return description();
     }
 
     final range = supportRange(smbios);
     if (range == null) {
-      return '未配置macOS兼容范围';
+      return l10nGlobal.autoGen5212;
     }
 
     return '支持${MacOSVersions.labelFromDarwinMajor(range.min)} ~ '

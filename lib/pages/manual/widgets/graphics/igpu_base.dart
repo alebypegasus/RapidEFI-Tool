@@ -219,11 +219,17 @@ class _IgpuBaseState extends State<IgpuBase> {
 
   // ── 预设方案分支 ──────────────────────────────────────────────
   Widget _buildPresetSection(BuildContext context) {
-    final choices = igpuModels
-        .map((e) => e.first.propertyItems.first.comment ?? '')
+    final List<String> choices = igpuModels
+        .map((e) {
+          final c = e.first.propertyItems.first.comment;
+          return ((c is Function ? c() : c) ?? '') as String;
+        })
         .toList();
-    final selectedChoice = selectedModel != null && selectedModel!.isNotEmpty
-        ? selectedModel?.first.propertyItems.first.comment
+    final String selectedChoice = selectedModel != null && selectedModel!.isNotEmpty
+        ? (() {
+            final c = selectedModel!.first.propertyItems.first.comment;
+            return ((c is Function ? c() : c) ?? '') as String;
+          })()
         : '';
     final tips = igpuModels.map((e) {
       return '${e.first.propertyItems.first.key} : ${e.first.propertyItems.first.value}';
@@ -240,7 +246,10 @@ class _IgpuBaseState extends State<IgpuBase> {
         if (value.isNotEmpty) {
           setState(() {
             selectedModel = widget.igpuModels.firstWhere(
-              (e) => e.first.propertyItems.first.comment == value.first,
+              (e) {
+                final c = e.first.propertyItems.first.comment;
+                return ((c is Function ? c() : c) ?? '') == value.first;
+              },
             );
           });
         } else {

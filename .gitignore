@@ -43,7 +43,6 @@ debug-info/
 **/android/**/GeneratedPluginRegistrant.java
 **/android/app/.cxx/
 
-
 # iOS/XCode related
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
@@ -71,8 +70,22 @@ debug-info/
 **/ios/Runner/GeneratedPluginRegistrant.*
 **/ios/Flutter/flutter_export_environment.sh
 **/ios/Flutter/.last_build_id
+/ios/build/
 
-# Web related
+# macOS
+macos/Flutter/ephemeral
+macos/Runner/Configs/AppInfo.xcconfig
+macos/Runner/GeneratedPluginRegistrant.swift
+
+# Windows
+windows/flutter/ephemeral/
+windows/flutter/ephemeral/generated_config.cmake
+windows/Runner/GeneratedPluginRegistrant.cpp
+
+# Linux
+linux/flutter/ephemeral/
+linux/flutter/ephemeral/generated_config.cmake
+linux/flutter/generated_plugin_registrant.cc
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
@@ -80,4 +93,3 @@ debug-info/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
-/ios/build/

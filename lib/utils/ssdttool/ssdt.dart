@@ -37,7 +37,7 @@ class SSDT {
   };
 
   final String legacyWarning =
-      '注意:旧版iasl-legacy仅支持macOS 10.6及更早版本，目前主流系统使用可能存在兼容性问题,谨慎使用!!!\n';
+      l10nGlobal.autoGen5757;
 
   AcpiConfig config;
 
@@ -612,7 +612,7 @@ class SSDT {
     await File(tmpDsl).writeAsString(ssdt);
 
     Log(
-      '正在${config.useLeagcyiAsl ? '使用【iasl-legacy旧版编译器】' : ''}编译 $ssdtName.aml...',
+      '正在${config.useLeagcyiAsl ? l10nGlobal.autoGen5758 : ''}编译 $ssdtName.aml...',
       level: config.useLeagcyiAsl ? LogLevel.warning : LogLevel.info,
     );
 
@@ -626,8 +626,8 @@ class SSDT {
       if (out[2] != '0') {
         Log.error(l10nGlobal.logMsg009(out[1].toString()));
         Log.error(
-          '编译失败!'
-          '${config.useLeagcyiAsl ? ' 建议更换新版 iasl 或开启强制编译再试!' : ''}',
+          l10nGlobal.autoGen5759 + 
+          '${config.useLeagcyiAsl ? l10nGlobal.autoGen5760 : ''}',
         );
         return false;
       }
@@ -996,7 +996,7 @@ class SSDT {
             )
             .join("\n");
         hasVar = scope.contains(varS);
-        Log(l10nGlobal.logMsg146(varS.toString(), hasVar ? '存在' : '不存在'.toString()));
+        Log(l10nGlobal.logMsg146(varS.toString(), hasVar ? l10nGlobal.autoGen5761 : l10nGlobal.autoGen5762.toString()));
       }
     } else {
       Log(l10nGlobal.logMsg147);
@@ -2329,7 +2329,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
     if (uid == 14) {
       Log("");
       Log.warning(
-        "注意:英特尔第1代Arrandale,第2代Sandy Bridge,第3代Ivy Bridge 默认使用 UID:14,但是有些机器使用UID: 14 会遇到最大亮度受限或其他问题.为了解决这些问题,必须设置正确的 iGPU（集成显卡）的设备路径，并且可能需要补充IGPU寄存器信息",
+        l10nGlobal.autoGen5763,
       );
       Log("");
       getIGpuInfo = getIgpu ?? false;
@@ -2472,7 +2472,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
         }
         if (manualIGPUPath == null || manualIGPUPath.isEmpty) {
           Log.warning(
-            "请输入要使用的 iGPU ACPI 路径。每个路径元素的字符限制为 4 个字母数字字符（以字母或下划线开头），并用空格分隔。例如: SB.PCI0.GFX0\n",
+            l10nGlobal.autoGen5764,
           );
         } else {
           Log(l10nGlobal.logMsg183(manualIGPUPath.toString()));
@@ -2731,7 +2731,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
     hasNbcfNew = patches.any((p) => p["Comment"].contains("NBCF Zero"));
     if (hasNbcfOld || hasNbcfNew) {
       Log.warning(
-        "注意：已生成 NBCF 补丁(依赖BrightnessKeys.kext驱动),默认启用！如果在使用过程中遇到问题,请禁用该补丁!",
+        l10nGlobal.autoGen5765,
       );
     }
   }
@@ -4088,7 +4088,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "UsbRHUB", 0x00001000)
   /// 打印无法解析的桥接
   /// [failedBridges] 无法解析的桥接列表
   void debugPrintFailedBridges(List<String> failedBridges) {
-    debugPrint("\n以下桥接无法解析：");
+    debugPrint(l10nGlobal.autoGen5766);
     for (var fb in failedBridges..sort()) {
       Log("=> $fb");
     }
@@ -5674,7 +5674,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       Log.warning(l10nGlobal.logMsg066);
       if (systemStatesNotSupported.isEmpty) {
         Log.warning(
-          "=> 当前固件支持常见系统状态!如果不是AOAC机器,修复睡眠问题后,macOS可支持S3睡眠,反之不支持S3睡眠!",
+          l10nGlobal.autoGen5767,
         );
       }
     }
@@ -8066,7 +8066,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
         String patchType = '';
         if (item is Map<String, dynamic> &&
             (item.containsKey('Find') || item.containsKey('Signature'))) {
-          patchType = '补丁';
+          patchType = l10nGlobal.autoGen5768;
         }
 
         // 查找匹配项

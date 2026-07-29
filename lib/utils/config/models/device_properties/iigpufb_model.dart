@@ -14,7 +14,7 @@ class IigpufbProperty {
   ///   - string 类型：原始字符串值
   final String value;
 
-  const IigpufbProperty({
+  IigpufbProperty({
     required this.key,
     required this.dataType,
     required this.value,
@@ -38,7 +38,7 @@ class IigpufbCpuEntry {
   /// 可写入 plist 的属性列表（已排除 igpu / _note 等元字段）
   final List<IigpufbProperty> properties;
 
-  const IigpufbCpuEntry({
+  IigpufbCpuEntry({
     required this.cpuModel,
     required this.igpuName,
     this.note,
@@ -84,7 +84,7 @@ class IigpufbGeneration {
   /// 该代所有 CPU 条目
   final List<IigpufbCpuEntry> cpus;
 
-  const IigpufbGeneration({
+  IigpufbGeneration({
     required this.name,
     required this.cpus,
   });

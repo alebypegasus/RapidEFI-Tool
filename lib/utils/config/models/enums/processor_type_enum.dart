@@ -1,33 +1,33 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum ProcessorType {
   none(
     value: 0,
-    text: EnumText(
-      title: '不修改 ProcessorType',
-      description: '保持系统默认 CPU 类型显示',
+    text: const EnumText(
+      titleId: 5144, descId: 5145,
     ),
   ),
   type1537(
     value: 1537,
-    text: EnumText(
-      title: 'ProcessorType: 1537',
-      description: 'Intel 及 AMD 平台 CPU 名称修改方案一(通常适用于 6 核心及以下 CPU)',
+    text: const EnumText(
+      fallbackTitle: 'ProcessorType: 1537',
+      descId: 5146,
     ),
   ),
   type3841(
     value: 3841,
-    text: EnumText(
-      title: 'ProcessorType: 3841',
-      description: 'Intel 及 AMD 平台 CPU 名称修改方案二(通常适用于 8 核心及以上 CPU)',
+    text: const EnumText(
+      fallbackTitle: 'ProcessorType: 3841',
+      descId: 5147,
     ),
   ),
   type3842(
     value: 3842,
-    text: EnumText(
-      title: 'ProcessorType: 3842',
-      description: 'Intel 及 AMD 平台 CPU 名称修改备选方案(通常适用于 8 核心及以上 i7、i9 系列 CPU)',
+    text: const EnumText(
+      fallbackTitle: 'ProcessorType: 3842',
+      descId: 5148,
     ),
   );
 

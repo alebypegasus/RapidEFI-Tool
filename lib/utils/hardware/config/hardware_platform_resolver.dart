@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/models/enums/config_enums.dart';
 import 'package:rapidefi/utils/config/presets/platform_profiles/platform_code_registry.dart';
 import 'package:rapidefi/utils/hardware/config/hardware_config_build_context.dart';
@@ -5,7 +6,7 @@ import 'package:rapidefi/utils/hardware/data/gpu_codename_data.dart';
 import 'package:rapidefi/utils/hardware/model/gpu.dart';
 
 class HardwarePlatformSelection {
-  const HardwarePlatformSelection({
+  HardwarePlatformSelection({
     required this.cpuType,
     required this.platformType,
     required this.platformCode,
@@ -59,7 +60,7 @@ class HardwarePlatformResolver {
       }
     }
 
-    throw UnsupportedError('无法根据 CPU 信息识别平台类型');
+    throw UnsupportedError(l10nGlobal.autoGen5030);
   }
 
   PlatformType _resolvePlatformType(HardwareConfigBuildContext context) {
@@ -70,15 +71,15 @@ class HardwarePlatformResolver {
 
     final text = _motherboardText(context);
 
-    if (_containsAny(text, const ['laptop', 'notebook', 'portable', '笔记本'])) {
+    if (_containsAny(text, ['laptop', 'notebook', 'portable', l10nGlobal.autoGen5031])) {
       return PlatformType.laptop;
     }
 
-    if (_containsAny(text, const ['nuc', 'mini pc', 'mini-pc', '迷你主机'])) {
+    if (_containsAny(text, ['nuc', 'mini pc', 'mini-pc', l10nGlobal.autoGen5032])) {
       return PlatformType.nuc;
     }
 
-    if (_containsAny(text, const ['hedt', 'workstation', 'server', '工作站'])) {
+    if (_containsAny(text, ['hedt', 'workstation', 'server', l10nGlobal.autoGen5033])) {
       return PlatformType.hedt;
     }
 
@@ -111,7 +112,7 @@ class HardwarePlatformResolver {
       return code;
     }
 
-    throw UnsupportedError('无法根据 CPU、主板、核显确定平台代号');
+    throw UnsupportedError(l10nGlobal.autoGen5034);
   }
 
   String? _platformCodeFromCpu(
@@ -365,7 +366,7 @@ class HardwarePlatformResolver {
     final manufacturer = _lower(gpu.manufacturer);
     final deviceId = _upper(gpu.deviceID);
 
-    return type.contains('核心') ||
+    return type.contains(l10nGlobal.autoGen5017) ||
         type.contains('integrated') ||
         type.contains('internal') ||
         (manufacturer.contains('intel') && deviceId.startsWith('8086-'));

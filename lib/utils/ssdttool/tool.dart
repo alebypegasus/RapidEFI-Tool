@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 // tool.dart
 // Created by JeoJay127
 //
@@ -21,7 +22,7 @@ class ACPITool {
     if (Platform.isWindows) return 'windows';
     if (Platform.isMacOS) return 'macos';
     if (Platform.isLinux) return 'linux';
-    throw UnsupportedError('ACPI 工具当前仅支持 Windows/macOS/Linux 平台');
+    throw UnsupportedError(l10nGlobal.autoGen5756);
   }
 
   String get _iaslName => Platform.isWindows ? 'iasl.exe' : 'iasl';
@@ -30,7 +31,7 @@ class ACPITool {
     if (Platform.isWindows) return 'acpidump.exe';
     if (Platform.isMacOS) return 'patchmatic';
     if (Platform.isLinux) return 'acpidump';
-    throw UnsupportedError('ACPI 工具当前仅支持 Windows/macOS/Linux 平台');
+    throw UnsupportedError(l10nGlobal.autoGen5756);
   }
 
   String _iasl = '';
@@ -178,7 +179,7 @@ class ACPITool {
 
   void _ensureSupportedPlatform() {
     if (!(Platform.isWindows || Platform.isMacOS || Platform.isLinux)) {
-      throw UnsupportedError('ACPI 工具当前仅支持 Windows/macOS/Linux 平台');
+      throw UnsupportedError(l10nGlobal.autoGen5756);
     }
   }
 }

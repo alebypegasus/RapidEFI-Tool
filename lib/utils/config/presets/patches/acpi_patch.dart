@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/extension/string_extension.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_delete_item.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_patch_item.dart';
@@ -24,7 +25,7 @@ class AcpiPatch {
     skip: 0,
     tableLength: 0,
     tableSignature: '46414350'.toBytes(),
-    note: '修复Surface Pro 7 和 Book 3系列,“系统偏好设置”中电池识别问题',
+    note: l10nGlobal.autoGen5550,
   );
 
    /// HP 系列: RTC fix to prevent POST errors
@@ -43,7 +44,7 @@ class AcpiPatch {
     skip: 0,
     tableLength: 0,
     tableSignature: '44534454'.toBytes(),
-    note: '修复部分惠普品牌电脑实时时钟,启动时出现POST错误问题',
+    note: l10nGlobal.autoGen5551,
   );
 
   static final AcpiPatchItem osiToXOSI = AcpiPatchItem(

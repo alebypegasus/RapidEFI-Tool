@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/hardware/analysis/gpu_compatibility_data.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
 
@@ -8,7 +9,7 @@ String hardwareGpuDisplayName(
 }) {
   // Device Type can be '核心显卡' (Chinese hardware data) or 'Integrated GPU' (English)
   final deviceType = gpu['Device Type']?.toString() ?? '';
-  final isIntegratedGpu = deviceType == '核心显卡' || deviceType.toLowerCase().contains('integrated');
+  final isIntegratedGpu = deviceType == l10nGlobal.autoGen5060 || deviceType.toLowerCase().contains('integrated');
   final compatibilityRecord =
       record ?? GpuCompatibilityData.findSync(safeStr(gpu['Device ID']));
 

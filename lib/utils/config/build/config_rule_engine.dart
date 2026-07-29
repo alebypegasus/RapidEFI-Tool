@@ -28,7 +28,7 @@ import 'package:rapidefi/utils/config/support/smbios_util.dart';
 import 'package:rapidefi/utils/log/log.dart';
 
 class ConfigRuleEngine {
-  const ConfigRuleEngine(this.configService);
+  ConfigRuleEngine(this.configService);
 
   final ConfigService configService;
   static Future<Set<String>?>? _assetManifestCache;

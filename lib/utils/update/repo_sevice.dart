@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 //  repo_sevice.dart
 //  Created by JeoJay127
 //
@@ -35,7 +36,7 @@ class RepoService {
     final now = DateTime.now();
     if (_isChecking) {
       if (!silent) {
-        onInfo?.call('正在检查更新，请稍后...');
+        onInfo?.call(l10nGlobal.autoGen5129);
       }
       return;
     }
@@ -44,7 +45,7 @@ class RepoService {
         !_lastResultHadUpdate &&
         now.difference(_lastCheckTime!) < _minInterval) {
       if (!silent) {
-        onInfo?.call('刚刚已检查过更新，请稍后再试');
+        onInfo?.call(l10nGlobal.autoGen5130);
       }
       return;
     }
@@ -73,7 +74,7 @@ class RepoService {
       return;
     } catch (e) {
       if (!silent) {
-        onError?.call('检查更新失败，请稍后重试');
+        onError?.call(l10nGlobal.autoGen5131);
       }
       rethrow;
     } finally {
@@ -92,13 +93,13 @@ class RepoService {
       final releaseList = await checker.checkReleases(config: config);
       if (releaseList == null) {
         if (!silent) {
-          onError?.call('获取发布版本列表失败，请稍后重试');
+          onError?.call(l10nGlobal.autoGen5132);
         }
         return;
       }
       if (releaseList.isEmpty) {
         if (!silent) {
-          onInfo?.call('发布版本列表为空');
+          onInfo?.call(l10nGlobal.autoGen5133);
         }
         return;
       }

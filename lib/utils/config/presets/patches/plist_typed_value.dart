@@ -2,7 +2,7 @@ class PlistTypedValue {
   final String type;
   final dynamic value;
 
-  const PlistTypedValue({
+  PlistTypedValue({
     required this.type,
     required this.value,
   });

@@ -6,7 +6,7 @@ import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 typedef EfiBuildHook = Future<bool> Function(ConfigDraft draft);
 
 class ConfigDraft {
-  const ConfigDraft({
+  ConfigDraft({
     required this.sourceModel,
     required this.patchModel,
     required this.persistedModel,

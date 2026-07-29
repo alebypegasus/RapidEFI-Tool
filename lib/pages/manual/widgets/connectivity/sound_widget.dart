@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
@@ -41,13 +42,7 @@ class _SoundWidgetState extends State<SoundWidget> {
   final FocusNode _focusNode = FocusNode();
   List<Object>? _lastPickerSelection;
 
-  final String tip = r'''
-  常见HPET路径:
-  \_SB.PCI0.LPCB.HPET
-  \_SB.PCI0.LPC.HPET
-  \_SB.PCI0.HPET
-  此选项用于修复部分声卡IRQ问题!注意:如果你的声卡没有IRQ问题,请不要使用此功能!!!
-  ''';
+  final String tip = l10nGlobal.autoGen5824;
 
   @override
   void initState() {

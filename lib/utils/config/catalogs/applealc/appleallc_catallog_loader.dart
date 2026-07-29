@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
@@ -23,8 +24,8 @@ class AppleALCCodecCatalogLoader {
     final json = jsonDecode(jsonString);
 
     if (json is! Map<String, dynamic>) {
-      throw const FormatException(
-        'alc_codec.json 格式错误：根节点必须是 Map<String, dynamic>',
+      throw FormatException(
+        l10nGlobal.autoGen5276,
       );
     }
 

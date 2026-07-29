@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import '../pci_ids_parser.dart';
 import 'hardware_device_data.dart';
 
@@ -11,17 +12,17 @@ extension GpuResolvedTypeLabel on GpuResolvedType {
   String get label {
     switch (this) {
       case GpuResolvedType.integrated:
-        return '核心显卡';
+        return l10nGlobal.autoGen5060;
       case GpuResolvedType.discrete:
-        return '独立显卡';
+        return l10nGlobal.autoGen5061;
       case GpuResolvedType.unknown:
-        return '未知显卡';
+        return l10nGlobal.autoGen5063;
     }
   }
 }
 
 class GpuCodenameData {
-  static const String _pciIdsAssetPath = 'assets/data/pci.ids';
+  static final String _pciIdsAssetPath = 'assets/data/pci.ids';
   static IdsParser? _pciIds;
   static Future<void>? _loadFuture;
 
@@ -107,7 +108,7 @@ class GpuCodenameData {
     return IdsParser.extractCodenameFromDeviceName(prefix);
   }
 
-  static const _intelIgpPatterns = [
+  static final _intelIgpPatterns = [
     'hd graphics',
     'uhd graphics',
     'iris',
@@ -122,7 +123,7 @@ class GpuCodenameData {
     'intel arc graphics',
   ];
 
-  static const _amdIgpPatterns = [
+  static final _amdIgpPatterns = [
     'radeon(tm) graphics',
     'radeon(tm) vega',
     'radeon rx vega',
@@ -146,7 +147,7 @@ class GpuCodenameData {
     return false;
   }
 
-  static const _discreteNamePatterns = [
+  static final _discreteNamePatterns = [
     'radeon rx',
     'radeon r9',
     'radeon r7',
@@ -220,7 +221,7 @@ class GpuCodenameData {
     return false;
   }
 
-  static const _discreteCodenames = [
+  static final _discreteCodenames = [
     // AMD GCN / Polaris / Vega / Navi / RDNA
     'lexa',
     'baffin',
@@ -296,15 +297,15 @@ class GpuCodenameData {
     final text = value?.toString().trim().toLowerCase() ?? '';
     if (text.isEmpty) return GpuResolvedType.unknown;
 
-    if (text == 'discrete' || text == 'discrete gpu' || text.contains('独立')) {
+    if (text == 'discrete' || text == 'discrete gpu' || text.contains(l10nGlobal.autoGen5018)) {
       return GpuResolvedType.discrete;
     }
 
     if (text == 'integrated' ||
         text == 'integrated gpu' ||
-        text.contains('核心') ||
-        text.contains('核显') ||
-        text.contains('集成')) {
+        text.contains(l10nGlobal.autoGen5017) ||
+        text.contains(l10nGlobal.autoGen5019) ||
+        text.contains(l10nGlobal.autoGen5064)) {
       return GpuResolvedType.integrated;
     }
 

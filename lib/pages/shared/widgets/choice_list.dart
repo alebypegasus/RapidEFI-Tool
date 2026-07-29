@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_chip_tile.dart';
 
@@ -43,7 +44,7 @@ class ChoiceList<T> extends StatefulWidget {
     this.expandTitle,
   }) : assert(
           tips == null || tips.length == choices.length,
-          'tips 长度必须和 choices 一致',
+          'tips length must equal choices length',
         );
 
   @override

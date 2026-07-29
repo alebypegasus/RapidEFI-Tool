@@ -91,6 +91,16 @@ class _AppHost extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       locale: appTheme.locale,
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (locale != null) {
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode) {
+              return supportedLocale;
+            }
+          }
+        }
+        return const Locale('en');
+      },
 
       builder: (context, child) => _AppChrome(
         appTheme: appTheme,

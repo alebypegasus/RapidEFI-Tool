@@ -1,26 +1,27 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum UIScale {
   scale00(
     nvramValue: '00',
-    text: EnumText(
-      title: '',
-      description: '自适应显示器,根据显示器分辨率自动调整 OpenCore 引导界面的显示比例',
+    text: const EnumText(
+      fallbackTitle: '',
+      descId: 5141,
     ),
   ),
   scale01(
     nvramValue: '01',
-    text: EnumText(
-      title: '',
-      description: '标准分辨率显示器,适用于 720p、1080p、1440p 等标准分辨率显示器',
+    text: const EnumText(
+      fallbackTitle: '',
+      descId: 5142,
     ),
   ),
   scale02(
     nvramValue: '02',
-    text: EnumText(
-      title: '',
-      description: '高分辨率显示器,适用于 4K、5K 等高分辨率显示器(可以有效改善高分屏OpenCore引导页面UI元素过小的问题)',
+    text: const EnumText(
+      fallbackTitle: '',
+      descId: 5143,
     ),
   );
 

@@ -48,46 +48,44 @@ class _CPUWidgetState extends State<CPUWidget> {
     final l10n = AppLocalizations.of(context)!;
     return TitleCard(
       title: l10n.cpuSelection,
-      content: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ButtonSegmentWidget(
-              labels: choices,
-              initialSelection: {cpuType.localizedTitle(AppLocalizations.of(context)!)},
-              onSelectionChanged: (value) {
-                final selectedValue = value.first;
+      content: Wrap(
+        alignment: WrapAlignment.start,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          ButtonSegmentWidget(
+            labels: choices,
+            initialSelection: {cpuType.localizedTitle(AppLocalizations.of(context)!)},
+            onSelectionChanged: (value) {
+              final selectedValue = value.first;
 
-                final selectedCpuType = CpuType.values.firstWhere(
-                  (type) => type.localizedTitle(AppLocalizations.of(context)!) == selectedValue,
-                  orElse: () => CpuType.intel,
-                );
+              final selectedCpuType = CpuType.values.firstWhere(
+                (type) => type.localizedTitle(AppLocalizations.of(context)!) == selectedValue,
+                orElse: () => CpuType.intel,
+              );
 
-                if (cpuType == selectedCpuType) {
-                  return;
-                }
+              if (cpuType == selectedCpuType) {
+                return;
+              }
 
-                setState(() {
-                  cpuType = selectedCpuType;
-                });
+              setState(() {
+                cpuType = selectedCpuType;
+              });
 
-                widget.onChanged.call(cpuType);
+              widget.onChanged.call(cpuType);
+            },
+          ),
+          if (cpuType == CpuType.intel)
+            TipSwitch(
+              tip: l10n.pentiumCeleronTip,
+              title: l10n.pentiumCeleron,
+              checked: widget.pentiumOrCeleron,
+              onChanged: (value) {
+                widget.onPentiumChanged?.call(value);
               },
             ),
-            const SizedBox(width: 10),
-            if (cpuType == CpuType.intel)
-              TipSwitch(
-                tip: l10n.pentiumCeleronTip,
-                title: l10n.pentiumCeleron,
-                checked: widget.pentiumOrCeleron,
-                onChanged: (value) {
-                  widget.onPentiumChanged?.call(value);
-                },
-              ),
-          ],
-        ),
+        ],
       ),
     );
   }

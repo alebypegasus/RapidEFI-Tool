@@ -7,7 +7,7 @@ class EfiDriverOption {
   final String tip;
   final List<String> legacyAliases;
 
-  const EfiDriverOption({
+  EfiDriverOption({
     required this.id,
     required this.title,
     required this.path,

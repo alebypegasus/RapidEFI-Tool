@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
@@ -18,13 +19,7 @@ class _USBWiFiState extends State<USBWiFi> {
   @override
   Widget build(BuildContext context) {
     final String usbWiFiText = AppLocalizations.of(context)!.manualUsbWifiKexts;
-    final String tip = r'''
-  支持macOS版本:
-    •	Wireless USB Big Sur Adapter-V18版本支持macOS Catalina 10.15.x ~ macOS Tahoe 26.x (需要OCLP USB补丁)
-    •	Wireless USB Big Sur Adapter-V15版本支持OS X Mavericks 10.9 ~ macOS Catalina 10.15.x
-  支持的USB WiFi如下:
-    •	主要芯片为瑞昱Realtek 802.11n and 802.11ac USB Wi-Fi Adapter,更多具体型号可以参考作者说明
-  ''';
+    final String tip = l10nGlobal.autoGen5825;
 
     return ScrollableChoiceListPanel(
       child: ChoiceList(

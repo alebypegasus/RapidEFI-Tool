@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class GpuCompatibilityData {
-  static const String assetPath = 'assets/data/gpu_compatibility.json';
+  static final String assetPath = 'assets/data/gpu_compatibility.json';
 
   static Map<String, dynamic>? _vendors;
   static Future<void>? _loadFuture;
@@ -310,7 +310,7 @@ class GpuCompatibilityRecord {
   final String? spoofId;
   final int sortIndex;
 
-  const GpuCompatibilityRecord({
+  GpuCompatibilityRecord({
     required this.id,
     required this.vendorId,
     required this.groupName,

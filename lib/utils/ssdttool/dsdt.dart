@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 //  dsdt.dart
 //  Created by JeoJay127
 //
@@ -439,7 +440,7 @@ class DSDT {
         }
       } else {
         Log.warning("无效路径: $tablePath");
-        throw FileSystemException("无效路径", tablePath);
+        throw FileSystemException(l10nGlobal.autoGen5722, tablePath);
       }
 
       if (validFiles.isEmpty && exclude.isEmpty) {
@@ -493,7 +494,7 @@ class DSDT {
       }
 
       if (targetFiles.isEmpty && exclude.isEmpty) {
-        throw FileSystemException("没有找到有效的 .aml 或 .dat 文件", tablePath);
+        throw FileSystemException(l10nGlobal.autoGen5723, tablePath);
       }
 
       /// 切换到临时目录,减少目录太深的问题
@@ -517,9 +518,9 @@ class DSDT {
           Log('正在反编译 ${dsdtOrSsdt.first} 文件...');
         } else {
           if (excludeSet.contains('dsdt.aml')) {
-            Log('正在批量反编译 SSDT.aml 文件...');
+            Log(l10nGlobal.autoGen5724);
           } else {
-            Log('正在批量反编译 DSDT.aml 和 SSDT.aml 文件...');
+            Log(l10nGlobal.autoGen5725);
           }
         }
         List<String> failedTemp = [];
@@ -571,7 +572,7 @@ class DSDT {
 
         // 单独反编译失败的.aml 文件
         if (failedTemp.isNotEmpty) {
-          Log('正在单独反编译失败的.aml 文件...');
+          Log(l10nGlobal.autoGen5726);
           for (var e in failedTemp) {
             args = [acpiTool.iasl, "-dl", "-l", e];
             final res = await r.run([
@@ -595,7 +596,7 @@ class DSDT {
 
       // 反编译其他.aml文件 (例如 DMAR, APIC)
       if (otherTables.isNotEmpty) {
-        Log('正在反编译其他.aml文件...');
+        Log(l10nGlobal.autoGen5727);
         List<String> args = [acpiTool.iasl, "-dl", "-l", ...otherTables];
         final res = await r.run([
           {"args": args},
@@ -742,7 +743,7 @@ class DSDT {
       return (targetFiles, failed);
     } catch (e) {
       if (e.toString().contains('Failed to decode data using encoding')) {
-        Log.warning('注意：路径或文件名尽量不要包含中文或特殊字符,否则可能带来意外问题！');
+        Log.warning(l10nGlobal.autoGen5728);
       } else {
         Log.error('发生错误 : ${e.toString()}');
       }
@@ -819,11 +820,11 @@ class DSDT {
     if (exePath == null || !File(exePath).existsSync()) {
       return fail(
         AcpiDumpFailureType.toolMissing,
-        "ACPI 导出工具未准备就绪",
+        l10nGlobal.autoGen5729,
       );
     }
 
-    Log("正在导出 ACPI 表...");
+    Log(l10nGlobal.autoGen5730);
     String outputPath = await util.checkPath(
       filePath: filePath,
       onError: (error) => Log.error(error),
@@ -832,7 +833,7 @@ class DSDT {
     if (!(Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
       return fail(
         AcpiDumpFailureType.unsupportedPlatform,
-        "当前平台不支持导出 ACPI 表",
+        l10nGlobal.autoGen5731,
         warning: false,
       );
     }
@@ -871,18 +872,18 @@ class DSDT {
 
     String? sudoPassword;
     if (Platform.isLinux && onRequestSudoPassword != null) {
-      Log("等待输入 sudo 密码授权...");
+      Log(l10nGlobal.autoGen5732);
       sudoPassword = await onRequestSudoPassword();
       if (sudoPassword == null) {
         return fail(
           AcpiDumpFailureType.authorizationCancelled,
-          "已取消管理员授权",
+          l10nGlobal.autoGen5733,
         );
       }
       if (sudoPassword.trim().isEmpty) {
         return fail(
           AcpiDumpFailureType.passwordRequired,
-          "未输入管理员密码",
+          l10nGlobal.autoGen5734,
         );
       }
     }
@@ -893,13 +894,13 @@ class DSDT {
       if (Platform.isLinux && isIncorrectSudoPassword(stderr)) {
         return fail(
           AcpiDumpFailureType.incorrectPassword,
-          "管理员密码不正确",
+          l10nGlobal.autoGen5735,
           detail: stderr,
         );
       }
       return fail(
         AcpiDumpFailureType.processFailed,
-        "ACPI 表导出进程执行失败",
+        l10nGlobal.autoGen5736,
         detail: stderr,
         warning: false,
       );
@@ -913,14 +914,14 @@ class DSDT {
     if (!hasTable) {
       return fail(
         AcpiDumpFailureType.emptyResult,
-        "当前平台提取 ACPI 表为空或不支持导出 ACPI 表",
+        l10nGlobal.autoGen5737,
       );
     }
 
     if (!Directory(
       outputPath,
     ).listSync().any((file) => file.path.toLowerCase().contains("dsdt."))) {
-      Log.warning("=> 未找到 DSDT，正在按签名导出…");
+      Log.warning(l10nGlobal.autoGen5738);
       final dsdtResult = await Process.run(
           exePath,
           [
@@ -932,14 +933,14 @@ class DSDT {
       if (dsdtResult.exitCode != 0) {
         return fail(
           AcpiDumpFailureType.processFailed,
-          "DSDT 表导出失败",
+          l10nGlobal.autoGen5739,
           detail: dsdtResult.stderr.toString(),
           warning: false,
         );
       }
     }
 
-    Log("正在更新表名…");
+    Log(l10nGlobal.autoGen5740);
     for (var entity in Directory(outputPath).listSync()) {
       if (entity is File) {
         String newName = entity.uri.pathSegments.last
@@ -956,7 +957,7 @@ class DSDT {
       }
     }
 
-    Log("导出 ACPI 表成功!");
+    Log(l10nGlobal.autoGen5741);
     if (disassemble) {
       await loadTable(outputPath);
     }
@@ -980,7 +981,7 @@ class DSDT {
     // 如果未提供table，则获取 DSDT 或唯一表
     table ??= getDsdt();
     if (table == null) {
-      throw Exception("未提供有效 ACPI 表!");
+      throw Exception(l10nGlobal.autoGen5742);
     }
 
     int startIndex = index;
@@ -1004,7 +1005,7 @@ class DSDT {
       String newLine = newResult.$1;
       lastIndex = newResult.$2;
       if (lastIndex == -1) {
-        throw Exception("未没找到要定位的十六进制数据!");
+        throw Exception(l10nGlobal.autoGen5743);
       }
       line += newLine;
     }
@@ -1039,7 +1040,7 @@ class DSDT {
           liner = nextResult.$1;
           lastIndex = nextResult.$3;
           if (lastIndex == -1) {
-            throw Exception("未没找到要定位的十六进制数据!");
+            throw Exception(l10nGlobal.autoGen5743);
           }
         }
         padr += liner.substring(0, 2);
@@ -1057,7 +1058,7 @@ class DSDT {
           startIndex = prevResult.$2;
           var endIndex = prevResult.$3;
           if (endIndex == -1) {
-            throw Exception("未没找到要定位的十六进制数据!");
+            throw Exception(l10nGlobal.autoGen5743);
           }
         }
         padl = linel.substring(linel.length - 2) + padl;
@@ -1130,7 +1131,7 @@ class DSDT {
     }
     // 三个方向都无法获取唯一 Pad，则抛出异常
     if (leftPad == null && rightPad == null && midPad == null) {
-      throw Exception("未找到唯一的填充标识!");
+      throw Exception(l10nGlobal.autoGen5744);
     }
 
     // 三个方向中至少有一个成功获取的 Pad
@@ -1158,7 +1159,7 @@ class DSDT {
   }) {
     table ??= getDsdt();
     if (table?["lines"] == null) {
-      Log("=> getScopeOfDevice: 无效的 table 参数");
+      Log(l10nGlobal.autoGen5745);
       return <String>[];
     }
 

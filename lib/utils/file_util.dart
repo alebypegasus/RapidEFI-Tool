@@ -173,7 +173,7 @@ class FileUtils {
     return _FileCopyOps.copyDirectoryByName(
       Directory(sourcePath),
       Directory(destinationPath),
-      successMessage: 'Kext 复制成功',
+      successMessage: l10nGlobal.autoGen5772,
     );
   }
 
@@ -548,7 +548,7 @@ class _PlatformPaths {
       final directory = await getExternalStorageDirectory();
       return directory?.path ?? '';
     }
-    return 'Web平台默认直接下载，暂不支持选择默认路径';
+    return l10nGlobal.autoGen5773;
   }
 
   static Future<bool> reveal(String targetPath) async {
@@ -635,7 +635,7 @@ class _ConfigFileOps {
 
       final jsonMap = jsonDecode(await file.readAsString());
       if (jsonMap is! Map<String, dynamic>) {
-        throw const FormatException('配置文件根节点不是 JSON 对象');
+        throw FormatException(l10nGlobal.autoGen5774);
       }
       _validateConfigModelJson(jsonMap);
       return ConfigModel.fromJson(jsonMap);

@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'dart:io';
 
 import 'package:path/path.dart' as path;
@@ -44,7 +45,7 @@ class WinSsdtBuildService {
 
     Log('');
     Log(
-      '待定制SSDT列表： '
+      l10nGlobal.autoGen5037 + 
       '[${_selectedAmlNames(
         selection,
         targetPlatformType,
@@ -71,7 +72,7 @@ class WinSsdtBuildService {
           ? sourceAcpiPath
           : await manager.dumpTables(ssdtWorkDir.path);
       if (loadSourcePath == null || loadSourcePath.isEmpty) {
-        return _useOriginalFallback('ACPI 表提取失败');
+        return _useOriginalFallback(l10nGlobal.autoGen5038);
       }
       if (sourceAcpiPath.isNotEmpty) {
         Log('使用导入的 ACPI 表目录: $sourceAcpiPath');
@@ -79,7 +80,7 @@ class WinSsdtBuildService {
 
       final loadedPath = await manager.loadTables(loadSourcePath);
       if (loadedPath == null || loadedPath.isEmpty) {
-        return _useOriginalFallback('ACPI 表加载失败');
+        return _useOriginalFallback(l10nGlobal.autoGen5039);
       }
 
       final rawDevs = await manager.ssdt.listIrqs();
@@ -138,7 +139,7 @@ class WinSsdtBuildService {
               .any((file) => file.path.toLowerCase().endsWith('.aml'));
       if (!hasPatchPlist || !hasAml) {
         return _useOriginalFallback(
-          '定制 SSDT 结果不完整',
+          l10nGlobal.autoGen5040,
         );
       }
 
@@ -154,7 +155,7 @@ class WinSsdtBuildService {
       Log.error('定制 SSDT 失败: $error');
       Log.error(stackTrace.toString());
       return _useOriginalFallback(
-        '定制 SSDT 发生异常',
+        l10nGlobal.autoGen5041,
       );
     } finally {
       if (workDir != null && await workDir.exists()) {
@@ -162,7 +163,7 @@ class WinSsdtBuildService {
           await workDir.delete(recursive: true);
         } catch (_) {
           Log.warning(
-            '定制 SSDT 临时目录清理失败: '
+            l10nGlobal.autoGen5042 + 
             '${path.basename(workDir.path)}',
           );
         }
@@ -175,7 +176,7 @@ class WinSsdtBuildService {
     PlatformType platformType,
     Map<String, dynamic>? rawInfo,
   ) {
-    return const AcpiDeviceBlockPlanner().targets(
+    return AcpiDeviceBlockPlanner().targets(
       rawInfo,
       cpuType: selection.cpuType,
       platformType: platformType,
@@ -207,7 +208,7 @@ class WinSsdtBuildService {
       addName('${target.amlName}.aml');
     }
 
-    final methods = const AcpiDeviceBlockPlanner().disableMethods(
+    final methods = AcpiDeviceBlockPlanner().disableMethods(
       platformType,
     );
     for (final target in blockPlans) {
@@ -243,13 +244,13 @@ class WinSsdtBuildService {
       );
       if (File(amlPath).existsSync()) {
         Log(
-          '显卡设备 ID 仿冒 SSDT '
+          l10nGlobal.autoGen5043 + 
           '已生成: ${path.basename(amlPath)}',
         );
       } else {
         Log.warning(
-          '显卡设备 ID 仿冒 SSDT '
-          '未能生成: '
+          l10nGlobal.autoGen5043 + 
+          l10nGlobal.autoGen5044 + 
           '${target.name} ${target.deviceId}',
         );
       }
@@ -266,7 +267,7 @@ class WinSsdtBuildService {
   }) async {
     if (targets.isEmpty) return;
 
-    final methods = const AcpiDeviceBlockPlanner().disableMethods(
+    final methods = AcpiDeviceBlockPlanner().disableMethods(
       platformType,
     );
     for (final target in targets) {
@@ -286,7 +287,7 @@ class WinSsdtBuildService {
         );
         if (File(amlPath).existsSync()) {
           Log(
-            'ACPI 设备屏蔽 SSDT '
+            l10nGlobal.autoGen5045 + 
             '已生成: ${path.basename(amlPath)}',
           );
           generated = true;
@@ -296,8 +297,8 @@ class WinSsdtBuildService {
 
       if (!generated) {
         Log.warning(
-          'ACPI 设备屏蔽 SSDT '
-          '未能生成: '
+          l10nGlobal.autoGen5045 + 
+          l10nGlobal.autoGen5044 + 
           '${target.type} ${target.name} ${target.deviceId}',
         );
       }
@@ -323,8 +324,8 @@ class WinSsdtBuildService {
   bool _useOriginalFallback(String reason) {
     Log.warning('定制 SSDT 失败: $reason');
     Log.warning(
-      '已跳过定制 SSDT 合并，'
-      '继续使用当前 EFI 中原始 SSDT 作为兜底。',
+      l10nGlobal.autoGen5046 + 
+      l10nGlobal.autoGen5047,
     );
     return true;
   }
@@ -390,7 +391,7 @@ class _GpuIdentityOverridePlanner {
 
       if (!_isValidAcpiPath(acpiPath)) {
         Log.warning(
-          '显卡设备 ID 仿冒跳过: '
+          l10nGlobal.autoGen5048 + 
           '${deviceDisplayName(entry.key, gpu)} '
           '$deviceId 缺少有效 ACPI Path',
         );
@@ -418,8 +419,8 @@ class _GpuIdentityOverridePlanner {
     final type = safeStr(gpu['Device Type']).toLowerCase();
     if (type == 'integrated' ||
         type.contains('integrated') ||
-        type.contains('核显') ||
-        type.contains('核心')) {
+        type.contains(l10nGlobal.autoGen5019) ||
+        type.contains(l10nGlobal.autoGen5017)) {
       return false;
     }
 

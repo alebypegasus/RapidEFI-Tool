@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
@@ -302,7 +303,7 @@ class MbConfService {
         key: key,
         dataType: isHexStr ? 'data' : 'string',
         value: str.toLowerCase(),
-        comment: '来自 mbconfs',
+        comment: l10nGlobal.autoGen5174,
       );
     }
   }

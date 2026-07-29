@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import '../../models/booter/booter_quirk_type.dart';
 import '../../models/booter/booter_quirks.dart';
 
@@ -291,29 +292,29 @@ class ConfigBooter {
       setupVirtualMap: true);
 
   static List<BooterQuirkType> booterQuirkTypes = [
-    const BooterQuirkType(
+    BooterQuirkType(
         name: 'DevirtualiseMmio',
         comment:
-            'DevirtualiseMmio(一些主板和固件在处理MMIO区域时可能会出现冲突或不兼容的问题。启用该选项可以帮助解决这些冲突,提高系统的兼容性和稳定性.此选项通常结合OpenCore Debug版本来定制MMIO,以解决部分主板(例如:部分X58,X79,X99,以及AMD 7000系列处理器主板)因内存问题导致的卡EB)'),
-    const BooterQuirkType(
+            l10nGlobal.autoGen5328),
+    BooterQuirkType(
         name: 'EnableWriteUnprotector',
         comment:
-            'EnableWriteUnprotector(不支持内存属性表（MAT）的固件上，特别是OEM固件上建议勾选.开启后会在执行期间删除CR0寄存器中的写入保护,保证NVRAM正常写入.通常适用于7代以前平台)'),
-    const BooterQuirkType(
+            l10nGlobal.autoGen5329),
+    BooterQuirkType(
         name: 'ProtectUefiServices',
         comment:
-            'ProtectUefiServices(保护UEFI服务不被固件覆盖,通常用于修复DevirtualiseMmio等导致卡EB问题。Z390,Z490主板,以及10代IceLake建议勾选)'),
-    const BooterQuirkType(
+            l10nGlobal.autoGen5330),
+    BooterQuirkType(
         name: 'SetupVirtualMap',
         comment:
-            'SetupVirtualMap(建立连续性虚拟内存供OC使用，并映射到分散的物理内存中.注意:10代Comet Lake 华硕(ASUS),技嘉(Gigabyte),华擎(AsRock)主板不建议勾选.'),
-    const BooterQuirkType(
+            l10nGlobal.autoGen5331),
+    BooterQuirkType(
         name: 'RebuildAppleMemoryMap',
         comment:
-            'RebuildAppleMemoryMap(支持内存属性表（MAT）的固件上,建议勾选.通常与SyncRuntimePermissions搭配使用。此项与EnableWriteUnprotector可能存在冲突,建议两者二选一。通常适用于8代以后平台,部分老平台也适用)'),
-    const BooterQuirkType(
+            l10nGlobal.autoGen5332),
+    BooterQuirkType(
         name: 'SyncRuntimePermissions',
         comment:
-            'SyncRuntimePermissions(修正硬件在注入内存时无法注入权限的问题。一般此类问题存在2018年后的主板。如果你因为此选项无法进入Windows,请开启它。此项通常与RebuildAppleMemoryMap搭配使用)')
+            l10nGlobal.autoGen5333)
   ];
 }

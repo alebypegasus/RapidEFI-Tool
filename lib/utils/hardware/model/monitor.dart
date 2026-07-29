@@ -9,7 +9,7 @@ class Monitor {
   final String? connectedGPU;
   final String? edid;
 
-  const Monitor({
+  Monitor({
     this.size,
     this.connectorType,
     this.resolution,
@@ -49,7 +49,7 @@ class Monitor {
 class MonitorsInfo {
   final Map<String, Monitor> monitors;
 
-  const MonitorsInfo({
+  MonitorsInfo({
     this.monitors = const {},
   });
 

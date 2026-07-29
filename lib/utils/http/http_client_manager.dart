@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 //  HttpClientManager.dart
 //  Created by JeoJay127
 //
@@ -104,8 +105,8 @@ class HttpClientManager {
           .timeout(
             connectTimeout,
             onTimeout: () {
-              onError?.call('连接服务器超时');
-              throw TimeoutException('连接服务器超时');
+              onError?.call(l10nGlobal.autoGen5769);
+              throw TimeoutException(l10nGlobal.autoGen5769);
             },
           );
 
@@ -113,21 +114,21 @@ class HttpClientManager {
       headers?.forEach((key, value) => request?.headers.add(key, value));
 
       if (cancelToken?.isCancelled ?? false) {
-        onError?.call('下载已取消');
+        onError?.call(l10nGlobal.autoGen5770);
         request.abort();
         return null;
       }
 
       cancelToken?.onCancel.then((_) {
-        onError?.call('下载已取消');
+        onError?.call(l10nGlobal.autoGen5770);
         request?.abort();
       });
 
       final response = await request.close().timeout(
         responseTimeout,
         onTimeout: () {
-          onError?.call('读取响应超时');
-          throw TimeoutException('读取响应超时');
+          onError?.call(l10nGlobal.autoGen5771);
+          throw TimeoutException(l10nGlobal.autoGen5771);
         },
       );
 

@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 //  merge.dart
 //  Created by JeoJay127
 //
@@ -69,7 +70,7 @@ class PatchMerge {
       // 处理异步路径检查
       final folderPath = await util.checkPath(filePath: resultsPath);
       if (folderPath.isEmpty) {
-        Log.error("路径检查失败，返回空路径");
+        Log.error(l10nGlobal.autoGen5618);
         return null;
       }
 
@@ -84,7 +85,7 @@ class PatchMerge {
       final pathInfoList = _getPatchesPlists(folderPath);
       // 校验pathInfoList是否合法（避免空列表导致的索引越界）
       if (pathInfoList.length < 2) {
-        Log.warning("获取plist文件信息失败，返回结果不完整");
+        Log.warning(l10nGlobal.autoGen5619);
         return null;
       }
       // 检查是否存在至少一个目标plist文件
@@ -134,7 +135,7 @@ class PatchMerge {
           _extractData(patchOrDrop[key] ?? 0),
         );
         if (unprintable) {
-          Log.warning('\n注意: NormalizeHeaders 已启用，且表 ID 包含不可打印字符！');
+          Log.warning(l10nGlobal.autoGen5620);
           Log.warning('$checkType 可能无法匹配或应用！\n');
           return true;
         }
@@ -142,7 +143,7 @@ class PatchMerge {
     } else {
       for (String key in sig) {
         if (_extractData(patchOrDrop[key] ?? 0).contains(0x3F)) {
-          Log.warning('\n注意: NormalizeHeaders 未启用，且表 ID 包含 \'?\' 字符！');
+          Log.warning(l10nGlobal.autoGen5621);
           Log.warning('$checkType 可能无法匹配或应用！\n');
           return true;
         }
@@ -228,7 +229,7 @@ class PatchMerge {
 
   bool validateConfigPath() {
     if (configPath == null) {
-      Log.warning('未选择目标 config.plist 文件！');
+      Log.warning(l10nGlobal.autoGen5622);
       return false;
     }
     if (!File(configPath!).existsSync()) {
@@ -254,7 +255,7 @@ class PatchMerge {
       return false;
     }
     if (plistType == PlistType.unknown) {
-      Log.warning('=> 无法确定 config.plist 类型！\n');
+      Log.warning(l10nGlobal.autoGen5623);
       return false;
     }
     return true;
@@ -351,7 +352,7 @@ class PatchMerge {
   ) {
     Log('');
     if (ssdts.isEmpty) {
-      Log.warning('=> 未找到 SSDT 表！跳过...');
+      Log.warning(l10nGlobal.autoGen5624);
       return;
     }
     Log('=> 正在检查目标 SSDT 表（共 ${ssdts.length} 个）...');
@@ -383,7 +384,7 @@ class PatchMerge {
         sOrig.remove(r);
       }
     } else {
-      Log('=> 未找到重复 SSDT 表！');
+      Log(l10nGlobal.autoGen5625);
     }
     Log('=> 正在添加 ${ssdts.length} 个 SSDT 表...');
     sOrig.addAll(ssdts);
@@ -404,7 +405,7 @@ class PatchMerge {
   ) {
     Log('');
     if (patch.isEmpty) {
-      Log('=> 未找到 Patch 补丁！跳过...');
+      Log(l10nGlobal.autoGen5626);
       return;
     }
     Log('=> 正在检查目标 Patch 补丁（共 ${patch.length} 个）...');
@@ -435,7 +436,7 @@ class PatchMerge {
         pOrig.remove(r);
       }
     } else {
-      Log('=> 未找到重复 Patch 补丁！');
+      Log(l10nGlobal.autoGen5627);
     }
     Log('=> 正在添加 ${patch.length} 个 Patch 补丁...');
     pOrig.addAll(patch);
@@ -456,7 +457,7 @@ class PatchMerge {
   ) {
     Log('');
     if (drops.isEmpty) {
-      Log('=> 未找到 Drop 补丁！跳过...');
+      Log(l10nGlobal.autoGen5628);
       return;
     }
     Log('=> 正在检查目标 Drop 补丁（共 ${drops.length} 个）...');
@@ -506,7 +507,7 @@ class PatchMerge {
         dOrig.remove(r);
       }
     } else {
-      Log('=> 未找到重复 Drop 补丁！');
+      Log(l10nGlobal.autoGen5629);
     }
     Log('=> 正在添加 ${drops.length} 个 Drop 补丁...');
     dOrig.addAll(drops);
@@ -525,10 +526,10 @@ class PatchMerge {
   ) {
     Log('');
     if (quirks.isEmpty) {
-      Log('=> 未找到需要更新的 Quirks 配置！跳过...');
+      Log(l10nGlobal.autoGen5630);
       return;
     }
-    Log('=> 正在检查目标 Quirks 配置...');
+    Log(l10nGlobal.autoGen5631);
     for (var q in quirks.entries) {
       if (q.value is bool) {
         Log('=> 更新 ${q.key} 为 ${q.value}');
@@ -556,7 +557,7 @@ class PatchMerge {
   }
 
   void backupConfig(String configPath) {
-    Log('正在备份当前config配置文件...');
+    Log(l10nGlobal.autoGen5632);
     String backupPath = _generateBackupFileName(configPath);
     File(configPath).copySync(backupPath);
     Log('已成功备份文件到: $backupPath');
@@ -570,7 +571,7 @@ class PatchMerge {
   }
 
   Future<void> copyAmlFiles(PlistType plistType, String configPath) async {
-    Log('准备复制 SSDT 文件...');
+    Log(l10nGlobal.autoGen5633);
 
     String acpiPath = path.join(path.dirname(configPath), 'ACPI');
     if (plistType == PlistType.clover) {
@@ -606,10 +607,10 @@ class PatchMerge {
     );
 
     if (success) {
-      Log('保存配置成功！');
-      Log('合并已完成!\n');
+      Log(l10nGlobal.autoGen5634);
+      Log(l10nGlobal.autoGen5635);
     } else {
-      Log.error('合并失败!\n');
+      Log.error(l10nGlobal.autoGen5636);
     }
 
     return success;
@@ -617,14 +618,14 @@ class PatchMerge {
 
   void logWarningsAndErrors(bool success, bool errorsFound) {
     if (errorsFound) {
-      Log.error('注意: 合并过程中发现潜在错误,请检查并修复！');
+      Log.error(l10nGlobal.autoGen5637);
     } else {
       if (!overwrite) {
         final outputDir = path.dirname(resolveOutputPath());
         final efiDir = path.dirname(configPath!);
         final acpiDir = path.join(path.dirname(configPath!), 'ACPI');
-        Log.warning('注意: 当前配置未设置为覆盖目标EFI模式!');
-        Log.warning('你需要手动进行以下操作:');
+        Log.warning(l10nGlobal.autoGen5638);
+        Log.warning(l10nGlobal.autoGen5639);
         Log.warning('1. 你需要手动将 $outputDir 目录下 config.plist 文件替换到 $efiDir 目录下！');
         Log.warning('2. 你需要手动将 $outputDir 目录下所有 .aml 文件,拷贝到 $acpiDir 目录下！');
       }

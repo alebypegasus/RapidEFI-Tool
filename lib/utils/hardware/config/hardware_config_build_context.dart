@@ -11,7 +11,7 @@ import 'package:rapidefi/utils/hardware/model/storage.dart';
 import 'package:rapidefi/utils/hardware/model/usb.dart';
 
 class HardwareConfigBuildContext {
-  const HardwareConfigBuildContext({
+  HardwareConfigBuildContext({
     required this.hardwareInfo,
     required this.rawInfo,
     required this.options,

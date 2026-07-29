@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import '../../models/enums/enum_meta.dart';
 import '../../models/enums/enum_codec.dart';
 
@@ -10,85 +11,82 @@ enum SpecialMotherboard {
   // 通用
   none(
     vendor: MotherboardVendor.intel,
-    text: EnumText(
-      title: '',
+    text: const EnumText(
+      fallbackTitle: '',
     ),
   ),
 
   amdNormal(
     vendor: MotherboardVendor.amd,
-    text: EnumText(
-      title: '常规主板',
+    text: const EnumText(
+      titleId: 5159,
     ),
   ),
   amdB550A520(
     vendor: MotherboardVendor.amd,
-    text: EnumText(
-      title: 'B850,B650,B550和A520主板,550系列芯片组笔记本',
+    text: const EnumText(
+      titleId: 5160,
     ),
   ),
   amdTrx40(
     vendor: MotherboardVendor.amd,
-    text: EnumText(
-      title: 'TRx40主板',
+    text: const EnumText(
+      titleId: 5161,
     ),
   ),
   amdX570(
     vendor: MotherboardVendor.amd,
-    text: EnumText(
-      title: 'X570主板',
+    text: const EnumText(
+      titleId: 5162,
     ),
   ),
   amdX470B450(
     vendor: MotherboardVendor.amd,
-    text: EnumText(
-      title: 'X470或B450主板2020年底或更新BIOS',
+    text: const EnumText(
+      titleId: 5163,
     ),
   ),
 
   intelS6(
     vendor: MotherboardVendor.intel,
-    text: EnumText(
-      title: '6系芯片组',
-      description: 'Intel 3代CPU,6系芯片组(例如:H61,HM65)混合时勾选',
+    text: const EnumText(
+      titleId: 5164, descId: 5165,
     ),
   ),
   intelS7(
     vendor: MotherboardVendor.intel,
-    text: EnumText(
-      title: '7系芯片组',
-      description: 'Intel 2代CPU,7系芯片组(例如:B75,HM76)混合时勾选',
+    text: const EnumText(
+      titleId: 5166, descId: 5167,
     ),
   ),
   intelOem(
     vendor: MotherboardVendor.intel,
-    text: EnumText(
-      title: 'H110,B150,B250,Q270等',
-      description: '部分OEM主板存在USB所有权释放问题:EHCI Hand-off失效',
+    text: const EnumText(
+      titleId: 5168, descId: 5169,
     ),
   ),
   intelZ390(
     vendor: MotherboardVendor.intel,
-    text: EnumText(
-      title: 'Z390',
+    text: const EnumText(
+      fallbackTitle: 'Z390',
     ),
   ),
   intelB460(
     vendor: MotherboardVendor.intel,
-    text: EnumText(
-      title: 'B460',
+    text: const EnumText(
+      fallbackTitle: 'B460',
     ),
   ),
   intelZ490(
     vendor: MotherboardVendor.intel,
-    text: EnumText(
-      title: 'Z490等2020年更新BIOS',
+    text: const EnumText(
+      titleId: 5170,
     ),
   ),
   intelZ590(
     vendor: MotherboardVendor.intel,
-    text: EnumText(
-      title: 'Z590',
+    text: const EnumText(
+      fallbackTitle: 'Z590',
     ),
   );
 
@@ -130,33 +128,33 @@ enum SpecialMotherboard {
         'AMDMLB.normal': SpecialMotherboard.amdNormal,
         'nomal': SpecialMotherboard.amdNormal,
         'normal': SpecialMotherboard.amdNormal,
-        '常规主板': SpecialMotherboard.amdNormal,
+        l10nGlobal.autoGen5159: SpecialMotherboard.amdNormal,
         'AMDMLB.b550AndA520': SpecialMotherboard.amdB550A520,
         'b550AndA520': SpecialMotherboard.amdB550A520,
-        'B850,B650,B550和A520主板,550系列芯片组笔记本': SpecialMotherboard.amdB550A520,
+        l10nGlobal.autoGen5160: SpecialMotherboard.amdB550A520,
         'AMDMLB.trx40': SpecialMotherboard.amdTrx40,
         'trx40': SpecialMotherboard.amdTrx40,
-        'TRx40主板': SpecialMotherboard.amdTrx40,
+        l10nGlobal.autoGen5161: SpecialMotherboard.amdTrx40,
         'AMDMLB.x570': SpecialMotherboard.amdX570,
         'x570': SpecialMotherboard.amdX570,
-        'X570主板': SpecialMotherboard.amdX570,
+        l10nGlobal.autoGen5162: SpecialMotherboard.amdX570,
         'AMDMLB.x470': SpecialMotherboard.amdX470B450,
         'x470': SpecialMotherboard.amdX470B450,
-        'X470或B450主板2020年底或更新BIOS': SpecialMotherboard.amdX470B450,
+        l10nGlobal.autoGen5163: SpecialMotherboard.amdX470B450,
         'SpecialMainBoard.nil': SpecialMotherboard.none,
         'nil': SpecialMotherboard.none,
         '': SpecialMotherboard.none,
         'SpecialMainBoard.S6': SpecialMotherboard.intelS6,
         'S6': SpecialMotherboard.intelS6,
-        '6系芯片组(Intel 3代CPU,6系芯片组(例如:H61,HM65)混合时勾选)':
+        l10nGlobal.autoGen5171:
             SpecialMotherboard.intelS6,
         'SpecialMainBoard.S7': SpecialMotherboard.intelS7,
         'S7': SpecialMotherboard.intelS7,
-        '7系芯片组(Intel 2代CPU,7系芯片组(例如:B75,HM76)混合时勾选)':
+        l10nGlobal.autoGen5172:
             SpecialMotherboard.intelS7,
         'SpecialMainBoard.OEM': SpecialMotherboard.intelOem,
         'OEM': SpecialMotherboard.intelOem,
-        'H110,B150,B250,Q270等(部分OEM主板存在USB所有权释放问题:EHCI Hand-off失效)':
+        l10nGlobal.autoGen5173:
             SpecialMotherboard.intelOem,
         'SpecialMainBoard.Z390': SpecialMotherboard.intelZ390,
         'Z390': SpecialMotherboard.intelZ390,
@@ -164,7 +162,7 @@ enum SpecialMotherboard {
         'B460': SpecialMotherboard.intelB460,
         'SpecialMainBoard.Z490': SpecialMotherboard.intelZ490,
         'Z490': SpecialMotherboard.intelZ490,
-        'Z490等2020年更新BIOS': SpecialMotherboard.intelZ490,
+        l10nGlobal.autoGen5170: SpecialMotherboard.intelZ490,
         'SpecialMainBoard.Z590': SpecialMotherboard.intelZ590,
         'Z590': SpecialMotherboard.intelZ590,
       },

@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/device_id_textfield.dart';
@@ -34,13 +35,7 @@ class _FakeGPUState extends State<FakeGPU> {
   late final Future<void> _gpuCompatibilityFuture =
       GpuCompatibilityData.ensureLoaded();
 
-  final String tip = r'''
-  AMD 独显仿冒(设备属性):
-   1. 需要补充填写显卡PCI路径,例如: PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)
-   2. 需要填写显卡仿冒设备ID(4位16进制),例如: 73BF
-   3. 显卡仿冒后,仍然需要考虑AMD显卡所需启动参数(可以在独显配置->AMD独显->按需勾选)
-   4. 工具预制了部分显卡设备ID,如果没有,请自行查找或者联系作者补充
-  ''';
+  final String tip = l10nGlobal.autoGen5826;
 
   @override
   void initState() {

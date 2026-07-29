@@ -1,25 +1,28 @@
+import 'package:rapidefi/l10n/l10n_helper.dart';
 class UnsupportedNvmeInfo {
-  const UnsupportedNvmeInfo({required this.name, this.subsystemId = ""});
+  UnsupportedNvmeInfo({required this.name, this.subsystemId = ""});
   final String name;
   final String subsystemId;
 }
 
 class SupportedNetworkDeviceInfo {
-  const SupportedNetworkDeviceInfo(
+  SupportedNetworkDeviceInfo(
       {required this.category, required this.kext});
   final String category;
   final String kext;
 }
 
 class _DeviceGroup {
-  const _DeviceGroup(this.value, this.deviceIds);
-  final String value;
+  _DeviceGroup(this.valueBuilder, this.deviceIds);
+  final String Function() valueBuilder;
+  String get value => valueBuilder();
   final List<String> deviceIds;
 }
 
 class _NetworkDeviceGroup {
-  const _NetworkDeviceGroup(this.category, this.kext, this.deviceIds);
-  final String category;
+  _NetworkDeviceGroup(this.categoryBuilder, this.kext, this.deviceIds);
+  final String Function() categoryBuilder;
+  String get category => categoryBuilder();
   final String kext;
   final List<String> deviceIds;
 }
@@ -27,7 +30,7 @@ class _NetworkDeviceGroup {
 class HardwareDeviceData {
   const HardwareDeviceData._();
 
-  static const nootedRedSupportedDeviceIds = {
+  static final nootedRedSupportedDeviceIds = {
     '1002-15DD', // Raven Ridge
     '1002-15D8', // Picasso / Raven 2
     '1002-1636', // Renoir
@@ -36,7 +39,7 @@ class HardwareDeviceData {
     '1002-15E7', // Barcelo
   };
 
-  static const Map<String, UnsupportedNvmeInfo> unsupportedStorageControllers =
+  static final Map<String, UnsupportedNvmeInfo> unsupportedStorageControllers =
       {
     // intel 600p
     '8086-F1A5': UnsupportedNvmeInfo(name: 'Intel SSD 600p Series NVMe'),
@@ -76,8 +79,8 @@ class HardwareDeviceData {
     '8086-AD0B': UnsupportedNvmeInfo(name: 'Intel RST / VMD Controller'),
   };
 
-  static const _sdReaderGroups = [
-    _DeviceGroup('Realtek', [
+  static final _sdReaderGroups = [
+    _DeviceGroup(() => 'Realtek', [
       '0BDA-0129',
       '0BDA-0139',
       '0BDA-0140',
@@ -95,8 +98,8 @@ class HardwareDeviceData {
     ]),
   ];
 
-  static const _bluetoothGroups = [
-    _DeviceGroup('博通', [
+  static final _bluetoothGroups = [
+    _DeviceGroup(() => l10nGlobal.autoGen5065, [
       '000A-0001',
       '03F0-231D',
       '0489-E030',
@@ -252,7 +255,7 @@ class HardwareDeviceData {
       '413C-8143',
       '413C-8197',
     ]),
-    _DeviceGroup('高通', [
+    _DeviceGroup(() => l10nGlobal.autoGen5066, [
       '0489-E036',
       '0489-E03C',
       '0489-E04D',
@@ -306,10 +309,10 @@ class HardwareDeviceData {
       '13D3-3487',
       '13D3-3490',
     ]),
-    _DeviceGroup('Dongle', [
+    _DeviceGroup(() => 'Dongle', [
       '0A12-0001',
     ]),
-    _DeviceGroup('英特尔', [
+    _DeviceGroup(() => l10nGlobal.autoGen5067, [
       '8087-0025',
       '8087-0026',
       '8087-0029',
@@ -327,8 +330,8 @@ class HardwareDeviceData {
     ]),
   ];
 
-  static const _networkGroups = [
-    _NetworkDeviceGroup('USB WiFi', 'RtWlanU.kext / RtWlanU1827.kext', [
+  static final _networkGroups = [
+    _NetworkDeviceGroup(() => 'USB WiFi', 'RtWlanU.kext / RtWlanU1827.kext', [
       '038B-0100',
       '0409-0408',
       '0411-00E8',
@@ -815,7 +818,7 @@ class HardwareDeviceData {
       'CDAB-8011',
       'F201-5370',
     ]),
-    _NetworkDeviceGroup('PCI WiFi', 'AirPortAtheros40.kext', [
+    _NetworkDeviceGroup(() => 'PCI WiFi', 'AirPortAtheros40.kext', [
       '106B-0086',
       '168C-001C',
       '168C-0023',
@@ -830,28 +833,28 @@ class HardwareDeviceData {
       '168C-0036',
       '168C-0037',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'RealtekRTL8111.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'RealtekRTL8111.kext', [
       '10EC-2502',
       '10EC-2600',
       '10EC-8168',
       '1186-8168',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'LucyRTL8125Ethernet.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'LucyRTL8125Ethernet.kext', [
       '10EC-3000',
       '10EC-8125',
       '1186-8125',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'RTL812xLucy.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'RTL812xLucy.kext', [
       '10EC-5000',
       '10EC-8126',
       '10EC-3000',
       '10EC-8125',
       '1186-8125',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'RealtekRTL8100.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'RealtekRTL8100.kext', [
       '10EC-8136',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'BCM5722D.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'BCM5722D.kext', [
       '14E4-1600',
       '14E4-165A',
       '14E4-1672',
@@ -865,7 +868,7 @@ class HardwareDeviceData {
       '14E4-1712',
       '14E4-1713',
     ]),
-    _NetworkDeviceGroup('PCI WiFi', 'AirportBrcmFixup.kext', [
+    _NetworkDeviceGroup(() => 'PCI WiFi', 'AirportBrcmFixup.kext', [
       '14E4-4311',
       '14E4-4312',
       '14E4-4313',
@@ -888,10 +891,10 @@ class HardwareDeviceData {
       '14E4-43B2',
       '14E4-43BA',
     ]),
-    _NetworkDeviceGroup('PCI WiFi', '', [
+    _NetworkDeviceGroup(() => 'PCI WiFi', '', [
       '14E4-4434',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'AtherosL1cEthernet.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'AtherosL1cEthernet.kext', [
       '1969-1062',
       '1969-1063',
       '1969-1073',
@@ -899,7 +902,7 @@ class HardwareDeviceData {
       '1969-2060',
       '1969-2062',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'AtherosE2200Ethernet.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'AtherosE2200Ethernet.kext', [
       '1969-1090',
       '1969-1091',
       '1969-10A0',
@@ -908,7 +911,7 @@ class HardwareDeviceData {
       '1969-E0A1',
       '1969-E0B1',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'AppleEthernetAquantiaAqtion.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'AppleEthernetAquantiaAqtion.kext', [
       '1D6A-0001',
       '1D6A-00B1',
       '1D6A-00C0',
@@ -926,7 +929,7 @@ class HardwareDeviceData {
       '1D6A-94C0',
       '1D6A-D107',
     ]),
-    _NetworkDeviceGroup('PCI WiFi', 'AirportItlwm.kext', [
+    _NetworkDeviceGroup(() => 'PCI WiFi', 'AirportItlwm.kext', [
       '8086-0060',
       '8086-0064',
       '8086-0082',
@@ -1015,7 +1018,7 @@ class HardwareDeviceData {
       '8086-A0F0',
       '8086-A370',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'AppleIGB.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'AppleIGB.kext', [
       '8086-034A',
       '8086-0438',
       '8086-043C',
@@ -1055,7 +1058,7 @@ class HardwareDeviceData {
       '8086-1F41',
       '8086-1F45',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'IntelMausi.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'IntelMausi.kext', [
       '8086-0D4C',
       '8086-0D4D',
       '8086-0D4E',
@@ -1118,7 +1121,7 @@ class HardwareDeviceData {
       '8086-5510',
       '8086-5511',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'AppleIntelE1000e.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'AppleIntelE1000e.kext', [
       '8086-1049',
       '8086-104A',
       '8086-104B',
@@ -1166,7 +1169,7 @@ class HardwareDeviceData {
       '8086-15D5',
       '8086-294C',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'IntelLucy.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'IntelLucy.kext', [
       '8086-10B6',
       '8086-10C6',
       '8086-10C7',
@@ -1214,7 +1217,7 @@ class HardwareDeviceData {
       '8086-15E4',
       '8086-15E5',
     ]),
-    _NetworkDeviceGroup('有线网卡', 'AppleIGC.kext', [
+    _NetworkDeviceGroup(() => l10nGlobal.autoGen5006, 'AppleIGC.kext', [
       '8086-125B',
       '8086-125C',
       '8086-125D',
@@ -1287,7 +1290,7 @@ class HardwareDeviceData {
   static bool isSupportedNetworkDevice(String deviceId) =>
       supportedNetworkCategory(deviceId).isNotEmpty;
 
-  static const _intelSstAudioIds = {
+  static final _intelSstAudioIds = {
     '8086-02C8',
     '8086-1A98',
     '8086-3198',

@@ -6,7 +6,7 @@ class DevicePropertyItem {
   //值
   String? value;
   //备注
-  String? comment;
+  dynamic comment;
 
   ///核显参数是否用于输出显示
   bool display;
@@ -22,7 +22,7 @@ class DevicePropertyItem {
       {String? key,
       String? dataType,
       String? value,
-      String? comment,
+      dynamic comment,
       bool? display}) {
     return DevicePropertyItem(
       key: key ?? this.key,
@@ -48,7 +48,7 @@ class DevicePropertyItem {
       'key': key,
       'dataType': dataType,
       'value': value,
-      'comment': comment,
+      'comment': comment is Function ? comment() : comment,
       'display': display
     };
   }

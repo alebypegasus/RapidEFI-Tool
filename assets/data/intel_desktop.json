@@ -19,14 +19,40 @@
         "initial_support": "OS X 10.4.10 Tiger",
         "last_supported": "macOS 10.13.6 High Sierra",
         "oclp_supported": "macOS 10.14 Mojave ~ macOS Tahoe 26",
-        "note": [
-            "Penryn首次发布于2007年,45nm工艺,是Conroe微架构的继承者,属于英特尔的Core 2系列",
-            "“原生支持”表示显卡免驱,无需补丁即可安装macOS(1代之前的平台除外,主板GMA显卡只能安装上古OS X 10.7版本),“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
-            "CPU指令集支持SSE4.1,最高可以补丁支持最新Tahoe 26系统),否则最高只能macOS 10.11.6(截止2025年9月,显卡补丁最高只支持Sequia 15,暂不支持Tahoe 26)",
-            "SSE4是启动macOS 10.12 Sierra及更新版本所必需的,因此不支持Conroe及更旧的处理器,可以使用CPU-Z软件查看指令集支持情况",
-            "Apple在macOS Ventua 13.x中移除了USB1.1驱动,初始安装时建议使用免驱PCI转USB3.0拓展卡或者USB3.0拓展卡完成安装,安装之后再使用OCLP打USB1.1补丁",
-            "绝大多数775主板不支持UEFI,需要模拟UEFI"
-        ],
+        "note": {
+            "ch": [
+                "Penryn首次发布于2007年,45nm工艺,是Conroe微架构的继承者,属于英特尔的Core 2系列",
+                "“原生支持”表示显卡免驱,无需补丁即可安装macOS(1代之前的平台除外,主板GMA显卡只能安装上古OS X 10.7版本),“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
+                "CPU指令集支持SSE4.1,最高可以补丁支持最新Tahoe 26系统),否则最高只能macOS 10.11.6(截止2025年9月,显卡补丁最高只支持Sequia 15,暂不支持Tahoe 26)",
+                "SSE4是启动macOS 10.12 Sierra及更新版本所必需的,因此不支持Conroe及更旧的处理器,可以使用CPU-Z软件查看指令集支持情况",
+                "Apple在macOS Ventua 13.x中移除了USB1.1驱动,初始安装时建议使用免驱PCI转USB3.0拓展卡或者USB3.0拓展卡完成安装,安装之后再使用OCLP打USB1.1补丁",
+                "绝大多数775主板不支持UEFI,需要模拟UEFI"
+            ],
+            "en": [
+                "Penryn was first released in 2007, using a 45nm process. It is the successor of the Conroe microarchitecture and belongs to Intel's Core 2 series.",
+                "\"Native support\" means that the graphics card is driver-free and macOS can be installed without patches (except for platforms before the 1st generation, the motherboard GMA graphics card can only install the ancient OS",
+                "The CPU instruction set supports SSE4.1, and the patch can support up to the latest Tahoe 26 system), otherwise it can only support macOS 10.11.6 (as of September 2025, the graphics card patch only supports Sequia 15, and Tahoe 26 is not supported yet)",
+                "SSE4 is required to boot macOS 10.12 Sierra and newer, so Conroe and older processors are not supported. You can use the CPU-Z software to check instruction set support.",
+                "Apple has removed the USB1.1 driver in macOS Ventua 13.x. During the initial installation, it is recommended to use a driver-free PCI to USB3.0 expansion card or a USB3.0 expansion card to complete the installation. After installation, use OCLP to apply the USB1.1 patch.",
+                "Most 775 motherboards do not support UEFI and need to simulate UEFI."
+            ],
+            "pt": [
+                "Penryn foi lançado pela primeira vez em 2007, usando um processo de 45nm. É o sucessor da microarquitetura Conroe e pertence à série Core 2 da Intel.",
+                "\"Suporte nativo\" significa que a placa gráfica não tem driver e o macOS pode ser instalado sem patches (exceto para plataformas anteriores à 1ª geração, a placa gráfica GMA da placa-mãe só pode instalar o sistema operacional antigo",
+                "O conjunto de instruções da CPU suporta SSE4.1 e o patch pode suportar até o sistema Tahoe 26 mais recente), caso contrário, só pode suportar macOS 10.11.6 (em setembro de 2025, o patch da placa gráfica suporta apenas Sequia 15 e Tahoe 26 ainda não é compatível)",
+                "O SSE4 é necessário para inicializar o macOS 10.12 Sierra e versões mais recentes, portanto, Conroe e processadores mais antigos não são suportados. Você pode usar o software CPU-Z para verificar o suporte do conjunto de instruções.",
+                "A Apple removeu o driver USB1.1 do macOS Ventua 13.x. Durante a instalação inicial, é recomendado usar uma placa de expansão PCI para USB3.0 sem driver ou uma placa de expansão USB3.0 para concluir a instalação. Após a instalação, use o OCLP para aplicar o patch USB1.1.",
+                "A maioria das placas-mãe 775 não suporta UEFI e precisa simular UEFI."
+            ],
+            "ja": [
+                "Penryn は 45nm プロセスを使用して 2007 年に初めてリリースされました。 Conroe マイクロアーキテクチャの後継であり、Intel の Core 2 シリーズに属します。",
+                "「ネイティブ サポート」とは、グラフィックス カードがドライバー不要で、パッチなしで macOS をインストールできることを意味します (第 1 世代より前のプラットフォームを除き、マザーボード GMA グラフィックス カードは古い OS のみをインストールできます)",
+                "CPU 命令セットは SSE4.1 をサポートしており、パッチは最新の Tahoe 26 システムまでサポートできます)、それ以外の場合は macOS 10.11.6 のみをサポートできます (2025 年 9 月現在、グラフィックス カード パッチは Sequia 15 のみをサポートしており、Tahoe 26 はまだサポートされていません)",
+                "macOS 10.12 Sierra 以降を起動するには SSE4 が必要であるため、Conroe および古いプロセッサはサポートされていません。 CPU-Z ソフトウェアを使用して、命令セットのサポートを確認できます。",
+                "Apple は、macOS Ventua 13.x の USB1.1 ドライバーを削除しました。初期インストール中は、ドライバー不要の PCI to USB3.0 拡張カードまたは USB3.0 拡張カードを使用してインストールを完了することをお勧めします。インストール後、OCLPを使用してUSB1.1パッチを適用してください。",
+                "ほとんどの 775 マザーボードは UEFI をサポートしていないため、UEFI をシミュレートする必要があります。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/penryn.html",
             "bios": {
@@ -50,6 +76,26 @@
                         "兼容性支持模块（CSM）（在大多数情况下必须关闭,启用此选项时通常会出现GPU错误/停顿,如gIO）",
                         "英特尔 SGX",
                         "英特尔平台信任"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト"
                     ]
                 },
                 "enable": {
@@ -70,6 +116,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -95,12 +159,32 @@
         "initial_support": "OS X 10.6.3 Snow Leopard",
         "last_supported": "macOS 10.13.6 High Sierra",
         "oclp_supported": "macOS 10.14 Mojave ~ macOS Tahoe 26",
-        "note": [
-            "Lynnfield于2009年发布,45nm的Nehalem架构工艺,第一代Intel Core i5和Core i7,无显示核心.Clarkdale于2010年发布,32nm的Nehalem架构,第一代Intel Core i3",
-            "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
-            "苹果不支持台式机上的Iron Lake集成图形处理单元 (iGPU),因此必须搭配可驱动独立显卡",
-            "大多数Lynnfield和Clarkdale主板不支持UEFI,需要模拟UEFI"
-        ],
+        "note": {
+            "ch": [
+                "Lynnfield于2009年发布,45nm的Nehalem架构工艺,第一代Intel Core i5和Core i7,无显示核心.Clarkdale于2010年发布,32nm的Nehalem架构,第一代Intel Core i3",
+                "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
+                "苹果不支持台式机上的Iron Lake集成图形处理单元 (iGPU),因此必须搭配可驱动独立显卡",
+                "大多数Lynnfield和Clarkdale主板不支持UEFI,需要模拟UEFI"
+            ],
+            "en": [
+                "Lynnfield released in 2009, 45nm Nehalem architecture process, first generation Intel Core i5 and Core i7, no display core. Clarkdale released in 2010, 32nm Nehalem architecture, first generation Intel Core i3",
+                "\"Native support\" means that the graphics card is driver-free and macOS can be installed without patches. \"Patch support\" means that the CPU or graphics card is not in the official support list and requires OCLP to apply a third-party patch.",
+                "Apple does not support the Iron Lake integrated graphics processing unit (iGPU) on desktops, so it must be paired with a discrete graphics card that can drive it",
+                "Most Lynnfield and Clarkdale motherboards do not support UEFI and need to emulate UEFI"
+            ],
+            "pt": [
+                "Lynnfield lançou em 2009, processo de arquitetura Nehalem de 45 nm, Intel Core i5 e Core i7 de primeira geração, sem núcleo de exibição. Clarkdale lançou em 2010, arquitetura Nehalem de 32 nm, Intel Core i3 de primeira geração",
+                "“Suporte nativo” significa que a placa gráfica não tem driver e o macOS pode ser instalado sem patches. \"Suporte de patch\" significa que a CPU ou placa gráfica não está na lista oficial de suporte e exige que o OCLP aplique um patch de terceiros.",
+                "A Apple não oferece suporte à unidade de processamento gráfico integrado (iGPU) Iron Lake em desktops, portanto, ela deve ser emparelhada com uma placa gráfica discreta que possa controlá-la",
+                "A maioria das placas-mãe Lynnfield e Clarkdale não suportam UEFI e precisam emular UEFI"
+            ],
+            "ja": [
+                "Lynnfield は 2009 年にリリース、45nm Nehalem アーキテクチャ プロセス、第 1 世代 Intel Core i5 および Core i7、ディスプレイ コアなし。 Clarkdale 2010 年リリース、32nm Nehalem アーキテクチャ、第 1 世代 Intel Core i3",
+                "「ネイティブ サポート」とは、グラフィックス カードにドライバーが不要で、パッチなしで macOS をインストールできることを意味します。 「パッチ サポート」とは、CPU またはグラフィック カードが公式サポート リストに含まれておらず、OCLP がサードパーティ パッチを適用する必要があることを意味します。",
+                "Apple はデスクトップで Iron Lake 統合グラフィックス プロセッシング ユニット (iGPU) をサポートしていないため、iGPU を駆動できる個別のグラフィックス カードと組み合わせる必要があります。",
+                "ほとんどの Lynnfield および Clarkdale マザーボードは UEFI をサポートしていないため、UEFI をエミュレートする必要があります"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/clarkdale.html",
             "bios": {
@@ -128,6 +212,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleCpuPmCfgLock。启用CFG-Lock后,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desativado, se esta opção não for encontrada, ative AppleCpuPmCfgLock em Kernel -> Quirks. Com CFG-Lock ativado, seu Black Apple pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleCpuPmCfgLock を有効にします。CFG ロックが有効になっていると、黒い Apple が起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -148,6 +256,24 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -180,12 +306,32 @@
         "initial_support": "OS X 10.6.7 Snow Leopard",
         "last_supported": "macOS 10.13.6 High Sierra",
         "oclp_supported": "macOS 10.14 Mojave ~ macOS Tahoe 26",
-        "note": [
-            "Sandy Bridge于2011年发布,32nm架构工艺,英特尔的第二代Core系列处理器,集成图形处理单元(iGPU),例如HD3000",
-            "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
-            "Sandy Bridge处理器中的集成图形处理单元(HD3000)在官方上最高免驱支持macOS 10.13版本。截止目前,使用OCLP 2.0.1及以上版本可以补丁支持macOS Sequoia 15.x",
-            "Sandy Bridge 6系主板(例如H61)多数不支持UEFI,需要模拟UEFI"
-        ],
+        "note": {
+            "ch": [
+                "Sandy Bridge于2011年发布,32nm架构工艺,英特尔的第二代Core系列处理器,集成图形处理单元(iGPU),例如HD3000",
+                "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
+                "Sandy Bridge处理器中的集成图形处理单元(HD3000)在官方上最高免驱支持macOS 10.13版本。截止目前,使用OCLP 2.0.1及以上版本可以补丁支持macOS Sequoia 15.x",
+                "Sandy Bridge 6系主板(例如H61)多数不支持UEFI,需要模拟UEFI"
+            ],
+            "en": [
+                "Sandy Bridge was released in 2011, 32nm architecture process, Intel's second-generation Core series processor, integrated graphics processing unit (iGPU), such as HD3000",
+                "\"Native support\" means that the graphics card is driver-free and macOS can be installed without patches. \"Patch support\" means that the CPU or graphics card is not in the official support list and requires OCLP to apply a third-party patch.",
+                "The integrated graphics processing unit (HD3000) in the Sandy Bridge processor officially supports macOS version 10.13 without any driver. As of now, macOS Sequoia 15.x can be patched and supported using OCLP 2.0.1 and above.",
+                "Most Sandy Bridge 6 series motherboards (such as H61) do not support UEFI and need to simulate UEFI."
+            ],
+            "pt": [
+                "Sandy Bridge foi lançado em 2011, processo de arquitetura de 32 nm, processador da série Core de segunda geração da Intel, unidade de processamento gráfico integrada (iGPU), como HD3000",
+                "“Suporte nativo” significa que a placa gráfica não tem driver e o macOS pode ser instalado sem patches. \"Suporte de patch\" significa que a CPU ou placa gráfica não está na lista oficial de suporte e exige que o OCLP aplique um patch de terceiros.",
+                "A unidade de processamento gráfico integrada (HD3000) no processador Sandy Bridge oferece suporte oficial ao macOS versão 10.13 sem nenhum driver. A partir de agora, o macOS Sequoia 15.x pode ser corrigido e compatível com OCLP 2.0.1 e superior.",
+                "A maioria das placas-mãe Sandy Bridge série 6 (como H61) não suporta UEFI e precisa simular UEFI."
+            ],
+            "ja": [
+                "Sandy Bridgeは2011年にリリースされ、32nmアーキテクチャプロセス、Intelの第2世代Coreシリーズプロセッサ、HD3000などの統合グラフィックスプロセッシングユニット（iGPU）を搭載",
+                "「ネイティブ サポート」とは、グラフィックス カードにドライバーが不要で、パッチなしで macOS をインストールできることを意味します。 「パッチ サポート」とは、CPU またはグラフィック カードが公式サポート リストに含まれておらず、OCLP がサードパーティ パッチを適用する必要があることを意味します。",
+                "Sandy Bridge プロセッサーに統合されたグラフィックス プロセッシング ユニット (HD3000) は、ドライバーなしで macOS バージョン 10.13 を正式にサポートします。現時点では、macOS Sequoia 15.x は OCLP 2.0.1 以降を使用してパッチを適用し、サポートできます。",
+                "ほとんどの Sandy Bridge 6 シリーズ マザーボード (H61 など) は UEFI をサポートしていないため、UEFI をシミュレートする必要があります。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/sandy-bridge.html",
             "bios": {
@@ -213,6 +359,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleCpuPmCfgLock。启用CFG-Lock后,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desativado, se esta opção não for encontrada, ative AppleCpuPmCfgLock em Kernel -> Quirks. Com CFG-Lock ativado, seu Black Apple pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleCpuPmCfgLock を有効にします。CFG ロックが有効になっていると、黒い Apple が起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -235,6 +405,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -267,12 +457,32 @@
         "initial_support": "OS X 10.7, Lion",
         "last_supported": "macOS 11 BigSur",
         "oclp_supported": "macOS Tahoe 26",
-        "note": [
-            "Ivy Bridge于2012年发布,22nm架构工艺,英特尔的第三代Core系列处理器,集成图形处理单元(iGPU),例如HD4000",
-            "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
-            "Ivy Bridge处理器中的集成图形处理单元(HD4000)在官方上最高免驱支持 macOS 11 Big Sur版本。使用OCLP 2.0.1及以上版本可以补丁支持macOS Sequoia 15.x",
-            "Ivy Bridge B75等7系主板开始全面支持UEFI"
-        ],
+        "note": {
+            "ch": [
+                "Ivy Bridge于2012年发布,22nm架构工艺,英特尔的第三代Core系列处理器,集成图形处理单元(iGPU),例如HD4000",
+                "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
+                "Ivy Bridge处理器中的集成图形处理单元(HD4000)在官方上最高免驱支持 macOS 11 Big Sur版本。使用OCLP 2.0.1及以上版本可以补丁支持macOS Sequoia 15.x",
+                "Ivy Bridge B75等7系主板开始全面支持UEFI"
+            ],
+            "en": [
+                "Ivy Bridge was released in 2012, 22nm architecture process, Intel's third-generation Core series processor, integrated graphics processing unit (iGPU), such as HD4000",
+                "\"Native support\" means that the graphics card is driver-free and macOS can be installed without patches. \"Patch support\" means that the CPU or graphics card is not in the official support list and requires OCLP to apply a third-party patch.",
+                "The integrated graphics processing unit (HD4000) in the Ivy Bridge processor officially supports the macOS 11 Big Sur version without any driver. macOS Sequoia 15.x can be patched and supported using OCLP 2.0.1 and above.",
+                "Ivy Bridge B75 and other 7 series motherboards begin to fully support UEFI"
+            ],
+            "pt": [
+                "Ivy Bridge foi lançado em 2012, processo de arquitetura de 22 nm, processador da série Core de terceira geração da Intel, unidade de processamento gráfico integrada (iGPU), como HD4000",
+                "“Suporte nativo” significa que a placa gráfica não tem driver e o macOS pode ser instalado sem patches. \"Suporte de patch\" significa que a CPU ou placa gráfica não está na lista oficial de suporte e exige que o OCLP aplique um patch de terceiros.",
+                "A unidade de processamento gráfico integrada (HD4000) no processador Ivy Bridge oferece suporte oficial à versão macOS 11 Big Sur sem nenhum driver. O macOS Sequoia 15.x pode ser corrigido e compatível com OCLP 2.0.1 e superior.",
+                "Ivy Bridge B75 e outras placas-mãe da série 7 começam a oferecer suporte total a UEFI"
+            ],
+            "ja": [
+                "Ivy Bridge は 2012 年にリリースされ、22nm アーキテクチャ プロセス、Intel の第 3 世代 Core シリーズ プロセッサ、HD4000 などの統合グラフィックス プロセッシング ユニット (iGPU)",
+                "「ネイティブ サポート」とは、グラフィックス カードにドライバーが不要で、パッチなしで macOS をインストールできることを意味します。 「パッチ サポート」とは、CPU またはグラフィック カードが公式サポート リストに含まれておらず、OCLP がサードパーティ パッチを適用する必要があることを意味します。",
+                "Ivy Bridge プロセッサーに統合されたグラフィックス プロセッシング ユニット (HD4000) は、ドライバーなしで macOS 11 Big Sur バージョンを正式にサポートします。 macOS Sequoia 15.x は、OCLP 2.0.1 以降を使用してパッチを適用し、サポートできます。",
+                "Ivy Bridge B75 およびその他の 7 シリーズ マザーボードが UEFI の完全サポートを開始"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/ivy-bridge.html",
             "bios": {
@@ -300,6 +510,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleCpuPmCfgLock。启用CFG-Lock后,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (Deve ser desativado, se esta opção não for encontrada, ative AppleCpuPmCfgLock em Kernel -> Quirks. Com CFG-Lock ativado, seu Black Apple pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleCpuPmCfgLock を有効にします。CFG ロックが有効になっていると、黒い Apple が起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -322,6 +556,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -347,11 +601,28 @@
         "initial_support": "OS X 10.8, Mountain Lion",
         "last_supported": "macOS 12 Monterey",
         "oclp_supported": "macOS Tahoe 26",
-        "note": [
-            "Haswell于2013年发布,22nm架构工艺,英特尔的第四代Core系列处理器,集成图形处理单元(iGPU),例如HD4400,HD4600",
-            "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
-            "Haswell处理器中的集成图形处理单元(HD4600)在官方上最高免驱支持 macOS 12 Monterey版本。截止目前,使用OCLP 2.0.1及以上版本可以补丁支持macOS Sequoia 15.x"
-        ],
+        "note": {
+            "ch": [
+                "Haswell于2013年发布,22nm架构工艺,英特尔的第四代Core系列处理器,集成图形处理单元(iGPU),例如HD4400,HD4600",
+                "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
+                "Haswell处理器中的集成图形处理单元(HD4600)在官方上最高免驱支持 macOS 12 Monterey版本。截止目前,使用OCLP 2.0.1及以上版本可以补丁支持macOS Sequoia 15.x"
+            ],
+            "en": [
+                "Haswell was released in 2013, 22nm architecture process, Intel's fourth-generation Core series processor, integrated graphics processing unit (iGPU), such as HD4400, HD4600",
+                "\"Native support\" means that the graphics card is driver-free and macOS can be installed without patches. \"Patch support\" means that the CPU or graphics card is not in the official support list and requires OCLP to apply a third-party patch.",
+                "The integrated graphics processing unit (HD4600) in the Haswell processor officially supports up to macOS 12 Monterey version without a driver. As of now, macOS Sequoia 15.x can be patched and supported using OCLP 2.0.1 and above."
+            ],
+            "pt": [
+                "Haswell foi lançado em 2013, processo de arquitetura de 22nm, processador da série Core de quarta geração da Intel, unidade de processamento gráfico integrada (iGPU), como HD4400, HD4600",
+                "“Suporte nativo” significa que a placa gráfica não tem driver e o macOS pode ser instalado sem patches. \"Suporte de patch\" significa que a CPU ou placa gráfica não está na lista oficial de suporte e exige que o OCLP aplique um patch de terceiros.",
+                "A unidade de processamento gráfico integrada (HD4600) no processador Haswell suporta oficialmente a versão macOS 12 Monterey sem driver. A partir de agora, o macOS Sequoia 15.x pode ser corrigido e compatível com OCLP 2.0.1 e superior."
+            ],
+            "ja": [
+                "Haswell は 2013 年にリリースされ、22nm アーキテクチャ プロセス、Intel の第 4 世代 Core シリーズ プロセッサ、統合グラフィックス プロセッシング ユニット (iGPU) (HD4400、HD4600 など)",
+                "「ネイティブ サポート」とは、グラフィックス カードにドライバーが不要で、パッチなしで macOS をインストールできることを意味します。 「パッチ サポート」とは、CPU またはグラフィック カードが公式サポート リストに含まれておらず、OCLP がサードパーティ パッチを適用する必要があることを意味します。",
+                "Haswell プロセッサに統合されたグラフィックス プロセッシング ユニット (HD4600) は、ドライバなしで macOS 12 Monterey バージョンまで正式にサポートします。現時点では、macOS Sequoia 15.x は OCLP 2.0.1 以降を使用してパッチを適用し、サポートできます。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/haswell.html",
             "bios": {
@@ -379,6 +650,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）.对于10.10及更早版本,您还需要启用AppleCpuPmCfgLock"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado). Para versões 10.10 e anteriores, você também precisa ativar AppleCpuPmCfgLock"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)。 10.10 以前の場合は、AppleCpuPmCfgLock を有効にする必要もあります"
                     ]
                 },
                 "enable": {
@@ -401,6 +696,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -424,11 +739,28 @@
         "initial_support": "OS X 10.8, Mountain Lion",
         "last_supported": "macOS 12 Monterey",
         "oclp_supported": "macOS Tahoe 26",
-        "note": [
-            "Broadwell于2014年发布,14nm架构工艺,英特尔的第五代Core系列处理器,集成图形处理单元(iGPU),例如HD5500等",
-            "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
-            "Broadwell处理器中的集成图形处理单元(HD5500)在官方上最高免驱支持 macOS 12 Monterey版本。截止目前,使用OCLP 2.0.1及以上版本可以补丁支持macOS Sequoia 15.x"
-        ],
+        "note": {
+            "ch": [
+                "Broadwell于2014年发布,14nm架构工艺,英特尔的第五代Core系列处理器,集成图形处理单元(iGPU),例如HD5500等",
+                "“原生支持”表示显卡免驱,无需补丁即可安装macOS,“补丁支持”表示CPU或显卡不在官方支持列表,需要OCLP打三方补丁",
+                "Broadwell处理器中的集成图形处理单元(HD5500)在官方上最高免驱支持 macOS 12 Monterey版本。截止目前,使用OCLP 2.0.1及以上版本可以补丁支持macOS Sequoia 15.x"
+            ],
+            "en": [
+                "Broadwell was released in 2014, 14nm architecture process, Intel's fifth-generation Core series processors, integrated graphics processing units (iGPU), such as HD5500, etc.",
+                "\"Native support\" means that the graphics card is driver-free and macOS can be installed without patches. \"Patch support\" means that the CPU or graphics card is not in the official support list and requires OCLP to apply a third-party patch.",
+                "The integrated graphics processing unit (HD5500) in the Broadwell processor officially supports up to macOS 12 Monterey version without a driver. As of now, macOS Sequoia 15.x can be patched and supported using OCLP 2.0.1 and above."
+            ],
+            "pt": [
+                "Broadwell foi lançado em 2014, processo de arquitetura de 14 nm, processadores da série Core de quinta geração da Intel, unidades de processamento gráfico integradas (iGPU), como HD5500, etc.",
+                "“Suporte nativo” significa que a placa gráfica não tem driver e o macOS pode ser instalado sem patches. \"Suporte de patch\" significa que a CPU ou placa gráfica não está na lista oficial de suporte e exige que o OCLP aplique um patch de terceiros.",
+                "A unidade de processamento gráfico integrada (HD5500) no processador Broadwell suporta oficialmente a versão macOS 12 Monterey sem driver. A partir de agora, o macOS Sequoia 15.x pode ser corrigido e compatível com OCLP 2.0.1 e superior."
+            ],
+            "ja": [
+                "Broadwellは2014年にリリースされ、14nmアーキテクチャプロセス、Intelの第5世代Coreシリーズプロセッサ、HD5500などの統合グラフィックスプロセッシングユニット（iGPU）などを搭載。",
+                "「ネイティブ サポート」とは、グラフィックス カードにドライバーが不要で、パッチなしで macOS をインストールできることを意味します。 「パッチ サポート」とは、CPU またはグラフィック カードが公式サポート リストに含まれておらず、OCLP がサードパーティ パッチを適用する必要があることを意味します。",
+                "Broadwell プロセッサに統合されたグラフィックス プロセッシング ユニット (HD5500) は、ドライバなしで macOS 12 Monterey バージョンまで正式にサポートします。現時点では、macOS Sequoia 15.x は OCLP 2.0.1 以降を使用してパッチを適用し、サポートできます。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/haswell.html",
             "bios": {
@@ -456,6 +788,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）.对于10.10及更早版本,您还需要启用AppleCpuPmCfgLock"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desligado, se esta opção não for encontrada, habilite AppleXcpmCfgLock em Kernel -> Quirks. Sua maçã preta pode não inicializar se CFG-Lock estiver habilitado). Para versões 10.10 e anteriores, você também precisa ativar AppleCpuPmCfgLock"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると黒いリンゴが起動しない可能性があります)。 10.10 以前の場合は、AppleCpuPmCfgLock を有効にする必要もあります"
                     ]
                 },
                 "enable": {
@@ -478,6 +834,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -500,10 +876,24 @@
         "initial_support": "OS X 10.11, El Capitan",
         "last_supported": "macOS 12 Monterey",
         "oclp_supported": "核显需仿冒HD620,HD630即可支持最新macOS Tahoe 26",
-        "note": [
-            "Skylake于2015年发布,14nm架构工艺,英特尔的第六代Core系列处理器,集成图形处理单元(iGPU),例如HD520,HD530等",
-            "Skylake处理器中的集成图形处理单元(HD520等)在官方上最高免驱支持macOS 12 Monterey版本。截止目前,核显需仿冒HD620,HD630即可支持macOS Tahoe 26"
-        ],
+        "note": {
+            "ch": [
+                "Skylake于2015年发布,14nm架构工艺,英特尔的第六代Core系列处理器,集成图形处理单元(iGPU),例如HD520,HD530等",
+                "Skylake处理器中的集成图形处理单元(HD520等)在官方上最高免驱支持macOS 12 Monterey版本。截止目前,核显需仿冒HD620,HD630即可支持macOS Tahoe 26"
+            ],
+            "en": [
+                "Skylake was released in 2015, 14nm architecture process, Intel's sixth-generation Core series processors, integrated graphics processing units (iGPU), such as HD520, HD530, etc.",
+                "The integrated graphics processing unit (HD520, etc.) in the Skylake processor officially supports macOS 12 Monterey version without any driver. As of now, core graphics need to imitate HD620, HD630 can support macOS Tahoe 26"
+            ],
+            "pt": [
+                "Skylake foi lançado em 2015, processo de arquitetura de 14nm, processadores da série Core de sexta geração da Intel, unidades de processamento gráfico integradas (iGPU), como HD520, HD530, etc.",
+                "A unidade de processamento gráfico integrada (HD520, etc.) no processador Skylake suporta oficialmente a versão macOS 12 Monterey sem qualquer driver. A partir de agora, os gráficos principais precisam imitar HD620, HD630 pode suportar macOS Tahoe 26"
+            ],
+            "ja": [
+                "Skylake は 2015 年にリリースされ、14nm アーキテクチャ プロセス、Intel の第 6 世代 Core シリーズ プロセッサ、HD520、HD530 などの統合グラフィックス プロセッシング ユニット (iGPU) を採用しています。",
+                "Skylake プロセッサに統合されたグラフィックス プロセッシング ユニット (HD520 など) は、ドライバーなしで macOS 12 Monterey バージョンを正式にサポートします。現時点では、コア グラフィックスは HD620 を模倣する必要がありますが、HD630 は macOS Tahoe 26 をサポートできます。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/skylake.html",
             "bios": {
@@ -531,6 +921,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -553,6 +967,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -575,10 +1009,24 @@
         "initial_support": "macOS 10.12, Sierra",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Kaby Lake于2016年发布,14nm架构工艺,英特尔的第七代Core系列处理器,集成图形处理单元(iGPU),例如HD620,HD630",
-            "Kaby Lake处理器中的集成图形处理单元(HD620)在官方上最高免驱支持macOS Tahoe 26版本"
-        ],
+        "note": {
+            "ch": [
+                "Kaby Lake于2016年发布,14nm架构工艺,英特尔的第七代Core系列处理器,集成图形处理单元(iGPU),例如HD620,HD630",
+                "Kaby Lake处理器中的集成图形处理单元(HD620)在官方上最高免驱支持macOS Tahoe 26版本"
+            ],
+            "en": [
+                "Kaby Lake was released in 2016, 14nm architecture process, Intel's seventh-generation Core series processor, integrated graphics processing unit (iGPU), such as HD620, HD630",
+                "The integrated graphics processing unit (HD620) in the Kaby Lake processor officially supports macOS Tahoe version 26 without any driver."
+            ],
+            "pt": [
+                "Kaby Lake foi lançado em 2016, processo de arquitetura de 14nm, processador da série Core de sétima geração da Intel, unidade de processamento gráfico integrada (iGPU), como HD620, HD630",
+                "A unidade de processamento gráfico integrada (HD620) no processador Kaby Lake oferece suporte oficial ao macOS Tahoe versão 26 sem nenhum driver."
+            ],
+            "ja": [
+                "Kaby Lake は 2016 年にリリースされ、14nm アーキテクチャ プロセス、Intel の第 7 世代 Core シリーズ プロセッサ、統合グラフィックス プロセッシング ユニット (iGPU) (HD620、HD630 など)",
+                "Kaby Lake プロセッサに統合されたグラフィックス プロセッシング ユニット (HD620) は、ドライバーなしで macOS Tahoe バージョン 26 を正式にサポートします。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/kaby-lake.html",
             "bios": {
@@ -606,6 +1054,30 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -628,6 +1100,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -652,10 +1144,24 @@
         "initial_support": "macOS 10.13, High Sierra",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Coffee Lake于2017年发布,14nm架构工艺,英特尔的第八代Core系列处理器,集成图形处理单元(iGPU),例如HD630,UHD630",
-            "Coffee Lake处理器中的集成图形处理单元(HD630)在官方上最高免驱支持macOS Tahoe 26版本"
-        ],
+        "note": {
+            "ch": [
+                "Coffee Lake于2017年发布,14nm架构工艺,英特尔的第八代Core系列处理器,集成图形处理单元(iGPU),例如HD630,UHD630",
+                "Coffee Lake处理器中的集成图形处理单元(HD630)在官方上最高免驱支持macOS Tahoe 26版本"
+            ],
+            "en": [
+                "Coffee Lake was released in 2017, 14nm architecture process, Intel's eighth-generation Core series processor, integrated graphics processing unit (iGPU), such as HD630, UHD630",
+                "The integrated graphics processing unit (HD630) in the Coffee Lake processor officially supports macOS Tahoe version 26 without any driver."
+            ],
+            "pt": [
+                "Coffee Lake foi lançado em 2017, processo de arquitetura de 14nm, processador da série Core de oitava geração da Intel, unidade de processamento gráfico integrada (iGPU), como HD630, UHD630",
+                "A unidade de processamento gráfico integrada (HD630) no processador Coffee Lake oferece suporte oficial ao macOS Tahoe versão 26 sem nenhum driver."
+            ],
+            "ja": [
+                "Coffee Lake は 2017 年にリリースされ、14nm アーキテクチャ プロセス、Intel の第 8 世代 Core シリーズ プロセッサ、統合グラフィックス プロセッシング ユニット (iGPU) (HD630、UHD630 など)",
+                "Coffee Lake プロセッサーに統合されたグラフィックス プロセッシング ユニット (HD630) は、ドライバーなしで macOS Tahoe バージョン 26 を正式にサポートします。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/coffee-lake.html",
             "bios": {
@@ -685,6 +1191,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -707,6 +1239,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -729,10 +1281,24 @@
         "initial_support": "macOS 10.13, High Sierra",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Coffee Lake Refresh于2018年发布,14nm架构工艺,英特尔的第九代Core系列处理器,集成图形处理单元(iGPU),例如UHD630",
-            "Coffee Lake Refresh处理器中的集成图形处理单元(HD630)在官方上最高免驱支持macOS Tahoe 26版本"
-        ],
+        "note": {
+            "ch": [
+                "Coffee Lake Refresh于2018年发布,14nm架构工艺,英特尔的第九代Core系列处理器,集成图形处理单元(iGPU),例如UHD630",
+                "Coffee Lake Refresh处理器中的集成图形处理单元(HD630)在官方上最高免驱支持macOS Tahoe 26版本"
+            ],
+            "en": [
+                "Coffee Lake Refresh was released in 2018, 14nm architecture process, Intel's ninth-generation Core series processor, integrated graphics processing unit (iGPU), such as UHD630",
+                "The integrated graphics processing unit (HD630) in the Coffee Lake Refresh processor officially supports macOS Tahoe version 26 without any driver."
+            ],
+            "pt": [
+                "Coffee Lake Refresh foi lançado em 2018, processo de arquitetura de 14nm, processador da série Core de nona geração da Intel, unidade de processamento gráfico integrada (iGPU), como UHD630",
+                "A unidade de processamento gráfico integrada (HD630) no processador Coffee Lake Refresh oferece suporte oficial ao macOS Tahoe versão 26 sem nenhum driver."
+            ],
+            "ja": [
+                "Coffee Lake Refresh は 2018 年にリリースされ、14nm アーキテクチャ プロセス、Intel の第 9 世代 Core シリーズ プロセッサ、UHD630 などの統合グラフィックス プロセッシング ユニット (iGPU)",
+                "Coffee Lake Refresh プロセッサに統合されたグラフィックス プロセッシング ユニット (HD630) は、ドライバなしで macOS Tahoe バージョン 26 を正式にサポートします。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/coffee-lake.html",
             "bios": {
@@ -762,6 +1328,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -784,6 +1376,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G ou superior",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G以上のデコード",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -809,11 +1421,28 @@
         "initial_support": "macOS 10.15,Catalina",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Comet Lake于2019年发布,14nm架构工艺,英特尔的第十代Core系列处理器,集成图形处理单元(iGPU),例如UHD630",
-            "Comet Lake处理器中的集成图形处理单元(UHD630)在官方上最高免驱支持macOS Tahoe 26版本",
-            "搭配Z590、H570、B560等500系主板,通常核显HDMI输出会出现黑屏情况,需要遍历总线,定制HDMI缓冲帧"
-        ],
+        "note": {
+            "ch": [
+                "Comet Lake于2019年发布,14nm架构工艺,英特尔的第十代Core系列处理器,集成图形处理单元(iGPU),例如UHD630",
+                "Comet Lake处理器中的集成图形处理单元(UHD630)在官方上最高免驱支持macOS Tahoe 26版本",
+                "搭配Z590、H570、B560等500系主板,通常核显HDMI输出会出现黑屏情况,需要遍历总线,定制HDMI缓冲帧"
+            ],
+            "en": [
+                "Comet Lake was released in 2019, 14nm architecture process, Intel's 10th generation Core series processor, integrated graphics processing unit (iGPU), such as UHD630",
+                "The integrated graphics processing unit (UHD630) in the Comet Lake processor officially supports macOS Tahoe version 26 without any driver.",
+                "When used with 500 series motherboards such as Z590, H570, B560, etc., usually the HDMI output of the nuclear display will have a black screen. It is necessary to traverse the bus and customize the HDMI buffer frame."
+            ],
+            "pt": [
+                "Comet Lake foi lançado em 2019, processo de arquitetura de 14 nm, processador da série Core de 10ª geração da Intel, unidade de processamento gráfico integrada (iGPU), como UHD630",
+                "A unidade de processamento gráfico integrada (UHD630) no processador Comet Lake oferece suporte oficial ao macOS Tahoe versão 26 sem nenhum driver.",
+                "Quando usado com placas-mãe da série 500, como Z590, H570, B560, etc., geralmente a saída HDMI do display nuclear terá uma tela preta. É necessário percorrer o barramento e personalizar o quadro do buffer HDMI."
+            ],
+            "ja": [
+                "Comet Lake は 2019 年にリリースされ、14nm アーキテクチャ プロセス、Intel の第 10 世代 Core シリーズ プロセッサ、UHD630 などの統合グラフィックス プロセッシング ユニット (iGPU)",
+                "Comet Lake プロセッサーに統合されたグラフィックス プロセッシング ユニット (UHD630) は、ドライバーなしで macOS Tahoe バージョン 26 を正式にサポートします。",
+                "Z590、H570、B560 などの 500 シリーズ マザーボードで使用すると、通常、核ディスプレイの HDMI 出力には黒い画面が表示されます。バスを横断して HDMI バッファ フレームをカスタマイズする必要があります。"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html",
             "bios": {
@@ -843,6 +1472,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -865,6 +1520,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G + (nota do BIOS de 2020 em diante: o suporte para BAR ajustável pode estar disponível em algumas placas-mãe Z490 e mais recentes quando o Above4G estiver ativado. Certifique-se de que, se você ativar esta opção, defina Booter -> Quirks -> ResizeAppleGpuBars como 0)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G+ デコード (2020 年以降の BIOS メモ: Above4G が有効になっている場合、一部の Z490 以降のマザーボードで調整可能な BAR サポートが利用できる場合があります。このオプションを有効にする場合は、Booter -> Quirks -> ResizeAppleGpuBars を 0 に設定していることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -887,10 +1562,24 @@
         "initial_support": "macOS 10.15,Catalina",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Rocket Lake于2021年发布,14nm架构工艺,英特尔的第十一代Core系列处理器,集成图形处理单元(Xe图形架构)",
-            "Rocket Lake处理器中的集成图形处理单元(Xe图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡"
-        ],
+        "note": {
+            "ch": [
+                "Rocket Lake于2021年发布,14nm架构工艺,英特尔的第十一代Core系列处理器,集成图形处理单元(Xe图形架构)",
+                "Rocket Lake处理器中的集成图形处理单元(Xe图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡"
+            ],
+            "en": [
+                "Rocket Lake will be released in 2021, 14nm architecture process, Intel's 11th generation Core series processor, integrated graphics processing unit (Xe graphics architecture)",
+                "The integrated graphics processing unit (Xe graphics architecture) in the Rocket Lake processor cannot be driven in any version of macOS, so it must be paired with a driveable independent graphics card"
+            ],
+            "pt": [
+                "Rocket Lake será lançado em 2021, processo de arquitetura de 14 nm, processador da série Core de 11ª geração da Intel, unidade de processamento gráfico integrada (arquitetura gráfica Xe)",
+                "A unidade de processamento gráfico integrada (arquitetura gráfica Xe) no processador Rocket Lake não pode ser controlada em nenhuma versão do macOS, portanto, deve ser emparelhada com uma placa gráfica independente controlável"
+            ],
+            "ja": [
+                "Rocket Lakeは2021年にリリース予定、14nmアーキテクチャプロセス、Intelの第11世代Coreシリーズプロセッサ、統合グラフィックスプロセッシングユニット（Xeグラフィックスアーキテクチャ）",
+                "Rocket Lake プロセッサに統合されたグラフィックス プロセッシング ユニット (Xe グラフィックス アーキテクチャ) は、macOS のどのバージョンでも駆動できないため、駆動可能な独立したグラフィックス カードと組み合わせる必要があります。"
+            ]
+        },
         "config": {
             "refer": "",
             "bios": {
@@ -920,6 +1609,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -942,6 +1657,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G + (nota do BIOS de 2020 em diante: o suporte para BAR ajustável pode estar disponível em algumas placas-mãe Z490 e mais recentes quando o Above4G estiver ativado. Certifique-se de que, se você ativar esta opção, defina Booter -> Quirks -> ResizeAppleGpuBars como 0)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G+ デコード (2020 年以降の BIOS メモ: Above4G が有効になっている場合、一部の Z490 以降のマザーボードで調整可能な BAR サポートが利用できる場合があります。このオプションを有効にする場合は、Booter -> Quirks -> ResizeAppleGpuBars を 0 に設定していることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -965,11 +1700,28 @@
         "initial_support": "macOS 10.15,Catalina",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Alder Lake于2021年发布,10nm架构工艺,英特尔的第十二代Core系列处理器,集成图形处理单元(Xe图形架构)",
-            "Alder Lake处理器中的集成图形处理单元(Xe图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡",
-            "Alder Lake 处理器采用了一种混合核心架构,包括高性能核心(P-cores)和高效能核心(E-cores)"
-        ],
+        "note": {
+            "ch": [
+                "Alder Lake于2021年发布,10nm架构工艺,英特尔的第十二代Core系列处理器,集成图形处理单元(Xe图形架构)",
+                "Alder Lake处理器中的集成图形处理单元(Xe图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡",
+                "Alder Lake 处理器采用了一种混合核心架构,包括高性能核心(P-cores)和高效能核心(E-cores)"
+            ],
+            "en": [
+                "Alder Lake will be released in 2021, 10nm architecture process, Intel's twelfth generation Core series processor, integrated graphics processing unit (Xe graphics architecture)",
+                "The integrated graphics processing unit (Xe graphics architecture) in the Alder Lake processor cannot be driven in any version of macOS, so it must be paired with a driveable independent graphics card",
+                "Alder Lake processors use a hybrid core architecture, including high-performance cores (P-cores) and high-efficiency cores (E-cores)"
+            ],
+            "pt": [
+                "Alder Lake será lançado em 2021, processo de arquitetura de 10nm, processador da série Core de décima segunda geração da Intel, unidade de processamento gráfico integrada (arquitetura gráfica Xe)",
+                "A unidade de processamento gráfico integrada (arquitetura gráfica Xe) no processador Alder Lake não pode ser controlada em nenhuma versão do macOS, portanto, deve ser emparelhada com uma placa gráfica independente controlável",
+                "Os processadores Alder Lake usam uma arquitetura de núcleo híbrido, incluindo núcleos de alto desempenho (núcleos P) e núcleos de alta eficiência (núcleos E)"
+            ],
+            "ja": [
+                "Alder Lakeは2021年にリリース予定、10nmアーキテクチャプロセス、Intelの第12世代Coreシリーズプロセッサ、統合グラフィックスプロセッシングユニット（Xeグラフィックスアーキテクチャ）",
+                "Alder Lake プロセッサーに統合されたグラフィックス プロセッシング ユニット (Xe グラフィックス アーキテクチャ) は、macOS のどのバージョンでも駆動できないため、駆動可能な独立したグラフィックス カードと組み合わせる必要があります。",
+                "Alder Lake プロセッサは、高性能コア (P コア) と高効率コア (E コア) を含むハイブリッド コア アーキテクチャを使用しています。"
+            ]
+        },
         "config": {
             "refer": "",
             "bios": {
@@ -999,6 +1751,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -1021,6 +1799,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G + (nota do BIOS de 2020 em diante: o suporte para BAR ajustável pode estar disponível em algumas placas-mãe Z490 e mais recentes quando o Above4G estiver ativado. Certifique-se de que, se você ativar esta opção, defina Booter -> Quirks -> ResizeAppleGpuBars como 0)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G+ デコード (2020 年以降の BIOS メモ: Above4G が有効になっている場合、一部の Z490 以降のマザーボードで調整可能な BAR サポートが利用できる場合があります。このオプションを有効にする場合は、Booter -> Quirks -> ResizeAppleGpuBars を 0 に設定していることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -1045,10 +1843,24 @@
         "initial_support": "macOS 10.15,Catalina",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Raptor Lake于2022年发布,10nm架构工艺,英特尔的第十三代Core系列处理器,集成图形处理单元(Xe图形架构)",
-            "Raptor Lake处理器中的集成图形处理单元(Xe图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡"
-        ],
+        "note": {
+            "ch": [
+                "Raptor Lake于2022年发布,10nm架构工艺,英特尔的第十三代Core系列处理器,集成图形处理单元(Xe图形架构)",
+                "Raptor Lake处理器中的集成图形处理单元(Xe图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡"
+            ],
+            "en": [
+                "Raptor Lake will be released in 2022, 10nm architecture process, Intel's 13th generation Core series processor, integrated graphics processing unit (Xe graphics architecture)",
+                "The integrated graphics processing unit (Xe graphics architecture) in the Raptor Lake processor cannot be driven in any version of macOS, so it must be paired with a driveable independent graphics card"
+            ],
+            "pt": [
+                "Raptor Lake será lançado em 2022, processo de arquitetura de 10nm, processador da série Core de 13ª geração da Intel, unidade de processamento gráfico integrada (arquitetura gráfica Xe)",
+                "A unidade de processamento gráfico integrada (arquitetura gráfica Xe) no processador Raptor Lake não pode ser controlada em nenhuma versão do macOS, portanto, deve ser emparelhada com uma placa gráfica independente controlável"
+            ],
+            "ja": [
+                "Raptor Lakeは2022年リリース予定、10nmアーキテクチャプロセス、Intelの第13世代Coreシリーズプロセッサ、統合グラフィックスプロセッシングユニット（Xeグラフィックスアーキテクチャ）",
+                "Raptor Lake プロセッサの統合グラフィックス プロセッシング ユニット (Xe グラフィックス アーキテクチャ) は、macOS のどのバージョンでも駆動できないため、駆動可能な独立したグラフィックス カードと組み合わせる必要があります。"
+            ]
+        },
         "config": {
             "refer": "",
             "bios": {
@@ -1078,6 +1890,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -1100,6 +1938,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G + (nota do BIOS de 2020 em diante: o suporte para BAR ajustável pode estar disponível em algumas placas-mãe Z490 e mais recentes quando o Above4G estiver ativado. Certifique-se de que, se você ativar esta opção, defina Booter -> Quirks -> ResizeAppleGpuBars como 0)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G+ デコード (2020 年以降の BIOS メモ: Above4G が有効になっている場合、一部の Z490 以降のマザーボードで調整可能な BAR サポートが利用できる場合があります。このオプションを有効にする場合は、Booter -> Quirks -> ResizeAppleGpuBars を 0 に設定していることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -1121,10 +1979,24 @@
         "initial_support": "macOS 10.15,Catalina",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Meteor Lake, Raptor Lake Refresh于2023年发布,10nm架构工艺,英特尔的第十四代Core系列处理器,集成图形处理单元(Xe图形架构)",
-            "Meteor Lake, Raptor Lake Refresh处理器中的集成图形处理单元(Xe图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡"
-        ],
+        "note": {
+            "ch": [
+                "Meteor Lake, Raptor Lake Refresh于2023年发布,10nm架构工艺,英特尔的第十四代Core系列处理器,集成图形处理单元(Xe图形架构)",
+                "Meteor Lake, Raptor Lake Refresh处理器中的集成图形处理单元(Xe图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡"
+            ],
+            "en": [
+                "Meteor Lake, Raptor Lake Refresh will be released in 2023, 10nm architecture process, Intel's 14th generation Core series processor, integrated graphics processing unit (Xe graphics architecture)",
+                "The integrated graphics processing unit (Xe graphics architecture) in Meteor Lake and Raptor Lake Refresh processors cannot be driven in any version of macOS, so it must be paired with a driveable independent graphics card."
+            ],
+            "pt": [
+                "Meteor Lake, Raptor Lake Refresh será lançado em 2023, processo de arquitetura de 10nm, processador da série Core de 14ª geração da Intel, unidade de processamento gráfico integrada (arquitetura gráfica Xe)",
+                "A unidade de processamento gráfico integrada (arquitetura gráfica Xe) nos processadores Meteor Lake e Raptor Lake Refresh não pode ser controlada em nenhuma versão do macOS, portanto, deve ser emparelhada com uma placa gráfica independente controlável."
+            ],
+            "ja": [
+                "Meteor Lake、Raptor Lake Refreshは2023年リリース予定、10nmアーキテクチャプロセス、Intel第14世代Coreシリーズプロセッサ、統合グラフィックスプロセッシングユニット（Xeグラフィックスアーキテクチャ）",
+                "Meteor Lake および Raptor Lake Refresh プロセッサに統合されたグラフィックス プロセッシング ユニット (Xe グラフィックス アーキテクチャ) は、macOS のどのバージョンでも駆動できないため、駆動可能な独立したグラフィックス カードと組み合わせる必要があります。"
+            ]
+        },
         "config": {
             "refer": "",
             "bios": {
@@ -1154,6 +2026,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -1176,6 +2074,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G + (nota do BIOS de 2020 em diante: o suporte para BAR ajustável pode estar disponível em algumas placas-mãe Z490 e mais recentes quando o Above4G estiver ativado. Certifique-se de que, se você ativar esta opção, defina Booter -> Quirks -> ResizeAppleGpuBars como 0)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G+ デコード (2020 年以降の BIOS メモ: Above4G が有効になっている場合、一部の Z490 以降のマザーボードで調整可能な BAR サポートが利用できる場合があります。このオプションを有効にする場合は、Booter -> Quirks -> ResizeAppleGpuBars を 0 に設定していることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -1197,12 +2115,32 @@
         "initial_support": "macOS 10.15,Catalina",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Arrow Lake于2024年发布,7nm架构工艺,英特尔的第十五代Core系列处理器,集成图形处理单元(Xe-LPG图形架构)",
-            "Arrow Lake处理器中的集成图形处理单元(Xe-LPG图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡",
-            "英特尔从第15代Arrow Lake命名开始发生变化.例如第14代酷睿I9-14900K下一代CPU,按照以往应该命名为酷睿I9-15900K,实际上命名为酷睿Ultra 9 285K",
-            "第15代Arrow Lake平台强烈建议使用SSDTTime提取定制好(RTCAWAC,EC,USBX,PLUG,SBUS)替换,减少问题"
-        ],
+        "note": {
+            "ch": [
+                "Arrow Lake于2024年发布,7nm架构工艺,英特尔的第十五代Core系列处理器,集成图形处理单元(Xe-LPG图形架构)",
+                "Arrow Lake处理器中的集成图形处理单元(Xe-LPG图形架构)在macOS任何版本都无法驱动,因此必须搭配可驱动的独立显卡",
+                "英特尔从第15代Arrow Lake命名开始发生变化.例如第14代酷睿I9-14900K下一代CPU,按照以往应该命名为酷睿I9-15900K,实际上命名为酷睿Ultra 9 285K",
+                "第15代Arrow Lake平台强烈建议使用SSDTTime提取定制好(RTCAWAC,EC,USBX,PLUG,SBUS)替换,减少问题"
+            ],
+            "en": [
+                "Arrow Lake will be released in 2024, 7nm architecture process, Intel's 15th generation Core series processor, integrated graphics processing unit (Xe-LPG graphics architecture)",
+                "The integrated graphics processing unit (Xe-LPG graphics architecture) in the Arrow Lake processor cannot be driven in any version of macOS, so it must be paired with a driveable independent graphics card",
+                "Intel's naming has changed since the 15th generation Arrow Lake. For example, the 14th generation Core I9-14900K next-generation CPU, which should have been named Core I9-15900K in the past, is actually named Core Ultra 9 285K",
+                "The 15th generation Arrow Lake platform strongly recommends using SSDTTime to extract and customize (RTCAWAC, EC, USBX, PLUG, SBUS) replacement to reduce problems"
+            ],
+            "pt": [
+                "Arrow Lake será lançado em 2024, processo de arquitetura de 7 nm, processador da série Core de 15ª geração da Intel, unidade de processamento gráfico integrada (arquitetura gráfica Xe-LPG)",
+                "A unidade de processamento gráfico integrada (arquitetura gráfica Xe-LPG) no processador Arrow Lake não pode ser controlada em nenhuma versão do macOS, portanto, deve ser emparelhada com uma placa gráfica independente controlável",
+                "A nomenclatura da Intel mudou desde a 15ª geração do Arrow Lake. Por exemplo, a CPU Core I9-14900K de próxima geração de 14ª geração, que deveria ter sido chamada de Core I9-15900K no passado, na verdade é chamada de Core Ultra 9 285K",
+                "A plataforma Arrow Lake de 15ª geração recomenda fortemente o uso de SSDTTime para extrair e personalizar a substituição (RTCAWAC, EC, USBX, PLUG, SBUS) para reduzir problemas"
+            ],
+            "ja": [
+                "Arrow Lakeは2024年にリリース予定、7nmアーキテクチャプロセス、Intelの第15世代Coreシリーズプロセッサ、統合グラフィックスプロセッシングユニット（Xe-LPGグラフィックスアーキテクチャ）",
+                "Arrow Lake プロセッサに統合されたグラフィックス プロセッシング ユニット (Xe-LPG グラフィックス アーキテクチャ) は、macOS のどのバージョンでも駆動できないため、駆動可能な独立したグラフィックス カードと組み合わせる必要があります。",
+                "Intel の名前は、第 15 世代 Arrow Lake から変更されました。たとえば、第 14 世代 Core I9-14900K 次世代 CPU は、以前は Core I9-15900K という名前だったはずですが、実際には Core Ultra 9 285K という名前になっています。",
+                "第 15 世代 Arrow Lake プラットフォームでは、問題を軽減するために、SSDTTime を使用して抽出およびカスタマイズ (RTCAWAC、EC、USBX、PLUG、SBUS) 置換を行うことを強く推奨します。"
+            ]
+        },
         "config": {
             "refer": "",
             "bios": {
@@ -1232,6 +2170,32 @@
                         "英特尔 SGX",
                         "英特尔平台信任",
                         "CFG锁定（MSR 0xE2写保护）（必须关闭,如果找不到此选项,然后在内核 -> Quirks 下启用AppleXcpmCfgLock。如果启用CFG-Lock,您的黑苹果可能无法启动）"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "VT-d (pode ser habilitado se DisableIoMapper estiver definido como YES)",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "Porta Thunderbolt (apenas para instalação inicial, pois a porta Thunderbolt pode causar problemas se não for configurada corretamente)",
+                        "Intel SGX",
+                        "Confiança na plataforma Intel",
+                        "CFG Lock (MSR 0xE2 Write Protect) (deve ser desativado, se esta opção não for encontrada, ative AppleXcpmCfgLock em Kernel -> Quirks. Se CFG-Lock estiver ativado, sua maçã preta pode não inicializar)"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "VT-d (DisableIoMapper が YES に設定されている場合に有効にできます)",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "Thunderbolt ポート (Thunderbolt ポートが正しく設定されていないと問題が発生する可能性があるため、初回インストールのみ)",
+                        "インテル SGX",
+                        "インテル プラットフォーム トラスト",
+                        "CFG ロック (MSR 0xE2 書き込み保護) (オフにする必要があります。このオプションが見つからない場合は、[カーネル] -> [Quirks] で AppleXcpmCfgLock を有効にします。CFG ロックが有効になっていると、黒いリンゴが起動しない可能性があります)"
                     ]
                 },
                 "enable": {
@@ -1254,6 +2218,26 @@
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "DVMT 预分配（iGPU内存）：32MB或更高",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Virtualização VT-x",
+                        "Decodificação 4G + (nota do BIOS de 2020 em diante: o suporte para BAR ajustável pode estar disponível em algumas placas-mãe Z490 e mais recentes quando o Above4G estiver ativado. Certifique-se de que, se você ativar esta opção, defina Booter -> Quirks -> ResizeAppleGpuBars como 0)",
+                        "hiperthreading",
+                        "bit de desabilitação de execução",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "DVMT pré-alocado (memória iGPU): 32 MB ou superior",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "VT-x仮想化",
+                        "4G+ デコード (2020 年以降の BIOS メモ: Above4G が有効になっている場合、一部の Z490 以降のマザーボードで調整可能な BAR サポートが利用できる場合があります。このオプションを有効にする場合は、Booter -> Quirks -> ResizeAppleGpuBars を 0 に設定していることを確認してください)",
+                        "ハイパースレッディング",
+                        "実行禁止ビット",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "DVMT 事前割り当て (iGPU メモリ): 32MB 以上",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [

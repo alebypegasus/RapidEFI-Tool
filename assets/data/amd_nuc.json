@@ -11,11 +11,28 @@
         "initial_support": "macOS 10.13, High Sierra",
         "last_supported": "macOS 12 Monterey",
         "oclp_supported": "macOS Tahoe 26",
-        "note": [
-            "AMD Jaguar架构的首款处理器于2013年发布，采用28纳米制程技术",
-            "典型的处理器包括A4-5000,A6-5200,A8-6410,A10-5745M等",
-            "此处理器核显不支持任何macOS版本,因此仅核显笔记本建议放弃。对于带独显(独显直连屏幕)且可以驱动的AMD笔记本,支持安装,最高建议macOS Monterey 12及以下(配置跟不上,更高只会更卡)"
-        ],
+        "note": {
+            "ch": [
+                "AMD Jaguar架构的首款处理器于2013年发布，采用28纳米制程技术",
+                "典型的处理器包括A4-5000,A6-5200,A8-6410,A10-5745M等",
+                "此处理器核显不支持任何macOS版本,因此仅核显笔记本建议放弃。对于带独显(独显直连屏幕)且可以驱动的AMD笔记本,支持安装,最高建议macOS Monterey 12及以下(配置跟不上,更高只会更卡)"
+            ],
+            "en": [
+                "The first processor of AMD Jaguar architecture was released in 2013, using 28nm process technology",
+                "Typical processors include A4-5000, A6-5200, A8-6410, A10-5745M, etc.",
+                "This processor's core graphics does not support any macOS version, so it is recommended to give up on notebooks that only have core graphics. For AMD notebooks with independent graphics (directly connected to the screen) and can be driven, installation is supported. The highest recommendation is macOS Monterey 12 and below (the configuration cannot keep up, higher will only cause more lag)"
+            ],
+            "pt": [
+                "O primeiro processador da arquitetura AMD Jaguar foi lançado em 2013, usando tecnologia de processo de 28nm",
+                "Os processadores típicos incluem A4-5000, A6-5200, A8-6410, A10-5745M, etc.",
+                "O núcleo gráfico deste processador não suporta nenhuma versão do macOS, por isso é recomendado desistir de notebooks que possuem apenas núcleo gráfico. Para notebooks AMD com gráficos independentes (conectados diretamente à tela) e que podem ser controlados, a instalação é suportada. A recomendação mais alta é macOS Monterey 12 e inferior (a configuração não consegue acompanhar, superior só causará mais atraso)"
+            ],
+            "ja": [
+                "AMD Jaguar アーキテクチャの最初のプロセッサは 28nm プロセス テクノロジを使用して 2013 年にリリースされました。",
+                "一般的なプロセッサには、A4-5000、A6-5200、A8-6410、A10-5745M などがあります。",
+                "このプロセッサのコア グラフィックスは macOS のバージョンをサポートしていないため、コア グラフィックスのみを搭載したノートブックは諦めることをお勧めします。独立したグラフィックス (画面に直接接続) を備え、駆動可能な AMD ノートブックの場合、インストールがサポートされています。最も推奨されるのは macOS Monterey 12 以下です (構成が追いつかないため、より高いと遅延が増加するだけです)"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/AMD/fx.html",
             "bios": {
@@ -35,6 +52,22 @@
                         "并行端口",
                         "兼容性支持模块（CSM）（在大多数情况下必须关闭，启用此选项时通常会出现GPU错误/停顿，如gIO）",
                         "AMD主板上的IOMMU功能也称为AMD-Vi虚拟化"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "O recurso IOMMU nas placas-mãe AMD também é conhecido como virtualização AMD-Vi"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "AMD マザーボードの IOMMU 機能は、AMD-Vi 仮想化とも呼ばれます"
                     ]
                 },
                 "enable": {
@@ -49,6 +82,18 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Decodificação acima de 4G (se esta opção não for encontrada, adicione npci=0x3000 aos argumentos de inicialização. Esta opção e npci não podem ser habilitadas ao mesmo tempo.)",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "4G デコード以上 (このオプションが見つからない場合は、ブート引数に npci=0x3000 を追加します。このオプションと npci を同時に有効にすることはできません。)",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
@@ -70,13 +115,36 @@
         "initial_support": "macOS 10.13, High Sierra",
         "last_supported": "macOS Tahoe 26",
         "oclp_supported": "",
-        "note": [
-            "Ryzen锐龙2000~5000系列核显使用三方开发者NootedRed驱动,显示支持Metal,但不支持VDA硬解",
-            "NootedRed支持整个 Vega Raven ASIC 家族（涵盖 Ryzen 1xxx 系列（Athlon Silver/Gold）到 Ryzen 5xxx，以及 7x30 系列",
-            "支持 macOS Catalina 10.15 ~ macOS Tahoe 26,对于某个大版本号macOS,特别是macOS Big Sur,建议选择比较新的macOS Big Sur版本号(例如macOS Big Sur 11.6),早期macOS Big Sur版本号,例如macOS Big Sur 11.0,可能并不支持",
-            "锐龙2000~5000系列核显可以降低使用OpenGL渲染,正常使用QQ,Edge,Chrome浏览器",
-            "建议在BIOS设置中将AMD核显显存尽量修改至2G及以上(根据自己主板和内存权衡,没有修改设置地方,可以考虑使用U盘工具修改BIOS显存设置)"
-        ],
+        "note": {
+            "ch": [
+                "Ryzen锐龙2000~5000系列核显使用三方开发者NootedRed驱动,显示支持Metal,但不支持VDA硬解",
+                "NootedRed支持整个 Vega Raven ASIC 家族（涵盖 Ryzen 1xxx 系列（Athlon Silver/Gold）到 Ryzen 5xxx，以及 7x30 系列",
+                "支持 macOS Catalina 10.15 ~ macOS Tahoe 26,对于某个大版本号macOS,特别是macOS Big Sur,建议选择比较新的macOS Big Sur版本号(例如macOS Big Sur 11.6),早期macOS Big Sur版本号,例如macOS Big Sur 11.0,可能并不支持",
+                "锐龙2000~5000系列核显可以降低使用OpenGL渲染,正常使用QQ,Edge,Chrome浏览器",
+                "建议在BIOS设置中将AMD核显显存尽量修改至2G及以上(根据自己主板和内存权衡,没有修改设置地方,可以考虑使用U盘工具修改BIOS显存设置)"
+            ],
+            "en": [
+                "Ryzen 2000~5000 series core displays use third-party developer NootedRed driver. The display supports Metal, but does not support VDA hard decryption.",
+                "NootedRed supports the entire Vega Raven ASIC family from Ryzen 1xxx series (Athlon Silver/Gold) to Ryzen 5xxx, as well as the 7x30 series",
+                "Supports macOS Catalina 10.15 ~ macOS Tahoe 26. For a certain large version of macOS, especially macOS Big Sur, it is recommended to choose a newer macOS Big Sur version (such as macOS Big Sur 11.6). Earlier macOS Big Sur versions, such as macOS Big Sur 11.0, may not be supported.",
+                "Ryzen 2000~5000 series core graphics can reduce the use of OpenGL rendering and normal use of QQ, Edge, and Chrome browsers",
+                "It is recommended to modify the AMD core graphics memory to 2G or above in the BIOS settings (according to your own motherboard and memory balance, if there is no place to modify the settings, you can consider using a USB disk tool to modify the BIOS memory settings)"
+            ],
+            "pt": [
+                "Os monitores principais da série Ryzen 2000 ~ 5000 usam driver NootedRed de desenvolvedor terceirizado. O monitor suporta Metal, mas não suporta descriptografia rígida VDA.",
+                "NootedRed suporta toda a família Vega Raven ASIC da série Ryzen 1xxx (Athlon Silver/Gold) a Ryzen 5xxx, bem como a série 7x30",
+                "Suporta macOS Catalina 10.15 ~ macOS Tahoe 26. Para uma determinada versão grande do macOS, especialmente o macOS Big Sur, é recomendável escolher uma versão mais recente do macOS Big Sur (como o macOS Big Sur 11.6). Versões anteriores do macOS Big Sur, como o macOS Big Sur 11.0, podem não ser compatíveis.",
+                "Os gráficos principais da série Ryzen 2000 ~ 5000 podem reduzir o uso da renderização OpenGL e o uso normal dos navegadores QQ, Edge e Chrome",
+                "Recomenda-se modificar a memória gráfica do núcleo AMD para 2G ou superior nas configurações do BIOS (de acordo com sua própria placa-mãe e equilíbrio de memória, se não houver lugar para modificar as configurações, você pode considerar usar uma ferramenta de disco USB para modificar as configurações de memória do BIOS)"
+            ],
+            "ja": [
+                "Ryzen 2000～5000 シリーズのコア ディスプレイは、サードパーティ開発者の NootedRed ドライバーを使用します。ディスプレイは Metal をサポートしていますが、VDA のハード復号化はサポートしていません。",
+                "NootedRed は、Ryzen 1xxx シリーズ (Athlon Silver/Gold) から Ryzen 5xxx までの Vega Raven ASIC ファミリ全体、および 7x30 シリーズをサポートします。",
+                "macOS Catalina 10.15 ～ macOS Tahoe 26 をサポートします。macOS の特定の大きいバージョン、特に macOS Big Sur の場合は、新しい macOS Big Sur バージョン (macOS Big Sur 11.6 など) を選択することをお勧めします。 macOS Big Sur 11.0 などの以前の macOS Big Sur バージョンはサポートされていない可能性があります。",
+                "Ryzen 2000～5000 シリーズのコア グラフィックスにより、OpenGL レンダリングの使用と QQ、Edge、Chrome ブラウザの通常の使用を削減できます。",
+                "BIOS 設定で AMD コア グラフィックス メモリを 2G 以上に変更することをお勧めします (マザーボードとメモリのバランスに応じて、設定を変更する場所がない場合は、USB ディスク ツールを使用して BIOS メモリ設定を変更することを検討できます)"
+            ]
+        },
         "config": {
             "refer": "https://dortania.github.io/OpenCore-Install-Guide/AMD/zen.html",
             "bios": {
@@ -98,6 +166,24 @@
                         "并行端口",
                         "兼容性支持模块（CSM）（在大多数情况下必须关闭，启用此选项时通常会出现GPU错误/停顿，如gIO）",
                         "AMD主板上的IOMMU功能也称为AMD-Vi虚拟化"
+                    ],
+                    "pt": [
+                        "início rápido",
+                        "inicialização segura",
+                        "Re-Size BAR Support (normalmente localizado em Advanced>PCI Subsystem. Este item geralmente existe na bios de novas plataformas após 2020)",
+                        "Porta serial/COM",
+                        "porta paralela",
+                        "Módulo de suporte de compatibilidade (CSM) (deve ser desligado na maioria dos casos, você frequentemente obterá erros/travamentos de GPU como gIO quando esta opção estiver habilitada)",
+                        "O recurso IOMMU nas placas-mãe AMD também é conhecido como virtualização AMD-Vi"
+                    ],
+                    "ja": [
+                        "クイックスタート",
+                        "セキュアブート",
+                        "Re-Size BAR Support (通常、Advanced>PCI Subsystem にあります。この項目は通常、2020 年以降の新しいプラットフォームの BIOS に存在します)",
+                        "シリアル/COMポート",
+                        "パラレルポート",
+                        "互換性サポート モジュール (CSM) (ほとんどの場合、オフにする必要があります。このオプションを有効にすると、gIO などの GPU エラー/ストールが発生することがよくあります)",
+                        "AMD マザーボードの IOMMU 機能は、AMD-Vi 仮想化とも呼ばれます"
                     ]
                 },
                 "enable": {
@@ -112,6 +198,18 @@
                         "EHCI/XHCI 切换",
                         "操作系统类型：Windows 8.1/10 UEFI模式（某些主板可能需要选择“其他操作系统”）",
                         "SATA模式：AHCI"
+                    ],
+                    "pt": [
+                        "Decodificação acima de 4G (se esta opção não for encontrada, adicione npci=0x3000 aos argumentos de inicialização. Esta opção e npci não podem ser habilitadas ao mesmo tempo.)",
+                        "Comutação EHCI/XHCI",
+                        "Tipo de sistema operacional: modo UEFI Windows 8.1/10 (algumas placas-mãe podem precisar selecionar \"Outros sistemas operacionais\")",
+                        "Modo SATA: AHCI"
+                    ],
+                    "ja": [
+                        "4G デコード以上 (このオプションが見つからない場合は、ブート引数に npci=0x3000 を追加します。このオプションと npci を同時に有効にすることはできません。)",
+                        "EHCI/XHCI切り替え",
+                        "オペレーティング システムの種類: Windows 8.1/10 UEFI モード (一部のマザーボードでは「その他のオペレーティング システム」を選択する必要がある場合があります)",
+                        "SATAモード：AHCI"
                     ]
                 },
                 "custom": [
