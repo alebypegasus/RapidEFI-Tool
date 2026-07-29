@@ -4301,10 +4301,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Não é possível identificar o tipo de plataforma com base nas informações da CPU';
 
   @override
-  String get autoGen5031 => 'caderno';
+  String get autoGen5031 => 'Notebook';
 
   @override
-  String get autoGen5032 => 'Mini-anfitrião';
+  String get autoGen5032 => 'Mini-PC (NUC)';
 
   @override
   String get autoGen5033 => 'estação de trabalho';
@@ -4625,10 +4625,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get autoGen5133 => 'A lista de versões de lançamento está vazia';
 
   @override
-  String get autoGen5134 => 'Área de trabalho';
+  String get autoGen5134 => 'Desktop';
 
   @override
-  String get autoGen5135 => 'servidor';
+  String get autoGen5135 => 'Servidor';
 
   @override
   String get autoGen5136 =>
