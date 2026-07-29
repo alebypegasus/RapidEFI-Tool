@@ -155,19 +155,10 @@ jobs:
           #   flutter_manual: true
 
           # ── macOS ──────────────────────────────────
-          - label:          macOS-x64
-            runner:         macos-13
-            os:             macos
-            arch:           x64
-            build_dir:      build/macos/Build/Products/Release
-            pkg_ext:        dmg
-            flutter_sdk_arch: x64
-            flutter_manual: false
-
-          - label:          macOS-arm64
+          - label:          macOS-Universal
             runner:         macos-15
             os:             macos
-            arch:           arm64
+            arch:           universal
             build_dir:      build/macos/Build/Products/Release
             pkg_ext:        dmg
             flutter_sdk_arch: arm64
