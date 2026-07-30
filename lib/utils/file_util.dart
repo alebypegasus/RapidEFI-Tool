@@ -585,8 +585,7 @@ class _PlatformPaths {
 
 class _PickerOps {
   static Future<String> pickDirectory(String initialDirectory) async {
-    final selectedPath = await FilePicker.platform.getDirectoryPath(
-      lockParentWindow: true,
+    final selectedPath = await FilePicker.getDirectoryPath(
       initialDirectory: initialDirectory.isEmpty ? null : initialDirectory,
     );
     return selectedPath ?? '';
@@ -599,7 +598,7 @@ class _PickerOps {
   }) async {
     final hasExtensionFilter =
         allowedExtensions != null && allowedExtensions.isNotEmpty;
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       type: hasExtensionFilter ? FileType.custom : FileType.any,
       allowedExtensions: hasExtensionFilter ? allowedExtensions : null,
       allowMultiple: allowMultiple,

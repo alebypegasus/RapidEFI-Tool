@@ -35,6 +35,12 @@ class _SettingPageState extends State<SettingPage> {
       'zh_CN': l10n.languageZhCN,
       'zh_TW': l10n.languageZhTW,
       'ja': l10n.languageJa,
+      'es': l10n.languageEs,
+      'fr': l10n.languageFr,
+      'ar': l10n.languageAr,
+      'hi': l10n.languageHi,
+      'ru': l10n.languageRu,
+      'it': l10n.languageIt,
     };
   }
 

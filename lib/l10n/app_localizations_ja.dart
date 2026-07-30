@@ -120,6 +120,24 @@ class AppLocalizationsJa extends AppLocalizations {
   String get languageJa => '日本語';
 
   @override
+  String get languageEs => 'Español';
+
+  @override
+  String get languageFr => 'Français';
+
+  @override
+  String get languageAr => 'العربية';
+
+  @override
+  String get languageHi => 'हिन्दी';
+
+  @override
+  String get languageRu => 'Русский';
+
+  @override
+  String get languageIt => 'Italiano';
+
+  @override
   String get versionUpdateTitle => 'バージョン更新:';
 
   @override

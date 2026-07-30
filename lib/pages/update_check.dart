@@ -1,19 +1,20 @@
-//  update_check.dart
-//  Created by JeoJay127
-//
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/link_button_row.dart';
 import 'package:rapidefi/pages/shared/widgets/markdown_viewer.dart';
 import 'package:rapidefi/utils/app_info.dart';
+import 'package:rapidefi/utils/http/http_client_manager.dart';
 import 'package:rapidefi/utils/log/log.dart';
 import 'package:rapidefi/utils/update/repo_config.dart';
 import 'package:rapidefi/utils/update/repo_context.dart';
 import 'package:rapidefi/utils/update/repo_sevice.dart';
 import 'package:rapidefi/widgets/inkwell_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class UpdateDialog extends StatelessWidget {
+class UpdateDialog extends StatefulWidget {
   const UpdateDialog._(this._ctx);
   final RepoContext _ctx;
 
@@ -53,15 +54,88 @@ class UpdateDialog extends StatelessWidget {
   }
 
   @override
+  State<UpdateDialog> createState() => _UpdateDialogState();
+}
+
+class _UpdateDialogState extends State<UpdateDialog> {
+  bool _isDownloading = false;
+  double _downloadPercent = 0.0;
+  String _downloadSpeed = '';
+  String _downloadRemaining = '';
+  DownloadCancelToken? _cancelToken;
+
+  @override
+  void dispose() {
+    _cancelToken?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _startDownload() async {
+    final asset = widget._ctx.release.assetForCurrentPlatform();
+    if (asset == null) return;
+
+    setState(() {
+      _isDownloading = true;
+      _downloadPercent = 0.0;
+      _downloadSpeed = '';
+      _downloadRemaining = '';
+      _cancelToken = DownloadCancelToken();
+    });
+
+    try {
+      final dir = await getDownloadsDirectory();
+      if (dir == null) throw Exception("Pasta de Downloads não encontrada");
+      
+      final filePath = '${dir.path}/${asset.name}';
+      
+      final result = await HttpClientManager().streamToFile(
+        asset.downloadUrl,
+        filePath,
+        cancelToken: _cancelToken,
+        onProgress: (percent, speed, remaining) {
+          if (mounted) {
+            setState(() {
+              _downloadPercent = percent;
+              _downloadSpeed = speed;
+              _downloadRemaining = remaining;
+            });
+          }
+        },
+        onError: (e) {
+          Log.error("Download error: $e");
+          showToast("Erro no download: $e");
+        }
+      );
+
+      if (result != null && mounted) {
+        showToast("Download concluído!");
+        // Abre o arquivo baixado
+        launchUrl(Uri.file(filePath));
+        Navigator.of(context).pop();
+      }
+    } catch (e) {
+      Log.error("Download exception: $e");
+      showToast("Erro ao baixar: $e");
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isDownloading = false;
+        });
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final release = _ctx.release;
+    final release = widget._ctx.release;
     final asset = release.assetForCurrentPlatform();
     final colorScheme = Theme.of(context).colorScheme;
     final bool darkMode = colorScheme.brightness == Brightness.dark;
     final backgroundColor = darkMode
         ? const Color.fromARGB(255, 63, 60, 60)
         : colorScheme.surfaceContainerHighest;
+        
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       backgroundColor: backgroundColor,
@@ -74,7 +148,7 @@ class UpdateDialog extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  '${_ctx.repoConfig.repo} ${l10n.newVersionFound}',
+                  '${widget._ctx.repoConfig.repo} ${l10n.newVersionFound}',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
@@ -83,40 +157,81 @@ class UpdateDialog extends StatelessWidget {
               Text(l10n.publishedAtDate(release.publishedAt)),
               const Divider(height: 18, thickness: 0.2),
               Expanded(
-                  child: MarkdownViewer(
-                data: release.body,
-                fontSize: 12,
-                codeFontSize: 11,
-              )),
-              const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                spacing: 8,
-                children: [
-                  LinkButtonRow(
-                    spacing: 8,
-                    items: [
-                      LinkButtonItem(
-                        url: _ctx.repoConfig.releasesUrl,
-                        buttonText: l10n.visitGithub,
+                child: _isDownloading
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          LinearProgressIndicator(
+                            value: _downloadPercent / 100,
+                            minHeight: 10,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('${_downloadPercent.toStringAsFixed(1)}%'),
+                              Text(_downloadSpeed),
+                              Text(_downloadRemaining),
+                            ],
+                          ),
+                          const SizedBox(height: 24),
+                          InkWellWidget(
+                            width: 120,
+                            height: 36,
+                            radius: 6,
+                            backgroundColor: Colors.red.withValues(alpha: 0.1),
+                            onTap: () {
+                              _cancelToken?.cancel();
+                              setState(() => _isDownloading = false);
+                            },
+                            child: const Text('Cancelar', style: TextStyle(color: Colors.red)),
+                          ),
+                        ],
+                      )
+                    : MarkdownViewer(
+                        data: release.body,
+                        fontSize: 12,
+                        codeFontSize: 11,
                       ),
-                      if (asset != null)
-                        LinkButtonItem(
-                          url: asset.downloadUrl,
-                          buttonText: l10n.downloadNow,
-                        ),
-                    ],
-                  ),
-                  InkWellWidget(
-                    width: 60,
-                    height: 32,
-                    radius: 6,
-                    backgroundColor: Colors.grey.withValues(alpha: 0.1),
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Text(l10n.close),
-                  ),
-                ],
               ),
+              const SizedBox(height: 12),
+              if (!_isDownloading)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  spacing: 8,
+                  children: [
+                    LinkButtonRow(
+                      spacing: 8,
+                      items: [
+                        LinkButtonItem(
+                          url: widget._ctx.repoConfig.releasesUrl,
+                          buttonText: l10n.visitGithub,
+                        ),
+                      ],
+                    ),
+                    if (asset != null)
+                      InkWellWidget(
+                        width: 100,
+                        height: 32,
+                        radius: 6,
+                        backgroundColor: colorScheme.primary.withValues(alpha: 0.1),
+                        onTap: _startDownload,
+                        child: Text(
+                          l10n.downloadNow,
+                          style: TextStyle(color: colorScheme.primary, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    InkWellWidget(
+                      width: 60,
+                      height: 32,
+                      radius: 6,
+                      backgroundColor: Colors.grey.withValues(alpha: 0.1),
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Text(l10n.close),
+                    ),
+                  ],
+                ),
             ],
           ),
         ),

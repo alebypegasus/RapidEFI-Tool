@@ -1,28 +1,18 @@
 name: Build & Release
 
 # ── 触发规则 ────────────────────────────────────────────
-# push main/master  → Alpha（自动，固定 tag "alpha"）
-# workflow_dispatch → Beta（手动，固定 tag "beta"）
-#                  → Stable（手动，输入版本号，生成 tag "vX.Y.Z"）
-# push v* tag       → Stable（手动推 tag 也可触发）
+# workflow_dispatch → Stable (手动发布，输入版本号，生成 tag "vX.Y.Z")
+# push v* tag       → Stable (手动推 tag 也可触发)
 # ─────────────────────────────────────────────────────────
 on:
   push:
-    branches: [ main, master ]       # → alpha
-    tags:     [ 'v*' ]               # → stable
+    tags:     [ 'v*' ]
 
   workflow_dispatch:
     inputs:
-      channel:
-        description: '发布渠道'
-        required: true
-        type: choice
-        options:
-          - beta                     # 固定 tag "beta"
-          - stable                   # tag = "v{version}"
       version:
-        description: '版本号（stable 必填，如 5.1.0；beta 留空）'
-        required: false
+        description: '版本号 (必填，例如 5.2.2)'
+        required: true
         type: string
 
 permissions:
@@ -44,64 +34,39 @@ jobs:
     name: Prepare
     runs-on: ubuntu-latest
     outputs:
-      channel:    ${{ steps.info.outputs.channel }}
       tag:        ${{ steps.info.outputs.tag }}
       version:    ${{ steps.info.outputs.version }}
-      fixed_tag:  ${{ steps.info.outputs.fixed_tag }}  # "true" → alpha / beta
 
     steps:
-      - name: Resolve channel / tag / version
+      - name: Resolve tag / version
         id: info
         run: |
           EVENT="${{ github.event_name }}"
 
-          if [ "$EVENT" = "push" ] && [[ "${{ github.ref }}" == refs/heads/* ]]; then
-            # ── Alpha：push 到分支 ──────────────────────
-            CHANNEL=alpha
-            TAG=alpha
-            VERSION="alpha.$(date -u +%Y%m%d%H%M).${GITHUB_SHA::7}"
-            FIXED_TAG=true
-
-          elif [ "$EVENT" = "push" ] && [[ "${{ github.ref }}" == refs/tags/* ]]; then
+          if [ "$EVENT" = "push" ] && [[ "${{ github.ref }}" == refs/tags/* ]]; then
             # ── Stable：推送 v* tag ────────────────────
             TAG="${GITHUB_REF#refs/tags/}"
             VERSION="${TAG#v}"
-            CHANNEL=stable
-            FIXED_TAG=false
-
           elif [ "$EVENT" = "workflow_dispatch" ]; then
-            CHANNEL="${{ github.event.inputs.channel }}"
-
-            if [ "$CHANNEL" = "beta" ]; then
-              # ── Beta：固定 tag "beta" ─────────────────
-              TAG=beta
-              VERSION="beta.$(date -u +%Y%m%d%H%M).${GITHUB_SHA::7}"
-              FIXED_TAG=true
-            else
-              # ── Stable：手动指定版本 ──────────────────
-              VERSION="${{ github.event.inputs.version }}"
-              if [ -z "$VERSION" ]; then
-                echo "::error::stable 渠道必须填写版本号" && exit 1
-              fi
-              TAG="v${VERSION}"
-              FIXED_TAG=false
-            fi
+            # ── Stable：手动指定版本 ──────────────────
+            VERSION="${{ github.event.inputs.version }}"
+            TAG="v${VERSION}"
           fi
 
-          echo "channel=$CHANNEL"     >> "$GITHUB_OUTPUT"
+          if [ -z "$VERSION" ]; then
+            echo "::error::未提供版本号或无法解析 tag" && exit 1
+          fi
+
           echo "tag=$TAG"             >> "$GITHUB_OUTPUT"
           echo "version=$VERSION"     >> "$GITHUB_OUTPUT"
-          echo "fixed_tag=$FIXED_TAG" >> "$GITHUB_OUTPUT"
 
           # Step summary
           {
             echo "### 📦 Build info"
             echo "| Key | Value |"
             echo "|-----|-------|"
-            echo "| Channel | \`$CHANNEL\` |"
             echo "| Tag | \`$TAG\` |"
             echo "| Version | \`$VERSION\` |"
-            echo "| Fixed tag | \`$FIXED_TAG\` |"
           } >> "$GITHUB_STEP_SUMMARY"
 
   # ──────────────────────────────────────────────────────
@@ -268,17 +233,10 @@ jobs:
 
       # ── 版本号写入 pubspec.yaml ─────────────────────
       # pubspec 只接受 X.Y.Z+buildNumber 格式（纯整数）
-      # stable：用输入的版本号；alpha/beta：保留原有 X.Y.Z，只更新 build number
       - name: Patch pubspec version
         shell: bash
         run: |
-          CHANNEL="${{ needs.prepare.outputs.channel }}"
-          if [ "$CHANNEL" = "stable" ]; then
-            SEMVER="${{ needs.prepare.outputs.version }}"
-          else
-            # 从 pubspec.yaml 读取当前语义版本（去掉已有的 +build 部分）
-            SEMVER=$(grep '^version:' pubspec.yaml | sed 's/version: *//' | cut -d'+' -f1)
-          fi
+          SEMVER="${{ needs.prepare.outputs.version }}"
           sed -i.bak "s/^version: .*/version: ${SEMVER}+${{ github.run_number }}/" pubspec.yaml
           grep '^version:' pubspec.yaml
 
@@ -327,8 +285,7 @@ jobs:
 
   # ──────────────────────────────────────────────────────
   # 3. 发布 Release
-  #    alpha / beta：强制覆盖同名 tag & release（固定入口）
-  #    stable      ：创建全新版本 release
+  #    stable：创建全新版本 release，带友好的更新日志
   # ──────────────────────────────────────────────────────
   release:
     name: Release · ${{ needs.prepare.outputs.tag }}
@@ -348,50 +305,142 @@ jobs:
 
       - run: ls -lh dist/
 
-      # ── alpha / beta：原子操作——删旧 release+tag，建新 tag，发新 release ──
-      # 合并为单步，避免"先推 tag 又被 --cleanup-tag 删掉"的冗余操作
-      - name: Publish alpha/beta release (overwrite)
-        if: needs.prepare.outputs.fixed_tag == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TAG="${{ needs.prepare.outputs.tag }}"
-          CHANNEL="${{ needs.prepare.outputs.channel }}"
-          VERSION="${{ needs.prepare.outputs.version }}"
-
-          # 1. 删除旧 release（含 tag），忽略不存在时的错误
-          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
-
-          # 2. 强制推新 tag 到当前 commit
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config user.name  "github-actions[bot]"
-          git tag -f "$TAG"
-          git push origin "$TAG" --force
-
-          # 3. 创建新 release（使用 printf '%s' 防止变量中特殊字符被解析）
-          if [ "$CHANNEL" = "alpha" ]; then
-            TITLE="🔬 Alpha Build"
-            NOTES=$(printf '自动构建（每次推送到主分支更新此 Release）。\n\n**版本快照：** `%s`\n**构建号：** #%s\n**Commit：** %s' \
-              "$VERSION" "${{ github.run_number }}" "${{ github.sha }}")
-          else
-            TITLE="🧪 Beta Build"
-            NOTES=$(printf 'Beta 手动构建（每次触发 Beta 发布更新此 Release）。\n\n**版本快照：** `%s`\n**构建号：** #%s\n**Commit：** %s' \
-              "$VERSION" "${{ github.run_number }}" "${{ github.sha }}")
-          fi
-
-          gh release create "$TAG" dist/* \
-            --prerelease \
-            --title "$TITLE" \
-            --notes "$NOTES"
-
       # ── stable：创建正式版本 release ──────────────────
       - name: Publish stable release
-        if: needs.prepare.outputs.fixed_tag == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ needs.prepare.outputs.tag }}"
+          
+          # 生成友好的详细 Release Notes
+          cat << EOF > release_notes.md
+          ## 🎉 RapidEFI $TAG Released!
+
+          Welcome to the latest version of RapidEFI! Select your language below to read the release notes.
+
+          <details>
+          <summary>🇧🇷 Português</summary>
+          <br>
+          Olá! 🚀 Chegou uma nova versão cheia de melhorias para tornar sua experiência ainda melhor.
+
+          ✨ **O que há de novo nesta versão:**
+          - 🐛 Correções de bugs e melhorias na estabilidade geral do sistema.
+          - ⚡ Otimizações de desempenho para que tudo carregue mais rápido.
+          - 🎨 Melhorias sutis na interface para uma navegação mais fluída.
+          </details>
+
+          <details>
+          <summary>🇬🇧 English</summary>
+          <br>
+          Hello! 🚀 A new version full of improvements has arrived to make your experience even better.
+
+          ✨ **What's new in this version:**
+          - 🐛 Bug fixes and overall system stability improvements.
+          - ⚡ Performance optimizations for faster loading.
+          - 🎨 Subtle UI enhancements for smoother navigation.
+          </details>
+
+          <details>
+          <summary>🇪🇸 Español</summary>
+          <br>
+          ¡Hola! 🚀 Ha llegado una nueva versión llena de mejoras para hacer tu experiencia aún mejor.
+
+          ✨ **Qué hay de nuevo en esta versión:**
+          - 🐛 Corrección de errores y mejoras en la estabilidad general del sistema.
+          - ⚡ Optimizaciones de rendimiento para que todo cargue más rápido.
+          - 🎨 Mejoras sutiles en la interfaz para una navegación más fluida.
+          </details>
+
+          <details>
+          <summary>🇫🇷 Français</summary>
+          <br>
+          Bonjour ! 🚀 Une nouvelle version pleine d'améliorations est arrivée pour rendre votre expérience encore meilleure.
+
+          ✨ **Quoi de neuf dans cette version :**
+          - 🐛 Corrections de bugs et améliorations générales de la stabilité du système.
+          - ⚡ Optimisations des performances pour un chargement plus rapide.
+          - 🎨 Améliorations subtiles de l'interface pour une navigation plus fluide.
+          </details>
+
+          <details>
+          <summary>🇷🇺 Русский</summary>
+          <br>
+          Привет! 🚀 Вышла новая версия с множеством улучшений для еще более комфортной работы.
+
+          ✨ **Что нового в этой версии:**
+          - 🐛 Исправления ошибок и повышение общей стабильности системы.
+          - ⚡ Оптимизация производительности для более быстрой загрузки.
+          - 🎨 Небольшие улучшения интерфейса для более плавной навигации.
+          </details>
+
+          <details>
+          <summary>🇮🇹 Italiano</summary>
+          <br>
+          Ciao! 🚀 È arrivata una nuova versione ricca di miglioramenti per rendere la tua esperienza ancora migliore.
+
+          ✨ **Cosa c'è di nuovo in questa versione:**
+          - 🐛 Correzioni di bug e miglioramenti generali della stabilità del sistema.
+          - ⚡ Ottimizzazioni delle prestazioni per un caricamento più rapido.
+          - 🎨 Sottili miglioramenti dell'interfaccia per una navigazione più fluida.
+          </details>
+
+          <details>
+          <summary>🇮🇳 हिन्दी (Hindi)</summary>
+          <br>
+          नमस्ते! 🚀 आपके अनुभव को और भी बेहतर बनाने के लिए सुधारों से भरा एक नया संस्करण आ गया है।
+
+          ✨ **इस संस्करण में नया क्या है:**
+          - 🐛 बग फिक्स और समग्र सिस्टम स्थिरता में सुधार।
+          - ⚡ तेज लोडिंग के लिए प्रदर्शन अनुकूलन।
+          - 🎨 सुचारू नेविगेशन के लिए सूक्ष्म इंटरफ़ेस सुधार।
+          </details>
+
+          <details>
+          <summary>🇸🇦 العربية (Arabic)</summary>
+          <br>
+          مرحباً! 🚀 وصلت نسخة جديدة مليئة بالتحسينات لجعل تجربتك أفضل بكثير.
+
+          ✨ **ما الجديد في هذه النسخة:**
+          - 🐛 إصلاحات للأخطاء وتحسينات على استقرار النظام بشكل عام.
+          - ⚡ تحسينات في الأداء لتحميل أسرع.
+          - 🎨 تحسينات دقيقة على واجهة المستخدم لتنقل أكثر سلاسة.
+          </details>
+
+          <details>
+          <summary>🇨🇳 中文</summary>
+          <br>
+          你好！🚀 充满改进的新版本已经到来，让您的体验更上一层楼。
+
+          ✨ **此版本的新内容：**
+          - 🐛 错误修复和系统整体稳定性的提升。
+          - ⚡ 性能优化，加载速度更快。
+          - 🎨 细微的界面改进，让导航更流畅。
+          </details>
+
+          <details>
+          <summary>🇯🇵 日本語</summary>
+          <br>
+          こんにちは！🚀 より良い体験を提供するため、多くの改善を含んだ新しいバージョンがリリースされました。
+
+          ✨ **このバージョンの新機能：**
+          - 🐛 バグ修正とシステム全体の安定性向上。
+          - ⚡ より高速な読み込みのためのパフォーマンス最適化。
+          - 🎨 よりスムーズなナビゲーションのための細かなUI改善。
+          </details>
+
+          ---
+          
+          📦 **Downloads / Descargas / 下载 :**
+          - 🪟 **Windows**: \`.zip\`
+          - 🍎 **macOS**: \`.dmg\`
+          - 🐧 **Linux**: \`.tar.gz\`
+
+          *Download the file corresponding to your Operating System.*
+          
+          ❤️ Thank you for using RapidEFI!
+          EOF
+          
           gh release create "$TAG" dist/* \
-            --title "${{ env.APP_NAME }} ${TAG}" \
-            --generate-notes \
+            --title "🚀 ${env.APP_NAME} ${TAG}" \
+            --notes-file release_notes.md \
             --latest
