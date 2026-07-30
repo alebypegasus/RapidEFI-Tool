@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/l10n/enum_l10n.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 
 class UIScaleWidget extends StatefulWidget {
   final ValueChanged onChanged;

@@ -3,38 +3,30 @@ import 'dart:io';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:path/path.dart' as path;
+import 'package:provider/provider.dart';
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
-import 'package:rapidefi/utils/config/models/acpi/acpi.dart';
-import 'package:rapidefi/utils/config/models/acpi/acpi_add_item.dart';
-import 'package:rapidefi/utils/config/models/acpi/acpi_delete_item.dart';
-import 'package:rapidefi/utils/config/models/acpi/acpi_patch_item.dart';
-import 'package:rapidefi/utils/config/models/acpi/acpi_quirks.dart';
-import 'package:rapidefi/utils/config/presets/platform_profiles/platform_configs.dart';
+import 'package:rapidefi/utils/config/config_model.dart';
+import 'package:rapidefi/utils/config/services/config_session.dart';
 import 'package:rapidefi/utils/file_util.dart';
-import 'package:rapidefi/utils/ssdttool/parser.dart';
 import 'package:rapidefi/widgets/inkwell_widget.dart';
-
-import '../utils/config/config_model.dart';
-import '../utils/config/services/config_session.dart';
 import 'package:rapidefi/pages/manual/manual_page.dart';
+import 'package:rapidefi/pages/process/process_viewmodel.dart';
 
-class ProcessPage extends StatefulWidget {
+class ProcessPage extends StatelessWidget {
   const ProcessPage({super.key});
 
   @override
-  State<ProcessPage> createState() => _ProcessPageState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => ProcessViewModel(),
+      child: const _ProcessPageContent(),
+    );
+  }
 }
 
-class _ProcessPageState extends State<ProcessPage> {
-  ConfigModel? _configModel;
-  String? _acpiSourceDirectory;
-  bool _highlighted = false;
-  bool _importing = false;
-  int _configRevision = 0;
-
-  bool get _hasConfigModel => _configModel != null;
+class _ProcessPageContent extends StatelessWidget {
+  const _ProcessPageContent();
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +39,14 @@ class _ProcessPageState extends State<ProcessPage> {
             padding: const EdgeInsets.all(15),
             child: TitleCard(
               title: l10n.processEfiTitle,
-              content: _buildImportHeader(l10n),
+              content: _buildImportHeader(context, l10n),
               expander: Text(l10n.processEfiExpanderText),
             ),
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(15),
-              child: _buildContent(),
+              child: _buildContent(context),
             ),
           ),
         ],
@@ -62,7 +54,8 @@ class _ProcessPageState extends State<ProcessPage> {
     );
   }
 
-  Widget _buildImportHeader(AppLocalizations l10n) {
+  Widget _buildImportHeader(BuildContext context, AppLocalizations l10n) {
+    final viewModel = context.watch<ProcessViewModel>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -78,14 +71,16 @@ class _ProcessPageState extends State<ProcessPage> {
           spacing: 6,
           children: [
             _buildActionButton(
+              context: context,
               text: l10n.clearCurrentConfig,
-              enabled: _hasConfigModel && !_importing,
-              onTap: _clearConfigModel,
+              enabled: viewModel.hasConfigModel && !viewModel.importing,
+              onTap: viewModel.clearConfigModel,
             ),
             _buildActionButton(
-              text: _importing ? l10n.importingConfigModel : l10n.importConfigModelFile,
-              enabled: !_importing,
-              onTap: _pickAndImportConfigModel,
+              context: context,
+              text: viewModel.importing ? l10n.importingConfigModel : l10n.importConfigModelFile,
+              enabled: !viewModel.importing,
+              onTap: () => _pickAndImportConfigModel(context),
             ),
           ],
         ),
@@ -94,6 +89,7 @@ class _ProcessPageState extends State<ProcessPage> {
   }
 
   Widget _buildActionButton({
+    required BuildContext context,
     required String text,
     required bool enabled,
     required VoidCallback onTap,
@@ -118,273 +114,191 @@ class _ProcessPageState extends State<ProcessPage> {
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
+    final viewModel = context.read<ProcessViewModel>();
     return DropTarget(
-      onDragDone: _handleDragDone,
-      onDragEntered: (_) => _setHighlighted(true),
-      onDragExited: (_) => _setHighlighted(false),
-      child: _buildDropTargetBody(),
+      onDragDone: (details) => _handleDragDone(context, details),
+      onDragEntered: (_) => viewModel.setHighlighted(true),
+      onDragExited: (_) => viewModel.setHighlighted(false),
+      child: _buildDropTargetBody(context),
     );
   }
 
-  Widget _buildDropTargetBody() {
-    final configModel = _configModel;
+  Widget _buildDropTargetBody(BuildContext context) {
+    final viewModel = context.watch<ProcessViewModel>();
+    final configModel = viewModel.configModel;
 
-    if (configModel != null) {
-      return Stack(
-        children: [
-          Positioned.fill(
-            child: _buildManualPage(configModel),
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      switchInCurve: Curves.easeOutCubic,
+      switchOutCurve: Curves.easeInCubic,
+      transitionBuilder: (child, animation) {
+        return FadeTransition(
+          opacity: animation,
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0.0, 0.05),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
           ),
-          if (_highlighted || _importing)
-            Positioned.fill(
-              child: IgnorePointer(
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 120),
-                  curve: Curves.easeOut,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.08),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: Theme.of(context).colorScheme.primary,
-                      width: 1.5,
-                    ),
-                  ),
-                  child: Center(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.12),
-                            blurRadius: 12,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 18,
-                          vertical: 12,
-                        ),
-                        child: Text(
-                          _importing
-                              ? AppLocalizations.of(context)!.importingConfigModel
-                              : AppLocalizations.of(context)!.releaseToReimport,
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ),
-                  ),
+        );
+      },
+      child: configModel != null
+          ? Stack(
+              key: const ValueKey('loaded'),
+              children: [
+                Positioned.fill(
+                  child: _buildManualPage(viewModel, configModel),
                 ),
-              ),
-            ),
-        ],
-      );
-    }
-
-    return _buildEmptyDropArea();
+                if (viewModel.highlighted || viewModel.importing)
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 120),
+                        curve: Curves.easeOut,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.08),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 1.5,
+                          ),
+                        ),
+                        child: Center(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.12),
+                                  blurRadius: 12,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 18,
+                                vertical: 12,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  if (viewModel.importing) ...[
+                                    const SizedBox(
+                                      width: 14,
+                                      height: 14,
+                                      child: CircularProgressIndicator(strokeWidth: 2),
+                                    ),
+                                    const SizedBox(width: 10),
+                                  ],
+                                  Text(
+                                    viewModel.importing
+                                        ? AppLocalizations.of(context)!.importingConfigModel
+                                        : AppLocalizations.of(context)!.releaseToReimport,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            )
+          : _buildEmptyDropArea(context, viewModel),
+    );
   }
 
-  Widget _buildManualPage(ConfigModel configModel) {
+  Widget _buildManualPage(ProcessViewModel viewModel, ConfigModel configModel) {
     return ManualPage(
-      key: ValueKey<int>(_configRevision),
+      key: ValueKey<int>(viewModel.configRevision),
       configModel: configModel,
       configModelMode: ConfigModelMode.process,
-      acpiSourceDirectory: _acpiSourceDirectory,
+      acpiSourceDirectory: viewModel.acpiSourceDirectory,
     );
   }
 
-  Widget _buildEmptyDropArea() {
+  Widget _buildEmptyDropArea(BuildContext context, ProcessViewModel viewModel) {
     final l10n = AppLocalizations.of(context)!;
-    return DropTarget(
-      onDragDone: _handleDragDone,
-      onDragEntered: (_) => _setHighlighted(true),
-      onDragExited: (_) => _setHighlighted(false),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(8),
-        onTap: _importing ? null : _pickAndImportConfigModel,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 120),
-          curve: Curves.easeOut,
-          decoration: BoxDecoration(
-            color: _highlighted
-                ? Colors.grey.withValues(alpha: 0.1)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: _highlighted
-                  ? Theme.of(context).colorScheme.primary
-                  : Colors.grey.withValues(alpha: 0.2),
-            ),
+    return InkWell(
+      key: const ValueKey('empty_drop_area'),
+      borderRadius: BorderRadius.circular(8),
+      onTap: viewModel.importing ? null : () => _pickAndImportConfigModel(context),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 120),
+        curve: Curves.easeOut,
+        decoration: BoxDecoration(
+          color: viewModel.highlighted
+              ? Colors.grey.withValues(alpha: 0.1)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: viewModel.highlighted
+                ? Theme.of(context).colorScheme.primary
+                : Colors.grey.withValues(alpha: 0.2),
           ),
-          child: Center(
-            child: Text(
-              _importing ? l10n.importingConfigModel : l10n.dragConfigModelArea,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 14),
-            ),
+        ),
+        child: Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (viewModel.importing) ...[
+                const SizedBox(
+                  width: 14,
+                  height: 14,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                const SizedBox(width: 10),
+              ],
+              Text(
+                viewModel.importing ? l10n.importingConfigModel : l10n.dragConfigModelArea,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 14),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Future<void> _handleDragDone(DropDoneDetails detail) async {
+  Future<void> _handleDragDone(BuildContext context, DropDoneDetails detail) async {
+    context.read<ProcessViewModel>().setHighlighted(false);
+    
     if (detail.files.isEmpty) return;
 
-    final filePath = detail.files.last.path;
-    if (!_isConfigModelFile(filePath)) {
-      _setHighlighted(false);
+    final file = detail.files.last;
+    if (file.name != 'configModel') {
       return;
     }
 
-    await _readConfigModelFromPath(filePath);
+    await _readConfigModelFromPath(context, file.path);
   }
 
-  Future<void> _pickAndImportConfigModel() async {
-    if (_importing) return;
+  Future<void> _pickAndImportConfigModel(BuildContext context) async {
+    final viewModel = context.read<ProcessViewModel>();
+    if (viewModel.importing) return;
 
     final selectPath = await FileUtils.openFile('');
-
     if (selectPath.isEmpty) return;
 
-    await _readConfigModelFromPath(selectPath);
+    await _readConfigModelFromPath(context, selectPath);
   }
 
-  Future<void> _readConfigModelFromPath(String filePath) async {
-    if (_importing) return;
-
-    _setImporting(true);
-
+  Future<void> _readConfigModelFromPath(BuildContext context, String filePath) async {
+    final viewModel = context.read<ProcessViewModel>();
     try {
-      final configModel = await FileUtils.readFromFile(
-        directoryPath: filePath,
-      );
-      _validateImportedConfigModel(configModel);
-      _syncAcpiFromSourceConfig(configModel, filePath);
-      final acpiSourceDirectory = _findAcpiSourceDirectory(filePath);
-
-      if (!mounted) return;
-
-      setState(() {
-        _configModel = configModel;
-        _acpiSourceDirectory = acpiSourceDirectory;
-        _highlighted = false;
-        _configRevision++;
-      });
-    } catch (error, stackTrace) {
-      debugPrint('read configModel failed: $error');
-      debugPrintStack(stackTrace: stackTrace);
-
-      if (!mounted) return;
-
-      setState(() {
-        _configModel = null;
-        _acpiSourceDirectory = null;
-        _highlighted = false;
-        _configRevision++;
-      });
-      showToast(AppLocalizations.of(context)?.importFailedToast ?? 'Import failed');
-    } finally {
-      _setImporting(false);
+      await viewModel.readConfigModelFromPath(filePath);
+    } catch (e) {
+      if (context.mounted) {
+        showToast(AppLocalizations.of(context)?.importFailedToast ?? 'Import failed');
+      }
     }
   }
 
-  bool _isConfigModelFile(String filePath) {
-    if (filePath.isEmpty) return false;
-    final file = File(filePath);
-    if (!file.existsSync()) return false;
-    return file.uri.pathSegments.last == 'configModel';
-  }
-
-  void _validateImportedConfigModel(ConfigModel configModel) {
-    final platformModel = Configs().configsRepository.getPlatformModel(
-          configModel.cpuType,
-          configModel.platformType,
-        );
-
-    if (platformModel == null ||
-        !platformModel.platforms.containsKey(configModel.platformCode) ||
-        configModel.platformInfo.generic == null) {
-      throw const FormatException('Invalid imported configModel data');
-    }
-  }
-
-  String? _findAcpiSourceDirectory(String configModelPath) {
-    final acpiDirectory = Directory(
-      path.join(path.dirname(configModelPath), 'EFI', 'OC', 'ACPI'),
-    );
-    if (!acpiDirectory.existsSync()) return null;
-    return acpiDirectory.path;
-  }
-
-  void _syncAcpiFromSourceConfig(
-    ConfigModel configModel,
-    String configModelPath,
-  ) {
-    final configPlist = File(
-      path.join(path.dirname(configModelPath), 'EFI', 'OC', 'config.plist'),
-    );
-    if (!configPlist.existsSync()) return;
-
-    final result = PlistParser().loadPlist(configPlist.path);
-    if (result.status != PlistParseStatus.success) return;
-
-    final acpi = _asMap(result.data?['ACPI']);
-    if (acpi.isEmpty) return;
-
-    configModel.acpi = Acpi(
-      acpiAddItems: _parseList(acpi['Add'], AcpiAddItem.fromJson),
-      acpiDeleteItems: _parseList(acpi['Delete'], AcpiDeleteItem.fromJson),
-      acpiPatchItems: _parseList(acpi['Patch'], AcpiPatchItem.fromJson),
-      acpiQuirks: acpi['Quirks'] is Map
-          ? AcpiQuirks.fromJson(_asMap(acpi['Quirks']))
-          : configModel.acpi.acpiQuirks,
-    );
-  }
-
-  List<T> _parseList<T>(
-    Object? raw,
-    T Function(Map<String, dynamic>) fromJson,
-  ) {
-    if (raw is! List) return const [];
-    return raw
-        .whereType<Map>()
-        .map((item) => fromJson(_asMap(item)))
-        .toList();
-  }
-
-  Map<String, dynamic> _asMap(Object? raw) {
-    if (raw is! Map) return {};
-    return raw.map((key, value) => MapEntry(key.toString(), value));
-  }
-
-  void _clearConfigModel() {
-    if (!_hasConfigModel || _importing) return;
-
-    setState(() {
-      _configModel = null;
-      _acpiSourceDirectory = null;
-      _highlighted = false;
-      _configRevision++;
-    });
-  }
-
-  void _setHighlighted(bool value) {
-    if (_highlighted == value || _importing) return;
-
-    setState(() {
-      _highlighted = value;
-    });
-  }
-
-  void _setImporting(bool value) {
-    if (!mounted || _importing == value) return;
-
-    setState(() {
-      _importing = value;
-    });
-  }
 }

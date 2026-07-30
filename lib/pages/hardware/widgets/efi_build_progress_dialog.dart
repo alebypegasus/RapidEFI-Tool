@@ -150,7 +150,7 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
                         border: Border.all(color: colorScheme.outlineVariant),
                       ),
                       child:
-                          LogWidget(showChannelTag: false, allChannel: true)),
+                          const LogWidget(showChannelTag: false, allChannel: true)),
                 ),
               ],
             ),

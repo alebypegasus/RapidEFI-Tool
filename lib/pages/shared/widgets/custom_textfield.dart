@@ -190,11 +190,11 @@ class _CustomTextFieldState<T> extends State<CustomTextField<T>> {
       inputFormatters: widget.inputFormatters,
       enabled: widget.enabled,
       maxLines: widget.maxLines,
-      style: widget.style ?? TextStyle(fontSize: 11),
+      style: widget.style ?? const TextStyle(fontSize: 11),
       decoration: InputDecoration(
         isDense: true,
         contentPadding:
-            widget.contentPadding ?? EdgeInsets.symmetric(vertical: 12),
+            widget.contentPadding ?? const EdgeInsets.symmetric(vertical: 12),
         hintText: widget.hintText,
         hintStyle:
             widget.hintStyle ??

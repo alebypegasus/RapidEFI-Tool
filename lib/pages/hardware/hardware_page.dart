@@ -322,7 +322,7 @@ class _HardwarePageState extends State<HardwarePage> {
                             const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
                         child: Text(
                           AppLocalizations.of(context)!.releaseToIdentifyHardware,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),

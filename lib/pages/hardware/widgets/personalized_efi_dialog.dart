@@ -198,7 +198,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
           HardwareConfigBuildContext(
             hardwareInfo: info,
             rawInfo: widget.rawInfo,
-            options: HardwareConfigOptions(),
+            options: const HardwareConfigOptions(),
           ),
         );
       } catch (_) {}
@@ -301,7 +301,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
     return HardwareConfigBuildContext(
       hardwareInfo: info,
       rawInfo: widget.rawInfo,
-      options: HardwareConfigOptions(),
+      options: const HardwareConfigOptions(),
     ).hasI2cInputDevice;
   }
 

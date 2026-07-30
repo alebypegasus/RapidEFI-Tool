@@ -859,9 +859,9 @@ class DSDT {
         await process.stdin.close();
 
         final stdoutData =
-            await process.stdout.transform(SystemEncoding().decoder).join();
+            await process.stdout.transform(const SystemEncoding().decoder).join();
         final stderrData =
-            await process.stderr.transform(SystemEncoding().decoder).join();
+            await process.stderr.transform(const SystemEncoding().decoder).join();
         final exitCode = await process.exitCode;
 
         return ProcessResult(process.pid, exitCode, stdoutData, stderrData);

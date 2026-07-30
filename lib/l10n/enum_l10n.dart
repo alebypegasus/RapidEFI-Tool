@@ -1,10 +1,6 @@
 import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/enums/config_enums.dart';
 import 'package:rapidefi/utils/config/models/enums/brand_enum.dart';
-import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
-import 'package:rapidefi/utils/config/models/enums/processor_type_enum.dart';
-import 'package:rapidefi/utils/config/models/enums/uiscale_enum.dart';
-import 'package:rapidefi/utils/config/models/enums/csr_setting_enum.dart';
 
 extension CpuTypeL10n on CpuType {
   String localizedTitle(AppLocalizations l10n) {

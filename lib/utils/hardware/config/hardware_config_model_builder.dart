@@ -117,7 +117,7 @@ class HardwareConfigModelBuilder {
       ];
 
   ConfigModel _resolveBaseModel(HardwareConfigBuildContext context) {
-    final selection = HardwarePlatformResolver().resolve(context);
+    final selection = const HardwarePlatformResolver().resolve(context);
     return Configs().configsRepository.createWithPlatformCode(
           cpuType: selection.cpuType,
           platformType: selection.platformType,
@@ -478,7 +478,7 @@ class HardwareConfigModelBuilder {
   }
 
   void _ensureBluetoothNvramDefaults(ConfigModel model) {
-    final guid = ConfigNvram.UUID_7C436110_AB2A_4BBB_A880_FE41995C9F82;
+    const guid = ConfigNvram.UUID_7C436110_AB2A_4BBB_A880_FE41995C9F82;
     final addList = model.nvram.nvramAdd.addList ??= {};
     final items = addList[guid] ??= [];
 

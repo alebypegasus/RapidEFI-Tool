@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class GpuCompatibilityData {
-  static final String assetPath = 'assets/data/gpu_compatibility.json';
+  static const String assetPath = 'assets/data/gpu_compatibility.json';
 
   static Map<String, dynamic>? _vendors;
   static Future<void>? _loadFuture;

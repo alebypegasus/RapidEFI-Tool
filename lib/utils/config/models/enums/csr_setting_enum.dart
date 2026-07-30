@@ -1,29 +1,28 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum CsrSetting {
   none(
     nvramValue: '',
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: '',
     ),
   ),
   enabled(
     nvramValue: '00000000',
-    text: const EnumText(
+    text: EnumText(
       titleId: 5136,
     ),
   ),
   partialDisabled(
     nvramValue: '03080000',
-    text: const EnumText(
+    text: EnumText(
       titleId: 5137, descId: 5138,
     ),
   ),
   fullyDisabled(
     nvramValue: 'FF0F0000',
-    text: const EnumText(
+    text: EnumText(
       titleId: 5139, descId: 5140,
     ),
   );

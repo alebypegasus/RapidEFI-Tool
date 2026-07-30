@@ -1,5 +1,6 @@
 /// iigpufb.json 数据模型
 /// 层次：代数 → CPU型号 → 属性列表
+library;
 
 /// 单个核显属性（已将 JSON 原始值转换为 plist 可用格式）
 class IigpufbProperty {

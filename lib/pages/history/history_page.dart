@@ -410,7 +410,7 @@ class _HistoryManualPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = Colors.transparent;
+    const backgroundColor = Colors.transparent;
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: PreferredSize(

@@ -194,7 +194,7 @@ class ConfigPatchBuilder {
       addMap,
     ));
 
-    ops.add(PatchOp.set(
+    ops.add(const PatchOp.set(
       ['DeviceProperties', 'Delete'],
       <String, dynamic>{},
     ));

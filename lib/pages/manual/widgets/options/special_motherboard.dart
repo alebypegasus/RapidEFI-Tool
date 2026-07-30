@@ -36,7 +36,7 @@ class _MotherBoardWidgetState extends State<SpecialMotherBoardWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         ChoiceList(

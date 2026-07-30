@@ -18,7 +18,7 @@ class SMBIOSUtils {
     final executablePath = _macserialAssetPath();
     if (executablePath.isEmpty) {
       Log.error('Unsupported platform for macserial');
-      result.systemUUID = Uuid().v4().toUpperCase();
+      result.systemUUID = const Uuid().v4().toUpperCase();
       return result;
     }
 
@@ -32,7 +32,7 @@ class SMBIOSUtils {
 
   static Future<String> generateUUID() async {
     if (Device.isWindows) {
-      return Uuid().v4();
+      return const Uuid().v4();
     }
 
     try {
@@ -44,7 +44,7 @@ class SMBIOSUtils {
     } catch (e) {
       Log.error('genUUID_Error: $e');
     }
-    return Uuid().v4();
+    return const Uuid().v4();
   }
 
   static String _macserialAssetPath() {

@@ -80,8 +80,8 @@ class ACPIToolManager {
   bool _pb(PatchContext? context) => context?.prebuilt ?? false;
 
   ACPIToolManager({AcpiConfig? acpiConfig})
-      : _acpiConfig = acpiConfig ?? AcpiConfig(),
-        ssdt = SSDT(config: acpiConfig ?? AcpiConfig()) {
+      : _acpiConfig = acpiConfig ?? const AcpiConfig(),
+        ssdt = SSDT(config: acpiConfig ?? const AcpiConfig()) {
     _initActionMap();
   }
 

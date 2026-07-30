@@ -204,12 +204,12 @@ class _IgpuBaseState extends State<IgpuBase> {
         ButtonSegment(
           value: _ConfigMode.preset,
           label: Text(AppLocalizations.of(context)!.manualIgpuPresetScheme),
-          icon: Icon(Icons.list_alt_outlined, size: 16),
+          icon: const Icon(Icons.list_alt_outlined, size: 16),
         ),
         ButtonSegment(
           value: _ConfigMode.cpu,
           label: Text(AppLocalizations.of(context)!.manualIgpuByCpuModel),
-          icon: Icon(Icons.memory_outlined, size: 16),
+          icon: const Icon(Icons.memory_outlined, size: 16),
         ),
       ],
       selected: {_mode},
@@ -332,7 +332,7 @@ class _IgpuBaseState extends State<IgpuBase> {
         SizedBox(
           width: 230,
           child: DropdownButtonFormField<String>(
-            value: _selectedGeneration,
+            initialValue: _selectedGeneration,
             isExpanded: true,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.manualIgpuCpuGen,
@@ -353,7 +353,7 @@ class _IgpuBaseState extends State<IgpuBase> {
         SizedBox(
           width: 260,
           child: DropdownButtonFormField<IigpufbCpuEntry>(
-            value: _selectedCpu,
+            initialValue: _selectedCpu,
             isExpanded: true,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.manualIgpuCpuModel,

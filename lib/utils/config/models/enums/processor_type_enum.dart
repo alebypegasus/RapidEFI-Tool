@@ -1,31 +1,30 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum ProcessorType {
   none(
     value: 0,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5144, descId: 5145,
     ),
   ),
   type1537(
     value: 1537,
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: 'ProcessorType: 1537',
       descId: 5146,
     ),
   ),
   type3841(
     value: 3841,
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: 'ProcessorType: 3841',
       descId: 5147,
     ),
   ),
   type3842(
     value: 3842,
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: 'ProcessorType: 3842',
       descId: 5148,
     ),

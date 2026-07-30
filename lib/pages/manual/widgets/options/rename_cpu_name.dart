@@ -3,7 +3,6 @@ import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/l10n/enum_l10n.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 
 class RenameCPUNameWidget extends StatefulWidget {
   final Function(ProcessorType, String?) onChanged;
@@ -85,7 +84,7 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         ChoiceList(

@@ -47,8 +47,7 @@ class AcpiDeviceBlockPlanner {
     void add(AcpiDeviceBlockPlan target) {
       if (!_isValidAcpiPath(target.acpiPath)) {
         Log.warning(
-          l10nGlobal.autoGen5035 + 
-          '${target.type} ${target.name} ${target.deviceId} ' + l10nGlobal.autoGen5036,
+          '${l10nGlobal.autoGen5035}${target.type} ${target.name} ${target.deviceId} ${l10nGlobal.autoGen5036}',
         );
         return;
       }

@@ -229,31 +229,31 @@ ConfigModel intel_ = ConfigModel()
               key: 'DefaultBackgroundColor',
               dataType: 'data',
               value: '01000000',
-              comment: () => l10nGlobal.autoGen5614),
+              comment: l10nGlobal.autoGen5614),
           NvramAddItem(
               key: 'UIScale',
               dataType: 'data',
               value: '02',
-              comment: () => l10nGlobal.autoGen5614),
+              comment: l10nGlobal.autoGen5614),
         ],
         '4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102': [
           NvramAddItem(
               key: 'rtc-blacklist',
               dataType: 'data',
               value: '01000000',
-              comment: () => l10nGlobal.autoGen5614),
+              comment: l10nGlobal.autoGen5614),
         ],
         '7C436110-AB2A-4BBB-A880-FE41995C9F82': [
           NvramAddItem(
               key: 'boot-args',
               dataType: 'string',
               value: '-v keepsyms=1 debug=0x100 alcid=1',
-              comment: () => l10nGlobal.autoGen5614),
+              comment: l10nGlobal.autoGen5614),
           NvramAddItem(
               key: 'prev-lang:kbd',
               dataType: 'string',
               value: 'zh-Hans:252',
-              comment: () => l10nGlobal.autoGen5614),
+              comment: l10nGlobal.autoGen5614),
         ]
       }),
       nvramDelete: NvramDelete(deleteList: ConfigNvram.createDeleteList()))

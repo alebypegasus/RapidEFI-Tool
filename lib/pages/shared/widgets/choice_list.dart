@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_chip_tile.dart';
 

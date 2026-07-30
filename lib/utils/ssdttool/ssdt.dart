@@ -626,8 +626,7 @@ class SSDT {
       if (out[2] != '0') {
         Log.error(l10nGlobal.logMsg009(out[1].toString()));
         Log.error(
-          l10nGlobal.autoGen5759 + 
-          '${config.useLeagcyiAsl ? l10nGlobal.autoGen5760 : ''}',
+          '${l10nGlobal.autoGen5759}${config.useLeagcyiAsl ? l10nGlobal.autoGen5760 : ''}',
         );
         return false;
       }
@@ -2098,7 +2097,7 @@ class SSDT {
       }
     }
     d.getDsdt()?["raw"] = savedDSDT;
-    final String ssdtName = "SSDT-HPET";
+    const String ssdtName = "SSDT-HPET";
     Log(l10nGlobal.logMsg169(ssdtName.toString()));
     var ssdt = '';
     if (hpetFake) {
@@ -2334,7 +2333,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
       Log("");
       getIGpuInfo = getIgpu ?? false;
     }
-    final String ssdtName = "SSDT-PNLF";
+    const String ssdtName = "SSDT-PNLF";
     Log(l10nGlobal.logMsg171(ssdtName.toString()));
     // 打印所用的UID，使用的平台和对应的PWMMax
     for (var item in PNLFUIDs) {
@@ -3039,7 +3038,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtEC", 0x00001000)
       return;
     }
 
-    final String ssdtName = "SSDT-USBX";
+    const String ssdtName = "SSDT-USBX";
     Log(l10nGlobal.logMsg202(ssdtName.toString()));
     final acpi = {
       "Comment": "Generic USBX device for USB power properties",
@@ -3326,7 +3325,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CpuPlugA", 0x00003000)
       Log(l10nGlobal.logMsg215);
       return;
     }
-    final String ssdtName = "SSDT-PMC";
+    const String ssdtName = "SSDT-PMC";
     Log(l10nGlobal.logMsg216(ssdtName.toString()));
     String ssdt = """
 //
@@ -3559,7 +3558,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
       comment += " - requires ${suffix.join(', ')} rename";
     }
 
-    final String ssdtName = "SSDT-RTC0-RANGE";
+    const String ssdtName = "SSDT-RTC0-RANGE";
     final acpi = {"Comment": comment, "Enabled": true, "Path": "$ssdtName.aml"};
     final patches = rtcDict["patches"] ?? [];
     makePlist(acpi: acpi, patches: patches, replace: true);
@@ -3750,7 +3749,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
     if (suffix.isNotEmpty) {
       comment += " - requires ${suffix.join(', ')} rename";
     }
-    final String ssdtName = "SSDT-AWAC";
+    const String ssdtName = "SSDT-AWAC";
     final acpi = {"Comment": comment, "Enabled": true, "Path": "$ssdtName.aml"};
     final patches = awacDict["patches"] ?? [];
     makePlist(acpi: acpi, patches: patches, replace: true);
@@ -3947,7 +3946,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
       tasks.add(task);
     }
     Log("");
-    final ssdtName = "SSDT-RHUB";
+    const ssdtName = "SSDT-RHUB";
     Log(l10nGlobal.logMsg235(ssdtName.toString()));
     final acpi = {
       "Comment": "Disable USB RHUB/HUBN/URTH and rename devices",
@@ -4207,9 +4206,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "UsbRHUB", 0x00001000)
       Log(l10nGlobal.logMsg249);
       return;
     }
-    final String ssdtName = "SSDT-Bridge";
+    const String ssdtName = "SSDT-Bridge";
     Log(l10nGlobal.logMsg250(ssdtName.toString()));
-    final pad = '    ';
+    const pad = '    ';
     String ssdt = '''
 // Source and info from:
 // https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-BRG0.dsl
@@ -4346,7 +4345,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PCIBRG", 0x00000000)
     if (!await ensureDSDT()) return;
     Log(l10nGlobal.logMsg251);
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
-    final String ssdtName = "SSDT-ALS0";
+    const String ssdtName = "SSDT-ALS0";
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
       Log(l10nGlobal.logMsg252(tableName.toString()));
@@ -4479,7 +4478,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "ALS0", 0x00000000)
         highestOsi = key;
       }
     });
-    final String ssdtName = "SSDT-XOSI";
+    const String ssdtName = "SSDT-XOSI";
     Log(l10nGlobal.logMsg260);
     if (targetString == null ||
         targetString.isEmpty ||
@@ -4674,7 +4673,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
       tablePath: facpPath,
     );
     if (!valid) return;
-    final String valueToCauseReset = 'Value to cause reset';
+    const String valueToCauseReset = 'Value to cause reset';
     Log(l10nGlobal.logMsg269(valueToCauseReset.toString()));
     List<String> lines = table['lines'] ?? [];
     String valueCauseReset = findFacpField(lines, '$valueToCauseReset :');
@@ -4793,7 +4792,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
       return;
     }
     Log(l10nGlobal.logMsg275);
-    final String ssdtName = "SSDT-APIC";
+    const String ssdtName = "SSDT-APIC";
     Log(l10nGlobal.logMsg276(ssdtName.toString()));
     writeSSDT(ssdtName, ssdt);
 
@@ -4867,7 +4866,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
       Log(l10nGlobal.logMsg278);
       return;
     }
-    final String ssdtName = "SSDT-DMAR";
+    const String ssdtName = "SSDT-DMAR";
     Log(l10nGlobal.logMsg279(regionCount.toString()));
     writeSSDT(ssdtName, newDMAR.join("\n"));
     final acpi = {
@@ -4948,7 +4947,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     } else {
       Log.warning(l10nGlobal.logMsg054);
     }
-    final String ssdtName = "SSDT-IMEI";
+    const String ssdtName = "SSDT-IMEI";
     Log(l10nGlobal.logMsg292(ssdtName.toString()));
     String ssdt = "";
     if (fakeid.isEmpty) {
@@ -5041,7 +5040,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       Log(l10nGlobal.logMsg295((i + 1).toString(), devices[i].first.toString()));
     }
 
-    final String ssdtName = "SSDT-UNC";
+    const String ssdtName = "SSDT-UNC";
     String ssdt = '';
     Map<String, dynamic> acpi = {};
     List<Map<String, dynamic>> patches = [];
@@ -5154,9 +5153,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
   Future<void> _ssdtUNCPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-UNC";
+    const String ssdtName = "SSDT-UNC";
     Log(l10nGlobal.logMsg299(ssdtName.toString()));
-    final ssdt = Prebuilt.ssdtUNC;
+    const ssdt = Prebuilt.ssdtUNC;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -5198,9 +5197,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
   Future<void> _ssdtDTGPPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-DTGP";
+    const String ssdtName = "SSDT-DTGP";
     Log(l10nGlobal.logMsg304(ssdtName.toString()));
-    final ssdt = Prebuilt.ssdtDTGP;
+    const ssdt = Prebuilt.ssdtDTGP;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -5302,7 +5301,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     
     """;
     ssdt = ssdt.replaceAll('[[LPC_PATH]]', lpc);
-    final String ssdtName = "SSDT-DMAC";
+    const String ssdtName = "SSDT-DMAC";
     writeSSDT(ssdtName, ssdt);
     final acpi = {
       "Comment": "Spoof a DMA controller for macOS LPC bus and DMA recognition",
@@ -5314,7 +5313,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
   Future<void> _ssdtDMACPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-DMAC";
+    const String ssdtName = "SSDT-DMAC";
     Log(l10nGlobal.logMsg308(ssdtName.toString()));
     final ssdt = Prebuilt.ssdtDMAC;
     writeSSDT(ssdtName, ssdt);
@@ -5409,7 +5408,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       return;
     }
 
-    final ssdtName = "SSDT-SleepHook";
+    const ssdtName = "SSDT-SleepHook";
     Log(l10nGlobal.logMsg316(ssdtName.toString()));
 
     final buffer = StringBuffer();
@@ -5535,7 +5534,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       Log.warning(l10nGlobal.logMsg061);
       return;
     }
-    final ssdtName = "SSDT-LED";
+    const ssdtName = "SSDT-LED";
     Log(l10nGlobal.logMsg321(ssdtName.toString()));
     final ssdt = '''
  DefinitionBlock ("", "SSDT", 1, "RAPID", "LED", 0x00000000)
@@ -5588,7 +5587,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       Log.warning(l10nGlobal.logMsg062);
       return;
     }
-    final ssdtName = "SSDT-WakeScreen";
+    const ssdtName = "SSDT-WakeScreen";
     Log(l10nGlobal.logMsg326(ssdtName.toString()));
     String ssdt = '''
   DefinitionBlock("", "SSDT", 2, "RAPID", "WakeS", 0x00000000)
@@ -5755,7 +5754,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       Log.warning(l10nGlobal.logMsg069);
       return;
     }
-    final String ssdtName = "SSDT-S3-Disable";
+    const String ssdtName = "SSDT-S3-Disable";
     Log(l10nGlobal.logMsg343(ssdtName.toString()));
     final ssdt = '''
     DefinitionBlock("", "SSDT", 2, "RAPID", "S3-OFF", 0x00000000)
@@ -5791,9 +5790,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
   Future<void> _ssdtS3DisablePrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-S3-Disable";
+    const String ssdtName = "SSDT-S3-Disable";
     Log(l10nGlobal.logMsg344(ssdtName.toString()));
-    final ssdt = Prebuilt.ssdtS3Disable;
+    const ssdt = Prebuilt.ssdtS3Disable;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
       "Comment": "Disable S3 Sleep Method for Darwin",
@@ -5874,7 +5873,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       return;
     }
 
-    final ssdtName = "SSDT-LID";
+    const ssdtName = "SSDT-LID";
     Log(l10nGlobal.logMsg356(ssdtName.toString()));
     final ssdt = '''
 DefinitionBlock("", "SSDT", 2, "RAPID", "LID", 0x00000000)
@@ -5997,9 +5996,9 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "LID", 0x00000000)
 
   void _ssdtPWRBPrebuilt() {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-PWRB";
+    const String ssdtName = "SSDT-PWRB";
     Log(l10nGlobal.logMsg360(ssdtName.toString()));
-    final ssdt = Prebuilt.ssdtPWRB;
+    const ssdt = Prebuilt.ssdtPWRB;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -6101,9 +6100,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
 
   Future<void> _ssdtSLPBPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-SLPB";
+    const String ssdtName = "SSDT-SLPB";
     Log(l10nGlobal.logMsg366(ssdtName.toString()));
-    final ssdt = Prebuilt.ssdtSLPB;
+    const ssdt = Prebuilt.ssdtSLPB;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -6119,9 +6118,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
 
   Future<void> _ssdtMEM2Prebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-MEM2";
+    const String ssdtName = "SSDT-MEM2";
     Log(l10nGlobal.logMsg367(ssdtName.toString()));
-    final ssdt = Prebuilt.ssdtMEM2;
+    const ssdt = Prebuilt.ssdtMEM2;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -6170,9 +6169,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
 
   Future<void> _ssdtFixShutdownPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-FixShutdown";
+    const String ssdtName = "SSDT-FixShutdown";
     Log(l10nGlobal.logMsg372(ssdtName.toString()));
-    final ssdt = Prebuilt.ssdtFixShutdown;
+    const ssdt = Prebuilt.ssdtFixShutdown;
     if (!await writeSSDT(ssdtName, ssdt)) return;
     final acpi = {
       "Comment":
@@ -6222,7 +6221,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
     }
 
     Log('');
-    final String ssdtName = "SSDT-FixShutdown";
+    const String ssdtName = "SSDT-FixShutdown";
     Log(l10nGlobal.logMsg377(ssdtName.toString()));
 
     String ssdt = """
@@ -6302,7 +6301,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
   /// SSDT-GPRW
   Future<void> _ssdtGPRWPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-GPRW";
+    const String ssdtName = "SSDT-GPRW";
     Log(l10nGlobal.logMsg381(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtGPRW;
     writeSSDT(ssdtName, ssdt);
@@ -6350,7 +6349,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
   /// SSDT-UPRW
   Future<void> _ssdtUPRWPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-UPRW";
+    const String ssdtName = "SSDT-UPRW";
     Log(l10nGlobal.logMsg385(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtUPRW;
     writeSSDT(ssdtName, ssdt);
@@ -6402,7 +6401,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
       currentHex: staHex,
       index: staIndex,
     );
-    final String ssdtName = "SSDT-GPI0";
+    const String ssdtName = "SSDT-GPI0";
     Log("");
     Log("           Find: ${padl + staHex + padr}");
     Log("     Replace: ${padl + xstaHex + padr}");
@@ -6450,7 +6449,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "GPI0", 0x00000000)
   /// SSDT-GPI0
   Future<void> _ssdtGPI0Prebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-GPI0";
+    const String ssdtName = "SSDT-GPI0";
     Log(l10nGlobal.logMsg391(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtGPI0;
     writeSSDT(ssdtName, ssdt);
@@ -6602,7 +6601,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-CPUR 预编译文件
   Future<void> _ssdtCPURPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-CPUR";
+    const String ssdtName = "SSDT-CPUR";
     Log(l10nGlobal.logMsg403(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtCPUR;
     writeSSDT(ssdtName, ssdt);
@@ -6663,7 +6662,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-PLUG
   Future<void> _ssdtPLUGPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-PLUG";
+    const String ssdtName = "SSDT-PLUG";
     Log(l10nGlobal.logMsg405(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtPLUG;
     writeSSDT(ssdtName, ssdt);
@@ -6679,7 +6678,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-PLUG-ALT
   Future<void> _ssdtPLUGALTPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-PLUG-ALT";
+    const String ssdtName = "SSDT-PLUG-ALT";
     Log(l10nGlobal.logMsg406(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtPLUGALT;
     writeSSDT(ssdtName, ssdt);
@@ -6696,7 +6695,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// 生成SSDT-AWAC预编译文件
   Future<void> _ssdtAWACPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-AWAC";
+    const String ssdtName = "SSDT-AWAC";
     Log(l10nGlobal.logMsg407(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtAWAC;
     writeSSDT(ssdtName, ssdt);
@@ -6711,7 +6710,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-PMC
   Future<void> _ssdtPMCPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-PMC";
+    const String ssdtName = "SSDT-PMC";
     Log(l10nGlobal.logMsg408(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtPMC;
     writeSSDT(ssdtName, ssdt);
@@ -6726,7 +6725,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-PNLF
   Future<void> _ssdtPNLFPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-PNLF";
+    const String ssdtName = "SSDT-PNLF";
     Log(l10nGlobal.logMsg409(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtPNLF;
     writeSSDT(ssdtName, ssdt);
@@ -6741,7 +6740,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-IMEI
   Future<void> _ssdtIMEIPrebuilt({String? fakeid}) async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-IMEI";
+    const String ssdtName = "SSDT-IMEI";
     Log(l10nGlobal.logMsg410(ssdtName.toString()));
     Log(l10nGlobal.logMsg411);
     String ssdt = Prebuilt.ssdtIMEIFakeId;
@@ -6772,7 +6771,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-ALS0
   Future<void> _ssdtALS0Prebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-ALS0";
+    const String ssdtName = "SSDT-ALS0";
     Log(l10nGlobal.logMsg414(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtALS0;
     writeSSDT(ssdtName, ssdt);
@@ -6787,7 +6786,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-XOSI
   Future<void> _ssdtXOSIPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-XOSI";
+    const String ssdtName = "SSDT-XOSI";
     Log(l10nGlobal.logMsg415(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtXOSI;
     final patches = [
@@ -6808,7 +6807,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
 
   Future<void> _ssdtRHUBPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-RHUB";
+    const String ssdtName = "SSDT-RHUB";
     Log(l10nGlobal.logMsg416(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtRHUB;
     writeSSDT(ssdtName, ssdt);
@@ -6822,7 +6821,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
 
   Future<void> _ssdtRTC0RANGEPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-RTC0-RANGE";
+    const String ssdtName = "SSDT-RTC0-RANGE";
     Log(l10nGlobal.logMsg417(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtRTC0RANGE;
     writeSSDT(ssdtName, ssdt);
@@ -6837,7 +6836,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// 仿冒有线网卡，适用于无有线网卡的笔记本
   Future<void> ssdtRMNE() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-RMNE";
+    const String ssdtName = "SSDT-RMNE";
     Log(l10nGlobal.logMsg418(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtRMNE;
     writeSSDT(ssdtName, ssdt);
@@ -7153,7 +7152,7 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
 
   Future<void> _ssdtSBUSMCHCPrebuilt() async {
     if (!checkIasl()) return;
-    final String ssdtName = "SSDT-SBUS-MCHC";
+    const String ssdtName = "SSDT-SBUS-MCHC";
     Log(l10nGlobal.logMsg428(ssdtName.toString()));
     String ssdt = Prebuilt.ssdtSBUSMCHC;
     writeSSDT(ssdtName, ssdt);
@@ -7214,7 +7213,7 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
     Log(
       "=> 在 $tableName 中根据地址: 0x${adr?.toRadixString(16).toUpperCase().padLeft(8, '0')} 找到 $busPath ",
     );
-    final String ssdtName = "SSDT-SBUS-MCHC";
+    const String ssdtName = "SSDT-SBUS-MCHC";
     Log(l10nGlobal.logMsg430(ssdtName.toString()));
     String ssdt = """/*
  * SMBus compatibility table.
@@ -7396,7 +7395,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     Log(l10nGlobal.logMsg435(deviceId.toString()));
     Log(l10nGlobal.logMsg436(fakeModel.toString()));
 
-    final dsmMethod = """
+    const dsmMethod = """
     Method (_DSM, 4, NotSerialized)
     {
         If ((!Arg2 || !_OSI ("Darwin")))

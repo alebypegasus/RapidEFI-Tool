@@ -67,7 +67,7 @@ class MacOSVersions {
     ),
   ];
 
-  static final int defaultDarwinMajor = 24;
+  static const int defaultDarwinMajor = 24;
 
   static List<String> get labels =>
       all.map((version) => version.label).toList();

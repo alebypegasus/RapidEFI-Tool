@@ -34,7 +34,7 @@ class _BrandWidgetState extends State<BrandWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         ChoiceList(

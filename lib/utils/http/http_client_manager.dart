@@ -357,7 +357,7 @@ class HttpClientManager {
         if (expandGzip &&
             resp?.headers.value('content-encoding')?.toLowerCase() == 'gzip') {
           if (result.length >= 2 && result[0] == 0x1F && result[1] == 0x8B) {
-            result = Uint8List.fromList(GZipDecoder().decodeBytes(result));
+            result = Uint8List.fromList(const GZipDecoder().decodeBytes(result));
           }
         }
         return Future.value(result);

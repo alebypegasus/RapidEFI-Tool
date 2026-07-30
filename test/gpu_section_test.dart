@@ -79,7 +79,7 @@ void main() {
 
   testWidgets('multi GPU keeps NootedRed whitelist compatibility visible',
       (tester) async {
-    await tester.pumpWidget(MaterialApp(
+    await tester.pumpWidget(const MaterialApp(
       home: Scaffold(
         body: GpuSection({
           'CPU': [

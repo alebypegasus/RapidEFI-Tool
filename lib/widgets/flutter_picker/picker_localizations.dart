@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 
 /// 当前只内置英文和中文，并保留自定义语言注册入口。
 class PickerLocalizations {
-  static final PickerLocalizations _fallback =
-      PickerLocalizations(const Locale('en'));
+  static const PickerLocalizations _fallback =
+      PickerLocalizations(Locale('en'));
 
   final Locale locale;
 

@@ -22,7 +22,7 @@ extension GpuResolvedTypeLabel on GpuResolvedType {
 }
 
 class GpuCodenameData {
-  static final String _pciIdsAssetPath = 'assets/data/pci.ids';
+  static const String _pciIdsAssetPath = 'assets/data/pci.ids';
   static IdsParser? _pciIds;
   static Future<void>? _loadFuture;
 

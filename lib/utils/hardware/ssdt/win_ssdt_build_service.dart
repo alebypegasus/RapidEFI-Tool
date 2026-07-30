@@ -45,8 +45,7 @@ class WinSsdtBuildService {
 
     Log('');
     Log(
-      l10nGlobal.autoGen5037 + 
-      '[${_selectedAmlNames(
+      '${l10nGlobal.autoGen5037}[${_selectedAmlNames(
         selection,
         targetPlatformType,
         blockPlans,
@@ -163,8 +162,7 @@ class WinSsdtBuildService {
           await workDir.delete(recursive: true);
         } catch (_) {
           Log.warning(
-            l10nGlobal.autoGen5042 + 
-            '${path.basename(workDir.path)}',
+            '${l10nGlobal.autoGen5042}${path.basename(workDir.path)}',
           );
         }
       }
@@ -176,7 +174,7 @@ class WinSsdtBuildService {
     PlatformType platformType,
     Map<String, dynamic>? rawInfo,
   ) {
-    return AcpiDeviceBlockPlanner().targets(
+    return const AcpiDeviceBlockPlanner().targets(
       rawInfo,
       cpuType: selection.cpuType,
       platformType: platformType,
@@ -208,7 +206,7 @@ class WinSsdtBuildService {
       addName('${target.amlName}.aml');
     }
 
-    final methods = AcpiDeviceBlockPlanner().disableMethods(
+    final methods = const AcpiDeviceBlockPlanner().disableMethods(
       platformType,
     );
     for (final target in blockPlans) {
@@ -244,14 +242,11 @@ class WinSsdtBuildService {
       );
       if (File(amlPath).existsSync()) {
         Log(
-          l10nGlobal.autoGen5043 + 
-          '已生成: ${path.basename(amlPath)}',
+          '${l10nGlobal.autoGen5043}已生成: ${path.basename(amlPath)}',
         );
       } else {
         Log.warning(
-          l10nGlobal.autoGen5043 + 
-          l10nGlobal.autoGen5044 + 
-          '${target.name} ${target.deviceId}',
+          '${l10nGlobal.autoGen5043}${l10nGlobal.autoGen5044}${target.name} ${target.deviceId}',
         );
       }
     }
@@ -267,7 +262,7 @@ class WinSsdtBuildService {
   }) async {
     if (targets.isEmpty) return;
 
-    final methods = AcpiDeviceBlockPlanner().disableMethods(
+    final methods = const AcpiDeviceBlockPlanner().disableMethods(
       platformType,
     );
     for (final target in targets) {
@@ -287,8 +282,7 @@ class WinSsdtBuildService {
         );
         if (File(amlPath).existsSync()) {
           Log(
-            l10nGlobal.autoGen5045 + 
-            '已生成: ${path.basename(amlPath)}',
+            '${l10nGlobal.autoGen5045}已生成: ${path.basename(amlPath)}',
           );
           generated = true;
           break;
@@ -297,9 +291,7 @@ class WinSsdtBuildService {
 
       if (!generated) {
         Log.warning(
-          l10nGlobal.autoGen5045 + 
-          l10nGlobal.autoGen5044 + 
-          '${target.type} ${target.name} ${target.deviceId}',
+          '${l10nGlobal.autoGen5045}${l10nGlobal.autoGen5044}${target.type} ${target.name} ${target.deviceId}',
         );
       }
     }
@@ -391,9 +383,7 @@ class _GpuIdentityOverridePlanner {
 
       if (!_isValidAcpiPath(acpiPath)) {
         Log.warning(
-          l10nGlobal.autoGen5048 + 
-          '${deviceDisplayName(entry.key, gpu)} '
-          '$deviceId 缺少有效 ACPI Path',
+          '${l10nGlobal.autoGen5048}${deviceDisplayName(entry.key, gpu)} $deviceId 缺少有效 ACPI Path',
         );
         continue;
       }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:rapidefi/extension/string_extension.dart';
 import 'package:rapidefi/utils/config/presets/platform_profiles/platform_configs.dart';
@@ -138,7 +139,7 @@ class ConfigService {
 
   Future<List<PlatformEntity>> _loadPlatformInfosByKey(String key) async {
     final data = await rootBundle.loadString('assets/data/$key.json');
-    final jsonResult = jsonDecode(data);
+    final jsonResult = await compute(jsonDecode, data);
 
     return (jsonResult as List)
         .map((jsonStr) => PlatformEntity.fromJson(jsonStr))

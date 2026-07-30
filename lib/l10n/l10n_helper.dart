@@ -11,7 +11,7 @@ class GlobalLocalizations {
   static AppLocalizations get instance {
     if (_instance == null) {
       // Fallback instance initialized manually if init wasn't called yet.
-      return lookupAppLocalizations(Locale('en'));
+      return lookupAppLocalizations(const Locale('en'));
     }
     return _instance!;
   }

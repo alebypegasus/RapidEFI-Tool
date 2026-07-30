@@ -1,25 +1,24 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum PlatformType {
   desktop(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5134,
     ),
   ),
   laptop(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5031,
     ),
   ),
   nuc(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5032,
     ),
   ),
   hedt(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5135,
     ),
   );

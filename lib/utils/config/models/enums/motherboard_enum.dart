@@ -11,81 +11,81 @@ enum SpecialMotherboard {
   // 通用
   none(
     vendor: MotherboardVendor.intel,
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: '',
     ),
   ),
 
   amdNormal(
     vendor: MotherboardVendor.amd,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5159,
     ),
   ),
   amdB550A520(
     vendor: MotherboardVendor.amd,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5160,
     ),
   ),
   amdTrx40(
     vendor: MotherboardVendor.amd,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5161,
     ),
   ),
   amdX570(
     vendor: MotherboardVendor.amd,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5162,
     ),
   ),
   amdX470B450(
     vendor: MotherboardVendor.amd,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5163,
     ),
   ),
 
   intelS6(
     vendor: MotherboardVendor.intel,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5164, descId: 5165,
     ),
   ),
   intelS7(
     vendor: MotherboardVendor.intel,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5166, descId: 5167,
     ),
   ),
   intelOem(
     vendor: MotherboardVendor.intel,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5168, descId: 5169,
     ),
   ),
   intelZ390(
     vendor: MotherboardVendor.intel,
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: 'Z390',
     ),
   ),
   intelB460(
     vendor: MotherboardVendor.intel,
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: 'B460',
     ),
   ),
   intelZ490(
     vendor: MotherboardVendor.intel,
-    text: const EnumText(
+    text: EnumText(
       titleId: 5170,
     ),
   ),
   intelZ590(
     vendor: MotherboardVendor.intel,
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: 'Z590',
     ),
   );

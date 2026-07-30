@@ -33,7 +33,7 @@ class _BluetoothWidgetState extends State<BluetoothWidget> {
     final selectedNvramOption = widget.selectedNvramOption;
     return ScrollableChoiceListPanel(
       children: [
-        Text(tip, style: TextStyle(fontSize: 13)),
+        Text(tip, style: const TextStyle(fontSize: 13)),
         ChoiceList(
           subTitle: AppLocalizations.of(context)!.manualBluetoothNvram,
           choices: nvramOptions.map((option) => option.title).toList(),

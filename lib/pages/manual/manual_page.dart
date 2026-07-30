@@ -34,6 +34,7 @@ class ManualPage extends StatefulWidget {
 class _ManualPageState extends State<ManualPage> {
   late final ManualConfigController _controller;
   late final ConfigOptionProvider _configOptionProvider;
+  bool _isGenerating = false;
 
   @override
   void initState() {
@@ -75,24 +76,58 @@ class _ManualPageState extends State<ManualPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: const _ManualPageBody(),
-        floatingActionButton: InkWellWidget(
-          width: 120,
-          height: 36,
-          radius: 18,
-          child: Text(
-            l10n.generateEFI,
-            style: const TextStyle(color: Colors.white),
-          ),
-          onTap: () async {
-            CustomToast.show(context, l10n.configuringEFI);
-            final success = await _controller.exportEfi(
-              options: EfiBuildOptions(
-                acpiSourceDirectory: widget.acpiSourceDirectory,
+        floatingActionButton: AnimatedSize(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+          child: InkWellWidget(
+            width: _isGenerating ? 48 : 160,
+            height: 48,
+            radius: 24,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            onTap: _isGenerating
+                ? null
+                : () async {
+                    setState(() => _isGenerating = true);
+                    CustomToast.show(context, l10n.configuringEFI);
+                    final success = await _controller.exportEfi(
+                      options: EfiBuildOptions(
+                        acpiSourceDirectory: widget.acpiSourceDirectory,
+                      ),
+                    );
+                    CustomToast.dismiss();
+                    if (mounted) {
+                      setState(() => _isGenerating = false);
+                      showToast(
+                          success ? l10n.configureEFISuccess : l10n.configureEFIError);
+                    }
+                  },
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) => FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(scale: animation, child: child),
               ),
-            );
-            CustomToast.dismiss();
-            showToast(success ? l10n.configureEFISuccess : l10n.configureEFIError);
-          },
+              child: _isGenerating
+                  ? const SizedBox(
+                      key: ValueKey('generating_icon'),
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2.5,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    )
+                  : Text(
+                      l10n.generateEFI,
+                      key: const ValueKey('generate_text'),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+            ),
+          ),
         ),
         floatingActionButtonLocation: CustomFloatingActionButtonLocation(15),
       ),
@@ -110,19 +145,49 @@ class _ManualPageBody extends StatelessWidget {
       (controller) => controller.isLoading,
     );
 
-    if (isLoading) {
-      return Center(
-        child: Text(l10n.loadingData),
-      );
-    }
+    const children = ManualSections.children;
 
-
-    final children = ManualSections.children;
-
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      itemCount: children.length,
-      itemBuilder: (_, index) => children[index],
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 400),
+      switchInCurve: Curves.easeOutCubic,
+      switchOutCurve: Curves.easeInCubic,
+      transitionBuilder: (child, animation) {
+        return FadeTransition(
+          opacity: animation,
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0.0, 0.05),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        );
+      },
+      child: isLoading
+          ? Center(
+              key: const ValueKey('loading'),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2.5),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    l10n.loadingData,
+                    style: const TextStyle(fontSize: 15),
+                  ),
+                ],
+              ),
+            )
+          : ListView.builder(
+              key: const ValueKey('content'),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              itemCount: children.length,
+              itemBuilder: (_, index) => children[index],
+            ),
     );
   }
 }

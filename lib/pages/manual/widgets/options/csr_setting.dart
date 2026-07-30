@@ -37,7 +37,7 @@ class _CSRWidgetState extends State<CSRWidget> {
         .map((e) => 'csr-active-config: ${e.nvramValue} ')
         .toList();
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SizedBox(
+      const SizedBox(
         height: 10,
       ),
       ChoiceList(

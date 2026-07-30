@@ -50,13 +50,13 @@ class HardwarePageController extends ChangeNotifier {
     return AppLocalizations.of(context);
   }
 
-  static String _idleStatus = l10nGlobal.autoGen5780;
-  static String _loadingStatus = l10nGlobal.autoGen5781;
-  static String _refreshStatus = l10nGlobal.autoGen5782;
-  static String _completeStatus = l10nGlobal.autoGen5783;
-  static String _failedStatus = l10nGlobal.autoGen5784;
-  static String _unsupportedStatus = l10nGlobal.autoGen5785;
-  static String _importedStatus = l10nGlobal.autoGen5786;
+  static final String _idleStatus = l10nGlobal.autoGen5780;
+  static final String _loadingStatus = l10nGlobal.autoGen5781;
+  static final String _refreshStatus = l10nGlobal.autoGen5782;
+  static final String _completeStatus = l10nGlobal.autoGen5783;
+  static final String _failedStatus = l10nGlobal.autoGen5784;
+  static final String _unsupportedStatus = l10nGlobal.autoGen5785;
+  static final String _importedStatus = l10nGlobal.autoGen5786;
 
   HardwareAllInfo? allInfo;
   Map<String, dynamic>? rawInfo;
@@ -638,7 +638,7 @@ class HardwarePageController extends ChangeNotifier {
         HardwareConfigBuildContext(
           hardwareInfo: info,
           rawInfo: rawInfo,
-          options: HardwareConfigOptions(),
+          options: const HardwareConfigOptions(),
         ).hasI2cInputDevice) {
       for (final item in items) {
         if (item.name == ACPITable.ssdtGPI0.name) {

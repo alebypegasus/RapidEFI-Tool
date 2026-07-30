@@ -4,66 +4,66 @@ import 'enum_codec.dart';
 
 enum Brand {
   none(
-    text: const EnumText(
+    text: EnumText(
       fallbackTitle: '',
     ),
   ),
   asus(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5020,
       fallbackDesc: 'ASUS',
     ),
   ),
   gigabyte(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5021,
       fallbackDesc: 'GIGABYTE',
     ),
   ),
   asrock(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5022,
       fallbackDesc: 'ASRock',
     ),
   ),
   msi(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5023,
       fallbackDesc: 'MSI',
     ),
   ),
   dell(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5024,
       fallbackDesc: 'Dell',
     ),
   ),
   lenovo(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5025,
       fallbackDesc: 'Lenovo',
     ),
   ),
   vaio(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5026,
       fallbackDesc: 'VAIO',
     ),
   ),
   hp(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5027,
       fallbackDesc: 'HP',
     ),
   ),
   chrome(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5028,
       fallbackDesc: 'Chromebook',
     ),
   ),
   microsoft(
-    text: const EnumText(
+    text: EnumText(
       titleId: 5029,
       fallbackDesc: 'Microsoft Surface',
     ),

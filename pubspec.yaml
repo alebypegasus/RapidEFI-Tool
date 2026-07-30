@@ -61,6 +61,7 @@ dependencies:
   #文件拖拽
   desktop_drop: ^0.5.0
   crypto: ^3.0.6
+  get_it: ^7.6.7
 
 dependency_overrides:
   fluent_ui:
@@ -70,6 +71,8 @@ dependency_overrides:
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
