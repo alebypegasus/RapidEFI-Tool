@@ -65,8 +65,8 @@ class _USBWidgetState extends State<USBWidget> {
       },
       directoryPath: '',
       hintText: (utbMapPath != null && utbMapPath!.isNotEmpty) ? utbMapPath : l10n.selectUtbMapHint,
-      allowedExtensions: Device.isMacOS ? null : const ['kext'],
-      openFile: Device.isMacOS ? true : !Device.isWindows,
+      allowedExtensions: Device.isMacOS ? const ['kext'] : null,
+      openFile: Device.isMacOS,
     );
   }
 
