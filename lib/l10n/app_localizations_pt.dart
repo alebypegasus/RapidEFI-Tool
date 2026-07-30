@@ -623,6 +623,26 @@ class AppLocalizationsPt extends AppLocalizations {
   String get spoofGpuIdLabel => 'ID de Simulação da GPU:';
 
   @override
+  String get bluetoothNvramDefaultTitle =>
+      'Bluetooth NVRAM 1 (Padrão. Adicionado automaticamente junto com o driver Bluetooth)';
+
+  @override
+  String get bluetoothNvramAxTitle =>
+      'Bluetooth NVRAM 2 (Apenas para placas Intel AX200/AX201)';
+
+  @override
+  String get uefiHfsPlusLegacyTip =>
+      'Usa HfsPlusLegacy. Adequado para sistemas antigos (3ª geração ou anterior), em especial Celeron/Pentium. Se o menu do OpenCore não aparecer, tente HfsPlus ou OpenHfsPlus.';
+
+  @override
+  String get uefiHfsPlusTip =>
+      'Usa HfsPlus. Adequado para sistemas da 3ª geração e mais recentes. Recomendado por padrão. Se o menu não aparecer, tente HfsPlusLegacy ou OpenHfsPlus.';
+
+  @override
+  String get uefiOpenHfsPlusTip =>
+      'Usa OpenHfsPlus. Adequado para 3ª geração ou superior, recomendado para novos Celeron/Pentium. Evite se não for necessário. Se o menu não aparecer, tente HfsPlusLegacy ou HfsPlus.';
+
+  @override
   String get selectSpoofGpuPlaceholder => 'Selecione a GPU para simular';
 
   @override

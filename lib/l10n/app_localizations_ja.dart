@@ -612,6 +612,26 @@ class AppLocalizationsJa extends AppLocalizations {
   String get spoofGpuIdLabel => '偽装 GPU ID:';
 
   @override
+  String get bluetoothNvramDefaultTitle =>
+      'Bluetooth NVRAM 1 (Default. Automatically added with the Bluetooth driver)';
+
+  @override
+  String get bluetoothNvramAxTitle =>
+      'Bluetooth NVRAM 2 (Only for Intel AX200/AX201 cards)';
+
+  @override
+  String get uefiHfsPlusLegacyTip =>
+      'Uses HfsPlusLegacy. Suitable for old systems (3rd gen or earlier), especially Celeron/Pentium. If OpenCore menu does not appear, try HfsPlus or OpenHfsPlus.';
+
+  @override
+  String get uefiHfsPlusTip =>
+      'Uses HfsPlus. Suitable for 3rd gen and newer systems. Recommended by default. If the menu does not appear, try HfsPlusLegacy or OpenHfsPlus.';
+
+  @override
+  String get uefiOpenHfsPlusTip =>
+      'Uses OpenHfsPlus. Suitable for 3rd gen and newer, recommended for newer Celeron/Pentium. Avoid if not necessary. If the menu does not appear, try HfsPlusLegacy or HfsPlus.';
+
+  @override
   String get selectSpoofGpuPlaceholder => '偽装する GPU を選択';
 
   @override

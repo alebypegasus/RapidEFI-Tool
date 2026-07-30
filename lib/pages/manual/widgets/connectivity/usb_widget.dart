@@ -38,18 +38,33 @@ class _USBWidgetState extends State<USBWidget> {
   late UefiQuirks uefiQuirks = widget.uefiQuirks ?? UefiQuirks();
   late String? utbMapPath = widget.utbMapPath;
 
+  @override
+  void didUpdateWidget(covariant USBWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.usbDriverType != oldWidget.usbDriverType) {
+      usbDriverType = widget.usbDriverType;
+    }
+    if (widget.uefiQuirks != oldWidget.uefiQuirks) {
+      uefiQuirks = widget.uefiQuirks ?? UefiQuirks();
+    }
+    if (widget.utbMapPath != oldWidget.utbMapPath) {
+      utbMapPath = widget.utbMapPath;
+    }
+  }
+
   Widget chooseUTBMap(AppLocalizations l10n) {
     return ChooseFileWidget(
       buttonText: l10n.selectUtbMap,
       onValid: (filePath) async {
-        return filePath.endsWith('UTBMap.kext');
+        final normalizedPath = filePath.replaceAll(RegExp(r'[/\\]+$'), '');
+        return normalizedPath.endsWith('UTBMap.kext');
       },
       onChanged: (filePath) {
         utbMapPath = filePath;
         widget.onUTBMapPathChanged?.call(filePath);
       },
       directoryPath: '',
-      hintText: utbMapPath ?? l10n.selectUtbMapHint,
+      hintText: (utbMapPath != null && utbMapPath!.isNotEmpty) ? utbMapPath : l10n.selectUtbMapHint,
       allowedExtensions: Device.isMacOS ? null : const ['kext'],
       openFile: Device.isMacOS ? true : !Device.isWindows,
     );

@@ -27,6 +27,18 @@ class BluetoothWidget extends StatefulWidget {
 class _BluetoothWidgetState extends State<BluetoothWidget> {
   String tip = l10nGlobal.autoGen5823;
 
+  String _getLocalizedNvramTitle(String optionId) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (optionId) {
+      case 'bluetooth.nvram.default':
+        return l10n.bluetoothNvramDefaultTitle;
+      case 'bluetooth.nvram.ax':
+        return l10n.bluetoothNvramAxTitle;
+      default:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final nvramOptions = widget.nvramOptions;
@@ -36,15 +48,15 @@ class _BluetoothWidgetState extends State<BluetoothWidget> {
         Text(tip, style: const TextStyle(fontSize: 13)),
         ChoiceList(
           subTitle: AppLocalizations.of(context)!.manualBluetoothNvram,
-          choices: nvramOptions.map((option) => option.title).toList(),
+          choices: nvramOptions.map((option) => _getLocalizedNvramTitle(option.id)).toList(),
           selectedChoices: [
-            if (selectedNvramOption != null) selectedNvramOption.title
+            if (selectedNvramOption != null) _getLocalizedNvramTitle(selectedNvramOption.id)
           ],
           allowToggle: true,
           onChanged: (value) {
             final title = value.firstOrNull;
             final option = nvramOptions
-                .where((option) => option.title == title)
+                .where((option) => _getLocalizedNvramTitle(option.id) == title)
                 .firstOrNull;
             widget.onChanged?.call(option?.id);
           },

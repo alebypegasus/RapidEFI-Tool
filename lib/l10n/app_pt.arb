@@ -4146,5 +4146,10 @@
   "autoGen5826": "Falsificação de gráficos discretos AMD (propriedades do dispositivo):\n   1. Você precisa preencher o caminho PCI da placa gráfica, por exemplo: PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)\n   2. Você precisa preencher o ID do dispositivo falsificado da placa gráfica (4 dígitos em hexadecimal), por exemplo: 73BF\n   3. Depois que a placa gráfica for falsificada, você ainda precisará considerar os parâmetros de inicialização exigidos pela placa gráfica AMD (você pode ir para Configuração de gráficos independentes -> Gráficos independentes da AMD -> Verifique conforme necessário)\n   4. A ferramenta preparou previamente alguns IDs de dispositivos de placa gráfica. Caso contrário, encontre você mesmo ou entre em contato com o autor para obter informações complementares.",
   "autoGen5827": "Confirmar",
   "autoGen5828": "Cancelar",
-  "autoGen5829": "Claro"
+  "autoGen5829": "Claro",
+  "bluetoothNvramDefaultTitle": "Bluetooth NVRAM 1 (Padrão. Adicionado automaticamente junto com o driver Bluetooth)",
+  "bluetoothNvramAxTitle": "Bluetooth NVRAM 2 (Apenas para placas Intel AX200/AX201)",
+  "uefiHfsPlusLegacyTip": "Usa HfsPlusLegacy. Adequado para sistemas antigos (3ª geração ou anterior), em especial Celeron/Pentium. Se o menu do OpenCore não aparecer, tente HfsPlus ou OpenHfsPlus.",
+  "uefiHfsPlusTip": "Usa HfsPlus. Adequado para sistemas da 3ª geração e mais recentes. Recomendado por padrão. Se o menu não aparecer, tente HfsPlusLegacy ou OpenHfsPlus.",
+  "uefiOpenHfsPlusTip": "Usa OpenHfsPlus. Adequado para 3ª geração ou superior, recomendado para novos Celeron/Pentium. Evite se não for necessário. Se o menu não aparecer, tente HfsPlusLegacy ou HfsPlus."
 }

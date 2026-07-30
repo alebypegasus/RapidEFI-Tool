@@ -1278,6 +1278,36 @@ abstract class AppLocalizations {
   /// **'Spoof GPU ID:'**
   String get spoofGpuIdLabel;
 
+  /// No description provided for @bluetoothNvramDefaultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth NVRAM 1 (Default. Automatically added with the Bluetooth driver)'**
+  String get bluetoothNvramDefaultTitle;
+
+  /// No description provided for @bluetoothNvramAxTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth NVRAM 2 (Only for Intel AX200/AX201 cards)'**
+  String get bluetoothNvramAxTitle;
+
+  /// No description provided for @uefiHfsPlusLegacyTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses HfsPlusLegacy. Suitable for old systems (3rd gen or earlier), especially Celeron/Pentium. If OpenCore menu does not appear, try HfsPlus or OpenHfsPlus.'**
+  String get uefiHfsPlusLegacyTip;
+
+  /// No description provided for @uefiHfsPlusTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses HfsPlus. Suitable for 3rd gen and newer systems. Recommended by default. If the menu does not appear, try HfsPlusLegacy or OpenHfsPlus.'**
+  String get uefiHfsPlusTip;
+
+  /// No description provided for @uefiOpenHfsPlusTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses OpenHfsPlus. Suitable for 3rd gen and newer, recommended for newer Celeron/Pentium. Avoid if not necessary. If the menu does not appear, try HfsPlusLegacy or HfsPlus.'**
+  String get uefiOpenHfsPlusTip;
+
   /// No description provided for @selectSpoofGpuPlaceholder.
   ///
   /// In en, this message translates to:
