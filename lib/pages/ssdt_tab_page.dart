@@ -18,11 +18,11 @@ class _SSDTTabPageState extends State<SSDTTabPage>
   List<MarkdownTabItem> _getTabItems(AppLocalizations l10n) {
     return [
       MarkdownTabItem(title: l10n.oclpIntro, mdPath: 'assets/ssdt/SSDT-Guide.md'),
-      MarkdownTabItem(title: l10n.ssdtPlatform, mdPath: l10nGlobal.autoGen5818),
-      MarkdownTabItem(title: l10n.ssdtAudio, mdPath: l10nGlobal.autoGen5819),
-      MarkdownTabItem(title: l10n.ssdtGpuSpoof, mdPath: l10nGlobal.autoGen5820),
-      MarkdownTabItem(title: l10n.ssdtDisableDevice, mdPath: l10nGlobal.autoGen5821),
-      MarkdownTabItem(title: l10n.ssdtBrightness, mdPath: l10nGlobal.autoGen5822),
+      MarkdownTabItem(title: l10n.ssdtPlatform, mdPath: 'assets/ssdt/平台补丁.md'),
+      MarkdownTabItem(title: l10n.ssdtAudio, mdPath: 'assets/ssdt/声卡补丁.md'),
+      MarkdownTabItem(title: l10n.ssdtGpuSpoof, mdPath: 'assets/ssdt/显卡仿冒.md'),
+      MarkdownTabItem(title: l10n.ssdtDisableDevice, mdPath: 'assets/ssdt/屏蔽设备.md'),
+      MarkdownTabItem(title: l10n.ssdtBrightness, mdPath: 'assets/ssdt/亮度补丁.md'),
     ];
   }
 
