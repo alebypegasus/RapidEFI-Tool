@@ -56,8 +56,8 @@ class _USBWidgetState extends State<USBWidget> {
     return ChooseFileWidget(
       buttonText: l10n.selectUtbMap,
       onValid: (filePath) async {
-        final normalizedPath = filePath.replaceAll(RegExp(r'[/\\]+$'), '');
-        return normalizedPath.endsWith('UTBMap.kext');
+        final normalizedPath = filePath.replaceAll(RegExp(r'[/\\]+$'), '').toLowerCase();
+        return normalizedPath.endsWith('.kext'); // Relax validation to just check if it's a kext
       },
       onChanged: (filePath) {
         utbMapPath = filePath;
@@ -65,8 +65,8 @@ class _USBWidgetState extends State<USBWidget> {
       },
       directoryPath: '',
       hintText: (utbMapPath != null && utbMapPath!.isNotEmpty) ? utbMapPath : l10n.selectUtbMapHint,
-      allowedExtensions: Device.isMacOS ? const ['kext'] : null,
-      openFile: Device.isMacOS,
+      allowedExtensions: null,
+      openFile: Device.isMacOS, // macOS MUST use file picker (treats packages as files). Win/Linux use directory picker.
     );
   }
 

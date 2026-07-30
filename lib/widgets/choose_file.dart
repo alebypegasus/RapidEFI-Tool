@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:rapidefi/utils/device_util.dart';
 import 'package:rapidefi/utils/file_util.dart';
 import 'package:rapidefi/widgets/inkwell_widget.dart';
@@ -58,6 +59,7 @@ class _ChooseFileWidgetState extends State<ChooseFileWidget> {
       widget.onChanged(outputPath);
       setState(() {});
     } else {
+      showToast('Invalid file or folder selected! ($selectPath)');
       widget.onChanged('');
     }
   }
