@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/models/enums/config_enums.dart';
 import 'package:rapidefi/utils/hardware/analysis/gpu_compatibility_data.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis.dart';
@@ -6,7 +5,7 @@ import 'package:rapidefi/utils/log/log.dart';
 import 'package:rapidefi/utils/ssdttool/table.dart';
 
 class AcpiDeviceBlockPlan {
-  AcpiDeviceBlockPlan({
+  const AcpiDeviceBlockPlan({
     required this.name,
     required this.acpiPath,
     required this.type,
@@ -47,7 +46,9 @@ class AcpiDeviceBlockPlanner {
     void add(AcpiDeviceBlockPlan target) {
       if (!_isValidAcpiPath(target.acpiPath)) {
         Log.warning(
-          '${l10nGlobal.autoGen5035}${target.type} ${target.name} ${target.deviceId} ${l10nGlobal.autoGen5036}',
+          'Device block skipped: '
+          '${target.type} ${target.name} ${target.deviceId} '
+          'missing valid ACPI Path',
         );
         return;
       }
@@ -139,8 +140,8 @@ class AcpiDeviceBlockPlanner {
 
   List<String> disableMethods(PlatformType platformType) {
     return platformType == PlatformType.laptop
-        ? ['OFF', 'PS3', 'IOName']
-        : ['IOName'];
+        ? const ['OFF', 'PS3', 'IOName']
+        : const ['IOName'];
   }
 
   bool _isDiscreteGpu(String name, Map<String, dynamic> gpu) {
@@ -148,12 +149,12 @@ class AcpiDeviceBlockPlanner {
     final type = safeStr(gpu['Device Type']).toLowerCase();
     if (type == 'integrated' ||
         type.contains('integrated') ||
-        type.contains(l10nGlobal.autoGen5019) ||
-        type.contains(l10nGlobal.autoGen5017)) {
+        type.contains('integrated') ||
+        type.contains('internal')) {
       return false;
     }
-    if (type == 'discrete' || type.contains(l10nGlobal.autoGen5018)) return true;
-    if (type == 'integrated' || type.contains(l10nGlobal.autoGen5019)) return false;
+    if (type == 'discrete' || type.contains('dedicated')) return true;
+    if (type == 'integrated' || type.contains('internal')) return false;
 
     final text = [
       name,
@@ -228,10 +229,10 @@ class AcpiDeviceBlockPlanner {
         manufacturer.contains('intel') ||
         text.contains('intel');
     if (!intel) return false;
-    if (type.contains('discrete') || type.contains(l10nGlobal.autoGen5018)) {
+    if (type.contains('discrete') || type.contains('dedicated')) {
       return false;
     }
-    if (type.contains('integrated') || type.contains(l10nGlobal.autoGen5019)) {
+    if (type.contains('integrated') || type.contains('internal')) {
       return true;
     }
     return text.contains('uhd graphics') ||

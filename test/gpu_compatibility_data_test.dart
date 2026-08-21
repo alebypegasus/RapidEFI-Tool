@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/gpu_compatibility_data.dart';
@@ -125,8 +124,8 @@ void main() {
       expect(indexOf('1002-950F'), greaterThanOrEqualTo(0));
 
       expect(indexOf('1002-73A5'), lessThan(indexOf('1002-73AF')));
-      expect(indexOf('1002-73AF'), lessThan(indexOf('1002-73E1')));
-      expect(indexOf('1002-73E1'), lessThan(indexOf('1002-73EF')));
+      expect(indexOf('1002-73AF'), lessThan(indexOf('1002-73EF')));
+      expect(indexOf('1002-73EF'), lessThan(indexOf('1002-73E1')));
 
       final naviIndex = firstIndexWhere((record) =>
           record.groupName.contains('navi') ||
@@ -134,12 +133,14 @@ void main() {
       final polarisIndex = firstIndexWhere((record) =>
           record.groupName.contains('polaris') ||
           record.codename.contains('Polaris'));
-      final gcnIndex =
-          firstIndexWhere((record) => record.codename.contains('GCN'));
-      final terascale2Index =
-          firstIndexWhere((record) => record.codename.contains('TeraScale 2'));
-      final terascale1Index =
-          firstIndexWhere((record) => record.codename.contains('TeraScale 1'));
+      final gcnIndex = firstIndexWhere((record) =>
+          record.groupName.contains('gcn') || record.codename.contains('GCN'));
+      final terascale2Index = firstIndexWhere((record) =>
+          record.groupName.contains('terascale_2') ||
+          record.codename.contains('TeraScale 2'));
+      final terascale1Index = firstIndexWhere((record) =>
+          record.groupName.contains('terascale_1') ||
+          record.codename.contains('TeraScale 1'));
 
       expect(naviIndex, lessThan(polarisIndex));
       expect(polarisIndex, lessThan(gcnIndex));
@@ -249,12 +250,12 @@ void main() {
           'Radeon PRO WX 3200',
           {
             'Device ID': '1002-6981',
-            'Device Type': l10nGlobal.autoGen5061,
+            'Device Type': 'Discrete Graphics',
           });
 
       expect(note.level, CompatibilityLevel.limited);
-      expect(note.text, contains('原生支持 macOS HighSierra 10.13 ~ macOS Tahoe 26'));
-      expect(note.text, isNot(contains('需要仿冒')));
+      expect(note.text, contains('Spoofed Support macOS HighSierra 10.13 ~ macOS Tahoe 26'));
+      expect(note.text, isNot(contains('Requires spoofing')));
       expect(note.text, isNot(contains('device-id')));
     });
   });

@@ -270,7 +270,7 @@ class DevicePropertiesAccessor {
           key: _connectorEnableKey(connectorIndex),
           dataType: 'data',
           value: '01000000',
-          comment: '启用 Intel 核显 con$connectorIndex 接口定制',
+          comment: 'Enable Intel iGPU con$connectorIndex port customization',
         ),
       );
       igpuModel.propertyItems.add(
@@ -278,7 +278,7 @@ class DevicePropertiesAccessor {
           key: _connectorAllDataKey(connectorIndex),
           dataType: 'data',
           value: normalizedValue,
-          comment: 'Intel 核显 con$connectorIndex 接口定制',
+          comment: 'Intel iGPU con$connectorIndex port customization',
         ),
       );
     }
@@ -422,7 +422,7 @@ class DevicePropertiesAccessor {
         key: key,
         value: normalizedValue,
         dataType: 'data',
-        comment: '向AAPL0$connectorIndex接口注入显示器EDID',
+        comment: 'Inject display EDID into AAPL0$connectorIndex port',
       ),
     );
   }

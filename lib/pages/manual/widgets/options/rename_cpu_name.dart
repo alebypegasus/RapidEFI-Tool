@@ -1,8 +1,6 @@
-import 'package:rapidefi/utils/config/models/enums/processor_type_enum.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
-import 'package:rapidefi/l10n/enum_l10n.dart';
+import 'package:rapidefi/utils/config/models/enums/processor_type_enum.dart';
 
 class RenameCPUNameWidget extends StatefulWidget {
   final Function(ProcessorType, String?) onChanged;
@@ -44,9 +42,9 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         children: [
-          Text(
-            AppLocalizations.of(context)!.manualRenameCpuNameLabel,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          const Text(
+            'Enter custom CPU name (leave empty to show Windows CPU name):',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
           const SizedBox(
             width: 10,
@@ -54,11 +52,11 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
           Flexible(
               child: Container(
             constraints: const BoxConstraints(
-              maxWidth: 160.0, // 设置最大宽度
+              maxWidth: 160.0, // Set max width
             ),
             child: TextBox(
               controller: _controller,
-              placeholder: AppLocalizations.of(context)!.manualRenameCpuNameHint,
+              placeholder: 'Enter CPU name here',
               onChanged: (value) {
                 cpuName = value;
                 setState(() {});
@@ -75,32 +73,32 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
   Widget build(BuildContext context) {
     final choices = ProcessorType.values
         .where((element) => element != ProcessorType.none)
-        .map((e) => e.localizedDescription(AppLocalizations.of(context)!))
+        .map((e) => e.text.description)
         .toList();
     final tips = ProcessorType.values
         .where((element) => element != ProcessorType.none)
-        .map((e) => e.localizedTitle(AppLocalizations.of(context)!))
+        .map((e) => e.text.title)
         .toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
         ChoiceList(
           tips: tips,
           choices: choices,
-          selectedChoices: [processorType.localizedDescription(AppLocalizations.of(context)!)],
+          selectedChoices: [processorType.text.description],
           isMultipleSelection: false,
           allowToggle: true,
-          subTitle: AppLocalizations.of(context)!.manualRenameCpuNameTip,
+          subTitle: "Optional - Custom CPU Name",
           header: processorType != ProcessorType.none
               ? cpunameText()
               : const SizedBox.shrink(),
           onChanged: (List<String> value) {
             String? selectedValue = value.firstOrNull;
             processorType = ProcessorType.values.firstWhere(
-              (type) => type.localizedDescription(AppLocalizations.of(context)!) == selectedValue,
+              (type) => type.text.description == selectedValue,
               orElse: () => ProcessorType.none,
             );
             if (processorType == ProcessorType.none) {
@@ -108,7 +106,7 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
               _controller.text = '';
             }
             widget.onChanged.call(processorType, cpuName);
-            // 设置焦点
+            // Set focus
             _focusNode.requestFocus();
             setState(() {});
           },

@@ -1,6 +1,6 @@
 class BootArgModel {
   String arg;
-  //备注
+  // Remark / Note
   String comment;
 
   BootArgModel({

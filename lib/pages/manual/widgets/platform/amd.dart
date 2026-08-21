@@ -1,8 +1,5 @@
-import 'package:rapidefi/l10n/enum_l10n.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
-
 import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
 import 'package:rapidefi/widgets/radio_option_group.dart';
 
@@ -74,16 +71,15 @@ class _AMDWidgetState extends State<AMDWidget> {
     }
   }
 
-  Widget cores(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+  Widget cores() {
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          l10n.amdCores,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        const Text(
+          'AMD Cores:',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         const SizedBox(
           width: 10,
@@ -109,7 +105,6 @@ class _AMDWidgetState extends State<AMDWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return TitleCard(
       title: '',
       content: Wrap(
@@ -118,13 +113,13 @@ class _AMDWidgetState extends State<AMDWidget> {
         children: [
           Wrap(
             children: [
-              cores(context),
+              cores(),
               const SizedBox(
                 width: 20,
               ),
               if (showRyzenGPU)
                 ChoiceChipTile(
-                    label: l10n.ryzen7000to9000,
+                    label: "Ryzen 7000~9000 Series",
                     selected: usePrecastMMIO,
                     onChanged: (bo) {
                       usePrecastMMIO = bo;
@@ -136,7 +131,7 @@ class _AMDWidgetState extends State<AMDWidget> {
               ),
               if (showRyzenGPU)
                 ChoiceChipTile(
-                    label: l10n.useAmdIgpuOutput,
+                    label: "Use AMD iGPU Display Output",
                     selected: useRyzenGPU,
                     onChanged: (bo) {
                       useRyzenGPU = bo;
@@ -145,7 +140,6 @@ class _AMDWidgetState extends State<AMDWidget> {
                     })
             ],
           ),
-
           showAMDSpecialMainboards
               ? RadioOptionGroup(
                   groupValue: specialMotherboard.value,
@@ -153,7 +147,7 @@ class _AMDWidgetState extends State<AMDWidget> {
                       .where((e) => e.vendor == MotherboardVendor.amd)
                       .map((e) => RadioOptionData(
                             value: e.value,
-                            label: e.localizedTitle(AppLocalizations.of(context)!),
+                            label: e.text.title,
                           ))
                       .toList(),
                   onChanged: (value) {

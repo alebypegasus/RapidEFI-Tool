@@ -37,15 +37,15 @@ export 'support/macos_version.dart';
 class ConfigModel {
   CpuType cpuType;
 
-  /// 平台类型，默认为台式机
+  /// Platform type, defaults to desktop
   PlatformType platformType;
 
   String platformCode;
 
-  /// Darwin主版本号
+  /// Darwin major version
   int darwinMajorVersion;
 
-  /// 是否是奔腾赛扬处理器
+  /// Whether CPU is Pentium or Celeron
   bool pentiumOrCeleron;
 
   bool isCometLakeU62;
@@ -54,10 +54,10 @@ class ConfigModel {
 
   List<Object>? alcidPickerSelection;
 
-  /// 主板品牌
+  /// Motherboard brand
   Brand brand;
 
-  /// 特殊主板型号
+  /// Special motherboard model
   SpecialMotherboard specialMotherboard;
 
   Acpi acpi;

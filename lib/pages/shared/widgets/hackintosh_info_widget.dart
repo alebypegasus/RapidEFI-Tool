@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/extension/list_extension.dart';
 import 'package:rapidefi/pages/manual/model/platform_entity.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +11,14 @@ class HackintoshInfoWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          AppLocalizations.of(context)!.sharedMacosInitialSupport(platformEntity.initialSupport),
+          "Initial natively supported macOS version:  ${platformEntity.initialSupport}",
           style: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
         ),
         const SizedBox(
           height: 10,
         ),
         Text(
-          AppLocalizations.of(context)!.sharedMacosLastSupported(platformEntity.lastSupported),
+          "Latest natively supported macOS version:  ${platformEntity.lastSupported}",
           style: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
         ),
         const SizedBox(
@@ -28,7 +27,7 @@ class HackintoshInfoWidget extends StatelessWidget {
         platformEntity.oclpSupported.isEmpty
             ? const SizedBox.shrink()
             : Text(
-                AppLocalizations.of(context)!.sharedOclpSupported(platformEntity.oclpSupported),
+                "OCLP patch supported macOS versions:  ${platformEntity.oclpSupported}",
                 style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.normal,
@@ -38,7 +37,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          AppLocalizations.of(context)!.sharedCpuInfo(platformEntity.note.getByLocale(Localizations.localeOf(context).languageCode).descriptionList),
+          "[CPU Info]: \n${platformEntity.note.descriptionList}",
           style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.normal,
@@ -48,7 +47,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          AppLocalizations.of(context)!.sharedBiosEnable(platformEntity.config.bios.enable.getByLocale(Localizations.localeOf(context).languageCode).descriptionList),
+          "[BIOS Recommended Settings - Enabled]: \n${platformEntity.config.bios.enable.en.isNotEmpty ? platformEntity.config.bios.enable.en.toList().descriptionList : platformEntity.config.bios.enable.ch.toList().descriptionList}",
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.normal,
@@ -58,7 +57,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          AppLocalizations.of(context)!.sharedBiosDisable(platformEntity.config.bios.disable.getByLocale(Localizations.localeOf(context).languageCode).descriptionList),
+          "[BIOS Recommended Settings - Disabled]: \n${platformEntity.config.bios.disable.en.isNotEmpty ? platformEntity.config.bios.disable.en.toList().descriptionList : platformEntity.config.bios.disable.ch.toList().descriptionList}",
           style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.normal,

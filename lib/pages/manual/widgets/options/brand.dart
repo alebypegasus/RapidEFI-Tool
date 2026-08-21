@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/enums/brand_enum.dart';
 
@@ -34,7 +33,7 @@ class _BrandWidgetState extends State<BrandWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
         ChoiceList(
@@ -42,7 +41,7 @@ class _BrandWidgetState extends State<BrandWidget> {
           selectedChoices: [brand.value],
           isMultipleSelection: false,
           allowToggle: true,
-          subTitle: AppLocalizations.of(context)!.manualBrandTip,
+          subTitle: "Optional - Check if your device brand matches",
           onChanged: (List<String> value) {
             String? selectedValue = value.firstOrNull;
             brand = Brand.values.firstWhere(

@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rapidefi/pages/manual/manual_config_controller.dart';
@@ -10,7 +9,7 @@ import 'package:rapidefi/utils/config/models/motherboard/mbconf_model.dart';
 import 'package:rapidefi/utils/config/models/nvram/nvram_add_item.dart';
 import 'package:rapidefi/utils/config/accessors/device_properties_accessor.dart';
 
-/// 主板配置选择区块 — 连接 ManualConfigController
+/// Motherboard configuration section — connects to ManualConfigController
 class MotherboardSectionView extends StatelessWidget {
   const MotherboardSectionView({super.key});
 
@@ -61,7 +60,7 @@ class MotherboardSectionView extends StatelessWidget {
                   executablePath: 'Contents/MacOS/${bundlePath.replaceAll('.kext', '')}',
                   plistPath: 'Contents/Info.plist',
                   enabled: true,
-                  comment: AppLocalizations.of(context)!.manualMotherboardFromMbconfs,
+                  comment: 'From mbconfs',
                   arch: 'Any',
                 ),
               ];
@@ -137,7 +136,7 @@ class MotherboardSectionView extends StatelessWidget {
   }
 
   // ────────────────────────────────────────────────────────────────
-  // Kernel.Quirks 字段映射（JSON PascalCase → Dart camelCase）
+  // Kernel.Quirks field mapping (JSON PascalCase -> Dart camelCase)
   // ────────────────────────────────────────────────────────────────
   void _applyKernelQuirk(dynamic model, MbQuirkEntry q) {
     final kq = model.kernel.kernelQuirks;
@@ -270,7 +269,7 @@ class MotherboardSectionView extends StatelessWidget {
   }
 
   // ────────────────────────────────────────────────────────────────
-  // NVRAM：将 JSON 值转为 NvramAddItem 写入对应 GUID
+  // NVRAM: Convert JSON values to NvramAddItem and write to corresponding GUID
   // ────────────────────────────────────────────────────────────────
   void _applyNvram(dynamic model, MbNvramGuid n) {
     final nvramAdd = model.nvram.nvramAdd;
@@ -282,7 +281,7 @@ class MotherboardSectionView extends StatelessWidget {
       final key = kv.key;
       final val = kv.value;
 
-      // 判断数据类型
+      // Determine data type
       final String dataType;
       final String strValue;
       if (val is int) {
@@ -293,7 +292,7 @@ class MotherboardSectionView extends StatelessWidget {
         strValue = val.toString();
       } else {
         final s = val.toString();
-        // 全 hex 字符串 → data
+        // Hex string -> data
         final isHex = RegExp(r'^[0-9A-Fa-f]+$').hasMatch(s);
         dataType = isHex ? 'data' : 'string';
         strValue = s;
@@ -332,6 +331,6 @@ class MotherboardSectionView extends StatelessWidget {
       platformInfo.useRawUuidEncoding = pi.useRawUuidEncoding!;
     }
     if (pi.customMemory != null) platformInfo.customMemory = pi.customMemory!;
-    // generic (SMBIOS) 字段保留给用户自行选择，此处不覆盖
+    // Generic (SMBIOS) field is kept for user selection, not overwritten here
   }
 }

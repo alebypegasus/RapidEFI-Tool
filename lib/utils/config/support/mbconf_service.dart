@@ -1,29 +1,28 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:rapidefi/utils/config/models/device_properties/device_property_item.dart';
 import 'package:rapidefi/utils/config/models/motherboard/mbconf_model.dart';
 
-/// mbconfs.json 加载、解析与查询服务（单例懒加载）
+/// mbconfs.json loading, parsing and query service (lazy singleton)
 class MbConfService {
   MbConfService._();
   static final MbConfService instance = MbConfService._();
 
-  /// 导航层级缓存：平台 → 品牌 → 型号列表
+  /// Navigation hierarchy cache: platform -> brand -> model list
   List<MbConfPlatform>? _nav;
 
-  /// 完整解析条目缓存：platform/vendor/model → MbConfEntry
+  /// Fully parsed entry cache: platform/vendor/model -> MbConfEntry
   final Map<String, MbConfEntry> _cache = {};
 
-  /// 原始 JSON（懒加载）
+  /// Raw JSON (lazy loaded)
   Map<String, dynamic>? _raw;
 
   // ──────────────────────────────────────────────────────────────────────────
-  // 公共 API
+  // Public API
   // ──────────────────────────────────────────────────────────────────────────
 
-  /// 加载 JSON 并返回导航层级（仅包含 platform/vendor/model 名称，轻量）
+  /// Loads JSON and returns lightweight navigation hierarchy
   Future<List<MbConfPlatform>> loadNav() async {
     if (_nav != null) return _nav!;
     await _ensureRaw();
@@ -44,7 +43,7 @@ class MbConfService {
     return _nav!;
   }
 
-  /// 获取某主板的完整可勾选条目（懒解析，用 platform/vendor/model 三元组定位）
+  /// Gets full selectable entries for a motherboard
   Future<MbConfEntry?> getEntry(
       String platform, String vendor, String model) async {
     final cacheKey = '$platform|$vendor|$model';
@@ -57,7 +56,7 @@ class MbConfService {
     final vendorMap = platformMap[vendor] as Map<String, dynamic>?;
     if (vendorMap == null) return null;
 
-    // vendor 下有一层 vendorCode，遍历找 model
+    // Find model under vendorCode layer
     for (final codeEntry in vendorMap.entries) {
       final modelMap = codeEntry.value as Map<String, dynamic>;
       if (modelMap.containsKey(model)) {
@@ -76,7 +75,7 @@ class MbConfService {
   }
 
   // ──────────────────────────────────────────────────────────────────────────
-  // 内部实现
+  // Internal implementation
   // ──────────────────────────────────────────────────────────────────────────
 
   Future<void> _ensureRaw() async {
@@ -259,10 +258,10 @@ class MbConfService {
   }
 
   // ──────────────────────────────────────────────────────────────────────────
-  // 工具函数
+  // Helper utilities
   // ──────────────────────────────────────────────────────────────────────────
 
-  /// hex 字符串 → Uint8List（空/null 返回 null）
+  /// Hex string -> Uint8List (returns null on empty/null)
   Uint8List? _hexToBytes(dynamic raw) {
     if (raw == null) return null;
     final str = raw.toString().trim();
@@ -279,7 +278,7 @@ class MbConfService {
     }
   }
 
-  /// 解析 DP 属性值为 DevicePropertyItem
+  /// Parses DP property value as DevicePropertyItem
   DevicePropertyItem _parseDpValue(String key, dynamic value) {
     if (value is int) {
       // integer → 4-byte little-endian DATA
@@ -293,17 +292,17 @@ class MbConfService {
         key: key,
         dataType: 'data',
         value: hex,
-        comment: '来自 mbconfs (int $value)',
+        comment: 'From mbconfs (int $value)',
       );
     } else {
       final str = value.toString();
-      // 纯 hex 字符串（"01"、"0100" 等），存为 DATA
+      // Pure hex string ('01', '0100', etc.), stored as DATA
       final isHexStr = RegExp(r'^[0-9A-Fa-f]+$').hasMatch(str);
       return DevicePropertyItem(
         key: key,
         dataType: isHexStr ? 'data' : 'string',
         value: str.toLowerCase(),
-        comment: l10nGlobal.autoGen5174,
+        comment: 'From mbconfs',
       );
     }
   }

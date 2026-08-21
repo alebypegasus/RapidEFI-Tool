@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 //  parser.dart
 //  Created by JeoJay127
 //
@@ -17,7 +16,7 @@ class PlistParseResult {
 }
 
 class PlistParser {
-  /// 加载并解析 plist 文件
+  /// Load and parse plist file
   PlistParseResult loadPlist(
     String filePath, {
     Function(dynamic error)? onError,
@@ -28,22 +27,22 @@ class PlistParser {
         return PlistParseResult(
           status: PlistParseStatus.fileNotFound,
           data: {},
-          message: "文件不存在: $filePath",
+          message: "File not found: $filePath",
         );
       }
       final content = file.readAsStringSync();
       return _parsePlist(content);
     } catch (e) {
-      onError?.call("加载 $filePath 文件时出错: $e");
+      onError?.call("Error loading $filePath file: $e");
       return PlistParseResult(
         status: PlistParseStatus.parseError,
         data: {},
-        message: "加载 $filePath 文件时出错: $e",
+        message: "Error loading $filePath file: $e",
       );
     }
   }
 
-  /// 保存 plist 文件
+  /// Save plist file
   bool savePlist(
     String path,
     Map<String, dynamic> plist, {
@@ -78,12 +77,12 @@ class PlistParser {
       File(path).writeAsStringSync(xmlString);
       return true;
     } catch (e) {
-      onError?.call("写入文件失败! 失败原因: $e");
+      onError?.call("Failed to write file! Reason: $e");
       return false;
     }
   }
 
-  /// 解析 plist 内容
+  /// Parse plist content
   PlistParseResult _parsePlist(
     String content, {
     Function(dynamic error)? onError,
@@ -92,21 +91,21 @@ class PlistParser {
       final document = XmlDocument.parse(content);
       final dictElement = document.findAllElements('dict').firstOrNull;
       if (dictElement == null) {
-        throw ArgumentError(l10nGlobal.autoGen5640);
+        throw ArgumentError('Root dictionary element not found');
       }
       final data = _parseDict(dictElement);
       return PlistParseResult(status: PlistParseStatus.success, data: data);
     } catch (e) {
-      onError?.call('解析plist失败! 失败原因: $e');
+      onError?.call('Failed to parse plist! Reason: $e');
       return PlistParseResult(
         status: PlistParseStatus.parseError,
         data: {},
-        message: "解析文件内容时出错: $e",
+        message: "Error parsing file content: $e",
       );
     }
   }
 
-  /// 解析数组元素
+  /// Parse array element
   List<dynamic> _parseArray(XmlElement arrayElement) {
     final List<dynamic> result = [];
     for (final element in arrayElement.children) {
@@ -117,7 +116,7 @@ class PlistParser {
     return result;
   }
 
-  /// 解析字典元素
+  /// Parse dictionary element
   Map<String, dynamic> _parseDict(
     XmlElement dictElement, {
     Function(dynamic error)? onError,
@@ -139,7 +138,7 @@ class PlistParser {
     return result;
   }
 
-  /// 解析值元素
+  /// Parse value element
   dynamic _parseValue(
     XmlElement valueElement, {
     Function(dynamic error)? onError,
@@ -173,7 +172,7 @@ class PlistParser {
     }
   }
 
-  /// 递归构建字典元素
+  /// Recursively build dictionary element
   XmlElement _buildDictElement(Map dict, {Function(dynamic error)? onError}) {
     final dictElement = XmlElement(XmlName('dict'));
     dict.forEach((key, value) {
@@ -187,7 +186,7 @@ class PlistParser {
     return dictElement;
   }
 
-  /// 构建值元素
+  /// Build value element
   XmlElement _buildValueElement(
     dynamic value, {
     Function(dynamic error)? onError,

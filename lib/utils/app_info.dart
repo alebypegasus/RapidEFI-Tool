@@ -6,12 +6,12 @@ class AppInfo {
   static Completer<PackageInfo>? _completer;
 
   static Future<PackageInfo> _getPackageInfo() {
-    // 若已初始化，直接返回
+    // If already initialized, return directly
     if (_packageInfo != null) return Future.value(_packageInfo);
 
     if (_completer != null) return _completer!.future;
 
-    // 否则开始初始化
+    // Otherwise initialize package info
     _completer = Completer<PackageInfo>();
     PackageInfo.fromPlatform().then((info) {
       _packageInfo = info;

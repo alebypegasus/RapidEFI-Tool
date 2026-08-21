@@ -110,7 +110,7 @@ class _AssetCopyTask {
       await _writeBytes(outputFile, bytes);
       return true;
     } catch (error, stackTrace) {
-      Log('复制资源失败: $assetPath -> $destinationDirectory, $error');
+      Log('Failed to copy asset: $assetPath -> $destinationDirectory, $error');
       Log(stackTrace.toString());
       return false;
     }
@@ -127,7 +127,7 @@ class _AssetCopyTask {
     if (options.verifyIntegrity) {
       final existingBytes = await file.readAsBytes();
       if (_sameBytes(existingBytes, assetBytes)) {
-        Log('${file.path} 已存在且内容一致，跳过复制');
+        Log('${file.path} already exists with matching content, skipping copy');
         return true;
       }
       await file.delete();
@@ -135,7 +135,7 @@ class _AssetCopyTask {
     }
 
     if (!options.replaceExisting) {
-      Log('${file.path} 已存在，跳过复制');
+      Log('${file.path} already exists, skipping copy');
       return true;
     }
 

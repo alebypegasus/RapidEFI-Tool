@@ -94,7 +94,7 @@ void main() {
     });
 
     test('uses laptop fallback methods and desktop IOName only', () {
-      const planner = AcpiDeviceBlockPlanner();
+      final planner = const AcpiDeviceBlockPlanner();
 
       expect(
         planner.disableMethods(PlatformType.laptop),
@@ -131,7 +131,7 @@ void main() {
     });
 
     test('does not actively disable dGPU outside Intel laptop context', () {
-      const planner = AcpiDeviceBlockPlanner();
+      final planner = const AcpiDeviceBlockPlanner();
 
       expect(
         planner.targets(

@@ -1,5 +1,4 @@
 import 'package:provider/provider.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/kernel/kext_group.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kext_groups.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
@@ -28,7 +27,7 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
     super.initState();
     _categories = [
       _KextCategory(
-        nameKey: 'graphicsCategory',
+        name: 'Graphics',
         options: [
           KextGroup.single(ConfigKernel.WhateverGreen),
           KextGroup.single(ConfigKernel.FakePCIID),
@@ -39,7 +38,7 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
         ],
       ),
       _KextCategory(
-        nameKey: 'powerManagementCategory',
+        name: 'Power Management',
         options: [
           KextGroup.single(ConfigKernel.AMDRyzenCPUPowerManagement),
           KextGroup.single(ConfigKernel.NullCPUPowerManagement),
@@ -47,14 +46,14 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
         ],
       ),
       _KextCategory(
-        nameKey: 'sleepCategory',
+        name: 'Sleep / Hibernation',
         options: [
           KextGroup.single(ConfigKernel.HibernationFixup),
           KextGroup.single(ConfigKernel.RTCMemoryFixup),
         ],
       ),
       _KextCategory(
-        nameKey: 'diskCategory',
+        name: 'Storage / Disk',
         options: [
           KextGroup.single(ConfigKernel.NVMeFix),
           KextGroup.single(ConfigKernel.Innie),
@@ -63,7 +62,7 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
         ],
       ),
       _KextCategory(
-        nameKey: 'cpuCategory',
+        name: 'CPU Fixes',
         options: [
           ConfigKextGroups.cpuFriend,
           KextGroup.single(ConfigKernel.CpuTopologyRebuild),
@@ -73,7 +72,7 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
         ],
       ),
       _KextCategory(
-        nameKey: 'amdPlatformCategory',
+        name: 'AMD Platform',
         options: [
           KextGroup.single(ConfigKernel.SMCAMDProcessor),
           KextGroup.single(ConfigKernel.AmdTscSync),
@@ -82,7 +81,7 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
         ],
       ),
       _KextCategory(
-        nameKey: 'usbCategory',
+        name: 'USB Fixes',
         options: [
           KextGroup.single(ConfigKernel.XHCIUnsupported),
           KextGroup.single(ConfigKernel.GenericUSBXHCI),
@@ -93,14 +92,14 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
         ],
       ),
       _KextCategory(
-        nameKey: 'sdCardCategory',
+        name: 'SD Card',
         options: [
           ConfigKextGroups.realtekCardReader,
           KextGroup.single(ConfigKernel.EmeraldSDHC),
         ],
       ),
       _KextCategory(
-        nameKey: 'othersCategory',
+        name: 'Others',
         options: [
           KextGroup.single(ConfigKernel.AMFIPass),
           KextGroup.single(ConfigKernel.BlueToolFixup),
@@ -120,29 +119,12 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
     super.dispose();
   }
 
-  String _getCategoryName(BuildContext context, String nameKey) {
-    final l10n = AppLocalizations.of(context)!;
-    return switch (nameKey) {
-      'graphicsCategory' => l10n.graphicsCategory,
-      'powerManagementCategory' => l10n.powerManagementCategory,
-      'sleepCategory' => l10n.sleepCategory,
-      'diskCategory' => l10n.diskCategory,
-      'cpuCategory' => l10n.cpuCategory,
-      'amdPlatformCategory' => l10n.amdPlatformCategory,
-      'usbCategory' => l10n.usbCategory,
-      'sdCardCategory' => l10n.sdCardCategory,
-      'othersCategory' => l10n.othersCategory,
-      _ => nameKey,
-    };
-  }
-
   ChoiceListCategory<KextGroup> _buildChoiceListCategory(
-    BuildContext context,
     _KextCategory category,
     ConfigOptionProvider provider,
   ) {
     return ChoiceListCategory<KextGroup>(
-      name: _getCategoryName(context, category.nameKey),
+      name: category.name,
       tips: category.options
           .map((group) => group.bundleNames.join(', '))
           .toList(),
@@ -161,14 +143,13 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return Consumer<ConfigOptionProvider>(builder: (context, provider, child) {
       return CategorizedChoiceListCard<KextGroup>(
-        title: l10n.optionalKextsCardTitle,
-        subTitle: l10n.optionalKextsDefaultTip,
+        title: "Optional Kext Drivers:",
+        subTitle: "(Optional drivers - not needed unless required)",
         controller: _tabController,
         categories: _categories
-            .map((category) => _buildChoiceListCategory(context, category, provider))
+            .map((category) => _buildChoiceListCategory(category, provider))
             .toList(),
       );
     });
@@ -177,11 +158,11 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
 
 class _KextCategory {
   const _KextCategory({
-    required this.nameKey,
+    required this.name,
     required this.options,
   });
 
-  final String nameKey;
+  final String name;
   final List<KextGroup> options;
 }
 

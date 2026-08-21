@@ -4,22 +4,22 @@ import 'enum_codec.dart';
 enum PlatformType {
   desktop(
     text: EnumText(
-      titleId: 5134,
+      title: 'Desktop',
     ),
   ),
   laptop(
     text: EnumText(
-      titleId: 5031,
+      title: 'Laptop',
     ),
   ),
   nuc(
     text: EnumText(
-      titleId: 5032,
+      title: 'NUC / Mini PC',
     ),
   ),
   hedt(
     text: EnumText(
-      titleId: 5135,
+      title: 'HEDT / Server',
     ),
   );
 
@@ -37,6 +37,16 @@ enum PlatformType {
       values,
       fallback: PlatformType.desktop,
       ignoreCase: true,
+      aliases: {
+        'Desktop': PlatformType.desktop,
+        'Laptop': PlatformType.laptop,
+        'NUC / Mini PC': PlatformType.nuc,
+        'Mini PC': PlatformType.nuc,
+        'NUC': PlatformType.nuc,
+        'HEDT / Server': PlatformType.hedt,
+        'HEDT': PlatformType.hedt,
+        'Server': PlatformType.hedt,
+      },
     );
   }
 

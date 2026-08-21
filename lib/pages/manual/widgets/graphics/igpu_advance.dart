@@ -21,7 +21,7 @@ class IgpuAdvance extends StatefulWidget {
 }
 
 class _IgpuAdvanceState extends State<IgpuAdvance> {
-  static final _categoryOrder = [
+  static const _categoryOrder = [
     igpuCategoryMemory,
     igpuCategoryHaswell,
     igpuCategoryIvyBridge,

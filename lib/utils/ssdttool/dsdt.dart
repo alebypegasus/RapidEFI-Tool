@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 //  dsdt.dart
 //  Created by JeoJay127
 //
@@ -45,13 +44,13 @@ class DSDT {
   final Run r = Run();
   final Util util = Util();
 
-  /// 是否使用本地工具
+  /// Whether to use local tools
   bool useLocaliAsl;
 
-  /// 是否使用本地工具
+  /// Whether to use local tools
   bool useLeagcyiAsl;
 
-  /// 允许的签名列表
+  /// Allowed signature list
   final List<String> allowedSignatures = [
     "APIC",
     "DMAR",
@@ -60,18 +59,18 @@ class DSDT {
     "SSDT",
   ];
 
-  /// 混合列表
+  /// Mixed list
   final List<String> mixedListing = ["DSDT", "SSDT"];
 
-  /// ACPI 表映射
+  /// ACPI table map
   Map<String, dynamic> acpiTables = {};
 
-  /// 十六进制匹配正则表达式
+  /// Hex matching regular expression
   final RegExp hexMatch = RegExp(
     r"^\s*[0-9A-F]{4,}:(\s[0-9A-F]{2})+(\s+\/\/.*)?$",
   );
 
-  /// 类型匹配正则表达式
+  /// Type matching regular expression
   final RegExp typeMatch = RegExp(
     r".*(Processor|Scope|Device|Method|Name) \(([^,\)]+).*",
   );
@@ -79,63 +78,63 @@ class DSDT {
   DSDT({required this.useLocaliAsl, this.useLeagcyiAsl = false})
       : acpiTool = ACPITool();
 
-  /// 获取表签名
-  /// [tablePath]: 表路径
-  /// [tableName]: 表名（可选）
-  /// [data]: 数据（可选）
-  /// 如果表存在，返回前4个字节的签名；如果表不存在或发生错误，返回 null。
+  /// Get table signature
+  /// [tablePath]: Table path
+  /// [tableName]: Table name (optional)
+  /// [data]: Data (optional)
+  /// If table exists, returns first 4 bytes signature; if table does not exist or errors, returns null.
   String? tableSignature(
     String tablePath, {
     String? tableName,
     Uint8List? data,
   }) {
-    // 构建表完整路径
+    // Build full table path
     final filePath = tableName != null && tableName.isNotEmpty
         ? path.join(tablePath, tableName)
         : tablePath;
 
-    // 检查表是否存在
+    // Check if table exists
     final file = File(filePath);
     if (!file.existsSync()) {
-      Log('表不存在: $filePath');
+      Log('Table does not exist: $filePath');
       return null;
     }
     if (data != null) {
-      // 已传入数据, 确保数据长度足够用于签名（至少 4 字节）
+      // Data provided; ensure length is at least 4 bytes for signature
       if (data.length >= 4) {
         return String.fromCharCodes(data.sublist(0, 4));
       } else {
-        Log('传入数据长度不足 4 字节: $filePath');
+        Log('Passed data length is less than 4 bytes: $filePath');
         return null;
       }
     }
     RandomAccessFile? openedFile;
     try {
-      // 打开文件
+      // Open file
       openedFile = file.openSync(mode: FileMode.read);
 
-      // 读取前4个字节
+      // Read first 4 bytes
       final bytes = openedFile.readSync(4);
       if (bytes.length < 4) {
-        Log('文件内容不足 4 字节: $filePath');
+        Log('File content is less than 4 bytes: $filePath');
         return null;
       }
 
-      // 检查是否可以转换为字符串
+      // Check if convertible to string
       return String.fromCharCodes(bytes);
     } catch (e) {
-      // 捕获任何异常并返回 null
-      Log.error('读取签名发生错误: $e, 文件路径: $filePath');
+      // Catch any exception and return null
+      Log.error('Error reading signature: $e, file path: $filePath');
       return null;
     } finally {
-      // 确保文件关闭
+      // Ensure file is closed
       openedFile?.closeSync();
     }
   }
 
-  /// 统计非 ASCII 字符数量
-  /// [data]: 数据
-  /// 返回非 ASCII 字符数量
+  /// Count non-ASCII characters
+  /// [data]: Data
+  /// Returns count of non-ASCII characters
   int nonAsciiCountFunc(Uint8List data) {
     int nonAscii = 0;
     for (final byte in data) {
@@ -146,11 +145,11 @@ class DSDT {
     return nonAscii;
   }
 
-  /// 判断表是否有效
-  /// [tablePath]: 表路径
-  /// [tableName]: 表名（可选）
-  /// 如果表的签名在允许的签名列表中，则返回 true，否则返回 false。
-  /// 如果 [checkSignature] 为 true，则会检查表的签名；否则不会检查签名。
+  /// Check if table is valid
+  /// [tablePath]: Table path
+  /// [tableName]: Table name (optional)
+  /// Returns true if table signature is in allowed list; otherwise false.
+  /// If [checkSignature] is true, checks signature; otherwise skips check.
 
   bool tableIsValid(
     String tablePath, {
@@ -158,52 +157,52 @@ class DSDT {
     bool? ensureBinary = true,
     bool checkSignature = true,
   }) {
-    // 构建表完整路径
+    // Build full table path
     final filePath = tableName != null && tableName.isNotEmpty
         ? path.join(tablePath, tableName)
         : tablePath;
-    // 检查文件是否存在
+    // Check if file exists
     final file = File(filePath);
 
     if (!file.existsSync()) {
       return false;
     }
-    // 设置一个用于存放数据的占位变量
+    // Placeholder variable for data
     Uint8List? data;
     if (ensureBinary != null) {
-      // 确保该表是正确的类型 - 读取它的数据
+      // Ensure table is correct type - read its data
       try {
         data = file.readAsBytesSync();
       } catch (_) {
         return false;
       }
-      // 确保确实读取到数据
+      // Ensure data was read
       if (data.isEmpty) {
         return false;
       }
-      // 统计非 ASCII 字符数量
+      // Count non-ASCII characters
       int nonAsciiCountResult = nonAsciiCountFunc(data);
       if (ensureBinary && nonAsciiCountResult == 0) {
-        // 期望是二进制文件，但它全部是 ASCII
+        // Expected binary file, but is all ASCII
         return false;
       } else if (!ensureBinary && nonAsciiCountResult > 0) {
-        // 期望是 ASCII，但它是二进制
+        // Expected ASCII, but is binary
         return false;
       }
     }
 
     if (checkSignature) {
-      // 检查签名 - 如果之前没加载数据，现在加载
+      // Check signature - load data now if not loaded earlier
       if (!allowedSignatures.contains(tableSignature(filePath, data: data))) {
         return false;
       }
     }
-    // 表通过所有检查
+    // Table passed all checks
     return true;
   }
 
-  /// 根据 ID 获取表
-  /// [tableId] : 表ID
+  /// Get table by ID
+  /// [tableId]: Table ID
   Map<String, dynamic>? getTableWithId(String tableId) {
     try {
       return acpiTables.values.firstWhere(
@@ -215,8 +214,8 @@ class DSDT {
     }
   }
 
-  /// 根据签名获取表
-  /// [tableSig] : 签名
+  /// Get table by signature
+  /// [tableSig]: Signature
   Map<String, dynamic>? getTableWithSignature(String tableSig) {
     try {
       return acpiTables.values.firstWhere(
@@ -228,8 +227,8 @@ class DSDT {
     }
   }
 
-  /// 根据 ID 或签名获取表
-  /// [tableIdOrSig] : ID 或签名
+  /// Get table by ID or signature
+  /// [tableIdOrSig]: ID or signature
   Map<String, dynamic>? getTable(String tableIdOrSig) {
     try {
       return acpiTables.values.firstWhere(
@@ -241,15 +240,15 @@ class DSDT {
     }
   }
 
-  /// 获取 DSDT 表
+  /// Get DSDT table
   Map<String, dynamic>? getDsdt() {
     return getTableWithSignature("DSDT");
   }
 
-  /// 查找位于传入 index 之前的上一组十六进制数字
-  /// 并返回这组十六进制数字的文本内容、起始索引和结束索引 (文本, 起始索引, 结束索引)
-  /// [index] : 起始索引
-  /// [table] : 提供的 ACPI 表，可选
+  /// Find previous set of hex numbers before index
+  /// Returns tuple of (text, startIndex, endIndex)
+  /// [index]: Starting index
+  /// [table]: ACPI table (optional)
   (String, int, int) findPreviousHex({
     int index = 0,
     Map<String, dynamic>? table,
@@ -286,12 +285,12 @@ class DSDT {
     return ("", -1, -1);
   }
 
-  /// 查找位于传入 index 之后的下一组十六进制数字
-  /// 并返回这组十六进制数字的文本内容、起始索引和结束索引 (文本, 起始索引, 结束索引)
-  /// [index] : 起始索引
-  /// [table] : 提供的 ACPI 表，可选
+  /// Find next set of hex numbers after index
+  /// Returns tuple of (text, startIndex, endIndex)
+  /// [index]: Starting index
+  /// [table]: Provided ACPI table (optional)
   (String, int, int) findNextHex({int index = 0, Map<String, dynamic>? table}) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
     if (table == null) return ("", -1, -1);
 
@@ -321,19 +320,19 @@ class DSDT {
     return ("", startIndex, endIndex);
   }
 
-  /// 检查是否是十六进制数据
+  /// Check if data is hex
   bool isHex(String line) {
     return hexMatch.hasMatch(line.trim());
   }
 
-  /// 从指定索引开始获取十六进制字符串，并返回结束索引
-  /// [startIndex] : 起始索引
-  /// [table] : 提供的 ACPI 表，可选
+  /// Get hex string starting from specified index and return ending index
+  /// [startIndex]: Starting index
+  /// [table]: Provided ACPI table (optional)
   (String, int) getHexStartingAt(
     int startIndex, {
     Map<String, dynamic>? table,
   }) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
     if (table == null) {
       return ("", -1);
@@ -355,11 +354,11 @@ class DSDT {
     return (hexText, index);
   }
 
-  /// 从指定索引结束获取十六进制字符串，并返回开始索引
-  /// [startIndex] : 结束索引
-  /// [table] : 提供的 ACPI 表，可选
+  /// Get hex string ending at specified index and return starting index
+  /// [startIndex]: Ending index
+  /// [table]: Provided ACPI table (optional)
   (String, int) getHexEndingAt(int startIndex, {Map<String, dynamic>? table}) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
     if (table == null) {
       return ("", -1);
@@ -368,7 +367,7 @@ class DSDT {
     String hexText = "";
     int index = -1;
 
-    // 遍历 lines 列表，按逆序索引查找十六进制字符串
+    // Iterate through lines in reverse order to find hex string
     List<String> lines = List<String>.from(table["lines"]);
     for (int i = 0; i < lines.length; i++) {
       String x = lines[startIndex - i];
@@ -382,17 +381,17 @@ class DSDT {
     return (hexText, index);
   }
 
-  /// 检查某个特定文件是否存在，并且文件大小是否大于 0（非空文件）
-  /// [folderPath] : 文件夹路径
-  /// [fileName] : 文件名
+  /// Check if file exists and size > 0 (non-empty)
+  /// [folderPath]: Directory path
+  /// [fileName]: File name
   bool exists(String folderPath, String fileName) {
-    //如果folderPath不是目录
+    // If folderPath is not a directory
     if (!Directory(folderPath).existsSync()) {
       folderPath = Directory(folderPath).parent.path;
     }
-    // 拼接路径
+    // Join path
     final checkPath = path.join(folderPath, fileName);
-    // 检查文件是否存在且非空
+    // Check if file exists and is not empty
     final file = File(checkPath);
     if (file.existsSync() && file.lengthSync() > 0) {
       return true;
@@ -401,9 +400,9 @@ class DSDT {
     return false;
   }
 
-  /// 加载ACPI表
-  /// [tablePath] : 表路径
-  /// [exclude] : 排除的表名
+  /// Load ACPI tables
+  /// [tablePath]: Table path
+  /// [exclude]: Excluded table names
   Future<(Map, List)> loadTable(
     String tablePath, {
     List<String> exclude = const [],
@@ -416,15 +415,15 @@ class DSDT {
     try {
       List<String> validFiles = [];
 
-      // 检查路径是文件还是目录
+      // Check if path is file or directory
       if (Directory(tablePath).existsSync()) {
-        // 如果是目录，获取所有有效的文件
+        // If directory, get all valid files
         var files = Directory(tablePath).listSync().toList();
         validFiles = files
             .where((item) {
               final name = path.basename(item.path);
               if (excludeSet.contains(name.toLowerCase())) {
-                Log("跳过: $name ,先前已经正确反编译!");
+                Log("Skipping: $name, already disassembled previously!");
                 return false;
               }
               return tableIsValid(tablePath, tableName: name);
@@ -434,39 +433,39 @@ class DSDT {
       } else if (File(tablePath).existsSync()) {
         final name = path.basename(tablePath);
         if (excludeSet.contains(name.toLowerCase())) {
-          Log.warning("目标文件在排除列表中: $name");
+          Log.warning("Target file in exclusion list: $name");
         } else if (tableIsValid(tablePath, checkSignature: false)) {
           validFiles = [tablePath];
         }
       } else {
-        Log.warning("无效路径: $tablePath");
-        throw FileSystemException(l10nGlobal.autoGen5722, tablePath);
+        Log.warning("Invalid path: $tablePath");
+        throw FileSystemException("Invalid path", tablePath);
       }
 
       if (validFiles.isEmpty && exclude.isEmpty) {
-        Log.warning("在$tablePath 没有找到有效的.aml 或.dat 文件!");
+        Log.warning("No valid .aml or .dat files found in $tablePath!");
         return ({}, failed);
       }
 
-      // 创建临时目录,存放要反编译的文件
+      // Create temporary directory for disassembly
       temp = Directory.systemTemp.createTempSync();
-      // 判断目录是否存在
+      // Check if directory exists
       if (!temp.existsSync()) {
-        // 创建目录
+        // Create directory
         temp.createSync(recursive: true);
-        debugPrint('临时目录已创建于：${temp.path}');
+        debugPrint('Temporary directory created at: ${temp.path}');
       } else {
-        debugPrint('临时目录已存在于：${temp.path}');
+        debugPrint('Temporary directory already exists at: ${temp.path}');
       }
 
       for (var file in validFiles) {
         await File(file).copy(path.join(temp.path, path.basename(file)));
       }
 
-      // 处理有效文件
+      // Process valid files
       var tempDir = Directory(temp.path);
       var listDir = tempDir.listSync().toList();
-      //如果是文件，过滤其他
+      // If file, filter others
       if (File(tablePath).existsSync()) {
         listDir = listDir
             .where((e) => path.basename(e.path) == path.basename(tablePath))
@@ -477,13 +476,13 @@ class DSDT {
         String fileName = file.uri.pathSegments.last;
         if (listDir.length > 1 &&
             !tableIsValid(temp.path, tableName: fileName)) {
-          continue; // 如果是多个文件，跳过无效文件
+          continue; // If multiple files, skip invalid
         }
         var nameExt = fileName.split('.');
         if (nameExt.isNotEmpty &&
             (nameExt.last.toLowerCase() == 'asl' ||
                 nameExt.last.toLowerCase() == 'dsl')) {
-          continue; // 跳过已反编译的文件
+          continue; // Skip already disassembled files
         }
 
         targetFiles[fileName] = {
@@ -494,10 +493,10 @@ class DSDT {
       }
 
       if (targetFiles.isEmpty && exclude.isEmpty) {
-        throw FileSystemException(l10nGlobal.autoGen5723, tablePath);
+        throw FileSystemException("No valid .aml or .dat files found", tablePath);
       }
 
-      /// 切换到临时目录,减少目录太深的问题
+      /// Change to temporary directory to avoid deep path issues
       Directory.current = temp;
       List<String> dsdtOrSsdt = targetFiles.keys
           .where(
@@ -512,15 +511,15 @@ class DSDT {
           .map((e) => e)
           .toList();
 
-      // 反编译 DSDT 和 SSDT 表
+      // Disassemble DSDT and SSDT tables
       if (dsdtOrSsdt.isNotEmpty) {
         if (dsdtOrSsdt.length == 1) {
-          Log('正在反编译 ${dsdtOrSsdt.first} 文件...');
+          Log('Disassembling ${dsdtOrSsdt.first} file...');
         } else {
           if (excludeSet.contains('dsdt.aml')) {
-            Log(l10nGlobal.autoGen5724);
+            Log('Batch disassembling SSDT.aml files...');
           } else {
-            Log(l10nGlobal.autoGen5725);
+            Log('Batch disassembling DSDT.aml and SSDT.aml files...');
           }
         }
         List<String> failedTemp = [];
@@ -530,37 +529,37 @@ class DSDT {
         ]);
 
         if (result.isNotEmpty && result.last != '0') {
-          // 如果第一次反编译失败，重试一次，不带 -da 参数
+          // If first disassembly fails, retry once without -da flag
           args = [acpiTool.iasl, "-dl", "-l", ...dsdtOrSsdt];
           final res = await r.run([
             {"args": args},
           ]);
           if (res.isNotEmpty && res.last != '0') {
-            // 如果第二次反编译仍然失败，则打印错误信息
+            // If second disassembly fails, log error message
             for (var e in dsdtOrSsdt) {
               if (!exists(
                 temp.path,
                 targetFiles[path.basename(e)]!['disassembledName'],
               )) {
-                Log.warning('=> ${path.basename(e)} 反编译失败！');
+                Log.warning('=> ${path.basename(e)} disassembly failed!');
               } else {
-                Log('=> ${path.basename(e)} 反编译成功！');
+                Log('=> ${path.basename(e)} disassembled successfully!');
               }
             }
             Log('');
           } else {
             for (var e in dsdtOrSsdt) {
-              Log('=> ${path.basename(e)} 反编译成功！');
+              Log('=> ${path.basename(e)} disassembled successfully!');
             }
             Log('');
           }
         } else {
           for (var e in dsdtOrSsdt) {
-            Log('=> ${path.basename(e)} 反编译成功！');
+            Log('=> ${path.basename(e)} disassembled successfully!');
           }
         }
 
-        // 获取反编译名称失败的列表
+        // Get list of failed disassemblies
         for (var e in dsdtOrSsdt) {
           if (!exists(
             temp.path,
@@ -570,18 +569,18 @@ class DSDT {
           }
         }
 
-        // 单独反编译失败的.aml 文件
+        // Disassemble failed .aml files individually
         if (failedTemp.isNotEmpty) {
-          Log(l10nGlobal.autoGen5726);
+          Log('Individually disassembling failed .aml files...');
           for (var e in failedTemp) {
             args = [acpiTool.iasl, "-dl", "-l", e];
             final res = await r.run([
               {"args": args},
             ]);
             if (res.isNotEmpty && res.last == '0') {
-              Log('=> $e 反编译成功！');
+              Log('=> $e disassembled successfully!');
             } else {
-              Log.error('=> $e 反编译失败！');
+              Log.error('=> $e disassembly failed!');
             }
             if (!exists(
               temp.path,
@@ -594,9 +593,9 @@ class DSDT {
         }
       }
 
-      // 反编译其他.aml文件 (例如 DMAR, APIC)
+      // Disassemble other .aml files (e.g. DMAR, APIC)
       if (otherTables.isNotEmpty) {
-        Log(l10nGlobal.autoGen5727);
+        Log('Disassembling other .aml files...');
         List<String> args = [acpiTool.iasl, "-dl", "-l", ...otherTables];
         final res = await r.run([
           {"args": args},
@@ -604,10 +603,10 @@ class DSDT {
 
         if (res.last == '0') {
           for (var e in otherTables) {
-            Log('=>  ${path.basename(e)} 反编译成功！');
+            Log('=>  ${path.basename(e)} disassembled successfully!');
           }
         }
-        // 获取反编译名称失败的列表
+        // Get list of failed disassemblies
         for (var e in otherTables) {
           if (!exists(
             temp.path,
@@ -619,11 +618,11 @@ class DSDT {
       }
 
       if (failed.length == targetFiles.length && exclude.isEmpty) {
-        Log.error("反编译失败: ${failed.toList()}");
+        Log.error("Disassembly failed: ${failed.toList()}");
       }
 
       List<String> toRemove = [];
-      // 处理反编译后的文件
+      // Process disassembled files
       for (var file in targetFiles.keys) {
         file = path.basename(file);
         String disassembledPath = path.join(
@@ -638,14 +637,14 @@ class DSDT {
 
         String tableContent = await File(disassembledPath).readAsString();
         targetFiles[file]!['table'] = tableContent;
-        // 删除文件开头的编译器信息
+        // Strip compiler header info from top of file
         if (targetFiles[file]!["table"]!.startsWith("/*")) {
           final contentParts = targetFiles[file]!["table"]!.split("*/");
           targetFiles[file]!["table"] =
               contentParts.sublist(1).join("*/").trim();
         }
 
-        // 检查 "Table Header:" 或 "Raw Table Data: Length"，并去除这些部分后的内容
+        // Check for "Table Header:" or "Raw Table Data: Length" and strip content following them
         for (final header in ["\nTable Header:", "\nRaw Table Data: Length"]) {
           if (targetFiles[file]!["table"]!.contains(header)) {
             final contentParts = targetFiles[file]!["table"]!.split(header);
@@ -653,21 +652,21 @@ class DSDT {
                 .sublist(0, contentParts.length - 1)
                 .join(header)
                 .trim();
-            break; // 找到匹配项后立即退出循环
+            break; // Exit loop on first match
           }
         }
 
-        // 按行分割表数据
+        // Split table data by lines
         targetFiles[file]!["lines"] = targetFiles[file]!["table"]!.split('\n');
 
-        // 调用自定义方法处理作用域和路径
+        // Call helper methods to process scopes and paths
         targetFiles[file]!["scopes"] = getScopes(table: targetFiles[file]!);
         targetFiles[file]!["paths"] = getPaths(table: targetFiles[file]!);
 
         String filePath = path.join(temp.path, file);
         final tableBytes = await File(filePath).readAsBytes();
         targetFiles[file]!["raw"] = tableBytes;
-        // 解析表头并提取信息
+        // Parse table header and extract info
         targetFiles[file]!["signature"] = utf8.decode(tableBytes.sublist(0, 4));
         targetFiles[file]!["revision"] = tableBytes[8];
         targetFiles[file]!["oem"] = utf8.decode(
@@ -681,9 +680,9 @@ class DSDT {
         );
         targetFiles[file]!["length"] = tableBytes.length;
 
-        /// 如果是 DSDT 或 SSDT 表，处理十六进制数据
+        /// If DSDT or SSDT, process hex data
         if (mixedListing.contains(targetFiles[file]!["signature"])) {
-          // 构造十六进制数据的最后一部分
+          // Construct last part of hex data
           final lines = targetFiles[file]!["lines"] as List<String>;
           final lastHex = lines.reversed.firstWhere(
             (line) => isHex(line),
@@ -693,15 +692,15 @@ class DSDT {
           int nextAddr = 0;
           Uint8List remaining = Uint8List(0);
           if (lastHex.isNotEmpty) {
-            // 获取地址和十六进制字节
+            // Get address and hex bytes
             final addr = int.parse(lastHex.split(":")[0].trim(), radix: 16);
             final hexs = lastHex.split(":")[1].split("//")[0].trim();
             nextAddr = addr + hexs.split(" ").length;
 
-            // 获取末尾的原始数据
+            // Get raw data at end
             final hexb = util.getHexBytes(hexs.replaceAll(" ", ""));
             final raw = targetFiles[file]!["raw"];
-            // 取最后一段数据
+            // Take last data segment
             int lastIndex = util.indexOfSubBytes(raw, hexb, reverse: true);
             if (lastIndex != -1 && lastIndex + hexb.length < raw.length) {
               remaining = Uint8List.fromList(
@@ -711,7 +710,7 @@ class DSDT {
               remaining = Uint8List(0);
             }
           }
-          // 分块处理剩余数据
+          // Process remaining data in chunks
           for (var i = 0; i < remaining.length; i += 16) {
             final chunk = remaining.sublist(
               i,
@@ -725,33 +724,33 @@ class DSDT {
                 "   ${nextAddr.toRadixString(16).toUpperCase().padLeft(4, '0')}: $hexString";
             nextAddr += chunk.length;
 
-            // 添加到目标文件的数据中
+            // Add to target file data
             lines.add(line);
             targetFiles[file]!["table"] += "\n$line";
           }
         }
       }
-      // 将新的表数据添加或更新到 acpiTables 中
+      // Add or update new table data into acpiTables
       for (var table in targetFiles.keys) {
         acpiTables[table] = targetFiles[table]!;
       }
-      // 移除没有反编译的文件
+      // Remove files that were not disassembled
       for (var file in toRemove) {
         targetFiles.remove(file);
       }
-      // 返回已加载的表数据
+      // Return loaded table data
       return (targetFiles, failed);
     } catch (e) {
       if (e.toString().contains('Failed to decode data using encoding')) {
-        Log.warning(l10nGlobal.autoGen5728);
+        Log.warning('Warning: Avoid special characters in paths to prevent unexpected issues!');
       } else {
-        Log.error('发生错误 : ${e.toString()}');
+        Log.error('Error occurred: ${e.toString()}');
       }
 
       return ({}, failed);
     } finally {
       Directory.current = cwd;
-      // 清理临时文件夹
+      // Clean up temporary folder
       if (temp != null) {
         Directory(temp.path).deleteSync(recursive: true);
       }
@@ -777,9 +776,9 @@ class DSDT {
     return exePath != null && File(exePath).existsSync();
   }
 
-  /// 导出 ACPI 表
-  /// [filePath] : 路径
-  /// [disassemble] : 是否反编译
+  /// Dump ACPI tables
+  /// [filePath]: Path
+  /// [disassemble]: Whether to disassemble
   /// [onRequestSudoPassword]
   Future<String?> dumpTables(
     String filePath, {
@@ -820,11 +819,11 @@ class DSDT {
     if (exePath == null || !File(exePath).existsSync()) {
       return fail(
         AcpiDumpFailureType.toolMissing,
-        l10nGlobal.autoGen5729,
+        "ACPI dump tool is not ready",
       );
     }
 
-    Log(l10nGlobal.autoGen5730);
+    Log("Dumping ACPI tables...");
     String outputPath = await util.checkPath(
       filePath: filePath,
       onError: (error) => Log.error(error),
@@ -833,7 +832,7 @@ class DSDT {
     if (!(Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
       return fail(
         AcpiDumpFailureType.unsupportedPlatform,
-        l10nGlobal.autoGen5731,
+        "Current platform does not support dumping ACPI tables",
         warning: false,
       );
     }
@@ -859,9 +858,9 @@ class DSDT {
         await process.stdin.close();
 
         final stdoutData =
-            await process.stdout.transform(const SystemEncoding().decoder).join();
+            await process.stdout.transform(SystemEncoding().decoder).join();
         final stderrData =
-            await process.stderr.transform(const SystemEncoding().decoder).join();
+            await process.stderr.transform(SystemEncoding().decoder).join();
         final exitCode = await process.exitCode;
 
         return ProcessResult(process.pid, exitCode, stdoutData, stderrData);
@@ -872,18 +871,18 @@ class DSDT {
 
     String? sudoPassword;
     if (Platform.isLinux && onRequestSudoPassword != null) {
-      Log(l10nGlobal.autoGen5732);
+      Log("Waiting for sudo authorization...");
       sudoPassword = await onRequestSudoPassword();
       if (sudoPassword == null) {
         return fail(
           AcpiDumpFailureType.authorizationCancelled,
-          l10nGlobal.autoGen5733,
+          "Administrator authorization cancelled",
         );
       }
       if (sudoPassword.trim().isEmpty) {
         return fail(
           AcpiDumpFailureType.passwordRequired,
-          l10nGlobal.autoGen5734,
+          "No administrator password entered",
         );
       }
     }
@@ -894,13 +893,13 @@ class DSDT {
       if (Platform.isLinux && isIncorrectSudoPassword(stderr)) {
         return fail(
           AcpiDumpFailureType.incorrectPassword,
-          l10nGlobal.autoGen5735,
+          "Incorrect administrator password",
           detail: stderr,
         );
       }
       return fail(
         AcpiDumpFailureType.processFailed,
-        l10nGlobal.autoGen5736,
+        "ACPI table dump process failed",
         detail: stderr,
         warning: false,
       );
@@ -914,14 +913,14 @@ class DSDT {
     if (!hasTable) {
       return fail(
         AcpiDumpFailureType.emptyResult,
-        l10nGlobal.autoGen5737,
+        "Extracted ACPI tables empty or platform unsupported",
       );
     }
 
     if (!Directory(
       outputPath,
     ).listSync().any((file) => file.path.toLowerCase().contains("dsdt."))) {
-      Log.warning(l10nGlobal.autoGen5738);
+      Log.warning("=> DSDT not found, dumping by signature…");
       final dsdtResult = await Process.run(
           exePath,
           [
@@ -933,14 +932,14 @@ class DSDT {
       if (dsdtResult.exitCode != 0) {
         return fail(
           AcpiDumpFailureType.processFailed,
-          l10nGlobal.autoGen5739,
+          "DSDT table dump failed",
           detail: dsdtResult.stderr.toString(),
           warning: false,
         );
       }
     }
 
-    Log(l10nGlobal.autoGen5740);
+    Log("Updating table names…");
     for (var entity in Directory(outputPath).listSync()) {
       if (entity is File) {
         String newName = entity.uri.pathSegments.last
@@ -951,13 +950,13 @@ class DSDT {
           try {
             entity.renameSync(path.join(outputPath, newName));
           } catch (e) {
-            Log.error("=> 重命名失败: $e");
+            Log.error("=> Rename failed: $e");
           }
         }
       }
     }
 
-    Log(l10nGlobal.autoGen5741);
+    Log("ACPI tables dumped successfully!");
     if (disassemble) {
       await loadTable(outputPath);
     }
@@ -965,12 +964,12 @@ class DSDT {
     return outputPath;
   }
 
-  /// 获取唯一的填充字符串
-  /// [currentHex] : 当前的十六进制数据行内容
-  /// [index] : 当前所在行的索引
-  /// [direction] : 搜索方向（true 表示向前，false 表示向后, null 表示双向）
-  /// [instance] : 当前是该对象的第几个实例（可选）
-  /// [table] : 提供的 ACPI 表，可选
+  /// Get unique padding string
+  /// [currentHex]: Current hex line content
+  /// [index]: Current line index
+  /// [direction]: Search direction (true=forward, false=backward, null=bidirectional)
+  /// [instance]: Instance index (optional)
+  /// [table]: ACPI table (optional)
   (String, String) getUniquePad({
     required String currentHex,
     required int index,
@@ -978,10 +977,10 @@ class DSDT {
     int instance = 0,
     Map<String, dynamic>? table,
   }) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
     if (table == null) {
-      throw Exception(l10nGlobal.autoGen5742);
+      throw Exception("No valid ACPI table provided!");
     }
 
     int startIndex = index;
@@ -990,42 +989,42 @@ class DSDT {
     int lastIndex = result.$2;
 
     if (lastIndex == -1) {
-      throw Exception("未找到从 $index 这个位置开始的十六进制数据!");
+      throw Exception("No hex data found starting at index $index!");
     }
     String firstLine = line;
 
-    /// 假设 currentHex 至少有 1 字节的数据存在于 index 位置，如果还未找到完整数据
-    /// 则至少需要加载 len(current_hex) - 2 长度的数据。
+    /// Assume currentHex has at least 1 byte at index;
+    /// load additional data as required.
     while (true) {
       if (line.contains(currentHex) ||
           line.length >= firstLine.length + currentHex.length) {
-        break; // 已达到上限
+        break; // Upper limit reached
       }
       var newResult = findNextHex(index: lastIndex, table: table);
       String newLine = newResult.$1;
       lastIndex = newResult.$2;
       if (lastIndex == -1) {
-        throw Exception(l10nGlobal.autoGen5743);
+        throw Exception("Hex data to locate was not found!");
       }
       line += newLine;
     }
 
     if (!line.contains(currentHex)) {
-      throw Exception("未在索引 $startIndex-$lastIndex 范围内找到 $currentHex !");
+      throw Exception("$currentHex not found in range $startIndex-$lastIndex!");
     }
 
     String padl = "";
     String padr = "";
     List<String> parts = line.split(currentHex);
     if (instance >= parts.length - 1) {
-      throw Exception("实例 $instance 超出范围!");
+      throw Exception("Instance $instance out of range!");
     }
 
     String linel = parts.sublist(0, instance + 1).join(currentHex);
     String liner = parts.sublist(instance + 1).join(currentHex);
 
     while (true) {
-      // 检查十六进制字符串是否唯一
+      // Check if hex string is unique
       var checkBytes = util.getHexBytes(padl + currentHex + padr);
       if (util.containsSublist(table["raw"], checkBytes, 1)) {
         break;
@@ -1033,14 +1032,14 @@ class DSDT {
 
       if (direction == true ||
           (direction == null && padr.length <= padl.length)) {
-        // 检查前向字节
+        // Check forward bytes
         if (liner.isEmpty) {
-          // 需要更多数据
+          // Need more data
           var nextResult = findNextHex(index: lastIndex, table: table);
           liner = nextResult.$1;
           lastIndex = nextResult.$3;
           if (lastIndex == -1) {
-            throw Exception(l10nGlobal.autoGen5743);
+            throw Exception("Hex data to locate was not found!");
           }
         }
         padr += liner.substring(0, 2);
@@ -1050,15 +1049,15 @@ class DSDT {
 
       if (direction == false ||
           (direction == null && padl.length <= padr.length)) {
-        // 检查后向字节
+        // Check backward bytes
         if (linel.isEmpty) {
-          // 需要更多数据
+          // Need more data
           var prevResult = findPreviousHex(index: startIndex, table: table);
           linel = prevResult.$1;
           startIndex = prevResult.$2;
           var endIndex = prevResult.$3;
           if (endIndex == -1) {
-            throw Exception(l10nGlobal.autoGen5743);
+            throw Exception("Hex data to locate was not found!");
           }
         }
         padl = linel.substring(linel.length - 2) + padl;
@@ -1071,20 +1070,20 @@ class DSDT {
     return (padl, padr);
   }
 
-  /// 获取最短的唯一填充标识（Pad），用于在 ACPI 表中唯一标识某个对象的位置
-  /// [currentHex] : 当前的十六进制数据行内容
-  /// [index] : 当前所在行的索引
-  /// [instance] : 当前是该对象的第几个实例（可选）
-  /// [table] : 提供的 ACPI 表，可选
+  /// Get shortest unique padding identifier (Pad) to uniquely locate object in ACPI table
+  /// [currentHex]: Current hex line content
+  /// [index]: Current line index
+  /// [instance]: Instance index (optional)
+  /// [table]: ACPI table (optional)
   (String, String) getShortestUniquePad({
     required String currentHex,
     required int index,
     int instance = 0,
     Map<String, dynamic>? table,
   }) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
-    // 没有有效的 table，返回 null
+    // No valid table, return null
     if (table == null) {
       return ("", "");
     }
@@ -1094,7 +1093,7 @@ class DSDT {
     (String, String)? midPad;
 
     try {
-      // 尝试获取从左侧扫描得到的唯一 Pad
+      // Try getting unique Pad scanned from left
       leftPad = getUniquePad(
         currentHex: currentHex,
         index: index,
@@ -1106,7 +1105,7 @@ class DSDT {
       leftPad = null;
     }
     try {
-      // 尝试获取从右侧扫描得到的唯一 Pad
+      // Try getting unique Pad scanned from right
       rightPad = getUniquePad(
         currentHex: currentHex,
         index: index,
@@ -1118,7 +1117,7 @@ class DSDT {
       rightPad = null;
     }
     try {
-      // 尝试获取从当前位置中间范围扫描得到的唯一 Pad
+      // Try getting unique Pad scanned from middle
       midPad = getUniquePad(
         currentHex: currentHex,
         index: index,
@@ -1129,16 +1128,16 @@ class DSDT {
     } catch (e) {
       midPad = null;
     }
-    // 三个方向都无法获取唯一 Pad，则抛出异常
+    // If all directions fail, throw exception
     if (leftPad == null && rightPad == null && midPad == null) {
-      throw Exception(l10nGlobal.autoGen5744);
+      throw Exception("No unique pad identifier found!");
     }
 
-    // 三个方向中至少有一个成功获取的 Pad
-    // 比较长度，选出最短的唯一 Pad（以两个字符串拼接后的长度为准）
+    // At least one direction succeeded
+    // Compare lengths and select shortest unique Pad
     (String, String)? minPad;
     for (var x in [leftPad, rightPad, midPad]) {
-      if (x == null) continue; // 跳过无效项
+      if (x == null) continue; // Skip invalid items
       if (minPad == null ||
           (x.$1 + x.$2).length < (minPad.$1 + minPad.$2).length) {
         minPad = x;
@@ -1148,10 +1147,10 @@ class DSDT {
     return minPad ?? ("", "");
   }
 
-  /// 获取某个设备的完整 Scope（设备体内的所有行）
-  /// [devicePath] 设备路径，如 "_SB.PC00.XHCI" 或简单设备名 "XHCI"
-  /// [table] ACPI 表,可选
-  /// [stripComments] 是否去掉注释（默认 true）
+  /// Get full scope of a device (all lines within device body)
+  /// [devicePath]: Device path, e.g. '_SB.PC00.XHCI' or simple name 'XHCI'
+  /// [table]: ACPI table (optional)
+  /// [stripComments]: Whether to strip comments (default true)
   List<String> getScopeOfDevice({
     required String devicePath,
     Map<String, dynamic>? table,
@@ -1159,7 +1158,7 @@ class DSDT {
   }) {
     table ??= getDsdt();
     if (table?["lines"] == null) {
-      Log(l10nGlobal.autoGen5745);
+      Log("=> getScopeOfDevice: Invalid table parameter");
       return <String>[];
     }
 
@@ -1170,12 +1169,12 @@ class DSDT {
       caseSensitive: false,
     );
 
-    // 1) 如果传入的是完整路径（包含点），尝试更精确地匹配：通过查找与该设备名对应的 _ADR / _HID / _UID 等定义来确定正确的 Device 定位行索引
+    // 1) If full path (contains dots), match more precisely using _ADR / _HID / _UID definitions
     int? foundIndex;
 
     if (devicePath.contains('.')) {
       try {
-        // 优先尝试通过已有的路径索引查找
+        // Prefer lookup via existing path indices
         final adrPaths = getPathOfType(
           objType: "Name",
           obj: "_ADR",
@@ -1189,9 +1188,9 @@ class DSDT {
 
           final parent = path.substring(0, path.length - 4);
           if (parent.toLowerCase() == devicePath.toLowerCase()) {
-            // 使用该 _ADR 所在行作为设备附近定位点，向上回溯寻找 Device (...) 行
+            // Use _ADR line as anchor, backtrack upwards to find Device (...) line
             final adrLineIndex = p[1] as int;
-            // 向上回溯 0..20 行寻找 Device (NAME)
+            // Backtrack 0..20 lines looking for Device (NAME)
             for (int i = adrLineIndex; i >= 0 && i >= adrLineIndex - 40; i--) {
               if (deviceLineRegex.hasMatch(lines[i])) {
                 foundIndex = i;
@@ -1202,16 +1201,16 @@ class DSDT {
           }
         }
       } catch (_) {
-        // 忽略错误，走后备方案
+        // Ignore error, use fallback
       }
     }
 
-    // 2) 如果上面没有定位到，使用简单的 Device (<NAME>) 全表查找（找到第一个匹配项）
+    // 2) If not located above, search for Device (<NAME>) across table
     if (foundIndex == null) {
       for (int i = 0; i < lines.length; i++) {
         if (deviceLineRegex.hasMatch(lines[i])) {
-          // 为尽量减少误判，检查该 Device 所在 Scope 中是否包含 deviceName 的 _ADR 或者常见 Name
-          // 先尝试提取该 Scope（用 d.getScope 若可用）
+          // Check if Device scope contains _ADR or matching Name to reduce false positives
+          // Extract scope first
           try {
             final scopeLines = getScope(
               startingIndex: i,
@@ -1219,23 +1218,23 @@ class DSDT {
               table: table,
             );
             final scopeText = scopeLines.join("\n");
-            // 若传入的是完整路径，优先要求 scope 包含至少一个与该路径最后部分有关的标识（比如 Name (_ADR) 或者 deviceName 本身）
+            // If full path, require scope to contain identifier matching last path segment
             if (devicePath.contains('.') == false ||
                 scopeText.toLowerCase().contains(deviceName.toLowerCase()) ||
                 scopeText.toLowerCase().contains("_adr")) {
               foundIndex = i;
               break;
             } else {
-              // 如果给的是完整路径，检查 scope 中是否有匹配 _ADR 对应的地址行
+              // If full path, check for matching _ADR address line in scope
               if (devicePath.contains('.')) {
-                // 尝试检查 scope 是否包含 devicePath 的一些线索（例如该 table 中的路径存在）
-                // 省略复杂验证，仍可使用此 scope
+                // Check if scope contains devicePath clues
+                // Skip complex validation, scope still usable
                 foundIndex = i;
                 break;
               }
             }
           } catch (_) {
-            // 出错则仍可接受此行作为候选
+            // On error, accept line as candidate
             foundIndex = i;
             break;
           }
@@ -1244,11 +1243,11 @@ class DSDT {
     }
 
     if (foundIndex == null) {
-      Log("=> 未在表中找到 Device ($deviceName) 的定义（devicePath=$devicePath）");
+      Log("=> Device ($deviceName) definition not found in table (devicePath=$devicePath)");
       return <String>[];
     }
 
-    // 3) 调用 d.getScope 提取完整 Scope
+    // 3) Call d.getScope to extract full scope
     try {
       final scopeLines = getScope(
         startingIndex: foundIndex,
@@ -1256,71 +1255,71 @@ class DSDT {
         table: table,
       );
       if (scopeLines.isEmpty) {
-        Log("=> 找到 Device ($deviceName) 行 (index=$foundIndex)，但无法提取 Scope");
+        Log("=> Found Device ($deviceName) line (index=$foundIndex), but failed to extract Scope");
         return <String>[];
       }
 
-      // 确保返回的 scope 属于期望的 device（若传入了完整路径，则尝试做简单验证）
+      // Ensure returned scope belongs to expected device
       if (devicePath.contains('.')) {
         final joined = scopeLines.join("\n").toLowerCase();
-        // 若 scope 中没有 ADR、HID 等线索，也可能不是目标实例，但为了兼容性,仍返回
+        // Return scope even if ADR/HID clues are missing, for compatibility
         if (!joined.contains(deviceName.toLowerCase())) {
           Log.warning(
-            "=> 提取的 Scope 似乎不包含设备名 $deviceName（devicePath=$devicePath），但仍返回内容。",
+            "=> Extracted scope does not seem to contain device name $deviceName (devicePath=$devicePath), returning content anyway.",
           );
         }
       }
 
       return scopeLines;
     } catch (e) {
-      Log.error("getScopeOfDevice: 在提取 scope 时发生错误: $e");
+      Log.error("getScopeOfDevice: Error extracting scope: $e");
       return <String>[];
     }
   }
 
-  /// 获取所有设备列表
-  /// [search] 搜索字符串
-  /// [types] 设备类型列表
-  /// [stripComments] 是否去掉注释
-  /// [table] ACPI 表 （可选）
+  /// Get all device lists
+  /// [search]: Search string
+  /// [types]: Device type list
+  /// [stripComments]: Whether to strip comments
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getDevices({
     String? search,
     List<String> types = const ["Device (", "Scope ("],
     bool stripComments = false,
     Map<String, dynamic>? table,
   }) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
-    // 如果 table 或 search 为空，返回空列表
+    // If table or search is empty, return empty list
     if (table == null || search == null) return [];
 
     List<List<dynamic>> devices = [];
     String? lastDevice;
     int deviceIndex = 0;
 
-    // 从 table 中获取 lines
+    // Get lines from table
     List<String> lines = List<String>.from(table["lines"] ?? []);
 
     for (int index = 0; index < lines.length; index++) {
       String line = lines[index];
 
-      // 如果是十六进制字符串，跳过
+      // If hex string, skip
       if (isHex(line)) {
         continue;
       }
 
-      // 如果需要去掉注释，调用 getLine 方法
+      // If comments should be stripped, call getLine
       if (stripComments) {
         line = util.getLine(line);
       }
 
-      // 如果行包含任何指定的类型，更新 lastDevice 和 deviceIndex
+      // If line contains any specified type, update lastDevice and deviceIndex
       if (types.any((type) => line.contains(type))) {
         lastDevice = line;
         deviceIndex = index;
       }
 
-      // 如果行包含 search 字符串，添加到 devices 列表
+      // If line contains search string, add to devices list
       if (line.contains(search)) {
         devices.add([lastDevice, deviceIndex, index]);
       }
@@ -1329,32 +1328,32 @@ class DSDT {
     return devices;
   }
 
-  /// 获取指定索引开始的作用域
-  /// [startingIndex] 起始索引
-  /// [addHex] 是否添加十六进制字符串
-  /// [stripComments] 是否去掉注释
-  /// [table] ACPI 表 （可选）
+  /// Get scope starting from specified index
+  /// [startingIndex]: Starting index
+  /// [addHex]: Whether to add hex string
+  /// [stripComments]: Whether to strip comments
+  /// [table]: ACPI table (optional)
   List<String> getScope({
     int startingIndex = 0,
     bool addHex = false,
     bool stripComments = false,
     Map<String, dynamic>? table,
   }) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
-    // 如果 table 为空，返回空列表
+    // If table is empty, return empty list
     if (table == null) return [];
 
     List<String> scope = [];
     List<String> lines = List<String>.from(
       table["lines"] ?? [],
-    ); // 从 table 中获取 lines
+    ); // Get lines from table
     int? brackets;
 
     for (int i = startingIndex; i < lines.length; i++) {
       String line = lines[i];
 
-      // 如果是十六进制字符串
+      // If hex string
       if (isHex(line)) {
         if (addHex) {
           scope.add(line);
@@ -1362,15 +1361,15 @@ class DSDT {
         continue;
       }
 
-      // 如果需要去掉注释
+      // If stripping comments
       if (stripComments) {
         line = util.getLine(line);
       }
 
-      // 添加当前行到 scope 中
+      // Add current line to scope
       scope.add(line);
 
-      // 计算括号数量，标识当前作用域
+      // Count brackets to track scope level
       if (brackets == null) {
         if (line.contains("{")) {
           brackets = line.split("{").length - 1;
@@ -1381,7 +1380,7 @@ class DSDT {
       brackets =
           brackets + line.split("{").length - 1 - line.split("}").length + 1;
 
-      // 如果括号数量小于等于0，表示已经退出了作用域
+      // If bracket count <= 0, scope has ended
       if (brackets <= 0) {
         return scope;
       }
@@ -1390,30 +1389,30 @@ class DSDT {
     return scope;
   }
 
-  /// 获取所有作用域列表
-  /// [table] ACPI 表 （可选）
+  /// Get all scope lists
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getScopes({Map<String, dynamic>? table}) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
     if (table == null) return [];
 
     List<List<dynamic>> scopes = [];
-    // 从 table 中获取 lines
+    // Get lines from table
     List<String> lines = List<String>.from(table["lines"] ?? []);
 
     for (int index = 0; index < lines.length; index++) {
       String line = lines[index];
 
-      // 如果是十六进制字符串，跳过
+      // If hex string, skip
       if (isHex(line)) continue;
 
-      // 检查是否包含特定字符串
+      // Check if line contains target string
       if (line.contains("Processor (") ||
           line.contains("Scope (") ||
           line.contains("Device (") ||
           line.contains("Method (") ||
           line.contains("Name (")) {
-        // 添加包含匹配项的行和其索引
+        // Add matching line and its index
         scopes.add([line, index]);
       }
     }
@@ -1421,34 +1420,34 @@ class DSDT {
     return scopes;
   }
 
-  /// 获取 ACPI 表中的所有路径信息（如 Device、Processor、Method 等定义的位置和类型）
+  /// Get all path information in ACPI table (positions and types for Device, Processor, Method, etc.)
   /// group("name") = match.group(2)
   /// group("type") = match.group(1)
-  /// [table] ACPI 表 （可选）
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getPaths({Map<String, dynamic>? table}) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    // If table not provided, get DSDT or unique table
     table ??= getDsdt();
     if (table == null) return [];
 
-    List<List<dynamic>> pathList = []; // 最终返回的路径列表
-    List<List<dynamic>> path0 = []; // 当前正在处理的路径列表
-    int brackets = 0; // 用于追踪大括号层级
+    List<List<dynamic>> pathList = []; // Final return path list
+    List<List<dynamic>> path0 = []; // Currently processing path list
+    int brackets = 0; // Track brace level
 
     var lines = table['lines'] ?? [];
     for (int i = 0; i < lines.length; i++) {
       String line = lines[i];
 
       if (isHex(line)) {
-        // 跳过十六进制内容
+        // Skip hex content
         continue;
       }
 
       line = util.getLine(line);
-      // 更新当前括号嵌套层级（{ +1，} -1）
+      // Update brace nesting level ({ +1, } -1)
       brackets += line.split("{").length - line.split("}").length;
 
       while (path0.isNotEmpty) {
-        // 如果当前路径嵌套层级高于或等于新的层级，则移除这些路径
+        // Remove paths if nesting level is higher or equal to new level
         if (path0.last.last >= brackets) {
           path0.removeLast();
         } else {
@@ -1458,15 +1457,15 @@ class DSDT {
 
       var match = typeMatch.firstMatch(line);
       if (match != null) {
-        // 添加新的路径条目，并按需保存完整路径
+        // Add new path entry and save full path as needed
         path0.add([match.group(2), brackets]);
 
         if (match.group(1) == "Scope") {
-          // Scope 类型仅表示作用域，不计入路径列表
+          // Scope type only represents scope, not included in path list
           continue;
         }
 
-        // 构建完整路径，仅包含非 Scope 且不是完全限定名（如以 \ 开头） 的路径
+        // Build full path (excluding Scope and fully qualified names)
         List<String> path = [];
         for (var p in path0.reversed) {
           path.add(p[0]);
@@ -1479,51 +1478,51 @@ class DSDT {
               p[0].startsWith("_SB_.") ||
               p[0].startsWith("_PR.") ||
               p[0].startsWith("_PR_.")) {
-            // 如果路径已是全限定路径，则停止向上拼接
+            // If path is fully qualified, stop upward concatenation
             break;
           }
         }
 
         path = path.reversed.toList();
-        // 标准化路径格式，如果以 "\" 开头重复了就去掉
+        // Normalize path format, remove duplicate leading backslashes
         if (path.isNotEmpty && path[0] == "\\") path.removeAt(0);
 
-        // 处理 ACPI 中的 ^（caret）向上跳级表示法
+        // Handle ACPI caret (^) upward level traversal
         if (path.any((x) => x.contains("^"))) {
           List<String> newPath = [];
           for (var x in path) {
             int caretCount = x.split("^").length - 1;
             if (caretCount > 0) {
-              // 从路径中移除对应级数的上层路径
+              // Remove corresponding upper path levels
               final start = (newPath.length - caretCount).clamp(
                 0,
                 newPath.length,
               );
               newPath.removeRange(start, newPath.length);
             }
-            // 添加去掉 ^ 后的路径元素
+            // Add path element with carets stripped
             newPath.add(x.replaceAll("^", ""));
           }
           path = newPath;
         }
 
         if (path.isEmpty) continue;
-        // 构造最终路径字符串
+        // Construct final path string
         String pathStr = path.join(".");
         pathStr = pathStr[0] != "\\" ? "\\$pathStr" : pathStr;
-        // 添加到最终结果中：[路径字符串, 行号, 类型]
+        // Add to final result: [pathString, lineNumber, type]
         pathList.add([pathStr, i, match.group(1)]);
       }
     }
 
-    // 按路径字符串排序后返回
+    // Sort by path string and return
     pathList.sort((a, b) => a[0].compareTo(b[0]));
     return pathList;
   }
 
-  /// 获取 Device 类型的路径
-  /// [obj] Device 名称
-  /// [table] ACPI 表 （可选）
+  /// Get Device type paths
+  /// [obj]: Device name
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getDevicePaths({
     String obj = "HPET",
     Map<String, dynamic>? table,
@@ -1531,9 +1530,9 @@ class DSDT {
     return getPathOfType(objType: "Device", obj: obj, table: table);
   }
 
-  /// 获取 Method 类型的路径
-  /// [obj] Method 名称
-  /// [table] ACPI 表 （可选）
+  /// Get Method type paths
+  /// [obj]: Method name
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getMethodPaths({
     String obj = "_STA",
     Map<String, dynamic>? table,
@@ -1541,9 +1540,9 @@ class DSDT {
     return getPathOfType(objType: "Method", obj: obj, table: table);
   }
 
-  /// 获取 Name 类型的路径
-  /// [obj] Name 名称
-  /// [table] ACPI 表 （可选）
+  /// Get Name type paths
+  /// [obj]: Name
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getNamePaths({
     String obj = "CPU0",
     Map<String, dynamic>? table,
@@ -1551,9 +1550,9 @@ class DSDT {
     return getPathOfType(objType: "Name", obj: obj, table: table);
   }
 
-  /// 获取 Processor 类型的路径
-  /// [objType] 对象类型
-  /// [table] ACPI 表 （可选）
+  /// Get Processor type paths
+  /// [objType]: Object type
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getProcessorPaths({
     String objType = "Processor",
     Map<String, dynamic>? table,
@@ -1561,9 +1560,9 @@ class DSDT {
     return getPathOfType(objType: objType, obj: "", table: table);
   }
 
-  /// 获取 Method 类型信息
-  /// [obj] Method 名称
-  /// [table] ACPI 表 （可选）
+  /// Get Method type info
+  /// [obj]: Method name
+  /// [table]: ACPI table (optional)
   List<dynamic> getMethodInfo({
     String obj = "_STA",
     String objType = "Method",
@@ -1574,7 +1573,7 @@ class DSDT {
 
     List<dynamic> infos = [];
 
-    // 标准化方法名
+    // Normalize method name
     obj = obj
         .split(".")
         .map((x) => x.replaceAll(RegExp(r"_$"), "").toUpperCase())
@@ -1582,20 +1581,20 @@ class DSDT {
 
     objType = objType.toLowerCase();
 
-    // 遍历所有 scope 行
+    // Iterate through all scope lines
     for (var scope in table['scopes'] ?? []) {
       if (scope.length < 2) continue;
 
       String rawLine = scope[0].toString().trim();
       final lineNum = scope[1];
 
-      // “Method” 开头才处理
+      // Process only if starting with Method
       if (!rawLine.startsWith("Method")) continue;
 
-      // 去掉注释： 双斜线 // ... 之后全部删除
+      // Strip comments after double slash
       rawLine = rawLine.replaceAll(RegExp(r'//.*$'), "").trim();
 
-      // 匹配方法定义
+      // Match method definition
       final match = RegExp(
         r'Method\s*\(\s*([A-Za-z0-9_\.\\]+)\s*,\s*(\d+)\s*,\s*([A-Za-z]+)\s*\)',
         caseSensitive: false,
@@ -1607,39 +1606,39 @@ class DSDT {
       int argCount = int.parse(match.group(2)!);
       String flag = match.group(3)!.trim();
 
-      // 最后一级方法名，例如 _PTS
+      // Last segment of method name, e.g. _PTS
       String methodName =
           fullName.split(".").last.replaceAll("\\", "").toUpperCase();
 
-      // 不匹配跳过
+      // Skip if not matched
       if (methodName != obj) continue;
 
-      // 最终方法定义（去注释、去前后空格）
+      // Final method definition (trimmed, stripped)
       final cleanDefinition = "Method ($fullName, $argCount, $flag)";
 
-      // 返回结构: [定义, 行号, 方法名, 参数数量, 属性]
+      // Return structure: [definition, lineIndex, methodName, argCount, attributes]
       infos.addAll([cleanDefinition, lineNum, methodName, argCount, flag]);
     }
 
     return infos;
   }
 
-  /// 获取指定类型和名称的路径（如查找某个 Device 类型下名为 HPET 的路径）
-  /// [objType] 对象类型
-  /// [obj] 对象名称
-  /// [table] ACPI 表 （可选）
+  /// Get paths with specified type and name (e.g. finding Device named HPET)
+  /// [objType]: Object type
+  /// [obj]: Object name
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getPathOfType({
     String objType = "Device",
     String obj = "HPET",
     Map<String, dynamic>? table,
   }) {
-    // 如果未传入表，则尝试获取 DSDT 或唯一表
+    // If table not passed, get DSDT or unique table
     table ??= getDsdt();
     if (table == null) return [];
 
     List<List<dynamic>> paths = [];
 
-    // 移除末尾下划线并统一大小写（将对象名标准化）
+    // Strip trailing underscores and normalize case
     obj = obj
         .split(".")
         .map((x) => x.replaceAll(RegExp(r"_$"), "").toUpperCase())
@@ -1647,31 +1646,31 @@ class DSDT {
 
     objType = objType.isNotEmpty ? objType.toLowerCase() : objType;
 
-    // 遍历所有路径
+    // Iterate through all paths
     for (var path in table['paths'] ?? []) {
-      // 对路径中的设备名做同样的标准化处理：去除末尾下划线并转大写
+      // Normalize device names in path: strip trailing underscores and uppercase
       String pathCheck = path[0]
           .split(".")
           .map((x) => x.replaceAll(RegExp(r"_$"), "").toUpperCase())
           .join(".");
 
-      // 类型不匹配或设备名不匹配则跳过
+      // Skip if type or device name does not match
       if ((objType.isNotEmpty && objType != path[2].toLowerCase()) ||
           !pathCheck.endsWith(obj)) {
-        // 不匹配则跳过
+        // Skip if no match
         continue;
       }
-      // 匹配成功，添加到结果列表
+      // Match succeeded, add to result list
       paths.add(path);
     }
 
-    // 对路径进行排序后返回
+    // Sort paths and return
     paths.sort((a, b) => a.toString().compareTo(b.toString()));
     return paths;
   }
 
-  /// 提取 idTypes 中的字符串类型并返回
-  /// [idTypes] ID 类型列表
+  /// Extract string types from idTypes and return
+  /// [idTypes]: ID type list
   List<String> _extractIdTypes(Object? idTypes) {
     final result = <String>[];
 
@@ -1695,10 +1694,10 @@ class DSDT {
     return result;
   }
 
-  /// 获取包含指定 ID 的设备路径列表
-  /// [id] ID 字符串
-  /// [idTypes] ID 类型列表
-  /// [table] ACPI 表 （可选）
+  /// Get device paths containing specified ID
+  /// [id]: ID string
+  /// [idTypes]: ID type list
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getDevicePathsWithId({
     String id = "PNP0A03",
     Object? idTypes = const ("_HID", "_CID"),
@@ -1728,7 +1727,7 @@ class DSDT {
           }
         }
       } catch (e) {
-        Log.error('getDevicePathsWithId方法处理路径发生错误 $p: $e');
+        Log.error('getDevicePathsWithId error processing path $p: $e');
         continue;
       }
     }
@@ -1742,9 +1741,9 @@ class DSDT {
     return devices;
   }
 
-  /// 获取包含指定 CID 的设备路径
-  /// [cid] CID 字符串
-  /// [table] ACPI 表 （可选）
+  /// Get device paths containing specified CID
+  /// [cid]: CID string
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getDevicePathsWithCid({
     String cid = "PNP0A03",
     Map<String, dynamic>? table,
@@ -1752,9 +1751,9 @@ class DSDT {
     return getDevicePathsWithId(id: cid, idTypes: ("_CID",), table: table);
   }
 
-  /// 获取包含指定 HID 的设备路径列表
-  /// [hid] HID 字符串
-  /// [table] ACPI 表 （可选）
+  /// Get device paths containing specified HID
+  /// [hid]: HID string
+  /// [table]: ACPI table (optional)
   List<List<dynamic>> getDevicePathsWithHid({
     String hid = "ACPI000E",
     Map<String, dynamic>? table,

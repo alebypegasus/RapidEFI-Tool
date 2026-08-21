@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/screen_retriever_macos-primary.dia",
+    "emit-module-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/screen_retriever_macos-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/screen_retriever_macos-primary-emit-module.dia",
+    "pch" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/screen_retriever_macos-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/screen_retriever_macos-primary.swiftdeps"
+  },
+  "/Users/alebypegasus/.pub-cache/hosted/pub.dev/screen_retriever_macos-0.2.2/macos/screen_retriever_macos/Classes/ScreenRetrieverMacosPlugin.swift" : {
+    "const-values" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/ScreenRetrieverMacosPlugin.swiftconstvalues",
+    "dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/ScreenRetrieverMacosPlugin.d",
+    "diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/ScreenRetrieverMacosPlugin.dia",
+    "index-unit-output-path" : "/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/ScreenRetrieverMacosPlugin.o",
+    "llvm-bc" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/ScreenRetrieverMacosPlugin.bc",
+    "object" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/ScreenRetrieverMacosPlugin.o",
+    "swift-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/ScreenRetrieverMacosPlugin.swiftdeps",
+    "swiftmodule" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/screen_retriever_macos.build/Debug/screen_retriever_macos.build/Objects-normal/x86_64/ScreenRetrieverMacosPlugin~partial.swiftmodule"
+  }
+}

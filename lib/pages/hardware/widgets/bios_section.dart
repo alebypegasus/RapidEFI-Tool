@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 
 class BiosSection extends StatelessWidget {
   final Map<String, dynamic> rawInfo;
@@ -22,16 +21,16 @@ class BiosSection extends StatelessWidget {
 
     final items = <Widget>[
       if (secureBoot != null)
-        _status(AppLocalizations.of(context)!.hwSecureBoot(secureBoot ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled), good: !secureBoot),
-      if (csm != null) _status(AppLocalizations.of(context)!.hwCSM(csm ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled), good: !csm),
+        _status('Secure Boot: ${secureBoot ? 'Enabled' : 'Disabled'}', good: !secureBoot),
+      if (csm != null) _status('CSM: ${csm ? 'Enabled' : 'Disabled'}', good: !csm),
       if (resizableBar != null)
-        _status(AppLocalizations.of(context)!.hwResizableBar(resizableBar ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled),
+        _status('Resizable BAR: ${resizableBar ? 'Enabled' : 'Disabled'}',
             good: !resizableBar),
       if (above4g != null)
-        _status(AppLocalizations.of(context)!.hwAbove4G(above4g ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled), good: above4g),
+        _status('Above 4G Decoding: ${above4g ? 'Enabled' : 'Disabled'}', good: above4g),
       ahci == null
-          ? _unknown(AppLocalizations.of(context)!.hwAHCIUnknown)
-          : _status(AppLocalizations.of(context)!.hwAHCI(ahci ? AppLocalizations.of(context)!.hwEnabled : AppLocalizations.of(context)!.hwDisabled), good: ahci),
+          ? _unknown('AHCI: Unknown')
+          : _status('AHCI: ${ahci ? 'Enabled' : 'Disabled'}', good: ahci),
     ];
     if (items.isEmpty) return const SizedBox.shrink();
 
@@ -45,20 +44,28 @@ class BiosSection extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
           width: double.infinity,
-          child: Text(AppLocalizations.of(context)!.hwCurrentBiosSettings,
+          child: Text('Current BIOS Settings',
               textAlign: TextAlign.center,
               style: TextStyle(color: colors.textColor, fontSize: 14)),
         ),
         const SizedBox(height: 8),
         Wrap(spacing: 30, runSpacing: 6, children: items),
         const SizedBox(height: 8),
-        Text(AppLocalizations.of(context)!.hwBiosNote,
+        Text(_biosNote,
             style:
                 TextStyle(fontSize: 12, height: 1.45, color: colors.textColor)),
       ]),
     );
   }
 
+  static const _biosNote = 'BIOS Configuration Notes:\n'
+      '1. Red text indicates settings that should be changed in BIOS to match recommended states (blue text).\n'
+      '2. Blue text indicates optimal settings for macOS.\n\n'
+      'Secure Boot: Must be DISABLED (prevents booting unsigned bootloaders like OpenCore).\n'
+      'CSM (Compatibility Support Module): Generally DISABLED (except some Intel 4th/5th gen laptop iGPUs, X99, or RX 460).\n'
+      'Resizable BAR: Recommended DISABLED in BIOS (if enabled, ensure ResizeAppleGpuBars is set to 0 in Booter -> Quirks).\n'
+      'Above 4G Decoding: Recommended ENABLED in BIOS. If not available in BIOS, use npci=0x2000 or npci=0x3000 boot-arg. (Choose either Above 4G in BIOS OR npci boot-arg, not both!)\n'
+      'AHCI (SATA Mode): Must be ENABLED (required for macOS to recognize SATA storage drives).';
 
   Widget _status(String text, {required bool good}) {
     return SelectableText(text,

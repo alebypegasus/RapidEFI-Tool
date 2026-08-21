@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rapidefi/pages/hardware/widgets/gpu_section.dart';
@@ -22,7 +21,7 @@ void main() {
           'GPU': {
             'Intel(R) HD Graphics': {
               'Device ID': '8086-016A',
-              'Device Type': l10nGlobal.autoGen5060,
+              'Device Type': 'Integrated Graphics',
             },
           },
         }),
@@ -44,7 +43,7 @@ void main() {
           'GPU': {
             'Original dGPU Name': {
               'Device ID': '1002-6981',
-              'Device Type': l10nGlobal.autoGen5061,
+              'Device Type': 'Discrete Graphics',
             },
           },
         }),
@@ -52,7 +51,7 @@ void main() {
     ));
 
     expect(find.textContaining('Original dGPU Name'), findsOneWidget);
-    expect(find.text('需要仿冒ID: 67FF'), findsOneWidget);
+    expect(find.text('Requires Spoof ID: 67FF'), findsOneWidget);
   });
 
   testWidgets('single supported GPU only shows compatible status',
@@ -66,20 +65,20 @@ void main() {
           'GPU': {
             'Radeon (TM) Pro WX 4100': {
               'Device ID': '1002-67E3',
-              'Device Type': l10nGlobal.autoGen5061,
+              'Device Type': 'Discrete Graphics',
             },
           },
         }),
       ),
     ));
 
-    expect(find.text(l10nGlobal.autoGen5000), findsOneWidget);
-    expect(find.textContaining(l10nGlobal.autoGen5015), findsNothing);
+    expect(find.text('Supported'), findsOneWidget);
+    expect(find.textContaining('Native support'), findsNothing);
   });
 
   testWidgets('multi GPU keeps NootedRed whitelist compatibility visible',
       (tester) async {
-    await tester.pumpWidget(const MaterialApp(
+    await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: GpuSection({
           'CPU': [
@@ -108,7 +107,7 @@ void main() {
     ));
 
     expect(find.textContaining('NootedRed'), findsOneWidget);
-    expect(find.textContaining('没有直连内屏'), findsNothing);
+    expect(find.textContaining('No direct internal display output'), findsNothing);
   });
 
   testWidgets('laptop multi GPU marks GPU without internal display unsupported',
@@ -125,11 +124,11 @@ void main() {
           'GPU': {
             'Intel UHD Graphics 630': {
               'Device ID': '8086-3E92',
-              'Device Type': l10nGlobal.autoGen5060,
+              'Device Type': 'Integrated Graphics',
             },
             'Radeon RX 580': {
               'Device ID': '1002-67DF',
-              'Device Type': l10nGlobal.autoGen5061,
+              'Device Type': 'Discrete Graphics',
             },
           },
           'Monitor': {
@@ -142,7 +141,7 @@ void main() {
     ));
 
     expect(find.textContaining('Radeon RX 580'), findsWidgets);
-    expect(find.textContaining('不兼容\n没有直连内屏'), findsOneWidget);
+    expect(find.textContaining('Unsupported\nNo direct internal display connection'), findsOneWidget);
   });
 
   testWidgets('desktop multi GPU does not apply internal display rule',
@@ -159,11 +158,11 @@ void main() {
           'GPU': {
             'GeForce RTX 3060 Ti GDDR6X': {
               'Device ID': '10DE-24C9',
-              'Device Type': l10nGlobal.autoGen5061,
+              'Device Type': 'Discrete Graphics',
             },
             'Radeon HD7750': {
               'Device ID': '10DE-104A',
-              'Device Type': l10nGlobal.autoGen5061,
+              'Device Type': 'Discrete Graphics',
             },
           },
           'Monitor': {
@@ -175,7 +174,7 @@ void main() {
       ),
     ));
 
-    expect(find.textContaining('没有直连内屏'), findsNothing);
+    expect(find.textContaining('No direct internal display output'), findsNothing);
   });
 
   testWidgets('compatibility panel GPU name matches hardware row name',
@@ -189,11 +188,11 @@ void main() {
           'GPU': {
             'Intel(R) HD Graphics Family': {
               'Device ID': '8086-0412',
-              'Device Type': l10nGlobal.autoGen5060,
+              'Device Type': 'Integrated Graphics',
             },
             'Radeon RX 560 Series': {
               'Device ID': '1002-67EF',
-              'Device Type': l10nGlobal.autoGen5061,
+              'Device Type': 'Discrete Graphics',
             },
           },
           'Monitor': {
@@ -221,11 +220,11 @@ void main() {
           'GPU': {
             'Intel UHD Graphics 630': {
               'Device ID': '8086-3E92',
-              'Device Type': l10nGlobal.autoGen5060,
+              'Device Type': 'Integrated Graphics',
             },
             'Radeon RX 580': {
               'Device ID': '1002-67DF',
-              'Device Type': l10nGlobal.autoGen5061,
+              'Device Type': 'Discrete Graphics',
             },
           },
           'Monitor': {
@@ -237,7 +236,7 @@ void main() {
       ),
     ));
 
-    expect(find.textContaining('没有直连内屏'), findsNothing);
+    expect(find.textContaining('No direct internal display output'), findsNothing);
   });
 
   testWidgets('single GPU with connected internal display keeps original logic',
@@ -251,7 +250,7 @@ void main() {
           'GPU': {
             'Intel UHD Graphics 630': {
               'Device ID': '8086-3E92',
-              'Device Type': l10nGlobal.autoGen5060,
+              'Device Type': 'Integrated Graphics',
             },
           },
           'Monitor': {
@@ -263,6 +262,6 @@ void main() {
       ),
     ));
 
-    expect(find.textContaining('没有直连内屏'), findsNothing);
+    expect(find.textContaining('No direct internal display output'), findsNothing);
   });
 }

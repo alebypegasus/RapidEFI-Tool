@@ -1,86 +1,83 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 //  custom_textfield.dart 
 //  Created by JeoJay127 
 //
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// 自定义十六进制输入框组件，支持暗黑模式、自定义样式、输入校验、格式限制等。
+/// Custom hex input component supporting dark mode, validation, format restrictions, etc.
 class CustomTextField<T> extends StatefulWidget {
-  /// 最小宽度
+  /// Minimum width
   final double minWidth;
 
-  /// 最大宽度
+  /// Maximum width
   final double maxWidth;
 
-  /// 输入框控制器
+  /// Input controller
   final TextEditingController controller;
 
-  /// 焦点控制器
+  /// Focus node
   final FocusNode focusNode;
 
-  /// 键盘类型（默认：文本）
+  /// Keyboard type (default: text)
   final TextInputType keyboardType;
 
-  /// 输入对齐方式（默认：居中）
+  /// Text alignment (default: left)
   final TextAlign textAlign;
 
-  /// 输入格式限制（如只能输入十六进制，长度限制等）
+  /// Input formatters (e.g. hex filtering, length limits)
   final List<TextInputFormatter> inputFormatters;
 
-  /// 文本样式
+  /// Text style
   final TextStyle? style;
 
-  /// 提示文本
+  /// Hint text
   final String? hintText;
 
-  /// 提示文本样式
+  /// Hint style
   final TextStyle? hintStyle;
 
-  /// 错误文本样式
+  /// Error style
   final TextStyle? errorStyle;
 
-  /// 错误文本内容（仅在校验不通过时显示）
+  /// Error text (shown on validation failure)
   final String? errorText;
 
-  /// 外部控制的错误文本。用于失焦校验等不希望实时 validator 接管的场景。
+  /// Force error text (overrides validation result)
   final String? forceErrorText;
 
-  /// 默认边框（未聚焦/未激活）
+  /// Default border (unfocused/unselected)
   final InputBorder? border;
   final InputBorder? enabledBorder;
   final InputBorder? focusedBorder;
   final InputBorder? errorBorder;
   final InputBorder? focusedErrorBorder;
 
-  /// 启用状态边框颜色 & 宽度
+  /// Enabled border color & width
   final Color? enabledBorderColor;
   final double? enabledBorderWidth;
 
-  /// 聚焦状态边框颜色 & 宽度
+  /// Focused border color & width
   final Color? focusedBorderColor;
   final double? focusedBorderWidth;
 
-  /// 错误状态边框颜色 & 宽度
+  /// Error border color & width
   final Color? errorBorderColor;
   final double? errorBorderWidth;
 
-  /// 聚焦+错误状态边框颜色 & 宽度
+  /// Focused error border color & width
   final Color? focusedErrorBorderColor;
   final double? focusedErrorBorderWidth;
 
-  /// 输入变化时触发校验逻辑
+  /// Validator triggered on change
   final bool Function(String value)? validator;
 
-  /// 输入变化时触发回调，支持传递附加参数
+  /// Change callback
   final void Function(String value, T? extra)? onChanged;
 
-  /// 校验失败时是否仍回调原始输入值。
-  ///
-  /// 默认保持历史行为：校验失败时回调空字符串。
+  /// Whether to emit invalid value to callback
   final bool emitInvalidValue;
 
-  /// 附加参数，供回调使用
+  /// Extra payload
   final T? extra;
 
   final bool enabled;
@@ -138,7 +135,7 @@ class CustomTextField<T> extends StatefulWidget {
 
 class _CustomTextFieldState<T> extends State<CustomTextField<T>> {
   String? _effectiveErrorText;
-  String get defaultErrorText => AppLocalizations.of(context)!.sharedInvalidInput;
+  final String defaultErrorText = 'Invalid input';
   late final VoidCallback _listener;
 
   @override
@@ -190,11 +187,11 @@ class _CustomTextFieldState<T> extends State<CustomTextField<T>> {
       inputFormatters: widget.inputFormatters,
       enabled: widget.enabled,
       maxLines: widget.maxLines,
-      style: widget.style ?? const TextStyle(fontSize: 11),
+      style: widget.style ?? TextStyle(fontSize: 11),
       decoration: InputDecoration(
         isDense: true,
         contentPadding:
-            widget.contentPadding ?? const EdgeInsets.symmetric(vertical: 12),
+            widget.contentPadding ?? EdgeInsets.symmetric(vertical: 12),
         hintText: widget.hintText,
         hintStyle:
             widget.hintStyle ??

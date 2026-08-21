@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/pages/shared/widgets/kext_choice_list.dart';
@@ -30,7 +29,7 @@ class _LaptopOtherState extends State<LaptopOther> {
       showBundleNameTips: true,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: AppLocalizations.of(context)!.manualLaptopOtherFixesTip,
+      subTitle: 'Other Fixes (Not recommended unless necessary)',
       labelBuilder: kextFunctionOrBundleLabel,
       onChanged: (List<KernelKext> value) {
         final picked = value.toList();

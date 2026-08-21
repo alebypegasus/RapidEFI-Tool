@@ -1,6 +1,6 @@
 import 'hardware_model_parsing.dart';
 
-/// 主板信息
+/// Motherboard info
 class MotherBoard {
   String? manufacturer;
   String? model;
@@ -8,10 +8,10 @@ class MotherBoard {
   String? product;
   String? serialNumber;
 
-  ///扩展信息
-  String? chipset; // 芯片组
+  /// Extended information
+  String? chipset; // Chipset
   String? deviceID;
-  String? platform; // 平台
+  String? platform; // Platform
 
   MotherBoard({
     this.manufacturer,

@@ -1,6 +1,6 @@
 import 'hardware_model_parsing.dart';
 
-/// 网卡信息
+/// Network adapter info
 class NetworkAdapter {
   String? busType;
   String? deviceID;

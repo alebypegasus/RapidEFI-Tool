@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'dart:io';
 
 import 'package:path/path.dart' as path;
@@ -45,7 +44,8 @@ class WinSsdtBuildService {
 
     Log('');
     Log(
-      '${l10nGlobal.autoGen5037}[${_selectedAmlNames(
+      'Custom SSDT list to generate: '
+      '[${_selectedAmlNames(
         selection,
         targetPlatformType,
         blockPlans,
@@ -71,15 +71,15 @@ class WinSsdtBuildService {
           ? sourceAcpiPath
           : await manager.dumpTables(ssdtWorkDir.path);
       if (loadSourcePath == null || loadSourcePath.isEmpty) {
-        return _useOriginalFallback(l10nGlobal.autoGen5038);
+        return _useOriginalFallback('Failed to extract ACPI tables');
       }
       if (sourceAcpiPath.isNotEmpty) {
-        Log('使用导入的 ACPI 表目录: $sourceAcpiPath');
+        Log('Using imported ACPI tables directory: $sourceAcpiPath');
       }
 
       final loadedPath = await manager.loadTables(loadSourcePath);
       if (loadedPath == null || loadedPath.isEmpty) {
-        return _useOriginalFallback(l10nGlobal.autoGen5039);
+        return _useOriginalFallback('Failed to load ACPI tables');
       }
 
       final rawDevs = await manager.ssdt.listIrqs();
@@ -138,7 +138,7 @@ class WinSsdtBuildService {
               .any((file) => file.path.toLowerCase().endsWith('.aml'));
       if (!hasPatchPlist || !hasAml) {
         return _useOriginalFallback(
-          l10nGlobal.autoGen5040,
+          'Custom SSDT generation output is incomplete',
         );
       }
 
@@ -151,10 +151,10 @@ class WinSsdtBuildService {
 
       return true;
     } catch (error, stackTrace) {
-      Log.error('定制 SSDT 失败: $error');
+      Log.error('Custom SSDT generation failed: $error');
       Log.error(stackTrace.toString());
       return _useOriginalFallback(
-        l10nGlobal.autoGen5041,
+        'An exception occurred during custom SSDT generation',
       );
     } finally {
       if (workDir != null && await workDir.exists()) {
@@ -162,7 +162,8 @@ class WinSsdtBuildService {
           await workDir.delete(recursive: true);
         } catch (_) {
           Log.warning(
-            '${l10nGlobal.autoGen5042}${path.basename(workDir.path)}',
+            'Failed to clean up custom SSDT temp directory: '
+            '${path.basename(workDir.path)}',
           );
         }
       }
@@ -242,11 +243,13 @@ class WinSsdtBuildService {
       );
       if (File(amlPath).existsSync()) {
         Log(
-          '${l10nGlobal.autoGen5043}已生成: ${path.basename(amlPath)}',
+          'GPU device ID spoof SSDT '
+          'generated: ${path.basename(amlPath)}',
         );
       } else {
         Log.warning(
-          '${l10nGlobal.autoGen5043}${l10nGlobal.autoGen5044}${target.name} ${target.deviceId}',
+          'Failed to generate GPU device ID spoof SSDT: '
+          '${target.name} ${target.deviceId}',
         );
       }
     }
@@ -282,7 +285,8 @@ class WinSsdtBuildService {
         );
         if (File(amlPath).existsSync()) {
           Log(
-            '${l10nGlobal.autoGen5045}已生成: ${path.basename(amlPath)}',
+            'ACPI device block SSDT '
+            'generated: ${path.basename(amlPath)}',
           );
           generated = true;
           break;
@@ -291,7 +295,8 @@ class WinSsdtBuildService {
 
       if (!generated) {
         Log.warning(
-          '${l10nGlobal.autoGen5045}${l10nGlobal.autoGen5044}${target.type} ${target.name} ${target.deviceId}',
+          'Failed to generate ACPI device block SSDT: '
+          '${target.type} ${target.name} ${target.deviceId}',
         );
       }
     }
@@ -314,10 +319,10 @@ class WinSsdtBuildService {
   }
 
   bool _useOriginalFallback(String reason) {
-    Log.warning('定制 SSDT 失败: $reason');
+    Log.warning('Custom SSDT generation failed: $reason');
     Log.warning(
-      l10nGlobal.autoGen5046 + 
-      l10nGlobal.autoGen5047,
+      'Skipped custom SSDT merge, '
+      'continuing with original SSDTs from current EFI as fallback.',
     );
     return true;
   }
@@ -340,7 +345,7 @@ class _GpuIdentityOverridePlan {
 
   Map<String, dynamic> get action => {
         'name': ACPITable.ssdtGPUSPOOF.name,
-        'remark': '$name 显卡设备ID仿冒',
+        'remark': '$name GPU Device ID Spoof',
         'extra': {
           'acpiPath': acpiPath,
           'deviceId': deviceId,
@@ -383,7 +388,9 @@ class _GpuIdentityOverridePlanner {
 
       if (!_isValidAcpiPath(acpiPath)) {
         Log.warning(
-          '${l10nGlobal.autoGen5048}${deviceDisplayName(entry.key, gpu)} $deviceId 缺少有效 ACPI Path',
+          'GPU device ID spoof skipped: '
+          '${deviceDisplayName(entry.key, gpu)} '
+          '$deviceId missing valid ACPI Path',
         );
         continue;
       }
@@ -409,8 +416,8 @@ class _GpuIdentityOverridePlanner {
     final type = safeStr(gpu['Device Type']).toLowerCase();
     if (type == 'integrated' ||
         type.contains('integrated') ||
-        type.contains(l10nGlobal.autoGen5019) ||
-        type.contains(l10nGlobal.autoGen5017)) {
+        type.contains('integrated') ||
+        type.contains('internal')) {
       return false;
     }
 

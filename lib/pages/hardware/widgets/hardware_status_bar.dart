@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 
 class HardwareStatusBar extends StatelessWidget {
@@ -28,20 +27,18 @@ class HardwareStatusBar extends StatelessWidget {
 
   String get _elapsedSecs => (elapsedMs / 1000).toStringAsFixed(1);
 
-  String _statusText(AppLocalizations l10n) {
+  String get _statusText {
     if (importedHardwarePath.isEmpty) return status;
     final reportName = path.basename(importedHardwarePath);
     final acpiName = importedAcpiTablesPath.isEmpty
-        ? l10n.noAcpiImported
+        ? 'No ACPI'
         : path.basename(importedAcpiTablesPath);
-    return '$reportName / $acpiName';
+    return 'Hardware: $reportName / $acpiName';
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final colors = hardwareThemeColors(context);
-    final statusText = _statusText(l10n);
     return Container(
       height: 30,
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -50,7 +47,7 @@ class HardwareStatusBar extends StatelessWidget {
         if (showProgressDetails || isLoading) ...[
           SizedBox(
             width: _statusWidth,
-            child: Text(statusText,
+            child: Text(_statusText,
                 style: TextStyle(fontSize: 11, color: colors.textColor),
                 maxLines: 1,
                 softWrap: false,
@@ -65,14 +62,14 @@ class HardwareStatusBar extends StatelessWidget {
           const SizedBox(width: 6),
           SizedBox(
             width: _elapsedWidth,
-            child: Text('${_elapsedSecs}s',
+            child: Text('Elapsed: ${_elapsedSecs}s',
                 style: TextStyle(fontSize: 11, color: colors.textColor)),
           ),
         ] else ...[
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 360),
             child: Text(
-              statusText,
+              _statusText,
               style: TextStyle(fontSize: 11, color: colors.textColor),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -106,20 +103,18 @@ class _Legend extends StatelessWidget {
   const _Legend();
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return RichText(
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      text: TextSpan(style: const TextStyle(fontSize: 11), children: [
+      text: const TextSpan(style: TextStyle(fontSize: 11), children: [
         TextSpan(
-            text: l10n.legendGreen,
-            style: const TextStyle(color: Color(0xFF4CAF50))),
-        const TextSpan(text: '   '),
-        TextSpan(text: l10n.legendYellow, style: const TextStyle(color: Color(0xFFFFB627))),
-        const TextSpan(text: '   '),
-        TextSpan(text: l10n.legendRed, style: const TextStyle(color: Color(0xFFD94B4B))),
+            text: 'Green: Fully Supported (macOS Tahoe 26)',
+            style: TextStyle(color: Color(0xFF4CAF50))),
+        TextSpan(text: '   '),
+        TextSpan(text: 'Yellow: Partially Supported', style: TextStyle(color: Color(0xFFFFB627))),
+        TextSpan(text: '   '),
+        TextSpan(text: 'Red: Incompatible', style: TextStyle(color: Color(0xFFD94B4B))),
       ]),
     );
   }
 }
-

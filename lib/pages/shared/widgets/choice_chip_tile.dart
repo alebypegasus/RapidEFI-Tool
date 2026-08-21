@@ -80,7 +80,7 @@ class ChoiceChipTile extends StatelessWidget {
                           TextStyle(
                             color: textColor,
                           ),
-                      softWrap: true, // 自动换行
+                      softWrap: true, // Auto-wrap
                     ),
                   ],
                 ),

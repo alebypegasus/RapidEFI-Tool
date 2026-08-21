@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 Map<String, dynamic> safeMap(dynamic value) {
   if (value is Map) {
     return value.map((key, value) => MapEntry(key.toString(), value));
@@ -43,8 +42,8 @@ bool isTruthy(dynamic value) {
       text == '1' ||
       text == 'on' ||
       text == 'yes' ||
-      text == l10nGlobal.autoGen5003 ||
-      text == l10nGlobal.autoGen5004;
+      text == 'enabled' ||
+      text == 'on';
 }
 
 bool? isTruthyOrNull(dynamic value) {
@@ -100,7 +99,7 @@ String networkAdapterType({
   String? name,
 }) {
   final normalizedName = safeStr(name).toLowerCase();
-  if (normalizedName.isEmpty) return l10nGlobal.autoGen5005;
+  if (normalizedName.isEmpty) return 'Unknown';
 
   if (normalizedName.contains('wi-fi') ||
       normalizedName.contains('802.11') ||
@@ -112,7 +111,7 @@ String networkAdapterType({
     return 'WiFi';
   }
 
-  return l10nGlobal.autoGen5006;
+  return 'Ethernet';
 }
 
 String deviceIdPart(String deviceId) {
@@ -152,12 +151,12 @@ String fmtDt(DateTime time) {
 // Capacity Format
 // ============================================================================
 //
-// 设计：
-// 1. 数字无单位时，默认按 bytes 处理。
-// 2. 硬盘展示用十进制 GB/TB/PB。
-// 3. 内存展示用二进制 GiB。
-// 4. 支持英文单位：B / KB / MB / GB / TB / PB。
-// 5. 支持二进制单位：KiB / MiB / GiB / TiB / PiB。
+// Design:
+// 1. When a number has no unit, it is treated as bytes by default.
+// 2. Storage displays in decimal GB/TB/PB.
+// 3. Memory displays in binary GiB.
+// 4. English units supported: B / KB / MB / GB / TB / PB.
+// 5. Binary units supported: KiB / MiB / GiB / TiB / PiB.
 // ============================================================================
 
 const double _bytesPerKB = 1000.0;
@@ -187,7 +186,7 @@ String fmtDiskCap(Map<String, dynamic> disk) {
   return fmtDisk(
     firstOf(
       disk,
-      [
+      const [
         'Size',
         'Capacity',
         'Total Size',

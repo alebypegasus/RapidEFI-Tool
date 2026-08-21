@@ -27,7 +27,7 @@ void main() {
       ).build(
         options: const HardwareConfigOptions(
           macOSVersion: 'Sequoia 15',
-          alcLayoutId: 7,
+          alcLayoutId: 11,
         ),
       );
 
@@ -57,7 +57,7 @@ void main() {
         bundlePaths,
         contains(ConfigKernel.RealtekCardReaderFriend.bundlePath),
       );
-      expect(BootArgsAccessor.getAlcid(model), 7);
+      expect(BootArgsAccessor.getAlcid(model), 11);
       expect(model.csrsetting, CsrSetting.partialDisabled);
       expect(model.darwinMajorVersion, 24);
       expect(model.pentiumOrCeleron, isFalse);

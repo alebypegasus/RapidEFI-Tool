@@ -1,7 +1,5 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/enums/csr_setting_enum.dart';
-import 'package:rapidefi/l10n/enum_l10n.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 
 class CSRWidget extends StatefulWidget {
@@ -30,27 +28,27 @@ class _CSRWidgetState extends State<CSRWidget> {
   Widget build(BuildContext context) {
     final choices = CsrSetting.values
         .where((element) => element != CsrSetting.none)
-        .map((e) => e.localizedValue(AppLocalizations.of(context)!))
+        .map((e) => e.value)
         .toList();
     final tips = CsrSetting.values
         .where((element) => element != CsrSetting.none)
         .map((e) => 'csr-active-config: ${e.nvramValue} ')
         .toList();
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const SizedBox(
+      SizedBox(
         height: 10,
       ),
       ChoiceList(
         tips: tips,
         choices: choices,
-        selectedChoices: [csrsetting.localizedValue(AppLocalizations.of(context)!)],
+        selectedChoices: [csrsetting.value],
         isMultipleSelection: false,
         allowToggle: true,
-        subTitle: AppLocalizations.of(context)!.manualCsrSettingTip,
+        subTitle: "Optional - Configure SIP as needed (Disabled by default)",
         onChanged: (List<String> value) {
           String? selectedValue = value.firstOrNull;
           csrsetting = CsrSetting.values.firstWhere(
-            (type) => type.localizedValue(AppLocalizations.of(context)!) == selectedValue,
+            (type) => type.value == selectedValue,
             orElse: () => CsrSetting.none,
           );
           setState(() {});

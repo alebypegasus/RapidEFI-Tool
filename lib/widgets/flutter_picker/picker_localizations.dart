@@ -1,10 +1,9 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/widgets.dart';
 
-/// 当前只内置英文和中文，并保留自定义语言注册入口。
+/// Localizations for Picker component.
 class PickerLocalizations {
-  static const PickerLocalizations _fallback =
-      PickerLocalizations(Locale('en'));
+  static final PickerLocalizations _fallback =
+      PickerLocalizations(const Locale('en'));
 
   final Locale locale;
 
@@ -13,7 +12,7 @@ class PickerLocalizations {
   String get cancelText => _value('cancelText');
   String get confirmText => _value('confirmText');
 
-  /// 后续如果需要扩展更多文字，可以统一走这个入口。
+  /// Localization text lookup
   String text(String key) => _value(key);
 
   String _value(String key) {
@@ -33,8 +32,7 @@ class PickerLocalizations {
     return languages.contains(locale.languageCode.toLowerCase());
   }
 
-  /// 当前内置支持的语言。
-  /// 默认只支持英文和中文，后续可以继续追加。
+  /// Built-in supported languages
   static List<String> get languages => List.unmodifiable(_localizedValues.keys);
 
   static const List<Locale> supportedLocales = <Locale>[
@@ -48,22 +46,13 @@ class PickerLocalizations {
       'cancelText': 'Cancel',
       'confirmText': 'Confirm',
     },
-    'pt': <String, String>{
-      'cancelText': 'Cancelar',
-      'confirmText': 'Confirmar',
-    },
-    'ja': <String, String>{
-      'cancelText': 'キャンセル',
-      'confirmText': l10nGlobal.autoGen5827,
-    },
     'zh': <String, String>{
-      'cancelText': l10nGlobal.autoGen5828,
-      'confirmText': l10nGlobal.autoGen5829,
+      'cancelText': 'Cancel',
+      'confirmText': 'Confirm',
     },
   };
 
-
-  /// 当前支持“取消”和“确定”，也允许追加其他文字。
+  /// Register custom language
   static void registerCustomLanguage(
     String languageCode, {
     String? cancelText,

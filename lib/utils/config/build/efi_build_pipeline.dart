@@ -7,7 +7,7 @@ import 'package:rapidefi/utils/config/services/config_service.dart';
 import 'package:rapidefi/utils/config/services/config_session.dart';
 
 class EfiBuildPipeline {
-  EfiBuildPipeline(this.configService);
+  const EfiBuildPipeline(this.configService);
 
   final ConfigService configService;
 
@@ -56,7 +56,7 @@ class EfiBuildPipeline {
 }
 
 class EfiBuildResult {
-  EfiBuildResult({
+  const EfiBuildResult({
     required this.success,
     required this.efiRootPath,
     required this.outputDirectory,

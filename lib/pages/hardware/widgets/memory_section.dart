@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
 import 'package:rapidefi/pages/hardware/widgets/hardware_shared.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 
 class MemorySection extends StatelessWidget {
@@ -22,7 +21,7 @@ class MemorySection extends StatelessWidget {
       ], spacing: 10);
     }).toList();
     if (lines.isEmpty) return const SizedBox.shrink();
-    return HardwareSection(AppLocalizations.of(context)!.hwMemory, lines,
-        note: CompatibilityNote.supported(AppLocalizations.of(context)!.hwCompatible));
+    return HardwareSection('Memory', lines,
+        note: CompatibilityNote.supported('Supported'));
   }
 }

@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/models/kernel/kext_group.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 
@@ -7,7 +6,7 @@ class ConfigKextGroups {
 
   static final cpuFriend = KextGroup(
     id: 'cpu_friend',
-    title: getL10nById(5528),
+    title: 'CPU Power Management Driver, mainly for 11th to 14th Gen MacPro7,1 SMBIOS',
     description: '',
     kexts: [
       ConfigKernel.CPUFriend,
@@ -18,7 +17,7 @@ class ConfigKextGroups {
   static final realtekCardReader = KextGroup(
     id: 'realtek_card_reader',
     title: 'RealtekCardReader',
-    description: getL10nById(5529),
+    description: 'Realtek SD card reader driver and companion',
     kexts: [
       ConfigKernel.RealtekCardReader,
       ConfigKernel.RealtekCardReaderFriend,
@@ -27,7 +26,7 @@ class ConfigKextGroups {
 
   static final appleIntelCpuPowerManagement = KextGroup(
     id: 'apple_intel_cpu_power_management',
-    title: getL10nById(5457),
+    title: 'Fix CPU power management for Intel 3rd Gen and older platforms on macOS Ventura 13+',
     description: '',
     kexts: [
       ConfigKernel.AppleIntelCPUPowerManagement,
@@ -38,7 +37,8 @@ class ConfigKextGroups {
   static final applePs2SmartTouchPad = KextGroup(
     id: 'apple_ps2_smart_touchpad',
     title: 'ApplePS2SmartTouchPad',
-    description: getL10nById(5530),
+    description:
+        'Suitable for 3rd Gen and older platforms, PS/2 input devices such as keyboards, mice, trackpads. Provides basic gesture support.',
     kexts: [
       ConfigKernel.ApplePS2SmartTouchPad,
       ConfigKernel.ApplePS2SmartTouchPadApplePS2Controller,
@@ -49,7 +49,8 @@ class ConfigKextGroups {
   static final voodooPs2Controller = KextGroup(
     id: 'voodoo_ps2_controller',
     title: 'VoodooPS2Controller',
-    description: getL10nById(5531),
+    description:
+        'Suitable for 3rd Gen and newer platforms, PS/2 input devices such as keyboards, mice, trackpads. Provides multi-touch gestures via plugins.',
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooInput,
@@ -62,7 +63,8 @@ class ConfigKextGroups {
   static final voodooPs2ControllerWithI2c = KextGroup(
     id: 'voodoo_ps2_controller_with_i2c',
     title: 'VoodooPS2Controller + VoodooI2C',
-    description: getL10nById(5532),
+    description:
+        'PS/2 Keyboard, suitable for I2C bus trackpads, touchscreens, sensors, and input devices. Provides native-like multi-touch gestures.',
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooPS2Keyboard,
@@ -77,7 +79,8 @@ class ConfigKextGroups {
   static final voodooPs2ControllerWithRmi = KextGroup(
     id: 'voodoo_ps2_controller_with_rmi',
     title: 'VoodooPS2Controller + VoodooRMI',
-    description: getL10nById(5533),
+    description:
+        'PS/2 Keyboard, suitable for Synaptics trackpads using RMI4 protocol. Delivers smooth multi-touch gestures for Synaptics devices.',
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooPS2Keyboard,
@@ -93,7 +96,8 @@ class ConfigKextGroups {
   static final voodooPs2ControllerWithRmiI2c = KextGroup(
     id: 'voodoo_ps2_controller_with_rmi_i2c',
     title: 'VoodooPS2Controller + VoodooRMII2C + VoodooI2C',
-    description: getL10nById(5534),
+    description:
+        'PS/2 Keyboard, combines VoodooI2C and VoodooRMI advantages for I2C touch devices and Synaptics RMI4 trackpads.',
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooPS2Keyboard,
@@ -109,7 +113,7 @@ class ConfigKextGroups {
   static final voodooPS2KeyboardAndMouse = KextGroup(
     id: 'voodoo_ps2_keyboard_and_mouse',
     title: 'VoodooPS2KeyboardAndMouse',
-    description: getL10nById(5535),
+    description: 'PS/2 bus keyboard and mouse driver',
     kexts: [
       ConfigKernel.VoodooPS2Controller,
       ConfigKernel.VoodooPS2ControllerVoodooPS2Keyboard,
@@ -120,7 +124,7 @@ class ConfigKextGroups {
   static final bigSurface = KextGroup(
     id: 'big_surface',
     title: 'BigSurface',
-    description: getL10nById(5536),
+    description: 'Microsoft Surface dedicated keyboard, trackpad, and touchscreen driver suite.',
     kexts: [
       ConfigKernel.BigSurfaceVoodooGPIO,
       ConfigKernel.BigSurfaceVoodooSerial,
@@ -132,7 +136,9 @@ class ConfigKextGroups {
 
   static final brcm94360 = KextGroup(
     id: 'brcm94360',
-    title: getL10nById(5537), description: getL10nById(5538),
+    title: 'Broadcom BCM94360 Native Support Series',
+    description:
+        'Apple AirPort and Fenvi native cards. Natively supported up to Ventura 13; patchable for Sonoma 14 & Sequoia 15 via OCLP root patches!',
     kexts: [
       ConfigKernel.IOSkywalkFamily,
       ConfigKernel.IO80211FamilyLegacy,
@@ -142,7 +148,9 @@ class ConfigKextGroups {
 
   static final brcm943xx = KextGroup(
     id: 'brcm943xx',
-    title: getL10nById(5539), description: getL10nById(5540),
+    title: 'Broadcom BCM943XX Non-Native Series',
+    description:
+        'Non-native Broadcom cards. Supported up to Catalina 10.15; patchable for Sonoma 14 & Sequoia 15 via OCLP root patches!',
     kexts: [
       ConfigKernel.IOSkywalkFamily,
       ConfigKernel.IO80211FamilyLegacy,
@@ -155,7 +163,8 @@ class ConfigKextGroups {
 
   static final brcm4331 = KextGroup(
     id: 'brcm4331',
-    title: getL10nById(5541), description: getL10nById(5542),
+    title: 'Legacy Broadcom BCM4331',
+    description: 'Note: Requires OCLP root patching on macOS Monterey 12 and above!',
     kexts: [
       ConfigKernel.corecaptureElCap,
       ConfigKernel.IO80211ElCap,
@@ -165,7 +174,8 @@ class ConfigKextGroups {
 
   static final brcm43224 = KextGroup(
     id: 'brcm43224',
-    title: getL10nById(5543), description: getL10nById(5542),
+    title: 'Legacy Broadcom BCM43224',
+    description: 'Note: Requires OCLP root patching on macOS Monterey 12 and above!',
     kexts: [
       ConfigKernel.corecaptureElCap,
       ConfigKernel.IO80211ElCap,
@@ -175,7 +185,8 @@ class ConfigKextGroups {
 
   static final atherosWifiModels = KextGroup(
     id: 'atheros_wifi_models',
-    title: getL10nById(5544), description: getL10nById(5545),
+    title: 'Qualcomm (Atheros) WiFi Model Drivers',
+    description: 'Qualcomm WiFi manual selection items',
     kexts: [
       ConfigKernel.AirPortAtheros40_9285,
       ConfigKernel.AirPortAtheros40_9380,
@@ -188,7 +199,8 @@ class ConfigKextGroups {
 
   static final atherosWifiLegacySupport = KextGroup(
     id: 'atheros_wifi_legacy_support',
-    title: getL10nById(5546), description: getL10nById(5547),
+    title: 'Qualcomm (Atheros) WiFi Dependencies for Big Sur & Older',
+    description: 'macOS Big Sur 11 and older use HS80211Family combined with model driver',
     kexts: [
       ConfigKernel.HS80211Family,
     ],
@@ -196,7 +208,8 @@ class ConfigKextGroups {
 
   static final atherosWifiModernSupport = KextGroup(
     id: 'atheros_wifi_modern_support',
-    title: getL10nById(5548), description: getL10nById(5549),
+    title: 'Qualcomm (Atheros) WiFi Dependencies for Monterey & Newer',
+    description: 'macOS Monterey 12 and newer use IO80211ElCap suite',
     kexts: [
       ConfigKernel.corecaptureElCap,
       ConfigKernel.IO80211ElCap,

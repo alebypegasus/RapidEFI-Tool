@@ -61,7 +61,7 @@ class ACPIToolManager {
     ssdt.config = config;
   }
 
-  /// 根据表签名,查找SSDT表路径
+  /// Find SSDT table path based on table signature
   String getSSDTPathWithSignature(String tableSignature) {
     for (final entry in ssdt.d.acpiTables.entries) {
       final key = entry.key;
@@ -80,8 +80,8 @@ class ACPIToolManager {
   bool _pb(PatchContext? context) => context?.prebuilt ?? false;
 
   ACPIToolManager({AcpiConfig? acpiConfig})
-      : _acpiConfig = acpiConfig ?? const AcpiConfig(),
-        ssdt = SSDT(config: acpiConfig ?? const AcpiConfig()) {
+      : _acpiConfig = acpiConfig ?? AcpiConfig(),
+        ssdt = SSDT(config: acpiConfig ?? AcpiConfig()) {
     _initActionMap();
   }
 
@@ -274,7 +274,7 @@ class ACPIToolManager {
     if (executor != null) {
       final dependencySsdtName = _sleepHookActionSsdtNames[action.name];
       try {
-        Log('------------------------------------------ 开始定制 ${action.name} ------------------------------------------'); 
+        Log('------------------------------------------ Generating ${action.name} ------------------------------------------'); 
         final ctx = context ?? PatchContext();
         ssdt.outputFolder = outputFolder ?? resultFolder;
         if (dependencySsdtName != null) {
@@ -282,14 +282,14 @@ class ACPIToolManager {
         }
         await executor(context: ctx, action: action);
       } catch (e) {
-        onError?.call('执行失败: $action, 错误: $e');
+        onError?.call('Execution failed: $action, error: $e');
       } finally {
         if (generateSleepHook && dependencySsdtName != null) {
           await _rebuildSleepHookFromOutput(outputFolder);
         }
       }
     } else {
-      onError?.call('不支持的补丁操作: $action');
+      onError?.call('Unsupported patch action: $action');
     }
   }
 
@@ -314,14 +314,14 @@ class ACPIToolManager {
     Function(String)? onError,
     bool copyToResults = true,
   }) async {
-    // 清空 outputFolder 目录
+    // Clear outputFolder directory
     if (outputFolder != null) {
       await ssdt.util.clearDirectory(
         ssdt.config.outputDirectory!,
         outputFolder,
       );
     }
-    // 清空 resultFolder 目录
+    // Clear resultFolder directory
     await ssdt.util.clearDirectory(ssdt.config.outputDirectory!, resultFolder);
 
     for (var action in actions) {
@@ -573,13 +573,13 @@ class ACPIToolManager {
     }
   }
 
-  ///  默认输出目录
+  /// Default output directory
   String getDesktopDirectory() => ssdt.util.getDesktopDirectory();
 
   void checkIaslValid({bool? local, bool? legacy}) =>
       ssdt.checkIaslValid(local: local, legacy: legacy);
 
-  ///  导出 ACPI 表
+  /// Dump ACPI tables
   Future<String?> dumpTables(
     String filePath, {
     bool disassemble = false,
@@ -596,7 +596,7 @@ class ACPIToolManager {
   Future<String?> loadTables(String dumpPath) async =>
       await ssdt.loadTables(dumpPath);
 
-  /// ================== 合并 plist 文件 ==================
+  /// ================== Merge plist files ==================
   Future<void> mergePlist(
     String patchedPath,
     String configPath, {
@@ -614,7 +614,7 @@ class ACPIToolManager {
   String? getPlistType(String plistPath, {Function(String)? onError}) {
     final result = _merge.getPlistInfo(plistPath);
     if (result.$3 != null) {
-      onError?.call('获取 plist 类型失败: ${result.$3}');
+      onError?.call('Failed to get plist type: ${result.$3}');
     }
     return result.$1.value;
   }

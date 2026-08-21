@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:flutter/material.dart';
@@ -34,15 +33,14 @@ class NicWidget extends StatefulWidget {
 class _NicWidgetState extends State<NicWidget> {
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final ethernetOptions = NicWidget.ethernetOptions;
     final selected = ethernetOptions
         .where((kext) => widget.selectedKexts?.contains(kext) ?? false)
         .toList();
     final tips = ethernetOptions.map((kext) => kext.note.join('\n')).toList();
     return KextChoiceListCard(
-      title: l10n.nicDriverCardTitle,
-      cardSubTitle: l10n.nicDriverDefaultTip,
+      title: "Ethernet Drivers:",
+      cardSubTitle: '(No Ethernet driver added by default)',
       choices: ethernetOptions,
       selectedChoices: selected,
       isMultipleSelection: true,

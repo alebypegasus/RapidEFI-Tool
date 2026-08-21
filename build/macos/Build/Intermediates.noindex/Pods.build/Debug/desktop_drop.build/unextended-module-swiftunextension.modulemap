@@ -1,0 +1,4 @@
+
+module desktop_drop.__Swift {
+  exclude header "desktop_drop-Swift.h"
+}

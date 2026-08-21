@@ -8,7 +8,7 @@ extension StringExtension on String? {
   }
 
   Uint8List toBytes() {
-    // 移除所有空格（如果有）
+    // Remove all whitespace if any
     String cleanedHexString = nullSafe.replaceAll(' ', '');
 
     Uint8List result = Uint8List(cleanedHexString.length ~/ 2);

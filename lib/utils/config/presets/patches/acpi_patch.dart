@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/extension/string_extension.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_delete_item.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_patch_item.dart';
@@ -9,7 +8,7 @@ class AcpiPatch {
     AcpiPatch.surfacePatch,
   ];
 
-  /// Surface 系列(Surface Pro 7 和 Book 3) ACPI补丁,修复“系统偏好设置”中电池识别问题
+  /// Surface series (Surface Pro 7 and Book 3) ACPI patch to fix battery detection in System Preferences
   static final AcpiPatchItem surfacePatch = AcpiPatchItem(
     base: '',
     baseSkip: 0,
@@ -25,10 +24,10 @@ class AcpiPatch {
     skip: 0,
     tableLength: 0,
     tableSignature: '46414350'.toBytes(),
-    note: l10nGlobal.autoGen5550,
+    note: 'Fix battery detection in System Preferences for Surface Pro 7 and Book 3 series',
   );
 
-   /// HP 系列: RTC fix to prevent POST errors
+   /// HP series: RTC fix to prevent POST errors
   static final AcpiPatchItem rtcFixHPPostError = AcpiPatchItem(
     base: '',
     baseSkip: 0,
@@ -44,7 +43,7 @@ class AcpiPatch {
     skip: 0,
     tableLength: 0,
     tableSignature: '44534454'.toBytes(),
-    note: l10nGlobal.autoGen5551,
+    note: 'Fix RTC issue causing POST error on boot for some HP computers',
   );
 
   static final AcpiPatchItem osiToXOSI = AcpiPatchItem(

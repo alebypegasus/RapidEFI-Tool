@@ -49,9 +49,9 @@ class HardwareCopy extends StatelessWidget {
             text: display,
             copyText: value,
             style: TextStyle(fontSize: 14, height: 1.25, color: color),
-            underlineGap: 1, // 文字和横线间距
-            underlineHeight: 1, // 横线粗细
-            underlineExtraWidth: 8, // 横线额外宽度
+            underlineGap: 1, // Spacing between text and line
+            underlineHeight: 1, // Line thickness
+            underlineExtraWidth: 8, // Line extra width
           ),
         ]);
   }

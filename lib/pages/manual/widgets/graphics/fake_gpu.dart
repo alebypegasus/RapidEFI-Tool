@@ -1,6 +1,4 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/device_id_textfield.dart';
 import 'package:rapidefi/pages/shared/widgets/path_textfield.dart';
 import 'package:rapidefi/utils/hardware/analysis/gpu_compatibility_data.dart';
@@ -30,12 +28,18 @@ class _FakeGPUState extends State<FakeGPU> {
       TextEditingController(text: dgpuFakeID);
   final FocusNode _focusNodePci = FocusNode();
   final FocusNode _focusNodeFakeId = FocusNode();
-  late String placeholder;
+  final String placeholder = 'Select GPU device to spoof';
   String? _selectedComboBoxValue;
   late final Future<void> _gpuCompatibilityFuture =
       GpuCompatibilityData.ensureLoaded();
 
-  final String tip = l10nGlobal.autoGen5826;
+  final String tip = r'''
+  AMD dGPU Spoofing (Device Properties):
+   1. Enter the dGPU PCI Path, e.g.: PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)
+   2. Enter the spoofed Device ID (4 hex chars), e.g.: 73BF
+   3. Ensure appropriate boot-args are enabled (in dGPU Configuration -> AMD dGPU as needed)
+   4. The tool includes built-in presets for common spoofed AMD GPUs
+  ''';
 
   @override
   void initState() {
@@ -56,16 +60,12 @@ class _FakeGPUState extends State<FakeGPU> {
     }
 
     dgpuPath = nextPath;
+    _controllerPci.text = dgpuPath;
     if (!keepLocalFakeId) {
       dgpuFakeID = nextFakeId;
-    }
-    if (_controllerPci.text != dgpuPath) {
-      _controllerPci.text = dgpuPath;
-    }
-    if (_controllerFakeId.text != dgpuFakeID) {
       _controllerFakeId.text = dgpuFakeID;
+      _syncSelectedComboBoxValue();
     }
-    _syncSelectedComboBoxValue();
   }
 
   @override
@@ -77,37 +77,47 @@ class _FakeGPUState extends State<FakeGPU> {
     super.dispose();
   }
 
-  void _syncSelectedComboBoxValue({List<GpuCompatibilityRecord>? records}) {
-    final list = records ??
-        (GpuCompatibilityData.isLoaded
-            ? GpuCompatibilityData.amdIdentityOverrideRecordsSync()
-            : const <GpuCompatibilityRecord>[]);
-    if (list.isEmpty || dgpuFakeID.isEmpty) {
+  void _syncSelectedComboBoxValue({
+    List<GpuCompatibilityRecord>? records,
+  }) {
+    if (dgpuFakeID.isEmpty) {
       _selectedComboBoxValue = placeholder;
       return;
     }
 
-    final normalized = dgpuFakeID.toLowerCase();
-    final index = list.indexWhere(
-      (record) => (record.spoofDeviceIdPart ?? '').toLowerCase() == normalized,
-    );
+    final normalizedFakeId = dgpuFakeID.toUpperCase();
+    final candidates = records ??
+        (GpuCompatibilityData.isLoaded
+            ? GpuCompatibilityData.amdIdentityOverrideRecordsSync()
+            : const <GpuCompatibilityRecord>[]);
+    for (final record in candidates) {
+      if (record.id == _selectedComboBoxValue &&
+          (record.spoofDeviceIdPart ?? '').toUpperCase() ==
+              normalizedFakeId) {
+        return;
+      }
+    }
 
-    _selectedComboBoxValue = index >= 0 ? list[index].id : placeholder;
+    for (final record in candidates) {
+      if ((record.spoofDeviceIdPart ?? '').toUpperCase() == normalizedFakeId) {
+        _selectedComboBoxValue = record.id;
+        return;
+      }
+    }
+
+    _selectedComboBoxValue = placeholder;
   }
 
-
   void _emitChanged() {
-    widget.onChanged?.call(dgpuPath, dgpuFakeID);
+    widget.onChanged?.call(_controllerPci.text, _controllerFakeId.text);
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    placeholder = l10n.selectSpoofGpuPlaceholder;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 15,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 8),
@@ -122,9 +132,9 @@ class _FakeGPUState extends State<FakeGPU> {
               mainAxisSize: MainAxisSize.min,
               spacing: 15,
               children: [
-                Text(
-                  l10n.pciPathLabel,
-                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                const Text(
+                  'dGPU PCI Path:',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                 ),
                 Flexible(
                   child: IntrinsicWidth(
@@ -135,10 +145,9 @@ class _FakeGPUState extends State<FakeGPU> {
                       ),
                       child: PathTextField(
                         pathType: PathType.pci,
-                        hintText: l10n.pciPathHint,
+                        hintText: 'Enter PCI Path',
                         onChanged: (value, _) {
                           _controllerPci.text = value;
-                          dgpuPath = value;
                           _emitChanged();
                         },
                       ),
@@ -156,9 +165,9 @@ class _FakeGPUState extends State<FakeGPU> {
                 mainAxisSize: MainAxisSize.min,
                 spacing: 15,
                 children: [
-                  Text(
-                    ' ${l10n.spoofGpuIdLabel}',
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  const Text(
+                    ' Spoofed Device ID:',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                   ),
                   DeviceIdTextField(
                     controller: _controllerFakeId,
@@ -166,7 +175,7 @@ class _FakeGPUState extends State<FakeGPU> {
                     onChanged: (value, _) {
                       setState(() {
                         dgpuFakeID = value;
-                        _syncSelectedComboBoxValue();
+                        _selectedComboBoxValue = placeholder;
                       });
                       _emitChanged();
                     },
@@ -183,7 +192,6 @@ class _FakeGPUState extends State<FakeGPU> {
   }
 
   Widget _buildIdentityOverrideGpuCombo() {
-    final l10n = AppLocalizations.of(context)!;
     return FutureBuilder<void>(
       future: _gpuCompatibilityFuture,
       builder: (context, snapshot) {
@@ -193,11 +201,17 @@ class _FakeGPUState extends State<FakeGPU> {
             ? GpuCompatibilityData.amdIdentityOverrideRecordsSync()
             : const <GpuCompatibilityRecord>[];
 
+        if (records.isNotEmpty &&
+            _selectedComboBoxValue == placeholder &&
+            dgpuFakeID.isNotEmpty) {
+          _syncSelectedComboBoxValue(records: records);
+        }
+
         final value = records.any((record) => record.id == _selectedComboBoxValue)
             ? _selectedComboBoxValue
             : placeholder;
         final placeholderText =
-            snapshot.hasError ? l10n.gpuSpoofDataLoadError : placeholder;
+            snapshot.hasError ? 'Failed to load GPU spoof presets' : placeholder;
 
         return ComboBox<String>(
           isExpanded: false,

@@ -1,50 +1,49 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import '../../models/booter/booter_quirk_type.dart';
 import '../../models/booter/booter_quirks.dart';
 
 class ConfigBooter {
-  /// 775 - 0代
+  /// 775 - 0th Gen
   static BooterQuirks booterQuirks_intel_desktop_0th = BooterQuirks(
       avoidRuntimeDefrag: true,
       enableSafeModeSlide: true,
       provideCustomSlide: true,
       setupVirtualMap: true);
 
-  /// 1156 - 1代
+  /// 1156 - 1st Gen
   static BooterQuirks booterQuirks_intel_desktop_1th =
       booterQuirks_intel_desktop_0th.copyWith();
 
-  /// 1155 - 2代
+  /// 1155 - 2nd Gen
   static BooterQuirks booterQuirks_intel_desktop_2th =
       booterQuirks_intel_desktop_1th.copyWith(
     enableWriteUnprotector: true,
   );
 
-  /// 1155 - 3代
+  /// 1155 - 3rd Gen
   static BooterQuirks booterQuirks_intel_desktop_3th =
       booterQuirks_intel_desktop_2th.copyWith();
 
-  /// 1150 - 4代
+  /// 1150 - 4th Gen
   static BooterQuirks booterQuirks_intel_desktop_4th =
       booterQuirks_intel_desktop_3th.copyWith();
 
-  /// 1150 - 5代
+  /// 1150 - 5th Gen
   static BooterQuirks booterQuirks_intel_desktop_5th =
       booterQuirks_intel_desktop_4th.copyWith();
 
-  /// 1151 - 6代
+  /// 1151 - 6th Gen
   static BooterQuirks booterQuirks_intel_desktop_6th =
       booterQuirks_intel_desktop_4th.copyWith();
 
-  /// 1151 - 7代
+  /// 1151 - 7th Gen
   static BooterQuirks booterQuirks_intel_desktop_7th =
       booterQuirks_intel_desktop_4th.copyWith();
 
-  /// 1151 - 8代
+  /// 1151 - 8th Gen
   static BooterQuirks booterQuirks_intel_desktop_8th =
       booterQuirks_intel_desktop_7th.copyWith();
 
-  /// 1151 - 9代
+  /// 1151 - 9th Gen
   static BooterQuirks booterQuirks_intel_desktop_9th = BooterQuirks(
     avoidRuntimeDefrag: true,
     devirtualiseMmio: true,
@@ -55,7 +54,7 @@ class ConfigBooter {
     syncRuntimePermissions: true,
   );
 
-  /// 1200 - 10代
+  /// 1200 - 10th Gen
   static BooterQuirks booterQuirks_intel_desktop_10th = BooterQuirks(
     avoidRuntimeDefrag: true,
     devirtualiseMmio: true,
@@ -66,7 +65,7 @@ class ConfigBooter {
     syncRuntimePermissions: true,
   );
 
-  /// 1200 - 11代
+  /// 1200 - 11th Gen
   static BooterQuirks booterQuirks_intel_desktop_11th = BooterQuirks(
     avoidRuntimeDefrag: true,
     devirtualiseMmio: true,
@@ -78,19 +77,19 @@ class ConfigBooter {
     syncRuntimePermissions: true,
   );
 
-  /// 1700 - 12代
+  /// 1700 - 12th Gen
   static BooterQuirks booterQuirks_intel_desktop_12th =
       booterQuirks_intel_desktop_11th;
 
-  /// 1700 - 13代
+  /// 1700 - 13th Gen
   static BooterQuirks booterQuirks_intel_desktop_13th =
       booterQuirks_intel_desktop_11th;
 
-  /// 1700 - 14代
+  /// 1700 - 14th Gen
   static BooterQuirks booterQuirks_intel_desktop_14th =
       booterQuirks_intel_desktop_11th;
 
-  ///0代
+  /// 0th Gen
   static BooterQuirks booterQuirks_laptop_0th = BooterQuirks(
     avoidRuntimeDefrag: true,
     enableSafeModeSlide: true,
@@ -154,7 +153,7 @@ class ConfigBooter {
       rebuildAppleMemoryMap: true,
       syncRuntimePermissions: true);
 
-  ///0代
+  /// 0th Gen
   static BooterQuirks booterQuirks_nuc_0th = BooterQuirks(
     avoidRuntimeDefrag: true,
     enableSafeModeSlide: true,
@@ -162,7 +161,7 @@ class ConfigBooter {
     setupVirtualMap: true,
   );
 
-  ///1代
+  /// 1st Gen
   static BooterQuirks booterQuirks_nuc_1th = BooterQuirks(
     avoidRuntimeDefrag: true,
     enableSafeModeSlide: true,
@@ -170,7 +169,7 @@ class ConfigBooter {
     setupVirtualMap: true,
   );
 
-  ///2代
+  /// 2nd Gen
   static BooterQuirks booterQuirks_nuc_2th = BooterQuirks(
     avoidRuntimeDefrag: true,
     enableSafeModeSlide: true,
@@ -292,29 +291,29 @@ class ConfigBooter {
       setupVirtualMap: true);
 
   static List<BooterQuirkType> booterQuirkTypes = [
-    BooterQuirkType(
+    const BooterQuirkType(
         name: 'DevirtualiseMmio',
         comment:
-            l10nGlobal.autoGen5328),
-    BooterQuirkType(
+            'DevirtualiseMmio(Helps resolve conflicts/incompatibilities when firmware handles MMIO regions, improving system compatibility and stability. Often combined with OpenCore Debug to customize MMIO for boards stuck at [EB|#LOG:EXITBS:START], e.g. some X58, X79, X99, and AMD 7000 series boards)'),
+    const BooterQuirkType(
         name: 'EnableWriteUnprotector',
         comment:
-            l10nGlobal.autoGen5329),
-    BooterQuirkType(
+            'EnableWriteUnprotector(Recommended on firmware without Memory Attribute Table (MAT) support, especially OEM firmware. Removes write protection from CR0 register during execution to allow proper NVRAM writing. Typically used for pre-8th Gen platforms)'),
+    const BooterQuirkType(
         name: 'ProtectUefiServices',
         comment:
-            l10nGlobal.autoGen5330),
-    BooterQuirkType(
+            'ProtectUefiServices(Protects UEFI services from being overwritten by firmware; typically fixes [EB|#LOG:EXITBS:START] issues caused by DevirtualiseMmio. Recommended for Z390, Z490, and 10th Gen Ice Lake)'),
+    const BooterQuirkType(
         name: 'SetupVirtualMap',
         comment:
-            l10nGlobal.autoGen5331),
-    BooterQuirkType(
+            'SetupVirtualMap(Builds continuous virtual memory for OpenCore mapped to physical memory. Note: Not recommended for 10th Gen Comet Lake ASUS, Gigabyte, and ASRock motherboards)'),
+    const BooterQuirkType(
         name: 'RebuildAppleMemoryMap',
         comment:
-            l10nGlobal.autoGen5332),
-    BooterQuirkType(
+            'RebuildAppleMemoryMap(Recommended on firmware with MAT support. Usually paired with SyncRuntimePermissions. Mutually exclusive with EnableWriteUnprotector. Typically for 8th Gen and newer platforms)'),
+    const BooterQuirkType(
         name: 'SyncRuntimePermissions',
         comment:
-            l10nGlobal.autoGen5333)
+            'SyncRuntimePermissions(Fixes runtime memory permissions on newer boards (post-2018). If you cannot boot Windows without this option, enable it. Usually paired with RebuildAppleMemoryMap)')
   ];
 }

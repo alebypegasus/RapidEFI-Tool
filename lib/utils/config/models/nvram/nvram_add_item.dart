@@ -1,11 +1,11 @@
 class NvramAddItem {
-  //键
+  // Key
   String? key;
 
   String? dataType;
-  //值
+  // Value
   String? value;
-  //备注
+  // Remark / Note
   String? comment;
 
   NvramAddItem(

@@ -10,7 +10,7 @@ import 'package:rapidefi/utils/constant.dart';
 import 'package:sp_util/sp_util.dart';
 
 class EfiAssetPlanner {
-  EfiAssetPlanner(this.configService);
+  const EfiAssetPlanner(this.configService);
 
   final ConfigService configService;
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/device_properties/device_property_item.dart';
 import 'package:rapidefi/utils/config/models/device_properties/igpu_model.dart';
 import 'package:rapidefi/utils/config/services/config_service.dart';
@@ -47,11 +46,13 @@ class IgpuWidget extends StatefulWidget {
 
 class _IgpuWidgetState extends State<IgpuWidget> with TickerProviderStateMixin {
   late final TabController _tabController;
+  late final List<String> tabName;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 4);
+    tabName = ["Basic Config", "Advanced Config", "Port Customization", "Display EDID"];
+    _tabController = TabController(vsync: this, length: tabName.length);
   }
 
   List<Widget> _buildPages() {
@@ -99,16 +100,9 @@ class _IgpuWidgetState extends State<IgpuWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final tabName = [
-      l10n.baseConfig,
-      l10n.advanceConfig,
-      l10n.connectorCustomization,
-      l10n.displayEdid,
-    ];
     return TabbedTitleCard(
-      title: l10n.igpuConfigTitle,
-      subTitle: l10n.selectIfMatching,
+      title: "iGPU Configuration:",
+      subTitle: "(Check applicable options)",
       initiallyExpanded: false,
       height: 560,
       content: const OclpLinkButton(),

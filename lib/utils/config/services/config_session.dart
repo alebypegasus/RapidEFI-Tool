@@ -137,7 +137,7 @@ class ConfigSession {
 }
 
 class ConfigPatchRecord {
-  ConfigPatchRecord({
+  const ConfigPatchRecord({
     required this.label,
     required this.scopes,
     required this.createdAt,

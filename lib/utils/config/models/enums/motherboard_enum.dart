@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import '../../models/enums/enum_meta.dart';
 import '../../models/enums/enum_codec.dart';
 
@@ -8,85 +7,88 @@ enum MotherboardVendor {
 }
 
 enum SpecialMotherboard {
-  // 通用
+  // Common
   none(
     vendor: MotherboardVendor.intel,
     text: EnumText(
-      fallbackTitle: '',
+      title: '',
     ),
   ),
 
   amdNormal(
     vendor: MotherboardVendor.amd,
     text: EnumText(
-      titleId: 5159,
+      title: 'Standard Motherboard',
     ),
   ),
   amdB550A520(
     vendor: MotherboardVendor.amd,
     text: EnumText(
-      titleId: 5160,
+      title: 'B850, B650, B550 and A520 motherboards, 550 series laptops',
     ),
   ),
   amdTrx40(
     vendor: MotherboardVendor.amd,
     text: EnumText(
-      titleId: 5161,
+      title: 'TRx40 Motherboard',
     ),
   ),
   amdX570(
     vendor: MotherboardVendor.amd,
     text: EnumText(
-      titleId: 5162,
+      title: 'X570 Motherboard',
     ),
   ),
   amdX470B450(
     vendor: MotherboardVendor.amd,
     text: EnumText(
-      titleId: 5163,
+      title: 'X470 or B450 motherboards with late 2020+ BIOS',
     ),
   ),
 
   intelS6(
     vendor: MotherboardVendor.intel,
     text: EnumText(
-      titleId: 5164, descId: 5165,
+      title: '6-series Chipset',
+      description: 'Check when pairing Intel 3rd Gen CPU with 6-series chipset (e.g., H61, HM65)',
     ),
   ),
   intelS7(
     vendor: MotherboardVendor.intel,
     text: EnumText(
-      titleId: 5166, descId: 5167,
+      title: '7-series Chipset',
+      description: 'Check when pairing Intel 2nd Gen CPU with 7-series chipset (e.g., B75, HM76)',
     ),
   ),
   intelOem(
     vendor: MotherboardVendor.intel,
     text: EnumText(
-      titleId: 5168, descId: 5169,
+      title: 'H110, B150, B250, Q270 etc.',
+      description: 'Some OEM boards have USB ownership issues: EHCI Hand-off failure',
     ),
   ),
   intelZ390(
     vendor: MotherboardVendor.intel,
     text: EnumText(
-      fallbackTitle: 'Z390',
+      title: 'Z390',
     ),
   ),
   intelB460(
     vendor: MotherboardVendor.intel,
     text: EnumText(
-      fallbackTitle: 'B460',
+      title: 'B460',
     ),
   ),
   intelZ490(
     vendor: MotherboardVendor.intel,
     text: EnumText(
-      titleId: 5170,
+      title: 'Z490 (2020+ BIOS update)',
     ),
   ),
   intelZ590(
     vendor: MotherboardVendor.intel,
     text: EnumText(
-      fallbackTitle: 'Z590',
+      title: 'Z590',
     ),
   );
 
@@ -128,41 +130,40 @@ enum SpecialMotherboard {
         'AMDMLB.normal': SpecialMotherboard.amdNormal,
         'nomal': SpecialMotherboard.amdNormal,
         'normal': SpecialMotherboard.amdNormal,
-        l10nGlobal.autoGen5159: SpecialMotherboard.amdNormal,
+        'Standard Motherboard': SpecialMotherboard.amdNormal,
         'AMDMLB.b550AndA520': SpecialMotherboard.amdB550A520,
         'b550AndA520': SpecialMotherboard.amdB550A520,
-        l10nGlobal.autoGen5160: SpecialMotherboard.amdB550A520,
+        'B850, B650, B550 and A520 motherboards, 550 series laptops':
+            SpecialMotherboard.amdB550A520,
         'AMDMLB.trx40': SpecialMotherboard.amdTrx40,
         'trx40': SpecialMotherboard.amdTrx40,
-        l10nGlobal.autoGen5161: SpecialMotherboard.amdTrx40,
+        'TRx40 Motherboard': SpecialMotherboard.amdTrx40,
         'AMDMLB.x570': SpecialMotherboard.amdX570,
         'x570': SpecialMotherboard.amdX570,
-        l10nGlobal.autoGen5162: SpecialMotherboard.amdX570,
+        'X570 Motherboard': SpecialMotherboard.amdX570,
         'AMDMLB.x470': SpecialMotherboard.amdX470B450,
         'x470': SpecialMotherboard.amdX470B450,
-        l10nGlobal.autoGen5163: SpecialMotherboard.amdX470B450,
+        'X470 or B450 motherboards with late 2020+ BIOS':
+            SpecialMotherboard.amdX470B450,
         'SpecialMainBoard.nil': SpecialMotherboard.none,
         'nil': SpecialMotherboard.none,
         '': SpecialMotherboard.none,
         'SpecialMainBoard.S6': SpecialMotherboard.intelS6,
         'S6': SpecialMotherboard.intelS6,
-        l10nGlobal.autoGen5171:
-            SpecialMotherboard.intelS6,
+        '6-series Chipset': SpecialMotherboard.intelS6,
         'SpecialMainBoard.S7': SpecialMotherboard.intelS7,
         'S7': SpecialMotherboard.intelS7,
-        l10nGlobal.autoGen5172:
-            SpecialMotherboard.intelS7,
+        '7-series Chipset': SpecialMotherboard.intelS7,
         'SpecialMainBoard.OEM': SpecialMotherboard.intelOem,
         'OEM': SpecialMotherboard.intelOem,
-        l10nGlobal.autoGen5173:
-            SpecialMotherboard.intelOem,
+        'H110, B150, B250, Q270 etc.': SpecialMotherboard.intelOem,
         'SpecialMainBoard.Z390': SpecialMotherboard.intelZ390,
         'Z390': SpecialMotherboard.intelZ390,
         'SpecialMainBoard.B460': SpecialMotherboard.intelB460,
         'B460': SpecialMotherboard.intelB460,
         'SpecialMainBoard.Z490': SpecialMotherboard.intelZ490,
         'Z490': SpecialMotherboard.intelZ490,
-        l10nGlobal.autoGen5170: SpecialMotherboard.intelZ490,
+        'Z490 (2020+ BIOS update)': SpecialMotherboard.intelZ490,
         'SpecialMainBoard.Z590': SpecialMotherboard.intelZ590,
         'Z590': SpecialMotherboard.intelZ590,
       },

@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 //  repo_sevice.dart
 //  Created by JeoJay127
 //
@@ -36,7 +35,7 @@ class RepoService {
     final now = DateTime.now();
     if (_isChecking) {
       if (!silent) {
-        onInfo?.call(l10nGlobal.autoGen5129);
+        onInfo?.call('Checking for updates, please wait...');
       }
       return;
     }
@@ -45,7 +44,7 @@ class RepoService {
         !_lastResultHadUpdate &&
         now.difference(_lastCheckTime!) < _minInterval) {
       if (!silent) {
-        onInfo?.call(l10nGlobal.autoGen5130);
+        onInfo?.call('Update check performed recently, please try again later');
       }
       return;
     }
@@ -63,18 +62,18 @@ class RepoService {
 
       if (release == null) {
         if (!silent) {
-          onInfo?.call('当前 $currentVersion 已是最新版本');
+          onInfo?.call('Version $currentVersion is already up to date');
         }
         return;
       }
 
       final ctx = RepoContext(repoConfig: config, release: release);
 
-      onUpdateFound?.call(ctx, '发现新版本：${release.tag}');
+      onUpdateFound?.call(ctx, 'New version found: ${release.tag}');
       return;
     } catch (e) {
       if (!silent) {
-        onError?.call(l10nGlobal.autoGen5131);
+        onError?.call('Update check failed, please try again later');
       }
       rethrow;
     } finally {
@@ -93,20 +92,20 @@ class RepoService {
       final releaseList = await checker.checkReleases(config: config);
       if (releaseList == null) {
         if (!silent) {
-          onError?.call(l10nGlobal.autoGen5132);
+          onError?.call('Failed to retrieve release list, please try again later');
         }
         return;
       }
       if (releaseList.isEmpty) {
         if (!silent) {
-          onInfo?.call(l10nGlobal.autoGen5133);
+          onInfo?.call('Release list is empty');
         }
         return;
       }
       onReleaseFound?.call(releaseList);
     } catch (e) {
       if (!silent) {
-        onError?.call('发生错误：$e');
+        onError?.call('An error occurred: $e');
       }
       rethrow;
     }

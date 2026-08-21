@@ -1,5 +1,5 @@
 class EfiAssetPlan {
-  EfiAssetPlan({
+  const EfiAssetPlan({
     required this.cleanupPaths,
     required this.acpiAssets,
     required this.acpiFiles,

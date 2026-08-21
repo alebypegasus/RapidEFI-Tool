@@ -1,5 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/catalogs/bluetooth_nvram/bluetooth_nvram_option.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/nvram/nvram_add.dart';
@@ -25,19 +23,14 @@ class BluetoothWidget extends StatefulWidget {
 }
 
 class _BluetoothWidgetState extends State<BluetoothWidget> {
-  String tip = l10nGlobal.autoGen5823;
-
-  String _getLocalizedNvramTitle(String optionId) {
-    final l10n = AppLocalizations.of(context)!;
-    switch (optionId) {
-      case 'bluetooth.nvram.default':
-        return l10n.bluetoothNvramDefaultTitle;
-      case 'bluetooth.nvram.ax':
-        return l10n.bluetoothNvramAxTitle;
-      default:
-        return '';
-    }
-  }
+  String tip = r'''
+  Bluetooth Driver Notes:
+  1. When Intel Wi-Fi is selected, Intel Bluetooth drivers are automatically configured based on macOS version!
+  2. When Broadcom Wi-Fi is selected, Broadcom Bluetooth drivers are automatically configured based on macOS version!
+  3. When Atheros Wi-Fi is selected, Atheros Bluetooth drivers are automatically configured!
+  4. Manually select Bluetooth parameters only if not covered above or for standalone modules.
+  5. Bluetooth uses USB internally; ensure USB ports are properly mapped if Bluetooth is malfunctioning!
+  ''';
 
   @override
   Widget build(BuildContext context) {
@@ -45,18 +38,18 @@ class _BluetoothWidgetState extends State<BluetoothWidget> {
     final selectedNvramOption = widget.selectedNvramOption;
     return ScrollableChoiceListPanel(
       children: [
-        Text(tip, style: const TextStyle(fontSize: 13)),
+        Text(tip, style: TextStyle(fontSize: 13)),
         ChoiceList(
-          subTitle: AppLocalizations.of(context)!.manualBluetoothNvram,
-          choices: nvramOptions.map((option) => _getLocalizedNvramTitle(option.id)).toList(),
+          subTitle: 'Bluetooth NVRAM Parameters:',
+          choices: nvramOptions.map((option) => option.title).toList(),
           selectedChoices: [
-            if (selectedNvramOption != null) _getLocalizedNvramTitle(selectedNvramOption.id)
+            if (selectedNvramOption != null) selectedNvramOption.title
           ],
           allowToggle: true,
           onChanged: (value) {
             final title = value.firstOrNull;
             final option = nvramOptions
-                .where((option) => _getLocalizedNvramTitle(option.id) == title)
+                .where((option) => option.title == title)
                 .firstOrNull;
             widget.onChanged?.call(option?.id);
           },

@@ -38,10 +38,10 @@ typedef PickerItemBuilder = Widget? Function(
 class Picker<T> {
   static const double defaultTextSize = 18.0;
 
-  /// 当前每一列的选中索引。
+  /// Selected index for each column.
   final List<int> selecteds;
 
-  /// 数据适配器，负责提供列数据和构建选项。
+  /// Data adapter providing column data and building item options.
   final PickerAdapter adapter;
 
   final List<PickerDelimiter>? delimiter;
@@ -51,7 +51,7 @@ class Picker<T> {
   final PickerConfirmCallback? onConfirm;
   final PickerConfirmBeforeCallback? onConfirmBefore;
 
-  /// 上级列变化时，后续联动列是否回到第一项。
+  /// Whether linked columns reset to first index when parent column changes.
   final bool changeToFirst;
 
   final List<int>? columnFlex;
@@ -344,7 +344,7 @@ class Picker<T> {
     return await before(this, selecteds);
   }
 
-  /// 外部修改联动数据后，刷新指定列。
+  /// Refresh specific column after linked data is externally modified.
   void updateColumn(int index, [bool all = false]) {
     if (all) {
       _state?.update();
@@ -925,7 +925,7 @@ abstract class PickerAdapter {
   void initSelects();
   Widget buildItem(BuildContext context, int index);
 
-  /// 当前列变化后，是否需要反向刷新前面的列。
+  /// Whether previous columns need reverse-refresh when current column changes.
   bool needUpdatePrev(int curIndex) => false;
 
   Widget makeText(Widget? child, String? text, bool isSel) {
@@ -1036,7 +1036,7 @@ abstract class PickerAdapter {
   @override
   String toString() => getText();
 
-  /// 数据源变化后同步滚轮位置。
+  /// Synchronize scroll position after data source changes.
   void notifyDataChanged() {
     final currentPicker = picker;
     final state = currentPicker?.state;
@@ -1225,7 +1225,7 @@ class PickerDataAdapter<T> extends PickerAdapter {
       p.selecteds.removeRange(maxLevel, p.selecteds.length);
     }
 
-    // 保证每一列的选中索引都落在当前数据范围内。
+    // Ensure selected index falls within current data range for each column.
     for (var i = 0; i < maxLevel; i++) {
       setColumn(i - 1);
       final len = length;

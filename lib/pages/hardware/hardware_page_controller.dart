@@ -1,11 +1,8 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:path/path.dart' as path;
 import 'package:rapidefi/pages/hardware/widgets/efi_build_progress_dialog.dart';
@@ -45,18 +42,13 @@ class _AcpiExportResult {
 }
 
 class HardwarePageController extends ChangeNotifier {
-  AppLocalizations? _l10n(BuildContext? context) {
-    if (context == null || !context.mounted) return null;
-    return AppLocalizations.of(context);
-  }
-
-  static final String _idleStatus = l10nGlobal.autoGen5780;
-  static final String _loadingStatus = l10nGlobal.autoGen5781;
-  static final String _refreshStatus = l10nGlobal.autoGen5782;
-  static final String _completeStatus = l10nGlobal.autoGen5783;
-  static final String _failedStatus = l10nGlobal.autoGen5784;
-  static final String _unsupportedStatus = l10nGlobal.autoGen5785;
-  static final String _importedStatus = l10nGlobal.autoGen5786;
+  static const String _idleStatus = 'Waiting to refresh hardware info';
+  static const String _loadingStatus = 'Loading hardware info...';
+  static const String _refreshStatus = 'Refreshing hardware info...';
+  static const String _completeStatus = 'Hardware info loaded successfully';
+  static const String _failedStatus = 'Failed to load hardware info';
+  static const String _unsupportedStatus = 'Hardware query not supported on this platform';
+  static const String _importedStatus = 'Hardware info imported successfully';
 
   HardwareAllInfo? allInfo;
   Map<String, dynamic>? rawInfo;
@@ -100,10 +92,10 @@ class HardwarePageController extends ChangeNotifier {
   }
 
   String _statusFromProgress(String message) {
-    if (message.contains(l10nGlobal.autoGen5787)) return _failedStatus;
-    if (message.contains(l10nGlobal.autoGen5788)) return _unsupportedStatus;
-    if (message.contains(l10nGlobal.autoGen5789)) return _completeStatus;
-    if (message.contains(l10nGlobal.autoGen5790)) return _refreshStatus;
+    if (message.toLowerCase().contains('fail')) return _failedStatus;
+    if (message.toLowerCase().contains('unsupported')) return _unsupportedStatus;
+    if (message.toLowerCase().contains('complete') || message.toLowerCase().contains('loaded')) return _completeStatus;
+    if (message.toLowerCase().contains('cache')) return _refreshStatus;
     return isLoading ? _loadingStatus : _idleStatus;
   }
 
@@ -115,7 +107,7 @@ class HardwarePageController extends ChangeNotifier {
     }
   }
 
-  Future<void> loadAllInfo([BuildContext? context]) async {
+  Future<void> loadAllInfo() async {
     if (_disposed) return;
     final hasCache = await HardwareInfo.loadCachedInfo('all');
     if (_disposed) return;
@@ -137,7 +129,6 @@ class HardwarePageController extends ChangeNotifier {
     }
     if (Platform.isWindows) {
       unawaited(refreshHardwareInfo(
-        context,
         clearCache: true,
         preserveCurrent: hasCache,
         force: true,
@@ -151,7 +142,7 @@ class HardwarePageController extends ChangeNotifier {
     }
   }
 
-  Future<void> refreshHardwareInfo(BuildContext? context, {
+  Future<void> refreshHardwareInfo({
     bool clearCache = true,
     bool preserveCurrent = false,
     bool force = false,
@@ -159,7 +150,7 @@ class HardwarePageController extends ChangeNotifier {
     if (_disposed) return;
     if (isLoading && !force) return;
     if (!Platform.isWindows) {
-      showToast(_l10n(context)?.hwPlatformUnsupported ?? l10nGlobal.autoGen5791);
+      showToast('Hardware query is not supported on this platform');
       loadStatus = _unsupportedStatus;
       isLoading = false;
       loadProgress = 0;
@@ -195,12 +186,11 @@ class HardwarePageController extends ChangeNotifier {
       _finishLoadStatus(DateTime.now().difference(startTime));
     } catch (e) {
       _failLoadStatus(e);
-      showToast(_l10n(context)?.hwFetchFailed(e.toString()) ?? '硬件信息获取失败: $e');
+      showToast('Failed to retrieve hardware info: $e');
     }
   }
 
-  void _startLoadStatus({String? status}) {
-    status ??= _loadingStatus;
+  void _startLoadStatus({String status = _loadingStatus}) {
     _elapsedTimer?.cancel();
     _loadStartTime = DateTime.now();
     isLoading = true;
@@ -235,16 +225,16 @@ class HardwarePageController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> exportHardwareInfo(BuildContext? context) async {
+  Future<void> exportHardwareInfo() async {
     if (hasImportedHardware) {
-      showToast(_l10n(context)?.hwExportWarning ?? l10nGlobal.autoGen5792);
+      showToast('Currently using imported external report. Please refresh local hardware info before exporting.');
       return;
     }
 
     final report = HardwareInfo.rawReport ??
         const JsonEncoder.withIndent('  ').convert(rawInfo ?? {});
     if (report.trim().isEmpty || report.trim() == '{}') {
-      showToast(_l10n(context)?.hwNoLocalInfo ?? l10nGlobal.autoGen5793);
+      showToast('No local hardware information available to export');
       return;
     }
 
@@ -260,8 +250,8 @@ class HardwarePageController extends ChangeNotifier {
       try {
         await reportRoot.delete(recursive: true);
       } catch (error) {
-        Log.warning(l10nGlobal.logMsg445(error.toString()));
-        if (context != null && context.mounted) showToast(_l10n(context)?.hwFolderCleanFailed ?? l10nGlobal.autoGen5794);
+        Log.warning('Failed to clean up hardware report directory: $error');
+        showToast('Failed to clean up hardware report directory');
         return;
       }
     }
@@ -270,11 +260,11 @@ class HardwarePageController extends ChangeNotifier {
       'RapidEFI-HardwareReport',
     );
     if (reportDirectory.isEmpty) {
-      if (context != null && context.mounted) showToast(_l10n(context)?.hwFolderCreateFailed ?? l10nGlobal.autoGen5795);
+      showToast('Failed to create hardware report directory');
       return;
     }
 
-    Log(l10nGlobal.logMsg450);
+    Log('Exporting local hardware report...');
     await FileUtils.saveToFile(
       content: report,
       fileName: 'sysInfo.txt',
@@ -287,8 +277,8 @@ class HardwarePageController extends ChangeNotifier {
     );
     showToast(
       acpiResult.exported
-          ? '硬件报告和 ACPI 表已导出到 $reportDirectory'
-          : '硬件报告已导出到 $reportDirectory，${acpiResult.failureMessage ?? l10nGlobal.autoGen5796}',
+          ? 'Hardware report and ACPI tables exported to $reportDirectory'
+          : 'Hardware report exported to $reportDirectory, ${acpiResult.failureMessage ?? 'ACPI table export failed or unsupported'}',
     );
   }
 
@@ -305,8 +295,8 @@ class HardwarePageController extends ChangeNotifier {
     );
     showToast(
       result.exported
-          ? 'ACPI 表已导出到 ${result.path}'
-          : result.failureMessage ?? l10nGlobal.autoGen5796,
+          ? 'ACPI tables exported to ${result.path}'
+          : result.failureMessage ?? 'ACPI table export failed or unsupported',
     );
   }
 
@@ -318,7 +308,7 @@ class HardwarePageController extends ChangeNotifier {
     Directory? tempDirectory;
     var tempMoved = false;
     try {
-      Log(l10nGlobal.logMsg451);
+      Log('Exporting local ACPI tables...');
       final baseDirectory = Directory(reportDirectory);
       await baseDirectory.create(recursive: true);
       final acpiDirectoryPath = path.join(reportDirectory, folderName);
@@ -343,8 +333,8 @@ class HardwarePageController extends ChangeNotifier {
       );
       final exported = dumpPath != null && dumpPath.isNotEmpty;
       if (!exported) {
-        Log.warning(l10nGlobal.logMsg446);
-        return _AcpiExportResult(failureMessage: l10nGlobal.autoGen5796);
+        Log.warning('Local ACPI table export failed');
+        return const _AcpiExportResult(failureMessage: 'ACPI table export failed or unsupported');
       }
 
       final acpiRoot = Directory(acpiDirectoryPath);
@@ -353,22 +343,22 @@ class HardwarePageController extends ChangeNotifier {
       }
       await tempDirectory.rename(acpiDirectoryPath);
       tempMoved = true;
-      Log(l10nGlobal.logMsg452(acpiDirectoryPath.toString()));
+      Log('Local ACPI table export completed: $acpiDirectoryPath');
       return _AcpiExportResult(path: acpiDirectoryPath);
     } on AcpiDumpException catch (error) {
-      Log.warning(l10nGlobal.logMsg447(error.toString()));
+      Log.warning('Local ACPI table export failed: $error');
       return _AcpiExportResult(
         failureMessage: _acpiDumpFailureMessage(error),
       );
     } catch (error) {
-      Log.warning(l10nGlobal.logMsg448(error.toString()));
-      return _AcpiExportResult(failureMessage: l10nGlobal.autoGen5796);
+      Log.warning('Local ACPI table export failed: $error');
+      return const _AcpiExportResult(failureMessage: 'ACPI table export failed or unsupported');
     } finally {
       if (!tempMoved && tempDirectory != null && await tempDirectory.exists()) {
         try {
           await tempDirectory.delete(recursive: true);
         } catch (error) {
-          Log.warning(l10nGlobal.logMsg449(error.toString()));
+          Log.warning('Failed to clean up ACPI temp directory: $error');
         }
       }
     }
@@ -377,23 +367,23 @@ class HardwarePageController extends ChangeNotifier {
   String _acpiDumpFailureMessage(AcpiDumpException error) {
     switch (error.type) {
       case AcpiDumpFailureType.toolMissing:
-        return l10nGlobal.autoGen5729;
+        return 'ACPI dump tool is not ready';
       case AcpiDumpFailureType.unsupportedPlatform:
-        return l10nGlobal.autoGen5731;
+        return 'Current platform does not support ACPI export';
       case AcpiDumpFailureType.authorizationCancelled:
-        return l10nGlobal.autoGen5797;
+        return 'Administrator authorization cancelled; ACPI tables not exported';
       case AcpiDumpFailureType.passwordRequired:
-        return l10nGlobal.autoGen5798;
+        return 'Administrator password not entered; cannot export ACPI tables';
       case AcpiDumpFailureType.incorrectPassword:
-        return l10nGlobal.autoGen5799;
+        return 'Incorrect administrator password; cannot export ACPI tables';
       case AcpiDumpFailureType.emptyResult:
-        return l10nGlobal.autoGen5800;
+        return 'ACPI export failed: No valid ACPI tables found';
       case AcpiDumpFailureType.processFailed:
-        return l10nGlobal.autoGen5801;
+        return 'ACPI export failed: Process execution error';
     }
   }
 
-  Future<void> importHardwareInfo(BuildContext? context, {
+  Future<void> importHardwareInfo({
     required String filePath,
     String acpiTablesPath = '',
   }) async {
@@ -402,7 +392,7 @@ class HardwarePageController extends ChangeNotifier {
       final text = await HardwareInfo.readHardwareReportFile(filePath);
       final decoded = jsonDecode(text);
       if (decoded is! Map<String, dynamic>) {
-        throw FormatException(l10nGlobal.autoGen5802);
+        throw const FormatException('Hardware info file is not a JSON object');
       }
       await HardwareInfo.importRawInfo('all', decoded);
       allInfo = HardwareInfo.getHardwareInfoForPage('all');
@@ -415,12 +405,12 @@ class HardwarePageController extends ChangeNotifier {
       loadProgress = 1;
       loadStatus = _importedStatus;
       notifyListeners();
-      if (context != null && context.mounted) showToast(_l10n(context)?.hwImportSuccess ?? l10nGlobal.autoGen5803);
+      showToast('Hardware info imported successfully');
       if (acpiTablesPath.trim().isNotEmpty && importedAcpiTablesPath.isEmpty) {
-        if (context != null && context.mounted) showToast(_l10n(context)?.hwImportAcpiInvalid ?? l10nGlobal.autoGen5804);
+        showToast('Invalid ACPI table directory; custom SSDT unavailable');
       }
     } catch (e) {
-      if (context != null && context.mounted) showToast(_l10n(context)?.hwImportFailed(e.toString()) ?? '导入硬件报告失败: $e');
+      showToast('Failed to import hardware report: $e');
     }
   }
 
@@ -529,9 +519,9 @@ class HardwarePageController extends ChangeNotifier {
             ? SsdtBuildMode.original
             : ssdtBuildMode;
     final progress = EfiBuildProgressDialog.show(context);
-    progress.addLine(l10nGlobal.autoGen5805);
+    progress.addLine('Starting EFI configuration...');
     try {
-      progress.addLine(l10nGlobal.autoGen5806);
+      progress.addLine('Generating ConfigModel based on hardware info...');
       final configModel = await HardwareConfigModelBuilder(
         hardwareInfo: info,
         rawInfo: rawInfo,
@@ -547,7 +537,7 @@ class HardwarePageController extends ChangeNotifier {
         ),
       );
       progress.addLine(
-        'ConfigModel 已生成: ${configModel.cpuType.name}/${configModel.platformType.name}/${configModel.platformCode}',
+        'ConfigModel generated: ${configModel.cpuType.name}/${configModel.platformType.name}/${configModel.platformCode}',
       );
       final resolvedSsdtSelection =
           effectiveSsdtBuildMode == SsdtBuildMode.custom
@@ -565,16 +555,16 @@ class HardwarePageController extends ChangeNotifier {
       if (resolvedSsdtSelection != null) {
         removeCustomSsdtPrebuiltItems(configModel, resolvedSsdtSelection);
         progress.addLine(
-          '准备定制 SSDT: ${resolvedSsdtSelection.items.map((item) => item.name).join(', ')}',
+          'Preparing custom SSDTs: ${resolvedSsdtSelection.items.map((item) => item.name).join(', ')}',
         );
       } else if (effectiveSsdtBuildMode == SsdtBuildMode.original) {
-        progress.addLine(l10nGlobal.autoGen5807);
+        progress.addLine('Using original EFI SSDTs; skipping custom SSDT generation.');
         if (hasImportedHardware && !hasImportedAcpiTables) {
-          progress.addLine(l10nGlobal.autoGen5808);
+          progress.addLine('External hardware report imported without ACPI directory; custom SSDTs disabled.');
         }
       }
 
-      progress.addLine(l10nGlobal.autoGen5809);
+      progress.addLine('Exporting OpenCore EFI...');
       final result = await EfiBuildPipeline(ConfigService()).buildResult(
         configModel: configModel,
         mode: ConfigModelMode.auto,
@@ -584,7 +574,7 @@ class HardwarePageController extends ChangeNotifier {
           afterConfigWritten: resolvedSsdtSelection == null
               ? null
               : (draft) async {
-                  progress.addLine(l10nGlobal.autoGen5810);
+                  progress.addLine('EFI written; extracting ACPI and generating custom SSDTs...');
                   final merged =
                       await const WinSsdtBuildService().buildAndMerge(
                     draft: draft,
@@ -593,7 +583,7 @@ class HardwarePageController extends ChangeNotifier {
                     rawInfo: rawInfo,
                     acpiTablesPath: importedAcpiTablesPath,
                   );
-                  progress.addLine(merged ? l10nGlobal.autoGen5811 : l10nGlobal.autoGen5812);
+                  progress.addLine(merged ? 'Custom SSDT generation finished.' : 'Custom SSDT generation failed.');
                   return merged;
                 },
         ),
@@ -601,23 +591,23 @@ class HardwarePageController extends ChangeNotifier {
       progress.complete(
         success: result.success,
         outputPath: result.efiRootPath,
-        message: result.success ? l10nGlobal.autoGen5813 : l10nGlobal.autoGen5814,
+        message: result.success ? 'EFI configuration completed.' : 'EFI configuration failed. Please check output path or logs.',
       );
     } on UnsupportedError catch (error) {
-      progress.addLine('配置 EFI 失败: ${error.message}');
+      progress.addLine('Failed to configure EFI: ${error.message}');
       progress.complete(
         success: false,
         outputPath: outputDirectory,
-        message: error.message ?? l10nGlobal.autoGen5815,
+        message: error.message ?? 'Hardware auto-generation ConfigModel error',
       );
     } catch (error, stackTrace) {
       debugPrint('hardware EFI export failed: $error');
       debugPrintStack(stackTrace: stackTrace);
-      progress.addLine('配置 EFI 失败: $error');
+      progress.addLine('Failed to configure EFI: $error');
       progress.complete(
         success: false,
         outputPath: outputDirectory,
-        message: '配置 EFI 发生错误: $error',
+        message: 'Error during EFI configuration: $error',
       );
     }
   }

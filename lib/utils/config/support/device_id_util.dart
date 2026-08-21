@@ -1,11 +1,10 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 class DeviceIdUtils {
   const DeviceIdUtils._();
 
   static String reverseDeviceId(String deviceId) {
     final normalized = deviceId.replaceAll(RegExp(r'\s+'), '');
     if (normalized.length != 4) {
-      throw ArgumentError.value(deviceId, 'deviceId', l10nGlobal.autoGen5213);
+      throw ArgumentError.value(deviceId, 'deviceId', 'device-id must be 4 characters');
     }
 
     return normalized.replaceFirstMapped(

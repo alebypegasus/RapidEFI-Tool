@@ -5,7 +5,7 @@ enum SsdtBuildMode { custom, original }
 enum SsdtItemGroup { basic, recommend, optional }
 
 class SsdtItem {
-  SsdtItem({
+  const SsdtItem({
     required this.name,
     required this.remark,
     required this.group,
@@ -38,7 +38,7 @@ class SsdtItem {
 }
 
 class SsdtSelection {
-  SsdtSelection({
+  const SsdtSelection({
     required this.cpuType,
     required this.platformType,
     required this.platformCode,

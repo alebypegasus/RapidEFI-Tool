@@ -1,5 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
-
 //  ssdt.dart
 //  Created by JeoJay127
 //
@@ -37,7 +35,7 @@ class SSDT {
   };
 
   final String legacyWarning =
-      l10nGlobal.autoGen5757;
+      'Note: Legacy iasl-legacy only supports macOS 10.6 and older; may have compatibility issues on modern systems, use with caution!\n';
 
   AcpiConfig config;
 
@@ -46,7 +44,7 @@ class SSDT {
   int _plistBatchDepth = 0;
   final Map<String, Map<String, dynamic>> _batchedPlists = {};
 
-  /// 预制补丁
+  /// Preset Patches
   final prePatches = [
     {
       "PrePatch": "GPP7 duplicate _PRW methods",
@@ -74,17 +72,17 @@ class SSDT {
     },
   ];
 
-  /// 构造函数
-  /// [config] 配置
+  /// Constructor
+  /// [config]: Configuration
   SSDT({required this.config})
       : d = DSDT(
           useLocaliAsl: config.useLocaliAsl,
           useLeagcyiAsl: config.useLeagcyiAsl,
         );
 
-  /// 转储表
-  /// [filePath] 输入DSDT路径
-  /// [disassemble] 是否反编译
+  /// Dump tables
+  /// [filePath]: Input DSDT path
+  /// [disassemble]: Whether to disassemble
   Future<String?> dumpTables(
     String filePath, {
     bool disassemble = false,
@@ -110,11 +108,11 @@ class SSDT {
     d.acpiTool.checkIaslValid();
   }
 
-  /// 自然排序
-  /// [list] 待排序的字符串列表
-  /// [first] 指定排到最前的名称
+  /// Natural sort
+  /// [list]: String list to sort
+  /// [first]: Name to prioritize first
   List<String> sortedNicely(List<String> list, {String? first = "DSDT"}) {
-    // 分割字符串为数字 / 非数字的序列
+    // splitstring for number /  non-number  sequence column
     List<dynamic> alphanumKey(String key) {
       final regex = RegExp(r'(\d+)');
       final parts = <dynamic>[];
@@ -137,20 +135,20 @@ class SSDT {
       if (first == null) return false;
       final lowerName = name.toLowerCase();
       final lowerFirst = first.toLowerCase();
-      // 去掉后缀，仅比较表名
+      //  remove  drop  after  suffix ， only compare table  name 
       final baseName = lowerName.split('.').first;
       return baseName == lowerFirst;
     }
 
     list.sort((a, b) {
-      // 优先让 first 指定的表名排在最前
+      //  prefer  first  let  first  specified   table  name  order  in  most  before 
       final aIsFirst = isFirst(a);
       final bIsFirst = isFirst(b);
 
       if (aIsFirst && !bIsFirst) return -1;
       if (bIsFirst && !aIsFirst) return 1;
 
-      // 其他项按自然排序
+      //  its  other  item  by  self  natural  order  sequence 
       final aKey = alphanumKey(a);
       final bKey = alphanumKey(b);
 
@@ -172,16 +170,16 @@ class SSDT {
     return list;
   }
 
-  /// 从行中获取地址
-  /// [line] 行号
-  /// [splitBy] 分隔符
-  /// [table] 表
+  /// Get address from line
+  /// [line]: Line number
+  /// [splitBy]: Delimiter
+  /// [table]: Table
   int? getAddressFromLine(
     int line, {
     String splitBy = '_ADR, ',
     Map<String, dynamic>? table,
   }) {
-    // 如果未提供table，则获取 DSDT 或唯一表
+    //  if  not  prompt  provide table， then get DSDT  or  unique  table 
     table ??= d.getDsdt();
     try {
       String rawLine = table?['lines'][line];
@@ -197,16 +195,16 @@ class SSDT {
     }
   }
 
-  /// 获取 LPC 名称
-  /// [skipEc] 是否跳过 EC 设备
-  /// [skipCommonNames] 是否跳过常见名称
+  /// Get LPC name
+  /// [skipEc]: Whether to skip EC device
+  /// [skipCommonNames]: Whether to skip common names
   String? getLpcName({bool skipEc = false, bool skipCommonNames = false}) {
-    Log(l10nGlobal.logMsg112);
+    Log("Locating LPC(B)/SBRG…");
 
     for (final tableName in sortedNicely(d.acpiTables.keys.toList())) {
       final table = d.acpiTables[tableName]!;
 
-      // 检查 EC 设备
+      //  check  EC device
       if (!skipEc) {
         final ecList = d.getDevicePathsWithHid(hid: "PNP0C09", table: table);
         if (ecList.isNotEmpty) {
@@ -214,45 +212,45 @@ class SSDT {
               .split(".")
               .sublist(0, ecList[0][0].split(".").length - 1)
               .join(".");
-          Log(l10nGlobal.logMsg113(tableName.toString(), lpcName.toString()));
+          Log("=> Found in $tableName $lpcName");
           return lpcName;
         }
       }
 
-      // 检查常见名称
+      //  check  common  see name
       if (!skipCommonNames) {
         for (final name in ["LPCB", "LPC0", "LPC", "SBRG", "PX40"]) {
           final paths = d.getDevicePaths(obj: name, table: table);
           if (paths.isNotEmpty && paths[0].isNotEmpty) {
             var lpcName = paths[0][0];
-            Log(l10nGlobal.logMsg114(tableName.toString(), lpcName.toString()));
+            Log("=> Found in $tableName $lpcName");
             return lpcName;
           }
         }
       }
 
-      // 检查地址
+      //  check address
       final paths = d.getPathOfType(objType: "Name", obj: "_ADR", table: table);
       for (final path in paths) {
         final adr = getAddressFromLine(path[1], table: table);
         if (adr == 0x001F0000 || adr == 0x00140003) {
-          // 移除 ._ADR
+          //  remove  ._ADR
           final lpcName = path[0].substring(0, path[0].length - 5);
           final lpcHid = "$lpcName._HID";
           if (table['paths'].any((x) => x[0] == lpcHid)) continue;
-          Log(l10nGlobal.logMsg115(tableName.toString(), lpcName.toString()));
+          Log("=> Found in $tableName $lpcName");
           return lpcName;
         }
       }
     }
 
-    Log.warning(l10nGlobal.logMsg001);
-    // 未找到 LPC(B)
+    Log.warning("=> Failed to find LPC(B)！Aborted!");
+    // Not found LPC(B)
     return null;
   }
 
-  /// 确保 DSDT 存在
-  /// [allowAny] 是否允许任何 DSDT
+  /// Ensure DSDT exists
+  /// [allowAny]: Whether to allow any DSDT
   bool _ensureDSDT({bool allowAny = false}) {
     if (allowAny) {
       return d.acpiTables.isNotEmpty;
@@ -261,46 +259,46 @@ class SSDT {
     }
   }
 
-  /// 确保 DSDT 存在
-  /// [allowAny] 是否允许任何 DSDT
+  /// Ensure DSDT exists
+  /// [allowAny]: Whether to allow any DSDT
   Future<bool> ensureDSDT({bool allowAny = false}) async {
-    // 检查是否已经有有效的 iasl
+    // Check if valid iasl exists
     if (!checkIasl()) return false;
-    // 检查是否已经有有效的 dsdt
+    // Check if valid dsdt exists
     if (_ensureDSDT(allowAny: allowAny)) return true;
-    // 未找到有效的 dsdt
-    Log.warning(l10nGlobal.logMsg002);
+    // Valid dsdt not found
+    Log.warning("No valid DSDT found! Please select a DSDT file or directory containing DSDT first!");
     return false;
   }
 
-  /// 选择 DSDT
-  /// [singleTable] 是否仅选择一个表
-  /// [dsdtPath] DSDT 文件路径
+  /// Select DSDT
+  /// [singleTable]: Whether to select only a single table
+  /// [dsdtPath]: DSDT file path
   Future<String?> selectDsdt({
     bool singleTable = false,
     String? dsdtPath,
   }) async {
-    // 如果传入了 DSDT 文件路径，直接验证和加载
+    // If DSDT file path passed, validate and load directly
     if (dsdtPath != null && dsdtPath.isNotEmpty) {
-      Log(l10nGlobal.logMsg116(dsdtPath.toString()));
+      Log("Provided DSDT path: $dsdtPath");
       String out = await util.checkPath(filePath: dsdtPath);
       if (out.isNotEmpty) {
-        // 路径有效，加载并返回结果
+        // Path valid, load and return result
         return await loadTables(out);
       } else {
-        Log(l10nGlobal.logMsg117(dsdtPath.toString()));
-        // 路径无效，返回 null
+        Log("Provided DSDT path is invalid: $dsdtPath");
+        // Path invalid, return null
         return null;
       }
     }
     return null;
   }
 
-  /// 获取唯一设备 (设备名称, 设备编号)
-  /// [parentPath] 父路径
-  /// [baseName] 基础名称
-  /// [startingNumber] 起始数字
-  /// [usedNames] 已使用名称
+  /// Get unique device (device name, device number)
+  /// [parentPath]: Parent path
+  /// [baseName]: Base name
+  /// [startingNumber]: Starting number
+  /// [usedNames]: Used names
   ({String name, int number}) getUniqueDevice(
     String parentPath,
     String baseName, {
@@ -313,15 +311,15 @@ class SSDT {
       String name;
 
       if (num < 0) {
-        // 尝试原始名称
+        // Try original name
         name = baseName;
-        // 下一轮开始从 0
+        // Next round starts from 0
         num = 0;
       } else {
-        // 将数字转为大写十六进制，并附加在 baseName 后
+        // Convert number to uppercase hex and append to baseName
         final hexNum = num.toRadixString(16).toUpperCase();
         final maxLen = baseName.length - hexNum.length;
-        // 防止越界
+        // Prevent overflow
         name = maxLen > 0 ? baseName.substring(0, maxLen) + hexNum : hexNum;
       }
 
@@ -336,32 +334,32 @@ class SSDT {
     }
   }
 
-  /// 获取唯一名称
-  /// [name] 名称
-  /// [targetFolder] 目标文件夹
-  /// [nameAppend] 名称后缀
+  /// Get unique name
+  /// [name]: Name
+  /// [targetFolder]: Target folder
+  /// [nameAppend]: Name suffix
   String getUniqueName(
     String name,
     String targetFolder, {
     String nameAppend = "-Patched",
   }) {
-    // 获取文件的扩展名
+    // Get file extension
     String ext = name.contains('.') ? name.split('.').last : '';
-    // 去除扩展名部分
+    // Strip file extension
     if (ext.isNotEmpty) {
       name = name.substring(0, name.length - ext.length - 1);
     }
-    // 如果有指定后缀，则添加
+    // Add suffix if specified
     if (nameAppend.isNotEmpty) {
       name = '$name$nameAppend';
     }
-    // 检查文件名是否已经存在
+    // Check if file name already exists
     String checkName = ext.isNotEmpty ? '$name.$ext' : name;
     if (!File('$targetFolder/$checkName').existsSync()) {
       return checkName;
     }
 
-    // 需要生成唯一的文件名
+    // Need to generate unique file name
     int num = 1;
     while (true) {
       checkName = '$name-$num';
@@ -371,25 +369,25 @@ class SSDT {
       if (!File('$targetFolder/$checkName').existsSync()) {
         return checkName;
       }
-      // 增加数字计数
+      //  add  add number calculate  number 
       num++;
     }
   }
 
-  /// 检查 iasl 工具是否存在
+  ///  check  iasl  tool  have exists
   bool checkIasl() {
     if (config.useLeagcyiAsl) {
       Log.warning(legacyWarning);
     }
     if (d.acpiTool.iasl.isEmpty) {
-      Log.error(l10nGlobal.logMsg003);
+      Log.error("iasl tool  have readyfailed! please  first update or  or  make  use  inside  set  iasl tool  have !");
       return false;
     }
     return true;
   }
 
-  /// 加载 DSDT 或文件夹中的有效 ACPI 表
-  /// [fileOrFolderPath] 文件或文件夹路径
+  /// load DSDT  or file folder  in  valid ACPI  table 
+  /// [fileOrFolderPath] file or file folder Path
   Future<String?> loadTables(String fileOrFolderPath) async {
     if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
       await d.acpiTool.initialize();
@@ -402,21 +400,21 @@ class SSDT {
       String? troubleDsdt;
       bool fixed = false;
       String? temp;
-      // 备份 acpiTables
+      //  backup  acpiTables
       final priorTables = Map<String, dynamic>.from(d.acpiTables);
-      // 清空 acpiTables
+      //  clear  empty  acpiTables
       d.acpiTables.clear();
       if (Directory(fileOrFolderPath).existsSync()) {
-        Log(l10nGlobal.logMsg118(fileOrFolderPath.toString()));
+        Log(" currently  in  from directory $fileOrFolderPath  collect  collection validACPI table ...");
         final dir = Directory(fileOrFolderPath);
         final items = dir
             .listSync()
-            .whereType<File>() // 只保留文件（排除目录）
+            .whereType<File>() // Keep files only (exclude directories)
             .where(
               (f) =>
                   f.path.toLowerCase().endsWith('.aml') ||
                   f.path.toLowerCase().endsWith('.dat'),
-            ) // 只保留 .aml 或 .dat 文件
+            ) // Keep .aml or .dat files only
             .map((e) => path.basename(e.path))
             .toList();
         for (var item in sortedNicely(items)) {
@@ -424,7 +422,7 @@ class SSDT {
             tables.add(item);
           }
         }
-        Log(l10nGlobal.logMsg119(items.length.toString(), tables.length.toString()));
+        Log(' total found ${items.length}  ACPI table ,  its  in  ${tables.length}  valid:');
         for (var table in tables) {
           Log('   $table');
         }
@@ -434,7 +432,7 @@ class SSDT {
             return await loadTables(path.join(fileOrFolderPath, "ACPI"));
           }
 
-          Log.warning(l10nGlobal.logMsg004);
+          Log.warning("Not foundvalid  .aml file!\n");
           d.acpiTables.addAll(priorTables);
           return null;
         }
@@ -445,15 +443,15 @@ class SSDT {
             )
             .toList();
         if (dsdtList.isEmpty) {
-          Log.warning(l10nGlobal.logMsg005);
+          Log.warning("No valid DSDT found! Please select a DSDT file or directory containing DSDT first!");
           return null;
         }
         if (dsdtList.length > 1) {
-          Log(l10nGlobal.logMsg120);
+          Log(" multiple   with  have  DSDT  signature  name  file already  via verify：");
           for (var dsdt in sortedNicely(dsdtList)) {
             Log("=> $dsdt");
           }
-          Log.warning(l10nGlobal.logMsg006);
+          Log.warning(" when  before  check  test  to  multiple   DSDT file， every  time  only  allow  allow at process 1 . please  keep  keep 1  DSDT file， its  remaining  please  remove  after  again  try .\n");
           d.acpiTables = priorTables;
           return null;
         }
@@ -461,41 +459,41 @@ class SSDT {
         final dsdt = dsdtList.isNotEmpty ? dsdtList.first : null;
         if (dsdt != null && dsdt.isNotEmpty) {
           Log("");
-          Log(l10nGlobal.logMsg121(dsdt.toString()));
+          Log(" i.e.   reverse compile $dsdt， to verify is  whether  require  correspond  use  preset  control Patch…");
           final (result, failed) = await d.loadTable(
             path.join(fileOrFolderPath, dsdt),
           );
           if (result.isNotEmpty) {
             exclude.add(dsdt);
-            Log(l10nGlobal.logMsg122);
+            Log('=>  no  require  correspond  use  preset  control Patch!\n');
           } else {
             troubleDsdt = dsdt;
           }
         }
       } else if (File(fileOrFolderPath).existsSync()) {
-        Log(l10nGlobal.logMsg123(path.basename(fileOrFolderPath).toString()));
+        Log("Loading ${path.basename(fileOrFolderPath)}...");
         final (result, failed) = await d.loadTable(fileOrFolderPath);
         if (d.tableSignature(fileOrFolderPath) != "DSDT") {
-          Log.warning(l10nGlobal.logMsg007);
+          Log.warning("invalid DSDT file！ please  re- select  select 1 valid DSDT file!");
           d.acpiTables.addAll(priorTables);
           return null;
         }
         if (result.isNotEmpty || (result[0] != null && result[0].isNotEmpty)) {
-          Log(l10nGlobal.logMsg124);
+          Log(" already at process completed!\n");
           return path.dirname(fileOrFolderPath);
         }
         troubleDsdt = path.basename(fileOrFolderPath);
         tables.add(troubleDsdt);
         fileOrFolderPath = path.dirname(fileOrFolderPath);
       } else {
-        Log(l10nGlobal.logMsg125);
+        Log(" pass  enter  file or file folder does not exist!\n");
         d.acpiTables = priorTables;
         return null;
       }
 
-      // 处理有问题的 DSDT 文件
+      // at process  have  issue  issue   DSDT file
       if (troubleDsdt != null && troubleDsdt.isNotEmpty) {
-        Log(l10nGlobal.logMsg126);
+        Log("at process  have  issue  issue   DSDT file ...");
         temp = Directory.systemTemp.createTempSync().path;
         for (var table in tables) {
           File(
@@ -504,8 +502,8 @@ class SSDT {
         }
 
         final troublePath = path.join(temp, troubleDsdt);
-        Log(l10nGlobal.logMsg127);
-        Log(l10nGlobal.logMsg128(troubleDsdt.toString()));
+        Log(" check  can  use   preset  control Patch…");
+        Log(" currently  in   $troubleDsdt fileload to  inside  exist …");
         var data = await File(troublePath).readAsBytes();
         final out = await util.checkPath(
           filePath: path.join(temp, "output"),
@@ -518,7 +516,7 @@ class SSDT {
         );
 
         List<Map<String, String>> patches = [];
-        Log(l10nGlobal.logMsg129);
+        Log(" currently  in  by-one  at process Patch…\n");
         for (var patch in prePatches) {
           if (!(patch.containsKey("PrePatch") &&
               patch.containsKey("Comment") &&
@@ -533,7 +531,7 @@ class SSDT {
             final replace = Uint8List.fromList(
               List.from(patch["Replace"]!.codeUnits),
             );
-            Log(l10nGlobal.logMsg130);
+            Log("=>  already  locate ,  currently  in  correspond  use …");
             data = Uint8List.fromList(
               data.sublist(0, data.indexOf(find.first)) +
                   replace +
@@ -543,18 +541,18 @@ class SSDT {
             final (result, failed) = await d.loadTable(troublePath);
             if (result.isNotEmpty) {
               fixed = true;
-              Log(l10nGlobal.logMsg131);
+              Log("=>  first  before  issue  issue DSDTfile reverse compilesuccessfully!");
               exclude.remove(troublePath);
               makePlist(acpi: null, patches: patches);
               File(path.join(outputFolder, targetName)).writeAsBytesSync(data);
-              Log(l10nGlobal.logMsg132(targetName.toString()));
+              Log("=> Patch already  correspond  use  to  modify  after  file，filesave in  Results file folder  in ：\n   $targetName");
               break;
             }
           }
         }
 
         if (!fixed) {
-          Log.error(l10nGlobal.logMsg008(troubleDsdt.toString()));
+          Log.error("$troubleDsdt  reverse Compilation failed!\n");
           Directory(temp).deleteSync(recursive: true);
           d.acpiTables = priorTables;
           return null;
@@ -562,7 +560,7 @@ class SSDT {
       }
 
       if (tables.length > 1) {
-        Log(l10nGlobal.logMsg133(fileOrFolderPath.toString()));
+        Log("Loading $fileOrFolderPath  in  validACPI table …");
       }
       final (result, failed) = await d.loadTable(
         fileOrFolderPath,
@@ -572,7 +570,7 @@ class SSDT {
       if (result.isEmpty && failed.isNotEmpty) {
         d.acpiTables = priorTables;
       }
-      Log(l10nGlobal.logMsg134);
+      Log(" all validACPI table  reverse compilecompleted!");
       if (temp != null && temp.isNotEmpty) {
         Directory(temp).deleteSync(recursive: true);
       }
@@ -581,38 +579,38 @@ class SSDT {
       stopwatch.stop();
       final totalTimeMs = stopwatch.elapsedMilliseconds;
       final totalSeconds = (totalTimeMs / 1000).toStringAsFixed(2);
-      Log(l10nGlobal.logMsg135(totalSeconds.toString()));
+      Log(' total  consume  time ：$totalSeconds  second \n');
     }
   }
 
-  /// 写入 SSDT 文件
-  /// [ssdtName] SSDT 名称
-  /// [ssdt] SSDT 内容
-  /// [delDsl] 是否删除 .dsl 文件
+  /// write SSDT file
+  /// [ssdtName]: SSDT name
+  /// [ssdt] SSDT  inside  contain 
+  /// [delDsl]  is  whether remove .dsl file
   Future<bool> writeSSDT(String ssdtName, String ssdt, {bool? delDsl}) async {
     delDsl ??= config.deleteDsl;
 
-    // 确保输出路径存在
+    //  confirm  keep  output  out Path exist  in 
     final String res = await util.checkPath(
       filePath: path.join(config.outputDirectory ?? '', outputFolder),
       onError: (error) => Log.error(error),
     );
 
-    // 唯一临时名（只用于编译）
+    //  unique temporary name （ only  used for compile）
     final String uid = DateTime.now().microsecondsSinceEpoch.toString();
     final String tmpDsl = path.join(res, '$ssdtName.$uid.dsl');
     final String tmpAml = path.join(res, '$ssdtName.$uid.aml');
 
-    // 最终目标 AML（固定）
+    //  most  end  target  label  AML（ firmware  define ）
     final String finalDsl = path.join(res, '$ssdtName.dsl');
     final String finalAml = path.join(res, '$ssdtName.aml');
 
     final String iaslPath = d.acpiTool.iasl;
-    // 写入临时 DSL
+    // writetemporary DSL
     await File(tmpDsl).writeAsString(ssdt);
 
     Log(
-      '正在${config.useLeagcyiAsl ? l10nGlobal.autoGen5758 : ''}编译 $ssdtName.aml...',
+      ' currently  in ${config.useLeagcyiAsl ? 'using [iasl-legacy compiler]' : ''}compile $ssdtName.aml...',
       level: config.useLeagcyiAsl ? LogLevel.warning : LogLevel.info,
     );
 
@@ -624,26 +622,27 @@ class SSDT {
         {'args': iaslArgs},
       ]);
       if (out[2] != '0') {
-        Log.error(l10nGlobal.logMsg009(out[1].toString()));
+        Log.error('Compilation output: ${out[1]}');
         Log.error(
-          '${l10nGlobal.autoGen5759}${config.useLeagcyiAsl ? l10nGlobal.autoGen5760 : ''}',
+          'Compilation failed!'
+          '${config.useLeagcyiAsl ? ' Recommend switching to newer iasl or enabling forced compilation!' : ''}',
         );
         return false;
       }
 
-      Log(l10nGlobal.logMsg136(ssdtName.toString()));
-      // 编译成功，重命名 AML 文件
+      Log('Compiled $ssdtName.aml successfully!');
+      // Compilation successful, rename AML file
       await File(tmpAml).rename(finalAml);
       return true;
     } finally {
-      // 始终清理临时 DSL
+      // Always clean up temporary DSL
       final tmpDslFile = File(tmpDsl);
       if (await tmpDslFile.exists()) {
-        // 用于日志提示删除操作
-        if (delDsl) Log(l10nGlobal.logMsg137(ssdtName.toString()));
+        //  used for logTipremove operate  action 
+        if (delDsl) Log('remove $ssdtName.dsl  source file');
         await tmpDslFile.delete();
       }
-      // 如果不保留 DSL，删除最终 DSL
+      //  if  not  keep  keep  DSL，remove most  end  DSL
       if (delDsl) {
         final finalDslFile = File(finalDsl);
         if (await finalDslFile.exists()) {
@@ -655,26 +654,26 @@ class SSDT {
     }
   }
 
-  /// 提取 Field 内部所有行（保留 Offset 和原始格式）
+  /// extract Field  inside  part  all line（ keep  keep  Offset  and  original  start  format  format ）
   List<String> getFieldVarWithPath(String devicePath) {
     final deviceInfo = getDeviceAllInfo(devicePath: devicePath);
     final fields = deviceInfo['fields'];
     final lines = <String>[];
-    // 遍历 fields，找到包含 PMEE 的 Field
+    // iterate fields，found contains  PMEE   Field
     for (var field in fields) {
-      // 找到大括号 { 和 } 之间的内容
+      // found large  include  number  {  and  }  of  between   inside  contain 
       final braceStart = field.indexOf('{');
       final braceEnd = field.lastIndexOf('}');
 
       if (braceStart == -1 || braceEnd == -1 || braceEnd <= braceStart) {
-        // 如果没有找到大括号，直接返回空列表
+        //  if Not found large  include  number ， direct  receive  return  return  empty column table 
         return lines;
       }
 
-      // 提取内部文本
+      // extract inside  part  file  current 
       final body = field.substring(braceStart + 1, braceEnd);
 
-      // 按行拆分，保留每一行原始缩进和逗号
+      //  by line split  split ， keep  keep  every 1line original  start  compress  advance  and  comma  number 
       for (var line in body.split(RegExp(r'[\r\n]+'))) {
         line = line.trim();
         if (line.isNotEmpty) {
@@ -686,9 +685,9 @@ class SSDT {
     return lines;
   }
 
-  /// 获取设备的所有信息
-  /// [devicePath] 设备路径
-  /// [table] ACPI 表 （可选）
+  /// getdevice  all info
+  /// [devicePath] device path
+  /// [table] ACPI  table  （optional）
   Map<String, dynamic> getDeviceAllInfo({
     required String devicePath,
     Map<String, dynamic>? table,
@@ -701,7 +700,7 @@ class SSDT {
     final List<String> fields = [];
     final List<String> devices = [];
 
-    // 获取设备完整 Scope（每行为一项）
+    // getdevice finish  whole  Scope（ every line for 1 item ）
     final scope = d.getScopeOfDevice(
       devicePath: devicePath,
       table: table,
@@ -709,7 +708,7 @@ class SSDT {
     );
 
     if (scope.isEmpty) {
-      Log(l10nGlobal.logMsg138(devicePath.toString()));
+      Log("=> Not founddevice $devicePath   Scope");
       return {
         "valid": false,
         "device": devicePath,
@@ -721,13 +720,13 @@ class SSDT {
       };
     }
 
-    // 逐行解析 scope，使用 depth 跟踪大括号层级
-    // 只收集 depth == 1 的一级成员；当遇到子 Device 时，把它加入 devices 并跳过其 block
+    //  by-one lineparse scope， make  use  depth  follow  trace  large  include  number  tier  level 
+    //  only  collect  collection  depth == 1  1 level  succeed  member ； when  encounter  to  child  Device  time ，  it  add  enter  devices  and skip its  block
     final lines = scope; // List<String>
     int depth = 0;
 
-    // 首先确定 scope 起始处并初始化 depth：
-    // 找到第一个含 "{" 的行并把 depth 置为 1，从下一行开始解析
+    //  first  first  confirm  define  scope startat and initialize depth：
+    // found #1  contain  "{"  line and   depth  set  for  1， from  down 1linestartparse
     int startIndex = 0;
     for (int i = 0; i < lines.length; i++) {
       if (lines[i].contains("{")) {
@@ -736,24 +735,24 @@ class SSDT {
         break;
       }
     }
-    // 如果没有找到 '{'，仍从 0 开始（防御）
+    //  if Not found '{'， still  from  0 start（ protect  protect ）
     if (depth == 0) {
       startIndex = 0;
       depth = 1;
     }
 
-    // 从 given index 起找到与之匹配的 '}' 的行索引（根据 brace 计数）
+    //  from  given index  start found with  of match  '}'  line index（ according to  brace  calculate  number ）
     int findMatchingBrace(int fromIndex) {
       int b = 0;
       for (int j = fromIndex; j < lines.length; j++) {
         final l = lines[j];
-        // 在同一行可能同时包含 { 和 }
+        //  in  same 1line may  simultaneously  contains  {  and  }
         for (int k = 0; k < l.length; k++) {
           if (l[k] == '{') {
             b++;
           } else if (l[k] == '}') {
             if (b == 0) {
-              // 如果先出现 } 而 b==0，说明在外层遇到结束，返回当前行
+              //  if  first  out  present  }  while  b==0， description  in  outside  tier  encounter  to end， return  return  when  before line
               return j;
             } else {
               b--;
@@ -765,25 +764,25 @@ class SSDT {
       return lines.length - 1;
     }
 
-    // 主循环：从 startIndex 解析到 scope 结束（depth 回到 0）
+    //  main  loop  loop ： from  startIndex parse to  scope end（depth  return  to  0）
     int i = startIndex;
     while (i < lines.length) {
       String raw = lines[i];
       String line = raw.trim();
 
-      // 更新 depth 基于当前行的 { 和 } 出现数量（在跳块时控制 i）
-      // 若行里含 'Device (' 开头，且当前 depth==1，表示子设备（一级子设备）
+      // update depth  based on  when  before line  {  and  }  out  present  number  count （ in  jump  block  time  control  control  i）
+      //  if line inside  contain  'Device ('  open  header ， and  when  before  depth==1， table  show  child device（1 level  child device）
       final deviceHeaderMatch = RegExp(
         r'^\s*Device\s*\(\s*([A-Za-z0-9_]+)\s*\)',
         caseSensitive: false,
       ).firstMatch(raw);
 
       if (deviceHeaderMatch != null && depth == 1) {
-        // 记录子设备 header 原始行
+        //  record  record  child device header  original  start line
         devices.add(raw.trim());
 
-        // 跳过该子设备的整个块：找匹配的 '}' 行
-        // 寻找从当前行开始第一个 '{'，再找到匹配的 '}'
+        // skip this  child device  whole   block ： find match  '}' line
+        //  search  find  from  when  before linestart #1  '{'， again foundmatch  '}'
         int firstBraceLine = -1;
         for (int t = i; t < lines.length; t++) {
           if (lines[t].contains("{")) {
@@ -792,17 +791,17 @@ class SSDT {
           }
         }
         if (firstBraceLine == -1) {
-          // 没找到 '{'，就仅跳过当前行
+          //  no found '{'， then  only skip when  before line
           i++;
           continue;
         }
         int matchLine = findMatchingBrace(firstBraceLine);
-        // 继续解析从 matchLine + 1
+        // continueparse from  matchLine + 1
         i = matchLine + 1;
         continue;
       }
 
-      // 若当前 depth == 1，采集 Name / Method / OperationRegion / Field
+      //  if  when  before  depth == 1， adopt  collection  Name / Method / OperationRegion / Field
       if (depth == 1) {
         // ---- Name (single-line) ----
         if (line.startsWith("Name (")) {
@@ -811,17 +810,17 @@ class SSDT {
           continue;
         }
 
-        // ---- OperationRegion (通常单行) ----
+        // ---- OperationRegion ( pass  common  single line) ----
         if (line.startsWith("OperationRegion")) {
           opRegions.add(raw.trim());
           i++;
           continue;
         }
 
-        // ---- Method (可能多行，有大括号) ----
+        // ---- Method ( may  multiple line， have  large  include  number ) ----
         if (line.startsWith("Method (") || line.startsWith("method (")) {
-          // 捕获从当前行开始直到匹配的 '}' 为止的完整 block
-          // 找到第一行包含 '{' 的行（可能是当前行或后续行）
+          //  catch  get  from  when  before linestart direct  to match  '}'  for  stop   finish  whole  block
+          // found #1line contains  '{'  line（ may  is  when  before line or  after  continue line）
           int braceStart = -1;
           for (int t = i; t < lines.length; t++) {
             if (lines[t].contains("{")) {
@@ -830,13 +829,13 @@ class SSDT {
             }
           }
           if (braceStart == -1) {
-            // 没有找到 '{'，将当前行作为 method（防御）
+            // Not found '{'，  when  before line action  for  method（ protect  protect ）
             methods.add(raw.trim());
             i++;
             continue;
           }
           int matchLine = findMatchingBrace(braceStart);
-          // 拼接从 i 到 matchLine 的所有行
+          // concat from  i  to  matchLine   all line
           final buffer = StringBuffer();
           for (int t = i; t <= matchLine; t++) {
             buffer.writeln(lines[t]);
@@ -846,23 +845,23 @@ class SSDT {
           continue;
         }
 
-        // ---- Field (完整保留所有内容，包括定义行 + 大括号内部) ----
+        // ---- Field ( finish  whole  keep  keep  all  inside  contain ， including  define  meaning line +  large  include  number  inside  part ) ----
         if (line.startsWith("Field (") || line.startsWith("field (")) {
-          // 找到第一行包含 '{' 的行（可能是当前行，也可能在后面）
+          // found #1line contains  '{'  line（ may  is  when  before line， also  may  in  after  surface ）
           int braceStart = i;
           while (
               braceStart < lines.length && !lines[braceStart].contains("{")) {
             braceStart++;
           }
 
-          // 如果没找到 '{'，至少保留当前行
+          //  if  no found '{'， to  less  keep  keep  when  before line
           if (braceStart >= lines.length) {
             fields.add(raw.trim());
             i++;
             continue;
           }
 
-          // 找到匹配闭合 '}'
+          // foundmatch close  combine  '}'
           int braceCount = 0;
           int matchLine = braceStart;
           for (int t = braceStart; t < lines.length; t++) {
@@ -880,26 +879,26 @@ class SSDT {
             if (braceCount == 0) break;
           }
 
-          // 拼接从定义行 i 到 matchLine 的所有行
+          // concat from  define  meaning line i  to  matchLine   all line
           final buffer = StringBuffer();
           for (int t = i; t <= matchLine; t++) {
             buffer.writeln(lines[t]);
           }
           fields.add(buffer.toString().trim());
 
-          // 跳到闭合行的下一行
+          //  jump  to  close  combine line  down 1line
           i = matchLine + 1;
           continue;
         }
       }
 
-      // 若未特殊匹配，按行更新 depth：count '{' 和 '}'
-      // 子设备 Device 内的深度会影响外层采集（已通过跳块处理）,这里仅更新 depth 基于行出现的 { 和 }
+      //  if  not  special  special match， by lineupdate depth：count '{'  and  '}'
+      //  child device Device  inside   deep  depth  will  affect  affect  outside  tier  adopt  collection （ already  via  jump  block at process ）, this  inside  only update depth  based on line out  present   {  and  }
       int opens = RegExp(r'\{').allMatches(raw).length;
       int closes = RegExp(r'\}').allMatches(raw).length;
       depth += opens - closes;
 
-      // 当 depth <= 0 时结束（scope 结束）
+      //  when  depth <= 0  time end（scope end）
       if (depth <= 0) break;
 
       i++;
@@ -916,12 +915,12 @@ class SSDT {
     };
   }
 
-  /// 获取设备的 STA 变量
-  /// [varS] STA 变量名称
-  /// [device] 设备名称
-  /// [devHid] 设备 HID
-  /// [devName] 设备名称
-  /// [table] ACPI 表
+  /// getdevice  STA variable
+  /// [varS] STA variablename
+  /// [device] device name
+  /// [devHid] device HID
+  /// [devName] device name
+  /// [table] ACPI  table 
   Map<String, dynamic> getStaVar({
     String varS = "STAS",
     String? device,
@@ -934,46 +933,46 @@ class SSDT {
     List<Map<String, dynamic>> patches = [];
     String? root;
 
-    // 如果提供了设备,先定位设备
+    //  if  prompt  provide  device, first  locate device
     List<List<dynamic>> devList;
     if (device != null && device.isNotEmpty) {
       devList = d.getDevicePaths(obj: device, table: table);
       if (devList.isEmpty) {
-        Log(l10nGlobal.logMsg139(device.toString()));
+        Log("=>  cannot  locate  $device");
         return {"value": false};
       }
     } else {
-      // 如果没有提供设备,直接定位 HID
-      Log(l10nGlobal.logMsg140(devHid.toString(), devName.toString()));
+      //  if  no  have  prompt  provide device, direct  receive  locate  HID
+      Log("Locating $devHid ($devName) device…");
       devList = d.getDevicePathsWithHid(hid: devHid, table: table);
       if (devList.isEmpty) {
-        Log(l10nGlobal.logMsg141(devHid.toString()));
+        Log("=>  cannot  locate  to  any  any  $devHid device");
         return {"valid": false};
       }
     }
 
     var dev = devList[0];
-    Log(l10nGlobal.logMsg142(dev[0].toString()));
+    Log("=> found ${dev[0]}");
 
     root = dev[0].split(".")[0];
-    Log(l10nGlobal.logMsg143);
+    Log("=> Searching forverify _STA…");
 
-    // 先检查方法,再检查名称
+    //  first  check method, again  check name
     String staType = "MethodObj";
     var sta = d.getMethodPaths(obj: "${dev[0]}._STA", table: table);
     var xsta = d.getMethodPaths(obj: "${dev[0]}.XSTA", table: table);
 
     if (sta.isEmpty && xsta.isEmpty) {
-      // 检查名称
+      //  check name
       staType = "IntObj";
       sta = d.getNamePaths(obj: "${dev[0]}._STA", table: table);
       xsta = d.getNamePaths(obj: "${dev[0]}.XSTA", table: table);
     }
 
-    /// 检查是否已经 XSTA 重命名
+    ///  check  is  whether  already  XSTA rename
     if (xsta.isNotEmpty && sta.isEmpty) {
-      Log(l10nGlobal.logMsg144);
-      Log(l10nGlobal.logMsg145);
+      Log("=> _STA  already rename for  XSTA！skip its  other  check …");
+      Log("=>  please disableDSDT in  this device  _STA  to  XSTA  rename，reboot after  again  try !\n");
       return {
         "valid": false,
         "break": true,
@@ -984,7 +983,7 @@ class SSDT {
       };
     }
 
-    /// 检查 STA 变量是否存在
+    ///  check  STA variableexists
     if (sta.isNotEmpty) {
       if (varS.isNotEmpty) {
         var scope = d
@@ -995,19 +994,19 @@ class SSDT {
             )
             .join("\n");
         hasVar = scope.contains(varS);
-        Log(l10nGlobal.logMsg146(varS.toString(), hasVar ? l10nGlobal.autoGen5761 : l10nGlobal.autoGen5762.toString()));
+        Log("=> $varS variable${hasVar ? ' exist  in ' : 'does not exist'}");
       }
     } else {
-      Log(l10nGlobal.logMsg147);
+      Log("=> Not found _STA method/name");
     }
 
-    /// 检查是否需要为 _STA => XSTA 生成唯一的补丁
+    ///  check  is  whether  require  for  _STA => XSTA generate unique  Patch
     if (sta.isNotEmpty && !hasVar) {
       var staIndex = d.findNextHex(index: sta[0][1], table: table).$2;
-      Log(l10nGlobal.logMsg148(staIndex.toString()));
+      Log("=> at index $staIndex atfound _STA method!");
       String staHex = "5F535441"; // _STA
       String xstaHex = "58535441"; // XSTA
-      Log(l10nGlobal.logMsg149);
+      Log("=> Generating _STA  to  XSTA  rename");
       final (padl, padr) = d.getShortestUniquePad(
         currentHex: staHex,
         index: staIndex,
@@ -1033,16 +1032,16 @@ class SSDT {
     };
   }
 
-  /// 检查 STA 设备是否需要补丁
-  /// [sta] STA 设备信息
-  /// [table] ACPI 表
+  ///  check  STA device is  whether  require Patch
+  /// [sta] STA deviceinfo
+  /// [table] ACPI  table 
   bool staNeedsPatching(Map<String, dynamic>? sta, Map<String, dynamic> table) {
-    // 检查输入是否有效
+    //  check  output  enter  is  whether valid
     if (sta == null || !sta.containsKey("sta")) {
       return false;
     }
 
-    // 处理 IntObj 类型
+    // at process  IntObj type
     if (sta["sta_type"] == "IntObj") {
       try {
         String staScope = table["lines"][sta["sta"][0][1]];
@@ -1050,11 +1049,11 @@ class SSDT {
           return true;
         }
       } catch (e) {
-        Log.error(l10nGlobal.logMsg010(e.toString()));
+        Log.error("at process IntObjtypeError occurred: $e");
         return true;
       }
     }
-    // 处理 MethodObj 类型
+    // at process  MethodObj type
     else if (sta["sta_type"] == "MethodObj") {
       try {
         String staScope = d
@@ -1066,39 +1065,39 @@ class SSDT {
             .join("\n");
         if (staScope.split("Return (").length - 1 > 1 ||
             !staScope.contains("Return (0x0F)")) {
-          Log(l10nGlobal.logMsg150);
+          Log('=>  exist  in  multiple   return  return  language  statement ， or  or return value not  is  Return (0x0F)');
           return true;
         }
       } catch (e) {
-        Log.error(l10nGlobal.logMsg011(e.toString()));
+        Log.error("at process MethodObjtypeError occurred: $e");
         return true;
       }
     }
 
-    // 默认返回 false
+    // default return  return  false
     return false;
   }
 
-  /// 转换整数为16进制字符串
-  /// [integer] 要转换的整数
-  /// [padTo] 要填充的长度，默认为0
+  /// convert whole  number  for 16 advance  control string
+  /// [integer]  require convert  whole  number 
+  /// [padTo]  require  pad  pad  length，default for 0
   String hexy(int integer, {int padTo = 0}) {
     String hexStr = integer.toRadixString(16).toUpperCase();
     String padded = hexStr.padLeft(padTo, '0');
     return '0x$padded';
   }
 
-  /// 处理转换PCI路径
-  /// [devicePath] 要转换的设备路径
+  /// at process convertPCI path
+  /// [devicePath]  require convert device path
   String? sanitizeDevicePath(String devicePath) {
     devicePath = devicePath.trim().toLowerCase();
 
     if (!devicePath.startsWith('pciroot(')) {
-      // 不是有效的设备路径，返回 null
+      //  not  is valid device path， return  return  null
       return null;
     }
 
-    // 去除 pciroot() 和 pci()，并按 / 或 # 分割
+    //  remove  except  pciroot()  and  pci()， and  by  /  or  # split
     final raw = devicePath
         .replaceAll('pciroot(', '')
         .replaceAll('pci(', '')
@@ -1110,7 +1109,7 @@ class SSDT {
     for (var i = 0; i < segments.length; i++) {
       final adr = segments[i];
       if (i == 0) {
-        // PciRoot 地址
+        // PciRoot address
         if (adr.contains(',')) return null;
         try {
           final value = int.parse(adr.replaceFirst('0x', ''), radix: 16);
@@ -1140,8 +1139,8 @@ class SSDT {
     return newPath.join('/');
   }
 
-  /// 处理设备路径
-  /// [inputPaths] 要处理的设备路径列表
+  /// at process device path
+  /// [inputPaths]  require at process  device pathcolumn table 
   Map<String, String?> getDevicePath({List<String> inputPaths = const []}) {
     final Map<String, String?> paths = {};
 
@@ -1156,15 +1155,15 @@ class SSDT {
         path = parts[0];
         dev = parts[1];
       } else {
-        // 格式错误，跳过
+        //  format  format Error，skip
         continue;
       }
 
-      // 处理 device 名称
+      // at process  device name
       if (dev != null && dev.isNotEmpty) {
         dev = dev.replaceAll('_', '').toUpperCase();
         if (!RegExp(r'^[A-Z0-9]{1,4}$').hasMatch(dev)) {
-          // 非法设备名,跳过
+          //  non- method device name ,skip
           continue;
         }
         dev = dev.padRight(4, '0');
@@ -1180,7 +1179,7 @@ class SSDT {
 
   (Map<String, Map<String, dynamic>>, List<Map<String, dynamic>>)
       getDevicePaths() {
-    Log(l10nGlobal.logMsg151);
+    Log("Collecting ACPI deviceinfo…");
     final deviceDict = <String, Map<String, dynamic>>{};
     final pciRootPaths = <Map<String, dynamic>>[];
     final orphanedDevices = <List<dynamic>>[];
@@ -1221,7 +1220,7 @@ class SSDT {
       }
     }
 
-    Log(l10nGlobal.logMsg152);
+    Log("Collecting ACPI device path…");
 
     bool checkPath(List<dynamic> path) {
       final adr = path[3];
@@ -1286,7 +1285,7 @@ class SSDT {
     }
 
     if (orphanedDevices.isNotEmpty) {
-      Log(l10nGlobal.logMsg153);
+      Log(" currently  in  re- check  orphan  standalone device…");
       while (true) {
         final removed = <List<dynamic>>[];
         for (final path in orphanedDevices) {
@@ -1304,9 +1303,9 @@ class SSDT {
     return (deviceDict, pciRootPaths);
   }
 
-  /// 将形如 "Pci(0x1,0x0)/Pci(0x2,0x0)" 的路径解析为桥接地址列表
+  /// Parse path like "Pci(0x1,0x0)/Pci(0x2,0x0)" into bridge address list
   List<int> getBridgeDevices(String path) {
-    // 清理并拆分路径（去除 PciRoot/Pci/括号，按 # 或 / 分隔）
+    // Clean and split path (strip PciRoot/Pci/parens, split by # or /)
     final cleanedPath = path
         .toLowerCase()
         .replaceAll('pciroot(', '')
@@ -1319,7 +1318,7 @@ class SSDT {
     for (final bridge in adrs) {
       if (bridge.isEmpty) continue;
 
-      /// 出错，不支持桥接 PciRoot
+      /// Error: PciRoot bridging unsupported
       if (!bridge.contains(',')) return [];
 
       try {
@@ -1329,7 +1328,7 @@ class SSDT {
         final adrInt = (adr1 << 16) + adr2;
         bridges.add(adrInt);
       } catch (_) {
-        // 出错时直接返回空列表
+        // Return empty list on error
         return [];
       }
     }
@@ -1337,11 +1336,11 @@ class SSDT {
     return bridges;
   }
 
-  /// 获取所有匹配的路径（使用元组：设备名、设备信息、是否完全匹配、匹配路径长度）
-  /// 例如：('PC00.BR1A', {info}, true, 12)
-  /// [deviceDict] 设备字典
-  /// [matchPath] 匹配路径
-  /// [adj] 是否使用 adj_path
+  /// Get all matching paths (tuple: deviceName, deviceInfo, isExactMatch, matchPathLength)
+  ///  e.g. ：('PC00.BR1A', {info}, true, 12)
+  /// [deviceDict] devicemap
+  /// [matchPath] matchPath
+  /// [adj]  is  whether  make  use  adj_path
   List<(String, Map<String, dynamic>, bool, int)> getAllMatches(
     Map<String, Map<String, dynamic>> deviceDict,
     String matchPath, {
@@ -1370,11 +1369,11 @@ class SSDT {
     return matches;
   }
 
-  /// 返回最长路径匹配的元组 (String, Map, bool, int)
-  /// 例如: ('_SB.PCI0', {device info...}, true, 5)
-  /// [deviceDict] 设备字典
-  /// [matchPath] 匹配路径
-  /// [adj] 是否使用 adj_path
+  ///  return  return  most  length Pathmatch  element  group  (String, Map, bool, int)
+  ///  e.g. : ('_SB.PCI0', {device info...}, true, 5)
+  /// [deviceDict] devicemap
+  /// [matchPath] matchPath
+  /// [adj]  is  whether  make  use  adj_path
   (String, Map<String, dynamic>, bool, int)? getLongestMatch(
     Map<String, Map<String, dynamic>> deviceDict,
     String matchPath, {
@@ -1382,15 +1381,15 @@ class SSDT {
   }) {
     final matches = getAllMatches(deviceDict, matchPath, adj: adj);
     if (matches.isEmpty) return null;
-    // 按元组第 4 项（路径深度）降序排序
+    //  by  element  group  # 4  item （Path deep  depth ） reduce  sequence  order  sequence 
     matches.sort((a, b) => b.$4.compareTo(a.$4));
     return matches.first;
   }
 
-  /// 通过地址获取设备路径
-  /// targetAdr 目标地址
-  /// excludeNames 排除名称列表
-  /// 返回值: 包含设备路径、父路径和表名的元组，如果未找到则返回null
+  ///  via addressgetdevice path
+  /// targetAdr  target  label address
+  /// excludeNames  order  except namecolumn table 
+  /// return value:  contains device path、 parent Path and  table  name   element  group ， if Not found then  return  return null
   ({String busPath, String busParent, String tableName})? getDevAtAdr({
     int targetAdr = 0x001F0004,
     List<String> excludeNames = const ["XHC"],
@@ -1401,7 +1400,7 @@ class SSDT {
       for (var path in paths) {
         var adr = getAddressFromLine(path[1], table: table);
         if (adr == targetAdr) {
-          // 去掉 ._ADR
+          //  remove  drop  ._ADR
           var pathParts = path[0].split('.')..removeLast();
           if (pathParts.length > 1) {
             final lastPart = pathParts.last.toLowerCase();
@@ -1427,8 +1426,8 @@ class SSDT {
     return null;
   }
 
-  /// 分割 IRQ 串，处理子串，返回结果列表
-  /// [line] IRQs字符串
+  /// split IRQ  string ，at process  child  string ， return  return resultcolumn table 
+  /// [line] IRQsstring
   List<int> getIntForLine(String line) {
     List<int> irqList = [];
     for (var i in line.split(":")) {
@@ -1437,33 +1436,33 @@ class SSDT {
     return irqList;
   }
 
-  /// 对同一行的 IRQ（中断请求）值求和，然后返回求和结果
-  /// [irq] IRQs字符串
+  ///  target  same 1line  IRQ（ in  determine  please  require ） value  require  and ， natural  after  return  return  require  and result
+  /// [irq] IRQsstring
   int sameLineIrq(String irq) {
     int total = 0;
     for (var i in irq.split(",")) {
       if (i == "#") {
-        /// 当IRQ值为#时,表示空值,直接跳过
+        ///  when IRQ value  for # time , table  show  empty  value , direct  receive skip
         continue;
       }
       try {
         int irqValue = int.parse(i.replaceFirst('0x', ''));
         if (irqValue > 15 || irqValue < 0) {
-          /// 当IRQ值超出范围时,直接跳过
+          ///  when IRQ value  exceed  out range time , direct  receive skip
           continue;
         }
         total |= util.convertIrqToInt(irqValue);
       } catch (e) {
-        /// 当IRQ值不是整数时,直接跳过
+        ///  when IRQ value  not  is  whole  number  time , direct  receive skip
         continue;
       }
     }
     return total;
   }
 
-  /// 从IRQs字符串中提取十六进制值
-  /// [irq] IRQs字符串
-  /// [remIrq] 要移除的IRQs列表
+  ///  from IRQsstring in extract106 advance  control  value 
+  /// [irq] IRQsstring
+  /// [remIrq]  require  remove  IRQscolumn table 
   List<Map<String, dynamic>> getHexFromIrqs(String irq, List<int>? remIrq) {
     List<Map<String, dynamic>> lines = [];
     List<int> remd = [];
@@ -1477,21 +1476,21 @@ class SSDT {
       List<int> repl = List.filled(find.length, 0);
 
       if (remIrq != null && remIrq.isNotEmpty) {
-        /// 复制find列表到repl列表
+        ///  duplicate  control findcolumn table  to replcolumn table 
         repl = List.from(find);
         for (var x in remIrq) {
           int rem = util.convertIrqToInt(x);
-          // 按位操作
+          //  by  position  operate  action 
           List<int> repl1 =
               repl.map((y) => y >= rem ? y & (rem ^ 0xFFFF) : y).toList();
 
           if (!util.deepEquals(repl, repl1)) {
-            /// 当repl和repl1不相等时,说明有IRQ被移除
-            /// 记录移除的IRQ
+            ///  when repl and repl1 not  mutual  etc.  time , description  have IRQ be  remove 
+            ///  record  record  remove  IRQ
             remd.add(x);
           }
 
-          /// 更新repl列表为repl1
+          /// updatereplcolumn table  for repl1
           repl = List.from(repl1);
         }
       }
@@ -1514,17 +1513,17 @@ class SSDT {
     return lines;
   }
 
-  /// 从IRQs字符串中提取所有IRQ值
-  /// [irq] IRQs字符串
+  ///  from IRQsstring in extract all IRQ value 
+  /// [irq] IRQsstring
   List<int> getAllIrqs(String irq) {
     Set<int> irqList = {};
-    // 按 "-" 分割输入字符串
+    //  by  "-" split output  enter string
     for (String a in irq.split("-")) {
-      // 按 "|" 分割并取第二个元素
+      //  by  "|" split and  get  #2  element  element 
       String i = a.split("|")[1];
-      // 按 ":" 分割
+      //  by  ":" split
       for (String x in i.split(":")) {
-        // 按 "," 分割
+        //  by  "," split
         for (String y in x.split(",")) {
           if (y == "#") {
             continue;
@@ -1533,16 +1532,16 @@ class SSDT {
         }
       }
     }
-    // 将集合转换为列表并排序
+    //  setconvert for column table  and  order  sequence 
     return irqList.toList()..sort();
   }
 
-  ///   根据选择,获取IRQ
-  ///   选择的选项（C, O, L等）
-  ///   O:选择冲突的 IRQ，并将其与 targetIrqs 关联
-  ///   L:选择 Legacy IRQ，并将其与空列表关联
-  ///   C:选择 Legacy IRQ，并将其与 targetIrqs 关联
-  ///   自定义输入格式：DEV1:IRQ1,IRQ2
+  ///    according to  select  select ,getIRQ
+  ///    select  select  option（C, O, L etc. ）
+  ///   O: select  select  conflict   IRQ， and   its  with  targetIrqs  related  link 
+  ///   L: select  select  Legacy IRQ， and   its  with  empty column table  related  link 
+  ///   C: select  select  Legacy IRQ， and   its  with  targetIrqs  related  link 
+  ///    custom  output  enter  format  format ：DEV1:IRQ1,IRQ2
   (Map<String, List<int>> irqPatches, List<String> currentLegacyIRQs)
       getIrqChoice(
     Map<String, Map<String, dynamic>>? irqs, {
@@ -1560,27 +1559,27 @@ class SSDT {
     ],
     String selectedOption = "",
   }) {
-    // 检查是否有 IRQ 信息
+    //  check  is  whether  have  IRQ info
     if (irqs == null || irqs.isEmpty) {
-      Log.warning(l10nGlobal.logMsg012);
+      Log.warning(" no  have  occur  present  any  any  IRQ info!");
       return ({}, []);
     }
 
     if (selectedOption.isEmpty) {
-      Log.warning(l10nGlobal.logMsg013);
+      Log.warning(" when  before option or  or  custom IRQs for  empty ! cannot generateIRQPatch!");
       return ({}, []);
     }
 
     final validOptions = {'C', 'O', 'L'};
     final upperCaseOption = selectedOption.toUpperCase();
     if (!validOptions.contains(upperCaseOption)) {
-      Log(l10nGlobal.logMsg154(upperCaseOption.toString()));
+      Log(" when  before  custom IRQs: $upperCaseOption");
     }
 
     int hidPad = irqs.values
         .map((irqData) => irqData['hid']?.length ?? 0)
         .reduce((a, b) => a > b ? a : b);
-    // 根据设备名称和 HID 确定默认设备
+    //  according to device name and  HID  confirm  define defaultdevice
     List<String> defaults = irqs.keys.where((key) {
       var irqData = irqs[key];
       return namesAndHids.contains(key.toUpperCase()) ||
@@ -1588,7 +1587,7 @@ class SSDT {
     }).toList();
     List<String> currentLegacyIRQs = [];
     if (irqs.isEmpty) {
-      Log.warning(l10nGlobal.logMsg014);
+      Log.warning("=> Not found any  any  IRQ info!");
     }
     const String kHighlightSymbol = '*';
     const String kEmptySymbol = ' ';
@@ -1612,27 +1611,27 @@ class SSDT {
     });
     Map<String, List<int>> devices = {};
 
-    // 根据选择的选项来更新设备和IRQ配置
+    //  according to  select  select  option come updatedevice and IRQconfig
     if (selectedOption.toLowerCase() == "o") {
-      // 仅冲突的 IRQ
+      //  only  conflict   IRQ
       for (var x in irqs.keys) {
-        // 将目标 IRQ 关联到所有设备
+        //   target  label  IRQ  related  link  to  all device
         devices[x] = List.from(targetIrqs);
       }
     } else if (selectedOption.toLowerCase() == "l") {
-      // Legacy 设备，清空 IRQ 配置
+      // Legacy device， clear  empty  IRQ config
       for (var x in defaults) {
-        // 仅 Legacy 设备，不关联任何 IRQ
+        //  only  Legacy device， not  related  link  any  any  IRQ
         devices[x] = [];
       }
     } else if (selectedOption.toLowerCase() == "c") {
-      // 仅 Legacy 设备并且冲突 IRQ
+      //  only  Legacy device and  conflict  IRQ
       for (var x in defaults) {
-        // 将目标 IRQ 关联到 Legacy 设备
+        //   target  label  IRQ  related  link  to  Legacy device
         devices[x] = List.from(targetIrqs);
       }
     } else {
-      // 提供了自定义输入
+      //  prompt  provide   custom  output  enter 
       if (selectedOption.isNotEmpty) {
         var inputs = selectedOption.split(" ");
         for (var i in inputs) {
@@ -1650,9 +1649,9 @@ class SSDT {
                 : <int>[];
             devices[name] = val;
           } catch (e) {
-            Log.error(l10nGlobal.logMsg015);
-            Log(l10nGlobal.logMsg155);
-            // 错误,返回空字典
+            Log.error(" custom  IRQ column table  format  format Error！！!device of  between  use  empty  format  split  separate ，IRQ of  between  use  comma  number  split  separate ！！！");
+            Log("=>  show  instance ：RTC:0 IPIC:2 TMR:8,11 \n");
+            // Error, return  return  empty map
             return ({}, []);
           }
         }
@@ -1662,10 +1661,10 @@ class SSDT {
     return (devices, currentLegacyIRQs);
   }
 
-  /// 列出所有中断
+  /// column out  all  in  determine 
   Future<Map<String, Map<String, String>>> listIrqs() async {
     if (!await ensureDSDT()) return {};
-    // 存储设备及其中断信息
+    //  exist  storage device and  its  in  determine info
     Map<String, Map<String, String>> devices = {};
     String? currentDevice;
     String? currentHid;
@@ -1673,28 +1672,28 @@ class SSDT {
     bool lastIrq = false;
     int irqIndex = 0;
 
-    // 遍历 DSDT 中的行
+    // iterate DSDT  in  line
     var lines = d.getDsdt()?['lines'] ?? '';
     for (int index = 0; index < lines.length; index++) {
       String line = lines[index];
 
       if (d.isHex(line)) {
-        // 跳过所有十六进制行
+        // skip all 106 advance  control line
         continue;
       }
 
       if (irq) {
-        // 获取 IRQ 值
+        // get IRQ  value 
         String num = line.split("{")[1].split("}")[0].replaceAll(r" ", "");
         num = num.isEmpty ? "#" : num;
 
         if (devices.containsKey(currentDevice)) {
           if (lastIrq) {
-            // 如果是连续的 IRQ
+            //  if  is  connect  continue   IRQ
             devices[currentDevice]!["irq"] =
                 "${devices[currentDevice]!["irq"]!}:$num";
           } else {
-            // 如果跳过了至少一行
+            //  if skip  to  less 1line
             irqIndex = d.findNextHex(index: index).$2;
             devices[currentDevice]!["irq"] =
                 "${devices[currentDevice]!["irq"]!}-$irqIndex|$num";
@@ -1709,13 +1708,13 @@ class SSDT {
         irq = false;
         lastIrq = true;
       } else if (line.contains("Device (")) {
-        // 如果保留 _HID
+        //  if  keep  keep  _HID
         if (currentDevice != null &&
             currentDevice.isNotEmpty &&
             devices.containsKey(currentDevice) &&
             currentHid != null &&
             currentHid.isNotEmpty) {
-          // 保存 _HID
+          // save _HID
           devices[currentDevice]!["hid"] = currentHid;
         }
         lastIrq = false;
@@ -1734,24 +1733,24 @@ class SSDT {
           try {
             currentHid = line.split('"')[1];
             // "Name (_HID, EisaId ("PNP0C02") /* PNP Motherboard Resources */)  // _HID: Hardware ID"
-            // 可以获取到 _HID  =  PNP0C02
-            // Log(l10nGlobal.logMsg156(currentHid.toString()));
+            //  can  to get to  _HID  =  PNP0C02
+            // Log("=> found _HID: $currentHid");
           } catch (e) {
             // "                    Method (_HID, 0, NotSerialized)  // _HID: Hardware ID"
-            // 无法获取到 _HID ,忽略错误，继续解析下一行
-            Log.error(l10nGlobal.logMsg016(e.toString()));
+            //  cannot get to  _HID ,ignoreError，continueparse down 1line
+            Log.error("=> _HID parseError: $e");
           }
         } else {
-          // 没有双引号，无法获取 _HID，跳过
+          //  no  have  double  quote  number ， cannot get _HID，skip
           currentHid = null;
         }
       } else if (line.contains("IRQNoFlags") &&
           currentDevice != null &&
           currentDevice.isNotEmpty) {
-        // 下一行是中断信息
+        //  down 1line is  in  determine info
         irq = true;
       }
-      // 检查是否是填充行
+      //  check  is  whether  is  pad  pad line
       else if (line
           .replaceAll(r"{", "")
           .replaceAll(r"}", "")
@@ -1760,12 +1759,12 @@ class SSDT {
           .replaceAll(r" ", "")
           .split("//")[0]
           .isNotEmpty) {
-        // 重置 lastIrq，因为它不是连续的
+        // reset lastIrq， because  for  it  not  is  connect  continue  
         lastIrq = false;
       }
     }
 
-    // 如果需要，保留最后的 _HID
+    //  if  require ， keep  keep  most  after   _HID
     if (currentDevice != null &&
         currentDevice.isNotEmpty &&
         devices.containsKey(currentDevice) &&
@@ -1777,34 +1776,34 @@ class SSDT {
     return devices;
   }
 
-  /// 生成 HPET 补丁
-  /// [devs] 设备列表
-  /// [targetIrqs] 目标 IRQ 列表
+  /// generate HPET Patch
+  /// [devs] device list
+  /// [targetIrqs]  target  label  IRQ column table 
   Future<void> ssdtHPET({
     Map<String, Map<String, dynamic>>? devs,
     Map<String, List<int>>? targetIrqs,
   }) async {
     if (!await ensureDSDT()) return;
-    // 校验 devs
+    // validate devs
     if (devs == null || devs.isEmpty) {
-      Log.warning(l10nGlobal.logMsg017);
+      Log.warning("Not foundvalid device,skip HPET  operate  action !");
       return;
     }
-    // 校验 targetIrqs
+    // validate targetIrqs
     if (targetIrqs == null ||
         targetIrqs.isEmpty ||
         targetIrqs.values.every((list) => list.isEmpty)) {
-      Log.warning(l10nGlobal.logMsg018);
+      Log.warning(" not  prompt  provide valid  IRQs  or  or  IRQs  for  empty ! Aborted!");
       return;
     }
-    Log(l10nGlobal.logMsg157);
+    Log("Locating PNP0103 (HPET) device…");
     var hpets = d.getDevicePathsWithHid(hid: "PNP0103");
     bool hpetFake = hpets.isEmpty;
     List<Map<String, dynamic>> patches = [];
     bool hpetSTA = false;
     String? name;
     Map? sta;
-    // 定义 CRS 和 XCRS 值
+    //  define  meaning  CRS  and  XCRS  value 
     String crs = "5F435253";
     String xcrs = "58435253";
     String padl = '', padr = '';
@@ -1813,55 +1812,55 @@ class SSDT {
     List hpet = [];
     if (hpets.isNotEmpty) {
       name = hpets[0][0];
-      Log(l10nGlobal.logMsg158(name.toString()));
-      // 定位 _STA 方法
+      Log("=>  locate  at  $name");
+      //  locate  _STA method
       sta = getStaVar(devHid: "PNP0103", devName: "HPET");
       if (sta['patches'] != null && sta['patches'].isNotEmpty) {
         hpetSTA = true;
         patches.addAll(sta['patches']);
       }
-      // 定位 HPET 的 _CRS 方法/名称
-      Log(l10nGlobal.logMsg159);
+      //  locate  HPET   _CRS method/name
+      Log("Locating HPET   _CRS method/name…");
       hpet = d.getMethodPaths(obj: "$name._CRS");
       if (hpet.isEmpty) {
         hpet = d.getNamePaths(obj: "$name._CRS");
       }
       if (hpet.isEmpty) {
-        // 检查 XCRS 方法/名称是否已应用重命名
+        //  check  XCRS method/name is  whether  already  correspond  use rename
         var xcrsPaths = d.getMethodPaths(obj: "$name.XCRS");
         if (xcrsPaths.isEmpty) {
           xcrsPaths = d.getNamePaths(obj: "$name.XCRS");
         }
         if (xcrsPaths.isEmpty) {
-          Log.warning(l10nGlobal.logMsg019(name.toString()));
+          Log.warning("=>  cannot  locate  $name._CRS！Aborted!");
         } else {
-          Log.warning(l10nGlobal.logMsg020(name.toString()));
-          Log.warning(l10nGlobal.logMsg021);
-          Log.warning(l10nGlobal.logMsg022);
+          Log.warning("=>  cannot  locate  $name._CRS！");
+          Log.warning("=> _CRS similar  almost  already  be  name  name  for  XCRS！");
+          Log.warning("=>  please disableDSDT in  this device  _CRS  to  XCRS  rename，reboot after  again  try !\n");
         }
         return;
       }
 
-      Log(l10nGlobal.logMsg160(name.toString()));
+      Log("=> Located at $name._CRS");
       var crsIndex = d.findNextHex(index: hpet[0][1]).$2;
-      Log(l10nGlobal.logMsg161(crsIndex.toString()));
-      Log(l10nGlobal.logMsg162(hpet[0].last.toString()));
-      // 在 HPET 的 _CRS 方法中查找 Memory32Fixed 部分
-      Log(l10nGlobal.logMsg163);
+      Log("=> Found at index: $crsIndex");
+      Log("=> Type: ${hpet[0].last}");
+      // Search for Memory32Fixed in HPET _CRS method
+      Log("=> Checking Memory32Fixed…");
 
       bool primed = false;
 
-      // 迭代 HPET 作用域中的每一行
+      // Iterate through each line in HPET scope
       for (var line in d.getScope(
         startingIndex: hpets[0][1],
         stripComments: true,
       )) {
         if (line.contains("Memory32Fixed (")) {
           try {
-            // 从行中提取内存访问类型
+            //  from line in extract inside  exist  access  issue type
             memAccess = line.split("(")[1].split(",")[0];
           } catch (e) {
-            Log.warning(l10nGlobal.logMsg023);
+            Log.warning("=>  cannot  confirm  define  inside  exist  access  issue type！");
             break;
           }
           primed = true;
@@ -1870,10 +1869,10 @@ class SSDT {
         if (!primed) {
           continue;
         } else if (line.contains(")")) {
-          // 已到达作用域结束
+          //  already  to  reach scopeend
           break;
         }
-        // 已准备好并未到达作用域结束 - 尝试获取 Base 和 Length
+        //  already ready good  and  not  to  reach scopeend -  try  try get Base  and  Length
         String val = "";
         try {
           val = line
@@ -1882,21 +1881,21 @@ class SSDT {
               .replaceAll(r"Zero", "0x0")
               .replaceAll(r"One", "0x1");
         } catch (e) {
-          // 无法将 Base 或 Length 转换为整数 - 可能使用了变量，回退到默认值
-          Log.warning(l10nGlobal.logMsg024);
+          //  cannot   Base  or  Length convert for  whole  number  -  may  make  use  variable， return  return  to default value 
+          Log.warning("=>  cannot   Base  or  Length convert for  whole  number ！");
           break;
         }
 
-        // 给 memBase 赋值
+        //  give  memBase  assign  value 
         if (memBase == null) {
           memBase = val;
         } else {
           memLength = val;
-          // 已获取到 Base 和 Length，跳出循环
+          //  already get to  Base  and  Length， jump  out  loop  loop 
           break;
         }
       }
-      // 检查是否获取到了所需的值
+      //  check  is  whether get to   all  require   value 
       gotMem = memAccess != null &&
           memAccess.isNotEmpty &&
           memBase != null &&
@@ -1904,16 +1903,16 @@ class SSDT {
           memLength != null &&
           memLength.isNotEmpty;
       if (gotMem) {
-        Log(l10nGlobal.logMsg164(memAccess.toString(), memBase.toString(), memLength.toString()));
+        Log("=> get to  $memAccess $memBase => $memLength");
       } else {
         memAccess = "ReadWrite";
         memBase = "0xFED00000";
         memLength = "0x00000400";
-        Log.warning(l10nGlobal.logMsg025);
-        Log.warning(l10nGlobal.logMsg026(memBase.toString(), memLength.toString()));
+        Log.warning("=> Not found！");
+        Log.warning("=>  make  use default value  $memBase => $memLength");
       }
 
-      /// 查找最短的唯一填充
+      /// find most  short   unique  pad  pad 
       final pads = d.getShortestUniquePad(currentHex: crs, index: crsIndex);
       padl = pads.$1;
       padr = pads.$2;
@@ -1925,7 +1924,7 @@ class SSDT {
         "Replace": padl + xcrs + padr,
       });
     } else {
-      Log.warning(l10nGlobal.logMsg027);
+      Log.warning("=> Not found！");
       name = getLpcName(skipEc: true, skipCommonNames: true);
       if (name == null) {
         return;
@@ -1933,7 +1932,7 @@ class SSDT {
     }
 
     Log("");
-    Log(l10nGlobal.logMsg165);
+    Log("Creating IRQ Patch…");
     if (sta != null &&
         sta.isNotEmpty &&
         sta['patches'] != null &&
@@ -1953,13 +1952,13 @@ class SSDT {
       Log("     Replace: $padl$xcrs$padr");
       Log("");
     }
-    Log(l10nGlobal.logMsg166);
-    // 校验 targetIrqs
+    Log("Checking IRQ…");
+    // validate targetIrqs
     if (targetIrqs.isEmpty) {
-      Log(l10nGlobal.logMsg167);
+      Log("IRQ  for  empty !skip…\n");
     }
     if (devs.isEmpty) {
-      Log.warning(l10nGlobal.logMsg028);
+      Log.warning("=>  no  have  require  patch   inside  contain ！");
       Log("");
     }
 
@@ -1977,35 +1976,35 @@ class SSDT {
 
       for (var t in i) {
         if (!t['changed']) {
-          // 未进行任何修补 - 跳过
+          //  not  advance line any  any  patch  - skip
           continue;
         }
 
-        // 尝试已知的结尾值：7900、4701 和 8609 —— 同时允许最多 8 个字符的填充
+        //  try  try  already  know   result  footer  value ：7900、4701  and  8609 ——  simultaneously  allow  allow  most  multiple  8   character  symbol   pad  pad 
         String pattern = r"(" + t["find"] + r"(.{0,8})(7900|4701|8609))";
         var regExp = RegExp(pattern);
         var index = t['index'];
         var result = d.getHexStartingAt(index);
         var hex = result.$1;
         var matches = regExp.allMatches(hex).toList();
-        // 如果有匹配，提取所有捕获组
+        //  if  have match，extract all  catch  get  group 
         if (matches.isNotEmpty) {
           // List<String> result = [
           //   matches.first.group(1) ?? "",
           //   matches.first.group(2) ?? "",
           //   matches.first.group(3) ?? "",
           // ];
-          // Log("  $result"); // 输出结果数组
+          // Log("  $result"); //  output  out resultarray
         } else {
-          Log(l10nGlobal.logMsg168);
+          Log("Not foundmatch item 。");
         }
         if (matches.isEmpty) {
-          Log.warning(l10nGlobal.logMsg029(dev.toString(), t['find'].toString()));
+          Log.warning(" missing  less  $dev   IRQ Patch result  footer （${t['find']}）！ already skip…");
           continue;
         }
 
         if (matches.length > 1) {
-          // 找到多个匹配项！将它们全部添加为 find/replace 条目
+          // found multiple  match item ！  it  s  all add for  find/replace  entry 
           for (var match in matches) {
             genericPatches.add({
               'remd': ((t['remd'] as List).toSet().toList()..sort()).join(','),
@@ -2017,7 +2016,7 @@ class SSDT {
           continue;
         }
 
-        // 如果只有一个匹配项
+        //  if  only  have 1 match item 
         var ending = matches.first.group(2)! + matches.first.group(3)!;
         final (padl, padr) = d.getShortestUniquePad(
           currentHex: t['find'] + ending,
@@ -2040,7 +2039,7 @@ class SSDT {
       }
     }
 
-    // 检查唯一的 IRQ 修补项
+    //  check  unique   IRQ  patch  item 
     if (uniquePatches.isNotEmpty) {
       uniquePatches.forEach((x, patchesList) {
         for (int i = 0; i < patchesList.length; i++) {
@@ -2067,7 +2066,7 @@ class SSDT {
 
     if (genericPatches.isNotEmpty) {
       List<Map<String, dynamic>> genericSet = [];
-      // 确保不会重复 find 值
+      //  confirm  keep  not  will  duplicate  duplicate  find  value 
       for (var x in genericPatches) {
         bool exists = genericSet.any((patch) => util.deepEquals(patch, x));
         if (!exists) {
@@ -2075,7 +2074,7 @@ class SSDT {
         }
       }
 
-      Log.warning(l10nGlobal.logMsg030);
+      Log.warning(" to  down  may  not  is  unique  ，default already disable！\n");
 
       for (int i = 0; i < genericSet.length; i++) {
         var x = genericSet[i];
@@ -2097,11 +2096,11 @@ class SSDT {
       }
     }
     d.getDsdt()?["raw"] = savedDSDT;
-    const String ssdtName = "SSDT-HPET";
-    Log(l10nGlobal.logMsg169(ssdtName.toString()));
+    final String ssdtName = "SSDT-HPET";
+    Log("Creating precompiled $ssdtName.dsl...");
     var ssdt = '';
     if (hpetFake) {
-      Log(l10nGlobal.logMsg170);
+      Log("Creating1 spoof HPET device…");
       ssdt = """
 DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
 {
@@ -2138,7 +2137,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
 }"""
           .replaceAll(r"[[name]]", name ?? '');
     } else {
-      // 初始化 SSDT 配置的基本部分
+      // initialize SSDT config  base  current  part  split 
       ssdt = """//
 // Supplementary HPET _CRS from Goldfish64
 // requires at least the HPET's _CRS to XCRS rename
@@ -2168,16 +2167,16 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
             // Not macOS and XCRS exists - return its result
             Return ([[name]].XCRS[[method]])
         }""";
-      // 替换 [[name]] 为传入的 `name`
+      // replace [[name]]  for  pass  enter   `name`
       ssdt = ssdt.replaceAll(r"[[name]]", name ?? '');
 
-      // 根据 hpet[0].last 的值选择 "MethodObj" 或 "BuffObj"
+      //  according to  hpet[0].last   value  select  select  "MethodObj"  or  "BuffObj"
       ssdt = ssdt.replaceAll(
         r"[[type]]",
         hpet[0].last == "Method" ? "MethodObj" : "BuffObj",
       );
 
-      // 根据 `gotMem` 来选择内存配置信息
+      //  according to  `gotMem`  come  select  select  inside  exist configinfo
       ssdt = ssdt.replaceAll(
         r"[[mem]]",
         gotMem
@@ -2185,23 +2184,23 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
             : "Default AccessType/Base/Length - verify with your DSDT!",
       );
 
-      // 替换内存配置信息
+      // replace inside  exist configinfo
       ssdt = ssdt.replaceAll(r"[[mem_access]]", memAccess ?? '');
       ssdt = ssdt.replaceAll(r"[[mem_base]]", memBase ?? '');
       ssdt = ssdt.replaceAll(r"[[mem_length]]", memLength ?? '');
 
-      // 根据 hpet[0].last 的值选择是否使用 "()"
+      //  according to  hpet[0].last   value  select  select  is  whether  make  use  "()"
       ssdt = ssdt.replaceAll(
         r"[[method]]",
         hpet[0].last == "Method" ? " ()" : "",
       );
 
-      // 根据 hpetSta 和相关条件修改配置
+      //  according to  hpetSta  and  mutual  related  item  item  modify config
       if (hpetSTA) {
         List<String> ssdtParts = [];
         bool external = false;
 
-        // 逐行处理 ssdt 配置，插入外部引用 XSTA 方法
+        //  by-one lineat process  ssdt config，insert outside  part  quote  use  XSTA method
         ssdt.split("\n").forEach((line) {
           if (line.trim().contains("External (")) {
             external = true;
@@ -2212,7 +2211,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
           ssdtParts.add(line);
         });
 
-        // 追加 XSTA 方法
+        // append XSTA method
         ssdt = ssdtParts.join("\n");
         ssdt += "\n";
         ssdt += """
@@ -2234,13 +2233,13 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
         );
       }
 
-      // 关闭最终的括号
+      //  disable  most  end   include  number 
       ssdt += "\n";
       ssdt += """
     }
 }""";
     }
-    //写入到SSDT文件
+    //write to SSDTfile
     writeSSDT(ssdtName, ssdt);
     final acpi = {
       "Comment": hpetFake
@@ -2300,25 +2299,25 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
     return matches;
   }
 
-  /// 背光修复
+  ///  backlight fix
   /// [uid] UID
-  /// [getIgpu] UID=14时,是否包含GPU寄存器代码
-  /// [manualIGPUPath] 手动指定 iGPU 路径
+  /// [getIgpu] UID=14 time , is  whether  contains GPU register  exist  device  Gen  code 
+  /// [manualIGPUPath]  manual  dynamic  specified  iGPU Path
   Future<void> _ssdtPNLF({
     int? uid = 99,
     bool? getIgpu = false,
     String? manualIGPUPath,
   }) async {
     if (!await ensureDSDT()) return;
-    // 检查是否提供了有效的 uid
+    //  check  is  whether  prompt  provide  valid  uid
     if (uid == null) {
-      Log.warning(l10nGlobal.logMsg031);
+      Log.warning(" not  prompt  provide valid  UID，abort operate  action ！");
       return;
     }
 
     final uidList = PNLFUIDs.map((item) => item['UID']).toList();
     if (!uidList.contains(uid)) {
-      Log.warning(l10nGlobal.logMsg032(uid.toString()));
+      Log.warning("$uid  is 1  custom   UID， may  require  manual  dynamic  define  control set， or  or  may  root  current  not  receive supported!");
     }
 
     String igpu = "";
@@ -2328,56 +2327,56 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
     if (uid == 14) {
       Log("");
       Log.warning(
-        l10nGlobal.autoGen5763,
+        "Note: Intel  special  you  #1 Gen Arrandale, #2 Gen Sandy Bridge, #3 Gen Ivy Bridge Default use UID:14, but  is  have  some  machine  device  make  use UID: 14  will  encounter  to  most  large  brightness  receive  limit  or  its  other  issue  issue . for   resolve  this  some  issue  issue ,requiredset currently  confirm   iGPU（ collection  succeed  GPU ） device path， and  may  require  patch  pad IGPU register  exist  device info",
       );
       Log("");
       getIGpuInfo = getIgpu ?? false;
     }
-    const String ssdtName = "SSDT-PNLF";
-    Log(l10nGlobal.logMsg171(ssdtName.toString()));
-    // 打印所用的UID，使用的平台和对应的PWMMax
+    final String ssdtName = "SSDT-PNLF";
+    Log("Creating precompiled $ssdtName.dsl...");
+    //  open  print  all  use  UID， make  use   platform  and  target  correspond  PWMMax
     for (var item in PNLFUIDs) {
       if (item['UID'] == uid) {
-        Log(l10nGlobal.logMsg172(item['UID'].toString()));
-        Log(l10nGlobal.logMsg173(item['Platform'].toString()));
+        Log("=>  make  use  UID: ${item['UID']}");
+        Log("=>  applicable to  platform : ${item['Platform']}");
         break;
       }
     }
-    // 检查是否构建 UID 为 14 的 SSDT
+    //  check  is  whether build UID  for  14   SSDT
     if (getIGpuInfo) {
       if (uid == 14 && (manualIGPUPath == null || manualIGPUPath.isEmpty)) {
-        Log(l10nGlobal.logMsg174);
+        Log(" not  prompt  provide valid iGPU Path， try  try  self  dynamic find...");
       }
-      Log(l10nGlobal.logMsg175);
+      Log(" currently  in  search  find  position  at  0x00020000   iGPU device…");
       final tableNameList = d.acpiTables.keys.toList();
       final sortedTableNames = sortedNicely(tableNameList, first: "DSDT.aml");
-      // 第一阶段：通过地址查找 iGPU 设备
+      //  #1 stage  segment ： via addressfind iGPU device
       for (var tableName in sortedTableNames) {
         var table = d.acpiTables[tableName];
-        Log(l10nGlobal.logMsg176(tableName.toString()));
-        // 尝试获取 iGPU 设备路径
+        Log("Checking $tableName…");
+        //  try  try get iGPU device path
         var paths = d.getPathOfType(objType: "Name", obj: "_ADR", table: table);
 
         for (var path in paths) {
           var adr = getAddressFromLine(path[1], table: table);
           if (adr == 0x00020000) {
             igpu = path[0].substring(0, path[0].length - 5);
-            Log(l10nGlobal.logMsg177(igpu.toString()));
+            Log("=>  in  $igpu atfound iGPU device!");
             break;
           }
         }
         if (igpu.isNotEmpty) break;
       }
-      // 如果第一阶段未找到 iGPU
+      //  if  #1 stage  segment Not found iGPU
       if (igpu.isEmpty) {
-        Log(l10nGlobal.logMsg178);
-        Log(l10nGlobal.logMsg179);
+        Log(" not  via addressfound iGPU device!");
+        Log(" currently  in  search  common  see   iGPU name…");
 
-        // 第二阶段：通过常见名称查找 iGPU
+        //  #2 stage  segment ： via  common  see namefind iGPU
         for (var tableName in sortedTableNames) {
           var table = d.acpiTables[tableName];
-          Log(l10nGlobal.logMsg180(tableName.toString()));
-          // 获取 PCI 根设备路径
+          Log("Checking $tableName…");
+          // get PCI  root device path
           var pciRoots = [
             d.getDevicePathsWithHid(hid: "PNP0A08", table: table),
             d.getDevicePathsWithHid(hid: "PNP0A03", table: table),
@@ -2400,7 +2399,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
                   .join('.');
               external.add('\\$processedPath');
             } catch (_) {
-              // 忽略异常
+              // ignore exception 
               debugPrint("Error processing line: $trimmedLine");
             }
           });
@@ -2422,20 +2421,20 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
               var devicePaths = d.getDevicePaths(obj: testPath, table: table);
               String? device;
               if (devicePaths.isNotEmpty) {
-                /// 找到 iGPU 设备路径
+                /// found iGPU device path
                 device = devicePaths[0][0];
               } else {
-                /// 遍历外部路径，查找是否有声明
+                /// iterate outside  part Path，find is  whether  have  audio  declare 
                 device = external.firstWhere(
                   (x) => testPath == x,
                   orElse: () => null,
                 );
               }
 
-              /// 未找到 iGPU 设备路径,继续
+              /// Not found iGPU device path,continue
               if (device == null) continue;
 
-              /// 检查是否有 _ADR,如果有,则跳过,因为它在之前的循环中是错误的
+              ///  check  is  whether  have  _ADR, if  have , then skip, because  for  it  in  of  before   loop  loop  in  is Error 
               if (d
                   .getPathOfType(
                     objType: "Name",
@@ -2446,14 +2445,14 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
                 continue;
               }
 
-              /// 找到 iGPU 设备路径
+              /// found iGPU device path
               igpu = device;
               guessed = true;
-              Log(l10nGlobal.logMsg181(igpu.toString()));
+              Log("=>  in  $igpu found at  may   iGPU device");
             }
           }
 
-          /// 找到 iGPU 设备路径,退出
+          /// found iGPU device path,exit
           if (igpu.isNotEmpty) break;
         }
       }
@@ -2461,23 +2460,23 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
 
     if (getIGpuInfo && (igpu.isEmpty || guessed)) {
       if (igpu.isNotEmpty) {
-        Log(l10nGlobal.logMsg182(igpu.toString()));
+        Log(" in  $igpu found at  may   iGPU device\n");
       }
 
-      /// 如果没有找到有效的 iGPU 路径
+      ///  if Not foundvalid  iGPU Path
       if (igpu.isEmpty) {
         if (!guessed) {
-          Log.warning(l10nGlobal.logMsg033);
+          Log.warning(" in  pass  pass   ACPI  table  in Not foundvalid  iGPU Path!\n");
         }
         if (manualIGPUPath == null || manualIGPUPath.isEmpty) {
           Log.warning(
-            l10nGlobal.autoGen5764,
+            " please Enter iGPU ACPI path to use。 every  Path element  element   character  symbol  limit  for  4   character  letter number character  symbol （ to  character  letter  or  down  plan  thread  open  header ）， and  use  empty  format  split  separate 。 e.g. : SB.PCI0.GFX0\n",
           );
         } else {
-          Log(l10nGlobal.logMsg183(manualIGPUPath.toString()));
+          Log(" already  by  according  give  define iGPUPath, manual  dynamic set for  $manualIGPUPath \n");
         }
 
-        /// 传入的IGPU设备地址
+        ///  pass  enter  IGPUdeviceaddress
         if (manualIGPUPath != null && manualIGPUPath.isNotEmpty) {
           List<String> parts =
               manualIGPUPath.replaceFirst("\\", "").toUpperCase().split(".");
@@ -2491,7 +2490,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
                 noStart.contains(p[0]) ||
                 p.split("").any((x) => !valid.contains(x)),
           )) {
-            Log(l10nGlobal.logMsg184(manualIGPUPath.toString()));
+            Log("invalid  iGPU Path：$manualIGPUPath");
           }
           parts = parts.map((p) => p.replaceAll(RegExp(r"_+$"), "")).toList();
           igpu = "\\${parts.join(".")}";
@@ -2506,12 +2505,12 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
     final tableNameList = d.acpiTables.keys.toList();
     final sortedTableNames = sortedNicely(tableNameList);
 
-    Log(l10nGlobal.logMsg185);
+    Log("Checking ACPI  table  in exists native  PNLF device…");
     final nativePnlfDevices = _findNativePnlfDevices();
     if (nativePnlfDevices.isNotEmpty) {
       final nativePnlf = nativePnlfDevices.first;
-      Log(l10nGlobal.logMsg186(nativePnlf.tableName.toString(), nativePnlf.path[0].toString()));
-      Log(l10nGlobal.logMsg187);
+      Log("=> already in ${nativePnlf.tableName} found native  PNLF device: ${nativePnlf.path[0]}");
+      Log("=>  require   native  PNLF rename for  XNLF, GeneratingrenamePatch…");
       patches.add({
         "Comment": "PNLF to XNLF rename - requires $ssdtName.aml",
         "Find": "504E4C46",
@@ -2519,26 +2518,26 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
         "Table": nativePnlf.table,
       });
     } else {
-      Log(l10nGlobal.logMsg188);
-      Log(l10nGlobal.logMsg189);
+      Log("=> Not found native  PNLF device!");
+      Log("=>  no  require generate PNLF to XNLF renamePatch!");
     }
 
-    // NBCF 二进制模式
+    // NBCF 2 advance  control  model  format 
     final nbcfOld = util.getHexBytes("084E4243460A00");
     final nbcfNew = util.getHexBytes("084E42434600");
-    // 初始化标志
+    // initialize label  log 
     bool hasNbcfOld = false;
     bool hasNbcfNew = false;
-    // 遍历所有 ACPI 表
+    // iterate all  ACPI  table 
     for (final tableName in sortedTableNames) {
       final table = d.acpiTables[tableName]!;
 
-      // 检查 NBCF (旧版本)
+      //  check  NBCF ( legacy  version )
       if (!hasNbcfOld &&
           table["raw"] != null &&
           table["raw"].isNotEmpty &&
           util.containsSublist(table["raw"], nbcfOld)) {
-        Log(l10nGlobal.logMsg190(tableName.toString()));
+        Log("in $tableName check  test  to  Name (NBCF, 0x00), GeneratingPatch…");
         hasNbcfOld = true;
         patches.add({
           "Comment": "NBCF 0x00 to 0x01 for BrightnessKeys.kext",
@@ -2549,12 +2548,12 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
         });
       }
 
-      // 检查 NBCF (新版本)
+      //  check  NBCF ( new  version )
       if (!hasNbcfNew &&
           table["raw"] != null &&
           table["raw"].isNotEmpty &&
           util.containsSublist(table["raw"], nbcfNew)) {
-        Log(l10nGlobal.logMsg191(tableName.toString()));
+        Log("in $tableName check  test  to  Name (NBCF, Zero), GeneratingPatch…");
         hasNbcfNew = true;
         patches.add({
           "Comment": "NBCF Zero to One for BrightnessKeys.kext",
@@ -2565,7 +2564,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "HPET", 0x00000000)
         });
       }
 
-      // 如果两种模式都已检测到，则提前退出
+      //  if  two  kind  model  format  all  already  check  test  to ， then  prompt  before exit
       if (hasNbcfOld && hasNbcfNew) {
         break;
       }
@@ -2701,12 +2700,12 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
     }
 }""";
 
-    // 替换占位符
+    // replace occupy  position  symbol 
     ssdt = ssdt
         .replaceAll(r"[[uid_value]]", util.hexy(uid))
         .replaceAll(r"[[uid_dec]]", uid.toString())
         .replaceAll(r"[[igpu_path]]", igpu);
-    // 写入 SSDT 文件
+    // write SSDT file
     writeSSDT(ssdtName, ssdt);
     Map<String, dynamic> acpi = {
       "Comment":
@@ -2715,14 +2714,14 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
       "Path": "$ssdtName.aml",
     };
 
-    // 生成 plist 文件
+    // generate plist file
     makePlist(acpi: acpi, patches: patches, replace: true);
     if (igpu.isNotEmpty) {
       if (guessed) {
-        Log.warning(l10nGlobal.logMsg034(igpu.toString()));
+        Log.warning("Note: iGPU Path be  guess  test  for  $igpu\n     make  use  before  please verify!");
       }
       if (manual) {
-        Log.warning(l10nGlobal.logMsg035(igpu.toString()));
+        Log.warning("Note: iGPU Path already  manual  dynamic set for  $igpu   please  in  make  use  before  service  must  confirm  recognize  this Path is  whether  currently  confirm !");
       }
     }
 
@@ -2730,7 +2729,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
     hasNbcfNew = patches.any((p) => p["Comment"].contains("NBCF Zero"));
     if (hasNbcfOld || hasNbcfNew) {
       Log.warning(
-        l10nGlobal.autoGen5765,
+        "Note：NBCF patch generated (depends on BrightnessKeys.kext), enabled by default! Disable if issues occur!",
       );
     }
   }
@@ -2747,15 +2746,15 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
             )
           : await _ssdtEC(isLaptop: isLaptop, injectUSBPower: injectUSBPower);
 
-  /// 仿冒EC控制器
-  /// [isLaptop] 是否为笔记本
+  /// spoofEC control  control  device 
+  /// [isLaptop]  is  whether  for laptop
   /// [injectUSBPower]
   Future<void> _ssdtEC({
     bool isLaptop = false,
     bool injectUSBPower = false,
   }) async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg192);
+    Log("Locating PNP0C09（EC）device…");
     bool rename = false;
     bool namedEc = false;
     List<String> ecToPatch = [];
@@ -2776,19 +2775,19 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
             .split(".")
             .sublist(0, ecList.first[0].split(".").length - 1)
             .join(".");
-        Log(l10nGlobal.logMsg193(tableName.toString(), ecList.length.toString()));
-        Log(l10nGlobal.logMsg194);
+        Log("=> Found in $tableName ${ecList.length}   PNP0C09（EC）device");
+        Log("=> Validating...");
 
         for (var deviceInfo in ecList) {
           String device = deviceInfo[0];
           String origDevice = device;
-          Log(l10nGlobal.logMsg195(device.toString()));
+          Log("=> found $device");
 
           if (device.split(".").last == "EC") {
             namedEc = true;
             if (!isLaptop) {
-              // 仅在非笔记本上重命名
-              Log(l10nGlobal.logMsg196);
+              // Rename on non-laptops only
+              Log(" => PNP0C09 (EC) device named EC, renaming");
               device =
                   "${device.split(".").sublist(0, device.split(".").length - 1).join(".")}.EC0";
               rename = true;
@@ -2804,7 +2803,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
               .join("\n");
 
           if (["_HID", "_CRS", "_GPE"].every((key) => scope.contains(key))) {
-            Log(l10nGlobal.logMsg197);
+            Log("=> Valid PNP0C09 (EC) device");
             ecLocated = true;
 
             var sta = getStaVar(
@@ -2830,22 +2829,22 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
                   patches.add(patch);
                 }
               } else {
-                Log(l10nGlobal.logMsg198);
+                Log("=> _STA  already  currently  confirm enable, skiprename");
               }
             }
           } else {
-            Log(l10nGlobal.logMsg199);
+            Log("=> invalid  PNP0C09（EC）device");
           }
         }
       }
     }
 
     if (!ecLocated) {
-      Log(l10nGlobal.logMsg200);
+      Log("=> Not foundvalid  PNP0C09（EC）device,  only  require spoof1 ECdevice i.e.  can ");
     }
 
     if (isLaptop && namedEc && patches.isEmpty) {
-      Log.warning(l10nGlobal.logMsg036);
+      Log.warning("=> Found name  name   EC device, No need to spoof!\n");
       return;
     }
 
@@ -2873,7 +2872,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PNLF", 0x00000000)
       comment += " - requires EC _STA to XSTA renames";
     }
 
-    Log(l10nGlobal.logMsg201(ssdtName.toString()));
+    Log("Creating $ssdtName.dsl…");
 
     var ssdt = """
 DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtEC", 0x00001000)
@@ -2890,11 +2889,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtEC", 0x00001000)
       }
     }
 
-    // 遍历 ecToEnable
+    // iterate ecToEnable
     for (var x in ecToEnable) {
       ssdt += "    External ($x, DeviceObj)\n";
       if (ecEnableSta.containsKey(x)) {
-        // 添加 _STA 和 XSTA 引用，因为补丁可能未启用
+        // add _STA  and  XSTA  quote  use ， because  for Patch may  not enable
         ssdt +=
             "    External ($x._STA, ${ecEnableSta[x]?["sta_type"] ?? "MethodObj"})\n";
         ssdt +=
@@ -2902,7 +2901,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtEC", 0x00001000)
       }
     }
 
-    // 遍历 ecToPatch 并添加 _STA 方法
+    // iterate ecToPatch  and add _STA method
     for (var x in ecToPatch) {
       ssdt += """
     Scope ($x)
@@ -2922,7 +2921,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtEC", 0x00001000)
 """;
     }
 
-    // 遍历 ecToEnable 再次强制启用
+    // iterate ecToEnable  again  force  control enable
     for (var x in ecToEnable) {
       ssdt += """
     If (LAnd (CondRefOf ($x.XSTA), LNot (CondRefOf ($x._STA))))
@@ -2945,7 +2944,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtEC", 0x00001000)
 """;
     }
 
-    // 创建虚拟 EC
+    // create virtual  emulate  EC
     if (!isLaptop || !namedEc) {
       ssdt += """
     Scope ($lpcName)
@@ -3017,7 +3016,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtEC", 0x00001000)
     }
     ssdt += """
 }""";
-    // 写入 SSDT 文件
+    // write SSDT file
     final acpi = {"Comment": comment, "Enabled": true, "Path": "$ssdtName.aml"};
     makePlist(acpi: acpi, patches: patches, replace: true);
     writeSSDT(ssdtName, ssdt);
@@ -3030,23 +3029,23 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtEC", 0x00001000)
       prebuilt ? null : await _ssdtUSBX(usbxProps: usbxProps);
 
   /// SSDT-USBX
-  /// [usbxProps] USBX 属性
+  /// [usbxProps] USBX property
   Future<void> _ssdtUSBX({Map<String, String>? usbxProps}) async {
     if (!await ensureDSDT()) return;
     if (usbxProps == null || usbxProps.isEmpty) {
-      Log.warning(l10nGlobal.logMsg037);
+      Log.warning("USBXpropertyPatch cannot  for  empty ! Aborted!");
       return;
     }
 
-    const String ssdtName = "SSDT-USBX";
-    Log(l10nGlobal.logMsg202(ssdtName.toString()));
+    final String ssdtName = "SSDT-USBX";
+    Log("Creating precompiled $ssdtName.dsl...");
     final acpi = {
       "Comment": "Generic USBX device for USB power properties",
       "Enabled": true,
       "Path": "$ssdtName.aml",
     };
     makePlist(acpi: acpi);
-    // 生成 SSDT 内容
+    // generate SSDT  inside  contain 
     String ssdt = '''
 // Generic USBX Device with power properties injected
 DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtUsbx", 0x00001000)
@@ -3068,14 +3067,14 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtUsbx", 0x00001000)
                 Return (Package ()
                 {''';
 
-    // 添加 USBX 属性
+    // add USBX property
     usbxProps.forEach((key, value) {
       ssdt += '''
                     "$key",
                     $value,''';
     });
 
-    // 移除最后的多余逗号
+    //  remove  most  after   multiple  remaining  comma  number 
     ssdt = ssdt.trimRight().replaceAll(RegExp(r',$'), '');
 
     ssdt += '''
@@ -3096,7 +3095,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtUsbx", 0x00001000)
     }
 }''';
 
-    // 写入 SSDT 文件
+    // write SSDT file
     writeSSDT(ssdtName, ssdt);
   }
 
@@ -3113,18 +3112,18 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtUsbx", 0x00001000)
   /// SSDT-PLUG
   Future<void> _ssdtPLUG({bool alderlakeOrLater = false}) async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg203);
+    Log("Determining CPU naming scheme…");
     for (var tableName in sortedNicely(d.acpiTables.keys.toList())) {
       var ssdtName = "SSDT-PLUG";
       var table = d.acpiTables[tableName];
 
       if (!(table["signature"]?.toLowerCase() == "dsdt" ||
           table["signature"]?.toLowerCase() == "ssdt")) {
-        /// 不检查数据表格,继续
+        ///  not  check  number  data  table  format ,continue
         continue;
       }
 
-      Log(l10nGlobal.logMsg204(tableName.toString()));
+      Log("Checking $tableName…");
 
       dynamic cpuName;
       try {
@@ -3134,9 +3133,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SsdtUsbx", 0x00001000)
       }
 
       if (cpuName != null && cpuName.isNotEmpty) {
-        Log(l10nGlobal.logMsg205(cpuName.toString()));
+        Log("=> Found Processor at process  device ：$cpuName");
 
-        Log(l10nGlobal.logMsg206(ssdtName.toString()));
+        Log("Creating $ssdtName.dsl...");
 
         var ssdt = """
 //
@@ -3186,24 +3185,24 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CpuPlug", 0x00003000)
         writeSSDT(ssdtName, ssdt);
         return;
       } else {
-        // 如果没有找到处理器对象，继续检查 ACPI0007 设备
+        // If processor objects not found, continue checking for ACPI0007 devices
         ssdtName += "-ALT";
-        Log(l10nGlobal.logMsg207);
+        Log("=> No Processor objects found…");
 
         var procs = d.getDevicePathsWithHid(hid: "ACPI0007", table: table);
         if (procs.isEmpty) {
-          Log(l10nGlobal.logMsg208);
+          Log("=> No ACPI0007 devices found…");
           continue;
         }
 
-        Log(l10nGlobal.logMsg209(procs.length.toString()));
+        Log("=> Found ${procs.length} ACPI0007 devices");
 
         var parent = procs[0][0].split(".")[0];
-        Log(l10nGlobal.logMsg210(parent.toString()));
+        Log("=>  in  $parent found parent device, processing…");
 
         var procList = <Map<String, String>>[];
         for (var proc in procs) {
-          Log(l10nGlobal.logMsg211(proc[0].split('.').last.toString()));
+          Log("=> Checking ${proc[0].split('.').last}…");
 
           var uid = d.getPathOfType(
             objType: "Name",
@@ -3211,7 +3210,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CpuPlug", 0x00003000)
             table: table,
           );
           if (uid.isEmpty) {
-            Log(l10nGlobal.logMsg212);
+            Log("=> Not found! Skipping…");
             continue;
           }
 
@@ -3221,7 +3220,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CpuPlug", 0x00003000)
             Log("=> UID: $uid0");
             procList.add({"proc": proc[0], "uid": uid0});
           } catch (e) {
-            Log(l10nGlobal.logMsg213);
+            Log("=> Not found! Skipping…");
           }
         }
 
@@ -3229,7 +3228,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CpuPlug", 0x00003000)
           continue;
         }
 
-        Log(l10nGlobal.logMsg214(procList.length.toString()));
+        Log("Processing ${procList.length} valid processor devices…");
 
         var ssdt = """
 //
@@ -3243,7 +3242,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CpuPlugA", 0x00003000)
     {"""
             .replaceAll(r"[[parent]]", parent);
 
-        // 遍历处理器对象并将其添加到 SSDT 中
+        // Iterate processor objects and add to SSDT
         for (var i = 0; i < procList.length; i++) {
           var procUid = procList[i];
           var proc = procUid["proc"];
@@ -3309,24 +3308,24 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CpuPlugA", 0x00003000)
       }
     }
 
-    Log.warning(l10nGlobal.logMsg038);
+    Log.warning("Not foundvalid processor device！");
   }
 
   Future<void> ssdtPMC({bool prebuilt = false}) async =>
       prebuilt ? await _ssdtPMCPrebuilt() : await _ssdtPMC();
 
-  /// 生成 SSDT-PMC
+  /// generate SSDT-PMC
   Future<void> _ssdtPMC() async {
     if (!await ensureDSDT()) return;
 
-    /// 获取 LPC 设备名称
+    /// get LPC device name
     String? lpcName = getLpcName();
     if (lpcName == null) {
-      Log(l10nGlobal.logMsg215);
+      Log("getLPC Namefailed...");
       return;
     }
-    const String ssdtName = "SSDT-PMC";
-    Log(l10nGlobal.logMsg216(ssdtName.toString()));
+    final String ssdtName = "SSDT-PMC";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = """
 //
 // SSDT-PMC source from Acidanthera
@@ -3391,14 +3390,14 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
 
     var rtcDict = getStaVar(varS: "STAS", devHid: "PNP0B00", devName: "RTC");
 
-    /// 确定是否需要仿冒 RTC
+    ///  confirm  define  is  whether  require spoof RTC
     if (!(rtcDict["valid"] as bool)) {
-      Log(l10nGlobal.logMsg217);
+      Log("=>  require spoof RTC!");
       lpcName = getLpcName();
       if (lpcName == null) return;
     } else {
-      /// 检查 RTC 是否有 _CRS 并验证其范围
-      Log(l10nGlobal.logMsg218);
+      ///  check  RTC  is  whether  have  _CRS  and verify its range
+      Log("=> Checking _CRS…");
       var rtcCrs = d.getMethodPaths(obj: rtcDict["device"][0] + "._CRS");
       if (rtcCrs.isEmpty) {
         rtcCrs = d.getNamePaths(obj: rtcDict["device"][0] + "._CRS");
@@ -3408,21 +3407,21 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
         rtcCrsType = rtcCrs[0].last == "Method" ? "MethodObj" : "BuffObj";
 
         if (rtcCrsType.toLowerCase() == "buffobj") {
-          Log(l10nGlobal.logMsg219);
+          Log("=> _CRS  is 1  buffer  conflict  section , Checking RTC range…");
           int? lastAdr, lastLen, lastInd;
           var crsScope = d.getScope(startingIndex: rtcCrs[0][1]);
-          // 清理 crsScope 范围 - 去除混乱部分
+          // clean crsScope range -  remove  except  mix  disordered  part  split 
           var padLen = crsScope[0].length - crsScope[0].trimLeft().length;
           var pad = crsScope[0].substring(0, padLen);
           List<String> fixedScope = [];
 
-          // 修正范围
+          //  fix  currently range
           for (var line in crsScope) {
             if (line.startsWith(pad)) {
-              // 完整行，去掉 pad 并保存
+              //  finish  whole line， remove  drop  pad  and save
               fixedScope.add(line.substring(padLen));
             } else {
-              // 可能是上一行的一部分
+              //  may  is  up 1line 1 part  split 
               fixedScope[fixedScope.length - 1] += line;
             }
           }
@@ -3430,14 +3429,14 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
           for (var i = 0; i < fixedScope.length; i++) {
             var line = fixedScope[i];
             if (line.contains("Name (_CRS, ")) {
-              // 重命名 _CRS 为 BUFX，并去掉注释避免混淆
+              // rename _CRS  for  BUFX， and  remove  drop  comment  avoid  mix  confuse 
               line = line
                   .replaceAll("Name (_CRS, ", "Name (BUFX, ")
                   .split("  //")[0];
             }
 
             if (line.contains("IO (Decode16,")) {
-              // 获取起始行、下一行和第 4 行的值
+              // getstartline、 down 1line and  # 4 line  value 
               try {
                 var currAdr = int.parse(
                   fixedScope[i + 1].trim().split(",")[0].replaceFirst('0x', ''),
@@ -3450,12 +3449,12 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
                 var currInd = i + 4;
 
                 if (lastAdr != null) {
-                  // 比较范围值
+                  // comparerange value 
                   var adjust = currAdr - (lastAdr + lastLen!);
                   if (adjust != 0) {
                     rtcRangeNeeded = true;
                     Log(
-                      "=> 正在调整 IO 范围 ${util.hexy(lastAdr, padTo: 4)} 长度为 ${util.hexy(lastLen + adjust, padTo: 2)}",
+                      "=> Adjusting IO range ${util.hexy(lastAdr, padTo: 4)} length: ${util.hexy(lastLen + adjust, padTo: 2)}",
                     );
 
                     try {
@@ -3468,20 +3467,20 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
                         );
                       }
                     } catch (e) {
-                      Log(l10nGlobal.logMsg220);
+                      Log("=>  cannot  adjust  whole  value ,  cannot verify RTC range.");
                       rtcRangeNeeded = false;
                       break;
                     }
                   }
                 }
 
-                // 保存最后的值
+                // save most  after   value 
                 lastAdr = currAdr;
                 lastLen = currLen;
                 lastInd = currInd;
               } catch (e) {
-                // 处理值错误
-                Log(l10nGlobal.logMsg221);
+                // at process  value Error
+                Log("=>  collect  collection  value failed,  cannot verify RTC range.");
                 rtcRangeNeeded = false;
                 break;
               }
@@ -3490,26 +3489,26 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
             crsLines.add(line);
           }
         } else {
-          Log(l10nGlobal.logMsg222);
+          Log("=> _CRS  is 1 method,  cannot verify RTC range!");
         }
         if (rtcRangeNeeded) {
-          // 需要生成一个将 _CRS 重命名为 XCRS 的补丁
-          Log(l10nGlobal.logMsg223);
+          //  require generate1   _CRS rename for  XCRS  Patch
+          Log("=> Generating _CRS  to  XCRS  rename…");
 
-          // 获取 _CRS 的索引
+          // get _CRS   index  quote 
           var crsIndex = d.findNextHex(index: rtcCrs[0][1]).$2;
-          Log(l10nGlobal.logMsg224(crsIndex.toString()));
+          Log("=> at index $crsIndex atfound");
 
-          // 定义十六进制字符串
+          //  define  meaning 106 advance  control string
           var crsHex = "5F435253"; // _CRS
           var xcrsHex = "58435253"; // XCRS
 
-          // 获取唯一填充值
+          // get unique  pad  pad  value 
           final (padl, padr) = d.getShortestUniquePad(
             currentHex: crsHex,
             index: crsIndex,
           );
-          // 添加补丁
+          // addPatch
           final patches = rtcDict["patches"] ?? [];
           patches.add({
             "Comment": "${rtcDict["dev_name"]} _CRS to XCRS rename",
@@ -3521,16 +3520,16 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
           rtcDict["crs"] = true;
         }
       } else {
-        Log(l10nGlobal.logMsg225);
+        Log("=>  Not found");
       }
     }
 
-    /// 验证是否需要 SSDT
+    /// verify is  whether  require  SSDT
     if ((rtcDict["valid"] as bool) &&
         !(rtcDict["has_var"] as bool) &&
         rtcDict["sta"].isEmpty &&
         !rtcRangeNeeded) {
-      Log.warning(l10nGlobal.logMsg039);
+      Log.warning("=> Foundvalid  PNP0B00 (RTC) device and  via verify, no  require Patch and SSDT!Aborted!");
       return;
     }
 
@@ -3558,11 +3557,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
       comment += " - requires ${suffix.join(', ')} rename";
     }
 
-    const String ssdtName = "SSDT-RTC0-RANGE";
+    final String ssdtName = "SSDT-RTC0-RANGE";
     final acpi = {"Comment": comment, "Enabled": true, "Path": "$ssdtName.aml"};
     final patches = rtcDict["patches"] ?? [];
     makePlist(acpi: acpi, patches: patches, replace: true);
-    Log(l10nGlobal.logMsg226(ssdtName.toString()));
+    Log("Creating $ssdtName.dsl...");
 
     String ssdt = """
 
@@ -3588,7 +3587,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
         continue;
       }
 
-      // 设备已找到，并且没有 STAS 变量 - 检查是否有 _STA（可能被重命名）
+      // deviceFound， and  no  have  STAS variable -  check  is  whether  have  _STA（ may  be rename）
       var macos = x["dev_hid"] == "ACPI000E" ? "Zero" : "0x0F";
       var original = x["dev_hid"] == "ACPI000E" ? "0x0F" : "Zero";
       if (x["sta"] != null && x["sta"].isNotEmpty) {
@@ -3622,7 +3621,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
               x["sta_type"] == "MethodObj" ? " ()" : "",
             );
       } else if (x["dev_hid"] == "ACPI000E") {
-        // AWAC 设备既没有 STAS 变量，也没有 _STA 方法，此时添加一个
+        // AWAC device both  no  have  STAS variable， also  no  have  _STA method， this  time add1 
         ssdt += """    External ([[DevPath]], DeviceObj)
               Scope ([[DevPath]])
               {
@@ -3642,7 +3641,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
         ssdt = ssdt.replaceAll(r"[[DevPath]]", x["device"][0]);
       }
     }
-    // 检查是否需要修正 RTC 范围
+    //  check  is  whether  require  fix  currently  RTC range
     if (rtcRangeNeeded &&
         rtcCrsType?.toLowerCase() == "buffobj" &&
         crsLines.isNotEmpty &&
@@ -3678,7 +3677,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
             crsLines.map((x) => "        $x").join("\n"),
           );
     }
-    // 检查是否存在 RTC 设备
+    // Checking if exists: RTC device
     if (!rtcDict.containsKey("valid") &&
         lpcName != null &&
         lpcName.isNotEmpty) {
@@ -3724,9 +3723,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
     if (!await ensureDSDT()) return;
     var awacDict = getStaVar(varS: "STAS", devHid: "ACPI000E", devName: "AWAC");
 
-    /// 验证是否需要 SSDT
+    /// verify is  whether  require  SSDT
     if (!(awacDict["valid"] as bool)) {
-      Log.warning(l10nGlobal.logMsg040);
+      Log.warning("=> Not found ACPI000E (AWAC) device, no  require Patch and SSDT!Aborted!");
       return;
     }
 
@@ -3749,11 +3748,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
     if (suffix.isNotEmpty) {
       comment += " - requires ${suffix.join(', ')} rename";
     }
-    const String ssdtName = "SSDT-AWAC";
+    final String ssdtName = "SSDT-AWAC";
     final acpi = {"Comment": comment, "Enabled": true, "Path": "$ssdtName.aml"};
     final patches = awacDict["patches"] ?? [];
     makePlist(acpi: acpi, patches: patches, replace: true);
-    Log(l10nGlobal.logMsg227(ssdtName.toString()));
+    Log("Creating $ssdtName.dsl...");
 
     String ssdt = """
     DefinitionBlock ("", "SSDT", 2, "RAPID", "AWAC", 0x00000000)
@@ -3779,7 +3778,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
         continue;
       }
 
-      // 设备已找到，并且没有 STAS 变量 - 检查是否有 _STA（可能被重命名）
+      // deviceFound， and  no  have  STAS variable -  check  is  whether  have  _STA（ may  be rename）
       var macos = x["dev_hid"] == "ACPI000E" ? "Zero" : "0x0F";
       var original = x["dev_hid"] == "ACPI000E" ? "0x0F" : "Zero";
       if (x["sta"] != null && x["sta"].isNotEmpty) {
@@ -3813,7 +3812,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
               x["sta_type"] == "MethodObj" ? " ()" : "",
             );
       } else if (x["dev_hid"] == "ACPI000E") {
-        // AWAC 设备既没有 STAS 变量，也没有 _STA 方法，此时添加一个
+        // AWAC device both  no  have  STAS variable， also  no  have  _STA method， this  time add1 
         ssdt += """    External ([[DevPath]], DeviceObj)
               Scope ([[DevPath]])
               {
@@ -3843,16 +3842,16 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
   /// SSDT-RHUB
   Future<void> _ssdtRHUB() async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg228);
+    Log('Collecting RHUB/HUBN/URTH device...');
     var rHubs = d.getDevicePaths(obj: 'RHUB');
     var hHubs = d.getDevicePaths(obj: 'HUBN');
     var uHubs = d.getDevicePaths(obj: 'URTH');
     var hubs = rHubs + hHubs + uHubs;
     if (hubs.isEmpty) {
-      Log.warning(l10nGlobal.logMsg041);
+      Log.warning('=> Not found any  any device！Aborted!');
       return;
     }
-    Log(l10nGlobal.logMsg229(hubs.length.toString()));
+    Log('=> found ${hubs.length}  device');
     List<Map<String, dynamic>> patches = [];
     var tasks = [];
     List<String> usedNames = [];
@@ -3869,7 +3868,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
           : "";
 
       if (illegalNames.contains(name) || usedNames.contains(name)) {
-        Log(l10nGlobal.logMsg230);
+        Log("=>   require rename!");
         task["device"] = task["device"]
             .split('.')
             .sublist(0, task["device"].split('.').length - 1)
@@ -3907,11 +3906,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
       }
 
       final staMethod = d.getMethodPaths(obj: "${task["device"]}._STA");
-      Log(l10nGlobal.logMsg231(task["device"].split('.').last.toString()));
+      Log("=>   check  ${task["device"].split('.').last}: exists _STA method");
       if (staMethod.isNotEmpty) {
         final staIndex = d.findNextHex(index: staMethod[0][1]).$2;
-        Log(l10nGlobal.logMsg232(staIndex.toString()));
-        Log(l10nGlobal.logMsg233);
+        Log("=>  at index $staIndex found _STA method!");
+        Log("=>  generate _STA  to  XSTA  Patch");
 
         const staHex = "5F535441";
         const xstaHex = "58535441";
@@ -3932,7 +3931,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
           "Replace": padl + xstaHex + padr,
         });
       } else {
-        Log(l10nGlobal.logMsg234);
+        Log("=>  Not found _STA method!");
       }
 
       final scopeAdr = d.getNamePaths(obj: "${task["device"]}._ADR");
@@ -3946,8 +3945,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PMCR", 0x00001000)
       tasks.add(task);
     }
     Log("");
-    const ssdtName = "SSDT-RHUB";
-    Log(l10nGlobal.logMsg235(ssdtName.toString()));
+    final ssdtName = "SSDT-RHUB";
+    Log("Creating $ssdtName.dsl...");
     final acpi = {
       "Comment": "Disable USB RHUB/HUBN/URTH and rename devices",
       "Enabled": true,
@@ -3963,7 +3962,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "UsbRHUB", 0x00001000)
 {
 ''';
 
-    // 收集唯一的 parent 路径并排序
+    //  collect  collection  unique   parent Path and  order  sequence 
     final parents = tasks
         .where((t) => t.containsKey('parent'))
         .map((t) => t['parent']!)
@@ -4047,25 +4046,25 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "UsbRHUB", 0x00001000)
     writeSSDT(ssdtName, ssdt);
   }
 
-  /// 打印未匹配的路径
-  /// [unmatched] 未匹配的路径列表
-  /// [pciRootPaths] PciRoot() 路径列表
+  ///  open  print  not match Path
+  /// [unmatched]  not match Pathcolumn table 
+  /// [pciRootPaths] PciRoot() Pathcolumn table 
   void debugPrintUnmatched({
     List<String>? unmatched,
     List<dynamic>? pciRootPaths,
   }) {
     Log("");
     if (unmatched != null && unmatched.isNotEmpty) {
-      Log.warning(l10nGlobal.logMsg042);
+      Log.warning("Not found to  down Path match item ：");
       for (var path in unmatched..sort()) {
         Log("=> $path");
       }
     } else {
-      Log.warning(l10nGlobal.logMsg043);
+      Log.warning("Not found any  any match item ！");
     }
 
     if (pciRootPaths != null && pciRootPaths.isNotEmpty) {
-      Log.warning(l10nGlobal.logMsg044);
+      Log.warning("Note,device pathrequired to  to  down  PciRoot()  open  header ， then  capable  with  when  before  ACPI  table match：");
       for (var item in pciRootPaths
         ..sort((a, b) => (a['path'] ?? a).compareTo(b['path'] ?? b))) {
         Log("=> ${item['path'] ?? item}");
@@ -4073,58 +4072,58 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "UsbRHUB", 0x00001000)
     }
   }
 
-  /// 打印设备路径中存在 _ADR 地址溢出的情况
-  /// [addrOverflow] 存在地址溢出的设备路径列表
+  ///  open  print device pathexists in _ADR address overflow   condition  situation 
+  /// [addrOverflow]  exist  in address overflow  device pathcolumn table 
   void debugPrintAddressOverflow(List<String> addrOverflow) {
     Log("");
-    Log(l10nGlobal.logMsg236);
-    Log(l10nGlobal.logMsg237);
+    Log("=> device pathexists in _ADR address overflow ！");
+    Log("=>  to  down device may  require  adjust  whole  bridge  receive  then  capable  currently  common  tool  action ：");
     for (var d in (addrOverflow.toSet().toList()..sort())) {
       Log("=> $d");
     }
   }
 
-  /// 打印无法解析的桥接
-  /// [failedBridges] 无法解析的桥接列表
+  ///  open  print  cannot parse  bridge  receive 
+  /// [failedBridges]  cannot parse  bridge  receive column table 
   void debugPrintFailedBridges(List<String> failedBridges) {
-    debugPrint(l10nGlobal.autoGen5766);
+    debugPrint("\n to  down  bridge  receive  cannot parse：");
     for (var fb in failedBridges..sort()) {
       Log("=> $fb");
     }
   }
 
-  /// SSDT 桥接设备
-  /// [pciBridges] PCI 桥接设备列表
+  /// SSDT bridge device
+  /// [pciBridges] PCI  bridge  receive device list
   Future<void> ssdtPCIBridge({List<String>? pciBridges}) async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg238);
+    Log("Collecting PCI bridge device…");
     if (pciBridges == null || pciBridges.isEmpty) {
-      Log(l10nGlobal.logMsg239);
+      Log("PCI bridge device for  empty ！ already abort operate  action ！");
       return;
     }
-    Log(l10nGlobal.logMsg240);
+    Log("Buildingbridge device…");
     var pathDict = getDevicePath(inputPaths: pciBridges);
     if (pathDict.isEmpty) {
-      Log(l10nGlobal.logMsg241);
+      Log("PCI bridge device for  empty ！skip…");
       return;
     }
     final (deviceDict, pciRootPaths) = getDevicePaths();
     final matches = <(String, (String, Map<String, dynamic>, bool, int))>[];
     List<String> unmatched = [];
-    Log(l10nGlobal.logMsg242);
+    Log("Matchingdevice path…");
     for (final p in pathDict.keys.toList()..sort()) {
       Log("=> $p");
       final match = getLongestMatch(deviceDict, p);
       if (match == null) {
-        Log(l10nGlobal.logMsg243);
+        Log("Not foundmatch item !");
         unmatched.add(p);
       } else {
         if (match.$3) {
-          Log(l10nGlobal.logMsg244(match.$1.toString()));
+          Log("=> Matched ${match.$1},  no  require  bridge  receive ");
         } else {
           final b = '/'.allMatches(p.substring(match.$4 + 1)).length + 1;
           Log(
-            "=> 匹配到 ${match.$1}, 需要 ${b.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]},')} 个桥接设备",
+            "=> Matched ${match.$1},  require  ${b.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]},')} bridge devices",
           );
         }
         matches.add((p, match));
@@ -4133,7 +4132,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "UsbRHUB", 0x00001000)
 
     if (matches.isEmpty) {
       debugPrintUnmatched(unmatched: unmatched, pciRootPaths: pciRootPaths);
-      Log(l10nGlobal.logMsg245);
+      Log("Not foundmatch item !\n");
       return;
     }
 
@@ -4157,24 +4156,24 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "UsbRHUB", 0x00001000)
       if (addrOverflow.isNotEmpty) {
         debugPrintAddressOverflow(addrOverflow);
       }
-      Log(l10nGlobal.logMsg246);
+      Log(" no  require  bridge  receive !\n");
       return;
     }
 
-    Log(l10nGlobal.logMsg247);
+    Log("Parsingbridge device…");
     final bridgeMatch = <String, String>{};
     final bridgeList = <String>[];
     final failedBridges = <String>[];
     final externalRefs = <String>[];
 
     for (final (testPath, match) in matches) {
-      /// 无需桥接
+      ///  no  require  bridge  receive 
       if (match.$3) continue;
       final remain = testPath.substring(match.$4 + 1);
       Log("=> $remain");
       final bridges = getBridgeDevices(remain);
       if (bridges.isEmpty) {
-        Log(l10nGlobal.logMsg248);
+        Log("=>  cannot parse!");
         failedBridges.add(testPath);
       } else {
         var path = match.$1;
@@ -4203,12 +4202,12 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "UsbRHUB", 0x00001000)
       if (addrOverflow.isNotEmpty) {
         debugPrintAddressOverflow(addrOverflow);
       }
-      Log(l10nGlobal.logMsg249);
+      Log("parsebridge device time  out  error !\n");
       return;
     }
-    const String ssdtName = "SSDT-Bridge";
-    Log(l10nGlobal.logMsg250(ssdtName.toString()));
-    const pad = '    ';
+    final String ssdtName = "SSDT-Bridge";
+    Log("Creating $ssdtName.dsl...");
+    final pad = '    ';
     String ssdt = '''
 // Source and info from:
 // https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-BRG0.dsl
@@ -4224,11 +4223,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PCIBRG", 0x00000000)
     }
     ssdt += '\n';
 
-    /// 关闭括号
-    /// [input] 输入字符串
-    /// [depth] 深度
-    /// [iterations] 迭代次数
-    /// [pad] 填充字符串
+    /// Close braces
+    /// [input]: Input string
+    /// [depth]: Depth
+    /// [iterations]: Iteration count
+    /// [pad]: Padding string
     String closeBrackets(String input, int depth, int iterations, String pad) {
       while (iterations > 0) {
         input += '${pad * depth}}\n';
@@ -4340,20 +4339,20 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PCIBRG", 0x00000000)
   Future<void> ssdtALS0({bool prebuilt = false}) async =>
       prebuilt ? await _ssdtALS0Prebuilt() : await _ssdtALS0();
 
-  /// 光线传感器 (适用于笔记本)
+  ///  light  thread  sensor  ( fit  used for laptop)
   Future<void> _ssdtALS0() async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg251);
+    Log("Locating ACPI0008（ALS）device…");
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
-    const String ssdtName = "SSDT-ALS0";
+    final String ssdtName = "SSDT-ALS0";
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg252(tableName.toString()));
-      // 尝试在当前表格中查找任何环境光传感器设备
+      Log("Checking $tableName…");
+      //  try  try  in  when  before  table  format  in find any  any  loop  environment  light  sensor device
       var als = d.getDevicePathsWithHid(hid: "ACPI0008", table: table);
       if (als.isNotEmpty) {
-        Log(l10nGlobal.logMsg253(tableName.toString(), als[0][0].toString()));
-        Log(l10nGlobal.logMsg254);
+        Log("=>  in $tableName  table : ${als[0][0]} atfoundALSdevice!");
+        Log("=>  not  require spoof!\n");
 
         var sta = getStaVar(
           varS: '',
@@ -4364,7 +4363,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PCIBRG", 0x00000000)
         );
         if (sta['patches'] != null && sta['patches'].isNotEmpty) {
           if (staNeedsPatching(sta, table)) {
-            Log(l10nGlobal.logMsg255(ssdtName.toString()));
+            Log("Creating $ssdtName.dsl...");
             var ssdt = """
   DefinitionBlock ("", "SSDT", 2, "RAPID", "ALS0", 0x00000000)
   {
@@ -4406,18 +4405,18 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PCIBRG", 0x00000000)
             makePlist(acpi: acpi, patches: sta["patches"] ?? []);
             return;
           } else {
-            Log(l10nGlobal.logMsg256);
+            Log(" already  currently  confirm enable_STA, no  require Patch！\n");
           }
         } else {
-          Log(l10nGlobal.logMsg257);
+          Log("Not found， not  require Patch!\n");
         }
         return;
       }
     }
 
-    /// 没有找到任何 ALS 设备
-    Log(l10nGlobal.logMsg258);
-    Log(l10nGlobal.logMsg259(ssdtName.toString()));
+    /// Not found any  any  ALS device
+    Log("Not found ACPI0008（ALS）device,  require spoofdevice…");
+    Log("Creating $ssdtName.dsl...");
     var ssdt = """//
 // Original source from:
 // https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-ALS0.dsl
@@ -4467,8 +4466,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "ALS0", 0x00000000)
           ? await _ssdtXOSIPrebuilt()
           : await _ssdtXOSI(targetString: targetString);
 
-  /// XOSI 方案
-  /// [targetString] 目标字符串
+  /// XOSI  scheme  scheme 
+  /// [targetString]  target  label string
   Future<void> _ssdtXOSI({String? targetString}) async {
     if (!await ensureDSDT()) return;
     String? highestOsi;
@@ -4478,31 +4477,31 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "ALS0", 0x00000000)
         highestOsi = key;
       }
     });
-    const String ssdtName = "SSDT-XOSI";
-    Log(l10nGlobal.logMsg260);
+    final String ssdtName = "SSDT-XOSI";
+    Log(" currently  in  check  test XOSI scheme  scheme ...");
     if (targetString == null ||
         targetString.isEmpty ||
         !osiStrings.containsKey(targetString)) {
       if (highestOsi != null && highestOsi!.isNotEmpty) {
-        Log(l10nGlobal.logMsg261(highestOsi.toString(), osiStrings[highestOsi].toString()));
+        Log("=>  already  self  dynamic  check  test  to ：$highestOsi（${osiStrings[highestOsi]}）");
       }
-      // 自动选择默认项
+      //  self  dynamic  select  select default item 
       if (highestOsi != null && highestOsi!.isNotEmpty) {
         targetString = highestOsi;
       } else {
         targetString = osiStrings.keys.first;
       }
       Log(
-        "=> 已自动选择用于 $targetString (${osiStrings[targetString]}) 版本的$ssdtName",
+        "=> Auto-selected for $targetString (${osiStrings[targetString]}) version$ssdtName",
       );
     } else {
       Log(
-        "=> 已手动选择用于 $targetString (${osiStrings[targetString]}) 版本的$ssdtName",
+        "=> Manually selected for $targetString (${osiStrings[targetString]}) version$ssdtName",
       );
     }
 
     Log(
-      "正在创建支持 $targetString (${osiStrings[targetString]}) 版本的 $ssdtName.dsl…",
+      "Creatingsupported $targetString (${osiStrings[targetString]}) version $ssdtName.dsl…",
     );
 
     String ssdt = """
@@ -4526,11 +4525,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
       var osiString = osiStrings[x];
       ssdt += '                "$osiString"';
       if (x == targetString || i == osiStrings.length - 1) {
-        // 最后一项 - 停止
+        //  most  after 1 item  -  stop 
         ssdt += " // $x";
         break;
       }
-      // 添加逗号和换行符
+      // add comma  number  and  replace line symbol 
       ssdt += ", // $x\n";
     }
     ssdt += "\n";
@@ -4547,12 +4546,12 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     }
 }""";
 
-    Log(l10nGlobal.logMsg262);
+    Log("Checking OSID method…");
     List osid = d.getMethodPaths(obj: "OSID");
     List<Map<String, String>> patches = [];
 
     if (osid.isNotEmpty) {
-      Log(l10nGlobal.logMsg263(osid[0][1].toString(), osid[0][0].toString()));
+      Log("=>  in  offset  move  count  ${osid[0][1]} atfound  ${osid[0][0]} method");
       patches.add({
         "Comment":
             "OSID to XSID rename - must come before _OSI to XOSI rename!",
@@ -4560,9 +4559,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
         "Replace": "58534944",
       });
     } else {
-      Log(l10nGlobal.logMsg264);
+      Log("=> Not found， no  require   OSID rename for  XSID");
     }
-    Log(l10nGlobal.logMsg265);
+    Log("Creating _OSI  to  XOSI  rename…");
     patches.add({
       "Comment": "_OSI to XOSI rename - requires $ssdtName.aml",
       "Find": "5F4F5349",
@@ -4578,17 +4577,17 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     writeSSDT(ssdtName, ssdt);
   }
 
-  /// 加载指定 ACPI 表
-  /// [tableSignature] 表签名
-  /// [tablePath] 表路径
+  /// load specified  ACPI  table 
+  /// [tableSignature] table signature
+  /// [tablePath]  table Path
   Future<Map<String, dynamic>?> loadTable(
     String tableSignature, {
     String? tablePath,
   }) async {
     if (!checkIasl()) return null;
-    Log(l10nGlobal.logMsg266(tableSignature.toString()));
+    Log("Searching for $tableSignature  table …");
     Map<String, dynamic>? table;
-    // 如果未传入 ACPI 表路径,则从已加载的 ACPI 表中查找
+    //  if  not  pass  enter  ACPI  table Path, then  from  already load  ACPI  table  in find
     if (tablePath == null || tablePath.isEmpty) {
       final tableList = d.acpiTables.values
           .where(
@@ -4598,14 +4597,14 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
           .toList();
       if (tableList.isNotEmpty) table = tableList.first;
     } else {
-      // 从已传入 ACPI 表路径加载表
-      // 检查并确保路径有效
+      //  from  already  pass  enter  ACPI  table Pathload table 
+      //  check  and  confirm  keep Pathvalid
       tablePath = await util.checkPath(
         filePath: tablePath,
         onError: (e) => Log.error(e),
       );
       if (tablePath.isNotEmpty) {
-        // 加载表
+        // load table 
         final result = await d.loadTable(tablePath);
         final tableList = result.$1.values
             .where(
@@ -4620,8 +4619,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     if (table == null || table.isEmpty) {
       Log.warning(
         config.acpiDirectory != null && config.acpiDirectory!.isNotEmpty
-            ? "在当前目录 ${config.acpiDirectory} 未发现有效 $tableSignature 表!"
-            : "未发现有效 $tableSignature 表!",
+            ? "in current directory ${config.acpiDirectory} Not foundvalid $tableSignature  table !"
+            : "Not foundvalid $tableSignature  table !",
       );
       return null;
     }
@@ -4629,7 +4628,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     return table;
   }
 
-  /// 从 FACP lines 中查找第一个包含关键字的字段值
+  ///  from  FACP lines  in find #1  contains  related  key  character   character  segment  value 
   String findFacpField(List<dynamic> lines, String key) {
     for (var line in lines) {
       if (line.contains(key)) {
@@ -4640,50 +4639,50 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     return "";
   }
 
-  /// 验证 SSDT 表签名
-  /// [tableSignature] 表签名
-  /// [tablePath] 表路径
+  /// verify SSDT table signature
+  /// [tableSignature] table signature
+  /// [tablePath]  table Path
   Future<(bool, Map)> validateTableSignature(
     String tableSignature, {
     String? tablePath,
   }) async {
     final targetTable = await loadTable(tableSignature, tablePath: tablePath);
     if (targetTable == null) return (false, {});
-    Log(l10nGlobal.logMsg267(tableSignature.toString()));
+    Log("Found $tableSignature  table , currently  in verify signature  name …");
     bool gotSig = false;
     final List<String> lines = targetTable['lines'] ?? [];
     for (var l in lines) {
       if (l.contains('Signature : "$tableSignature"')) {
-        Log(l10nGlobal.logMsg268(tableSignature.toString()));
+        Log("=> $tableSignature table signatureverify via !");
         gotSig = true;
         break;
       }
     }
     if (!gotSig) {
-      Log.warning(l10nGlobal.logMsg045(tableSignature.toString()));
+      Log.warning("=> Not found， similar  almost  not  is 1 valid  $tableSignature  table !\n");
     }
     return (gotSig, targetTable);
   }
 
   /// SSDT-FACP
-  /// [facpPath] FACP 表路径
+  /// [facpPath] FACP  table Path
   Future<void> ssdtFACP({String? facpPath}) async {
     final (valid, table) = await validateTableSignature(
       'FACP',
       tablePath: facpPath,
     );
     if (!valid) return;
-    const String valueToCauseReset = 'Value to cause reset';
-    Log(l10nGlobal.logMsg269(valueToCauseReset.toString()));
+    final String valueToCauseReset = 'Value to cause reset';
+    Log("Checking $valueToCauseReset  value …");
     List<String> lines = table['lines'] ?? [];
     String valueCauseReset = findFacpField(lines, '$valueToCauseReset :');
     if (valueCauseReset.isEmpty) {
-      Log.warning(l10nGlobal.logMsg046(valueToCauseReset.toString()));
+      Log.warning("Not found $valueToCauseReset  value ! Aborted!");
       return;
     }
-    Log(l10nGlobal.logMsg270(valueToCauseReset.toString(), valueCauseReset.toString()));
+    Log("get to  $valueToCauseReset  value  : $valueCauseReset");
 
-    // 提取 Reset Register Address（通常在前面两行）
+    // extract Reset Register Address（ pass  common  in  before  surface  two line）
     String addressValue = "";
     for (int i = 0; i < lines.length; i++) {
       if (lines[i].contains('$valueToCauseReset :')) {
@@ -4695,16 +4694,16 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     }
 
     if (addressValue.isEmpty) {
-      Log.warning(l10nGlobal.logMsg047);
+      Log.warning("Not found Reset Register Address  value ! Aborted!");
       return;
     }
-    Log(l10nGlobal.logMsg271(addressValue.toString()));
+    Log("get to  Reset Register Address  value  : $addressValue");
 
     final findAddrHeader = util.splitHexStringIntoReversedChunks(addressValue);
     final findAddress = "$findAddrHeader$valueCauseReset";
     final replaceAddress = "${findAddrHeader}0E";
 
-    Log(l10nGlobal.logMsg272);
+    Log(" require  patch  ACPI Patch as  down : ");
     Log("=>       Find : $findAddress");
     Log("=> Replace : $replaceAddress");
 
@@ -4721,7 +4720,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
   }
 
   /// SSDT-APIC
-  /// [apicPath] APIC 表路径
+  /// [apicPath] APIC  table Path
   Future<void> ssdtAPIC({String? apicPath}) async {
     if (!await ensureDSDT()) return;
     final (valid, table) = await validateTableSignature(
@@ -4730,7 +4729,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     );
     if (!valid) return;
 
-    Log(l10nGlobal.logMsg273);
+    Log(" currently  in  patch  APIC  table …");
     int processorIndex = 0;
     final lines = List<String>.from(table['lines'] ?? []);
     final int apicLength = lines.length;
@@ -4758,7 +4757,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
 
         final idLine = lines[idLineIndex].trimRight();
 
-        /// 从 APIC 表中提取 Processor ID（最后两位）
+        ///  from  APIC  table  in extract Processor ID（ most  after  two  position ）
         final String apicProcessorId = idLine.substring(idLine.length - 2);
         String processorId;
         try {
@@ -4766,19 +4765,19 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
               .split(', ')[1]
               .substring(2);
         } catch (_) {
-          Log.warning(l10nGlobal.logMsg048(tableName.toString()));
+          Log.warning(" cannot parse $tableName  in   Processor ID，abort patch ");
           return;
         }
 
-        /// 第一个 CPU 已匹配,直接退出
+        ///  #1  CPU  already match, direct  receive exit
         if (processorIndex == 0 && apicProcessorId == processorId) {
-          Log.warning(l10nGlobal.logMsg049(tableName.toString()));
+          Log.warning("in $tableName #1  CPU  already match,  no  require  patch  APIC  table !");
           return;
         }
 
-        Log(l10nGlobal.logMsg274(apicProcessorId.toString(), processorId.toString()));
+        Log("=>  fix  currently  APIC Processor ID: $apicProcessorId → $processorId");
 
-        /// 修补 Processor ID
+        ///  patch  Processor ID
         lines[idLineIndex] =
             idLine.substring(0, idLine.length - 2) + processorId;
 
@@ -4788,12 +4787,12 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
       }
     }
     if (ssdt.isEmpty) {
-      Log.warning(l10nGlobal.logMsg050);
+      Log.warning("=> Not found Processor match item ! Aborted!");
       return;
     }
-    Log(l10nGlobal.logMsg275);
-    const String ssdtName = "SSDT-APIC";
-    Log(l10nGlobal.logMsg276(ssdtName.toString()));
+    Log("=> APIC  table  patch completed!");
+    final String ssdtName = "SSDT-APIC";
+    Log("Creating $ssdtName.dsl…");
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -4814,7 +4813,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
   }
 
   /// SSDT-DMAR
-  /// [dmarPath] DMAR 表路径
+  /// [dmarPath] DMAR  table Path
   Future<void> ssdtDMAR({String? dmarPath}) async {
     final (valid, table) = await validateTableSignature(
       'DMAR',
@@ -4825,7 +4824,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     int regionCount = 0;
     List<String> newDMAR = [];
     List<String> lines = table['lines'] ?? [];
-    Log(l10nGlobal.logMsg277);
+    Log("Checking DMAR  table  keep  keep  inside  exist  section  domain …");
     for (var line in lines) {
       if (line.contains("Subtable Type : 0001 [Reserved Memory Region]")) {
         regionCount++;
@@ -4834,7 +4833,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
         reserved = false;
       }
       if (!reserved) {
-        // 确保 "Reserved : XX" 中的任何数字都是 0
+        //  confirm  keep  "Reserved : XX"  in   any  any number all  is  0
         if (line.contains("Reserved : ")) {
           List<String> parts = line.split(" : ");
           if (parts.length == 2) {
@@ -4845,11 +4844,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
             for (int i = 0; i < value.length; i++) {
               String char = value[i];
               if (!" 0123456789ABCDEF".contains(char)) {
-                // 直接将剩余内容原样存入变量中。
+                //  direct  receive   remaining  remaining  inside  contain  original  pattern  exist  enter variable in 。
                 newVal.write(value.substring(i));
                 break;
               } else if (char != "0" && char != " ") {
-                // 确保将所有非 0、非空格值设置为 0
+                //  confirm  keep   all  non- 0、 non- empty  format  value set for  0
                 char = "0";
               }
               newVal.write(char);
@@ -4863,11 +4862,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
     }
 
     if (regionCount == 0) {
-      Log(l10nGlobal.logMsg278);
+      Log("=> Not found keep  keep  inside  exist  section  domain ,  no  require  patch  DMAR!\n");
       return;
     }
-    const String ssdtName = "SSDT-DMAR";
-    Log(l10nGlobal.logMsg279(regionCount.toString()));
+    final String ssdtName = "SSDT-DMAR";
+    Log(" occur  present  $regionCount   keep  keep  inside  exist  section  domain , Generating new  table …");
     writeSSDT(ssdtName, newDMAR.join("\n"));
     final acpi = {
       "Comment":
@@ -4892,32 +4891,32 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
           : await _ssdtIMEI(fakeid: fakeid);
 
   /// SSDT-IMEI
-  /// 用于桥接仿冒IMEI 设备，适用于 Ivy Bridge 6系主板和 Sandy Bridge 7系主板
-  /// 6系主板需要fakeid为3A1E，7系主板需要fakeid为3A1C
-  /// [fakeid] 仿冒设备ID
+  ///  used for  bridge  receive spoofIMEI device， fit  used for  Ivy Bridge 6 series motherboard and  Sandy Bridge 7 series motherboard
+  /// 6 series motherboard require fakeid for 3A1E，7 series motherboard require fakeid for 3A1C
+  /// [fakeid] spoofdeviceID
   Future<void> _ssdtIMEI({String? fakeid}) async {
     if (!await ensureDSDT()) return;
     if (fakeid == null) {
-      Log.warning(l10nGlobal.logMsg051);
+      Log.warning(" please  select  select IMEIPatch!");
       return;
     }
-    Log(l10nGlobal.logMsg280);
+    Log(" currently  in  via address 0x00160000 find IMEI device...");
     ({String busParent, String busPath, String tableName})? imei = getDevAtAdr(
       targetAdr: 0x00160000,
     );
     if (imei != null && imei.busParent.isNotEmpty) {
-      Log.warning(l10nGlobal.logMsg052(imei.busPath.toString()));
+      Log.warning("=> already in ${imei.busPath} found IMEI device,  no  require  bridge  receive spoof!Aborted!");
       Log("");
       return;
     }
-    Log(l10nGlobal.logMsg281);
-    Log(l10nGlobal.logMsg282);
-    Log(l10nGlobal.logMsg283);
+    Log("Not found IMEI device,  require spoof this device…");
+    Log(" currently  in validate parent device...");
+    Log(" currently  in  search  find  position  at  0x00020000   iGPU device…");
     dynamic parent;
     var igpu = getDevAtAdr(targetAdr: 0x00020000);
     if (igpu == null || igpu.busParent.isEmpty) {
-      Log(l10nGlobal.logMsg284);
-      Log(l10nGlobal.logMsg285);
+      Log("=> Not found iGPU device!");
+      Log(" currently  in  try  try  locate  PCI  root device...");
       var pciRoots = [];
       for (var tableName in sortedNicely(d.acpiTables.keys.toList())) {
         var table = d.acpiTables[tableName];
@@ -4929,26 +4928,26 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "XOSI", 0x00001000)
         }
       }
       if (pciRoots.isEmpty) {
-        Log.warning(l10nGlobal.logMsg053);
+        Log.warning("=> Not found PCI  root device!Aborted!");
         return;
       }
       parent = pciRoots[0][0];
-      Log(l10nGlobal.logMsg286(parent.toString()));
+      Log("=> found PCI  root device: $parent");
     } else {
-      Log(l10nGlobal.logMsg287(igpu.busPath.toString()));
+      Log("=> found iGPU device: ${igpu.busPath}");
       parent = igpu.busParent;
-      Log(l10nGlobal.logMsg288(parent.toString()));
+      Log("=>  make  use  parent device: $parent");
     }
-    Log(l10nGlobal.logMsg289);
+    Log("Collecting spoof device-id schemes…");
     if (fakeid.toUpperCase() == '3A1E') {
-      Log(l10nGlobal.logMsg290(fakeid.toString()));
+      Log("=> Spoofed as 7-series IMEI (device-id: $fakeid) for 3rd Gen Ivy Bridge");
     } else if (fakeid.toUpperCase() == '3A1C') {
-      Log(l10nGlobal.logMsg291(fakeid.toString()));
+      Log("=> Spoofed as 6-series IMEI (device-id: $fakeid) for 2nd Gen Sandy Bridge");
     } else {
-      Log.warning(l10nGlobal.logMsg054);
+      Log.warning("=> SSDT IMEI spoof disabled; must set device-id via DeviceProperties!");
     }
-    const String ssdtName = "SSDT-IMEI";
-    Log(l10nGlobal.logMsg292(ssdtName.toString()));
+    final String ssdtName = "SSDT-IMEI";
+    Log("Creating $ssdtName.dsl...");
     String ssdt = "";
     if (fakeid.isEmpty) {
       ssdt = """
@@ -5025,22 +5024,22 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
   Future<void> _ssdtUNC() async {
     if (!await ensureDSDT()) return;
 
-    Log(l10nGlobal.logMsg293);
+    Log("Searching for UNC (PNP0A03) device...");
     final devices = d.getDevicePathsWithHid(hid: "PNP0A03");
 
     if (devices.isEmpty ||
         devices[0].isEmpty ||
         !devices[0].first.split('.').last.startsWith('UNC')) {
-      Log.warning(l10nGlobal.logMsg055);
+      Log.warning("Not found UNC (PNP0A03) device! no  require  SSDT-UNC Patch!Aborted!\n");
       return;
     }
 
-    Log(l10nGlobal.logMsg294(devices.length.toString()));
+    Log("=>  total found ${devices.length}   UNC device");
     for (int i = 0; i < devices.length; i++) {
-      Log(l10nGlobal.logMsg295((i + 1).toString(), devices[i].first.toString()));
+      Log("=>  # ${i + 1}   UNC device: ${devices[i].first}");
     }
 
-    const String ssdtName = "SSDT-UNC";
+    final String ssdtName = "SSDT-UNC";
     String ssdt = '';
     Map<String, dynamic> acpi = {};
     List<Map<String, dynamic>> patches = [];
@@ -5048,7 +5047,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     const staHex = "5F535441"; // _STA
     const xstaHex = "58535441"; // XSTA
 
-    /// 记录每个 UNC 是否原生存在 _STA
+    ///  record  record  every   UNC  is  whether  native  exist  in  _STA
     final Map<String, bool> hasStaMap = {};
 
     for (var device in devices) {
@@ -5057,19 +5056,19 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
       final staMethod = d.getMethodPaths(obj: "$devicePath._STA");
 
-      Log(l10nGlobal.logMsg296(devName.toString()));
+      Log("=>  check  $devName: _STA methodexists");
 
       final bool hasSta = staMethod.isNotEmpty;
       hasStaMap[devicePath] = hasSta;
 
       if (!hasSta) {
-        Log.warning(l10nGlobal.logMsg056(devName.toString()));
+        Log.warning("=> $devName: _STA methoddoes not exist!");
         continue;
       }
 
       final staIndex = d.findNextHex(index: staMethod[0][1]).$2;
-      Log(l10nGlobal.logMsg297(staIndex.toString(), devName.toString()));
-      Log(l10nGlobal.logMsg298(devName.toString()));
+      Log("=> at index $staIndex found $devName: _STA method!");
+      Log("=> generate $devName: _STA  to  XSTA  Patch");
 
       final (padl, padr) = d.getShortestUniquePad(
         currentHex: staHex,
@@ -5153,9 +5152,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
   Future<void> _ssdtUNCPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-UNC";
-    Log(l10nGlobal.logMsg299(ssdtName.toString()));
-    const ssdt = Prebuilt.ssdtUNC;
+    final String ssdtName = "SSDT-UNC";
+    Log("Creating precompiled $ssdtName.dsl...");
+    final ssdt = Prebuilt.ssdtUNC;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -5175,31 +5174,31 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg300(tableName.toString()));
+      Log("Checking $tableName…");
       if (methodPath.isEmpty) {
-        // 查找是否存在 DTGP 方法
-        Log(l10nGlobal.logMsg301);
+        // findexists DTGP method
+        Log("Checkingexists DTGP method...");
         final dtgp = d.getMethodPaths(obj: "DTGP", table: table);
         if (dtgp.isNotEmpty && dtgp[0].isNotEmpty) {
           Log.warning(
-            "=> 无需创建 SSDT-DTGP,已在 ${dtgp[0].first} 找到 DTGP 方法! 已终止操作！",
+            "=> No need to create SSDT-DTGP,already in ${dtgp[0].first} found DTGP method! Aborted!",
           );
         } else {
-          Log(l10nGlobal.logMsg302);
+          Log("=> Not found DTGP method!");
         }
       }
     }
     if (methodPath.isEmpty) {
-      Log(l10nGlobal.logMsg303);
+      Log("=> in any of the above ACPI tablesNot found DTGP method! \n");
       _ssdtDTGPPrebuilt();
     }
   }
 
   Future<void> _ssdtDTGPPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-DTGP";
-    Log(l10nGlobal.logMsg304(ssdtName.toString()));
-    const ssdt = Prebuilt.ssdtDTGP;
+    final String ssdtName = "SSDT-DTGP";
+    Log("Creating precompiled $ssdtName.dsl...");
+    final ssdt = Prebuilt.ssdtDTGP;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -5219,23 +5218,23 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg305(tableName.toString()));
+      Log("Checking $tableName…");
 
-      /// 根据设备ID: PNP0200 查找 DMA 设备
-      Log(l10nGlobal.logMsg306);
+      ///  according to deviceID: PNP0200 find DMA device
+      Log("Searching for DMA (PNP0200) device...");
       final device = d.getDevicePathsWithHid(hid: "PNP0200", table: table);
       if (device.isNotEmpty && device[0].isNotEmpty) {
         Log.warning(
-          "=> 无需仿冒DMA设备,已在 ${device[0].first} 找到 PNP0200 设备! 已终止操作！\n",
+          "=> No need to spoofDMAdevice,already in ${device[0].first} found PNP0200 device! Aborted!\n",
         );
         return;
       } else {
-        Log(l10nGlobal.logMsg307);
+        Log("=> DMA (PNP0200) device not found!");
       }
     }
 
     if (devicePath.isEmpty) {
-      Log.warning(l10nGlobal.logMsg057);
+      Log.warning("=> in any of the above ACPI tablesNot found DMA (PNP0200) device! Aborted!\n");
       return;
     }
 
@@ -5301,7 +5300,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     
     """;
     ssdt = ssdt.replaceAll('[[LPC_PATH]]', lpc);
-    const String ssdtName = "SSDT-DMAC";
+    final String ssdtName = "SSDT-DMAC";
     writeSSDT(ssdtName, ssdt);
     final acpi = {
       "Comment": "Spoof a DMA controller for macOS LPC bus and DMA recognition",
@@ -5313,8 +5312,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
   Future<void> _ssdtDMACPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-DMAC";
-    Log(l10nGlobal.logMsg308(ssdtName.toString()));
+    final String ssdtName = "SSDT-DMAC";
+    Log("Creating precompiled $ssdtName.dsl...");
     final ssdt = Prebuilt.ssdtDMAC;
     writeSSDT(ssdtName, ssdt);
 
@@ -5371,23 +5370,23 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg309(tableName.toString()));
+      Log("Checking $tableName…");
       if (needsPts && pts.isEmpty) {
-        Log(l10nGlobal.logMsg310);
+        Log("Checking if _PTS method exists...");
         pts = d.getMethodInfo(obj: "_PTS", table: table);
         if (pts.isNotEmpty) {
-          Log(l10nGlobal.logMsg311(pts.first.toString()));
+          Log("=> Found ${pts.first} method!");
         } else {
-          Log(l10nGlobal.logMsg312);
+          Log("=> Method _PTS not found!");
         }
       }
       if (needsWak && wak.isEmpty) {
-        Log(l10nGlobal.logMsg313);
+        Log("Checkingexists _WAK method...");
         wak = d.getMethodInfo(obj: "_WAK", table: table);
         if (wak.isNotEmpty) {
-          Log(l10nGlobal.logMsg314(wak.first.toString()));
+          Log("=> Found ${wak.first} method!");
         } else {
-          Log(l10nGlobal.logMsg315);
+          Log("=> Not found _WAK method!");
         }
       }
       if ((!needsPts || pts.isNotEmpty) && (!needsWak || wak.isNotEmpty)) {
@@ -5396,20 +5395,20 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     }
 
     if (needsPts && pts.isEmpty) {
-      Log.warning(l10nGlobal.logMsg058);
+      Log.warning("=> Not found _PTS method,   not generate _PTS  adjust  depth  enter  port  and renamePatch!");
     }
     if (needsWak && wak.isEmpty) {
-      Log.warning(l10nGlobal.logMsg059);
+      Log.warning("=> Not found _WAK method,   not generate _WAK  adjust  depth  enter  port  and renamePatch!");
     }
     final hasPtsEntry = needsPts && pts.isNotEmpty;
     final hasWakEntry = needsWak && wak.isNotEmpty;
     if (!hasPtsEntry && !hasWakEntry) {
-      Log.warning(l10nGlobal.logMsg060);
+      Log.warning("=> Not found can  adjust  depth   _PTS/_WAK method,  already skip SSDT-SleepHook!\n");
       return;
     }
 
-    const ssdtName = "SSDT-SleepHook";
-    Log(l10nGlobal.logMsg316(ssdtName.toString()));
+    final ssdtName = "SSDT-SleepHook";
+    Log("Creating $ssdtName.dsl...");
 
     final buffer = StringBuffer();
     buffer.writeln(
@@ -5518,24 +5517,24 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg317(tableName.toString()));
+      Log("Checking $tableName…");
       if (sstPath.isEmpty) {
-        Log(l10nGlobal.logMsg318);
+        Log("Checkingexists _SST method...");
         final sst = d.getMethodPaths(obj: "_SST", table: table);
         if (sst.isNotEmpty && sst[0].isNotEmpty) {
-          Log(l10nGlobal.logMsg319(sst[0].first.toString()));
+          Log("=> already in ${sst[0].first} found _SST method!");
           sstPath = sst[0].first;
         } else {
-          Log(l10nGlobal.logMsg320);
+          Log("=> Not found _SST method!");
         }
       }
     }
     if (sstPath.isEmpty) {
-      Log.warning(l10nGlobal.logMsg061);
+      Log.warning("=> in any of the above ACPI tablesNot found _SST method! Aborted!\n");
       return;
     }
-    const ssdtName = "SSDT-LED";
-    Log(l10nGlobal.logMsg321(ssdtName.toString()));
+    final ssdtName = "SSDT-LED";
+    Log("Creating $ssdtName.dsl...");
     final ssdt = '''
  DefinitionBlock ("", "SSDT", 1, "RAPID", "LED", 0x00000000)
 {
@@ -5571,24 +5570,24 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg322(tableName.toString()));
+      Log("Checking $tableName…");
       if (devicePath.isEmpty) {
-        Log(l10nGlobal.logMsg323);
+        Log("Checkingexists PNP0C0D device...");
         final device = d.getDevicePathsWithHid(hid: "PNP0C0D", table: table);
         if (device.isNotEmpty && device[0].isNotEmpty) {
           devicePath = device[0].first;
-          Log(l10nGlobal.logMsg324(devicePath.toString()));
+          Log("=> already in $devicePath found PNP0C0D device!");
         } else {
-          Log(l10nGlobal.logMsg325);
+          Log("=> Not found PNP0C0D device!");
         }
       }
     }
     if (devicePath.isEmpty) {
-      Log.warning(l10nGlobal.logMsg062);
+      Log.warning("=> in any of the above ACPI tablesNot found PNP0C0D device! Aborted!\n");
       return;
     }
-    const ssdtName = "SSDT-WakeScreen";
-    Log(l10nGlobal.logMsg326(ssdtName.toString()));
+    final ssdtName = "SSDT-WakeScreen";
+    Log("Creating $ssdtName.dsl...");
     String ssdt = '''
   DefinitionBlock("", "SSDT", 2, "RAPID", "WakeS", 0x00000000)
 {
@@ -5614,8 +5613,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     await makePlist(acpi: acpi, replace: true);
   }
 
-  /// 检查系统状态支持情况（_S0, _S3, _S4, _S5）
-  /// 返回值: (支持的系统状态列表, 不支持的系统状态列表)
+  ///  check  system statussupported condition  situation （_S0, _S3, _S4, _S5）
+  /// return value: (supported  system statuscolumn table ,  not supported  system statuscolumn table )
   Future<(List?, List?)> checkSystemState({String? facpPath}) async {
     if (!await ensureDSDT()) return (null, null);
     bool? aoacState = await checkAOAC(facpPath: facpPath);
@@ -5624,56 +5623,56 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg327(tableName.toString()));
+      Log("Checking $tableName…");
       for (final systemState in systemStatesCheck) {
         if (systemStatesFound.contains(systemState)) continue;
-        Log(l10nGlobal.logMsg328(systemState.toString()));
+        Log("Checkingexists $systemState...");
         final nameSystemState = d.getNamePaths(obj: systemState, table: table);
         final methodSystemState = d.getMethodPaths(
           obj: systemState,
           table: table,
         );
         if (nameSystemState.isNotEmpty && nameSystemState[0].isNotEmpty) {
-          Log(l10nGlobal.logMsg329(nameSystemState[0].first.toString(), systemState.toString()));
+          Log("=> already in ${nameSystemState[0].first} found $systemState");
           systemStatesFound.add(systemState);
         } else if (methodSystemState.isNotEmpty &&
             methodSystemState[0].isNotEmpty) {
-          Log(l10nGlobal.logMsg330(methodSystemState[0].first.toString(), systemState.toString()));
+          Log("=> already in ${methodSystemState[0].first} found $systemState");
           systemStatesFound.add(systemState);
         } else {
-          Log(l10nGlobal.logMsg331(systemState.toString()));
+          Log("=> Not found $systemState");
         }
       }
       if (systemStatesFound.length == systemStatesCheck.length) {
         break;
       }
     }
-    Log(l10nGlobal.logMsg332);
-    // 支持系统状态
-    Log(l10nGlobal.logMsg333);
-    // 不支持的系统状态
+    Log(" already  check  all ACPI table !");
+    // supported system status
+    Log("=> supported system status: ${systemStatesFound.join(", ")}");
+    //  not supported  system status
     final systemStatesNotSupported = systemStatesCheck
         .where((element) => !systemStatesFound.contains(element))
         .toList();
     if (systemStatesNotSupported.isNotEmpty) {
-      Log.warning(l10nGlobal.logMsg063);
+      Log.warning("=>  not supported system status: ${systemStatesNotSupported.join(", ")}");
     }
-    // 非AOAC机器
+    //  non-AOAC machine  device 
     if (false == aoacState) {
       if (systemStatesNotSupported.isEmpty) {
-        Log(l10nGlobal.logMsg334);
+        Log("=>  when  before firmwaresupported common  see  system status!fixsleep issue  issue  after ,macOS can supportedS3sleep!");
       }
       if (systemStatesNotSupported.contains("_S3")) {
-        Log.warning(l10nGlobal.logMsg064);
+        Log.warning("=> Note:  when  before firmware not supported _S3 status,  if BIOSset no  have disable S3  function  capable ,  that  what  machine  device  not supportedS3sleep!");
       }
     } else if (true == aoacState) {
-      // AOAC机器
-      Log.warning(l10nGlobal.logMsg065);
+      // AOAC machine  device 
+      Log.warning("=> Note:  when  before  is AOAC machine  device ,macOS not supportedS3sleep!");
     } else {
-      Log.warning(l10nGlobal.logMsg066);
+      Log.warning("=>  when  before  not  check  test  to  is  whether  is AOAC machine  device , please  self line confirm  recognize !");
       if (systemStatesNotSupported.isEmpty) {
         Log.warning(
-          l10nGlobal.autoGen5767,
+          "=> Current firmware supports standard system states! S3 sleep supported if not AOAC machine!",
         );
       }
     }
@@ -5687,20 +5686,20 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       tablePath: facpPath,
     );
     if (!valid) return null;
-    Log(l10nGlobal.logMsg335);
+    Log("Checking Low Power S0 Idle (V5)  value …");
     List<String> lines = table['lines'] ?? [];
     final lowPower = findFacpField(lines, 'Low Power S0 Idle (V5) :');
-    Log(l10nGlobal.logMsg336(lowPower.toString()));
+    Log("get to  Low Power S0 Idle (V5) : $lowPower");
 
     if (lowPower.isEmpty) {
-      Log.warning(l10nGlobal.logMsg067);
+      Log.warning("Not found Low Power S0 Idle (V5)  value !");
       return null;
     }
 
     if (lowPower == '0') {
-      Log(l10nGlobal.logMsg337);
+      Log(" when  before  not  is  AOAC  machine  device ,  not  affect  affect macOS system  S3 sleep!");
     } else {
-      Log.warning(l10nGlobal.logMsg068);
+      Log.warning(" when  before  is  AOAC  machine  device , macOS not supported S3 sleep!");
     }
     Log("");
     return lowPower == '1';
@@ -5711,20 +5710,20 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
   Future<void> _ssdtS3Disable() async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg338);
+    Log("Checkingexists _S3...");
     String? externalLine;
     String ssdtBody = "";
     bool found = false;
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg339(tableName.toString()));
+      Log("Checking $tableName…");
       final nameS3 = d.getNamePaths(obj: "_S3", table: table);
       final methodS3 = d.getMethodPaths(obj: "_S3", table: table);
-      // 大多数都是 Name _S3
+      //  large  multiple  number  all  is  Name _S3
       if (nameS3.isNotEmpty && nameS3[0].isNotEmpty) {
         final target = nameS3[0].first;
-        Log(l10nGlobal.logMsg340(target.toString()));
+        Log("=> already in $target found Name _S3!");
         found = true;
         externalLine = 'External (XS3, IntObj)';
         ssdtBody = '''
@@ -5736,7 +5735,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
         break;
       } else if (methodS3.isNotEmpty && methodS3[0].isNotEmpty) {
         final target = methodS3[0].first;
-        Log(l10nGlobal.logMsg341(target.toString()));
+        Log("=> already in $target found Method _S3!");
         found = true;
         externalLine = 'External ($target, MethodObj)';
         ssdtBody = '''
@@ -5747,15 +5746,15 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     ''';
         break;
       } else {
-        Log(l10nGlobal.logMsg342);
+        Log("=> Not found Name or Method _S3");
       }
     }
     if (!found) {
-      Log.warning(l10nGlobal.logMsg069);
+      Log.warning("=> Not found Name  or  Method _S3, when  before config not supportedS3sleep! Aborted!");
       return;
     }
-    const String ssdtName = "SSDT-S3-Disable";
-    Log(l10nGlobal.logMsg343(ssdtName.toString()));
+    final String ssdtName = "SSDT-S3-Disable";
+    Log("Creating precompiled $ssdtName.dsl...");
     final ssdt = '''
     DefinitionBlock("", "SSDT", 2, "RAPID", "S3-OFF", 0x00000000)
     {
@@ -5790,9 +5789,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
 
   Future<void> _ssdtS3DisablePrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-S3-Disable";
-    Log(l10nGlobal.logMsg344(ssdtName.toString()));
-    const ssdt = Prebuilt.ssdtS3Disable;
+    final String ssdtName = "SSDT-S3-Disable";
+    Log("Creating precompiled $ssdtName.dsl...");
+    final ssdt = Prebuilt.ssdtS3Disable;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
       "Comment": "Disable S3 Sleep Method for Darwin",
@@ -5819,43 +5818,43 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg345(tableName.toString()));
+      Log("Checking $tableName…");
       if (devicePath.isEmpty) {
-        /// 根据设备ID: PNP0C0D 查找 LID 设备
-        Log(l10nGlobal.logMsg346);
+        ///  according to deviceID: PNP0C0D find LID device
+        Log("Searching for LID (PNP0C0D) device...");
         final device = d.getDevicePathsWithHid(hid: "PNP0C0D", table: table);
         if (device.isNotEmpty && device[0].isNotEmpty) {
           devicePath = device[0].first;
-          Log(l10nGlobal.logMsg347(device[0].first.toString()));
+          Log("=> already in ${device[0].first} found PNP0C0D device!");
         } else {
-          Log(l10nGlobal.logMsg348);
+          Log("=> Not found LID (PNP0C0D) device!");
         }
       }
       if (!foundMethodLID) {
-        // 开始检查是否存在_LID方法
+        // startChecking if exists:_LIDmethod
         final methodLID = d.getMethodPaths(obj: "_LID", table: table);
         if (methodLID.isNotEmpty && methodLID[0].isNotEmpty) {
           foundMethodLID = true;
-          Log(l10nGlobal.logMsg349(methodLID[0].first.toString()));
+          Log("=> already in ${methodLID[0].first} found Method _LID!");
         } else {
-          Log(l10nGlobal.logMsg350);
+          Log("=> Not found Method _LID!");
         }
       }
       if (tts.isEmpty) {
-        Log(l10nGlobal.logMsg351);
+        Log("Checkingexists _TTSmethod...");
         tts = d.getMethodInfo(obj: "_TTS", table: table);
         if (tts.isNotEmpty) {
-          Log(l10nGlobal.logMsg352(tts.first.toString()));
+          Log("=> Found ${tts.first} method!");
         } else {
-          Log(l10nGlobal.logMsg353);
-          Log(l10nGlobal.logMsg354);
-          // 检查是否存在 ZTTS 方法
+          Log("=> Not found _TTS method!");
+          Log("Checkingexists ZTTS method...");
+          // Checking if exists: ZTTS method
           final ztts = d.getMethodInfo(obj: "ZTTS");
           if (ztts.isNotEmpty) {
-            Log.warning(l10nGlobal.logMsg070(ztts.first.toString()));
-            Log.warning(l10nGlobal.logMsg071);
+            Log.warning("=> Found ${ztts.first} method!");
+            Log.warning("=>  when  before method already  be rename, may  non- original  start ACPI table ! please  re-get original  start ACPI table  after  again  try  try !\n");
           } else {
-            Log(l10nGlobal.logMsg355);
+            Log("=> Not found ZTTS method!");
           }
         }
       }
@@ -5865,16 +5864,16 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "IMEI", 0x00000000)
       }
     }
     if (devicePath.isEmpty) {
-      Log.warning(l10nGlobal.logMsg072);
+      Log.warning("=>  in  up  describe ACPI table  in  all Not found LID (PNP0C0D) device!Aborted!\n");
       return;
     }
     if (!foundMethodLID) {
-      Log.warning(l10nGlobal.logMsg073);
+      Log.warning("=>  in  up  describe ACPI table  in  all Not found Method _LID!Aborted!\n");
       return;
     }
 
-    const ssdtName = "SSDT-LID";
-    Log(l10nGlobal.logMsg356(ssdtName.toString()));
+    final ssdtName = "SSDT-LID";
+    Log("Creating $ssdtName.dsl...");
     final ssdt = '''
 DefinitionBlock("", "SSDT", 2, "RAPID", "LID", 0x00000000)
 {
@@ -5972,33 +5971,33 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "LID", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg357(tableName.toString()));
+      Log("Checking $tableName…");
       if (devicePath.isEmpty) {
-        /// 根据设备ID: PNP0C0C 查找 PWRB 设备
-        Log(l10nGlobal.logMsg358);
+        ///  according to deviceID: PNP0C0C find PWRB device
+        Log("Searching for PWRB (PNP0C0C) device...");
         final device = d.getDevicePathsWithHid(hid: "PNP0C0C", table: table);
         if (device.isNotEmpty && device[0].isNotEmpty) {
           devicePath = device[0].first;
           Log.warning(
-            "=> 无需仿冒PWRB设备,已在 ${device[0].first} 找到 PNP0C0C 设备! 已终止操作！\n",
+            "=> No need to spoofPWRBdevice,already in ${device[0].first} found PNP0C0C device! Aborted!\n",
           );
           return;
         } else {
-          Log(l10nGlobal.logMsg359);
+          Log("=> Not found PWRB (PNP0C0C) device!");
         }
       }
     }
     if (devicePath.isEmpty) {
-      Log.warning(l10nGlobal.logMsg074);
+      Log.warning("=>  in  up  describe ACPI table  in  all Not found PWRB (PNP0C0C) device!spoof1  i.e.  can ！\n");
       _ssdtPWRBPrebuilt();
     }
   }
 
   void _ssdtPWRBPrebuilt() {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-PWRB";
-    Log(l10nGlobal.logMsg360(ssdtName.toString()));
-    const ssdt = Prebuilt.ssdtPWRB;
+    final String ssdtName = "SSDT-PWRB";
+    Log("Creating precompiled $ssdtName.dsl...");
+    final ssdt = Prebuilt.ssdtPWRB;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -6019,37 +6018,37 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "LID", 0x00000000)
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg361(tableName.toString()));
+      Log("Checking $tableName…");
       if (devicePath.isEmpty) {
-        /// 根据设备ID: PNP0C0E 查找 SLPB 设备
-        Log(l10nGlobal.logMsg362);
+        ///  according to deviceID: PNP0C0E find SLPB device
+        Log("Searching for SLPB (PNP0C0E) device...");
         final device = d.getDevicePathsWithHid(hid: "PNP0C0E", table: table);
         if (device.isNotEmpty &&
             device[0].isNotEmpty &&
             device[0].first.isNotEmpty) {
           devicePath = device[0].first;
-          Log.warning(l10nGlobal.logMsg075(devicePath.toString()));
-          // 开始检查 PNP0C0E 设备是否存在 _STA 方法
+          Log.warning("=> No need to spoofSLPBdevice,already in $devicePath found PNP0C0E device!");
+          // start check  PNP0C0E deviceexists _STA method
           final staMethod = d.getMethodPaths(obj: "$devicePath._STA");
           if (staMethod.isNotEmpty) {
-            Log.warning(l10nGlobal.logMsg076(devicePath.toString()));
+            Log.warning("=> PNP0C0E device $devicePath  exist  in  _STA method!");
             hasStaMethod = true;
           } else {
-            Log.warning(l10nGlobal.logMsg077(devicePath.toString()));
+            Log.warning("=> PNP0C0E device $devicePath does not exist _STA method!");
           }
           break;
         } else {
-          Log(l10nGlobal.logMsg363);
+          Log("=> Not found SLPB (PNP0C0E) device!");
         }
       }
     }
 
     if (devicePath.isEmpty) {
-      Log(l10nGlobal.logMsg364);
+      Log("=>  in  up  describe ACPI table  in  all Not found SLPB (PNP0C0E) device!spoof1  i.e.  can ！\n");
       _ssdtSLPBPrebuilt();
     } else {
       String ssdtName = "SSDT-SLPB";
-      Log(l10nGlobal.logMsg365(ssdtName.toString()));
+      Log("Creating $ssdtName.sdl...");
       String ssdt = "";
       if (hasStaMethod) {
         ssdt = '''
@@ -6100,9 +6099,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
 
   Future<void> _ssdtSLPBPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-SLPB";
-    Log(l10nGlobal.logMsg366(ssdtName.toString()));
-    const ssdt = Prebuilt.ssdtSLPB;
+    final String ssdtName = "SSDT-SLPB";
+    Log("Creating precompiled $ssdtName.dsl...");
+    final ssdt = Prebuilt.ssdtSLPB;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -6118,9 +6117,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
 
   Future<void> _ssdtMEM2Prebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-MEM2";
-    Log(l10nGlobal.logMsg367(ssdtName.toString()));
-    const ssdt = Prebuilt.ssdtMEM2;
+    final String ssdtName = "SSDT-MEM2";
+    Log("Creating precompiled $ssdtName.dsl...");
+    final ssdt = Prebuilt.ssdtMEM2;
     writeSSDT(ssdtName, ssdt);
 
     final acpi = {
@@ -6135,31 +6134,31 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
     if (!await ensureDSDT()) return;
     String devicePath = "";
 
-    /// 设备ID: PNP0C01 查找 MEM2/RMEM/MEM/AMDN 常见设备
+    /// deviceID: PNP0C01 find MEM2/RMEM/MEM/AMDN  common  see device
     List<String> posiaDevices = ["MEM2", "RMEM", "MEM", "AMDN"];
     var sortedTables = sortedNicely(d.acpiTables.keys.toList());
     for (var tableName in sortedTables) {
       var table = d.acpiTables[tableName];
-      Log(l10nGlobal.logMsg368(tableName.toString()));
+      Log("Checking $tableName…");
       if (devicePath.isEmpty) {
-        Log(l10nGlobal.logMsg369);
+        Log("Searching for PNP0C01 device...");
         final device = d.getDevicePathsWithHid(hid: "PNP0C01", table: table);
         if (device.isNotEmpty &&
             device[0].isNotEmpty &&
             posiaDevices.any((element) => device[0].first.contains(element))) {
           devicePath = device[0].first;
           Log.warning(
-            "=> 无需仿冒MEM2设备,已在 ${device[0].first} 找到 PNP0C01 设备! 已终止操作！\n",
+            "=> No need to spoofMEM2device,already in ${device[0].first} found PNP0C01 device! Aborted!\n",
           );
           return;
         } else {
-          Log(l10nGlobal.logMsg370);
+          Log("=> Not found PNP0C01 device!");
         }
       }
     }
 
     if (devicePath.isEmpty) {
-      Log(l10nGlobal.logMsg371);
+      Log("=> in any of the above ACPI tablesNot found PNP0C01 device!\n");
       _ssdtMEM2Prebuilt();
     }
   }
@@ -6169,9 +6168,9 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
 
   Future<void> _ssdtFixShutdownPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-FixShutdown";
-    Log(l10nGlobal.logMsg372(ssdtName.toString()));
-    const ssdt = Prebuilt.ssdtFixShutdown;
+    final String ssdtName = "SSDT-FixShutdown";
+    Log("Creating precompiled $ssdtName.dsl...");
+    final ssdt = Prebuilt.ssdtFixShutdown;
     if (!await writeSSDT(ssdtName, ssdt)) return;
     final acpi = {
       "Comment":
@@ -6185,7 +6184,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
   /// SSDT-FixShutdown
   Future<void> _ssdtFixShutdown() async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg373);
+    Log('Collecting XHC/XHCI/XDCI/CNVW device...');
     var devices = [
       'XHCI',
       'XHC',
@@ -6203,26 +6202,26 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SLPB", 0x00000000)
       if (xhciDevice.isNotEmpty &&
           xhciDevice[0].isNotEmpty &&
           xhciDevice[0][0].isNotEmpty) {
-        Log(l10nGlobal.logMsg374(xhciDevice[0][0].toString()));
+        Log('=> Checking ${xhciDevice[0][0]} device is  whether supported PMEE...');
         final fieldLines = getFieldVarWithPath(xhciDevice[0][0]);
         bool hasPMEE = fieldLines.any((line) => line.contains('PMEE'));
         if (!hasPMEE) {
-          Log(l10nGlobal.logMsg375(xhciDevice[0][0].toString()));
+          Log('=> ${xhciDevice[0][0]}  not supported PMEE， already skip');
           continue;
         } else {
-          Log(l10nGlobal.logMsg376(xhciDevice[0][0].toString()));
+          Log('=> ${xhciDevice[0][0]} supported PMEE');
           xhcis.add(xhciDevice[0][0]);
         }
       }
     }
     if (xhcis.isEmpty) {
-      Log.warning(l10nGlobal.logMsg078);
+      Log.warning('=> Not found any  any  symbol  combine  item  item   XHC/XHCI/XDCI/CNVW device！Aborted!\n');
       return;
     }
 
     Log('');
-    const String ssdtName = "SSDT-FixShutdown";
-    Log(l10nGlobal.logMsg377(ssdtName.toString()));
+    final String ssdtName = "SSDT-FixShutdown";
+    Log("Creating precompiled $ssdtName.dsl...");
 
     String ssdt = """
   /* Powers down the USB controller which is needed for proper shutdown.
@@ -6277,23 +6276,23 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
 
   Future<void> _ssdtGPRW() async {
     if (!await ensureDSDT()) return;
-    // 检查是否存在 GPRW 方法
-    Log(l10nGlobal.logMsg378);
+    // Checking if exists: GPRW method
+    Log('Checkingexists GPRW method...');
     var gprw = d.getMethodPaths(obj: 'GPRW');
     if (gprw.isEmpty) {
-      Log.warning(l10nGlobal.logMsg079);
-      // 检查是否存在 XPRW 方法
-      Log(l10nGlobal.logMsg379);
+      Log.warning('=> Not found GPRW method！');
+      // Checking if exists: XPRW method
+      Log('Checkingexists XPRW method...');
       var xprw = d.getMethodPaths(obj: 'XPRW');
       if (xprw.isNotEmpty) {
-        Log.warning(l10nGlobal.logMsg080);
+        Log.warning('=> Found XPRW method！ when  before method already  be rename, may  non- original  start ACPI table ! please  re-get original  start ACPI table  after  again  try  try !\n');
         return;
       } else {
-        Log.warning(l10nGlobal.logMsg081);
+        Log.warning('=> Not found XPRW method！Aborted!');
       }
     }
     if (gprw.isNotEmpty) {
-      Log(l10nGlobal.logMsg380(gprw[0][0].toString()));
+      Log('=> already in ${gprw[0][0]} found GPRW method！');
       _ssdtGPRWPrebuilt();
     }
   }
@@ -6301,8 +6300,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
   /// SSDT-GPRW
   Future<void> _ssdtGPRWPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-GPRW";
-    Log(l10nGlobal.logMsg381(ssdtName.toString()));
+    final String ssdtName = "SSDT-GPRW";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtGPRW;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6325,23 +6324,23 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
 
   Future<void> _ssdtUPRW() async {
     if (!await ensureDSDT()) return;
-    // 检查是否存在 UPRW 方法
-    Log(l10nGlobal.logMsg382);
+    // Checking if exists: UPRW method
+    Log('Checkingexists UPRW method...');
     var uprw = d.getMethodPaths(obj: 'UPRW');
     if (uprw.isEmpty) {
-      Log.warning(l10nGlobal.logMsg082);
-      // 检查是否存在 XPRW 方法
-      Log(l10nGlobal.logMsg383);
+      Log.warning('=> Not found UPRW method！');
+      // Checking if exists: XPRW method
+      Log('Checkingexists XPRW method...');
       var xprw = d.getMethodPaths(obj: 'XPRW');
       if (xprw.isNotEmpty) {
-        Log.warning(l10nGlobal.logMsg083);
+        Log.warning('=> Found XPRW method！ when  before method already  be rename, may  non- original  start ACPI table ! please  re-get original  start ACPI table  after  again  try  try !\n');
         return;
       } else {
-        Log.warning(l10nGlobal.logMsg084);
+        Log.warning('=> Not found XPRW method！Aborted!');
       }
     }
     if (uprw.isNotEmpty) {
-      Log(l10nGlobal.logMsg384(uprw[0][0].toString()));
+      Log('=> already in ${uprw[0][0]} found UPRW method！');
       _ssdtUPRWPrebuilt();
     }
   }
@@ -6349,8 +6348,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
   /// SSDT-UPRW
   Future<void> _ssdtUPRWPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-UPRW";
-    Log(l10nGlobal.logMsg385(ssdtName.toString()));
+    final String ssdtName = "SSDT-UPRW";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtUPRW;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6373,26 +6372,26 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
 
   Future<void> _ssdtGPI0() async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg386);
+    Log("Checkingexists GPI0 device...");
     var gpi0s = d.getDevicePaths(obj: "GPI0");
     if (gpi0s.isEmpty || gpi0s[0].isEmpty) {
-      Log.warning(l10nGlobal.logMsg085);
+      Log.warning('=> Not found GPI0 device！Aborted!\n');
       return;
     }
-    Log(l10nGlobal.logMsg387(gpi0s[0].first.toString()));
+    Log('=> already in ${gpi0s[0].first} found GPI0 device！');
 
-    // 检查 GPI0 是否存在 _STA 方法
-    Log(l10nGlobal.logMsg388);
+    //  check  GPI0 exists _STA method
+    Log("Checking if _STA method exists...");
     final gpioPath = gpi0s[0][0];
     final staMethod = d.getMethodPaths(obj: "$gpioPath._STA");
     if (staMethod.isEmpty) {
-      Log.warning(l10nGlobal.logMsg086);
+      Log.warning('=> Not found _STA method！Aborted!\n');
       return;
     }
 
     final staIndex = d.findNextHex(index: staMethod[0][1]).$2;
-    Log(l10nGlobal.logMsg389(staIndex.toString(), gpioPath.split('.').last.toString()));
-    Log(l10nGlobal.logMsg390(gpioPath.split('.').last.toString()));
+    Log("=> Found ${gpioPath.split('.').last}: _STA method at index $staIndex!");
+    Log("=> Generating patch for ${gpioPath.split('.').last}: _STA to XSTA");
 
     List<Map<String, dynamic>> patches = [];
     const staHex = "5F535441"; // _STA
@@ -6401,7 +6400,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "PFSH", 0x00000000)
       currentHex: staHex,
       index: staIndex,
     );
-    const String ssdtName = "SSDT-GPI0";
+    final String ssdtName = "SSDT-GPI0";
     Log("");
     Log("           Find: ${padl + staHex + padr}");
     Log("     Replace: ${padl + xstaHex + padr}");
@@ -6449,8 +6448,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "GPI0", 0x00000000)
   /// SSDT-GPI0
   Future<void> _ssdtGPI0Prebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-GPI0";
-    Log(l10nGlobal.logMsg391(ssdtName.toString()));
+    final String ssdtName = "SSDT-GPI0";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtGPI0;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6468,7 +6467,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "GPI0", 0x00000000)
   /// SSDT-CPUR for AMD Ryzen
   Future<void> _ssdtCPUR() async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg392);
+    Log("Determining CPU naming scheme…");
     bool found = false;
     for (var tableName in sortedNicely(d.acpiTables.keys.toList())) {
       var ssdtName = "SSDT-CPUR";
@@ -6476,11 +6475,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "GPI0", 0x00000000)
 
       if (!(table["signature"]?.toLowerCase() == "dsdt" ||
           table["signature"]?.toLowerCase() == "ssdt")) {
-        /// 不检查数据表格,继续
+        ///  not  check  number  data  table  format ,continue
         continue;
       }
 
-      Log(l10nGlobal.logMsg393(tableName.toString()));
+      Log("Checking $tableName…");
 
       List<List<dynamic>>? cpuName;
       try {
@@ -6490,30 +6489,30 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "GPI0", 0x00000000)
       }
 
       if (cpuName != null && cpuName.isNotEmpty) {
-        Log(l10nGlobal.logMsg394(cpuName.toString()));
-        Log.warning(l10nGlobal.logMsg087);
+        Log("=> Found Processor at process  device ：$cpuName");
+        Log.warning("=>  when  before Processorat process  device  name  name  scheme  scheme  symbol  combine CPU name  name  regular  scope ! no  require  this SSDT!Aborted!");
         return;
       } else {
-        // 如果没有找到处理器对象，继续检查 ACPI0007 设备
-        Log(l10nGlobal.logMsg395);
+        // If processor objects not found, continue checking for ACPI0007 devices
+        Log("=> No Processor objects found…");
         var procs = d.getDevicePathsWithHid(hid: "ACPI0007", table: table);
         if (procs.isEmpty) {
-          Log(l10nGlobal.logMsg396);
+          Log("=> No ACPI0007 devices found…");
           continue;
         }
 
-        Log(l10nGlobal.logMsg397(procs.length.toString()));
+        Log("=> Found ${procs.length} ACPI0007 devices");
         found = true;
-        // 分析 procs[0][0].split(".") 分割后判断是否存在PLTF设备
+        // Analyze procs[0][0].split('.') to check if PLTF device exists
         if (!procs[0][0].split(".").contains("PLTF")) {
-          Log.warning(l10nGlobal.logMsg088);
+          Log.warning("=> PLTF device does not exist, SSDT not needed on current Intel platform! Aborted…");
           return;
         }
         var parent = procs[0][0].split(".")[0];
-        Log(l10nGlobal.logMsg398(parent.toString()));
+        Log("=>  in  $parent found parent device, processing…");
         var procList = <Map<String, String>>[];
         for (var proc in procs) {
-          Log(l10nGlobal.logMsg399(proc[0].split('.').last.toString()));
+          Log("=> Checking ${proc[0].split('.').last}…");
 
           var uid = d.getPathOfType(
             objType: "Name",
@@ -6521,7 +6520,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "GPI0", 0x00000000)
             table: table,
           );
           if (uid.isEmpty) {
-            Log(l10nGlobal.logMsg400);
+            Log("=> Not found! Skipping…");
             continue;
           }
 
@@ -6531,7 +6530,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "GPI0", 0x00000000)
             Log("=> UID: $uid0");
             procList.add({"proc": proc[0], "uid": uid0});
           } catch (e) {
-            Log(l10nGlobal.logMsg401);
+            Log("=> Not found! Skipping…");
           }
         }
 
@@ -6539,7 +6538,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "GPI0", 0x00000000)
           continue;
         }
 
-        Log(l10nGlobal.logMsg402(procList.length.toString()));
+        Log("Processing ${procList.length} valid processor devices…");
 
         var ssdt = """
 DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
@@ -6556,7 +6555,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
     Scope (\\_SB)
     {""";
 
-        // 遍历处理器对象并将其添加到 SSDT 中
+        // Iterate processor objects and add to SSDT
         for (var i = 0; i < procList.length; i++) {
           var procUid = procList[i];
           var proc = procUid["proc"];
@@ -6594,15 +6593,15 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
       }
     }
     if (!found) {
-      Log.warning(l10nGlobal.logMsg089);
+      Log.warning("=> No qualifying CPU device found, SSDT-CPUR patch not needed! Aborted!");
     }
   }
 
-  /// SSDT-CPUR 预编译文件
+  /// SSDT-CPUR precompiled file
   Future<void> _ssdtCPURPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-CPUR";
-    Log(l10nGlobal.logMsg403(ssdtName.toString()));
+    final String ssdtName = "SSDT-CPUR";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtCPUR;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6613,22 +6612,22 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
     makePlist(acpi: acpi, replace: true);
   }
 
-  /// 生成SSDT-EC相关预编译文件
-  /// [isLaptop] 是否为笔记本电脑（决定使用桌面还是笔记本版本）
-  /// [injectUSBPower] 是否注入USB电源属性（决定是否包含USBX）
+  /// Generate SSDT-EC related precompiled files
+  /// [isLaptop] Whether laptop (determines desktop vs laptop version)
+  /// [injectUSBPower] Whether to inject USB power properties (determines whether to include USBX)
   Future<void> _ssdtECPrebuilt({
     bool isLaptop = false,
     bool injectUSBPower = false,
   }) async {
-    // 检查工具是否可用
+    // Check if tools are available
     if (!checkIasl()) return;
-    // 根据参数确定文件名和内容
+    // Determine filename and content from parameters
     late String fileName;
     late String ssdtContent;
     late String comment;
 
     if (injectUSBPower) {
-      // 注入USB电源属性时：包含USBX标识
+      // When injecting USB power: include USBX identifier
       if (isLaptop) {
         fileName = "SSDT-EC-USBX-LAPTOP";
         ssdtContent = Prebuilt.ssdtECUSBXLaptop;
@@ -6640,7 +6639,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
             "Enable EC on desktop systems with USB power property support";
       }
     } else {
-      // 不注入USB电源属性时：不含USBX标识
+      // When not injecting USB power: omit USBX identifier
       if (isLaptop) {
         fileName = "SSDT-EC-LAPTOP";
         ssdtContent = Prebuilt.ssdtECLaptop;
@@ -6652,7 +6651,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
       }
     }
 
-    Log(l10nGlobal.logMsg404(fileName.toString()));
+    Log("Creating precompiled $fileName.dsl...");
     writeSSDT(fileName, ssdtContent);
 
     final acpi = {"Comment": comment, "Enabled": true, "Path": "$fileName.aml"};
@@ -6662,8 +6661,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-PLUG
   Future<void> _ssdtPLUGPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-PLUG";
-    Log(l10nGlobal.logMsg405(ssdtName.toString()));
+    final String ssdtName = "SSDT-PLUG";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtPLUG;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6678,8 +6677,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-PLUG-ALT
   Future<void> _ssdtPLUGALTPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-PLUG-ALT";
-    Log(l10nGlobal.logMsg406(ssdtName.toString()));
+    final String ssdtName = "SSDT-PLUG-ALT";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtPLUGALT;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6692,11 +6691,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   }
 
   /// SSDT-AWAC
-  /// 生成SSDT-AWAC预编译文件
+  /// Generate SSDT-AWAC precompiled file
   Future<void> _ssdtAWACPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-AWAC";
-    Log(l10nGlobal.logMsg407(ssdtName.toString()));
+    final String ssdtName = "SSDT-AWAC";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtAWAC;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6710,8 +6709,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-PMC
   Future<void> _ssdtPMCPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-PMC";
-    Log(l10nGlobal.logMsg408(ssdtName.toString()));
+    final String ssdtName = "SSDT-PMC";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtPMC;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6725,8 +6724,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-PNLF
   Future<void> _ssdtPNLFPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-PNLF";
-    Log(l10nGlobal.logMsg409(ssdtName.toString()));
+    final String ssdtName = "SSDT-PNLF";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtPNLF;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6740,16 +6739,16 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-IMEI
   Future<void> _ssdtIMEIPrebuilt({String? fakeid}) async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-IMEI";
-    Log(l10nGlobal.logMsg410(ssdtName.toString()));
-    Log(l10nGlobal.logMsg411);
+    final String ssdtName = "SSDT-IMEI";
+    Log("Creating precompiled $ssdtName.dsl...");
+    Log("Collecting spoof device-id schemes…");
     String ssdt = Prebuilt.ssdtIMEIFakeId;
     if (fakeid?.toUpperCase() == '3A1E') {
-      Log(l10nGlobal.logMsg412(fakeid.toString()));
+      Log("=> Spoofed as 7-series IMEI (device-id: $fakeid) for 3rd Gen Ivy Bridge");
     } else if (fakeid?.toUpperCase() == '3A1C') {
-      Log(l10nGlobal.logMsg413(fakeid.toString()));
+      Log("=> Spoofed as 6-series IMEI (device-id: $fakeid) for 2nd Gen Sandy Bridge");
     } else {
-      Log.warning(l10nGlobal.logMsg090);
+      Log.warning("=> SSDT IMEI spoof disabled; must set device-id via DeviceProperties!");
       ssdt = Prebuilt.ssdtIMEI;
     }
     ssdt = ssdt.replaceAll(
@@ -6771,8 +6770,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-ALS0
   Future<void> _ssdtALS0Prebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-ALS0";
-    Log(l10nGlobal.logMsg414(ssdtName.toString()));
+    final String ssdtName = "SSDT-ALS0";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtALS0;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6786,8 +6785,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
   /// SSDT-XOSI
   Future<void> _ssdtXOSIPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-XOSI";
-    Log(l10nGlobal.logMsg415(ssdtName.toString()));
+    final String ssdtName = "SSDT-XOSI";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtXOSI;
     final patches = [
       {
@@ -6807,8 +6806,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
 
   Future<void> _ssdtRHUBPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-RHUB";
-    Log(l10nGlobal.logMsg416(ssdtName.toString()));
+    final String ssdtName = "SSDT-RHUB";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtRHUB;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6821,8 +6820,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
 
   Future<void> _ssdtRTC0RANGEPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-RTC0-RANGE";
-    Log(l10nGlobal.logMsg417(ssdtName.toString()));
+    final String ssdtName = "SSDT-RTC0-RANGE";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtRTC0RANGE;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6833,11 +6832,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
     makePlist(acpi: acpi, replace: true);
   }
 
-  /// 仿冒有线网卡，适用于无有线网卡的笔记本
+  /// Spoof Ethernet NIC for laptops without built-in LAN
   Future<void> ssdtRMNE() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-RMNE";
-    Log(l10nGlobal.logMsg418(ssdtName.toString()));
+    final String ssdtName = "SSDT-RMNE";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtRMNE;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -6860,10 +6859,10 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
         type: type ?? 'GPU',
       );
 
-  /// 屏蔽 PCI 设备/
-  /// [acpiPath] 设备 ACPI 路径
-  /// [disableMethod] 屏蔽方法（支持 "OFF" / "PS3" / "IOName"）
-  /// [type] 设备类型
+  /// Disable PCI device/
+  /// [acpiPath] Device ACPI path
+  /// [disableMethod] Disable method (supports 'OFF' / 'PS3' / 'IOName')
+  /// [type] Device type
   Future<void> _ssdtPCIDISABLE({
     String? acpiPath,
     required String disableMethod,
@@ -6872,7 +6871,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
     if (!checkIasl()) return;
 
     if (acpiPath == null || !util.checkACPIPath(acpiPath: acpiPath)) {
-      Log.warning(l10nGlobal.logMsg091);
+      Log.warning('No valid ACPI device path provided! Aborted!');
       return;
     }
 
@@ -6884,63 +6883,63 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
 
     if (sureDsdtOrACPI) {
       if (disableMethod == 'OFF') {
-        Log(l10nGlobal.logMsg419(pciPath.toString()));
+        Log('Checking if device $pciPath has _ON or _OFF methods...');
         foundMethod = _hasMethodInTables(pciPath, ['_ON', '_OFF']);
         if (!foundMethod) {
-          Log.warning(l10nGlobal.logMsg092(pciPath.toString()));
+          Log.warning('Neither _ON nor _OFF method found for $pciPath in DSDT/SSDT! Aborted!');
           return;
         }
       } else if (disableMethod == 'PS3') {
-        Log(l10nGlobal.logMsg420(pciPath.toString()));
+        Log('Checking if device $pciPath has _PS3 or _DSM methods...');
         foundMethod = _hasMethodInTables(pciPath, ['_PS3,_DSM']);
         if (!foundMethod) {
-          Log.warning(l10nGlobal.logMsg093(pciPath.toString()));
+          Log.warning('Neither _PS3 nor _DSM method found for $pciPath in DSDT/SSDT! Aborted!');
           return;
         }
       } else if (disableMethod == 'IOName') {
-        Log(l10nGlobal.logMsg421(pciPath.toString()));
-        // 检查显卡设备是否存在
+        Log('Checking device $pciPath...');
+        // Check if GPU device exists
         final (pPath, overflow) = acpiDevicePath(sanitizeAcpiPath(pciPath));
         if (pPath != null && pPath.isNotEmpty) {
           adrOverflow = overflow;
-          // 检查 pciPath 是否存在 Method: _PRT
+          // Check if pciPath has Method: _PRT
           foundMethod = _hasMethodInTables(pciPath, ['_PRT']);
           if (!foundMethod) {
-            Log(l10nGlobal.logMsg422(pciPath.toString()));
+            Log('=> Method _PRT not found for $pciPath in DSDT or SSDT!');
             needBridge = false;
           } else {
-            Log.warning(l10nGlobal.logMsg094(pciPath.toString()));
+            Log.warning("=> Device $pciPath has _PRT method and may hide real device; injecting BRG0 bridge device!");
             needBridge = true;
           }
         } else {
-          Log.warning(l10nGlobal.logMsg095(pciPath.toString()));
+          Log.warning("=> Device $pciPath does not exist!");
           return;
         }
       }
     }
 
     if (needBridge) {
-      Log.warning(l10nGlobal.logMsg096(pciPath.toString()));
+      Log.warning("Current device path $pciPath may hide real device!");
     }
     if (adrOverflow) {
       needBridge = true;
-      Log.warning(l10nGlobal.logMsg097(pciPath.toString()));
+      Log.warning("=> GPU device $pciPath _ADR address has overflow condition!");
       pciPath = pciPath.substring(0, pciPath.lastIndexOf("."));
-      Log.warning(l10nGlobal.logMsg098(pciPath.toString()));
+      Log.warning("=> Backtracking to parent device path: $pciPath and injecting BRG0 bridge device!");
     }
 
     final ssdtName = "SSDT-$type-DISABLE-$disableMethod";
-    Log(l10nGlobal.logMsg423(ssdtName.toString()));
-    Log(l10nGlobal.logMsg424(type.toString(), pciPath.toString()));
-    Log(l10nGlobal.logMsg425(disableMethod.toString()));
+    Log('Creating $ssdtName.dsl...');
+    Log('=> Target $type device path to disable: $pciPath');
+    Log('=> Disable method: $disableMethod method');
 
-    // 确保是绝对路径
+    // Ensure absolute path
     if (!pciPath.startsWith('\\')) {
       pciPath = '\\$pciPath';
-      Log(l10nGlobal.logMsg426(pciPath.toString()));
+      Log('=> Device relative path converted to absolute path: $pciPath');
     }
 
-    // 生成 SSDT 源代码
+    // Generate SSDT source code
     final ssdt = switch (disableMethod) {
       String m when m.contains('OFF') => _buildSsdtOFF(pciPath, type),
       String m when m.contains('PS3') => _buildSsdtPS3(pciPath, type),
@@ -6953,7 +6952,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
     };
 
     if (ssdt.isEmpty) {
-      Log.warning(l10nGlobal.logMsg099(disableMethod.toString()));
+      Log.warning('Unknown disable method: $disableMethod, aborted.');
       return;
     }
 
@@ -6967,7 +6966,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "CPUR", 0x00003000)
     await writeSSDT(ssdtName, ssdt);
   }
 
-  /// OFF 方法
+  /// OFF method
   String _buildSsdtOFF(String pciPath, String type) => '''
 /* Based off of RehabMan's SSDT-DDGPU.dsl */
 DefinitionBlock("", "SSDT", 2, "RAPID", "OFF", 0)
@@ -6994,7 +6993,7 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "OFF", 0)
 }
 ''';
 
-  /// PS3 方法
+  /// PS3 method
   String _buildSsdtPS3(String pciPath, String type) => '''
 DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
 {
@@ -7024,7 +7023,7 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
 }
 ''';
 
-  /// IOName 方法
+  /// IOName method
   String _buildSsdtIOName(
     String pciPath,
     String type, {
@@ -7038,7 +7037,7 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
       _ => '#device',
     };
 
-    // _DSM 方法内容
+    // _DSM method content
     final dsmMethod = '''
     Method (_DSM, 4, NotSerialized)
     {
@@ -7081,7 +7080,7 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
     }
   ''';
 
-    // 生成桥设备结构
+    // Generate bridge device structure
     final bridgeBody = '''
     Scope ($pciPath)
     {
@@ -7109,9 +7108,9 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
   ''';
   }
 
-  /// 检查 ACPI 表中是否存在指定方法
-  /// [pciPath] 设备PCI地址
-  /// [methods] 要检查的方法列表
+  /// Check if specified methods exist in ACPI table
+  /// [pciPath] Device PCI address
+  /// [methods] List of methods to check
   bool _hasMethodInTables(String pciPath, List<String> methods) {
     final normalizedPath = pciPath.replaceAll('\\', '');
     final foundSet = <String>{};
@@ -7128,19 +7127,19 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
 
         if (hasMethod) {
           foundSet.add(method);
-          Log(l10nGlobal.logMsg427(tableName.toString(), pciPath.toString(), method.toString()));
+          Log("=> Found in $tableName: $pciPath.$method method");
         }
         if (foundSet.length == methods.length) {
-          // 所有方法都已找到
+          //  all method all Found
           return true;
         }
       }
     }
 
-    // 如果只找到部分，打印提示
+    // If only partially found, log warning
     if (foundSet.isNotEmpty) {
       final missing = methods.where((m) => !foundSet.contains(m)).join(', ');
-      Log.warning(l10nGlobal.logMsg100(missing.toString()));
+      Log.warning('Some methods not found: $missing');
     }
 
     return false;
@@ -7152,8 +7151,8 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
 
   Future<void> _ssdtSBUSMCHCPrebuilt() async {
     if (!checkIasl()) return;
-    const String ssdtName = "SSDT-SBUS-MCHC";
-    Log(l10nGlobal.logMsg428(ssdtName.toString()));
+    final String ssdtName = "SSDT-SBUS-MCHC";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = Prebuilt.ssdtSBUSMCHC;
     writeSSDT(ssdtName, ssdt);
     final acpi = {
@@ -7164,10 +7163,10 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
     makePlist(acpi: acpi, replace: true);
   }
 
-  /// smbusPath 设备PCI地址
+  /// smbusPath Device PCI address
   Future<void> _ssdtSBUSMCHC() async {
     if (!await ensureDSDT()) return;
-    Log(l10nGlobal.logMsg429);
+    Log("Collecting potential bus devices…");
     String? busPath, busParent, tableName;
     final dev1F4 = getDevAtAdr(targetAdr: 0x001F0004);
     final dev1F3 = getDevAtAdr(
@@ -7181,40 +7180,40 @@ DefinitionBlock("", "SSDT", 2, "RAPID", "PS3", 0)
     int? adr;
 
     if (dev1F4 != null && dev1F3 != null) {
-      /// 新的Intel方案
+      /// New Intel scheme
       busCheck = dev1F4;
       adr = 0x001F0004;
     } else if (dev1F3 != null && dev1B != null) {
-      /// 旧的Intel方案
+      /// Legacy Intel scheme
       busCheck = dev1F3;
       adr = 0x001F0003;
     } else if (dev1F4 != null) {
-      /// 可能是新的Intel方案
+      ///  may  is New Intel scheme
       busCheck = dev1F4;
       adr = 0x001F0004;
     } else if (dev1F3 != null) {
-      /// 可能是旧的Intel方案
+      ///  may  is Legacy Intel scheme
       busCheck = dev1F3;
       adr = 0x001F0003;
     } else if (dev14 != null) {
-      /// 可能是AMD方案，非 Intel方案
+      /// Possible AMD scheme, not Intel
       busCheck = dev14;
       adr = 0x00140000;
     }
 
     if (busCheck == null) {
-      Log.warning(l10nGlobal.logMsg101);
+      Log.warning("=> Failed to find valid bus devices, aborted!");
       return;
     }
-    // 解构变量
+    // Destructure variables
     busPath = busCheck.busPath;
     busParent = busCheck.busParent;
     tableName = busCheck.tableName;
     Log(
-      "=> 在 $tableName 中根据地址: 0x${adr?.toRadixString(16).toUpperCase().padLeft(8, '0')} 找到 $busPath ",
+      "=> in $tableName by address: 0x${adr?.toRadixString(16).toUpperCase().padLeft(8, '0')} found $busPath ",
     );
-    const String ssdtName = "SSDT-SBUS-MCHC";
-    Log(l10nGlobal.logMsg430(ssdtName.toString()));
+    final String ssdtName = "SSDT-SBUS-MCHC";
+    Log("Creating precompiled $ssdtName.dsl...");
     String ssdt = """/*
  * SMBus compatibility table.
  * Original from: https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/Source/SSDT-SBUS-MCHC.dsl
@@ -7324,10 +7323,10 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
         fakeModel: fakeModel,
       );
 
-  /// 显卡仿冒
-  /// [gpuPath] 显卡ACPI路径
-  /// [deviceId] 显卡仿冒ID
-  /// [fakeModel] 显卡仿冒名称
+  /// GPU spoofing
+  /// [gpuPath] GPU ACPI path
+  /// [deviceId] GPU spoofingID
+  /// [fakeModel] GPU spoofingname
   Future<void> _ssdtGPUSPOOF({
     String? gpuPath,
     String? deviceId,
@@ -7335,37 +7334,37 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
   }) async {
     if (!checkIasl()) return;
     if (gpuPath == null || !util.checkACPIPath(acpiPath: gpuPath)) {
-      Log.warning(l10nGlobal.logMsg102);
+      Log.warning(" not  prompt  provide valid GPU ACPI path! Aborted!");
       return;
     }
     if (deviceId == null || deviceId.isEmpty || deviceId.length != 4) {
-      Log.warning(l10nGlobal.logMsg103);
+      Log.warning("No valid spoof GPU ID provided! Aborted!");
       return;
     }
     if (fakeModel == null || fakeModel.isEmpty) {
-      Log.warning(l10nGlobal.logMsg104);
+      Log.warning("No valid spoof GPU name provided; skipping model name injection!");
     }
     bool adrOverflow = false;
     bool needBridge = false;
     bool sureDsdtOrACPI = d.acpiTables.isNotEmpty;
     if (sureDsdtOrACPI) {
-      Log(l10nGlobal.logMsg431(gpuPath.toString()));
-      // 检查显卡设备是否存在
+      Log("Checking GPU device $gpuPath...");
+      // Check if GPU device exists
       final (pciPath, overflow) = acpiDevicePath(sanitizeAcpiPath(gpuPath));
       if (pciPath != null && pciPath.isNotEmpty) {
         adrOverflow = overflow;
-        // 检查 pciPath 是否存在 Method: _PRT
+        // Check if pciPath has Method: _PRT
         bool foundMethod = _hasMethodInTables(gpuPath, ['_PRT']);
         if (!foundMethod) {
-          Log(l10nGlobal.logMsg432(gpuPath.toString()));
+          Log('=> Method _PRT not found for $gpuPath in DSDT or SSDT!');
           needBridge = false;
         } else {
-          Log.warning(l10nGlobal.logMsg105(gpuPath.toString()));
-          Log.warning(l10nGlobal.logMsg106(gpuPath.toString()));
+          Log.warning("Current GPU path $gpuPath may hide real device!");
+          Log.warning("=> Device $gpuPath has _PRT method and may hide real device; injecting GFX0 device!");
           needBridge = true;
         }
       } else {
-        Log.warning(l10nGlobal.logMsg107(gpuPath.toString()));
+        Log.warning("=> Device $gpuPath not found in DSDT or SSDT! Aborted!");
         return;
       }
     } else {
@@ -7384,18 +7383,18 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
 
     if (adrOverflow) {
       needBridge = true;
-      Log.warning(l10nGlobal.logMsg108(gpuPath.toString()));
+      Log.warning("=> GPU device $gpuPath _ADR address has overflow condition!");
       gpuPath = gpuPath.substring(0, gpuPath.lastIndexOf("."));
-      Log.warning(l10nGlobal.logMsg109(gpuPath.toString()));
+      Log.warning("=> Backtracking to parent device path: $gpuPath and injecting GFX0 device!");
     }
 
     String ssdtName = "SSDT-$deviceId-GPU-SPOOF";
-    Log(l10nGlobal.logMsg433(ssdtName.toString()));
-    Log(l10nGlobal.logMsg434(gpuPath.toString()));
-    Log(l10nGlobal.logMsg435(deviceId.toString()));
-    Log(l10nGlobal.logMsg436(fakeModel.toString()));
+    Log("Creating $ssdtName.dsl...");
+    Log("=> GPU device path: $gpuPath");
+    Log("=> Spoofed GPU ID: $deviceId");
+    Log("=> Spoofed GPU model: $fakeModel");
 
-    const dsmMethod = """
+    final dsmMethod = """
     Method (_DSM, 4, NotSerialized)
     {
         If ((!Arg2 || !_OSI ("Darwin")))
@@ -7468,8 +7467,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     await writeSSDT(ssdtName, ssdt);
   }
 
-  /// 清理ACPI路径
-  /// [path] ACPI路径
+  /// Clean ACPI path
+  /// [path] ACPI path
   List<String>? sanitizeAcpiPath(String path) {
     path = path
         .replaceAll("ACPI(", "")
@@ -7492,14 +7491,14 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     return newPath;
   }
 
-  /// 匹配ACPI路径到PCIPath
-  /// [path] ACPI路径
-  /// [return] 匹配到的PCIPath和是否存在地址溢出
+  /// Match ACPI path to PCI path
+  /// [path] ACPI path
+  /// [return] Matched PCI path and address overflow status
   (String?, bool) acpiDevicePath(List<String>? path) {
-    String? matchedPCIPath;
+    String? matchedPciPath;
     bool adrOverflow = false;
     if (path == null || path.isEmpty) {
-      return (matchedPCIPath, adrOverflow);
+      return (matchedPciPath, adrOverflow);
     }
     final (deviceDict, _) = getDevicePaths();
     String? p;
@@ -7511,11 +7510,11 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     }
 
     if (p == null) {
-      Log(l10nGlobal.logMsg437);
-      return (matchedPCIPath, adrOverflow);
+      Log("=> Not found!");
+      return (matchedPciPath, adrOverflow);
     }
-    matchedPCIPath = deviceDict[p]!['path'];
-    Log(l10nGlobal.logMsg438(matchedPCIPath.toString()));
+    matchedPciPath = deviceDict[p]!['path'];
+    Log("=> Matched PCI path: $matchedPciPath");
     if (deviceDict[p]?["adr_overflow"] == true) {
       final overFlow = getAllMatches(deviceDict, deviceDict[p]?["path"]);
       List<dynamic> devs = [];
@@ -7526,8 +7525,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
         }
       }
       if (devs.isNotEmpty) {
-        Log.warning(l10nGlobal.logMsg110);
-        Log.warning(l10nGlobal.logMsg111);
+        Log.warning("Address _ADR overflow detected in device path!");
+        Log.warning("The following devices may affect property injection:");
         final uniqueSorted = devs.toSet().toList()..sort();
         for (var d in uniqueSorted) {
           Log.warning("=> $d");
@@ -7537,7 +7536,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
         }
       }
     }
-    return (matchedPCIPath, adrOverflow);
+    return (matchedPciPath, adrOverflow);
   }
 
   bool compareAcpiPaths(String path, List<String> pathList) {
@@ -7660,7 +7659,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
 
       final success = parser.savePlist(entry.key, plist);
       Log(
-        success ? '已成功保存 plist: ${entry.key}' : '保存 plist 失败: ${entry.key}',
+        success ? 'Successfully saved plist: ${entry.key}' : 'Failed to save plist: ${entry.key}',
       );
       Log('');
     }
@@ -7696,8 +7695,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     if (!usesBatchedPlist) {
       Log(
         result.status == PlistParseStatus.success
-            ? '读取 plist: $plistPath'
-            : '创建 plist: $plistPath',
+            ? 'Read plist: $plistPath'
+            : 'Create plist: $plistPath',
       );
     }
 
@@ -7736,7 +7735,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     if (!isBatching && plist.isNotEmpty) {
       final success = parser.savePlist(plistPath, plist);
       Log(
-        success ? '已成功保存 plist: $plistPath' : '保存 plist 失败: $plistPath',
+        success ? 'Successfully saved plist: $plistPath' : 'Failed to save plist: $plistPath',
       );
       Log('');
     }
@@ -7996,7 +7995,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
           as Map<String, dynamic>;
     }
 
-    // 如果已存在，直接返回
+    // If already exists, return directly
     var existing = current[path.last];
     if (existing is Map<String, dynamic>) {
       return existing;
@@ -8005,7 +8004,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
       return existing;
     }
 
-    // 如果 key 名字以 "Map" 结尾就当 Map，否则当 List
+    // Treat as Map if key ends with "Map", else List
     if (path.last.toLowerCase().contains("map")) {
       return current.putIfAbsent(path.last, () => <String, dynamic>{})
           as Map<String, dynamic>;
@@ -8027,15 +8026,15 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
   String _plistName(PlistType type) =>
       type == PlistType.clover ? "patches_Clover.plist" : "patches_OC.plist";
 
-  /// 处理 plist 中的指定路径
-  /// [plist] plist 数据
-  /// [keyPath] plist 中的路径
-  /// [rawItems] 要添加的补丁项
-  /// [buildEntry] 把 T 转为要写入 plist 的条目
-  /// [equalsEntry] 用来判重（判断已有条目是否等于新条目）
-  /// [replace] 是否替换
-  /// [type] plist 类型
-  /// [logCallback] 日志回调
+  /// Process specified path in plist
+  /// [plist] plist data
+  /// [keyPath] path in plist
+  /// [rawItems] patch items to add
+  /// [buildEntry] convert T to plist entry
+  /// [equalsEntry] check duplicate entries
+  /// [replace] whether to replace
+  /// [type] plist type
+  /// [logCallback] log callback
   Map<String, dynamic> _processSection<T>({
     required Map<String, dynamic> plist,
     required List<String> keyPath,
@@ -8046,7 +8045,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     PlistType type = PlistType.openCore,
     String Function(T item)? logCallback,
   }) {
-    // 如果 keyPath 是 [""]，就表示在 plist 自身插入，而不是 ["ACPI", ...keyPath]
+    // If keyPath is [""], insert into root plist instead of ["ACPI", ...keyPath]
     final effectivePath = (keyPath.length == 1 && keyPath.first.isEmpty)
         ? ["ACPI"]
         : ["ACPI", ...keyPath];
@@ -8065,24 +8064,24 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
         String patchType = '';
         if (item is Map<String, dynamic> &&
             (item.containsKey('Find') || item.containsKey('Signature'))) {
-          patchType = l10nGlobal.autoGen5768;
+          patchType = 'Patch';
         }
 
-        // 查找匹配项
+        // Find matching items
         final index = section.indexWhere((e) => equalsEntry(e, entry));
 
         if (index != -1) {
-          // 已存在
+          // Already exists
           if (replace) {
-            // 在原位置替换更新
+            // Replace and update in place
             section[index] = entry;
-            Log(l10nGlobal.logMsg439(patchType.toString(), comment.toString(), _plistName(type).toString()));
+            Log('=> Update $patchType "$comment" in ${_plistName(type)}');
           } else {
-            Log(l10nGlobal.logMsg440(patchType.toString(), comment.toString(), _plistName(type).toString()));
+            Log('=> $patchType "$comment" Already exists at  ${_plistName(type)}，skip...');
           }
         } else {
-          // 不存在则追加
-          Log(l10nGlobal.logMsg441(patchType.toString(), comment.toString(), _plistName(type).toString()));
+          // Append if not present
+          Log('=> Add $patchType "$comment" to ${_plistName(type)}');
           section.add(entry);
         }
       }
@@ -8095,22 +8094,22 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
             final newValue = kv.value;
             final oldValue = section[key];
             if (oldValue != null) {
-              // 已存在该 key → 更新值
+              // Already exists this  key → update value 
               if (replace || oldValue != newValue) {
                 section[key] = newValue;
                 if (_lastACPIMatchMode != config.acpiMatchMode) {
-                  Log(l10nGlobal.logMsg442(key.toString(), newValue.toString(), _plistName(type).toString()));
+                  Log('=> Update key "$key" to "$newValue" in ${_plistName(type)}');
                 }
               } else {
                 if (_lastACPIMatchMode != config.acpiMatchMode) {
-                  Log(l10nGlobal.logMsg443(key.toString(), _plistName(type).toString()));
+                  Log('=> Key "$key" already up to date in ${_plistName(type)}');
                 }
               }
             } else {
-              // 不存在该 key → 添加
+              // Key does not exist -> add
               section[key] = newValue;
               if (_lastACPIMatchMode != config.acpiMatchMode) {
-                Log(l10nGlobal.logMsg444(key.toString(), newValue.toString(), _plistName(type).toString()));
+                Log('=> Add key "$key" with value "$newValue" to ${_plistName(type)}');
               }
             }
           }
@@ -8118,19 +8117,19 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
       }
     } else {
       throw StateError(
-        '路径 ${[
+        'Path ${[
           "ACPI",
           ...keyPath
-        ].join(".")} 既不是 List 也不是 Map，而是 ${section.runtimeType}',
+        ].join(".")} is neither List nor Map, but ${section.runtimeType}',
       );
     }
 
     return plist;
   }
 
-  /// 获取数据的字节数组
-  /// [data] 支持 String, List, Uint8List
-  /// [padTo] 填充到指定长度（不足部分填 0）
+  /// Get byte array of data
+  /// [data] supports String, List, Uint8List
+  /// [padTo] Pad to specified length (fill with 0)
   List<int> getData(dynamic data, {int padTo = 0}) {
     if (data == null) return [];
 
@@ -8141,17 +8140,17 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     } else if (data is Uint8List) {
       byteData = data.toList();
     } else if (data is List) {
-      // 检查 List 元素是否都是int
+      // Check if all List elements are int
       if (data.every((e) => e is int)) {
         byteData = List<int>.from(data);
       } else {
-        byteData = []; // 否则返回空
+        byteData = []; // Otherwise return empty
       }
     } else {
       throw ArgumentError('Data must be String, List<int> or Uint8List');
     }
 
-    // 填充到 padTo 长度
+    // Pad to padTo length
     if (padTo > byteData.length) {
       byteData = [...byteData, ...List.filled(padTo - byteData.length, 0)];
     }
@@ -8159,22 +8158,22 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     return byteData;
   }
 
-  /// 获取表 ID
-  /// [table] 表字典
-  /// [idName] ID 名称
-  /// [mode] 匹配模式
+  /// Get table ID
+  /// [table] table map
+  /// [idName] ID name
+  /// [mode] match mode
   List<int> _getTableId(
     Map<dynamic, dynamic>? table,
     String idName, {
     ACPIMatchMode? mode,
   }) {
-    mode ??= config.acpiMatchMode; // 默认使用 acpiMatchMode
+    mode ??= config.acpiMatchMode; // Default use acpiMatchMode
 
     if (table == null) {
       mode = ACPIMatchMode.leastStrict;
     }
 
-    // 定义零字节数组的大小
+    // Define zero byte array size
     int byteLength = idName == "id" ? 8 : 4;
     List<int> zero = util.getHexBytes("00" * byteLength);
 
@@ -8200,21 +8199,21 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     }
   }
 
-  /// 获取表长度
-  /// [table] 表字典
-  /// [mode] 匹配模式
+  /// Get table length
+  /// [table] table map
+  /// [mode] match mode
   int _getTableLength(Map<dynamic, dynamic>? table, {ACPIMatchMode? mode}) {
     mode ??= config.acpiMatchMode;
     if (table == null || mode == ACPIMatchMode.leastStrict) {
-      // 没有找到表，或者长度0
+      // Table not found or length is 0
       return 0;
     }
-    // 如果模式不是0，返回表长度
+    // If mode is not 0, return table length
     return table["length"] ?? 0;
   }
 
-  /// Clover patch 补丁
-  /// [patch] patch 字典
+  /// Clover patch Patch
+  /// [patch] patch map
   Map<String, dynamic> getCloverPatch(Map<String, dynamic> patch) {
     return {
       "Comment": patch["Comment"],
@@ -8239,13 +8238,13 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
   }
 
   /// Clover quirks
-  /// [quirks] quirks 字典
+  /// [quirks] quirks map
   Map<String, dynamic> getCloverQuirks(Map<String, dynamic> quirks) {
     return {"FixHeaders": quirks["FixHeaders"] ?? false};
   }
 
-  /// OpenCore patch 补丁
-  /// [patch] patch 字典
+  /// OpenCore patch Patch
+  /// [patch] patch map
   Map<String, dynamic> getOpenCorePatch(Map<String, dynamic> patch) {
     var table = patch["Table"] ?? d.getDsdt();
     if (table == null || table.isEmpty) {
@@ -8275,8 +8274,8 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
     };
   }
 
-  /// OpenCore drop 补丁
-  /// [drop] drop 字典
+  /// OpenCore drop Patch
+  /// [drop] drop map
   Map<String, dynamic> getOpenCoreDrop(Map<String, dynamic> drop) {
     var table = drop["Table"] ?? d.getDsdt();
     if (table == null || table.isEmpty) {
@@ -8299,7 +8298,7 @@ DefinitionBlock ("", "SSDT", 2, "RAPID", "SBUSMCHC", 0x00000000)
   }
 
   /// OpenCore quirks
-  /// [quirks] quirks 字典
+  /// [quirks] quirks map
   Map<String, dynamic> getOpenCoreQuirks(Map<String, dynamic> quirks) {
     return {"NormalizeHeaders": quirks["NormalizeHeaders"] ?? false};
   }

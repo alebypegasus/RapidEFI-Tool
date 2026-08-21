@@ -5,7 +5,7 @@ class CpuCodenameEntry {
   final String codename;
   final String? nameHint;
 
-  CpuCodenameEntry({
+  const CpuCodenameEntry({
     required this.family,
     required this.model,
     this.stepping = -1,
@@ -19,7 +19,7 @@ class CpuSignature {
   final int displayModel;
   final int stepping;
 
-  CpuSignature({
+  const CpuSignature({
     required this.displayFamily,
     required this.displayModel,
     required this.stepping,
@@ -27,7 +27,7 @@ class CpuSignature {
 }
 
 class CpuInfomation {
-  static final List<List<String>> identifier = [
+  static const List<List<String>> identifier = [
     ["Arrow Lake-S", "Family 6 Model 198 Stepping 2"],
     ["Arrow Lake-H", "Family 6 Model 197 Stepping 2"],
     ["Arrow Lake-HX", "Family 6 Model 198 Stepping 2", "HX"],

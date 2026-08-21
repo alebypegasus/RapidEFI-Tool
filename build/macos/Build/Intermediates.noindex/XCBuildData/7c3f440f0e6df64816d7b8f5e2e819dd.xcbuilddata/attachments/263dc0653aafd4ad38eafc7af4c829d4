@@ -1,0 +1,39 @@
+{
+  "" : {
+    "diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/url_launcher_macos-primary.dia",
+    "emit-module-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/url_launcher_macos-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/url_launcher_macos-primary-emit-module.dia",
+    "pch" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/url_launcher_macos-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/url_launcher_macos-primary.swiftdeps"
+  },
+  "/Users/alebypegasus/.pub-cache/hosted/pub.dev/url_launcher_macos-3.2.5/macos/url_launcher_macos/Sources/url_launcher_macos/UrlLauncherPlugin.swift" : {
+    "const-values" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/UrlLauncherPlugin.swiftconstvalues",
+    "dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/UrlLauncherPlugin.d",
+    "diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/UrlLauncherPlugin.dia",
+    "index-unit-output-path" : "/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/UrlLauncherPlugin.o",
+    "llvm-bc" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/UrlLauncherPlugin.bc",
+    "object" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/UrlLauncherPlugin.o",
+    "swift-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/UrlLauncherPlugin.swiftdeps",
+    "swiftmodule" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/UrlLauncherPlugin~partial.swiftmodule"
+  },
+  "/Users/alebypegasus/.pub-cache/hosted/pub.dev/url_launcher_macos-3.2.5/macos/url_launcher_macos/Sources/url_launcher_macos/messages.g.swift" : {
+    "const-values" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/messages.g.swiftconstvalues",
+    "dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/messages.g.d",
+    "diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/messages.g.dia",
+    "index-unit-output-path" : "/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/messages.g.o",
+    "llvm-bc" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/messages.g.bc",
+    "object" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/messages.g.o",
+    "swift-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/messages.g.swiftdeps",
+    "swiftmodule" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/messages.g~partial.swiftmodule"
+  },
+  "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/resource_bundle_accessor.d",
+    "diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/resource_bundle_accessor.bc",
+    "object" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos.build/Objects-normal/x86_64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

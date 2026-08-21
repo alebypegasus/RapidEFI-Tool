@@ -32,26 +32,30 @@ class _TitleCardState extends State<TitleCard> {
       expander: widget.expander,
       snippet: widget.snippet,
       initiallyExpanded: widget.initiallyExpanded,
-      child: Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 10,
-          runSpacing: 10,
+      child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (widget.title.isNotEmpty)
-              Text(
-                widget.title,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+            Text(
+              widget.title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
             if (widget.subTitle != null && widget.subTitle!.isNotEmpty)
-              Text(
+              Flexible(
+                  child: Text(
                 widget.subTitle!,
                 style: const TextStyle(fontSize: 13),
-              ),
+                overflow: TextOverflow.ellipsis,
+              )),
             if (widget.content != null)
-              Material(
+              Flexible(
+                  child: Material(
                 color: Colors.transparent,
                 child: widget.content!,
-              ),
+              )),
           ]),
     );
     if (widget.keepAlive) {

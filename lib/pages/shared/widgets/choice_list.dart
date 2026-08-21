@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_chip_tile.dart';
 
 class ChoiceList<T> extends StatefulWidget {
-  final List<String>? tips; // 可选
+  final List<String>? tips; // Optional
   final List<T> choices;
   final List<T> selectedChoices;
   final bool isMultipleSelection;
@@ -43,7 +43,7 @@ class ChoiceList<T> extends StatefulWidget {
     this.expandTitle,
   }) : assert(
           tips == null || tips.length == choices.length,
-          'tips length must equal choices length',
+          'tips length must match choices length',
         );
 
   @override

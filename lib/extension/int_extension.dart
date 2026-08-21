@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 extension IntExtension on int {
   String get toHexString {
     String hexString = toRadixString(16).toUpperCase();
-    // 在字符串前面添加零，直到长度达到两位
+    // Pad leading zeros until reaching 2 characters
     return hexString.padLeft(2, '0');
   }
 

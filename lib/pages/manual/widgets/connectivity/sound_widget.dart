@@ -1,7 +1,5 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:rapidefi/utils/config/services/apple_alc_resolver.dart';
@@ -42,7 +40,13 @@ class _SoundWidgetState extends State<SoundWidget> {
   final FocusNode _focusNode = FocusNode();
   List<Object>? _lastPickerSelection;
 
-  final String tip = l10nGlobal.autoGen5824;
+  final String tip = r'''
+  Common HPET Paths:
+  \_SB.PCI0.LPCB.HPET
+  \_SB.PCI0.LPC.HPET
+  \_SB.PCI0.HPET
+  This option is used to fix audio card IRQ conflict issues! Note: Do not enable unless your audio has IRQ issues!
+  ''';
 
   @override
   void initState() {
@@ -114,7 +118,6 @@ class _SoundWidgetState extends State<SoundWidget> {
   }
 
   Widget configalcid() {
-    final l10n = AppLocalizations.of(context)!;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -144,8 +147,8 @@ class _SoundWidgetState extends State<SoundWidget> {
                       isDarkMode ? Colors.grey[850] : Colors.grey[50],
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  label: Text(
-                    l10n.queryLayoutId,
+                  label: const Text(
+                    "Lookup Layout ID",
                   ),
                   onPressed: () {
                     showPickerModal(context);
@@ -157,9 +160,9 @@ class _SoundWidgetState extends State<SoundWidget> {
               mainAxisSize: MainAxisSize.min,
               spacing: 15,
               children: [
-                Text(
-                  l10n.hpetAcpiPathTitle,
-                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                const Text(
+                  'HPET ACPI Path (for audio IRQ fixes):',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                 ),
                 CustomTextField(
                   controller: _controller,
@@ -182,7 +185,7 @@ class _SoundWidgetState extends State<SoundWidget> {
                 ),
                 TipSwitch(
                   tip: tip,
-                  title: l10n.fixIrq,
+                  title: 'Fix IRQ',
                   checked: _enableHpetPatch,
                   onChanged: (value) {
                     setState(() {
@@ -208,7 +211,6 @@ class _SoundWidgetState extends State<SoundWidget> {
   }
 
   void showPickerModal(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final selecteds = AppleALCResolver.findAlcidPositionBySelection(
       _lastPickerSelection,
@@ -221,14 +223,14 @@ class _SoundWidgetState extends State<SoundWidget> {
         spacing: 5,
         children: [
           Text(
-            l10n.selectAudioLayoutTitle(AppleALCResolver.published, AppleALCResolver.version),
+            "Select Audio Layout ID (Database: ${AppleALCResolver.published} v${AppleALCResolver.version})",
             style: TextStyle(
               fontSize: 20,
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
           Text(
-            l10n.pickerScrollConfirmTip,
+            "(Scroll to select, then click Confirm)",
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey[600],
@@ -262,11 +264,10 @@ class _SoundWidgetState extends State<SoundWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final soundChoices = [ConfigKernel.AppleALC, ConfigKernel.VoodooHDA];
     return KextChoiceListCard(
-      title: l10n.soundDriverCardTitle,
-      cardSubTitle: l10n.soundDriverDefaultTip,
+      title: "Audio Drivers:",
+      cardSubTitle: '(AppleALC driver used by default)',
       choices: soundChoices,
       selectedChoices:
           soundDriverType != null && soundDriverType!.bundlePath.isNotEmpty

@@ -15,7 +15,7 @@ import 'package:rapidefi/utils/file_util.dart';
 import 'package:sp_util/sp_util.dart';
 
 class EfiExporter {
-  EfiExporter(this.configService);
+  const EfiExporter(this.configService);
 
   final ConfigService configService;
 

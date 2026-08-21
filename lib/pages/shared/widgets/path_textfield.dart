@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 //  path_textfield.dart 
 //  Created by JeoJay127 
 //
@@ -39,19 +38,19 @@ class _PathTextFieldState extends State<PathTextField> {
   String get _defaultHintText {
     switch (widget.pathType) {
       case PathType.acpi:
-        return AppLocalizations.of(context)!.sharedFillAcpiPath;
+        return 'Enter ACPI Path';
       case PathType.pci:
-        return AppLocalizations.of(context)!.sharedFillPciPath;
+        return 'Enter PCI Path';
     }
   }
 
-  // 根据路径类型获取默认错误文本
+  // Get default error text based on path type
   String get _defaultErrorText {
     switch (widget.pathType) {
       case PathType.acpi:
-        return AppLocalizations.of(context)!.sharedInvalidAcpiPath;
+        return 'Invalid ACPI Path';
       case PathType.pci:
-        return AppLocalizations.of(context)!.sharedInvalidPciPath;
+        return 'Invalid PCI Path';
     }
   }
 
@@ -78,7 +77,7 @@ class _PathTextFieldState extends State<PathTextField> {
       focusNode: _focusNode,
       hintText: widget.hintText ?? _defaultHintText,
       errorText: widget.errorText ?? _defaultErrorText,
-      // 输入过滤（禁止汉字）
+      // Input filter (disallow Chinese / non-ASCII characters)
       inputFormatters: [
         FilteringTextInputFormatter.deny(
           RegExp(r'[\u4e00-\u9fa5]'),

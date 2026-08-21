@@ -1,10 +1,9 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
 
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 
-///特殊主板型号
+/// Special Motherboard Models
 class SpecialMotherBoardWidget extends StatefulWidget {
   final ValueChanged onChanged;
   final SpecialMotherboard specialMotherBoard;
@@ -36,7 +35,7 @@ class _MotherBoardWidgetState extends State<SpecialMotherBoardWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
         ChoiceList(
@@ -44,7 +43,7 @@ class _MotherBoardWidgetState extends State<SpecialMotherBoardWidget> {
           selectedChoices: [specialMotherBoard.value],
           isMultipleSelection: false,
           allowToggle: true,
-          subTitle: AppLocalizations.of(context)!.manualSpecialMotherboardTip,
+          subTitle: "Optional - Check if motherboard model matches",
           onChanged: (List<String> value) {
             String? selectedValue = value.firstOrNull;
             specialMotherBoard = SpecialMotherboard.values.firstWhere(

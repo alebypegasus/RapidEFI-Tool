@@ -7,13 +7,13 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
-/// 日志级别
+/// Log level
 enum LogLevel { debug, info, warning, error }
 
-/// 日志操作类型
+/// Log operation type
 enum _LogOperationType { add, clear }
 
-/// 日志操作
+/// Log operation
 class _LogOperation {
   final _LogOperationType type;
   final String? logLine;
@@ -23,19 +23,19 @@ class _LogOperation {
   _LogOperation({required this.type, this.logLine, this.level, this.message});
 }
 
-/// 日志配置
+/// Log configuration
 class LogConfig {
   bool enableLevelFilter;
   LogLevel minLevel;
-  int maxLines; // 内存保留最大行
+  int maxLines; // Maximum lines kept in memory
   bool enablePrint;
   int maxFileSizeKB;
-  // UI显示相关
+  // UI display settings
   bool includeLogTimestampForUI;
   bool includeLogLevelForUI;
 
-  int flushIntervalMs; // 文件缓冲写入间隔
-  int flushBatchSize; // 文件缓冲批次大小
+  int flushIntervalMs; // File buffer flush interval
+  int flushBatchSize; // File buffer batch size
 
   LogConfig({
     this.enableLevelFilter = false,
@@ -57,7 +57,7 @@ class LogConfig {
 
 typedef LogChannelCreatedCallback = void Function(Log log);
 
-/// 日志管理器
+/// Log manager
 class Log {
   static final Map<String, Log> _channels = {};
   static const String defaultChannel = 'default';
@@ -75,17 +75,17 @@ class Log {
   final Queue<_LogOperation> _operationQueue = Queue();
   bool _isProcessing = false;
   bool _disposed = false;
-  // --- UI 使用的实时流 ---
+  // --- UI live stream ---
   final StreamController<String> _logStreamController =
       StreamController.broadcast();
   Stream<String> get logStream => _logStreamController.stream;
 
-  // --- 全局流,所有 channel 合并 ---
+  // --- Global stream, all channels combined ---
   static final StreamController<String> _globalLogStreamController =
       StreamController.broadcast();
   static Stream<String> get logStreamAll => _globalLogStreamController.stream;
 
-  /// 获取/创建日志通道
+  /// Get/create log channel callback
   static LogChannelCreatedCallback? onChannelCreated;
 
   final List<String> _buffer = [];
@@ -111,7 +111,7 @@ class Log {
     _channels.remove(channel);
   }
 
-  /// 初始化默认通道
+  /// Initialize default channel
   factory Log(
     String? message, {
     String? channel,
@@ -146,7 +146,7 @@ class Log {
     }
   }
 
-  /// 导出日志到桌面
+  /// Export logs to directory
   static Future<void> exportToDirectory({
     required String targetDirectory,
     String? channel,
@@ -155,7 +155,7 @@ class Log {
   }) async {
     final log = _channels[channel ?? defaultChannel];
     if (log == null) {
-      onError?.call('日志通道不存在: ${channel ?? defaultChannel}');
+      onError?.call('Log channel does not exist: ${channel ?? defaultChannel}');
       return;
     }
 
@@ -164,23 +164,25 @@ class Log {
       try {
         final fileName = logFile.uri.pathSegments.last;
         await logFile.copy('$targetDirectory$separator$fileName');
-        onSuccess?.call('导出成功! 文件路径: $targetDirectory$separator$fileName');
+        onSuccess?.call('Export successful! File path: $targetDirectory$separator$fileName');
       } catch (e) {
-        onError?.call('导出失败! 错误信息: $e');
+        onError?.call('Export failed! Error: $e');
       }
     } else {
-      onError?.call('文件不存在! 导出失败! 文件路径: ${logFile.path}');
+      onError?.call('File does not exist! Export failed: ${logFile.path}');
     }
   }
 
   Future<void> _initFile() async {
-    final dir = await getApplicationSupportDirectory();
     try {
+      final dir = await getApplicationSupportDirectory();
       _logFile = File('${dir.path}${separator}log${separator}log_$channel.txt');
       if (!await _logFile.exists()) await _logFile.create(recursive: true);
       await _rotateLogIfNeeded();
-    } catch (e) {
-      throw Exception('日志文件初始化失败: $e');
+    } catch (_) {
+      _logFile = File(
+        '${Directory.systemTemp.path}${separator}log_${channel}_${DateTime.now().millisecondsSinceEpoch}.txt',
+      );
     }
   }
 
@@ -297,25 +299,25 @@ class Log {
   static Future<void> error(String msg, {String? channel}) =>
       Log.width(channel: channel).add(msg, level: LogLevel.error);
 
-  /// 清除指定日志通道的日志
+  /// Clear logs for specified channel
   static Future<void> clear({String? channel}) async {
     final log = _channels[channel ?? defaultChannel];
     if (log != null) await log._clear();
   }
 
-  /// 清除所有日志通道的日志
+  /// Clear logs for all channels
   static Future<void> clearAll() async {
     for (final log in _channels.values) {
       await log._clear();
     }
   }
 
-  /// 关闭所有日志通道
+  /// Shut down all log channels
   static Future<void> shutdownAll() async {
     for (final log in _channels.values) {
       await log.dispose();
     }
-    // 关闭全局日志流
+    // Close global log stream
     await _globalLogStreamController.close();
   }
 }

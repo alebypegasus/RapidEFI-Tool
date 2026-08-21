@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_compatibility.dart';
@@ -116,7 +115,7 @@ void main() {
           'ACPI Path': '_SB.PCI0.GFX0',
           'Manufacturer': 'Intel',
           'Codename': 'Intel(R) HD Graphics P4600/P4700',
-          'Device Type': l10nGlobal.autoGen5060,
+          'Device Type': 'Integrated Graphics',
         },
       },
     });

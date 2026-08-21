@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 // tool.dart
 // Created by JeoJay127
 //
@@ -22,7 +21,7 @@ class ACPITool {
     if (Platform.isWindows) return 'windows';
     if (Platform.isMacOS) return 'macos';
     if (Platform.isLinux) return 'linux';
-    throw UnsupportedError(l10nGlobal.autoGen5756);
+    throw UnsupportedError('ACPI tools only support Windows/macOS/Linux platforms');
   }
 
   String get _iaslName => Platform.isWindows ? 'iasl.exe' : 'iasl';
@@ -31,7 +30,7 @@ class ACPITool {
     if (Platform.isWindows) return 'acpidump.exe';
     if (Platform.isMacOS) return 'patchmatic';
     if (Platform.isLinux) return 'acpidump';
-    throw UnsupportedError(l10nGlobal.autoGen5756);
+    throw UnsupportedError('ACPI tools only support Windows/macOS/Linux platforms');
   }
 
   String _iasl = '';
@@ -55,20 +54,20 @@ class ACPITool {
     try {
       await _initializeTask;
     } catch (e) {
-      Log.error('初始化 ACPI 工具失败: $e');
+      Log.error('Failed to initialize ACPI tools: $e');
       rethrow;
     } finally {
       _initializeTask = null;
     }
   }
 
-  /// 保留该方法，兼容旧调用。
+  /// Preserved for legacy callers.
   ///
-  /// 当前逻辑：
-  /// 1. 支持 Windows/macOS/Linux；
-  /// 2. 确保 iasl / acpidump 或 patchmatic 已复制到应用支持目录；
-  /// 3. 更新工具路径；
-  /// 4. 输出工具状态日志。
+  /// Logic:
+  /// 1. Supports Windows/macOS/Linux;
+  /// 2. Ensures iasl / acpidump or patchmatic is copied to application support directory;
+  /// 3. Updates tool paths;
+  /// 4. Logs tool status.
   Future<void> checkIaslValid({
     bool replaceExisting = false,
   }) async {
@@ -114,7 +113,7 @@ class ACPITool {
     ]);
 
     if (results.any((success) => !success)) {
-      Log.error('部分 ACPI 工具复制失败，请检查 $_assetDir 资源是否完整');
+      Log.error('Failed to copy some ACPI tools. Please verify $_assetDir assets are complete.');
     }
   }
 
@@ -162,7 +161,7 @@ class ACPITool {
       }
       return true;
     } catch (e) {
-      Log.error('复制工具失败: $assetPath → $targetFilePath: $e');
+      Log.error('Failed to copy tool: $assetPath -> $targetFilePath: $e');
       return false;
     }
   }
@@ -171,15 +170,15 @@ class ACPITool {
     final name = path.basename(toolPath);
 
     if (toolPath.isNotEmpty && File(toolPath).existsSync()) {
-      Log('本地工具 $name 准备就绪!');
+      Log('Local tool $name is ready!');
     } else {
-      Log.error('本地工具 $name 未就绪，请检查 $_assetDir 资源是否完整。');
+      Log.error('Local tool $name is not ready. Please verify $_assetDir assets are complete.');
     }
   }
 
   void _ensureSupportedPlatform() {
     if (!(Platform.isWindows || Platform.isMacOS || Platform.isLinux)) {
-      throw UnsupportedError(l10nGlobal.autoGen5756);
+      throw UnsupportedError('ACPI tools only support Windows/macOS/Linux platforms');
     }
   }
 }

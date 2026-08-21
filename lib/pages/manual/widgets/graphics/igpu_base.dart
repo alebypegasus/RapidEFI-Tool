@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:rapidefi/extension/string_extension.dart';
@@ -9,14 +8,14 @@ import 'package:rapidefi/utils/config/support/iigpufb_service.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 
-/// 核显基础配置
+/// iGPU Basic Configuration
 class IgpuBase extends StatefulWidget {
   final ValueChanged onChanged;
 
-  /// 高级属性变更回调（与 IgpuAdvance 共用同一 callback）
+  /// Advanced property change callback (shared with IgpuAdvance)
   final Function(Set<DevicePropertyItem>)? onDevicePropertiesChanged;
 
-  /// 当前已选中的高级属性集合，用于合并新增条目时不覆盖已有设置
+  /// Set of currently selected advanced properties, used to merge new entries without overwriting existing settings
   final Set<DevicePropertyItem>? selectedDevicePropertyItems;
 
   final List<List<IgpuPropertyModel>> igpuModels;
@@ -38,21 +37,21 @@ class IgpuBase extends StatefulWidget {
 enum _ConfigMode { preset, cpu }
 
 class _IgpuBaseState extends State<IgpuBase> {
-  // ── 模式 ───────────────────────────────────────────────────────
+  // ── Mode ───────────────────────────────────────────────────────
   _ConfigMode _mode = _ConfigMode.preset;
 
-  // ── 原有状态 ───────────────────────────────────────────────────
+  // ── Original state ─────────────────────────────────────────────
   late List<List<IgpuPropertyModel>> igpuModels = widget.igpuModels;
   late List<IgpuPropertyModel>? selectedModel = widget.selectedigpuModel;
 
-  // ── iigpufb 状态 ───────────────────────────────────────────────
+  // ── iigpufb state ───────────────────────────────────────────────
   List<IigpufbGeneration> _generations = [];
   bool _fbLoading = true;
 
   String? _selectedGeneration;
   IigpufbCpuEntry? _selectedCpu;
 
-  /// 勾选的属性索引集合（对应 _selectedCpu.properties 的下标）
+  /// Set of checked property indices (corresponding to _selectedCpu.properties)
   Set<int> _checkedIndices = {};
 
   @override
@@ -78,25 +77,25 @@ class _IgpuBaseState extends State<IgpuBase> {
     selectedModel = widget.selectedigpuModel;
   }
 
-  // ── 切换模式 ───────────────────────────────────────────────────
+  // ── Switch mode ─────────────────────────────────────────────────
   void _switchMode(_ConfigMode mode) {
     if (mode == _mode) return;
     setState(() {
       _mode = mode;
       if (mode == _ConfigMode.preset) {
-        // 切到预设方案：清除 CPU 相关状态
+        // Switch to preset: clear CPU related state
         _selectedGeneration = null;
         _selectedCpu = null;
         _checkedIndices = {};
       } else {
-        // 切到 CPU 模式：清除预设选择
+        // Switch to CPU mode: clear preset selection
         selectedModel = null;
         widget.onChanged.call(null);
       }
     });
   }
 
-  // ── 选代数 ─────────────────────────────────────────────────────
+  // ── Select generation ───────────────────────────────────────────
   void _onGenerationChanged(String? gen) {
     setState(() {
       _selectedGeneration = gen;
@@ -105,20 +104,20 @@ class _IgpuBaseState extends State<IgpuBase> {
     });
   }
 
-  // ── 选 CPU 型号 ────────────────────────────────────────────────
+  // ── Select CPU model ────────────────────────────────────────────
   void _onCpuChanged(IigpufbCpuEntry? cpu) {
     if (cpu == null) return;
     setState(() {
       _selectedCpu = cpu;
-      // 默认全部勾选
+      // Default to select all
       _checkedIndices =
           Set<int>.from(List.generate(cpu.properties.length, (i) => i));
     });
-    // 选中 CPU 后立即应用，并提示
+    // Apply immediately after selecting CPU and notify
     _applySelected();
   }
 
-  // ── 全选 / 全不选 ──────────────────────────────────────────────
+  // ── Toggle all ──────────────────────────────────────────────────
   void _toggleAll(bool selectAll) {
     if (_selectedCpu == null) return;
     setState(() {
@@ -130,7 +129,7 @@ class _IgpuBaseState extends State<IgpuBase> {
     _applySelected(silent: true);
   }
 
-  // ── 切换单个属性勾选 ───────────────────────────────────────────
+  // ── Toggle single property ─────────────────────────────────────
   void _toggleIndex(int idx) {
     setState(() {
       if (_checkedIndices.contains(idx)) {
@@ -142,25 +141,25 @@ class _IgpuBaseState extends State<IgpuBase> {
     _applySelected(silent: true);
   }
 
-  // ── 应用选中条目 ───────────────────────────────────────────────
+  // ── Apply selected items ───────────────────────────────────────
   void _applySelected({bool silent = false}) {
     final cpu = _selectedCpu;
     if (cpu == null || _checkedIndices.isEmpty) return;
 
-    // 以现有高级属性为基础，按 key 做 Map 便于合并
+    // Use existing advanced properties as base map for easy merging
     final merged = <String, DevicePropertyItem>{
       for (final item in widget.selectedDevicePropertyItems ?? {})
         if (item.key != null) item.key!: item,
     };
 
-    // 将勾选的属性写入（同 key 覆盖，新 key 追加）
+    // Write checked properties (overwrite matching keys, append new keys)
     for (final idx in _checkedIndices) {
       final prop = cpu.properties[idx];
       merged[prop.key] = DevicePropertyItem(
         key: prop.key,
         dataType: prop.dataType,
         value: prop.value,
-        comment: AppLocalizations.of(context)!.manualIgpuFromModel(cpu.cpuModel, cpu.igpuName),
+        comment: 'From ${cpu.cpuModel} (${cpu.igpuName})',
         display: true,
       );
     }
@@ -169,14 +168,14 @@ class _IgpuBaseState extends State<IgpuBase> {
 
     if (!silent) {
       showToast(
-        AppLocalizations.of(context)!.manualIgpuLoadedConfig(cpu.cpuModel, cpu.igpuName, _checkedIndices.length.toString()),
+        'Loaded ${cpu.igpuName} configuration for ${cpu.cpuModel}, applied ${_checkedIndices.length} properties',
         duration: const Duration(seconds: 3),
       );
     }
   }
 
   // ============================================================
-  //  UI 构建
+  //  UI Build
   // ============================================================
 
   @override
@@ -194,22 +193,22 @@ class _IgpuBaseState extends State<IgpuBase> {
     );
   }
 
-  // ── 模式切换按钮 ──────────────────────────────────────────────
+  // ── Mode toggle button ──────────────────────────────────────────
   Widget _buildModeToggle(BuildContext context) {
     return SegmentedButton<_ConfigMode>(
       style: SegmentedButton.styleFrom(
         visualDensity: VisualDensity.compact,
       ),
-      segments: [
+      segments: const [
         ButtonSegment(
           value: _ConfigMode.preset,
-          label: Text(AppLocalizations.of(context)!.manualIgpuPresetScheme),
-          icon: const Icon(Icons.list_alt_outlined, size: 16),
+          label: Text('Presets'),
+          icon: Icon(Icons.list_alt_outlined, size: 16),
         ),
         ButtonSegment(
           value: _ConfigMode.cpu,
-          label: Text(AppLocalizations.of(context)!.manualIgpuByCpuModel),
-          icon: const Icon(Icons.memory_outlined, size: 16),
+          label: Text('By CPU Model'),
+          icon: Icon(Icons.memory_outlined, size: 16),
         ),
       ],
       selected: {_mode},
@@ -217,19 +216,13 @@ class _IgpuBaseState extends State<IgpuBase> {
     );
   }
 
-  // ── 预设方案分支 ──────────────────────────────────────────────
+  // ── Preset section ──────────────────────────────────────────────
   Widget _buildPresetSection(BuildContext context) {
-    final List<String> choices = igpuModels
-        .map((e) {
-          final c = e.first.propertyItems.first.comment;
-          return ((c is Function ? c() : c) ?? '') as String;
-        })
+    final choices = igpuModels
+        .map((e) => e.first.propertyItems.first.comment ?? '')
         .toList();
-    final String selectedChoice = selectedModel != null && selectedModel!.isNotEmpty
-        ? (() {
-            final c = selectedModel!.first.propertyItems.first.comment;
-            return ((c is Function ? c() : c) ?? '') as String;
-          })()
+    final selectedChoice = selectedModel != null && selectedModel!.isNotEmpty
+        ? selectedModel?.first.propertyItems.first.comment
         : '';
     final tips = igpuModels.map((e) {
       return '${e.first.propertyItems.first.key} : ${e.first.propertyItems.first.value}';
@@ -240,16 +233,13 @@ class _IgpuBaseState extends State<IgpuBase> {
       tips: tips,
       choices: choices,
       selectedChoices: [selectedChoice.nullSafe],
-      subTitle: AppLocalizations.of(context)!.manualIgpuMatchOrNot,
+      subTitle: 'Check if matching, otherwise leave unchecked',
       allowToggle: true,
       onChanged: (List<String> value) {
         if (value.isNotEmpty) {
           setState(() {
             selectedModel = widget.igpuModels.firstWhere(
-              (e) {
-                final c = e.first.propertyItems.first.comment;
-                return ((c is Function ? c() : c) ?? '') == value.first;
-              },
+              (e) => e.first.propertyItems.first.comment == value.first,
             );
           });
         } else {
@@ -262,7 +252,7 @@ class _IgpuBaseState extends State<IgpuBase> {
     );
   }
 
-  // ── CPU 选择面板 ──────────────────────────────────────────────
+  // ── CPU selector panel ──────────────────────────────────────────
   Widget _buildCpuSelectorSection(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -276,19 +266,19 @@ class _IgpuBaseState extends State<IgpuBase> {
         initiallyExpanded: false,
         tilePadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-        title: Text(
-          AppLocalizations.of(context)!.manualIgpuLoadConfig,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        title: const Text(
+          'Load iGPU configuration by CPU model',
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
         subtitle: _selectedCpu != null
             ? Text(
-                AppLocalizations.of(context)!.manualIgpuSelectedCpu(_selectedCpu!.cpuModel, _selectedCpu!.igpuName),
+                'Selected: ${_selectedCpu!.cpuModel}  ${_selectedCpu!.igpuName}',
                 style:
                     TextStyle(fontSize: 12, color: colorScheme.primary),
               )
-            : Text(
-                AppLocalizations.of(context)!.manualIgpuSelectInstruction,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
+            : const Text(
+                'Select CPU generation and model, then check desired properties',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
         children: [
           Padding(
@@ -315,7 +305,7 @@ class _IgpuBaseState extends State<IgpuBase> {
     );
   }
 
-  // ── 两个下拉 ──────────────────────────────────────────────────
+  // ── Dropdowns ──────────────────────────────────────────────────
   Widget _buildDropdownRow(BuildContext context) {
     final genNames = _generations.map((g) => g.name).toList();
     final currentGen = _generations
@@ -328,20 +318,20 @@ class _IgpuBaseState extends State<IgpuBase> {
       runSpacing: 8,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        // CPU 代数
+        // CPU Generation
         SizedBox(
           width: 230,
           child: DropdownButtonFormField<String>(
             initialValue: _selectedGeneration,
             isExpanded: true,
-            decoration: InputDecoration(
-              labelText: AppLocalizations.of(context)!.manualIgpuCpuGen,
-              border: const OutlineInputBorder(),
+            decoration: const InputDecoration(
+              labelText: 'CPU Generation',
+              border: OutlineInputBorder(),
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               isDense: true,
             ),
-            hint: Text(AppLocalizations.of(context)!.manualIgpuSelectGen),
+            hint: const Text('Select Generation'),
             items: genNames
                 .map((g) =>
                     DropdownMenuItem(value: g, child: Text(g)))
@@ -349,21 +339,21 @@ class _IgpuBaseState extends State<IgpuBase> {
             onChanged: _onGenerationChanged,
           ),
         ),
-        // CPU 型号
+        // CPU Model
         SizedBox(
           width: 260,
           child: DropdownButtonFormField<IigpufbCpuEntry>(
             initialValue: _selectedCpu,
             isExpanded: true,
             decoration: InputDecoration(
-              labelText: AppLocalizations.of(context)!.manualIgpuCpuModel,
+              labelText: 'CPU Model',
               border: const OutlineInputBorder(),
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               isDense: true,
               enabled: cpuList.isNotEmpty,
             ),
-            hint: Text(AppLocalizations.of(context)!.manualIgpuSelectCpu),
+            hint: const Text('Select CPU'),
             items: cpuList
                 .map((cpu) => DropdownMenuItem(
                       value: cpu,
@@ -380,7 +370,7 @@ class _IgpuBaseState extends State<IgpuBase> {
     );
   }
 
-  // ── 关键信息预览行 ─────────────────────────────────────────────
+  // ── Preview row ────────────────────────────────────────────────
   Widget _buildPreviewRow(BuildContext context) {
     final cpu = _selectedCpu!;
     final colorScheme = Theme.of(context).colorScheme;
@@ -398,16 +388,16 @@ class _IgpuBaseState extends State<IgpuBase> {
         spacing: 24,
         runSpacing: 4,
         children: [
-          _previewItem(AppLocalizations.of(context)!.manualIgpuName, cpu.igpuName, colorScheme),
+          _previewItem('iGPU', cpu.igpuName, colorScheme),
           if (cpu.platformId != null)
             _previewItem(
               cpu.platformIdKey ?? 'platform-id',
               cpu.platformId!,
               colorScheme,
             ),
-          _previewItem(AppLocalizations.of(context)!.manualIgpuModel, cpu.modelName, colorScheme),
+          _previewItem('Model', cpu.modelName, colorScheme),
           if (cpu.note != null)
-            _previewItem(AppLocalizations.of(context)!.manualIgpuRemark, cpu.note!, colorScheme,
+            _previewItem('⚠️ Note', cpu.note!, colorScheme,
                 valueColor: Colors.orange.shade700),
         ],
       ),
@@ -443,7 +433,7 @@ class _IgpuBaseState extends State<IgpuBase> {
     );
   }
 
-  // ── 属性勾选列表 ──────────────────────────────────────────────
+  // ── Property checklist ─────────────────────────────────────────
   Widget _buildPropertyChecklist(BuildContext context) {
     final cpu = _selectedCpu!;
     final props = cpu.properties;
@@ -453,7 +443,7 @@ class _IgpuBaseState extends State<IgpuBase> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 全选 / 全不选 标题行
+        // Select All / Deselect All header row
         InkWell(
           onTap: () => _toggleAll(!allSelected),
           borderRadius: BorderRadius.circular(4),
@@ -470,14 +460,14 @@ class _IgpuBaseState extends State<IgpuBase> {
                           : null,
                   onChanged: (v) => _toggleAll(v == true),
                 ),
-                Text(
-                  AppLocalizations.of(context)!.manualIgpuSelectProperties,
-                  style: const TextStyle(
+                const Text(
+                  'Select properties to apply',
+                  style: TextStyle(
                       fontSize: 13, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  AppLocalizations.of(context)!.manualMotherboardSelectedCount(_checkedIndices.length.toString(), props.length.toString()),
+                  '(${_checkedIndices.length}/${props.length} selected)',
                   style: const TextStyle(
                       fontSize: 12, color: Colors.grey),
                 ),
@@ -486,7 +476,7 @@ class _IgpuBaseState extends State<IgpuBase> {
           ),
         ),
         const Divider(height: 4),
-        // 属性条目
+        // Property items
         ...props.asMap().entries.map((entry) {
           final idx = entry.key;
           final prop = entry.value;
@@ -527,7 +517,7 @@ class _IgpuBaseState extends State<IgpuBase> {
                   MaterialTapTargetSize.shrinkWrap,
               visualDensity: VisualDensity.compact,
             ),
-            // key 名
+            // Key name
             SizedBox(
               width: 220,
               child: Text(
@@ -542,7 +532,7 @@ class _IgpuBaseState extends State<IgpuBase> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            // 类型徽章
+            // Type badge
             Container(
               padding: const EdgeInsets.symmetric(
                   horizontal: 5, vertical: 1),
@@ -561,7 +551,7 @@ class _IgpuBaseState extends State<IgpuBase> {
               ),
             ),
             const SizedBox(width: 8),
-            // 值
+            // Value
             Expanded(
               child: Text(
                 prop.value,

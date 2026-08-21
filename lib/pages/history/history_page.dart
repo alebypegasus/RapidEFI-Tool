@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
-import 'package:path/path.dart' as path;
-
-
-
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:rapidefi/extension/int_extension.dart';
 import 'package:rapidefi/pages/manual/manual_page.dart';
@@ -23,7 +19,7 @@ import 'package:sp_util/sp_util.dart';
 import 'package:rapidefi/pages/history/widgets/history_widget.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 
-/// 历史记录
+/// History
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
 
@@ -63,7 +59,7 @@ class HistoryPageState extends State<HistoryPage> {
     loadHistoryModels();
   }
 
-  /// 获取本地历史记录
+  /// Load local history records
   Future<void> loadHistoryModels({bool showLoading = false}) async {
     if (showLoading && mounted) {
       setState(() {
@@ -106,9 +102,7 @@ class HistoryPageState extends State<HistoryPage> {
   ) async {
     if (!mounted) return;
 
-    final l10n = AppLocalizations.of(context);
-    CustomToast.show(context, l10n?.configuringEFI ?? "Configuring EFI, please wait...");
-
+    CustomToast.show(this.context, "Generating EFI, please wait...");
     final success = await EfiBuildPipeline(ConfigService()).build(
       configModel: configModel,
       mode: ConfigModelMode.history,
@@ -118,9 +112,8 @@ class HistoryPageState extends State<HistoryPage> {
       ),
     );
     CustomToast.dismiss();
-    showToast(success ? (l10n?.configureEFISuccess ?? "EFI configured successfully") : (l10n?.configureEFIFailed ?? "Error configuring EFI!\nPlease change the EFI output directory"));
+    showToast(success ? "EFI generated successfully" : "Error generating EFI!\nPlease select a different output path");
   }
-
 
   Future<void> exportEFI(HistoryModel historyModel) async {
     if (_exporting) return;
@@ -141,7 +134,7 @@ class HistoryPageState extends State<HistoryPage> {
     }
   }
 
-  /// 更新某个历史记录
+  /// Update history record
   Future<void> updateHistoryModel(HistoryModel historyModel) async {
     final models = List<HistoryModel>.from(historyModels)
       ..sort((a, b) => b.timestamp.compareTo(a.timestamp));
@@ -155,12 +148,11 @@ class HistoryPageState extends State<HistoryPage> {
     });
   }
 
-  /// 删除某个历史记录
+  /// Delete history record
   Future<void> deleteHistory(HistoryModel historyModel) async {
     final targetKey = _historyStorageName(historyModel);
     final historyDirectory = await FileUtils.getHistoryDirectory();
-    final historyFile = path.join(historyDirectory, targetKey);
-
+    final historyFile = join(historyDirectory, targetKey);
 
     try {
       await FileUtils.deleteFile(historyFile);
@@ -183,7 +175,7 @@ class HistoryPageState extends State<HistoryPage> {
     });
   }
 
-  /// 删除所有历史记录
+  /// Delete all history records
   Future<void> deleteAllHistories() async {
     if (_deletingAll || historyModels.isEmpty) return;
 
@@ -208,14 +200,7 @@ class HistoryPageState extends State<HistoryPage> {
     }
   }
 
-  /// 进入编辑页面。
-  ///
-  /// 注意：这里不要再用 Navigator.push。
-  /// rootNavigator: true 会覆盖整个 UI；
-  /// rootNavigator: false 会重新触发 NavigationView / StatefulShellRoute 内部布局冲突。
-  ///
-  /// 这里改为 HistoryPage 内部状态切换，既能附着在右侧内容区，
-  /// 又能避开 branch Navigator push/pop 的偶发崩溃。
+  /// Open edit page for selected history model.
   Future<void> gotoManualPage(HistoryModel historyModel) async {
     if (_openingManualPage) return;
 
@@ -267,7 +252,7 @@ class HistoryPageState extends State<HistoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    // 保留主题监听，主题变化时页面会跟随刷新。
+    // Keep theme listener
     context.watch<AppTheme>();
 
     final editingConfigModel = _editingConfigModel;
@@ -279,30 +264,31 @@ class HistoryPageState extends State<HistoryPage> {
       );
     }
 
-    final l10n = AppLocalizations.of(context)!;
-
     return Scaffold(
-
       backgroundColor: Colors.transparent,
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(15),
             child: TitleCard(
-              title: l10n.historyTitle,
-              content: _buildClearAllAction(l10n),
-              expander: Text(l10n.historyDescription),
+              title: 'History',
+              content: _buildClearAllAction(),
+              expander: const Text(
+                'EFIs generated with RapidEFI are automatically backed up to history.\n'
+                'You can reload and adjust any previously generated EFI at any time.\n\n'
+                'This feature is supported on RapidEFI V3.0.0 and above.',
+              ),
             ),
           ),
           Expanded(
-            child: _buildBody(l10n),
+            child: _buildBody(),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildClearAllAction(AppLocalizations l10n) {
+  Widget _buildClearAllAction() {
     final disabled = historyModels.isEmpty || _deletingAll;
 
     return Padding(
@@ -323,17 +309,16 @@ class HistoryPageState extends State<HistoryPage> {
               children: [
                 Icon(
                   Icons.delete_forever,
-                  color: disabled ? Theme.of(context).disabledColor : null,
+                  color: disabled ? Theme.of(this.context).disabledColor : null,
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  _deletingAll ? l10n.clearingHistory : l10n.clearAllHistory,
+                  _deletingAll ? 'Clearing history...' : 'Clear All History',
                   style: TextStyle(
                     color:
-                        disabled ? Theme.of(context).disabledColor : null,
+                        disabled ? Theme.of(this.context).disabledColor : null,
                   ),
                 ),
-
                 const SizedBox(width: 10),
               ],
             ),
@@ -343,7 +328,7 @@ class HistoryPageState extends State<HistoryPage> {
     );
   }
 
-  Widget _buildBody(AppLocalizations l10n) {
+  Widget _buildBody() {
     if (_loading) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -351,17 +336,16 @@ class HistoryPageState extends State<HistoryPage> {
     }
 
     if (historyModels.isEmpty) {
-      return Center(
+      return const Center(
         child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Text(l10n.noHistory),
+          padding: EdgeInsets.all(15),
+          child: Text('No history records yet'),
         ),
       );
     }
 
     return _buildHistoryList();
   }
-
 
   Widget _buildHistoryList() {
     return Scrollbar(
@@ -410,7 +394,7 @@ class _HistoryManualPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const backgroundColor = Colors.transparent;
+    final backgroundColor = Colors.transparent;
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: PreferredSize(
@@ -427,17 +411,16 @@ class _HistoryManualPage extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back),
                     onPressed: onBack,
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Center(
                       child: Text(
-                        AppLocalizations.of(context)?.editEFI ?? 'Edit EFI',
-                        style: const TextStyle(
+                        'Edit EFI',
+                        style: TextStyle(
                           fontSize: 20,
                         ),
                       ),
                     ),
                   ),
-
                   const SizedBox(width: 48),
                 ],
               ),

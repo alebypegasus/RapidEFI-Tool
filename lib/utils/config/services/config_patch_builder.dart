@@ -165,7 +165,7 @@ class ConfigPatchBuilder {
 
       final propertyDict = <String, dynamic>{};
 
-      /// 基础属性
+      /// Basic properties
       for (final item in deviceProperty.propertyItems) {
         propertyDict[item.key.nullSafe] = PlistTypedValue(
           type: item.dataType.nullSafe,
@@ -173,7 +173,7 @@ class ConfigPatchBuilder {
         );
       }
 
-      /// 核显高级属性
+      /// iGPU advanced properties
       if (deviceProperty.pciPath == ConfigDp.pciPath) {
         final hasFramebufferPatch = deviceProperty.propertyItems.any(
           (element) => element.key.nullSafe.startsWith('framebuffer-'),
@@ -194,7 +194,7 @@ class ConfigPatchBuilder {
       addMap,
     ));
 
-    ops.add(const PatchOp.set(
+    ops.add(PatchOp.set(
       ['DeviceProperties', 'Delete'],
       <String, dynamic>{},
     ));

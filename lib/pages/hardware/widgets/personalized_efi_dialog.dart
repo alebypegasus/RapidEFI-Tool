@@ -1,8 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/os_version.dart';
-
 import 'package:rapidefi/pages/manual/widgets/platform/smbios.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_chip_tile.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
@@ -333,7 +331,6 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final dialogBackground =
@@ -343,7 +340,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.black.withValues(alpha: darkMode ? 0.75 : 0.22),
       elevation: darkMode ? 18 : 8,
-      title: Text(l10n.personalizedEfiTitle, textAlign: TextAlign.center),
+      title: const Text('EFI Settings', textAlign: TextAlign.center),
       titlePadding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
       content: SizedBox(
@@ -352,10 +349,10 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
           mainAxisSize: MainAxisSize.min,
           spacing: 8,
           children: [
-            Text(
-              l10n.personalizedEfiIntroTip,
+            const Text(
+              'These options are customizable. The EFI will be generated based on these settings.',
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 12),
+              style: TextStyle(fontSize: 12),
             ),
             ConstrainedBox(
               constraints: BoxConstraints(
@@ -377,7 +374,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text(l10n.cancel),
+          child: const Text('Cancel'),
         ),
         ElevatedButton(
           onPressed: () => Navigator.pop(
@@ -394,14 +391,13 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
               ssdtSelection: _buildSsdtSelection(),
             ),
           ),
-          child: Text(l10n.confirm),
+          child: const Text('Confirm'),
         ),
       ],
     );
   }
 
   Widget _buildLeftOptions() {
-    final l10n = AppLocalizations.of(context)!;
     final hasAlc = _alcModel != null;
     return SingleChildScrollView(
       child: Column(
@@ -433,9 +429,8 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ),
           if (hasAlc)
             TitleCard(
-              title: l10n.alcLayoutId,
+              title: 'Audio Layout ID:',
               subTitle: _alcModel,
-
               content: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: fluent.ComboBox<String>(
@@ -454,25 +449,23 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                       setState(() => _selectedAlcLayout = int.tryParse(v!)),
                 ),
               ),
-              snippet: l10n.hwAppleALCSnippet,
+              snippet: 'AppleALC supports multiple layout IDs. Different IDs may affect audio port availability.',
             ),
           TitleCard(
-            title: l10n.above4gTitle,
+            title: 'Above 4G Decoding Settings',
             content: ChoiceChipTile(
-              label: l10n.addNpciBootArg,
+              label: 'Add npci=0x2000 boot-arg',
               selected: _enableNpci,
               onChanged: (bo) => setState(() => _enableNpci = bo),
             ),
-            snippet: l10n.above4gTip,
+            snippet: 'Recommended when Above 4G Decoding is not enabled in BIOS; remove if enabled in BIOS.',
           ),
         ],
       ),
     );
   }
 
-
   Widget _buildSsdtPanel() {
-    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final panelColor = darkMode
@@ -501,7 +494,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.personalizedPlatformTip,
+              'CPU type, platform type, and platform info are detected from hardware. You can adjust them below if needed.',
               style: TextStyle(
                 color: colorScheme.onSurfaceVariant,
                 fontSize: 12,
@@ -511,9 +504,9 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             Row(
               children: [
                 SizedBox(
-                  width: 140,
+                  width: 64,
                   child: Text(
-                    l10n.ssdtType,
+                    'SSDT Type:',
                     style: TextStyle(
                       color: onPanelColor,
                       fontWeight: FontWeight.bold,
@@ -524,14 +517,14 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                   groupValue: _selectedSsdtBuildMode.name,
                   direction: RadioGroupDirection.row,
                   radioScale: 0.78,
-                  options: [
+                  options: const [
                     RadioOptionData(
                       value: 'custom',
-                      label: l10n.customSsdt,
+                      label: 'Custom SSDT',
                     ),
                     RadioOptionData(
                       value: 'original',
-                      label: l10n.presetSsdt,
+                      label: 'Prebuilt SSDT',
                     ),
                   ],
                   onChanged: (value) => setState(() {
@@ -560,7 +553,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ],
             const SizedBox(height: 10),
             _buildSegmentRow<CpuType>(
-              label: l10n.cpuTypeLabel,
+              label: 'CPU Type:',
               values: const [CpuType.intel, CpuType.amd],
               selected: _selectedCpuType,
               textOf: (value) => value == CpuType.intel ? 'Intel' : 'AMD',
@@ -568,7 +561,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ),
             const SizedBox(height: 10),
             _buildSegmentRow<PlatformType>(
-              label: l10n.platformTypeLabel,
+              label: 'Platform Type:',
               values: PlatformType.values,
               selected: _selectedPlatformType,
               textOf: _platformTypeLabel,
@@ -578,9 +571,9 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             Row(
               children: [
                 SizedBox(
-                  width: 140,
+                  width: 64,
                   child: Text(
-                    l10n.platformInfo,
+                    'Platform:',
                     style: TextStyle(
                       color: onPanelColor,
                       fontWeight: FontWeight.bold,
@@ -622,7 +615,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                   child: Opacity(
                     opacity: customEnabled ? 1 : 0.56,
                     child: CheckboxTile(
-                      label: l10n.selectAll,
+                      label: 'Select All',
                       selected: _ssdtItems.isNotEmpty &&
                           _selectedSsdtKeys.length == _ssdtItems.length,
                       onChanged: _toggleAllSsdt,
@@ -649,7 +642,6 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
     );
   }
 
-
   Widget _buildSegmentRow<T>({
     required String label,
     required List<T> values,
@@ -665,7 +657,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          width: 140,
+          width: 64,
           child: Text(
             label,
             style: TextStyle(
@@ -758,21 +750,20 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
   }
 
   Widget _buildLegend() {
-    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Wrap(
         spacing: 8,
-        children: [
+        children: const [
           _LegendText(
-            text: l10n.basicOfficialRecommend,
+            text: '* Core (Official)',
             color: _PersonalizedEfiDialogState._basicColor,
           ),
           _LegendText(
-            text: l10n.recommendFixes,
+            text: '* Recommended (Fixes)',
             color: _PersonalizedEfiDialogState._recommendColor,
           ),
           _LegendText(
-            text: l10n.optionalEnhancements,
+            text: '* Optional (Enhancements)',
             color: _PersonalizedEfiDialogState._optionalColor,
           ),
         ],
@@ -817,19 +808,17 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
   }
 
   String _platformTypeLabel(PlatformType platformType) {
-    final l10n = AppLocalizations.of(context)!;
     switch (platformType) {
       case PlatformType.desktop:
-        return l10n.desktop;
+        return 'Desktop';
       case PlatformType.laptop:
-        return l10n.laptop;
+        return 'Laptop';
       case PlatformType.nuc:
-        return l10n.nuc;
+        return 'NUC / Mini PC';
       case PlatformType.hedt:
-        return l10n.hedt;
+        return 'HEDT / Server';
     }
   }
-
 }
 
 class _LegendText extends StatelessWidget {

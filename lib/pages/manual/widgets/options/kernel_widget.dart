@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/extension/list_extension.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
@@ -57,8 +56,8 @@ class _KernelWidgetState extends State<KernelWidget> {
         .toList();
   }
 
-  String get powerManagementText =>
-      AppLocalizations.of(context)!.manualKernelDummyPowerManagement;
+  static const String powerManagementText =
+      'Disable Power Management (DummyPowerManagement): Fixes reboot loops caused by CPU power management (e.g. AppleIntelCPUPowerManagement panic, boot logo freeze, immediate reboot after login). For Gen 4+ platforms, this is preferred over NullCpuPowerManagement.kext.';
 
   static String rtcWake = KernelPatch.fixRTCWakeScheduling.note;
 
@@ -79,15 +78,15 @@ class _KernelWidgetState extends State<KernelWidget> {
       choices: [powerManagementText],
       selectedChoices: [dummyPowerManagement ? powerManagementText : ''],
       allowToggle: true,
-      subTitle: AppLocalizations.of(context)!.manualKernelPowerManagement,
+      subTitle: 'Power Management',
       onChanged: (value) {
-        // 提取更新状态和调用回调的逻辑到一个方法中
+        // Extract update state logic into method
         updateDummyPowerManagement(value.isEmpty);
       },
     );
   }
 
-  // 提取更新状态和调用回调的逻辑
+  // Extract update state logic
   void updateDummyPowerManagement(bool isDisabled) {
     dummyPowerManagement = !isDisabled;
     widget.onChanged.call(widget.kernel.kernelEmulate
@@ -101,7 +100,7 @@ class _KernelWidgetState extends State<KernelWidget> {
       selectedChoices: [rtcWakeFix ? rtcWake : ''],
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: 'Kernel - Patch',
+      subTitle: 'Kernel - Patches',
       onChanged: (value) {
         rtcWakeFix = value.any((e) => e == rtcWake);
         final patches = widget.kernel.kernelPatchItems ?? [];
@@ -127,7 +126,7 @@ class _KernelWidgetState extends State<KernelWidget> {
       selectedChoices: selectedChoices,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: AppLocalizations.of(context)!.manualKernelQuirksDefault,
+      subTitle: 'Kernel - Quirks (Default settings recommended unless specific fixes needed)',
       onChanged: (value) {
         selectedChoices = List<String>.from(value);
         final selected = selectedChoices.toSet();
@@ -150,7 +149,7 @@ class _KernelWidgetState extends State<KernelWidget> {
           .map((e) => e.comment)
           .toList(),
       allowToggle: false,
-      subTitle: AppLocalizations.of(context)!.manualKernelTrimStrategy,
+      subTitle: 'NVMe / SATA SSD APFS Trim Policy',
       tiplist: kernelTrims.map((e) => e.note.description).toList(),
       onChanged: (value) {
         final selectedComment = value.first;

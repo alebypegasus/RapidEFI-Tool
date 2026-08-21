@@ -3,17 +3,15 @@ import 'package:rapidefi/utils/config/models/platform_info/pi_generic.dart';
 import 'package:rapidefi/utils/config/models/enums/config_enums.dart';
 
 class PlatformEntry {
-  final String Function() labelBuilder;
+  final String label;
   final List<PlatformInfoGeneric> smbiosOptions;
   final List<List<IgpuPropertyModel>>? igpuModes;
 
-  PlatformEntry({
-    required this.labelBuilder,
+  const PlatformEntry({
+    required this.label,
     required this.smbiosOptions,
     this.igpuModes,
   });
-
-  String get label => labelBuilder();
 }
 
 class PlatformModel {

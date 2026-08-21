@@ -2,38 +2,38 @@ import 'dart:typed_data';
 import 'package:rapidefi/utils/config/models/device_properties/device_property_item.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 可勾选条目类型枚举
+// Selectable item category enum
 // ─────────────────────────────────────────────────────────────────────────────
 enum MbItemCategory {
-  acpiAdd,       // ACPI.Add → SSDT 文件
-  kextAdd,       // Kernel.Add → Kext 文件
-  kernelPatch,   // Kernel.Patch → 内核补丁
-  kernelQuirk,   // Kernel.Quirks → 单个 bool/int 字段
-  booterQuirk,   // Booter.Quirks → 单个 bool/int 字段
-  dpPath,        // DP.Add → 某 PCI 路径下的所有属性
-  miscBoot,      // Misc.Boot → 单个字段
-  miscSecurity,  // Misc.Security → 单个字段
-  nvramGuid,     // NVRAM → 单个 GUID 的键值对
-  platformInfo,  // PI → 全部 PlatformInfo 设置
-  uefiQuirk,     // UEFI.Quirks → 单个 bool/int 字段
+  acpiAdd,       // ACPI.Add -> SSDT file
+  kextAdd,       // Kernel.Add -> Kext file
+  kernelPatch,   // Kernel.Patch -> Kernel patch
+  kernelQuirk,   // Kernel.Quirks -> Single bool/int field
+  booterQuirk,   // Booter.Quirks -> Single bool/int field
+  dpPath,        // DP.Add -> All properties under a PCI path
+  miscBoot,      // Misc.Boot -> Single field
+  miscSecurity,  // Misc.Security -> Single field
+  nvramGuid,     // NVRAM -> Key-value pairs for a single GUID
+  platformInfo,  // PI -> Full PlatformInfo settings
+  uefiQuirk,     // UEFI.Quirks -> Single bool/int field
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 通用可勾选条目
+// Generic selectable item
 // ─────────────────────────────────────────────────────────────────────────────
 class MbConfSelectableItem {
   final MbItemCategory category;
 
-  /// 界面显示标签，如 "SSDT-EC.aml"、"layout-id = 04000000"
+  /// UI display label, e.g. 'SSDT-EC.aml', 'layout-id = 04000000'
   final String label;
 
-  /// 辅助说明（可选）
+  /// Helper description (optional)
   final String description;
 
-  /// 实际数据，类型依 category 而定（见下方说明）
+  /// Actual data, typed according to category
   final Object data;
 
-  MbConfSelectableItem({
+  const MbConfSelectableItem({
     required this.category,
     required this.label,
     required this.data,
@@ -42,7 +42,7 @@ class MbConfSelectableItem {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 各 category 对应的 data 类型说明
+// Data type description for each category
 // ─────────────────────────────────────────────────────────────────────────────
 // acpiAdd    → String (SSDT filename, e.g. "SSDT-EC.aml")
 // kextAdd    → String (bundlePath, e.g. "Lilu.kext")
@@ -57,10 +57,10 @@ class MbConfSelectableItem {
 // uefiQuirk  → MbQuirkEntry
 
 // ─────────────────────────────────────────────────────────────────────────────
-// data 载体类
+// Data container classes
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// 内核补丁条目
+/// Kernel patch entry
 class MbKernelPatch {
   final String arch;
   final String base;
@@ -77,7 +77,7 @@ class MbKernelPatch {
   final Uint8List? replaceMask;
   final int skip;
 
-  MbKernelPatch({
+  const MbKernelPatch({
     required this.arch,
     required this.base,
     required this.comment,
@@ -95,42 +95,42 @@ class MbKernelPatch {
   });
 }
 
-/// bool/int Quirk 条目（Kernel / Booter / UEFI）
+/// bool/int Quirk entry (Kernel / Booter / UEFI)
 class MbQuirkEntry {
-  /// JSON 中的原始 key（PascalCase），如 "SetupVirtualMap"
+  /// Raw key in JSON (PascalCase), e.g. 'SetupVirtualMap'
   final String jsonKey;
 
-  /// 要设置的值（bool 或 int）
+  /// Value to set (bool or int)
   final dynamic value;
 
-  MbQuirkEntry({required this.jsonKey, required this.value});
+  const MbQuirkEntry({required this.jsonKey, required this.value});
 }
 
-/// DeviceProperties 的某条 PCI 路径
+/// PCI path in DeviceProperties
 class MbDpPath {
   final String pciPath;
   final List<DevicePropertyItem> properties;
 
-  MbDpPath({required this.pciPath, required this.properties});
+  const MbDpPath({required this.pciPath, required this.properties});
 }
 
-/// Misc.Boot 或 Misc.Security 的单个键值对
+/// Single key-value pair for Misc.Boot or Misc.Security
 class MbMiscEntry {
   final String key;
   final dynamic value;
 
-  MbMiscEntry({required this.key, required this.value});
+  const MbMiscEntry({required this.key, required this.value});
 }
 
-/// NVRAM 单个 GUID 及其键值对
+/// Single GUID and key-value pairs for NVRAM
 class MbNvramGuid {
   final String guid;
   final Map<String, dynamic> entries;
 
-  MbNvramGuid({required this.guid, required this.entries});
+  const MbNvramGuid({required this.guid, required this.entries});
 }
 
-/// PlatformInfo 完整数据
+/// Full PlatformInfo data
 class MbPlatformInfoData {
   final bool? automatic;
   final String? updateSMBIOSMode;
@@ -141,7 +141,7 @@ class MbPlatformInfoData {
   final bool? customMemory;
   final Map<String, dynamic>? generic;
 
-  MbPlatformInfoData({
+  const MbPlatformInfoData({
     this.automatic,
     this.updateSMBIOSMode,
     this.updateDataHub,
@@ -154,17 +154,17 @@ class MbPlatformInfoData {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 主板条目（解析后的完整配置）
+// Motherboard entry (fully parsed configuration)
 // ─────────────────────────────────────────────────────────────────────────────
 class MbConfEntry {
   final String platform;
   final String vendor;
   final String modelName;
 
-  /// 全部可勾选条目（已按 category 预分组）
+  /// All selectable items (pre-grouped by category)
   final List<MbConfSelectableItem> items;
 
-  MbConfEntry({
+  const MbConfEntry({
     required this.platform,
     required this.vendor,
     required this.modelName,
@@ -173,16 +173,16 @@ class MbConfEntry {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 层级导航辅助
+// Hierarchy navigation helper
 // ─────────────────────────────────────────────────────────────────────────────
 class MbConfVendor {
   final String name;
   final List<String> models;
-  MbConfVendor({required this.name, required this.models});
+  const MbConfVendor({required this.name, required this.models});
 }
 
 class MbConfPlatform {
   final String name;
   final List<MbConfVendor> vendors;
-  MbConfPlatform({required this.name, required this.vendors});
+  const MbConfPlatform({required this.name, required this.vendors});
 }

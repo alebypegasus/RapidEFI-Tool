@@ -5,28 +5,29 @@ enum ProcessorType {
   none(
     value: 0,
     text: EnumText(
-      titleId: 5144, descId: 5145,
+      title: 'Do not modify ProcessorType',
+      description: 'Keep default CPU type display',
     ),
   ),
   type1537(
     value: 1537,
     text: EnumText(
-      fallbackTitle: 'ProcessorType: 1537',
-      descId: 5146,
+      title: 'ProcessorType: 1537',
+      description: 'Intel & AMD CPU name spoof Method 1 (Usually for CPUs with <= 6 cores)',
     ),
   ),
   type3841(
     value: 3841,
     text: EnumText(
-      fallbackTitle: 'ProcessorType: 3841',
-      descId: 5147,
+      title: 'ProcessorType: 3841',
+      description: 'Intel & AMD CPU name spoof Method 2 (Usually for CPUs with >= 8 cores)',
     ),
   ),
   type3842(
     value: 3842,
     text: EnumText(
-      fallbackTitle: 'ProcessorType: 3842',
-      descId: 5148,
+      title: 'ProcessorType: 3842',
+      description: 'Intel & AMD CPU name spoof Alternative Method (Usually for >= 8-core i7/i9 CPUs)',
     ),
   );
 

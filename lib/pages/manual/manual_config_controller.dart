@@ -87,7 +87,7 @@ class ManualConfigController extends ChangeNotifier {
         _editor.setConfigModel(_defaultConfigModel());
       }
       _configService.normalizeRuntimeConfigModel();
-      // 初始化平台数据。
+      // Preload platform data.
       await _configService.preloadAllPlatformInfos();
       await _configService.ensureBluetoothNvramCatalog();
       await _configService.ensureEfiDriverCatalog();
@@ -184,8 +184,7 @@ class ManualConfigController extends ChangeNotifier {
     _clearPlatformModelCache();
     _configService.normalizeRuntimeConfigModel();
 
-    // 只刷新明确联动的板块：
-
+    // Refresh only explicitly linked sections:
     _bumpPlatformLinkedSections();
   }
 

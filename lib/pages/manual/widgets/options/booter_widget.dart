@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/utils/config/models/booter/booter.dart';
@@ -24,15 +23,15 @@ class BooterWidget extends StatefulWidget {
 }
 
 class _BooterWidgetState extends State<BooterWidget> {
-  String get _schemeDefault => AppLocalizations.of(context)!.manualBooterPlan1;
-  String get _schemeInverse => AppLocalizations.of(context)!.manualBooterPlan2;
-  String get _schemeInverseWithVirtualMap => AppLocalizations.of(context)!.manualBooterPlan3;
-  String get _schemeAllEnabled => AppLocalizations.of(context)!.manualBooterPlan4;
+  static const String _schemeDefault = 'Method 1';
+  static const String _schemeInverse = 'Method 2';
+  static const String _schemeInverseWithVirtualMap = 'Method 3';
+  static const String _schemeAllEnabled = 'Method 4';
 
   late List<String> choices;
   late List<String> selectedChoices;
   late BooterQuirks _defaultQuirks;
-  String? _selectedScheme;
+  String _selectedScheme = _schemeDefault;
 
   @override
   void initState() {
@@ -48,7 +47,7 @@ class _BooterWidgetState extends State<BooterWidget> {
     if (oldWidget.booter != widget.booter ||
         oldWidget.booterQuirkTypes != widget.booterQuirkTypes) {
       _defaultQuirks = widget.booter.booterQuirks.copyWith();
-      _selectedScheme = null;
+      _selectedScheme = _schemeDefault;
       _syncFromWidget();
     }
   }
@@ -60,15 +59,15 @@ class _BooterWidgetState extends State<BooterWidget> {
 
   void _applyScheme(String scheme) {
     final booterQuirks = switch (scheme) {
-      final s when s == _schemeInverse => _defaultQuirks.copyWith(
+      _schemeInverse => _defaultQuirks.copyWith(
           enableWriteUnprotector: !_defaultQuirks.enableWriteUnprotector,
           rebuildAppleMemoryMap: !_defaultQuirks.rebuildAppleMemoryMap,
           syncRuntimePermissions: !_defaultQuirks.rebuildAppleMemoryMap,
         ),
-      final s when s == _schemeInverseWithVirtualMap => _defaultQuirks.copyWith(
+      _schemeInverseWithVirtualMap => _defaultQuirks.copyWith(
           setupVirtualMap: !_defaultQuirks.setupVirtualMap,
         ),
-      final s when s == _schemeAllEnabled => _defaultQuirks.copyWith(
+      _schemeAllEnabled => _defaultQuirks.copyWith(
           enableWriteUnprotector: true,
           rebuildAppleMemoryMap: true,
           setupVirtualMap: true,
@@ -107,10 +106,10 @@ class _BooterWidgetState extends State<BooterWidget> {
             mainAxisSize: MainAxisSize.min,
             spacing: 8.0,
             children: [
-              Text(AppLocalizations.of(context)!.manualBooterEbFix),
+              const Text('Stuck on [EB] Fix (Optional - defaults recommended):'),
               RadioOptionGroup(
-                groupValue: _selectedScheme ?? _schemeDefault,
-                options: [
+                groupValue: _selectedScheme,
+                options: const [
                   RadioOptionData(value: _schemeDefault, label: _schemeDefault),
                   RadioOptionData(value: _schemeInverse, label: _schemeInverse),
                   RadioOptionData(

@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -13,19 +12,19 @@ class ThemeWidget extends StatefulWidget {
     this.hasExpaner = true,
   });
 
-  ///选中主题色回调
+  /// Theme color selection callback
   final Function(MaterialColor)? onTap;
 
-  ///当前选中主题色
+  /// Currently selected theme color
   final MaterialColor primary;
 
-  ///自定义默认主题色，指定默认主题色
+  /// Custom default theme color
   final MaterialColor defaultCustomPrimary;
 
-  ///默认主题色
+  /// Default theme color
   final MaterialColor defaultPrimary;
 
-  ///是否使用默认主题色
+  /// Whether default theme is used
   final bool? isDefault;
 
   final bool hasExpaner;
@@ -106,7 +105,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
                   height: 40,
                 ),
                 Text(
-                  AppLocalizations.of(context)!.settingsThemeDefault,
+                  "Default",
                   style: TextStyle(fontSize: 11, color: color),
                 ),
                 isDefalut
@@ -178,7 +177,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
       return colorWidets;
     }
     return ExpansionTile(
-      title: Text(AppLocalizations.of(context)!.settingsThemeColors),
+      title: const Text('Color Theme'),
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

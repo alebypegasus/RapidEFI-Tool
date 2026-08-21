@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/config_model.dart';
 import 'package:rapidefi/utils/config/models/enums/brand_enum.dart';
 import 'package:rapidefi/utils/config/models/enums/cpu_type_enum.dart';
@@ -31,7 +30,7 @@ typedef HardwareConfigStageApplier = void Function(
 );
 
 class HardwareConfigStage {
-  HardwareConfigStage({
+  const HardwareConfigStage({
     required this.id,
     required this.apply,
   });
@@ -41,7 +40,7 @@ class HardwareConfigStage {
 }
 
 class HardwareConfigModelBuilder {
-  HardwareConfigModelBuilder({
+  const HardwareConfigModelBuilder({
     required this.hardwareInfo,
     required this.rawInfo,
   });
@@ -339,7 +338,7 @@ class HardwareConfigModelBuilder {
     HardwareConfigBuildContext context,
     ConfigModel model,
   ) {
-    // 默认不添加 NVMeFix 驱动
+    // Do not add NVMeFix driver by default
     // final hasNvme = context.analyzedStorageControllerEntries.any(
     //   (entry) => entry.isNvme,
     // );
@@ -478,7 +477,7 @@ class HardwareConfigModelBuilder {
   }
 
   void _ensureBluetoothNvramDefaults(ConfigModel model) {
-    const guid = ConfigNvram.UUID_7C436110_AB2A_4BBB_A880_FE41995C9F82;
+    final guid = ConfigNvram.UUID_7C436110_AB2A_4BBB_A880_FE41995C9F82;
     final addList = model.nvram.nvramAdd.addList ??= {};
     final items = addList[guid] ??= [];
 
@@ -506,8 +505,8 @@ class HardwareConfigModelBuilder {
 
   bool _isIntegratedGpu(String name, Map<String, dynamic> gpu) {
     final type = safeStr(gpu['Device Type']).toLowerCase();
-    if (type.contains('integrated') || type.contains(l10nGlobal.autoGen5017)) return true;
-    if (type.contains('discrete') || type.contains(l10nGlobal.autoGen5018)) return false;
+    if (type.contains('integrated') || type.contains('internal')) return true;
+    if (type.contains('discrete') || type.contains('dedicated')) return false;
 
     final text = [
       name,
@@ -837,11 +836,11 @@ class HardwareConfigModelBuilder {
     final type = safeStr(gpu['Device Type']).toLowerCase();
     if (type == 'integrated' ||
         type.contains('integrated') ||
-        type.contains(l10nGlobal.autoGen5019) ||
-        type.contains(l10nGlobal.autoGen5017)) {
+        type.contains('integrated') ||
+        type.contains('internal')) {
       return false;
     }
-    if (type == 'discrete' || type.contains(l10nGlobal.autoGen5018)) return true;
+    if (type == 'discrete' || type.contains('dedicated')) return true;
 
     final text = [
       name,
@@ -978,36 +977,36 @@ class HardwareConfigModelBuilder {
   Brand _resolveMotherboardBrand(String text) {
     if (text.isEmpty) return Brand.none;
 
-    if (_containsAny(text, ['asustek', 'asus', l10nGlobal.autoGen5020])) {
+    if (_containsAny(text, const ['asustek', 'asus'])) {
       return Brand.asus;
     }
-    if (_containsAny(text, ['gigabyte', l10nGlobal.autoGen5021])) {
+    if (_containsAny(text, const ['gigabyte'])) {
       return Brand.gigabyte;
     }
-    if (_containsAny(text, ['asrock', 'as rock', l10nGlobal.autoGen5022])) {
+    if (_containsAny(text, const ['asrock', 'as rock'])) {
       return Brand.asrock;
     }
-    if (_containsAny(text, ['micro-star', 'micro star', 'msi', l10nGlobal.autoGen5023])) {
+    if (_containsAny(text, const ['micro-star', 'micro star', 'msi'])) {
       return Brand.msi;
     }
-    if (_containsAny(text, ['dell', 'alienware', l10nGlobal.autoGen5024])) {
+    if (_containsAny(text, const ['dell', 'alienware'])) {
       return Brand.dell;
     }
     if (_containsAny(
-        text, ['lenovo', 'thinkpad', 'thinkbook', 'ideapad', l10nGlobal.autoGen5025])) {
+        text, const ['lenovo', 'thinkpad', 'thinkbook', 'ideapad'])) {
       return Brand.lenovo;
     }
-    if (_containsAny(text, ['vaio', 'sony', l10nGlobal.autoGen5026])) {
+    if (_containsAny(text, const ['vaio', 'sony'])) {
       return Brand.vaio;
     }
     if (_containsAny(
-        text, ['hewlett-packard', 'hewlett packard', 'hp ', l10nGlobal.autoGen5027])) {
+        text, const ['hewlett-packard', 'hewlett packard', 'hp '])) {
       return Brand.hp;
     }
-    if (_containsAny(text, ['chromebook', 'google', l10nGlobal.autoGen5028])) {
+    if (_containsAny(text, const ['chromebook', 'google'])) {
       return Brand.chrome;
     }
-    if (_containsAny(text, ['microsoft', 'surface', l10nGlobal.autoGen5029])) {
+    if (_containsAny(text, const ['microsoft', 'surface'])) {
       return Brand.microsoft;
     }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/pages/hardware/widgets/hardware_shared.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 
 class IOSection extends StatelessWidget {
   final Map<String, dynamic> rawInfo;
@@ -13,15 +12,15 @@ class IOSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      _sdSection(context),
+      _sdSection(),
       if (detailed) ...[
         const SizedBox(height: 6),
-        _inputSection(context),
+        _inputSection(),
       ],
     ]);
   }
 
-  Widget _inputSection(BuildContext context) {
+  Widget _inputSection() {
     final lines = hardwareDevices(rawInfo['Input']).where((entry) {
       final device = safeMap(entry.value);
       final deviceId = safeStr(device['Device ID']);
@@ -41,18 +40,18 @@ class IOSection extends StatelessWidget {
       return HardwareDeviceBlock([
         HardwareLine([
           deviceDisplayName(entry.key, device),
-          if (deviceText.isNotEmpty) AppLocalizations.of(context)!.hwDevice(deviceText),
-          if (detailed && safeStr(device['Device Type']).isNotEmpty)
-            AppLocalizations.of(context)!.hwType(safeStr(device['Device Type'])),
+          if (deviceText.isNotEmpty) 'Device: $deviceText',
+          if (safeStr(device['Device Type']).isNotEmpty)
+            'Type: ${safeStr(device['Device Type'])}',
         ]),
         if (detailed) HardwarePathLine(device),
       ]);
     }).toList();
     if (lines.isEmpty) return const SizedBox.shrink();
-    return HardwareSection(AppLocalizations.of(context)!.hwInput, lines);
+    return HardwareSection('Input', lines);
   }
 
-  Widget _sdSection(BuildContext context) {
+  Widget _sdSection() {
     final lines = sdCardEntries(rawInfo).map((entry) {
       final color = entry.compatibility.level == CompatibilityLevel.supported
           ? null
@@ -61,17 +60,17 @@ class IOSection extends StatelessWidget {
         HardwareLine([
           entry.name,
           entry.manufacturer,
-          if (entry.deviceId.isNotEmpty) AppLocalizations.of(context)!.hwDeviceID(entry.deviceId),
-          if (entry.device.isNotEmpty) AppLocalizations.of(context)!.hwDevice(entry.device),
-          if (entry.readerName.isNotEmpty) AppLocalizations.of(context)!.hwModel(entry.readerName),
-          if (entry.builtIn.isNotEmpty) AppLocalizations.of(context)!.hwBuiltIn(entry.builtIn),
+          if (entry.deviceId.isNotEmpty) 'Device ID: ${entry.deviceId}',
+          if (entry.device.isNotEmpty) 'Device: ${entry.device}',
+          if (entry.readerName.isNotEmpty) 'Model: ${entry.readerName}',
+          if (entry.builtIn.isNotEmpty) 'Built-in: ${entry.builtIn}',
         ], color: color),
-        if (entry.serialNumber.isNotEmpty && detailed)
-          HardwareLine([AppLocalizations.of(context)!.hwSerialNumber(entry.serialNumber)], color: color),
+        if (entry.serialNumber.isNotEmpty)
+          HardwareLine(['Serial: ${entry.serialNumber}'], color: color),
         if (detailed) HardwarePathLine(entry.rawDevice, color: color),
       ]);
     }).toList();
     if (lines.isEmpty) return const SizedBox.shrink();
-    return HardwareSection(AppLocalizations.of(context)!.hwSDCard, lines, note: sdCompatibility(rawInfo));
+    return HardwareSection('SD Card', lines, note: sdCompatibility(rawInfo));
   }
 }

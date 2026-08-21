@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:fluent_ui/fluent_ui.dart';
@@ -15,15 +14,15 @@ Map<String, ThemeMode> get themeModeMap => {
       'dark': ThemeMode.dark,
     };
 Map<String, String> get themeModeCHMap => {
-      'system': l10nGlobal.autoGen5775,
-      'light': l10nGlobal.autoGen5776,
-      'dark': l10nGlobal.autoGen5004,
+      'system': 'Follow System',
+      'light': 'Off',
+      'dark': 'On',
     };
 
 Map<String, String> get appFontFamilyMap => {
-      'msyh': l10nGlobal.autoGen5777,
-      'Sarasa-Gothic-Mono-Nerd-SC-Regular': l10nGlobal.autoGen5778,
-      'NotoSerifSC-Regular': l10nGlobal.autoGen5779,
+      'msyh': 'Microsoft YaHei',
+      'Sarasa-Gothic-Mono-Nerd-SC-Regular': 'Sarasa Gothic',
+      'NotoSerifSC-Regular': 'Source Han Serif',
     };
 
 List<String> get themeModeCHList => themeModeCHMap.values.toList();
@@ -123,42 +122,10 @@ class AppTheme extends ChangeNotifier {
     notifyListeners();
   }
 
-  Locale? get locale {
-    final languageTag = SpUtil.getString(Constant.languageKey, defValue: 'system');
-    if (languageTag == null || languageTag == 'system' || languageTag.isEmpty) {
-      return null;
-    }
-    final parts = languageTag.split('_');
-    if (parts.length > 1) {
-      return Locale(parts[0], parts[1]);
-    }
-    return Locale(parts[0]);
-  }
-
-  String get languageTag => SpUtil.getString(Constant.languageKey, defValue: 'system') ?? 'system';
-
+  Locale? _locale;
+  Locale? get locale => _locale;
   set locale(Locale? locale) {
-    final tag = locale == null
-        ? 'system'
-        : locale.countryCode != null && locale.countryCode!.isNotEmpty
-            ? '${locale.languageCode}_${locale.countryCode}'
-            : locale.languageCode;
-    SpUtil.putString(Constant.languageKey, tag);
+    _locale = locale;
     notifyListeners();
   }
-
-
-  void setLanguageTag(String tag) {
-    if (tag == 'system') {
-      locale = null;
-    } else {
-      final parts = tag.split('_');
-      if (parts.length > 1) {
-        locale = Locale(parts[0], parts[1]);
-      } else {
-        locale = Locale(parts[0]);
-      }
-    }
-  }
 }
-

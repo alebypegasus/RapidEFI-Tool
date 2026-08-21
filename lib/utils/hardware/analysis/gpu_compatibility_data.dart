@@ -224,13 +224,13 @@ class GpuCompatibilityData {
             .compareTo(_amdIdentityOverrideGenerationRank(a));
     if (generationCompare != 0) return generationCompare;
 
-    final sourceOrderCompare = b.sortIndex.compareTo(a.sortIndex);
-    if (sourceOrderCompare != 0) return sourceOrderCompare;
-
     final modelCompare =
         _amdIdentityOverrideModelNumber(b)
             .compareTo(_amdIdentityOverrideModelNumber(a));
     if (modelCompare != 0) return modelCompare;
+
+    final sourceOrderCompare = a.sortIndex.compareTo(b.sortIndex);
+    if (sourceOrderCompare != 0) return sourceOrderCompare;
 
     return a.id.compareTo(b.id);
   }
@@ -310,7 +310,7 @@ class GpuCompatibilityRecord {
   final String? spoofId;
   final int sortIndex;
 
-  GpuCompatibilityRecord({
+  const GpuCompatibilityRecord({
     required this.id,
     required this.vendorId,
     required this.groupName,

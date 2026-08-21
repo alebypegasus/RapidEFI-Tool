@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/file_util.dart';
-
 import 'package:rapidefi/utils/log/logwidet.dart';
 
 class EfiBuildProgressHandle {
@@ -74,7 +72,6 @@ class EfiBuildProgressDialog extends StatefulWidget {
 class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final dialogBackground =
@@ -88,18 +85,14 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
         final running = result == null;
         final success = result?.success == true;
         final statusText = running
-            ? l10n.generatingEfiAndSsdt
+            ? 'Generating EFI and custom SSDTs, please wait...'
             : result.message ??
-                (success ? l10n.configureEFISuccess : l10n.configureEFIError);
+                (success ? 'EFI configuration completed.' : 'EFI configuration failed. Please check output path or logs.');
 
         return AlertDialog(
           backgroundColor: dialogBackground,
           title: Text(
-            running
-                ? l10n.configuringEfiTitle
-                : (success
-                    ? l10n.configureEfiSuccessTitle
-                    : l10n.configureEfiErrorTitle),
+            running ? 'Configuring EFI...' : (success ? 'EFI Configuration Succeeded' : 'EFI Configuration Failed'),
           ),
           content: SizedBox(
             width: 620,
@@ -134,7 +127,7 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
                 if (result != null && result.outputPath.isNotEmpty) ...[
                   const SizedBox(height: 8),
                   SelectableText(
-                    '${l10n.outputDirectory} ${result.outputPath}',
+                    'Output Directory: ${result.outputPath}',
                     style: TextStyle(
                       color: colorScheme.onSurfaceVariant,
                       fontSize: 12,
@@ -150,7 +143,7 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
                         border: Border.all(color: colorScheme.outlineVariant),
                       ),
                       child:
-                          const LogWidget(showChannelTag: false, allChannel: true)),
+                          LogWidget(showChannelTag: false, allChannel: true)),
                 ),
               ],
             ),
@@ -163,16 +156,15 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
                   widget.handle.close();
                   FileUtils.revealInFileExplorer(outputPath);
                 },
-                child: Text(l10n.openEfiDirectory),
+                child: const Text('Open EFI Folder'),
               ),
             TextButton(
               onPressed: widget.handle.close,
-              child: Text(running ? l10n.cancel : l10n.close),
+              child: Text(running ? 'Cancel' : 'Close'),
             ),
           ],
         );
       },
-
     );
   }
 }

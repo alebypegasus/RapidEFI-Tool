@@ -17,10 +17,10 @@ class CPU {
   String? socketDesignation;
   int? maxClockSpeed;
   bool virtualizationFirmwareEnabled;
-  //扩展信息
-  String? codename; // 代号
-  String? simdFeatures; // 指令集
-  // 构造函数
+  // Extended information
+  String? codename; // Codename
+  String? simdFeatures; // Instruction set
+  // Constructor
   CPU({
     this.manufacturer,
     this.name,

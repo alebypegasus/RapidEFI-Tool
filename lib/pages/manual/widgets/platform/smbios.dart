@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/platform_info/pi_generic.dart';
 import 'package:rapidefi/utils/config/support/smbios_compatibility.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
@@ -65,11 +64,9 @@ class _SMBiosWidgetState extends State<SMBiosWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return TitleCard(
-      title: l10n.smbiosModelSetup,
+      title: "SMBIOS Model Settings:",
       subTitle: "",
-
       content: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(

@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:rapidefi/utils/config/models/device_properties/iigpufb_model.dart';
 
-/// iigpufb.json 加载与查询服务（单例懒加载）
+/// iigpufb.json loading and query service (lazy singleton)
 class IigpufbService {
   IigpufbService._();
   static final IigpufbService instance = IigpufbService._();
 
   List<IigpufbGeneration>? _cache;
 
-  /// 异步加载并解析 iigpufb.json，重复调用直接返回缓存
+  /// Asynchronously loads and parses iigpufb.json; cached on subsequent calls
   Future<List<IigpufbGeneration>> load() async {
     if (_cache != null) return _cache!;
     final jsonStr =
@@ -21,7 +21,7 @@ class IigpufbService {
     return _cache!;
   }
 
-  // ---------- 内部解析 ----------
+  // ---------- Internal Parsing ----------
 
   IigpufbGeneration _parseGeneration(
       String name, Map<String, dynamic> cpuMap) {
@@ -33,7 +33,7 @@ class IigpufbService {
 
   IigpufbCpuEntry _parseCpu(String model, Map<String, dynamic> props) {
     const metaKeys = {'igpu', '_note'};
-    // 这些键的值为纯字符串，不是 hex
+    // These keys have string values, not hex
     const stringKeys = {
       'model',
       'device_type',
@@ -52,7 +52,7 @@ class IigpufbService {
       final isString = stringKeys.contains(entry.key);
 
       if (isHex && !isString) {
-        // 去掉 "0x" 前缀，转小写，保持原始字节序
+        // Remove '0x' prefix, convert to lowercase, keep byte order
         properties.add(IigpufbProperty(
           key: entry.key,
           dataType: 'data',

@@ -3,7 +3,6 @@ import 'package:rapidefi/utils/hardware/analysis/hardware_compatibility.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
 import 'package:rapidefi/pages/hardware/widgets/hardware_shared.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 
 class MotherboardSection extends StatelessWidget {
   final Map<String, dynamic> rawInfo;
@@ -21,15 +20,15 @@ class MotherboardSection extends StatelessWidget {
         ? brandCode
         : '$brandCode($brandName)';
     return HardwareSection(
-        AppLocalizations.of(context)!.hwMotherboard,
+        'Motherboard',
         [
           HardwareLine([
-            AppLocalizations.of(context)!.hwBrand(brandText),
-            AppLocalizations.of(context)!.hwModel(safeStr(board['Product'], fallback: safeStr(board['Model']))),
-            AppLocalizations.of(context)!.hwDeviceID(safeStr(board['Device ID'])),
-            AppLocalizations.of(context)!.hwChipset(chipsetName(board)),
+            'Brand: $brandText',
+            'Model: ${safeStr(board['Product'], fallback: safeStr(board['Model']))}',
+            'Device ID: ${safeStr(board['Device ID'])}',
+            'Chipset: ${chipsetName(board)}',
           ]),
         ],
-        note: CompatibilityNote.supported(AppLocalizations.of(context)!.hwCompatible));
+        note: CompatibilityNote.supported('Supported'));
   }
 }

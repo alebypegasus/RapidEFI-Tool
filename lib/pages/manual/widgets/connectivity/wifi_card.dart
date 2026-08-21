@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/connectivity/bluetooth_widget.dart';
 import 'package:rapidefi/pages/manual/widgets/connectivity/brcm_wifi.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
@@ -102,12 +101,12 @@ class _WifiCardState extends State<WifiCard> {
   CloseButtonVisibilityMode closeButtonVisibilityMode =
       CloseButtonVisibilityMode.never;
   bool showScrollButtons = true;
-  List<String> get titles => [
-    AppLocalizations.of(context)!.manualWifiIntel,
-    AppLocalizations.of(context)!.manualWifiBrcm,
-    AppLocalizations.of(context)!.manualWifiAtheros,
+  List<String> titles = [
+    "Intel Wi-Fi",
+    "Broadcom (Brcm)",
+    "Atheros",
     "USB Wi-Fi",
-    AppLocalizations.of(context)!.manualWifiBluetoothDriver
+    "Bluetooth Drivers"
   ];
 
   List<IconData> iconDatas = [
@@ -162,16 +161,16 @@ class _WifiCardState extends State<WifiCard> {
               choices: [],
               header: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  AppLocalizations.of(context)!.manualWifiAirportItlwmPlan,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                child: const Text(
+                  'Option 1: AirportItlwm driver. Native Apple Wi-Fi UI for Intel cards (large size). Do NOT use concurrently with Option 2 (itlwm) to avoid kernel panics!',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               footer: WifiTypeWidget(
                 choices: intelAirportOptions,
                 selectedChoices: intelSelectedChoices,
                 isMultipleSelection: true,
-                expandTitle: AppLocalizations.of(context)!.manualWifiAddAllDrivers,
+                expandTitle: 'Include all Wi-Fi drivers below (larger size)',
                 onChanged: (List<KernelKext> value) {
                   _handleIntelSelectionChange.call(value);
                 },
@@ -181,9 +180,9 @@ class _WifiCardState extends State<WifiCard> {
               choices: [intelItlwmOption],
               header: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  AppLocalizations.of(context)!.manualWifiItlwmPlan,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                child: const Text(
+                  'Option 2: itlwm driver (requires HeliPort app). Compatible Intel Wi-Fi driver. Do NOT use concurrently with Option 1!',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               selectedChoices: itlwmSelected ? [intelItlwmOption] : [],
@@ -214,11 +213,11 @@ class _WifiCardState extends State<WifiCard> {
       StateKeepContainer(
         child: ScrollableChoiceListPanel(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10, left: 10),
+            const Padding(
+              padding: EdgeInsets.only(top: 10, left: 10),
               child: Text(
-                AppLocalizations.of(context)!.manualWifiCardSupport,
-                style: const TextStyle(fontSize: 12),
+                "Atheros drivers support macOS Mojave 10.14 ~ macOS Sequoia 15! Note: macOS Monterey 12+ requires OCLP root patching!",
+                style: TextStyle(fontSize: 12),
               ),
             ),
             WifiTypeWidget(
@@ -248,7 +247,6 @@ class _WifiCardState extends State<WifiCard> {
       ),
     ];
 
-    final l10n = AppLocalizations.of(context)!;
     tabs = List.generate(titles.length, (index) {
       return Tab(
         text: Text(titles[index]),
@@ -258,9 +256,9 @@ class _WifiCardState extends State<WifiCard> {
     });
 
     return TitleCard(
-      title: l10n.wifiBtCardTitle,
-      subTitle: l10n.wifiBtDefaultTip,
-      content: OclpLinkButton(buttonText: l10n.getIntelModdedOclp),
+      title: "Wi-Fi & Bluetooth Drivers:",
+      subTitle: "(No Wi-Fi drivers configured by default)",
+      content: const OclpLinkButton(buttonText: 'Get Intel Modified OCLP'),
       expander: SizedBox(
         height: 300,
         child: TabView(

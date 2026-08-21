@@ -8,7 +8,7 @@ import 'permissions.dart';
 
 class Run {
   
-  /// 执行指定命令
+  /// Execute specified command
   Future<List<String>> _executeCommand(Map<String, dynamic> comm) async {
     List<String> args = List<String>.from(comm['args'] ?? []);
     bool shell = comm['shell'] ?? false;
@@ -22,7 +22,7 @@ class Run {
     if (args.isEmpty) return ['No command', '', '1'];
 
     if (message != null) debugPrint('$message');
-    if (show) debugPrint('执行命令: ${args.join(' ')}');
+    if (show) debugPrint('Executing command: ${args.join(' ')}');
 
     await ExecutablePermissionManager.instance.ensureExecutable(args.first);
 
@@ -69,12 +69,12 @@ class Run {
         exitCode.toString(),
       ];
     } catch (e) {
-      debugPrint('命令执行失败: $e');
+      debugPrint('Command execution failed: $e');
       return ['', 'Error: $e', '1'];
     }
   }
 
-  /// 并发执行多个命令
+  /// Execute multiple commands in parallel
   Future<List<String>> run(List<Map<String, dynamic>> commandList) async {
     final futures = <Future<List<String>>>[];
     for (var command in commandList) {

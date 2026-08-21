@@ -6,7 +6,7 @@ class AppleALCOption {
   final String published;
   final List<AppleALCVendor> vendors;
 
-  AppleALCOption({
+  const AppleALCOption({
     this.name = '',
     this.version = '',
     this.repo = '',
@@ -105,14 +105,14 @@ class AppleALCVendor {
   final String name;
   final List<AppleALCCodec> codecs;
 
-  AppleALCVendor({
+  const AppleALCVendor({
     this.name = '',
     this.codecs = const [],
   });
 
   factory AppleALCVendor.fromJson(Map<String, dynamic> json) {
     if (json.isEmpty) {
-      return AppleALCVendor();
+      return const AppleALCVendor();
     }
 
     final entry = json.entries.first;
@@ -169,14 +169,14 @@ class AppleALCCodec {
   final String name;
   final List<int> layoutIds;
 
-  AppleALCCodec({
+  const AppleALCCodec({
     this.name = '',
     this.layoutIds = const [],
   });
 
   factory AppleALCCodec.fromJson(Map<String, dynamic> json) {
     if (json.isEmpty) {
-      return AppleALCCodec();
+      return const AppleALCCodec();
     }
 
     final entry = json.entries.first;

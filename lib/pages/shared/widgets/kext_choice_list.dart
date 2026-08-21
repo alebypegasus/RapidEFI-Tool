@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
-import 'package:rapidefi/l10n/kext_l10n.dart';
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
@@ -27,7 +25,7 @@ class KextChoiceList extends StatelessWidget {
     this.expandTitle,
     this.alwaysShowTitle = true,
     this.showBorder = false,
-    this.labelBuilder,
+    this.labelBuilder = kextDescriptionLabel,
   });
 
   final List<KernelKext> choices;
@@ -52,7 +50,6 @@ class KextChoiceList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return ChoiceList<KernelKext>(
       tips: tips ??
           (showBundleNameTips
@@ -73,7 +70,7 @@ class KextChoiceList extends StatelessWidget {
       expandTitle: expandTitle,
       alwaysShowTitle: alwaysShowTitle,
       showBorder: showBorder,
-      labelBuilder: labelBuilder ?? (kext) => localizedKextDescription(kext, l10n),
+      labelBuilder: labelBuilder,
       onChanged: onChanged,
     );
   }
@@ -102,7 +99,7 @@ class KextChoiceListCard extends StatelessWidget {
     this.expandTitle,
     this.alwaysShowTitle = true,
     this.showBorder = false,
-    this.labelBuilder,
+    this.labelBuilder = kextDescriptionLabel,
     this.initiallyExpanded = false,
   });
 

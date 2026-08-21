@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
-
 import 'package:rapidefi/utils/config/services/config_service.dart';
 import 'package:rapidefi/utils/file_util.dart';
 import 'package:rapidefi/utils/hardware/hardware_info.dart';
@@ -154,7 +152,7 @@ class _HardwarePageState extends State<HardwarePage> {
       customSsdtAvailable: _controller.customSsdtAvailable,
       customSsdtUnavailableReason: _controller.customSsdtAvailable
           ? null
-          : AppLocalizations.of(context)!.hardwareReportAcpiMissing,
+          : 'Imported external hardware report without an ACPI tables directory; custom SSDT is unavailable.',
     );
     if (result != null) {
       setState(() {
@@ -188,10 +186,10 @@ class _HardwarePageState extends State<HardwarePage> {
           detailed: detailed,
           onRefresh: () {
             setState(() => _resetHardwareDerivedOptions());
-            _controller.refreshHardwareInfo(context, clearCache: true);
+            _controller.refreshHardwareInfo(clearCache: true);
           },
           onImport: _importHardwareMaterials,
-          onExport: () => _controller.exportHardwareInfo(context),
+          onExport: _controller.exportHardwareInfo,
           onExportAcpi: _exportLocalAcpiTables,
           onOutputEfi: _outputEfi,
           onPersonalizedEfi: _openPersonalizedEfi,
@@ -215,42 +213,39 @@ class _HardwarePageState extends State<HardwarePage> {
   Future<String?> _requestSudoPasswordForAcpiExport() async {
     final password = await _requestSudoPassword();
     if (password != null && password.trim().isNotEmpty) {
-      if (!mounted) return password;
-      showToast(AppLocalizations.of(context)!.verifyingAdminPassword);
+      showToast('Verifying administrator password...');
     }
     return password;
   }
 
   Future<String?> _requestSudoPassword() async {
-    final l10n = AppLocalizations.of(context)!;
     String password = '';
     return showDialog<String>(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(l10n.adminRightsRequired),
+          title: const Text('Administrator Privileges Required'),
           content: TextField(
             autofocus: true,
             obscureText: true,
-            decoration: InputDecoration(labelText: l10n.enterSystemPassword),
+            decoration: const InputDecoration(labelText: 'Please enter your computer login password'),
             onChanged: (value) => password = value,
             onSubmitted: (value) => Navigator.pop(context, value),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(l10n.cancel),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context, password),
-              child: Text(l10n.confirm),
+              child: const Text('Confirm'),
             ),
           ],
         );
       },
     );
   }
-
 
   Future<void> _importHardwareMaterials() async {
     final result = await _HardwareImportDialog.show(
@@ -261,7 +256,7 @@ class _HardwarePageState extends State<HardwarePage> {
     );
     if (result == null || result.hardwareReportPath.isEmpty) return;
     setState(() => _resetHardwareDerivedOptions());
-    await _controller.importHardwareInfo(context, 
+    await _controller.importHardwareInfo(
       filePath: result.hardwareReportPath,
       acpiTablesPath: result.acpiTablesPath,
     );
@@ -317,12 +312,12 @@ class _HardwarePageState extends State<HardwarePage> {
                           color: Theme.of(context).colorScheme.outlineVariant,
                         ),
                       ),
-                      child: Padding(
+                      child: const Padding(
                         padding:
-                            const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
+                            EdgeInsets.symmetric(horizontal: 28, vertical: 18),
                         child: Text(
-                          AppLocalizations.of(context)!.releaseToIdentifyHardware,
-                          style: const TextStyle(
+                          'Drop here to identify hardware report and ACPI tables',
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
@@ -349,7 +344,7 @@ class _HardwarePageState extends State<HardwarePage> {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Text(
-          AppLocalizations.of(context)!.dragHardwareReportHere,
+          'Drag and drop exported hardware report folder here\n(Automatically detects sysInfo.txt and ACPI directory)',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 11,
@@ -392,7 +387,7 @@ class _HardwarePageState extends State<HardwarePage> {
     final directory = _resolveDroppedDirectory(droppedPath, reportFile);
     if (reportFile == null || directory == null) {
       setState(() => _bodyDragging = false);
-      showToast(AppLocalizations.of(context)!.invalidHardwareReportToast);
+      showToast('No valid hardware report file detected');
       return;
     }
 
@@ -400,7 +395,7 @@ class _HardwarePageState extends State<HardwarePage> {
       _bodyDragging = false;
       _resetHardwareDerivedOptions();
     });
-    await _controller.importHardwareInfo(context, 
+    await _controller.importHardwareInfo(
       filePath: reportFile.path,
       acpiTablesPath: _findAcpiDirectory(directory),
     );
@@ -696,7 +691,6 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final dialogBackground =
@@ -706,7 +700,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.black.withValues(alpha: darkMode ? 0.75 : 0.22),
       elevation: darkMode ? 18 : 8,
-      title: Text(l10n.importHardwareInfo, textAlign: TextAlign.center),
+      title: const Text('Import Hardware Materials', textAlign: TextAlign.center),
       titlePadding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
       content: SizedBox(
@@ -716,24 +710,24 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildPickRow(
-              title: l10n.hardwareReport,
+              title: 'Hardware Report',
               pathText: _hardwareReportPath,
-              buttonText: l10n.selectFile,
+              buttonText: 'Browse File',
               onTap: _pickHardwareReport,
             ),
             const SizedBox(height: 12),
             _buildPickRow(
-              title: l10n.acpiTablesDirectory,
+              title: 'ACPI Folder',
               pathText: _acpiTablesPath,
-              buttonText: l10n.selectDirectory,
+              buttonText: 'Browse Folder',
               onTap: _pickAcpiTables,
               optional: true,
             ),
             const SizedBox(height: 8),
             Text(
               _acpiTablesPath.isEmpty
-                  ? l10n.noAcpiFolderTip
-                  : l10n.hasAcpiFolderTip,
+                  ? 'When no ACPI folder is selected, only prebuilt/original SSDTs can be used.'
+                  : 'Selected ACPI directory will be used for custom SSDT generation.',
               style: TextStyle(
                 fontSize: 12,
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -746,7 +740,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text(l10n.cancel),
+          child: const Text('Cancel'),
         ),
         TextButton(
           onPressed: _hardwareReportPath.isEmpty
@@ -758,12 +752,11 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
                       acpiTablesPath: _acpiTablesPath,
                     ),
                   ),
-          child: Text(l10n.import),
+          child: const Text('Import'),
         ),
       ],
     );
   }
-
 
   Widget _buildPickRow({
     required String title,
@@ -780,8 +773,8 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          width: 140,
-          child: Text(optional ? AppLocalizations.of(context)!.optionalSuffix(title) : title),
+          width: 88,
+          child: Text(optional ? '$title (Optional)' : title),
         ),
         Expanded(
           child: Container(
@@ -793,7 +786,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
               borderRadius: BorderRadius.circular(4),
             ),
             child: Text(
-              pathText.isEmpty ? AppLocalizations.of(context)!.notSelected : pathText,
+              pathText.isEmpty ? 'Not selected' : pathText,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontSize: 12),
             ),

@@ -1,0 +1,4 @@
+module system_theme {
+header "system_theme-Swift.h"
+export *
+}

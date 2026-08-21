@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 //  merge.dart
 //  Created by JeoJay127
 //
@@ -63,44 +62,41 @@ class PatchMerge {
     return await selectResultsFolder(patchedResults);
   }
 
-  /// 选择并校验结果文件夹路径
-  /// [resultsPath]：传入的结果路径
+  /// Select and validate results directory path
+  /// [resultsPath]: Specified results path
   Future<String?> selectResultsFolder(String resultsPath) async {
     try {
-      // 处理异步路径检查
+      // Asynchronous path check
       final folderPath = await util.checkPath(filePath: resultsPath);
       if (folderPath.isEmpty) {
-        Log.error(l10nGlobal.autoGen5618);
+        Log.error("Path check failed, returned empty path");
         return null;
       }
 
-      // 校验路径是否为有效的目录
+      // Validate valid directory
       final directory = Directory(folderPath);
       if (!directory.existsSync()) {
-        Log.warning("修补ACPI路径不存在: $folderPath");
+        Log.warning("ACPI patch path does not exist: $folderPath");
         return null;
       }
 
-      // 检查目录下是否有目标plist文件
+      // Check for target plist files
       final pathInfoList = _getPatchesPlists(folderPath);
-      // 校验pathInfoList是否合法（避免空列表导致的索引越界）
-      if (pathInfoList.length < 2) {
-        Log.warning(l10nGlobal.autoGen5619);
+      if (pathInfoList.isEmpty) {
+        Log.warning("Failed to get plist file information");
         return null;
       }
-      // 检查是否存在至少一个目标plist文件
-      if (!(pathInfoList[0].$2 || pathInfoList[1].$2)) {
+      // Check if at least one patch plist file exists
+      if (!pathInfoList.any((p) => p.$2)) {
         Log.warning(
-          "在修补ACPI路径: $folderPath 下未找到 patches_OC.plist 和 patches_Clover.plist 文件!请先制作需要的ACPI补丁后再尝试！",
+          "No patches_OC.plist or patches_Clover.plist found under: $folderPath! Please generate ACPI patches first.",
         );
         return null;
       }
 
-      // 所有校验通过，返回有效路径
       return folderPath;
     } catch (e) {
-      // 捕获所有异常
-      Log.error("处理结果文件夹路径时发生错误: $e");
+      Log.error("Error processing results folder path: $e");
       return null;
     }
   }
@@ -135,16 +131,16 @@ class PatchMerge {
           _extractData(patchOrDrop[key] ?? 0),
         );
         if (unprintable) {
-          Log.warning(l10nGlobal.autoGen5620);
-          Log.warning('$checkType 可能无法匹配或应用！\n');
+          Log.warning('\nNote: NormalizeHeaders is enabled and table ID contains unprintable characters!');
+          Log.warning('$checkType may fail to match or apply!\n');
           return true;
         }
       }
     } else {
       for (String key in sig) {
         if (_extractData(patchOrDrop[key] ?? 0).contains(0x3F)) {
-          Log.warning(l10nGlobal.autoGen5621);
-          Log.warning('$checkType 可能无法匹配或应用！\n');
+          Log.warning('\nNote: NormalizeHeaders is disabled and table ID contains \'?\' characters!');
+          Log.warning('$checkType may fail to match or apply!\n');
           return true;
         }
       }
@@ -194,9 +190,9 @@ class PatchMerge {
 
     var (plistType, configData, e) = getPlistInfo(configPath!);
     if (!handlePlistLoadingError(plistType, e)) return;
-    Log('=> 当前引导类型: ${plistType.value}');
-    Log('=> 当前config路径: $configPath');
-    Log('=> 当前补丁路径: $resultsFolder');
+    Log('=> Bootloader Type: ${plistType.value}');
+    Log('=> Current config path: $configPath');
+    Log('=> Current patch path: $resultsFolder');
     var pathInfo = getPatchPlistForType(resultsFolder!, plistType);
     if (!validatePatchFile(pathInfo)) return;
     var (_, targetData, e2) = getPlistInfo(pathInfo.$1);
@@ -229,11 +225,11 @@ class PatchMerge {
 
   bool validateConfigPath() {
     if (configPath == null) {
-      Log.warning(l10nGlobal.autoGen5622);
+      Log.warning('No target config.plist selected!');
       return false;
     }
     if (!File(configPath!).existsSync()) {
-      Log.warning('未找到目标 config.plist 文件：$configPath');
+      Log.warning('Target config.plist not found: $configPath');
       return false;
     }
     return true;
@@ -249,13 +245,13 @@ class PatchMerge {
 
   bool handlePlistLoadingError(PlistType plistType, dynamic e) {
     String configName = path.basename(configPath!);
-    Log('正在加载 $configName...');
+    Log('Loading $configName...');
     if (e != null) {
-      Log.error('=> 加载失败！失败原因: $e \n');
+      Log.error('=> Load failed! Reason: $e \n');
       return false;
     }
     if (plistType == PlistType.unknown) {
-      Log.warning(l10nGlobal.autoGen5623);
+      Log.warning('=> Unable to determine config.plist type!\n');
       return false;
     }
     return true;
@@ -263,28 +259,28 @@ class PatchMerge {
 
   bool validatePatchFile((String, bool, String) pathInfo) {
     if (!pathInfo.$2) {
-      Log.error('未找到补丁路径下 ${pathInfo.$3} 文件！已终止操作！\n');
+      Log.error('Patch file ${pathInfo.$3} not found in patch path! Operation aborted.\n');
       return false;
     }
     if (!File(pathInfo.$1).existsSync()) {
-      Log.error('未找到所需修补文件：${pathInfo.$1}！已终止操作！\n');
+      Log.error('Required patch file not found: ${pathInfo.$1}! Operation aborted.\n');
       return false;
     }
     String targetName = path.basename(pathInfo.$1);
-    Log('正在加载补丁 $targetName...');
+    Log('Loading patch $targetName...');
     return true;
   }
 
   bool handlePatchFileLoadingError(PlistType plistType, dynamic e2) {
     if (e2 != null) {
-      Log.error('=> 加载失败！失败原因: $e2\n');
+      Log.error('=> Load failed! Reason: $e2\n');
       return false;
     }
     String configName = path.basename(configPath!);
     String targetName = path.basename(
       getPatchPlistForType(resultsFolder!, plistType).$1,
     );
-    Log('正在检查并确保 $configName 和 $targetName 中的路径配置无误...');
+    Log('Checking paths in $configName and $targetName...');
     return true;
   }
 
@@ -299,38 +295,46 @@ class PatchMerge {
     List<dynamic> patch = [];
     List<dynamic> drops = [];
     Map<dynamic, dynamic> quirks = {};
-    List<dynamic> sOrig = [];
-    List<dynamic> pOrig = [];
-    List<dynamic> dOrig = [];
-    Map<dynamic, dynamic> quirksOrig = {};
-    final ensurePath = util.ensurePath;
+    dynamic sOrig = [];
+    dynamic pOrig = [];
+    dynamic dOrig = [];
+    dynamic quirksOrig = {};
+
     if (plistType == PlistType.openCore) {
-      normalizeHeaders =
-          configData['ACPI']['Quirks']['NormalizeHeaders'] ?? false;
-      if (normalizeHeaders is! bool) {
-        errorsFound = true;
-        normalizeHeaders = false;
-      }
-      ssdts = ensurePath(targetData, ["ACPI", "Add"], List);
-      patch = ensurePath(targetData, ["ACPI", "Patch"], List);
-      drops = ensurePath(targetData, ["ACPI", "Delete"], List);
-      quirks = ensurePath(targetData, ["ACPI", "Quirks"], Map);
-      sOrig = ensurePath(configData, ["ACPI", "Add"], List);
-      pOrig = ensurePath(configData, ["ACPI", "Patch"], List);
-      dOrig = ensurePath(configData, ["ACPI", "Delete"], List);
-      quirksOrig = ensurePath(configData, ["ACPI", "Quirks"], Map);
+      normalizeHeaders = util.ensurePath(
+        configData,
+        ['ACPI', 'Quirks', 'NormalizeHeaders'],
+        bool,
+      );
+      sOrig = util.ensurePath(configData, ['ACPI', 'Add']);
+      pOrig = util.ensurePath(configData, ['ACPI', 'Patch']);
+      dOrig = util.ensurePath(configData, ['ACPI', 'Delete']);
+      quirksOrig = util.ensurePath(
+        configData,
+        ['ACPI', 'Quirks'],
+        Map<String, dynamic>,
+      );
+
+      ssdts = targetData['ACPI']['Add'];
+      patch = targetData['ACPI']['Patch'];
+      drops = targetData['ACPI']['Delete'];
+      quirks = targetData['ACPI']['Quirks'];
     } else {
-      ssdts = ensurePath(targetData, ["ACPI", "SortedOrder"], List);
-      patch = ensurePath(targetData, ["ACPI", "DSDT", "Patches"], List);
-      drops = ensurePath(targetData, ["ACPI", "DropTables"], List);
-      quirks = ensurePath(targetData, ["ACPI"], Map);
-      sOrig = ensurePath(configData, ["ACPI", "SortedOrder"], List);
-      pOrig = ensurePath(configData, ["ACPI", "DSDT", "Patches"], List);
-      dOrig = ensurePath(configData, ["ACPI", "DropTables"], List);
-      quirksOrig = ensurePath(configData, ["ACPI"], Map);
+      normalizeHeaders = false;
+      sOrig = util.ensurePath(configData, ['ACPI', 'SortedOrder']);
+      pOrig = util.ensurePath(configData, ['ACPI', 'DSDT', 'Patches']);
+      dOrig = util.ensurePath(configData, ['ACPI', 'DropTables']);
+      quirksOrig = util.ensurePath(configData, ['ACPI', 'Quirks']);
+
+      ssdts = targetData['ACPI']['SortedOrder'];
+      patch = targetData['ACPI']['DSDT']['Patches'];
+      drops = targetData['ACPI']['DropTables'];
+      quirks = targetData['ACPI']['Quirks'];
     }
 
     return {
+      'errorsFound': errorsFound,
+      'normalizeHeaders': normalizeHeaders,
       'ssdts': ssdts,
       'patch': patch,
       'drops': drops,
@@ -339,8 +343,6 @@ class PatchMerge {
       'pOrig': pOrig,
       'dOrig': dOrig,
       'quirksOrig': quirksOrig,
-      'normalizeHeaders': normalizeHeaders,
-      'errorsFound': errorsFound,
     };
   }
 
@@ -352,46 +354,46 @@ class PatchMerge {
   ) {
     Log('');
     if (ssdts.isEmpty) {
-      Log.warning(l10nGlobal.autoGen5624);
+      Log.warning('=> No SSDT tables found! Skipping...');
       return;
     }
-    Log('=> 正在检查目标 SSDT 表（共 ${ssdts.length} 个）...');
+    Log('=> Checking target SSDT tables (${ssdts.length} total)...');
     List<dynamic> sRem = [];
     List<dynamic> sBroken = plistType == PlistType.openCore
         ? sOrig.where((x) => x is! Map).toList()
         : [];
     for (var s in ssdts) {
       if (plistType == PlistType.openCore) {
-        Log('=> 正在检查 ${s['Path']}...');
+        Log('=> Checking ${s['Path']}...');
         List<dynamic> existing =
             sOrig.where((x) => x is Map && x['Path'] == s['Path']).toList();
         if (existing.isNotEmpty) {
-          Log('=> 已找到 ${existing.length} 个相同 SSDT 表，标记为替换...');
+          Log('=> Found ${existing.length} matching SSDT table(s), marked for replacement...');
           sRem.addAll(existing);
         }
       } else {
-        Log('=> 正在检查 $s...');
+        Log('=> Checking $s...');
         List<dynamic> existing = sOrig.where((x) => x == s).toList();
         if (existing.isNotEmpty) {
-          Log('=> 已找到 ${existing.length} 个相同 SSDT 表，标记为替换...');
+          Log('=> Found ${existing.length} matching SSDT table(s), marked for replacement...');
           sRem.addAll(existing);
         }
       }
     }
     if (sRem.isNotEmpty) {
-      Log('=> 正在移除 ${sRem.length} 个重复 SSDT 表...');
+      Log('=> Removing ${sRem.length} duplicate SSDT table(s)...');
       for (var r in sRem) {
         sOrig.remove(r);
       }
     } else {
-      Log(l10nGlobal.autoGen5625);
+      Log('=> No duplicate SSDT tables found!');
     }
-    Log('=> 正在添加 ${ssdts.length} 个 SSDT 表...');
+    Log('=> Adding ${ssdts.length} SSDT table(s)...');
     sOrig.addAll(ssdts);
     if (sBroken.isNotEmpty) {
       errorsFound = true;
       Log.error(
-        '\n注意: 已找到 ${sBroken.length} 个格式错误的 SSDT 表,请修复 ${path.basename(configPath!)}！',
+        '\nNote: Found ${sBroken.length} malformed SSDT table(s), please fix ${path.basename(configPath!)}!',
       );
     }
   }
@@ -405,14 +407,14 @@ class PatchMerge {
   ) {
     Log('');
     if (patch.isEmpty) {
-      Log(l10nGlobal.autoGen5626);
+      Log('=> No ACPI patches found! Skipping...');
       return;
     }
-    Log('=> 正在检查目标 Patch 补丁（共 ${patch.length} 个）...');
+    Log('=> Checking target ACPI patches (${patch.length} total)...');
     List<dynamic> pRem = [];
     List<dynamic> pBroken = pOrig.where((x) => x is! Map).toList();
     for (var p in patch) {
-      Log('=> 正在检查 ${p['Comment']}...');
+      Log('=> Checking ${p['Comment']}...');
       if (plistType == PlistType.openCore &&
           checkNormalize(p, normalizeHeaders)) {
         errorsFound = true;
@@ -426,24 +428,24 @@ class PatchMerge {
           )
           .toList();
       if (existing.isNotEmpty) {
-        Log('=> 已找到 ${existing.length} 个相同 Patch 补丁，标记为替换...');
+        Log('=> Found ${existing.length} matching patch(es), marked for replacement...');
         pRem.addAll(existing);
       }
     }
     if (pRem.isNotEmpty) {
-      Log('=> 正在移除 ${pRem.length} 个重复 Patch 补丁...');
+      Log('=> Removing ${pRem.length} duplicate patch(es)...');
       for (var r in pRem) {
         pOrig.remove(r);
       }
     } else {
-      Log(l10nGlobal.autoGen5627);
+      Log('=> No duplicate patches found!');
     }
-    Log('=> 正在添加 ${patch.length} 个 Patch 补丁...');
+    Log('=> Adding ${patch.length} patch(es)...');
     pOrig.addAll(patch);
     if (pBroken.isNotEmpty) {
       errorsFound = true;
       Log.error(
-        '\n注意: 已找到 ${pBroken.length} 个格式错误的 Patch 补丁,请修复 ${path.basename(configPath!)}！',
+        '\nNote: Found ${pBroken.length} malformed patch(es), please fix ${path.basename(configPath!)}!',
       );
     }
   }
@@ -457,15 +459,15 @@ class PatchMerge {
   ) {
     Log('');
     if (drops.isEmpty) {
-      Log(l10nGlobal.autoGen5628);
+      Log('=> No Drop patches found! Skipping...');
       return;
     }
-    Log('=> 正在检查目标 Drop 补丁（共 ${drops.length} 个）...');
+    Log('=> Checking target Drop patches (${drops.length} total)...');
     List<dynamic> dRem = [];
     List<dynamic> dBroken = dOrig.where((x) => x is! Map).toList();
     for (var d in drops) {
       if (plistType == PlistType.openCore) {
-        Log('=> 正在检查 ${d['Comment']}...');
+        Log('=> Checking ${d['Comment']}...');
         if (checkNormalize(d, normalizeHeaders, checkType: 'Dropped table')) {
           errorsFound = true;
         }
@@ -478,7 +480,7 @@ class PatchMerge {
             )
             .toList();
         if (existing.isNotEmpty) {
-          Log('=> 已找到 ${existing.length} 个相同 Drop 补丁，标记为替换...');
+          Log('=> Found ${existing.length} matching Drop patch(es), marked for replacement...');
           dRem.addAll(existing);
         }
       } else {
@@ -486,7 +488,7 @@ class PatchMerge {
           d['Signature'] ?? '',
           d['TableId'] ?? '',
         ].where((x) => x.isNotEmpty).join(' - ');
-        Log('=> 正在检查 $name...');
+        Log('=> Checking $name...');
         List<dynamic> existing = dOrig
             .where(
               (x) =>
@@ -496,25 +498,25 @@ class PatchMerge {
             )
             .toList();
         if (existing.isNotEmpty) {
-          Log('=> 已找到 ${existing.length} 个相同 Drop 补丁，标记为替换...');
+          Log('=> Found ${existing.length} matching Drop patch(es), marked for replacement...');
           dRem.addAll(existing);
         }
       }
     }
     if (dRem.isNotEmpty) {
-      Log('=> 正在移除 ${dRem.length} 个重复 Drop 补丁...');
+      Log('=> Removing ${dRem.length} duplicate Drop patch(es)...');
       for (var r in dRem) {
         dOrig.remove(r);
       }
     } else {
-      Log(l10nGlobal.autoGen5629);
+      Log('=> No duplicate Drop patches found!');
     }
-    Log('=> 正在添加 ${drops.length} 个 Drop 补丁...');
+    Log('=> Adding ${drops.length} Drop patch(es)...');
     dOrig.addAll(drops);
     if (dBroken.isNotEmpty) {
       errorsFound = true;
       Log.error(
-        '\n注意: ${dBroken.length} 个格式错误的 Drop 补丁,请修复 ${path.basename(configPath!)}！',
+        '\nNote: Found ${dBroken.length} malformed Drop patch(es), please fix ${path.basename(configPath!)}!',
       );
     }
   }
@@ -526,13 +528,13 @@ class PatchMerge {
   ) {
     Log('');
     if (quirks.isEmpty) {
-      Log(l10nGlobal.autoGen5630);
+      Log('=> No Quirks configuration to update! Skipping...');
       return;
     }
-    Log(l10nGlobal.autoGen5631);
+    Log('=> Checking target Quirks configuration...');
     for (var q in quirks.entries) {
       if (q.value is bool) {
-        Log('=> 更新 ${q.key} 为 ${q.value}');
+        Log('=> Update ${q.key} to ${q.value}');
         quirksOrig[q.key] = quirks[q.key];
       }
     }
@@ -557,10 +559,10 @@ class PatchMerge {
   }
 
   void backupConfig(String configPath) {
-    Log(l10nGlobal.autoGen5632);
+    Log('Backing up current config.plist...');
     String backupPath = _generateBackupFileName(configPath);
     File(configPath).copySync(backupPath);
-    Log('已成功备份文件到: $backupPath');
+    Log('Successfully backed up file to: $backupPath');
   }
 
   String resolveOutputPath() {
@@ -571,7 +573,7 @@ class PatchMerge {
   }
 
   Future<void> copyAmlFiles(PlistType plistType, String configPath) async {
-    Log(l10nGlobal.autoGen5633);
+    Log('Preparing to copy SSDT files...');
 
     String acpiPath = path.join(path.dirname(configPath), 'ACPI');
     if (plistType == PlistType.clover) {
@@ -584,18 +586,18 @@ class PatchMerge {
       if (results != null && Directory(results).existsSync()) {
         Directory(results).listSync().forEach((element) {
           if (element.path.endsWith('.aml')) {
-            Log('正在拷贝 " ${path.basename(element.path)} " 到 $acpiPath 目录...');
+            Log('Copying "${path.basename(element.path)}" to $acpiPath...');
             File(
               element.path,
             ).copySync(path.join(acpiPath, path.basename(element.path)));
           }
         });
       } else {
-        Log('未找到目录: $results');
+        Log('Directory not found: $results');
       }
     } else {
-      Log('未找到目录: $acpiPath');
-      Log('请手动将 $results 目录下所有 .aml 文件,拷贝到 $acpiPath 目录下！');
+      Log('Directory not found: $acpiPath');
+      Log('Please manually copy all .aml files from $results to $acpiPath.');
     }
   }
 
@@ -607,10 +609,10 @@ class PatchMerge {
     );
 
     if (success) {
-      Log(l10nGlobal.autoGen5634);
-      Log(l10nGlobal.autoGen5635);
+      Log('Configuration saved successfully!');
+      Log('Merge complete!\n');
     } else {
-      Log.error(l10nGlobal.autoGen5636);
+      Log.error('Merge failed!\n');
     }
 
     return success;
@@ -618,16 +620,16 @@ class PatchMerge {
 
   void logWarningsAndErrors(bool success, bool errorsFound) {
     if (errorsFound) {
-      Log.error(l10nGlobal.autoGen5637);
+      Log.error('Note: Potential errors found during merge. Please inspect results!');
     } else {
       if (!overwrite) {
         final outputDir = path.dirname(resolveOutputPath());
         final efiDir = path.dirname(configPath!);
         final acpiDir = path.join(path.dirname(configPath!), 'ACPI');
-        Log.warning(l10nGlobal.autoGen5638);
-        Log.warning(l10nGlobal.autoGen5639);
-        Log.warning('1. 你需要手动将 $outputDir 目录下 config.plist 文件替换到 $efiDir 目录下！');
-        Log.warning('2. 你需要手动将 $outputDir 目录下所有 .aml 文件,拷贝到 $acpiDir 目录下！');
+        Log.warning('Note: Overwrite target EFI mode is not enabled.');
+        Log.warning('Manual steps required:');
+        Log.warning('1. Copy $outputDir/config.plist to $efiDir');
+        Log.warning('2. Copy all .aml files from $outputDir to $acpiDir');
       }
     }
   }
@@ -646,7 +648,7 @@ class PatchMerge {
     }
 
     final String outputPath = resolveOutputPath();
-    Log('正在保存配置到路径: $outputPath...');
+    Log('Saving configuration to path: $outputPath...');
     final bool success = savePlist(outputPath, configData);
     logWarningsAndErrors(success, errorsFound);
   }

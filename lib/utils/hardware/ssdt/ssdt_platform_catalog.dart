@@ -7,7 +7,7 @@ import 'package:rapidefi/utils/ssdttool/table.dart';
 class SsdtPlatformCatalog {
   const SsdtPlatformCatalog._();
 
-  static final _optionalDesktop = [
+  static const _optionalDesktop = [
     ACPITable.ssdtSBUSMCHC,
     ACPITable.ssdtGPRW,
     ACPITable.ssdtFixShutdown,
@@ -17,7 +17,7 @@ class SsdtPlatformCatalog {
     ACPITable.ssdtSLPB,
   ];
 
-  static final _optionalLaptop = [
+  static const _optionalLaptop = [
     ACPITable.ssdtSBUSMCHC,
     ACPITable.ssdtGPRW,
     ACPITable.ssdtFixShutdown,
@@ -28,13 +28,13 @@ class SsdtPlatformCatalog {
     ACPITable.ssdtPWRB,
   ];
 
-  static final _recommendedLaptopSupplement = [
+  static const _recommendedLaptopSupplement = [
     ACPITable.ssdtLID,
     ACPITable.ssdtWakeScreen,
     ACPITable.ssdtLED,
   ];
 
-  static final _intelDesktop = {
+  static const _intelDesktop = {
     'penryn': _SsdtRule(
       basic: [ACPITable.ssdtECDesktop],
       recommend: [ACPITable.ssdtHPET],
@@ -171,7 +171,7 @@ class SsdtPlatformCatalog {
     ),
   };
 
-  static final _intelLaptop = {
+  static const _intelLaptop = {
     'penryn': _SsdtRule(
       basic: [
         ACPITable.ssdtECLaptop,
@@ -383,7 +383,7 @@ class SsdtPlatformCatalog {
     ),
   };
 
-  static final _intelNuc = {
+  static const _intelNuc = {
     'penryn': _SsdtRule(
       basic: [ACPITable.ssdtECDesktop],
       recommend: [ACPITable.ssdtHPET],
@@ -511,7 +511,7 @@ class SsdtPlatformCatalog {
     ),
   };
 
-  static final _intelHedt = {
+  static const _intelHedt = {
     'nehalem_westmere': _SsdtRule(
       basic: [ACPITable.ssdtECDesktop],
       recommend: [ACPITable.ssdtHPET,ACPITable.ssdtAPIC],
@@ -567,7 +567,7 @@ class SsdtPlatformCatalog {
     ),
   };
 
-  static final _amdDesktop = {
+  static const _amdDesktop = {
     'bulldozer_jaguar': _SsdtRule(
       basic: [ACPITable.ssdtECUSBXDesktop],
       recommend: [ACPITable.ssdtHPET, ACPITable.ssdtDMAR],
@@ -580,7 +580,7 @@ class SsdtPlatformCatalog {
     ),
   };
 
-  static final _amdLaptop = {
+  static const _amdLaptop = {
     'bulldozer_jaguar': _SsdtRule(
       basic: [ACPITable.ssdtECUSBXLaptop],
       recommend: [ACPITable.ssdtHPET, ACPITable.ssdtDMAR],
@@ -598,7 +598,7 @@ class SsdtPlatformCatalog {
     ),
   };
 
-  static final _amdNuc = {
+  static const _amdNuc = {
     'bulldozer_jaguar': _SsdtRule(
       basic: [ACPITable.ssdtECUSBXDesktop],
       recommend: [ACPITable.ssdtHPET, ACPITable.ssdtDMAR],
@@ -611,7 +611,7 @@ class SsdtPlatformCatalog {
     ),
   };
 
-  static final _amdHedt = {
+  static const _amdHedt = {
     'ryzen_threadripper': _SsdtRule(
       basic: [ACPITable.ssdtECUSBXDesktop, ACPITable.ssdtPLUG],
       recommend: [ACPITable.ssdtHPET, ACPITable.ssdtDMAR],
@@ -619,7 +619,7 @@ class SsdtPlatformCatalog {
     ),
   };
 
-  static final _rules = {
+  static const _rules = {
     CpuType.intel: {
       PlatformType.desktop: _intelDesktop,
       PlatformType.laptop: _intelLaptop,
@@ -698,8 +698,8 @@ class SsdtPlatformCatalog {
         .map(
           (map) => SsdtItem(
             name: map.name,
-            remark: map['remark'] is Function ? map['remark']() : (map['remark'] ?? ''),
-            note: map['note'] is Function ? map['note']() : map['note'],
+            remark: map['remark'] ?? '',
+            note: map['note'],
             extra: map['extra'],
             group: group,
           ),
@@ -714,7 +714,7 @@ class SsdtPlatformCatalog {
 }
 
 class _SsdtRule {
-  _SsdtRule({
+  const _SsdtRule({
     required this.basic,
     required this.recommend,
     required this.optional,

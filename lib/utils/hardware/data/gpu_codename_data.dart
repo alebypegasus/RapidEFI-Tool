@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import '../pci_ids_parser.dart';
 import 'hardware_device_data.dart';
 
@@ -12,11 +11,11 @@ extension GpuResolvedTypeLabel on GpuResolvedType {
   String get label {
     switch (this) {
       case GpuResolvedType.integrated:
-        return l10nGlobal.autoGen5060;
+        return 'Integrated Graphics';
       case GpuResolvedType.discrete:
-        return l10nGlobal.autoGen5061;
+        return 'Discrete Graphics';
       case GpuResolvedType.unknown:
-        return l10nGlobal.autoGen5063;
+        return 'Unknown Graphics';
     }
   }
 }
@@ -108,7 +107,7 @@ class GpuCodenameData {
     return IdsParser.extractCodenameFromDeviceName(prefix);
   }
 
-  static final _intelIgpPatterns = [
+  static const _intelIgpPatterns = [
     'hd graphics',
     'uhd graphics',
     'iris',
@@ -123,7 +122,7 @@ class GpuCodenameData {
     'intel arc graphics',
   ];
 
-  static final _amdIgpPatterns = [
+  static const _amdIgpPatterns = [
     'radeon(tm) graphics',
     'radeon(tm) vega',
     'radeon rx vega',
@@ -147,7 +146,7 @@ class GpuCodenameData {
     return false;
   }
 
-  static final _discreteNamePatterns = [
+  static const _discreteNamePatterns = [
     'radeon rx',
     'radeon r9',
     'radeon r7',
@@ -172,7 +171,7 @@ class GpuCodenameData {
       if (lower.contains(pattern)) return true;
     }
 
-    // 兼容 “Radeon 550 / Radeon 540 / Radeon 530” 这种没有 RX 的低端独显命名
+    // Support entry-level discrete GPU names like "Radeon 550 / Radeon 540 / Radeon 530" without RX prefix
     if (RegExp(r'\bradeon\s+[0-9]{3,4}\b').hasMatch(lower)) {
       return true;
     }
@@ -221,7 +220,7 @@ class GpuCodenameData {
     return false;
   }
 
-  static final _discreteCodenames = [
+  static const _discreteCodenames = [
     // AMD GCN / Polaris / Vega / Navi / RDNA
     'lexa',
     'baffin',
@@ -285,7 +284,7 @@ class GpuCodenameData {
       if (lower.contains(pattern)) return true;
     }
 
-    // NVIDIA 常见核心：GA104、TU106、AD103、GB202 等
+    // NVIDIA common architectures: GA104, TU106, AD103, GB202, etc.
     if (RegExp(r'^(gf|gk|gm|gp|tu|ga|ad|gb)[0-9]{2,4}$').hasMatch(lower)) {
       return true;
     }
@@ -297,15 +296,14 @@ class GpuCodenameData {
     final text = value?.toString().trim().toLowerCase() ?? '';
     if (text.isEmpty) return GpuResolvedType.unknown;
 
-    if (text == 'discrete' || text == 'discrete gpu' || text.contains(l10nGlobal.autoGen5018)) {
+    if (text == 'discrete' || text == 'discrete gpu' || text.contains('discrete') || text.contains('dedicated')) {
       return GpuResolvedType.discrete;
     }
 
     if (text == 'integrated' ||
         text == 'integrated gpu' ||
-        text.contains(l10nGlobal.autoGen5017) ||
-        text.contains(l10nGlobal.autoGen5019) ||
-        text.contains(l10nGlobal.autoGen5064)) {
+        text.contains('integrated') ||
+        text.contains('internal')) {
       return GpuResolvedType.integrated;
     }
 
@@ -316,14 +314,14 @@ class GpuCodenameData {
     final path = acpiPath.toUpperCase().trim();
     if (path.isEmpty) return GpuResolvedType.unknown;
 
-    // IGPU/GFX0 常见于核显
+    // IGPU/GFX0 commonly denotes integrated graphics
     if (path.contains('IGPU') ||
         path.endsWith('.GFX0') ||
         path.contains('.GFX0')) {
       return GpuResolvedType.integrated;
     }
 
-    // PEG/PEGP 常见于 PCIe 独显通道
+    // PEG/PEGP commonly denotes discrete PCIe GPU
     if (path.contains('PEG') || path.contains('PEGP')) {
       return GpuResolvedType.discrete;
     }
@@ -335,12 +333,12 @@ class GpuCodenameData {
     final path = pciPath.toUpperCase().trim();
     if (path.isEmpty) return GpuResolvedType.unknown;
 
-    // PciRoot(0x0)/Pci(0x2,0x0) 常见 Intel 核显路径
+    // PciRoot(0x0)/Pci(0x2,0x0) common Intel iGPU path
     if (path.contains('PCI(0X2,0X0)')) {
       return GpuResolvedType.integrated;
     }
 
-    // PciRoot(0x0)/Pci(0x1,0x0)、Pci(0x3,0x0) 常见 PEG 独显入口
+    // PciRoot(0x0)/Pci(0x1,0x0)、Pci(0x3,0x0) common PEG discrete GPU path
     if (path.contains('PCI(0X1,0X0)') || path.contains('PCI(0X3,0X0)')) {
       return GpuResolvedType.discrete;
     }
@@ -358,25 +356,25 @@ class GpuCodenameData {
     final normalized = IdsParser.normalizeFullDeviceId(deviceId);
     if (normalized.isEmpty) return GpuResolvedType.unknown;
 
-    // NVIDIA 消费级/专业卡基本都按独显处理
+    // NVIDIA consumer/workstation cards are treated as discrete GPUs
     if (isNvidiaGpu(normalized)) {
       return GpuResolvedType.discrete;
     }
 
-    // AMD 1002 既可能是独显，也可能是 APU 核显，不能只靠 vendor ID 直接判定
-    // Intel 8086 也既可能是核显，也可能是 Arc 独显，所以这里只做弱判断，不直接返回
+    // AMD 1002 can be dGPU or APU iGPU
+    // Intel 8086 can be iGPU or Arc dGPU
     return GpuResolvedType.unknown;
   }
 
-  /// 综合判断 GPU 类型。
+  /// Comprehensive GPU type determination.
   ///
-  /// 优先级：
-  /// 1. 原始 Device Type
-  /// 2. 名称
+  /// Priority:
+  /// 1. Raw Device Type
+  /// 2. Name
   /// 3. ACPI Path
   /// 4. PCI Path
   /// 5. Codename
-  /// 6. Device ID 厂商
+  /// 6. Device ID Vendor
   static GpuResolvedType resolveGpuType({
     required String name,
     required String deviceId,

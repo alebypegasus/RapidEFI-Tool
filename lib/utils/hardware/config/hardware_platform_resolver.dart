@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/config/models/enums/config_enums.dart';
 import 'package:rapidefi/utils/config/presets/platform_profiles/platform_code_registry.dart';
 import 'package:rapidefi/utils/hardware/config/hardware_config_build_context.dart';
@@ -6,7 +5,7 @@ import 'package:rapidefi/utils/hardware/data/gpu_codename_data.dart';
 import 'package:rapidefi/utils/hardware/model/gpu.dart';
 
 class HardwarePlatformSelection {
-  HardwarePlatformSelection({
+  const HardwarePlatformSelection({
     required this.cpuType,
     required this.platformType,
     required this.platformCode,
@@ -60,7 +59,7 @@ class HardwarePlatformResolver {
       }
     }
 
-    throw UnsupportedError(l10nGlobal.autoGen5030);
+    throw UnsupportedError('Cannot determine platform type from CPU info');
   }
 
   PlatformType _resolvePlatformType(HardwareConfigBuildContext context) {
@@ -71,15 +70,15 @@ class HardwarePlatformResolver {
 
     final text = _motherboardText(context);
 
-    if (_containsAny(text, ['laptop', 'notebook', 'portable', l10nGlobal.autoGen5031])) {
+    if (_containsAny(text, const ['laptop', 'notebook', 'portable'])) {
       return PlatformType.laptop;
     }
 
-    if (_containsAny(text, ['nuc', 'mini pc', 'mini-pc', l10nGlobal.autoGen5032])) {
+    if (_containsAny(text, const ['nuc', 'mini pc', 'mini-pc'])) {
       return PlatformType.nuc;
     }
 
-    if (_containsAny(text, ['hedt', 'workstation', 'server', l10nGlobal.autoGen5033])) {
+    if (_containsAny(text, const ['hedt', 'workstation', 'server'])) {
       return PlatformType.hedt;
     }
 
@@ -101,7 +100,7 @@ class HardwarePlatformResolver {
       if (PlatformCodeRegistry.contains(cpuType, platformType, optionCode)) {
         return optionCode;
       }
-      throw UnsupportedError('当前 CPU/平台类型不支持指定的平台代号: $optionCode');
+      throw UnsupportedError('Specified platform code is not supported by current CPU/platform type: $optionCode');
     }
 
     final code = _platformCodeFromCpu(context, cpuType, platformType) ??
@@ -112,7 +111,7 @@ class HardwarePlatformResolver {
       return code;
     }
 
-    throw UnsupportedError(l10nGlobal.autoGen5034);
+    throw UnsupportedError('Unable to determine platform code from CPU, motherboard, and integrated GPU');
   }
 
   String? _platformCodeFromCpu(
@@ -146,8 +145,8 @@ class HardwarePlatformResolver {
 
     if (text.isEmpty) return null;
 
-    // 这里保留主板信息辅助判断，是为了修正
-    // 仅靠 CPU 信息得出的结果，尤其是 HEDT、笔记本和 NUC 平台。
+    // Motherboard information is kept to assist determination and correct
+    // results derived from CPU info alone, especially HEDT, Laptop, and NUC platforms.
     return _firstSupportedCode(
       cpuType,
       platformType,
@@ -366,8 +365,8 @@ class HardwarePlatformResolver {
     final manufacturer = _lower(gpu.manufacturer);
     final deviceId = _upper(gpu.deviceID);
 
-    return type.contains(l10nGlobal.autoGen5017) ||
-        type.contains('integrated') ||
+    return type.contains('integrated') ||
+        type.contains('internal') ||
         type.contains('internal') ||
         (manufacturer.contains('intel') && deviceId.startsWith('8086-'));
   }

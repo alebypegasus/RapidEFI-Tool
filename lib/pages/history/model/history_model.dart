@@ -1,15 +1,15 @@
 class HistoryModel {
   String name;
 
-  /// 文件名
+  /// File name
   String fileName;
 
   int timestamp;
 
-  ///文件路径
+  /// File path
   String path;
 
-  ///备注
+  /// Note
   String note;
 
   HistoryModel({

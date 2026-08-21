@@ -8,10 +8,10 @@ class MarkdownViewer extends StatefulWidget {
   final String? basePath;
   final bool Function(String href)? onLinkTap;
 
-  /// Markdown 正文字号
+  /// Markdown body font size
   final double fontSize;
 
-  /// 代码字号
+  /// Code font size
   final double codeFontSize;
 
   const MarkdownViewer({

@@ -1,6 +1,6 @@
 import 'hardware_model_parsing.dart';
 
-/// 系统信息
+/// System info
 class System {
   String? caption;
   String? csName;

@@ -1,5 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:archive/archive.dart';
@@ -45,7 +43,7 @@ class FileUtils {
       r'####\s+(v\d+\.\d+\.\d+)\s+([\s\S]*?)(?=\n####|\Z)',
     ).firstMatch(changelog);
     final version = match?.group(1) ?? '';
-    Log(l10nGlobal.logMsg455(version.toString()));
+    Log('Current OC version: $version');
     return version;
   }
 
@@ -173,7 +171,7 @@ class FileUtils {
     return _FileCopyOps.copyDirectoryByName(
       Directory(sourcePath),
       Directory(destinationPath),
-      successMessage: l10nGlobal.autoGen5772,
+      successMessage: 'Kext copied successfully',
     );
   }
 
@@ -252,7 +250,7 @@ class _ArchiveOps {
   }) async {
     final zipFile = File(zipFilePath);
     if (!await zipFile.exists()) {
-      Log(l10nGlobal.logMsg456(zipFilePath.toString()));
+      Log('ZIP file does not exist: $zipFilePath');
       return;
     }
 
@@ -286,9 +284,9 @@ class _ArchiveOps {
         await zipFile.delete();
       }
       onProgress?.call(1);
-      Log(l10nGlobal.logMsg457(zipFilePath.toString()));
+      Log('Successfully extracted $zipFilePath');
     } catch (error) {
-      Log(l10nGlobal.logMsg458(zipFilePath.toString(), error.toString()));
+      Log('Error extracting $zipFilePath: $error');
     }
   }
 
@@ -302,7 +300,7 @@ class _ArchiveOps {
     final sourceIsFile = await sourceFile.exists();
     final sourceIsDirectory = await sourceDirectory.exists();
     if (!sourceIsFile && !sourceIsDirectory) {
-      Log(l10nGlobal.logMsg459(sourcePath.toString()));
+      Log('File or directory does not exist: $sourcePath');
       return false;
     }
 
@@ -335,10 +333,10 @@ class _ArchiveOps {
       await zipFile.parent.create(recursive: true);
       await zipFile.writeAsBytes(zipData);
       onProgress?.call(1);
-      Log(l10nGlobal.logMsg460(zipFileName.toString()));
+      Log('Compression complete: $zipFileName');
       return true;
     } catch (error) {
-      Log(l10nGlobal.logMsg461(error.toString()));
+      Log('Compression error: $error');
       return false;
     }
   }
@@ -373,13 +371,13 @@ class _FileSystemOps {
     try {
       if (type == FileSystemEntityType.directory) {
         await Directory(entityPath).delete(recursive: true);
-        Log(l10nGlobal.logMsg462(entityPath.toString()));
+        Log('Delete directory: $entityPath');
       } else {
         await File(entityPath).delete();
-        Log(l10nGlobal.logMsg463(entityPath.toString()));
+        Log('Delete file: $entityPath');
       }
     } catch (error) {
-      Log(l10nGlobal.logMsg464(entityPath.toString(), error.toString()));
+      Log('Delete failed: $entityPath, $error');
     }
   }
 }
@@ -395,7 +393,7 @@ class _FileCopyOps {
     try {
       final sourceFile = File(sourceFilePath);
       if (!await sourceFile.exists()) {
-        Log.error(l10nGlobal.logMsg453(sourceFilePath.toString()));
+        Log.error('Source file does not exist: $sourceFilePath');
         return false;
       }
 
@@ -403,10 +401,10 @@ class _FileCopyOps {
       final outputPath = path.join(outDirectory, fileName);
       await Directory(outDirectory).create(recursive: true);
       await sourceFile.copy(outputPath);
-      Log(l10nGlobal.logMsg465(outputPath.toString()));
+      Log('File successfully saved to: $outputPath');
       return true;
     } catch (error) {
-      Log.error(l10nGlobal.logMsg454(error.toString()));
+      Log.error('Error saving file: $error');
       return false;
     }
   }
@@ -416,7 +414,7 @@ class _FileCopyOps {
     Directory destination,
   ) async {
     if (!await source.exists()) {
-      Log(l10nGlobal.logMsg466(source.path.toString()));
+      Log('Source directory does not exist: ${source.path}');
       return;
     }
 
@@ -514,10 +512,10 @@ class _PlatformPaths {
     try {
       final newDirectory = Directory(path.join(directory, folderName));
       await newDirectory.create(recursive: true);
-      Log(l10nGlobal.logMsg467(newDirectory.path.toString()));
+      Log('Folder prepared: ${newDirectory.path}');
       return newDirectory.path;
     } catch (error) {
-      Log(l10nGlobal.logMsg468(error.toString()));
+      Log('Error creating folder: $error');
       return '';
     }
   }
@@ -548,7 +546,7 @@ class _PlatformPaths {
       final directory = await getExternalStorageDirectory();
       return directory?.path ?? '';
     }
-    return l10nGlobal.autoGen5773;
+    return 'Web platform downloads directly, custom default path not supported';
   }
 
   static Future<bool> reveal(String targetPath) async {
@@ -558,7 +556,7 @@ class _PlatformPaths {
     final file = File(targetPath);
     final exists = await directory.exists() || await file.exists();
     if (!exists) {
-      Log(l10nGlobal.logMsg469(targetPath.toString()));
+      Log('Failed to open directory, path does not exist: $targetPath');
       return false;
     }
 
@@ -576,7 +574,7 @@ class _PlatformPaths {
         return true;
       }
     } catch (error) {
-      Log(l10nGlobal.logMsg470(targetPath.toString(), error.toString()));
+      Log('Failed to open directory: $targetPath, $error');
     }
 
     return false;
@@ -585,7 +583,8 @@ class _PlatformPaths {
 
 class _PickerOps {
   static Future<String> pickDirectory(String initialDirectory) async {
-    final selectedPath = await FilePicker.getDirectoryPath(
+    final selectedPath = await FilePicker.platform.getDirectoryPath(
+      lockParentWindow: true,
       initialDirectory: initialDirectory.isEmpty ? null : initialDirectory,
     );
     return selectedPath ?? '';
@@ -598,7 +597,7 @@ class _PickerOps {
   }) async {
     final hasExtensionFilter =
         allowedExtensions != null && allowedExtensions.isNotEmpty;
-    final result = await FilePicker.pickFiles(
+    final result = await FilePicker.platform.pickFiles(
       type: hasExtensionFilter ? FileType.custom : FileType.any,
       allowedExtensions: hasExtensionFilter ? allowedExtensions : null,
       allowMultiple: allowMultiple,
@@ -629,21 +628,21 @@ class _ConfigFileOps {
     try {
       final file = File(filePath);
       if (!await file.exists()) {
-        throw Exception('文件不存在: $filePath');
+        throw Exception('File does not exist: $filePath');
       }
 
       final jsonMap = jsonDecode(await file.readAsString());
       if (jsonMap is! Map<String, dynamic>) {
-        throw FormatException(l10nGlobal.autoGen5774);
+        throw const FormatException('Configuration file root node is not a JSON object');
       }
       _validateConfigModelJson(jsonMap);
       return ConfigModel.fromJson(jsonMap);
     } on FileSystemException catch (error) {
-      throw Exception('文件系统错误: $error');
+      throw Exception('File system error: $error');
     } on FormatException catch (error) {
-      throw Exception('JSON格式错误: $error');
+      throw Exception('JSON format error: $error');
     } catch (error) {
-      throw Exception('未知错误: $error');
+      throw Exception('Unknown error: $error');
     }
   }
 
@@ -664,7 +663,7 @@ class _ConfigFileOps {
     final missingKeys = requiredKeys.where((key) => !jsonMap.containsKey(key));
     if (missingKeys.isNotEmpty) {
       throw FormatException(
-        '不是 RapidEFI configModel 文件，缺少字段: ${missingKeys.join(', ')}',
+        'Not a valid RapidEFI configModel file, missing fields: ${missingKeys.join(', ')}',
       );
     }
   }

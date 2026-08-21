@@ -89,7 +89,7 @@ class BootArgsAccessor {
 
   static NvramAddItem _bootArgsItem(ConfigModel model) {
     final addList = model.nvram.nvramAdd.addList ??= {};
-    const guid = ConfigNvram.UUID_7C436110_AB2A_4BBB_A880_FE41995C9F82;
+    final guid = ConfigNvram.UUID_7C436110_AB2A_4BBB_A880_FE41995C9F82;
     final items = addList[guid] ??= [];
     final existing = items.firstWhere(
       (item) => item.key == ConfigNvram.boot_args.key,

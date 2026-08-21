@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 //  HttpClientManager.dart
 //  Created by JeoJay127
 //
@@ -9,7 +8,7 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'package:archive/archive.dart';
 
-/// 取消令牌
+/// Cancellation token
 class DownloadCancelToken {
   bool _isCancelled = false;
   final Completer<void> _cancelCompleter = Completer();
@@ -105,8 +104,8 @@ class HttpClientManager {
           .timeout(
             connectTimeout,
             onTimeout: () {
-              onError?.call(l10nGlobal.autoGen5769);
-              throw TimeoutException(l10nGlobal.autoGen5769);
+              onError?.call('Server connection timed out');
+              throw TimeoutException('Server connection timed out');
             },
           );
 
@@ -114,28 +113,28 @@ class HttpClientManager {
       headers?.forEach((key, value) => request?.headers.add(key, value));
 
       if (cancelToken?.isCancelled ?? false) {
-        onError?.call(l10nGlobal.autoGen5770);
+        onError?.call('Download cancelled');
         request.abort();
         return null;
       }
 
       cancelToken?.onCancel.then((_) {
-        onError?.call(l10nGlobal.autoGen5770);
+        onError?.call('Download cancelled');
         request?.abort();
       });
 
       final response = await request.close().timeout(
         responseTimeout,
         onTimeout: () {
-          onError?.call(l10nGlobal.autoGen5771);
-          throw TimeoutException(l10nGlobal.autoGen5771);
+          onError?.call('Response read timed out');
+          throw TimeoutException('Response read timed out');
         },
       );
 
       if (response.statusCode < 200 || response.statusCode >= 300) {
-        onError?.call('获取服务器信息发生异常! 状态码: ${response.statusCode}');
+        onError?.call('Server returned error! Status code: ${response.statusCode}');
         throw HttpException(
-          '请求失败，状态码: ${response.statusCode}',
+          'Request failed with status code: ${response.statusCode}',
           uri: Uri.parse(url),
         );
       }
@@ -147,7 +146,7 @@ class HttpClientManager {
     }
   }
 
-  /// 剩余时间格式化
+  /// Format remaining time
   String _formatRemainingTime(int totalSize, int bytesSoFar, double speed) {
     if (speed <= 0 || totalSize <= 0) return '??';
 
@@ -165,7 +164,7 @@ class HttpClientManager {
         '${secs.toString().padLeft(2, '0')}';
   }
 
-  /// 进度处理
+  /// Progress handler
   void _handleProgress(
     int bytesSoFar,
     int totalSize,
@@ -175,9 +174,9 @@ class HttpClientManager {
     if (onProgress == null) return;
 
     final now = DateTime.now().millisecondsSinceEpoch;
-    final elapsed = (now - startTime) / 1000; // 秒
+    final elapsed = (now - startTime) / 1000; // seconds
 
-    // 用整体平均速度
+    // Overall average speed
     final double speed = elapsed > 0 ? bytesSoFar / elapsed : 0;
 
     final percent = totalSize > 0 ? (bytesSoFar / totalSize * 100) : 0;
@@ -206,7 +205,7 @@ class HttpClientManager {
       idleTimer?.cancel();
       idleTimer = Timer(Duration(seconds: timeoutInSeconds), () {
         cancelToken?.cancel();
-        onError?.call(TimeoutException('下载超时,$timeoutInSeconds秒无进度,任务取消'));
+        onError?.call(TimeoutException('Download timed out, no progress for $timeoutInSeconds seconds, task cancelled'));
       });
     }
 
@@ -253,7 +252,7 @@ class HttpClientManager {
     }
   }
 
-  /// 下载文件 - 数据流方式
+  /// Download file - stream mode
   Future<String?> streamToFile(
     String url,
     String filePath, {
@@ -282,7 +281,7 @@ class HttpClientManager {
       timeoutInSeconds: timeoutInSeconds,
 
       onStart: (response) async {
-        // 续传
+        // Resume support
         if (allowResume && await file.exists()) {
           final existingSize = await file.length();
           headers = {...?headers, 'Range': 'bytes=$existingSize-'};
@@ -322,7 +321,7 @@ class HttpClientManager {
     });
   }
 
-  /// 字节下载
+  /// Byte download
   Future<Uint8List?> getBytes(
     String url, {
     Function(double percent, String speed, String? remaining)? onProgress,
@@ -357,7 +356,7 @@ class HttpClientManager {
         if (expandGzip &&
             resp?.headers.value('content-encoding')?.toLowerCase() == 'gzip') {
           if (result.length >= 2 && result[0] == 0x1F && result[1] == 0x8B) {
-            result = Uint8List.fromList(const GZipDecoder().decodeBytes(result));
+            result = Uint8List.fromList(GZipDecoder().decodeBytes(result));
           }
         }
         return Future.value(result);

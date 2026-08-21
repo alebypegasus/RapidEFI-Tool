@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:rapidefi/utils/config/catalogs/efi_drivers/efi_driver_option.dart';
@@ -25,30 +24,16 @@ class UEFIWidget extends StatefulWidget {
 class _UEFIWidgetState extends State<UEFIWidget> {
   late List<String> choices;
   late List<String> selectedChoices;
-  String get provideConsoleGopText =>
-      AppLocalizations.of(context)!.manualUefiProvideConsoleGop;
+  String provideConsoleGopText =
+      'ProvideConsoleGop quirk is enabled by default to fix OpenCore boot UI visibility. If boot UI still fails to render, try unchecking this option.';
 
   List<EfiDriverOption> get _hfsOptions => widget.efiDriverOptions
       .where((option) => option.category == 'hfs')
       .toList();
 
-  String _getLocalizedEfiTip(String optionId) {
-    final l10n = AppLocalizations.of(context)!;
-    switch (optionId) {
-      case 'hfs.hfspluslegacy':
-        return l10n.uefiHfsPlusLegacyTip;
-      case 'hfs.hfsplus':
-        return l10n.uefiHfsPlusTip;
-      case 'hfs.openhfsplus':
-        return l10n.uefiOpenHfsPlusTip;
-      default:
-        return '';
-    }
-  }
-
   void _refreshHfsOptions() {
     final hfsOptions = _hfsOptions;
-    choices = hfsOptions.map((option) => _getLocalizedEfiTip(option.id)).toList();
+    choices = hfsOptions.map((option) => option.tip).toList();
     final selected = hfsOptions.where((option) {
       return widget.uefi.uefiDriversItems.any((item) {
         final itemPath = item.path.toLowerCase();
@@ -57,7 +42,7 @@ class _UEFIWidgetState extends State<UEFIWidget> {
             path.basename(itemPath) == path.basename(optionPath);
       });
     }).firstOrNull;
-    selectedChoices = selected == null ? [] : [_getLocalizedEfiTip(selected.id)];
+    selectedChoices = selected == null ? [] : [selected.tip];
   }
 
   @override
@@ -66,7 +51,7 @@ class _UEFIWidgetState extends State<UEFIWidget> {
     return ScrollableChoiceListPanel(
       children: [
         ChoiceList(
-          subTitle: AppLocalizations.of(context)!.manualUefiDriversHfs,
+          subTitle: 'UEFI - Drivers (Fixes HFS driver OpenCore boot menu visibility issues)',
           choices: choices,
           selectedChoices: selectedChoices,
           allowToggle: false,
@@ -76,7 +61,7 @@ class _UEFIWidgetState extends State<UEFIWidget> {
             }
             String? selectedValue = value.firstOrNull;
             final option = _hfsOptions
-                .where((option) => _getLocalizedEfiTip(option.id) == selectedValue)
+                .where((option) => option.tip == selectedValue)
                 .firstOrNull;
             if (option != null) {
               widget.onChanged.call(option.path);
@@ -84,7 +69,7 @@ class _UEFIWidgetState extends State<UEFIWidget> {
           },
         ),
         ChoiceList(
-          subTitle: AppLocalizations.of(context)!.manualUefiOutputBootUI,
+          subTitle: 'UEFI - Output (Fixes OpenCore boot UI visibility issues)',
           choices: [provideConsoleGopText],
           selectedChoices: [
             widget.uefi.uefiOutput.provideConsoleGop

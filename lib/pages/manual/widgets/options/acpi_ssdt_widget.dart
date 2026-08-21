@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_patch_item.dart';
@@ -68,7 +67,7 @@ class _AcpiSsdtWidgetState extends State<AcpiSsdtWidget> {
       selectedChoices: selectedPatchChoices,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: AppLocalizations.of(context)!.manualAcpiPatch,
+      subTitle: 'ACPI - Patches',
       labelBuilder: (patch) => patch.note,
       onChanged: (value) {
         widget.onChanged.call(value.map((patch) => patch.copyWith()).toList());
@@ -83,7 +82,7 @@ class _AcpiSsdtWidgetState extends State<AcpiSsdtWidget> {
       selectedChoices: selectedSsdtChoices,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: AppLocalizations.of(context)!.manualAcpiSsdt,
+      subTitle: 'ACPI - SSDT Patches',
       onChanged: (value) {
         final fixAcpiItems =
             ConfigAcpi.fixSSDTs.where((e) => value.contains(e.note)).toList();

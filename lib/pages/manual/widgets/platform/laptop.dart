@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/battery.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/laptop_other.dart';
@@ -11,7 +10,7 @@ import 'package:rapidefi/utils/config/presets/sections/config_kext_groups.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:rapidefi/widgets/state_keep_container.dart';
 
-// 笔记本特有驱动
+// Laptop-specific drivers
 class LaptopWidget extends StatefulWidget {
   final List<KernelKext> selectedKexts;
   final ValueChanged<List<KernelKext>>? onChanged;
@@ -42,11 +41,11 @@ class _LaptopWidgetState extends State<LaptopWidget> {
 
   final bool showScrollButtons = true;
 
-  List<String> get titles => [
-    AppLocalizations.of(context)!.manualKeyboardTouchpadDriver,
-    AppLocalizations.of(context)!.manualBatteryDriver,
-    AppLocalizations.of(context)!.manualSensorDriver,
-    AppLocalizations.of(context)!.manualLaptopOtherFixes,
+  final List<String> titles = const [
+    'Keyboard & Trackpad',
+    'Battery Drivers',
+    'Sensor Drivers',
+    'Other Fixes',
   ];
 
   final List<IconData> iconDatas = const [
@@ -152,8 +151,8 @@ class _LaptopWidgetState extends State<LaptopWidget> {
     );
 
     return TitleCard(
-      title: AppLocalizations.of(context)!.manualLaptopRelatedDrivers,
-      subTitle: AppLocalizations.of(context)!.manualLaptopMainly,
+      title: 'Laptop Drivers:',
+      subTitle: '(For Laptop Systems)',
       expander: SizedBox(
         height: 380,
         child: TabView(

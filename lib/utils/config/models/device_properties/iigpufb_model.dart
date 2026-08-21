@@ -1,21 +1,21 @@
-/// iigpufb.json 数据模型
-/// 层次：代数 → CPU型号 → 属性列表
+/// iigpufb.json data model
+/// Hierarchy: Generation -> CPU model -> Property list
 library;
 
-/// 单个核显属性（已将 JSON 原始值转换为 plist 可用格式）
+/// Single iGPU property (JSON raw value converted to plist format)
 class IigpufbProperty {
-  /// OpenCore plist 键名，如 'AAPL,ig-platform-id'
+  /// OpenCore plist key name, e.g. 'AAPL,ig-platform-id'
   final String key;
 
-  /// 数据类型：'data' 或 'string'
+  /// Data type: 'data' or 'string'
   final String dataType;
 
-  /// 属性值：
-  ///   - data 类型：去掉 "0x" 前缀的十六进制字符串，如 '00009b3e'
-  ///   - string 类型：原始字符串值
+  /// Property value:
+  ///   - data type: hex string without '0x' prefix, e.g. '00009b3e'
+  ///   - string type: raw string value
   final String value;
 
-  IigpufbProperty({
+  const IigpufbProperty({
     required this.key,
     required this.dataType,
     required this.value,
@@ -25,28 +25,28 @@ class IigpufbProperty {
   String toString() => '$key ($dataType): $value';
 }
 
-/// 单个 CPU 条目
+/// Single CPU entry
 class IigpufbCpuEntry {
-  /// CPU 型号字符串，如 'i5-4200u(HD4400)'
+  /// CPU model string, e.g. 'i5-4200u(HD4400)'
   final String cpuModel;
 
-  /// 核显简称，如 'HD4400'
+  /// iGPU short name, e.g. 'HD4400'
   final String igpuName;
 
-  /// JSON 中的 _note 字段（如有），仅用于提示，不写入配置
+  /// _note field in JSON (if present), for display only
   final String? note;
 
-  /// 可写入 plist 的属性列表（已排除 igpu / _note 等元字段）
+  /// Property list to write to plist (excluding igpu / _note)
   final List<IigpufbProperty> properties;
 
-  IigpufbCpuEntry({
+  const IigpufbCpuEntry({
     required this.cpuModel,
     required this.igpuName,
     this.note,
     required this.properties,
   });
 
-  /// 核显型号完整名称（来自 model 属性，如有）
+  /// Full iGPU model name (from model property, if present)
   String get modelName {
     for (final p in properties) {
       if (p.key == 'model') return p.value;
@@ -54,7 +54,7 @@ class IigpufbCpuEntry {
     return igpuName;
   }
 
-  /// Platform ID 值（已去掉 "0x" 前缀）
+  /// Platform ID value (without '0x' prefix)
   String? get platformId {
     for (final p in properties) {
       if (p.key == 'AAPL,ig-platform-id' ||
@@ -65,7 +65,7 @@ class IigpufbCpuEntry {
     return null;
   }
 
-  /// Platform ID 键名（Sandy Bridge 与其他代不同）
+  /// Platform ID key name (Sandy Bridge differs from other gens)
   String? get platformIdKey {
     for (final p in properties) {
       if (p.key == 'AAPL,ig-platform-id' ||
@@ -77,15 +77,15 @@ class IigpufbCpuEntry {
   }
 }
 
-/// 一个 CPU 代数
+/// One CPU generation
 class IigpufbGeneration {
-  /// 代数名称，如 'Intel 4th Haswell'
+  /// Generation name, e.g. 'Intel 4th Haswell'
   final String name;
 
-  /// 该代所有 CPU 条目
+  /// All CPU entries for this generation
   final List<IigpufbCpuEntry> cpus;
 
-  IigpufbGeneration({
+  const IigpufbGeneration({
     required this.name,
     required this.cpus,
   });

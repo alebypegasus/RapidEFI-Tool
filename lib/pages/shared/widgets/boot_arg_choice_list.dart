@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
-import 'package:rapidefi/l10n/boot_arg_l10n.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/utils/config/models/nvram/boot_arg_model.dart';
 
@@ -30,17 +28,15 @@ class BootArgChoiceList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final selectedArgs = selectedBootArgs.map((model) => model.arg).toSet();
-    final localizedChoices = options.map((model) => localizedBootArgComment(model, l10n)).toList();
     final selectedChoices = options
         .where((model) => selectedArgs.contains(model.arg))
-        .map((model) => localizedBootArgComment(model, l10n))
+        .map((model) => model.comment)
         .toList();
 
     return ChoiceList<String>(
       tips: options.map((model) => model.arg).toList(),
-      choices: localizedChoices,
+      choices: options.map((model) => model.comment).toList(),
       selectedChoices: selectedChoices,
       isMultipleSelection: isMultipleSelection,
       allowToggle: allowToggle,
@@ -50,7 +46,7 @@ class BootArgChoiceList extends StatelessWidget {
       footer: footer,
       onChanged: (value) {
         final selected = options
-            .where((model) => value.contains(localizedBootArgComment(model, l10n)))
+            .where((model) => value.contains(model.comment))
             .toSet();
         onChanged?.call(selected);
       },
@@ -61,8 +57,8 @@ class BootArgChoiceList extends StatelessWidget {
 class BootArgChoiceMapper {
   const BootArgChoiceMapper._();
 
-  static List<String> choices(Iterable<BootArgModel> options, AppLocalizations l10n) {
-    return options.map((model) => localizedBootArgComment(model, l10n)).toList();
+  static List<String> choices(Iterable<BootArgModel> options) {
+    return options.map((model) => model.comment).toList();
   }
 
   static List<String> tips(Iterable<BootArgModel> options) {
@@ -72,22 +68,20 @@ class BootArgChoiceMapper {
   static List<String> selectedChoices({
     required Iterable<BootArgModel> options,
     required Iterable<BootArgModel> selectedBootArgs,
-    required AppLocalizations l10n,
   }) {
     final selectedArgs = selectedBootArgs.map((model) => model.arg).toSet();
     return options
         .where((model) => selectedArgs.contains(model.arg))
-        .map((model) => localizedBootArgComment(model, l10n))
+        .map((model) => model.comment)
         .toList();
   }
 
   static Set<BootArgModel> selectedModels({
     required Iterable<BootArgModel> options,
     required Iterable<String> selectedChoices,
-    required AppLocalizations l10n,
   }) {
     return options
-        .where((model) => selectedChoices.contains(localizedBootArgComment(model, l10n)))
+        .where((model) => selectedChoices.contains(model.comment))
         .toSet();
   }
 }

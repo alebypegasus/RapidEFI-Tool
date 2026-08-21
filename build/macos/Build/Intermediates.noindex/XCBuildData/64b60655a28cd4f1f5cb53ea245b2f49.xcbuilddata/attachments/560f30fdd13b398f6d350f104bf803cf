@@ -1,0 +1,4 @@
+module package_info_plus {
+umbrella "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/macos/Flutter/ephemeral/Packages/.packages/package_info_plus-8.3.1/Sources/package_info_plus/include"
+export *
+}

@@ -1,13 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart' hide Checkbox, FilledButton;
 import 'package:flutter/material.dart' hide Colors, Tooltip;
 import 'package:oktoast/oktoast.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/expander_card.dart';
 import 'package:rapidefi/utils/config/models/motherboard/mbconf_model.dart';
 import 'package:rapidefi/utils/config/support/mbconf_service.dart';
 
-/// 主板型号选择 + 可勾选条目应用 Widget
-/// 外观与 SMBIOS、核显等区块保持一致（ExpanderCard + ComboBox）
+/// Motherboard model selector + checklist widget
+/// Consistent UI with SMBIOS and Graphics sections (ExpanderCard + ComboBox)
 class MotherboardSelectorWidget extends StatefulWidget {
   final Function(List<MbConfSelectableItem> selected)? onApply;
 
@@ -62,29 +61,28 @@ class _MotherboardSelectorWidgetState
     }
   }
 
-  void _onPlatformChanged(String? val) {
-    setState(() {
-      _selPlatform = val;
-      _selVendor = null;
-      _selModel = null;
-      _entry = null;
-    });
-  }
+  void _onPlatformChanged(String? v) => setState(() {
+        _selPlatform = v;
+        _selVendor = null;
+        _selModel = null;
+        _entry = null;
+        _checked = {};
+      });
 
-  void _onVendorChanged(String? val) {
-    setState(() {
-      _selVendor = val;
-      _selModel = null;
-      _entry = null;
-    });
-  }
+  void _onVendorChanged(String? v) => setState(() {
+        _selVendor = v;
+        _selModel = null;
+        _entry = null;
+        _checked = {};
+      });
 
-  void _onModelChanged(String? val) {
+  void _onModelChanged(String? v) {
     setState(() {
-      _selModel = val;
+      _selModel = v;
       _entry = null;
+      _checked = {};
     });
-    _loadEntry();
+    if (v != null) _loadEntry();
   }
 
   void _toggleAll(bool select) {
@@ -101,49 +99,42 @@ class _MotherboardSelectorWidgetState
     if (_entry == null || _checked.isEmpty) return;
     final selected = _checked.map((i) => _entry!.items[i]).toList();
     widget.onApply?.call(selected);
-    showToast(AppLocalizations.of(context)!.manualMotherboardAppliedCount(_selModel ?? '', selected.length.toString()),
+    showToast('Applied ${selected.length} config items from $_selModel',
         duration: const Duration(seconds: 3));
   }
 
   // ─────────────────────────────────────────────────────────────────────────
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final vendorList = _selPlatform == null
-        ? <MbConfVendor>[]
-        : (_platforms
-                .firstWhere((p) => p.name == _selPlatform,
-                    orElse: () => MbConfPlatform(name: '', vendors: []))
-                .vendors);
-
-    final modelList = _selVendor == null
-        ? <String>[]
-        : (vendorList
-                .firstWhere((v) => v.name == _selVendor,
-                    orElse: () => MbConfVendor(name: '', models: []))
-                .models);
+    final vendorList = _platforms
+            .where((p) => p.name == _selPlatform)
+            .firstOrNull
+            ?.vendors ??
+        [];
+    final modelList =
+        vendorList.where((v) => v.name == _selVendor).firstOrNull?.models ?? [];
 
     return ExpanderCard(
-      // AppLocalizations.of(context)!.manualMotherboardDetails 区域：条目勾选列表（仅在选中主板后显示）
-      header: Text(l10n.selectConfigItems),
+      // Details section: checklist (only shown when motherboard is selected)
+      header: const Text('Select configuration items to apply'),
       expander: (_entry != null || _entryLoading)
           ? _buildExpanderContent()
           : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── 标题行 ──────────────────────────────────────────
+          // ── Title row ──────────────────────────────────────────
           Row(children: [
-            Text(
-              l10n.motherboardModelConfig,
+            const Text(
+              'Motherboard Model Config:',
               style:
-                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 10),
             Text(
               _selModel != null
-                  ? '${l10n.selected}$_selModel'
-                  : l10n.selectMotherboardModelTip,
+                  ? 'Selected: $_selModel'
+                  : '(Select motherboard model and check desired configs)',
               style: TextStyle(
                 fontSize: 13,
                 color: _selModel != null ? null : Colors.grey,
@@ -151,7 +142,7 @@ class _MotherboardSelectorWidgetState
             ),
           ]),
           const SizedBox(height: 12),
-          // ── 三级 ComboBox ────────────────────────────────────
+          // ── 3-level ComboBox ────────────────────────────────────
           if (_navLoading)
             const Center(child: ProgressRing())
           else
@@ -160,9 +151,9 @@ class _MotherboardSelectorWidgetState
               runSpacing: 8,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                // 平台代数
+                // Platform Generation
                 _buildComboBox<String>(
-                  label: l10n.platformGen,
+                  label: 'Platform Generation',
                   width: 300,
                   value: _selPlatform,
                   items: _platforms
@@ -173,9 +164,9 @@ class _MotherboardSelectorWidgetState
                       .toList(),
                   onChanged: _onPlatformChanged,
                 ),
-                // 品牌
+                // Brand
                 _buildComboBox<String>(
-                  label: l10n.vendor,
+                  label: 'Brand',
                   width: 150,
                   value: _selVendor,
                   items: vendorList
@@ -184,9 +175,9 @@ class _MotherboardSelectorWidgetState
                       .toList(),
                   onChanged: vendorList.isEmpty ? null : _onVendorChanged,
                 ),
-                // 主板型号
+                // Motherboard Model
                 _buildComboBox<String>(
-                  label: l10n.motherboardModel,
+                  label: 'Motherboard Model',
                   width: 320,
                   value: _selModel,
                   items: modelList
@@ -204,7 +195,7 @@ class _MotherboardSelectorWidgetState
     );
   }
 
-  // ── ComboBox 封装 ───────────────────────────────────────────────────────
+  // ── ComboBox Helper ───────────────────────────────────────────────────────
   Widget _buildComboBox<T>({
     required String label,
     required double width,
@@ -212,7 +203,6 @@ class _MotherboardSelectorWidgetState
     required List<ComboBoxItem<T>> items,
     required ValueChanged<T?>? onChanged,
   }) {
-    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -225,7 +215,7 @@ class _MotherboardSelectorWidgetState
           child: ComboBox<T>(
             isExpanded: true,
             value: value,
-            placeholder: Text(l10n.pleaseSelect),
+            placeholder: const Text('Please select'),
             items: items,
             onChanged: onChanged,
           ),
@@ -234,7 +224,7 @@ class _MotherboardSelectorWidgetState
     );
   }
 
-  // ── 展开区域内容 ─────────────────────────────────────────────────────────
+  // ── Expander Content ─────────────────────────────────────────────────────────
   Widget _buildExpanderContent() {
     if (_entryLoading) {
       return const Padding(
@@ -246,7 +236,7 @@ class _MotherboardSelectorWidgetState
     final allSel = _checked.length == items.length;
     final noneSel = _checked.isEmpty;
 
-    // 按 category 分组
+    // Group by category
     final grouped = <MbItemCategory, List<int>>{};
     for (var i = 0; i < items.length; i++) {
       grouped.putIfAbsent(items[i].category, () => []).add(i);
@@ -257,14 +247,14 @@ class _MotherboardSelectorWidgetState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 全选行
+          // Select All row
           _buildSelectAllRow(allSel, noneSel, items.length),
           const SizedBox(height: 4),
-          // 各分组
+          // Groups
           ...grouped.entries
               .map((e) => _buildGroup(e.key, e.value, items)),
           const SizedBox(height: 8),
-          // 应用按钮
+          // Apply Bar
           _buildApplyBar(),
         ],
       ),
@@ -283,11 +273,11 @@ class _MotherboardSelectorWidgetState
             value: allSel ? true : noneSel ? false : null,
             onChanged: (v) => _toggleAll(v == true),
           ),
-          Text(AppLocalizations.of(context)!.manualMotherboardSelectAll,
+          const Text('Select / Deselect All',
               style:
-                  const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+                  TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
           const SizedBox(width: 8),
-          Text(AppLocalizations.of(context)!.manualMotherboardSelectedCount(_checked.length.toString(), total.toString()),
+          Text('(${_checked.length}/$total selected)',
               style: const TextStyle(fontSize: 12, color: Colors.grey)),
         ]),
       ),
@@ -305,7 +295,7 @@ class _MotherboardSelectorWidgetState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 分组标题
+        // Group Header
         Material(
           color: Colors.transparent,
           child: InkWell(
@@ -388,21 +378,20 @@ class _MotherboardSelectorWidgetState
   }
 
   Widget _buildApplyBar() {
-    final l10n = AppLocalizations.of(context)!;
     return Row(mainAxisAlignment: MainAxisAlignment.end, children: [
       Button(
         onPressed: () => _toggleAll(false),
-        child: Text(l10n.clearAllSelection),
+        child: const Text('Deselect All'),
       ),
       const SizedBox(width: 8),
       FilledButton(
         onPressed: _checked.isNotEmpty ? _apply : null,
-        child: Text(l10n.applySelected(_checked.length)),
+        child: Text('Apply Selected (${_checked.length} items)'),
       ),
     ]);
   }
 
-  // ── 辅助 ─────────────────────────────────────────────────────────────────
+  // ── Helpers ─────────────────────────────────────────────────────────────
   String _catLabel(MbItemCategory cat) => switch (cat) {
         MbItemCategory.acpiAdd      => 'ACPI',
         MbItemCategory.kextAdd      => 'Kext',

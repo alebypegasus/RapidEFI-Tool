@@ -1,5 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/link_button_row.dart';
@@ -15,12 +13,18 @@ class USBWiFi extends StatefulWidget {
 
 class _USBWiFiState extends State<USBWiFi> {
   late bool enableUSBWiFi = widget.enableUSBWiFi;
+  final String usbWiFiText =
+      'Add USB Wi-Fi required driver Kexts (Note: In addition to enabling this driver, install the Wireless USB Big Sur Adapter application in macOS; restart if it does not take effect)';
+  final String tip = r'''
+  Supported macOS Versions:
+    • Wireless USB Big Sur Adapter V18: macOS Catalina 10.15.x ~ macOS Tahoe 26.x (Requires OCLP USB root patch)
+    • Wireless USB Big Sur Adapter V15: OS X Mavericks 10.9 ~ macOS Catalina 10.15.x
+  Supported USB Wi-Fi Chipsets:
+    • Primarily Realtek 802.11n and 802.11ac USB Wi-Fi Adapters; see author repository for detailed hardware lists
+  ''';
 
   @override
   Widget build(BuildContext context) {
-    final String usbWiFiText = AppLocalizations.of(context)!.manualUsbWifiKexts;
-    final String tip = l10nGlobal.autoGen5825;
-
     return ScrollableChoiceListPanel(
       child: ChoiceList(
         header: Padding(
@@ -34,7 +38,7 @@ class _USBWiFiState extends State<USBWiFi> {
                   LinkButtonItem(
                     url:
                         'https://github.com/chris1111/Wireless-USB-Big-Sur-Adapter',
-                    buttonText: AppLocalizations.of(context)!.manualUsbWifiGithub,
+                    buttonText: 'Visit chris1111 Repository',
                     icon: FluentIcons.open_source,
                   ),
                 ],

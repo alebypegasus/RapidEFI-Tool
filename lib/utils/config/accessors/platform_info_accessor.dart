@@ -11,14 +11,14 @@ class PlatformInfoAccessor {
     return model.platformInfo.generic ??= PlatformInfoGeneric();
   }
 
-  /// 读取真实结构：
+  /// Read real structure:
 
   static int _getProcessorTypeValue(ConfigModel model) {
     return model.platformInfo.generic?.processorType ??
         defaultProcessorTypeValue;
   }
 
-  /// 写入真实结构：
+  /// Write real structure:
 
   static void _setProcessorTypeValue(ConfigModel model, int value) {
     ensureGeneric(model).processorType = value;

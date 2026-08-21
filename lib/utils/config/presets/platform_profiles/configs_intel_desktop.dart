@@ -236,7 +236,7 @@ class ConfigsIntelDesktop {
     return model;
   }
 
-  /// 下面几个先给占位示范，迁移时逐步补全。
+  /// The following are placeholders for demonstration.
 
   static ConfigModel createIntelDesktop1th() {
     final model = createIntelDesktopLegacy()

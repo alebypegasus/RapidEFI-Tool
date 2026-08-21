@@ -59,7 +59,7 @@ class _LogWidgetState extends State<LogWidget> {
     }
     _logs.value = updated;
 
-    // 滚动到底部（节流可选）
+    // Scroll to bottom (optional throttling)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!_scrollController.hasClients) return;
       _scrollController.animateTo(
@@ -147,10 +147,10 @@ class LogTextFormatter {
         Log.channels[channelName]?.config ??
         Log.channels[Log.defaultChannel]!.config;
 
-    // 去掉 channel
+    // Remove channel
     String processedText = logText.replaceFirst(RegExp(r'^\[[^\]]+\]\s*'), '');
 
-    // 按配置裁剪
+    // Trim according to config
     if (!logConfig.includeLogTimestampForUI &&
         !logConfig.includeLogLevelForUI) {
       processedText = processedText.replaceFirst(_fullPattern, '');

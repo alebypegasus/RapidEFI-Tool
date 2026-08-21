@@ -1,8 +1,5 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
-import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
-
 import 'package:rapidefi/pages/shared/widgets/markdown_tab_page.dart';
+import 'package:flutter/material.dart';
 
 class SSDTTabPage extends StatefulWidget {
   const SSDTTabPage({super.key});
@@ -15,35 +12,31 @@ class _SSDTTabPageState extends State<SSDTTabPage>
     with TickerProviderStateMixin {
   late final TabController _tabController;
 
-  List<MarkdownTabItem> _getTabItems(AppLocalizations l10n) {
-    return [
-      MarkdownTabItem(title: l10n.oclpIntro, mdPath: 'assets/ssdt/SSDT-Guide.md'),
-      MarkdownTabItem(title: l10n.ssdtPlatform, mdPath: 'assets/ssdt/平台补丁.md'),
-      MarkdownTabItem(title: l10n.ssdtAudio, mdPath: 'assets/ssdt/声卡补丁.md'),
-      MarkdownTabItem(title: l10n.ssdtGpuSpoof, mdPath: 'assets/ssdt/显卡仿冒.md'),
-      MarkdownTabItem(title: l10n.ssdtDisableDevice, mdPath: 'assets/ssdt/屏蔽设备.md'),
-      MarkdownTabItem(title: l10n.ssdtBrightness, mdPath: 'assets/ssdt/亮度补丁.md'),
-    ];
-  }
+  static const _tabItems = [
+    MarkdownTabItem(title: 'Overview', mdPath: 'assets/ssdt/SSDT-Guide.md'),
+    MarkdownTabItem(title: 'Platform Patches', mdPath: 'assets/ssdt/platform_patch.md'),
+    MarkdownTabItem(title: 'Audio Patches', mdPath: 'assets/ssdt/audio_patch.md'),
+    MarkdownTabItem(title: 'GPU Spoofing', mdPath: 'assets/ssdt/gpu_spoof.md'),
+    MarkdownTabItem(title: 'Disable Devices', mdPath: 'assets/ssdt/disable_devices.md'),
+    MarkdownTabItem(title: 'Brightness Patches', mdPath: 'assets/ssdt/brightness_patch.md'),
+  ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 6);
+    _tabController = TabController(vsync: this, length: _tabItems.length);
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final tabItems = _getTabItems(l10n);
-
     return MarkdownTabPage(
-      items: tabItems,
+      items: _tabItems,
       tabController: _tabController,
       onLinkTap: (href) {
         final decoded = Uri.decodeFull(href);
         if (!decoded.endsWith('.md')) return false;
-        final idx = tabItems.indexWhere((item) => item.mdPath.endsWith(decoded));
+        final idx =
+            _tabItems.indexWhere((item) => item.mdPath.endsWith(decoded));
         if (idx == -1) return false;
         _tabController.animateTo(idx);
         return true;

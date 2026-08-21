@@ -1,8 +1,7 @@
 class EnumCodec {
   const EnumCodec._();
 
-  /// 支持：
-
+  /// Supports decoding enums from string or object values
   static T decode<T extends Enum>(
     Object? raw,
     List<T> values, {
@@ -17,7 +16,7 @@ class EnumCodec {
 
     final normalizedKey = _normalize(key, ignoreCase);
 
-    // 1. 优先处理历史兼容值
+    // 1. Process backward compatibility aliases first
     for (final entry in aliases.entries) {
       if (_normalize(entry.key, ignoreCase) == normalizedKey) {
         return entry.value;

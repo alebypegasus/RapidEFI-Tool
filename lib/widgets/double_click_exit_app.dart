@@ -12,7 +12,7 @@ class DoubleClickBackExitApp extends StatefulWidget {
   final Widget child;
   final Function()? tips;
 
-  /// 两次点击返回按钮的时间间隔
+  /// Time interval between two back button presses
   final Duration duration;
 
   @override

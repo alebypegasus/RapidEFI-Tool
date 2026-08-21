@@ -1,5 +1,5 @@
 class NvramDeleteItem {
-  //值
+  // Value
   String? value;
   NvramDeleteItem({this.value});
   NvramDeleteItem copyWith({

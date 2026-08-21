@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/nvram/boot_arg_model.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_nvram.dart';
 import 'package:rapidefi/utils/config/services/config_option_provider.dart';
@@ -25,7 +24,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
     super.initState();
     _categories = [
       _BootArgCategory(
-        nameKey: 'debugCategory',
+        name: 'Debugging',
         options: [
           ConfigNvram.verbose,
           ConfigNvram.keepsyms1,
@@ -38,7 +37,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        nameKey: 'amfiSipCategory',
+        name: 'AMFI / SIP',
         options: [
           ConfigNvram.amfi,
           ConfigNvram.amfi_get_out_of_my_way,
@@ -48,7 +47,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        nameKey: 'igpuCategory',
+        name: 'iGPU Fixes',
         options: [
           ConfigNvram.disablegfxfirmware,
           ConfigNvram.wegnoigpu,
@@ -65,7 +64,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        nameKey: 'dgpuCategory',
+        name: 'dGPU Fixes',
         options: [
           ConfigNvram.wegnoegpu,
           ConfigNvram.nv_disable,
@@ -79,7 +78,7 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        nameKey: 'blackScreenFixCategory',
+        name: 'Black Screen Fixes',
         options: [
           ConfigNvram.agdpmod_pikera,
           ConfigNvram.agdpmod_vit9696,
@@ -96,20 +95,20 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
         ],
       ),
       _BootArgCategory(
-        nameKey: 'above4gCategory',
+        name: 'Above 4G Decoding',
         options: [
           ConfigNvram.npci2000,
           ConfigNvram.npci3000,
         ],
       ),
       _BootArgCategory(
-        nameKey: 'touchpadFixCategory',
+        name: 'Trackpad Fixes',
         options: [
           ConfigNvram.i2c_force_polling,
         ],
       ),
       _BootArgCategory(
-        nameKey: 'othersCategory',
+        name: 'Others',
         options: [
           ConfigNvram.ctrsmt,
           ConfigNvram.brcmfx_country_hk,
@@ -128,35 +127,17 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  String _getCategoryName(BuildContext context, String nameKey) {
-    final l10n = AppLocalizations.of(context)!;
-    return switch (nameKey) {
-      'debugCategory' => l10n.debugCategory,
-      'amfiSipCategory' => l10n.amfiSipCategory,
-      'igpuCategory' => l10n.igpuCategory,
-      'dgpuCategory' => l10n.dgpuCategory,
-      'blackScreenFixCategory' => l10n.blackScreenFixCategory,
-      'above4gCategory' => l10n.above4gCategory,
-      'touchpadFixCategory' => l10n.touchpadFixCategory,
-      'othersCategory' => l10n.othersCategory,
-      _ => nameKey,
-    };
-  }
-
   ChoiceListCategory<String> _buildChoiceListCategory(
-    BuildContext context,
     _BootArgCategory category,
     ConfigOptionProvider provider,
   ) {
-    final l10n = AppLocalizations.of(context)!;
     return ChoiceListCategory<String>(
-      name: _getCategoryName(context, category.nameKey),
+      name: category.name,
       tips: BootArgChoiceMapper.tips(category.options),
-      choices: BootArgChoiceMapper.choices(category.options, l10n),
+      choices: BootArgChoiceMapper.choices(category.options),
       selectedChoices: BootArgChoiceMapper.selectedChoices(
         options: category.options,
         selectedBootArgs: provider.selectedBootArgs,
-        l10n: l10n,
       ),
       onChanged: (List<String> value) {
         provider.updateBootArgsForOptions(
@@ -164,7 +145,6 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
           BootArgChoiceMapper.selectedModels(
             options: category.options,
             selectedChoices: value,
-            l10n: l10n,
           ),
         );
       },
@@ -173,14 +153,13 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return Consumer<ConfigOptionProvider>(builder: (context, provider, child) {
       return CategorizedChoiceListCard<String>(
-        title: l10n.bootArgsCardTitle,
-        subTitle: l10n.bootArgsDefaultTip,
+        title: "Boot Arguments:",
+        subTitle: "(-v verbose mode enabled by default; uncheck to disable)",
         controller: _tabController,
         categories: _categories
-            .map((category) => _buildChoiceListCategory(context, category, provider))
+            .map((category) => _buildChoiceListCategory(category, provider))
             .toList(),
       );
     });
@@ -189,10 +168,10 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
 
 class _BootArgCategory {
   const _BootArgCategory({
-    required this.nameKey,
+    required this.name,
     required this.options,
   });
 
-  final String nameKey;
+  final String name;
   final List<BootArgModel> options;
 }

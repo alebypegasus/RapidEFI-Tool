@@ -1,21 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
-
 import 'package:rapidefi/pages/shared/widgets/markdown_tab_page.dart';
+import 'package:flutter/material.dart';
 
 class OCLPTabPage extends StatelessWidget {
   const OCLPTabPage({super.key});
 
+  static const _tabItems = [
+    MarkdownTabItem(title: 'Overview', mdPath: 'assets/oclp/introduction.md'),
+    MarkdownTabItem(title: 'Graphics Patches', mdPath: 'assets/oclp/gpu.md'),
+    MarkdownTabItem(title: 'Wi-Fi Patches', mdPath: 'assets/oclp/wifi.md'),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
-    final tabItems = [
-      MarkdownTabItem(title: l10n.oclpIntro, mdPath: 'assets/oclp/introduction.md'),
-      MarkdownTabItem(title: l10n.oclpGpu, mdPath: 'assets/oclp/gpu.md'),
-      MarkdownTabItem(title: l10n.oclpWifi, mdPath: 'assets/oclp/wifi.md'),
-    ];
-
-    return MarkdownTabPage(items: tabItems);
+    return const MarkdownTabPage(items: _tabItems);
   }
 }

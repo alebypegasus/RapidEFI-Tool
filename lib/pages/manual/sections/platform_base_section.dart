@@ -13,7 +13,7 @@ import 'package:rapidefi/utils/config/accessors/amd_settings_accessor.dart';
 import 'package:rapidefi/utils/config/config_model.dart';
 import 'package:rapidefi/utils/config/support/smbios_compatibility.dart';
 
-/// 平台基础配置
+/// Platform base configuration
 class PlatformBaseSectionView extends StatelessWidget {
   const PlatformBaseSectionView({super.key});
 
@@ -157,7 +157,7 @@ class PlatformBaseSectionView extends StatelessWidget {
                   });
                 },
               ),
-            // ── 主板型号配置（独立区域，最后应用，不被平台预设覆盖）─
+            // ── Motherboard model configuration (independent section, applied last) ──
             const MotherboardSectionView(),
           ],
         );

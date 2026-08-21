@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 
 class HardwareToolbar extends StatelessWidget {
@@ -36,7 +35,6 @@ class HardwareToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
       child: Column(
@@ -44,24 +42,24 @@ class HardwareToolbar extends StatelessWidget {
         children: [
           Row(children: [
             if (showHardwareActions) ...[
-              _btn(l10n.refreshHardwareInfo, () => onRefresh(), isLoading),
+              _btn('Refresh', () => onRefresh(), isLoading),
               const SizedBox(width: 8),
             ],
-            _btn(l10n.importHardwareInfo, onImport, false),
+            _btn('Import Report', onImport, false),
             const SizedBox(width: 8),
             if (showHardwareActions) ...[
-              _btn(l10n.exportHardwareReport, onExport, false),
+              _btn('Export Report', onExport, false),
               const SizedBox(width: 8),
             ],
             if (showAcpiExportAction) ...[
-              _btn(l10n.exportAcpiTables, onExportAcpi, false),
+              _btn('Export ACPI', onExportAcpi, false),
               const SizedBox(width: 8),
             ],
-            _btn(l10n.efiSettings, onPersonalizedEfi, false),
+            _btn('EFI Settings', onPersonalizedEfi, false),
             const SizedBox(width: 8),
-            _btn(l10n.outputEFI, onOutputEfi, false),
+            _btn('Export EFI', onOutputEfi, false),
             const Spacer(),
-            _segmentedSwitch(context, l10n),
+            _segmentedSwitch(context),
           ]),
         ],
       ),
@@ -83,7 +81,7 @@ class HardwareToolbar extends StatelessWidget {
     );
   }
 
-  Widget _segmentedSwitch(BuildContext context, AppLocalizations l10n) {
+  Widget _segmentedSwitch(BuildContext context) {
     final colors = hardwareThemeColors(context);
     return Container(
       height: 30,
@@ -93,12 +91,11 @@ class HardwareToolbar extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        _segment(context, l10n.summaryView, !detailed, () => onDetailedChanged(false)),
-        _segment(context, l10n.detailedView, detailed, () => onDetailedChanged(true)),
+        _segment(context, 'Summary', !detailed, () => onDetailedChanged(false)),
+        _segment(context, 'Details', detailed, () => onDetailedChanged(true)),
       ]),
     );
   }
-
 
   Widget _segment(
       BuildContext context, String text, bool selected, VoidCallback onTap) {

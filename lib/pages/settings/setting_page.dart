@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
-
 import 'package:provider/provider.dart';
 import 'package:rapidefi/extension/bool_extension.dart';
 import 'package:rapidefi/extension/color_extension.dart';
@@ -16,6 +14,35 @@ import 'package:rapidefi/pages/settings/theme_widget.dart';
 import 'package:rapidefi/widgets/inkwell_widget.dart';
 import 'package:sp_util/sp_util.dart';
 
+const String snippet = '''
+1. OpenCore Boot Theme is added by default. RapidEFI will include a boot theme in the generated EFI. Uncheck if you do not want a theme.
+
+2. Generate configModel file is enabled by default. RapidEFI outputs a configModel file inside the EFI folder, which can be reloaded for subsequent modifications. See the "Process EFI" section.
+
+3. Compress EFI to Zip will archive the generated EFI into a .zip file. Note that zip compression may slightly increase generation time on lower-end hardware.
+''';
+
+const String copyRights = '''
+Copyright (C) 2024 JeoJay
+
+License
+
+Permission is granted to individuals and organizations under the following conditions:
+
+1. Non-Commercial Use:
+This software is completely free and open source, intended solely for non-commercial use. Selling this software is strictly prohibited.
+
+2. Attribution:
+Any reproduction, quotation, or third-party distribution of this software's content must clearly credit the source and include:
+Developed by JeoJay. Copyright © 2024 com.jeojay. All rights reserved.
+
+3. Copyright Notices:
+Do not modify or remove original copyright notices and author attributions when reproducing or redistributing this software.
+
+Disclaimer:
+This software is provided "AS IS", without warranty of any kind, express or implied. The copyright holders are not liable for any damages resulting from the use of this software.
+''';
+
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
 
@@ -24,131 +51,75 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  late final appTheme = context.watch<AppTheme>();
   bool _checkingUpdate = false;
-
-  Map<String, String> _getLanguageMap(AppLocalizations l10n) {
-    return {
-      'system': l10n.languageSystem,
-      'en': l10n.languageEn,
-      'pt_BR': l10n.languagePtBR,
-      'pt_PT': l10n.languagePtPT,
-      'zh_CN': l10n.languageZhCN,
-      'zh_TW': l10n.languageZhTW,
-      'ja': l10n.languageJa,
-      'es': l10n.languageEs,
-      'fr': l10n.languageFr,
-      'ar': l10n.languageAr,
-      'hi': l10n.languageHi,
-      'ru': l10n.languageRu,
-      'it': l10n.languageIt,
-    };
-  }
-
-  Map<String, String> _getThemeModeMap(AppLocalizations l10n) {
-    return {
-      'system': l10n.themeModeSystem,
-      'light': l10n.themeModeLight,
-      'dark': l10n.themeModeDark,
-    };
-  }
-
-  Map<String, String> _getFontFamilyMap(AppLocalizations l10n) {
-    return {
-      'msyh': l10n.fontMicrosoftYaHei,
-      'Sarasa-Gothic-Mono-Nerd-SC-Regular': l10n.fontSarasaGothic,
-      'NotoSerifSC-Regular': l10n.fontSourceHanSerif,
-    };
-  }
-
-  List<OutEfiOptions> _getEfiOptions(AppLocalizations l10n) {
-    return [
-      OutEfiOptions(
+  List<OutEfiOptions> EFIOptionsList = [
+    OutEfiOptions(
         key: Constant.configOpenCoreTheme,
-        enabled: SpUtil.getBool(Constant.configOpenCoreTheme, defValue: true).nullSafe,
-        name: l10n.addOpenCoreTheme,
-      ),
-      OutEfiOptions(
+        enabled: SpUtil.getBool(Constant.configOpenCoreTheme, defValue: true)
+            .nullSafe,
+        name: 'Add OpenCore boot theme to EFI'),
+    OutEfiOptions(
         key: Constant.outConfigModel,
-        enabled: SpUtil.getBool(Constant.outConfigModel, defValue: true).nullSafe,
-        name: l10n.generateConfigModel,
-      ),
-      OutEfiOptions(
+        enabled:
+            SpUtil.getBool(Constant.outConfigModel, defValue: true).nullSafe,
+        name: 'Generate configModel file in EFI folder'),
+    OutEfiOptions(
         key: Constant.zipEFI,
         enabled: SpUtil.getBool(Constant.zipEFI, defValue: false).nullSafe,
-        name: l10n.zipEFI,
-      ),
-    ];
-  }
+        name: 'Compress EFI to ZIP file'),
+  ];
 
-  @override
-  Widget build(BuildContext context) {
-    final appTheme = context.watch<AppTheme>();
-    final l10n = AppLocalizations.of(context)!;
-    final languageMap = _getLanguageMap(l10n);
-    final themeModeMapLocal = _getThemeModeMap(l10n);
-    final fontMap = _getFontFamilyMap(l10n);
-    final efiOptionsList = _getEfiOptions(l10n);
-
-    final children = <Widget>[
-      TitleCard(
-        title: l10n.copyrightTitle,
-        snippet: l10n.copyrightText,
+  List<Widget> get children {
+    return [
+      const TitleCard(
+        title: 'Copyright & License',
+        snippet: copyRights,
       ),
       SettingsChoiceCard<String>(
-        title: l10n.languageTitle,
-        choices: languageMap.values.toList(),
-        selectedChoices: [languageMap[appTheme.languageTag] ?? l10n.languageSystem],
-        onChanged: (List<String> value) {
-          final selectedValue = value.firstOrNull;
-          final key = languageMap.keys.firstWhere(
-            (k) => languageMap[k] == selectedValue,
-            orElse: () => 'system',
-          );
-          appTheme.setLanguageTag(key);
-        },
-      ),
-      SettingsChoiceCard<String>(
-        title: l10n.themeModeTitle,
-        choices: themeModeMapLocal.values.toList(),
-        selectedChoices: [themeModeMapLocal[appTheme.themeMode.name] ?? ''],
-        onChanged: (List<String> value) {
-          final selectedValue = value.firstOrNull;
-          final key = themeModeMapLocal.keys.firstWhere(
-            (type) => themeModeMapLocal[type] == selectedValue,
-            orElse: () => appTheme.themeMode.name,
-          );
-          appTheme.mode = themeModeMap[key]!;
-        },
-      ),
+          title: 'Theme Mode :',
+          choices: themeModeCHMap.values.toList(),
+          selectedChoices: [themeModeCHMap[appTheme.themeMode.name] ?? ''],
+          onChanged: (List<String> value) {
+            String? selectedValue = value.firstOrNull;
+            var key = themeModeCHMap.keys.firstWhere(
+              (type) => themeModeCHMap[type] == selectedValue,
+              orElse: () => appTheme.themeMode.name,
+            );
+            appTheme.mode = themeModeMap[key]!;
+          }),
       TitleCard(
-        title: l10n.themeColorTitle,
+          title: 'Theme Color :',
+          content: Row(
+            children: [
+              const SizedBox(
+                width: 15,
+              ),
+              InkWellWidget(
+                height: 30,
+                width: 30,
+                radius: 6,
+                backgroundColor: appTheme.theme,
+              ),
+            ],
+          ),
+          expander: ThemeWidget(
+              onTap: (primaryColor) {
+                appTheme.primaryColor = primaryColor;
+              },
+              hasExpaner: false,
+              primary: appTheme.theme,
+              defaultPrimary: Colors.blue,
+              defaultCustomPrimary:
+                  Theme.of(context).colorScheme.primary.toMaterialColor())),
+      TitleCard(
+        title: 'App Font :',
         content: Row(
           children: [
-            const SizedBox(width: 15),
-            InkWellWidget(
-              height: 30,
-              width: 30,
-              radius: 6,
-              backgroundColor: appTheme.theme,
+            const SizedBox(
+              width: 15,
             ),
-          ],
-        ),
-        expander: ThemeWidget(
-          onTap: (primaryColor) {
-            appTheme.primaryColor = primaryColor;
-          },
-          hasExpaner: false,
-          primary: appTheme.theme,
-          defaultPrimary: Colors.blue,
-          defaultCustomPrimary: Theme.of(context).colorScheme.primary.toMaterialColor(),
-        ),
-      ),
-      TitleCard(
-        title: l10n.appFontTitle,
-        content: Row(
-          children: [
-            const SizedBox(width: 15),
-            Text(fontMap[appTheme.appFontFamily] ?? appTheme.appFontFamily ?? ''),
+            Text(appFontFamilyMap[appTheme.appFontFamily]!),
           ],
         ),
         expander: ChoiceList(
@@ -156,7 +127,7 @@ class _SettingPageState extends State<SettingPage> {
           allowToggle: false,
           onChanged: (value) {
             if (value.isNotEmpty) {
-              final matchingKeys = fontMap.entries
+              final matchingKeys = appFontFamilyMap.entries
                   .where((entry) => entry.value == value.first)
                   .map((entry) => entry.key)
                   .toList();
@@ -165,47 +136,35 @@ class _SettingPageState extends State<SettingPage> {
               }
             }
           },
-          choices: fontMap.values.toList(),
-          selectedChoices: [fontMap[appTheme.appFontFamily] ?? ''],
+          choices: appFontFamilyMap.values.toList(),
+          selectedChoices: [appFontFamilyMap[appTheme.appFontFamily]!],
         ),
       ),
       SettingsChoiceCard<String>(
-        title: l10n.efiSettingsTitle,
-        choices: efiOptionsList.map((e) => e.name).toList(),
-        selectedChoices: efiOptionsList.where((e) => e.enabled).map((e) => e.name).toList(),
+        title: 'EFI Options :',
+        choices: EFIOptionsList.map((e) => e.name).toList(),
+        selectedChoices:
+            EFIOptionsList.where((e) => e.enabled).map((e) => e.name).toList(),
         isMultipleSelection: true,
         allowToggle: false,
         onChanged: (List<String> value) {
           final valueSet = value.toSet();
-          for (var op in efiOptionsList) {
+
+          for (var op in EFIOptionsList) {
             op.enabled = valueSet.contains(op.name);
             SpUtil.putBool(op.key, op.enabled);
           }
         },
-        snippet: l10n.settingSnippet,
+        snippet: snippet,
       ),
       TitleCard(
-        title: l10n.versionUpdateTitle,
-        content: _buildUpdateContent(l10n),
+        title: 'Check for Updates :',
+        content: _buildUpdateContent(),
       ),
     ];
-
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: ListView.separated(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        itemCount: children.length,
-        separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(height: 10);
-        },
-        itemBuilder: (BuildContext context, int index) {
-          return children[index];
-        },
-      ),
-    );
   }
 
-  Widget _buildUpdateContent(AppLocalizations l10n) {
+  Widget _buildUpdateContent() {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -214,14 +173,14 @@ class _SettingPageState extends State<SettingPage> {
           builder: (context, snapshot) {
             final version = snapshot.data ?? '--';
             return Text(
-              l10n.currentVersion(version),
+              'Current version: $version',
               style: const TextStyle(fontSize: 13),
             );
           },
         ),
         const SizedBox(width: 12),
         SizedBox(
-          width: 120,
+          width: 92,
           height: 30,
           child: ElevatedButton(
             onPressed: _checkingUpdate ? null : _checkUpdate,
@@ -232,7 +191,7 @@ class _SettingPageState extends State<SettingPage> {
               ),
               textStyle: const TextStyle(fontSize: 13),
             ),
-            child: Text(_checkingUpdate ? l10n.checkingUpdate : l10n.checkUpdate),
+            child: Text(_checkingUpdate ? 'Checking...' : 'Check Updates'),
           ),
         ),
       ],
@@ -246,5 +205,22 @@ class _SettingPageState extends State<SettingPage> {
     } finally {
       if (mounted) setState(() => _checkingUpdate = false);
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        itemCount: children.length,
+        separatorBuilder: (BuildContext context, int index) {
+          return const SizedBox(height: 10);
+        },
+        itemBuilder: (BuildContext context, int index) {
+          return children[index];
+        },
+      ),
+    );
   }
 }

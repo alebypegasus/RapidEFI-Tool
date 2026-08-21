@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/pages/hardware/widgets/hardware_shared.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 
 class NetworkSection extends StatelessWidget {
   final Map<String, dynamic> rawInfo;
@@ -24,7 +23,7 @@ class NetworkSection extends StatelessWidget {
             children: [
               SelectableText(
                 joinNonEmpty(
-                    [entry.name, AppLocalizations.of(context)!.hwDeviceID(entry.deviceId), entry.displayType],
+                    [entry.name, 'Device ID: ${entry.deviceId}', entry.displayType],
                     '    '),
                 style: TextStyle(fontSize: 14, height: 1.25, color: color),
               ),
@@ -37,6 +36,6 @@ class NetworkSection extends StatelessWidget {
       ]);
     }).toList();
     if (lines.isEmpty) return const SizedBox.shrink();
-    return HardwareSection(AppLocalizations.of(context)!.hwNetworkCard, lines, note: networkCompatibility(rawInfo));
+    return HardwareSection('Network', lines, note: networkCompatibility(rawInfo));
   }
 }

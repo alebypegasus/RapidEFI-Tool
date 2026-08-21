@@ -5,22 +5,22 @@ enum UIScale {
   scale00(
     nvramValue: '00',
     text: EnumText(
-      fallbackTitle: '',
-      descId: 5141,
+      title: '',
+      description: 'Auto (Adaptive): Automatically adjust OpenCore boot UI scale based on display resolution',
     ),
   ),
   scale01(
     nvramValue: '01',
     text: EnumText(
-      fallbackTitle: '',
-      descId: 5142,
+      title: '',
+      description: 'Standard (1x): Suitable for 720p, 1080p, 1440p standard resolution displays',
     ),
   ),
   scale02(
     nvramValue: '02',
     text: EnumText(
-      fallbackTitle: '',
-      descId: 5143,
+      title: '',
+      description: 'HiDPI (2x): Suitable for 4K, 5K high-resolution displays (fixes tiny OpenCore UI elements)',
     ),
   );
 

@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/utils/hardware/analysis/gpu_compatibility_data.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_analysis_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
@@ -16,17 +15,17 @@ CompatibilityNote? cpuCompatibility(Map<String, dynamic> data) {
   final simd = safeStr(cpu['SIMD Features']).toUpperCase();
 
   if (simd.contains('AVX2')) {
-    return CompatibilityNote.supported(l10nGlobal.autoGen5000);
+    return CompatibilityNote.supported('Supported');
   }
 
   if (simd.contains('SSE4')) {
     return CompatibilityNote.limited(
-      l10nGlobal.autoGen5007,
+      'Limited Compatibility\nUp to macOS Tahoe 26\nMissing AVX2',
     );
   }
 
   return CompatibilityNote.unsupported(
-    l10nGlobal.autoGen5008,
+    'Unsupported\nUp to macOS El Capitan 10.11\nMissing SSE4',
   );
 }
 
@@ -194,46 +193,46 @@ _GpuSupportDecision _decideGpuSupport(
   _GpuSupportFacts evidence,
 ) {
   if (evidence.rawId.isEmpty) {
-    return _GpuSupportDecision(
+    return const _GpuSupportDecision(
       level: CompatibilityLevel.unsupported,
-      message: l10nGlobal.autoGen5009,
+      message: 'Missing Device ID',
     );
   }
 
   if (evidence.isNootedRedApu) {
-    return _GpuSupportDecision(
+    return const _GpuSupportDecision(
       level: CompatibilityLevel.supported,
-      message: l10nGlobal.autoGen5010,
+      message: 'Supported by NootedRed',
     );
   }
 
   if (!evidence.isDataReady) {
-    return _GpuSupportDecision(
+    return const _GpuSupportDecision(
       level: CompatibilityLevel.limited,
-      message: l10nGlobal.autoGen5011,
+      message: 'Loading compatibility data...',
     );
   }
 
   final record = evidence.record;
   if (record == null) {
-    return _GpuSupportDecision(
+    return const _GpuSupportDecision(
       level: CompatibilityLevel.unsupported,
-      message: l10nGlobal.autoGen5002,
+      message: 'Unsupported',
     );
   }
 
   if (isIntelGpuRecord(record)) {
     if (isEntryIntelCpu(evidence.data)) {
-      return _GpuSupportDecision(
+      return const _GpuSupportDecision(
         level: CompatibilityLevel.unsupported,
-        message: l10nGlobal.autoGen5012,
+        message: 'Low-end Intel CPU iGPU is unsupported',
       );
     }
 
     if (record.vgaLimited && hasOnlyVgaDisplays(evidence.data, evidence.name)) {
-      return _GpuSupportDecision(
+      return const _GpuSupportDecision(
         level: CompatibilityLevel.unsupported,
-        message: l10nGlobal.autoGen5013,
+        message: 'VGA output is unsupported',
       );
     }
   }
@@ -248,7 +247,7 @@ _GpuSupportDecision _decideGpuSupport(
     hasAvx2Limit: hasAvx2Limit,
   );
 
-  if (supportsLatest && !hasAvx2Limit) {
+  if (supportsLatest && !hasAvx2Limit && !record.requiresSpoof) {
     return _GpuSupportDecision(
       level: CompatibilityLevel.supported,
       message: detail,
@@ -314,7 +313,7 @@ class _GpuSupportFacts {
 }
 
 class _GpuSupportDecision {
-  _GpuSupportDecision({
+  const _GpuSupportDecision({
     required this.level,
     required this.message,
   });
@@ -347,6 +346,9 @@ bool _isNootedRedSupportedIntegratedGpu(
   String _,
   Map<String, dynamic> gpu,
 ) {
+  final type = safeStr(gpu['Device Type']).toLowerCase();
+  final isDiscrete = type.contains('discrete') || type.contains('dgpu');
+  if (isDiscrete) return false;
   return HardwareDeviceData.isNootedRedSupportedDeviceId(
     safeStr(gpu['Device ID']),
   );
@@ -363,7 +365,7 @@ String _gpuSupportDetail({
     details.add(record.name);
   }
 
-  final supportPrefix = record.requiresSpoof ? l10nGlobal.autoGen5014 : l10nGlobal.autoGen5015;
+  final supportPrefix = record.requiresSpoof ? 'Spoofed Support' : 'Native Support';
 
   details.add(
     '$supportPrefix ${_macOSRangeFromDarwin(record.minDarwin, effectiveMaxDarwin)}',
@@ -371,12 +373,12 @@ String _gpuSupportDetail({
 
   if (record.hasOclpRange) {
     details.add(
-      'OCLP支持 ${_macOSRangeFromDarwin(record.minOclp!, record.maxOclp!)}',
+      'OCLP Support ${_macOSRangeFromDarwin(record.minOclp!, record.maxOclp!)}',
     );
   }
 
   if (hasAvx2Limit) {
-    details.add(l10nGlobal.autoGen5016);
+    details.add('Missing AVX2 instruction set');
   }
 
   return details.join('\n');
@@ -441,7 +443,7 @@ CompatibilityNote networkEntryCompatibility(
   );
 
   if (category.isNotEmpty) {
-    return CompatibilityNote.supported(l10nGlobal.autoGen5000);
+    return CompatibilityNote.supported('Supported');
   }
 
   final role = networkAdapterType(
@@ -452,7 +454,7 @@ CompatibilityNote networkEntryCompatibility(
     return CompatibilityNote.limited('USB WiFi');
   }
 
-  return CompatibilityNote.unsupported(l10nGlobal.autoGen5002);
+  return CompatibilityNote.unsupported('Unsupported');
 }
 
 bool isForceAquantiaEthernetKext(String kextName) {
@@ -509,8 +511,8 @@ CompatibilityNote? networkCompatibility(Map<String, dynamic> data) {
 
 CompatibilityNote bluetoothEntryCompatibility(Map<String, dynamic> device) {
   return HardwareDeviceData.isSupportedBluetooth(safeStr(device['Device ID']))
-      ? CompatibilityNote.supported(l10nGlobal.autoGen5000)
-      : CompatibilityNote.unsupported(l10nGlobal.autoGen5002);
+      ? CompatibilityNote.supported('Supported')
+      : CompatibilityNote.unsupported('Unsupported');
 }
 
 List<BluetoothEntryAnalysis> bluetoothEntries(Map<String, dynamic> data) {
@@ -560,7 +562,7 @@ AudioCodecLookup audioCodecForDeviceId(String codecDeviceId) {
   var normalized = buffer.toString();
 
   if (normalized.length < 8) {
-    return AudioCodecLookup();
+    return const AudioCodecLookup();
   }
 
   normalized = normalized.substring(normalized.length - 8);
@@ -590,7 +592,7 @@ AudioCodecLookup audioCodecForDeviceId(String codecDeviceId) {
     return AudioCodecLookup(model: vendor);
   }
 
-  return AudioCodecLookup();
+  return const AudioCodecLookup();
 }
 
 Map<String, dynamic> audioControllerForDevice(
@@ -811,33 +813,33 @@ List<AudioEntry> audioEntries(Map<String, dynamic> data) {
 }
 
 // ============================================================================
-// Audio 兼容性
+// Audio Compatibility
 // ============================================================================
 
 CompatibilityNote audioEntryCompatibility(AudioEntry entry) {
   final deviceId = entry.deviceId.toUpperCase();
 
   if (entry.busType.toUpperCase().contains('USB')) {
-    return CompatibilityNote.supported(l10nGlobal.autoGen5000);
+    return CompatibilityNote.supported('Supported');
   }
 
   if (entry.codecKnown && entry.codecSupported) {
-    return CompatibilityNote.supported(l10nGlobal.autoGen5000);
+    return CompatibilityNote.supported('Supported');
   }
 
   if (deviceId.startsWith('1002-')) {
-    return CompatibilityNote.supported(l10nGlobal.autoGen5000);
+    return CompatibilityNote.supported('Supported');
   }
 
   if (deviceId.startsWith('8086-') && !isIntelSstAudio(deviceId)) {
-    return CompatibilityNote.supported(l10nGlobal.autoGen5000);
+    return CompatibilityNote.supported('Supported');
   }
 
   if (isIntelSstAudio(deviceId)) {
-    return CompatibilityNote.unsupported(l10nGlobal.autoGen5002);
+    return CompatibilityNote.unsupported('Unsupported');
   }
 
-  return CompatibilityNote.unsupported(l10nGlobal.autoGen5002);
+  return CompatibilityNote.unsupported('Unsupported');
 }
 
 AudioLayoutAnalysis? audioLayoutAnalysis(
@@ -876,7 +878,7 @@ CompatibilityNote? audioCompatibility(Map<String, dynamic> data) {
 }
 
 // ============================================================================
-// Storage / Disk 兼容性
+// Storage / Disk Compatibility
 // ============================================================================
 
 Set<String> unsupportedDiskControllerIds(Map<String, dynamic> data) {
@@ -941,8 +943,8 @@ CompatibilityNote storageControllerEntryCompatibility(
   Map<String, dynamic> device,
 ) {
   return isUnsupportedNvmeDiskId(safeStr(device['Device ID']))
-      ? CompatibilityNote.unsupported(l10nGlobal.autoGen5002)
-      : CompatibilityNote.supported(l10nGlobal.autoGen5000);
+      ? CompatibilityNote.unsupported('Unsupported')
+      : CompatibilityNote.supported('Supported');
 }
 
 List<StorageControllerEntryAnalysis> storageControllerEntries(
@@ -1010,8 +1012,9 @@ CompatibilityNote? storageCompatibility(Map<String, dynamic> data) {
 
 List<MapEntry<String, dynamic>> qtSdEntries(Map<String, dynamic> data) {
   final seen = <String>{};
+  final rawSd = data['SD Controllers'] ?? data['SD Controller'] ?? data['Card Reader'];
 
-  return hardwareDevices(data['SD Controllers']).where((entry) {
+  return hardwareDevices(rawSd).where((entry) {
     final device = safeMap(entry.value);
     final id =
         '${entry.key}|${safeStr(device['Device ID'])}|${safeStr(device['PCI Path'])}';
@@ -1024,8 +1027,8 @@ CompatibilityNote sdEntryCompatibility(Map<String, dynamic> device) {
   return HardwareDeviceData.supportedSdCardReaderName(
     safeStr(device['Device ID']),
   ).isNotEmpty
-      ? CompatibilityNote.supported(l10nGlobal.autoGen5000)
-      : CompatibilityNote.unsupported(l10nGlobal.autoGen5002);
+      ? CompatibilityNote.supported('Supported')
+      : CompatibilityNote.unsupported('Unsupported');
 }
 
 List<SdCardEntryAnalysis> sdCardEntries(Map<String, dynamic> data) {
@@ -1091,28 +1094,28 @@ CompatibilityNote? mergeNotes(List<CompatibilityNote> notes) {
         .join('\n');
 
     return CompatibilityNote.limited(
-      limitedDetails.isEmpty ? l10nGlobal.autoGen5001 : '有限兼容\n$limitedDetails',
+      limitedDetails.isEmpty ? 'Limited Compatibility' : 'Limited Compatibility\n$limitedDetails',
     );
   }
 
   if (unsupported > 0) {
-    return CompatibilityNote.unsupported(l10nGlobal.autoGen5002);
+    return CompatibilityNote.unsupported('Unsupported');
   }
 
-  return CompatibilityNote.supported(l10nGlobal.autoGen5000);
+  return CompatibilityNote.supported('Supported');
 }
 
 CompatibilityNote? statusNote(int supported, int unsupported) {
   if (supported > 0 && unsupported == 0) {
-    return CompatibilityNote.supported(l10nGlobal.autoGen5000);
+    return CompatibilityNote.supported('Supported');
   }
 
   if (supported > 0 && unsupported > 0) {
-    return CompatibilityNote.limited(l10nGlobal.autoGen5001);
+    return CompatibilityNote.limited('Limited Compatibility');
   }
 
   if (supported == 0 && unsupported > 0) {
-    return CompatibilityNote.unsupported(l10nGlobal.autoGen5002);
+    return CompatibilityNote.unsupported('Unsupported');
   }
 
   return null;

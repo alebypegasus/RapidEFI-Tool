@@ -28,7 +28,7 @@ import 'package:rapidefi/utils/config/support/smbios_util.dart';
 import 'package:rapidefi/utils/log/log.dart';
 
 class ConfigRuleEngine {
-  ConfigRuleEngine(this.configService);
+  const ConfigRuleEngine(this.configService);
 
   final ConfigService configService;
   static Future<Set<String>?>? _assetManifestCache;
@@ -135,7 +135,7 @@ class ConfigRuleEngine {
         .removeWhere((item) => missingPaths.contains(item.path));
 
     for (final path in missingPaths) {
-      Log('静态 ACPI 资源不存在，已跳过: assets/acpi/$path');
+      Log('Static ACPI asset does not exist, skipped: assets/acpi/$path');
     }
   }
 
@@ -153,7 +153,7 @@ class ConfigRuleEngine {
       final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
       return manifest.listAssets().toSet();
     } catch (error) {
-      Log('读取资源清单失败，跳过静态 ACPI 缺失检查: $error');
+      Log('Failed to read asset manifest, skipped static ACPI missing check: $error');
       return null;
     }
   }

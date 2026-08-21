@@ -8,7 +8,7 @@ class PlatformEntity {
   final String initialSupport;
   final String lastSupported;
   final String oclpSupported;
-  final PlatformBiosOption note;
+  final List<String> note;
   final PlatformConfig config;
 
   const PlatformEntity({
@@ -21,7 +21,7 @@ class PlatformEntity {
     this.initialSupport = '',
     this.lastSupported = '',
     this.oclpSupported = '',
-    this.note = const PlatformBiosOption(),
+    this.note = const [],
     this.config = const PlatformConfig(),
   });
 
@@ -36,19 +36,13 @@ class PlatformEntity {
       initialSupport: json['initial_support']?.toString() ?? '',
       lastSupported: json['last_supported']?.toString() ?? '',
       oclpSupported: json['oclp_supported']?.toString() ?? '',
-      note: json['note'] is Map<String, dynamic>
-          ? PlatformBiosOption.fromJson(json['note'] as Map<String, dynamic>)
-          : PlatformBiosOption(
-              ch: _toStringList(json['note']),
-              en: _toStringList(json['note']),
-              pt: _toStringList(json['note']),
-              ja: _toStringList(json['note']),
-            ),
+      note: _toStringList(json['note']),
       config: json['config'] is Map<String, dynamic>
           ? PlatformConfig.fromJson(json['config'] as Map<String, dynamic>)
           : const PlatformConfig(),
     );
   }
+
 }
 
 class PlatformConfig {
@@ -97,35 +91,17 @@ class PlatformBiosConfig {
 class PlatformBiosOption {
   final List<String> en;
   final List<String> ch;
-  final List<String> pt;
-  final List<String> ja;
 
   const PlatformBiosOption({
     this.en = const [],
     this.ch = const [],
-    this.pt = const [],
-    this.ja = const [],
   });
 
   factory PlatformBiosOption.fromJson(Map<String, dynamic> json) {
     return PlatformBiosOption(
       en: _toStringList(json['en']),
       ch: _toStringList(json['ch']),
-      pt: _toStringList(json['pt']),
-      ja: _toStringList(json['ja']),
     );
-  }
-
-  /// Get the corresponding language string based on language code
-  List<String> getByLocale(String languageCode) {
-    if (languageCode == 'zh') {
-      return ch.isNotEmpty ? ch : en;
-    } else if (languageCode == 'pt') {
-      return pt.isNotEmpty ? pt : en;
-    } else if (languageCode == 'ja') {
-      return ja.isNotEmpty ? ja : en;
-    }
-    return en.isNotEmpty ? en : ch;
   }
 }
 

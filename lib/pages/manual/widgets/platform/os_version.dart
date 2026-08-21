@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 
 class OSVersionWidget extends StatefulWidget {
@@ -50,9 +49,8 @@ class _OSVersionWidgetState extends State<OSVersionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return TitleCard(
-      title: l10n.targetMacOSVersion,
+      title: "Target macOS Version:",
       subTitle: "",
       content: ComboBox<String>(
         isExpanded: false,
@@ -79,8 +77,8 @@ class _OSVersionWidgetState extends State<OSVersionWidget> {
           widget.onChanged?.call(info);
         },
       ),
-      snippet: l10n.macOSVersionSnippet,
+      snippet:
+          'The EFI generated for the selected macOS version is backward-compatible. For example, selecting Tahoe 26 will also boot Sequoia 15 and earlier versions.\n\nNote: The generated EFI has been tested from macOS El Capitan 10.11.x through macOS Tahoe 26.x.',
     );
   }
 }
-

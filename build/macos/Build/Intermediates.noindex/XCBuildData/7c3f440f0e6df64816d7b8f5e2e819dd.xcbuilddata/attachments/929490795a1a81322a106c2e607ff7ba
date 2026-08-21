@@ -1,0 +1,4 @@
+module screen_retriever_macos {
+header "screen_retriever_macos-Swift.h"
+export *
+}

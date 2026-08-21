@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/custom_textfield.dart';
 
 class EDIDPage extends StatefulWidget {
@@ -17,6 +16,17 @@ class EDIDPage extends StatefulWidget {
 class _EDIDPageState extends State<EDIDPage> {
   late final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+  final String tip = r'''
+  1. Used to fix black screen / no signal issues on Intel 6th~10th Gen iGPUs (where caps lock key responds but display has no signal).
+  2. 500-series desktop motherboards (H510/B560/H570/Q570/Z590/W580) using iGPU HDMI output MUST inject a real display EDID, otherwise black screen often occurs.
+  3. How to obtain display EDID:
+     In Windows, use RapidEFI or hdinfo to acquire display EDID:
+     1). Open RapidEFI, go to "Configure EFI" -> "Auto EFI Config" -> "Details".
+     2). Once hardware scanning completes, click the EDID text next to the display to copy it.
+     3). Return to this page and paste the EDID into the input box below.
+  4. Before injecting EDID, check the AAPL0X port to inject in "Advanced Config".
+  5. EDID data is usually 128 bytes (256 hex chars) or 256 bytes (512 hex chars). Please verify before submitting!
+  ''';
 
   String? _edidError;
 
@@ -52,7 +62,6 @@ class _EDIDPageState extends State<EDIDPage> {
   }
 
   void _validateAndFormatEdid() {
-    final l10n = AppLocalizations.of(context)!;
     final originalText = _controller.text;
     final edidText = _cleanEdid(originalText);
 
@@ -60,9 +69,9 @@ class _EDIDPageState extends State<EDIDPage> {
     if (edidText.isNotEmpty) {
       final isHex = RegExp(r'^[0-9A-Fa-f]+$').hasMatch(edidText);
       if (!isHex) {
-        error = l10n.edidHexError;
+        error = 'EDID data contains non-hexadecimal characters, please check!';
       } else if (edidText.length % 256 != 0) {
-        error = l10n.edidLengthError;
+        error = 'Current EDID length is ${edidText.length} hex chars (must be a multiple of 256), please check!';
       }
     }
 
@@ -74,13 +83,12 @@ class _EDIDPageState extends State<EDIDPage> {
     });
 
     if (error != null) {
-      showToast(l10n.edidInvalidToast);
+      showToast('Invalid EDID data, please verify and try again!');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return SingleChildScrollView(
@@ -89,7 +97,7 @@ class _EDIDPageState extends State<EDIDPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            l10n.manualEdidInfoText,
+            tip,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w300,
@@ -97,9 +105,9 @@ class _EDIDPageState extends State<EDIDPage> {
             ),
           ),
           const SizedBox(height: 10),
-          Text(
-            l10n.injectEdidTitle,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          const Text(
+            'Inject Display EDID (usually 256 or 512 hex characters):',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 10),
           CustomTextField(
@@ -111,12 +119,11 @@ class _EDIDPageState extends State<EDIDPage> {
               FilteringTextInputFormatter.allow(RegExp(r'[A-Fa-f0-9]')),
             ],
             keyboardType: TextInputType.text,
-            hintText: l10n.injectEdidHint,
+            hintText: 'Enter display EDID (usually 256 or 512 hex chars; spaces and newlines allowed)',
             hintStyle: TextStyle(
               fontSize: 12,
               color: isDarkMode ? Colors.grey.shade500 : Colors.grey.shade400,
             ),
-
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
             ),

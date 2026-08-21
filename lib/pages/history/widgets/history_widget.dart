@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:rapidefi/extension/int_extension.dart';
 import 'package:rapidefi/pages/history/model/history_model.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/theme.dart';
 
 class HistoryWidget extends StatefulWidget {
@@ -114,7 +113,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                 child: Row(
                   children: [
                     Tooltip(
-                      message: AppLocalizations.of(context)!.changeEfiTitle,
+                      message: 'Rename EFI',
                       child: IconButton(
                         icon: const Icon(
                           Icons.edit,
@@ -125,15 +124,15 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                             context: context,
                             builder: (context) {
                               return fluent.ContentDialog(
-                                title: Text(AppLocalizations.of(context)!.modifyCurrentEfiName),
+                                title: const Text('Rename Current EFI'),
                                 content: fluent.InfoLabel(
-                                  label: AppLocalizations.of(context)!.originalEfiName(widget.historyModel.name),
+                                  label: 'Current EFI Name: ${widget.historyModel.name}',
                                   child: fluent.Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: fluent.SizedBox(
                                       height: 40,
                                       child: fluent.TextBox(
-                                        placeholder: AppLocalizations.of(context)!.enterModifiedName,
+                                        placeholder: 'Enter new name',
                                         onChanged: (value) {
                                           if (value.isNotEmpty) {
                                             updateName = value;
@@ -145,7 +144,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                 ),
                                 actions: [
                                   fluent.FilledButton(
-                                    child: Text(AppLocalizations.of(context)!.confirm),
+                                    child: const Text('Confirm'),
                                     onPressed: () {
                                       Navigator.pop(context);
                                       if (updateName.isNotEmpty) {
@@ -156,7 +155,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                     },
                                   ),
                                   fluent.Button(
-                                    child: Text(AppLocalizations.of(context)!.cancel),
+                                    child: const Text('Cancel'),
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
@@ -169,7 +168,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                       ),
                     ),
                     Tooltip(
-                      message: AppLocalizations.of(context)!.deleteRecord,
+                      message: 'Delete this record',
                       child: IconButton(
                         icon: const Icon(
                           Icons.delete,
@@ -181,7 +180,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                       ),
                     ),
                     Tooltip(
-                      message: AppLocalizations.of(context)!.exportThisEfi,
+                      message: 'Export this EFI',
                       child: IconButton(
                         icon: const Icon(
                           Icons.output,

@@ -1,6 +1,6 @@
 import 'hardware_model_parsing.dart';
 
-/// 蓝牙设备
+/// Bluetooth device
 class BluetoothDevice {
   String? busType;
   String? deviceID;
@@ -37,7 +37,7 @@ class BluetoothDevice {
   }
 }
 
-/// 蓝牙设备列表
+/// Bluetooth devices info
 class BluetoothDevicesInfo {
   Map<String, BluetoothDevice>? bluetoothDevices;
 

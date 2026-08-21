@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/models/uefi/uefi_quirks.dart';
@@ -38,47 +37,32 @@ class _USBWidgetState extends State<USBWidget> {
   late UefiQuirks uefiQuirks = widget.uefiQuirks ?? UefiQuirks();
   late String? utbMapPath = widget.utbMapPath;
 
-  @override
-  void didUpdateWidget(covariant USBWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.usbDriverType != oldWidget.usbDriverType) {
-      usbDriverType = widget.usbDriverType;
-    }
-    if (widget.uefiQuirks != oldWidget.uefiQuirks) {
-      uefiQuirks = widget.uefiQuirks ?? UefiQuirks();
-    }
-    if (widget.utbMapPath != oldWidget.utbMapPath) {
-      utbMapPath = widget.utbMapPath;
-    }
-  }
-
-  Widget chooseUTBMap(AppLocalizations l10n) {
+  Widget chooseUTBMap() {
     return ChooseFileWidget(
-      buttonText: l10n.selectUtbMap,
+      buttonText: 'Select UTBMap',
       onValid: (filePath) async {
-        final normalizedPath = filePath.replaceAll(RegExp(r'[/\\]+$'), '').toLowerCase();
-        return normalizedPath.endsWith('.kext'); // Relax validation to just check if it's a kext
+        return filePath.endsWith('UTBMap.kext');
       },
       onChanged: (filePath) {
         utbMapPath = filePath;
         widget.onUTBMapPathChanged?.call(filePath);
       },
       directoryPath: '',
-      hintText: (utbMapPath != null && utbMapPath!.isNotEmpty) ? utbMapPath : l10n.selectUtbMapHint,
-      allowedExtensions: null,
-      openFile: Device.isMacOS, // macOS MUST use file picker (treats packages as files). Win/Linux use directory picker.
+      hintText: utbMapPath ?? 'Select mapped UTBMap.kext created with USBToolBox',
+      allowedExtensions: Device.isMacOS ? null : const ['kext'],
+      openFile: Device.isMacOS ? true : !Device.isWindows,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final choices = USBWidget.choices;
     final bool owner = uefiQuirks.releaseUsbOwnership;
-    final releaseUsbOwnershipText = l10n.releaseUsbOwnershipText;
+    const releaseUsbOwnershipText =
+        "Enable 'UEFI->Quirks->ReleaseUsbOwnership' quirk to release USB controller ownership from firmware. Useful for OEM boards (e.g. some H110, B150, B250, Q270) where USB freezes on boot or keyboard/mouse fails to respond.";
     return KextChoiceListCard(
-      title: l10n.usbCardTitle,
-      cardSubTitle: l10n.usbDefaultTip,
+      title: "USB Drivers:",
+      cardSubTitle: "(USBInjectAll used by default)",
       choices: choices,
       selectedChoices: usbDriverType?.bundlePath.isNotEmpty == true
           ? [usbDriverType!]
@@ -94,7 +78,7 @@ class _USBWidgetState extends State<USBWidget> {
         },
       ),
       footer: usbDriverType?.bundlePath == ConfigKernel.USBToolBox.bundlePath
-          ? chooseUTBMap(l10n)
+          ? chooseUTBMap()
           : const SizedBox.shrink(),
       onChanged: (List<KernelKext> value) {
         usbDriverType = value.firstOrNull;

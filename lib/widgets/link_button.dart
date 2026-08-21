@@ -2,25 +2,24 @@
 //  Created by JeoJay127 
 //
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomLinkButton extends StatelessWidget {
   final String url;
   final String buttonText;
 
-  /// 优先显示 IconData，如果未提供，则使用 imagePath 图标
+  /// Prioritize IconData; if null, use imagePath
   final IconData? icon;
   final String? imagePath;
   final double iconSize;
 
-  /// 按钮内容内边距，默认四边 6
+  /// Content padding, default 6
   final EdgeInsetsGeometry padding;
 
-  /// icon 和文字之间的间距
+  /// Spacing between icon and text
   final double iconTextSpacing;
 
-  /// 若为空，则使用默认的 launchUrl 行为
+  /// If null, default launchUrl behavior is used
   final Future<void> Function(BuildContext context, String url)? onTap;
 
   const CustomLinkButton({
@@ -50,7 +49,7 @@ class CustomLinkButton extends StatelessWidget {
 
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.linkCantOpen)),
+        const SnackBar(content: Text('Unable to open link')),
       );
     }
   }

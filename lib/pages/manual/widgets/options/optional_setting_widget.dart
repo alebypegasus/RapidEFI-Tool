@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/manual/manual_config_controller.dart';
 import 'package:rapidefi/pages/manual/widgets/options/acpi_ssdt_widget.dart';
 import 'package:rapidefi/pages/manual/widgets/options/booter_widget.dart';
@@ -54,31 +53,29 @@ class OptionalSettingWidget extends StatefulWidget {
 class _OptionalSettingWidgetState extends State<OptionalSettingWidget>
     with TickerProviderStateMixin {
   late final TabController _tabController;
+  late final List<String> tabName;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 9);
+    tabName = [
+      "Brand",
+      "Special Motherboard",
+      "SIP Settings",
+      "Rename CPU",
+      "UI Scale",
+      "ACPI Config",
+      "Booter Config",
+      "Kernel Config",
+      "UEFI Config"
+    ];
+    _tabController = TabController(vsync: this, length: tabName.length);
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
-  }
-
-  List<String> _getTabNames(AppLocalizations l10n) {
-    return [
-      l10n.tabBrand,
-      l10n.tabSpecialMotherboard,
-      l10n.tabSipSetting,
-      l10n.tabCpuRename,
-      l10n.tabUiScale,
-      l10n.tabAcpiConfig,
-      l10n.tabBooterConfig,
-      l10n.tabKernelConfig,
-      l10n.tabUefiConfig,
-    ];
   }
 
   List<Widget> _buildPages() {
@@ -184,13 +181,11 @@ class _OptionalSettingWidgetState extends State<OptionalSettingWidget>
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final tabName = _getTabNames(l10n);
     final pages = _buildPages();
 
     return TabbedTitleCard(
-      title: l10n.optionalSettingsCardTitle,
-      subTitle: l10n.optionalSettingsDefaultTip,
+      title: "Optional Settings:",
+      subTitle: "(Keep defaults unless specific customization is needed)",
       initiallyExpanded: false,
       controller: _tabController,
       tabs: tabName.map((name) => Tab(text: name)).toList(),

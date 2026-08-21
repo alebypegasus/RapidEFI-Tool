@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/extension/string_extension.dart';
 
 import '../../models/kernel/kernel_block_item.dart';
@@ -76,7 +75,7 @@ class KernelPatch {
     minKernel: '19.0.0',
     maxKernel: '',
     skip: 0,
-    note: l10nGlobal.autoGen5552,
+    note: 'Disable RTC wake scheduling to fix auto-wake issues after sleep',
   );
 
   static KernelPatchItem fixBroadcomBCM57785 = KernelPatchItem(

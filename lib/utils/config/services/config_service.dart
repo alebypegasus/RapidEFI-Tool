@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:rapidefi/extension/string_extension.dart';
 import 'package:rapidefi/utils/config/presets/platform_profiles/platform_configs.dart';
@@ -139,7 +138,7 @@ class ConfigService {
 
   Future<List<PlatformEntity>> _loadPlatformInfosByKey(String key) async {
     final data = await rootBundle.loadString('assets/data/$key.json');
-    final jsonResult = await compute(jsonDecode, data);
+    final jsonResult = jsonDecode(data);
 
     return (jsonResult as List)
         .map((jsonStr) => PlatformEntity.fromJson(jsonStr))
@@ -151,13 +150,13 @@ class ConfigService {
     _platformInfoLoadingTasks.clear();
   }
 
-  // 单例实例
+  // Singleton instance
   static final ConfigService _instance = ConfigService._();
 
   //
   List<HistoryModel>? historyModels;
 
-  // 工厂方法获取单例实例
+  // Factory method to get singleton instance
   factory ConfigService() => _instance;
 
   List<PlatformEntity> platformEntites = [];
@@ -259,12 +258,12 @@ class ConfigService {
     _activeConfigSession.checkpoint(label, {scope});
   }
 
-  ///版本列表
+  /// Version list
   final List<String> macOSVeriosnName = MacOSVersions.labels;
   static const String copyConfigName = 'config-after-post.plist';
 
   String ocVersion = '';
-  //输出目录
+  // Output directory
   String outputDirectory = '';
   String? utbMapPath;
 
@@ -490,7 +489,7 @@ class ConfigService {
         .toList();
   }
 
-  //设置默认选中平台信息
+  // Set default selected platform info
   int getDefaultPlatformInfoIndex(CpuType cpuType, PlatformType platformType) {
     if (cpuType == CpuType.intel) {
       if (platformType == PlatformType.desktop) {
@@ -549,7 +548,7 @@ class ConfigService {
     return sortKexts;
   }
 
-  /// 应用配置模型的补丁
+  /// Apply config model patches
   Future<void> applyConfigPatchWithModel({
     required File file,
     required ConfigModel model,
@@ -806,9 +805,9 @@ class ConfigService {
   Future<File> copyConfigFile(File sourceFile) async {
     String newFileName = copyConfigName;
     String currentDirectory = sourceFile.parent.path;
-    // 构建目标文件路径
+    // Build destination file path
     String destinationPath = '$currentDirectory/$newFileName';
-    // 复制文件
+    // Copy file
     return await sourceFile.copy(destinationPath);
   }
 

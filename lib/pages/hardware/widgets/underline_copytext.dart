@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 
 class UnderlineCopyText extends StatelessWidget {
   final String text;
@@ -29,11 +28,11 @@ class UnderlineCopyText extends StatelessWidget {
         style.color ?? DefaultTextStyle.of(context).style.color ?? Colors.black;
 
     return Tooltip(
-      message: AppLocalizations.of(context)!.clickToCopy,
+      message: 'Click to copy',
       child: InkWell(
         onTap: () {
           Clipboard.setData(ClipboardData(text: copyText));
-          showToast(AppLocalizations.of(context)!.copiedToClipboard);
+          showToast('Copied to clipboard');
           onCopied?.call();
         },
         child: IntrinsicWidth(

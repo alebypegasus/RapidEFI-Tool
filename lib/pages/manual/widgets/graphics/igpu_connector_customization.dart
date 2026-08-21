@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/support/intel_connector_patch.dart';
 
@@ -29,8 +28,6 @@ class _IgpuConnectorCustomizationState
     extends State<IgpuConnectorCustomization> {
   late IntelConnectorPlatformTemplate _template;
   late List<_ConnectorDraft> _values;
-
-  bool get _isSupported => _template.supported;
 
   @override
   void initState() {
@@ -188,13 +185,10 @@ class _IgpuConnectorCustomizationState
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 8, 10, 0),
           child: Text(
-            _isSupported
-                ? AppLocalizations.of(context)!.manualIgpuConnectorSupported(_template.framebufferId)
-                : AppLocalizations.of(context)!.manualIgpuConnectorUnsupported,
-            style: TextStyle(
-              fontSize: 12,
-              color: _isSupported ? null : Colors.red,
-            ),
+            _template.supported
+                ? 'Current Framebuffer: ${_template.framebufferId}. Generates framebuffer-conX-alldata according to WhateverGreen tables.'
+                : 'Current Framebuffer does not support structured recommendations; remove existing value and reselect a supported iGPU configuration.',
+            style: const TextStyle(fontSize: 12),
           ),
         ),
         ..._values.asMap().entries.map(
@@ -205,7 +199,7 @@ class _IgpuConnectorCustomizationState
           child: Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              tooltip: AppLocalizations.of(context)!.manualAddConnectorTooltip,
+              tooltip: 'Add port customization',
               onPressed: !_template.supported ||
                       _values.length >= _template.connectorIndexes.length
                   ? null
@@ -231,12 +225,14 @@ class _IgpuConnectorCustomizationState
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 8,
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
+            spacing: 12,
             children: [
               _buildDropdown<int>(
-                label: AppLocalizations.of(context)!.manualConnectorLabel,
+                label: 'Port',
                 value: value.connectorIndex,
                 items: _availableConnectorIndexes(itemIndex),
                 itemLabel: (item) => 'con$item',
@@ -251,9 +247,8 @@ class _IgpuConnectorCustomizationState
                   );
                 },
               ),
-              const SizedBox(width: 12),
               _buildDropdown<String>(
-                label: AppLocalizations.of(context)!.manualIndexLabel,
+                label: 'Index',
                 value: value.indexHex,
                 items: _template.portIndexes,
                 itemLabel: (item) => item,
@@ -262,9 +257,8 @@ class _IgpuConnectorCustomizationState
                   value.copyWith(indexHex: indexHex),
                 ),
               ),
-              const SizedBox(width: 12),
               _buildDropdown<String>(
-                label: AppLocalizations.of(context)!.manualBusIdLabel,
+                label: 'Bus ID',
                 value: value.busIdHex,
                 items: _availableBusIds(itemIndex, value.busIdHex),
                 itemLabel: (item) => item,
@@ -273,23 +267,19 @@ class _IgpuConnectorCustomizationState
                   value.copyWith(busIdHex: busIdHex),
                 ),
               ),
-              const SizedBox(width: 12),
               _buildDropdown<IntelConnectorType>(
-                label: AppLocalizations.of(context)!.manualConnectorTypeLabel,
+                label: 'Port Type',
                 value: value.type,
                 items: IntelConnectorType.values,
-                itemLabel: (item) => item.recommended
-                    ? item.label
-                    : AppLocalizations.of(context)!.manualOldConnector(item.label),
+                itemLabel: (item) =>
+                    item.recommended ? item.label : '${item.label} (Legacy)',
                 onChanged: (type) => _updateValue(
                   itemIndex,
                   value.copyWith(type: type),
                 ),
               ),
-              const SizedBox(width: 12),
               IconButton(
-                tooltip: AppLocalizations.of(context)!
-                    .manualDeleteConnectorTooltip(value.connectorIndex.toString()),
+                tooltip: 'Delete con${value.connectorIndex} customization',
                 onPressed: () => _removeConnector(itemIndex),
                 icon: const Icon(Icons.delete_outline),
               ),
@@ -309,23 +299,22 @@ class _IgpuConnectorCustomizationState
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        spacing: 12,
         children: [
-          Text(
-            AppLocalizations.of(context)!.manualUnparseableValue,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          const Text(
+            'Raw value unparseable',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
-          const SizedBox(width: 12),
           Text(
             'con$connectorIndex',
             style: const TextStyle(fontSize: 12),
           ),
-          const SizedBox(width: 12),
-          Text(
-            AppLocalizations.of(context)!.manualDeleteAndReadd,
-            style: const TextStyle(fontSize: 12),
+          const Text(
+            'Please delete and re-add structured port customization',
+            style: TextStyle(fontSize: 12),
           ),
           IconButton(
-            tooltip: AppLocalizations.of(context)!.manualDeleteUnparseableTooltip,
+            tooltip: 'Delete unparseable port customization',
             onPressed: () => _removeConnector(itemIndex),
             icon: const Icon(Icons.delete_outline),
           ),

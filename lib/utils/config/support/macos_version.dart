@@ -1,7 +1,7 @@
 import 'package:rapidefi/utils/config/config_model.dart';
 
 class MacOSVersionInfo {
-  MacOSVersionInfo({
+  const MacOSVersionInfo({
     required this.name,
     required this.productVersion,
     required this.darwinMajor,
@@ -19,7 +19,7 @@ class MacOSVersionInfo {
 class MacOSVersions {
   const MacOSVersions._();
 
-  static final List<MacOSVersionInfo> all = [
+  static const List<MacOSVersionInfo> all = [
     MacOSVersionInfo(
       name: 'Tahoe',
       productVersion: '26',

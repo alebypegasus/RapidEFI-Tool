@@ -1,7 +1,4 @@
-import 'package:rapidefi/l10n/enum_l10n.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
-
 import 'package:rapidefi/widgets/button_segment_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/tip_switch.dart';
@@ -28,7 +25,10 @@ class CPUWidget extends StatefulWidget {
 class _CPUWidgetState extends State<CPUWidget> {
   late CpuType cpuType = widget.cpuType;
 
-  
+  final choices = CpuType.values
+      .where((e) => e != CpuType.unknown)
+      .map((e) => e.text.title)
+      .toList();
 
   @override
   void didUpdateWidget(covariant CPUWidget oldWidget) {
@@ -41,53 +41,49 @@ class _CPUWidgetState extends State<CPUWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final choices = CpuType.values
-        .where((e) => e != CpuType.unknown)
-        .map((e) => e.localizedTitle(AppLocalizations.of(context)!))
-        .toList();
-    final l10n = AppLocalizations.of(context)!;
     return TitleCard(
-      title: l10n.cpuSelection,
-      content: Wrap(
-        alignment: WrapAlignment.start,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        spacing: 10,
-        runSpacing: 10,
-        children: [
-          ButtonSegmentWidget(
-            labels: choices,
-            initialSelection: {cpuType.localizedTitle(AppLocalizations.of(context)!)},
-            onSelectionChanged: (value) {
-              final selectedValue = value.first;
+      title: "CPU Selection:",
+      content: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ButtonSegmentWidget(
+              labels: choices,
+              initialSelection: {cpuType.text.title},
+              onSelectionChanged: (value) {
+                final selectedValue = value.first;
 
-              final selectedCpuType = CpuType.values.firstWhere(
-                (type) => type.localizedTitle(AppLocalizations.of(context)!) == selectedValue,
-                orElse: () => CpuType.intel,
-              );
+                final selectedCpuType = CpuType.values.firstWhere(
+                  (type) => type.text.title == selectedValue,
+                  orElse: () => CpuType.intel,
+                );
 
-              if (cpuType == selectedCpuType) {
-                return;
-              }
+                if (cpuType == selectedCpuType) {
+                  return;
+                }
 
-              setState(() {
-                cpuType = selectedCpuType;
-              });
+                setState(() {
+                  cpuType = selectedCpuType;
+                });
 
-              widget.onChanged.call(cpuType);
-            },
-          ),
-          if (cpuType == CpuType.intel)
-            TipSwitch(
-              tip: l10n.pentiumCeleronTip,
-              title: l10n.pentiumCeleron,
-              checked: widget.pentiumOrCeleron,
-              onChanged: (value) {
-                widget.onPentiumChanged?.call(value);
+                widget.onChanged.call(cpuType);
               },
             ),
-        ],
+            const SizedBox(width: 10),
+            if (cpuType == CpuType.intel)
+              TipSwitch(
+                tip: "Pentium or Celeron processors require CPU spoofing; please enable this!\nNote: Pentium/Celeron iGPUs are generally unsupported!",
+                title: 'Pentium/Celeron',
+                checked: widget.pentiumOrCeleron,
+                onChanged: (value) {
+                  widget.onPentiumChanged?.call(value);
+                },
+              ),
+          ],
+        ),
       ),
     );
   }
-
 }

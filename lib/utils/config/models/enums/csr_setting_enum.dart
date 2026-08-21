@@ -5,25 +5,27 @@ enum CsrSetting {
   none(
     nvramValue: '',
     text: EnumText(
-      fallbackTitle: '',
+      title: '',
     ),
   ),
   enabled(
     nvramValue: '00000000',
     text: EnumText(
-      titleId: 5136,
+      title: 'Enable SIP: Enhances system security; recommended when OCLP root patching is not required',
     ),
   ),
   partialDisabled(
     nvramValue: '03080000',
     text: EnumText(
-      titleId: 5137, descId: 5138,
+      title: 'Disable SIP (Method 1)',
+      description: 'Partial SIP disable (03080000), suitable when OCLP root patching for GPU or Wi-Fi is needed on Big Sur+',
     ),
   ),
   fullyDisabled(
     nvramValue: 'FF0F0000',
     text: EnumText(
-      titleId: 5139, descId: 5140,
+      title: 'Disable SIP (Method 2)',
+      description: 'Full SIP disable (FF0F0000), preferred when OCLP root patching for GPU or Wi-Fi is needed on Big Sur+',
     ),
   );
 

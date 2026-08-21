@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/system_theme-primary.dia",
+    "emit-module-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/system_theme-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/system_theme-primary-emit-module.dia",
+    "pch" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/system_theme-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/system_theme-primary.swiftdeps"
+  },
+  "/Users/alebypegasus/.pub-cache/hosted/pub.dev/system_theme-3.3.0/macos/system_theme/Sources/system_theme/SystemThemePlugin.swift" : {
+    "const-values" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/SystemThemePlugin.swiftconstvalues",
+    "dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/SystemThemePlugin.d",
+    "diagnostics" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/SystemThemePlugin.dia",
+    "index-unit-output-path" : "/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/SystemThemePlugin.o",
+    "llvm-bc" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/SystemThemePlugin.bc",
+    "object" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/SystemThemePlugin.o",
+    "swift-dependencies" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/SystemThemePlugin.swiftdeps",
+    "swiftmodule" : "/Users/alebypegasus/Documents/Trabalhos/Desenvolvimentos/RapidEFI-Tool/build/macos/Build/Intermediates.noindex/system_theme.build/Debug/system_theme.build/Objects-normal/x86_64/SystemThemePlugin~partial.swiftmodule"
+  }
+}

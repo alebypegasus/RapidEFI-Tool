@@ -1,24 +1,28 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 //  config.dart
 //  Created by JeoJay127
 //
-/// ACPI 匹配模式
+/// ACPI match mode
 enum ACPIMatchMode {
-  leastStrict, // 最宽松的模式
-  lengthOnly, //  仅长度匹配
-  tableIDsAndLength, // 表 ID 和长度
-  tableIDsAndLengthAndNormalizeHeaders, // 表 ID 和长度 + 标准化头部
+  leastStrict, // Least strict mode
+  lengthOnly, // Length match only
+  tableIDsAndLength, // Table IDs and length
+  tableIDsAndLengthAndNormalizeHeaders, // Table IDs and length + normalized headers
 }
 
-/// ACPI 匹配模式扩展
+/// ACPI match mode extension
 extension ACPIMathModeExtension on ACPIMatchMode {
-  String get value => [l10nGlobal.autoGen5746, l10nGlobal.autoGen5747, l10nGlobal.autoGen5748, l10nGlobal.autoGen5749][index];
+  String get value => [
+        "Least Strict",
+        "Length Only",
+        "Table ID & Length (No Normalized Headers)",
+        "Table ID & Length (Normalized Headers)"
+      ][index];
 }
 
 enum PlistType { openCore, clover, unknown }
 
 extension PlistTypeExtension on PlistType {
-  String get value => ['OpenCore', 'Clover', l10nGlobal.autoGen5005][index];
+  String get value => ['OpenCore', 'Clover', 'Unknown'][index];
 }
 
 final osiStrings = {
@@ -50,25 +54,25 @@ final osiStrings = {
 final PNLFUIDs = [
   {
     "UID": 14,
-    "Platform": l10nGlobal.autoGen5750,
+    "Platform": "Intel Gen 1 Arrandale, Gen 2 Sandy Bridge, Gen 3 Ivy Bridge",
     "PWMMax": "0x0710",
   },
-  {"UID": 15, "Platform": l10nGlobal.autoGen5751, "PWMMax": "0x0AD9"},
+  {"UID": 15, "Platform": "Intel Gen 4 Haswell, Gen 5 Broadwell", "PWMMax": "0x0AD9"},
   {
     "UID": 16,
-    "Platform": l10nGlobal.autoGen5752,
+    "Platform": "Intel Gen 6 Skylake, Gen 7 Kaby Lake, select Gen 4 Haswell",
     "PWMMax": "0x056C",
   },
-  {"UID": 17, "Platform": l10nGlobal.autoGen5753, "PWMMax": "0x07A1"},
-  {"UID": 18, "Platform": l10nGlobal.autoGen5753, "PWMMax": "0x1499"},
+  {"UID": 17, "Platform": "Custom brightness for non-standard devices or special requirements", "PWMMax": "0x07A1"},
+  {"UID": 18, "Platform": "Custom brightness for non-standard devices or special requirements", "PWMMax": "0x1499"},
   {
     "UID": 19,
-    "Platform": l10nGlobal.autoGen5754,
+    "Platform": "Intel Gen 8 Coffee Lake ~ Gen 10 Comet Lake & AMD Laptops",
     "PWMMax": "0xFFFF",
   },
   {
     "UID": 99,
-    "Platform": l10nGlobal.autoGen5755,
+    "Platform": "Other (requires custom applbkl-name / applbkl-data properties)",
     "PWMMax": "",
   },
 ];
@@ -80,7 +84,7 @@ const Map<String, String> defaultProps = {
   'kUSBWakePortCurrentLimit': '0x0834',
 };
 
-/// ACPI 配置
+/// ACPI configuration
 class AcpiConfig {
   final bool useLocaliAsl;
   final bool deleteDsl;

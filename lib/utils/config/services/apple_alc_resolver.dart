@@ -8,11 +8,11 @@ class AppleALCResolver {
 
   static AppleALCOption? _option;
 
-  /// 扁平查询缓存：
+  /// Flat query cache:
   static final Map<String, List<int>> _layoutCache = {};
 
   static List<Map<String, List<int>>>? _codecDataCache;
-  /// 级联查询缓存
+  /// Cascading query cache
   static List<Map<String, List<Map<String, List<int>>>>>? _pickerDataCache;
 
   static Future<void> initialize() async {
@@ -61,7 +61,7 @@ class AppleALCResolver {
     return _option?.published ?? '';
   }
 
-  /// 扁平数据。
+  /// Flat data.
   static List<Map<String, List<int>>> loadCodecData() {
     _ensureInitialized();
 

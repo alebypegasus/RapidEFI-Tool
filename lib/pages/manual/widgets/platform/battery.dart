@@ -1,7 +1,6 @@
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/pages/shared/widgets/kext_choice_list.dart';
 
@@ -34,7 +33,7 @@ class Battery extends StatelessWidget {
       showBundleNameTips: true,
       isMultipleSelection: false,
       allowToggle: true,
-      subTitle: AppLocalizations.of(context)!.manualBatteryDriver,
+      subTitle: 'Battery Drivers',
       labelBuilder: kextFunctionOrBundleLabel,
       onChanged: (List<KernelKext> value) {
         final picked = value.toList();

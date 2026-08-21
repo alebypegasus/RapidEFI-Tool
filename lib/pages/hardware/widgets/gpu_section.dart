@@ -1,6 +1,4 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:rapidefi/l10n/app_localizations.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_compatibility.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 import 'package:rapidefi/utils/hardware/analysis/hardware_utils.dart';
@@ -27,7 +25,6 @@ class GpuSection extends StatelessWidget {
     final items = entries
         .map(
           (entry) => _GpuCompatibilityItem.from(
-            context,
             rawInfo,
             entry,
             connectedGpuNames: connectedGpuNames,
@@ -35,7 +32,6 @@ class GpuSection extends StatelessWidget {
           ),
         )
         .toList();
-    final l10n = AppLocalizations.of(context)!;
     final lines = entries.asMap().entries.map((indexedEntry) {
       final entry = indexedEntry.value;
       final item = items[indexedEntry.key];
@@ -57,14 +53,14 @@ class GpuSection extends StatelessWidget {
               SelectableText(
                 joinNonEmpty([
                   displayName,
-                  l10n.gpuDeviceId(deviceId),
-                  '核心: ${gpuCodename(gpu)}',
+                  'Device ID: $deviceId',
+                  'Codename: ${gpuCodename(gpu)}',
                   gpu['Device Type'],
                 ], '    '),
                 style: TextStyle(fontSize: 14, height: 1.25, color: color),
               ),
               if (record?.requiresSpoof == true && targetDeviceId.isNotEmpty)
-                SelectableText('需要仿冒ID: $targetDeviceId',
+                SelectableText('Requires Spoof ID: $targetDeviceId',
                     style: TextStyle(color: color, fontSize: 13)),
             ]),
         if (detailed) HardwarePathLine(gpu, color: color),
@@ -72,7 +68,7 @@ class GpuSection extends StatelessWidget {
     }).toList();
     if (lines.isEmpty) return const SizedBox.shrink();
     return HardwareSection(
-      l10n.gpuCard,
+      'Graphics',
       lines,
       trailing: _GpuCompatibilityPanel(items: items),
     );
@@ -95,7 +91,7 @@ class GpuSection extends StatelessWidget {
     final board = safeMap(rawInfo['Motherboard']);
     final platform = safeStr(board['Platform']).toLowerCase();
 
-    return platform == 'laptop' || platform == l10nGlobal.autoGen5031;
+    return platform == 'laptop';
   }
 }
 
@@ -109,45 +105,42 @@ class _GpuCompatibilityPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) return const SizedBox.shrink();
-    final l10n = AppLocalizations.of(context)!;
 
-    // Single GPU: only show compatibility
+    // Single GPU: Only show compatibility
     if (items.length == 1) {
       final item = items.first;
       if (item.note.level == CompatibilityLevel.supported) {
         return _GpuCompatibilityStatusText(
-          note: CompatibilityNote.supported(l10n.gpuCompatible),
+          note: CompatibilityNote.supported('Supported'),
         );
       }
 
       return _GpuCompatibilityText(item: item, showName: false);
     }
 
-    // 多显卡：如果全部都没有兼容库记录，且没有白名单/规则支持项，不兼容
+    // Multi GPU: If none have compatibility records and none match whitelist/rules, unsupported
     if (items.every((item) => item.record == null) &&
         items
             .every((item) => item.note.level != CompatibilityLevel.supported) &&
         !items.any((item) => item.isLoadingCompatibility)) {
       return _GpuCompatibilityStatusText(
-        note: CompatibilityNote.unsupported(l10n.gpuIncompatible),
+        note: CompatibilityNote.unsupported('Unsupported'),
       );
     }
 
-    // Multiple GPUs: check for any problem GPU
-    // 是否存在不兼容 / 有限兼容
+    // Multi GPU: Check if problematic GPU exists
     final hasProblemGpu = items.any(
       (item) => item.note.level != CompatibilityLevel.supported,
     );
 
-    // 多显卡：如果全部兼容，只显示一个“兼容”
+    // Multi GPU: If all compatible, display single "Supported"
     if (!hasProblemGpu) {
       return _GpuCompatibilityStatusText(
-        note: CompatibilityNote.supported(l10n.gpuCompatible),
+        note: CompatibilityNote.supported('Supported'),
       );
     }
 
-    // Multiple GPUs: list all when there's a problem GPU
-    // 不兼容 / 有限兼容，列出所有显卡兼容性
+    // Multi GPU: If at least one unsupported/limited, list all GPUs
     final visibleItems = items;
 
     final colors = hardwareThemeColors(context);
@@ -249,13 +242,13 @@ class _GpuCompatibilityItem {
   final CompatibilityNote note;
   final GpuCompatibilityRecord? record;
 
-  bool get isLoadingCompatibility => note.text == l10nGlobal.autoGen5011 || note.text.isEmpty;
+  bool get isLoadingCompatibility => note.text == 'Loading compatibility...';
 
-  String statusText(AppLocalizations l10n) {
+  String get statusText {
     return switch (note.level) {
-      CompatibilityLevel.supported => l10n.gpuCompatible,
-      CompatibilityLevel.limited => l10n.gpuLimitedCompat,
-      CompatibilityLevel.unsupported => l10n.gpuIncompatible,
+      CompatibilityLevel.supported => 'Supported',
+      CompatibilityLevel.limited => 'Partially Supported',
+      CompatibilityLevel.unsupported => 'Unsupported',
     };
   }
 
@@ -276,7 +269,6 @@ class _GpuCompatibilityItem {
   }
 
   factory _GpuCompatibilityItem.from(
-    BuildContext context,
     Map<String, dynamic> rawInfo,
     MapEntry<String, dynamic> entry, {
     required Set<String> connectedGpuNames,
@@ -288,7 +280,7 @@ class _GpuCompatibilityItem {
     final note = enforceInternalDisplay &&
             !_matchesConnectedInternalGpu(
                 entry.key, gpu, record, connectedGpuNames)
-        ? CompatibilityNote.unsupported(AppLocalizations.of(context)!.gpuIncompatibleNoDisplay)
+        ? CompatibilityNote.unsupported('Unsupported\nNo direct internal display connection')
         : baseNote;
     return _GpuCompatibilityItem(
       name: hardwareGpuDisplayName(entry.key, gpu, record: record),

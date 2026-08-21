@@ -1,14 +1,14 @@
 class DevicePropertyItem {
-  //键
+  // Key
   String? key;
 
   String? dataType;
-  //值
+  // Value
   String? value;
-  //备注
-  dynamic comment;
+  // Remark / Note
+  String? comment;
 
-  ///核显参数是否用于输出显示
+  /// Whether iGPU property is used for display output
   bool display;
 
   DevicePropertyItem({
@@ -22,7 +22,7 @@ class DevicePropertyItem {
       {String? key,
       String? dataType,
       String? value,
-      dynamic comment,
+      String? comment,
       bool? display}) {
     return DevicePropertyItem(
       key: key ?? this.key,
@@ -48,7 +48,7 @@ class DevicePropertyItem {
       'key': key,
       'dataType': dataType,
       'value': value,
-      'comment': comment is Function ? comment() : comment,
+      'comment': comment,
       'display': display
     };
   }

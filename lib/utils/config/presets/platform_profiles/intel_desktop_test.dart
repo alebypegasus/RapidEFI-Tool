@@ -1,4 +1,3 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'package:rapidefi/extension/string_extension.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_add_item.dart';
@@ -101,13 +100,13 @@ ConfigModel intel_ = ConfigModel()
           key: 'AAPL,ig-platform-id',
           dataType: 'data',
           value: '0300220D',
-          comment: () => l10nGlobal.autoGen5613),
+          comment: 'Test'),
       DevicePropertyItem(
-          key: 'device-id', dataType: 'data', value: '12040000', comment: () => l10nGlobal.autoGen5613),
+          key: 'device-id', dataType: 'data', value: '12040000', comment: 'Test'),
     ]),
     IgpuPropertyModel(pciPath: "PciRoot(0x0)/Pci(0x1B,0x0)", propertyItems: [
       DevicePropertyItem(
-          key: 'layout-id', dataType: 'integer', value: '1', comment: () => l10nGlobal.autoGen5613),
+          key: 'layout-id', dataType: 'integer', value: '1', comment: 'Test'),
     ])
   ])
   ..kernel = Kernel(
@@ -229,31 +228,31 @@ ConfigModel intel_ = ConfigModel()
               key: 'DefaultBackgroundColor',
               dataType: 'data',
               value: '01000000',
-              comment: l10nGlobal.autoGen5614),
+              comment: 'NVRAM Test'),
           NvramAddItem(
               key: 'UIScale',
               dataType: 'data',
               value: '02',
-              comment: l10nGlobal.autoGen5614),
+              comment: 'NVRAM Test'),
         ],
         '4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102': [
           NvramAddItem(
               key: 'rtc-blacklist',
               dataType: 'data',
               value: '01000000',
-              comment: l10nGlobal.autoGen5614),
+              comment: 'NVRAM Test'),
         ],
         '7C436110-AB2A-4BBB-A880-FE41995C9F82': [
           NvramAddItem(
               key: 'boot-args',
               dataType: 'string',
               value: '-v keepsyms=1 debug=0x100 alcid=1',
-              comment: l10nGlobal.autoGen5614),
+              comment: 'NVRAM Test'),
           NvramAddItem(
               key: 'prev-lang:kbd',
               dataType: 'string',
               value: 'zh-Hans:252',
-              comment: l10nGlobal.autoGen5614),
+              comment: 'NVRAM Test'),
         ]
       }),
       nvramDelete: NvramDelete(deleteList: ConfigNvram.createDeleteList()))

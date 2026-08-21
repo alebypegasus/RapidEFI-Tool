@@ -1,6 +1,6 @@
 import 'hardware_model_parsing.dart';
 
-/// 内存信息
+/// Memory module info
 class MemoryModule {
   String? bankLabel;
   int? capacity;

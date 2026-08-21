@@ -1,71 +1,60 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 import 'enum_meta.dart';
 import 'enum_codec.dart';
 
 enum Brand {
   none(
     text: EnumText(
-      fallbackTitle: '',
+      title: '',
     ),
   ),
   asus(
     text: EnumText(
-      titleId: 5020,
-      fallbackDesc: 'ASUS',
+      title: 'ASUS',
     ),
   ),
   gigabyte(
     text: EnumText(
-      titleId: 5021,
-      fallbackDesc: 'GIGABYTE',
+      title: 'GIGABYTE',
     ),
   ),
   asrock(
     text: EnumText(
-      titleId: 5022,
-      fallbackDesc: 'ASRock',
+      title: 'ASRock',
     ),
   ),
   msi(
     text: EnumText(
-      titleId: 5023,
-      fallbackDesc: 'MSI',
+      title: 'MSI',
     ),
   ),
   dell(
     text: EnumText(
-      titleId: 5024,
-      fallbackDesc: 'Dell',
+      title: 'Dell',
     ),
   ),
   lenovo(
     text: EnumText(
-      titleId: 5025,
-      fallbackDesc: 'Lenovo',
+      title: 'Lenovo',
     ),
   ),
   vaio(
     text: EnumText(
-      titleId: 5026,
-      fallbackDesc: 'VAIO',
+      title: 'VAIO',
     ),
   ),
   hp(
     text: EnumText(
-      titleId: 5027,
-      fallbackDesc: 'HP',
+      title: 'HP',
     ),
   ),
   chrome(
     text: EnumText(
-      titleId: 5028,
-      fallbackDesc: 'Chromebook',
+      title: 'Chromebook',
     ),
   ),
   microsoft(
     text: EnumText(
-      titleId: 5029,
-      fallbackDesc: 'Microsoft Surface',
+      title: 'Microsoft Surface',
     ),
   );
 
@@ -75,11 +64,7 @@ enum Brand {
 
   final EnumText text;
 
-  String get value {
-    if (text.title.isEmpty) return '';
-    if (text.description.isEmpty) return text.title;
-    return '${text.title}(${text.description})';
-  }
+  String get value => text.title;
 
   static Brand fromJson(Object? raw) {
     return EnumCodec.decode(
@@ -100,22 +85,20 @@ enum Brand {
         'Brand.msi': Brand.msi,
         'Brand.dell': Brand.dell,
         'Brand.lenovo': Brand.lenovo,
-        'Lenovo': Brand.lenovo,
         'Brand.vaio': Brand.vaio,
         'Brand.hp': Brand.hp,
         'Brand.chrome': Brand.chrome,
         'Brand.Microsoft': Brand.microsoft,
-        'Microsoft': Brand.microsoft,
-        l10nGlobal.autoGen5149: Brand.asus,
-        l10nGlobal.autoGen5150: Brand.gigabyte,
-        l10nGlobal.autoGen5151: Brand.asrock,
-        l10nGlobal.autoGen5152: Brand.msi,
-        l10nGlobal.autoGen5153: Brand.dell,
-        l10nGlobal.autoGen5154: Brand.lenovo,
-        l10nGlobal.autoGen5155: Brand.vaio,
-        l10nGlobal.autoGen5156: Brand.hp,
-        l10nGlobal.autoGen5157: Brand.chrome,
-        l10nGlobal.autoGen5158: Brand.microsoft,
+        'ASUS': Brand.asus,
+        'GIGABYTE': Brand.gigabyte,
+        'ASRock': Brand.asrock,
+        'MSI': Brand.msi,
+        'Dell': Brand.dell,
+        'Lenovo': Brand.lenovo,
+        'VAIO': Brand.vaio,
+        'HP': Brand.hp,
+        'Chromebook': Brand.chrome,
+        'Microsoft Surface': Brand.microsoft,
       },
     );
   }

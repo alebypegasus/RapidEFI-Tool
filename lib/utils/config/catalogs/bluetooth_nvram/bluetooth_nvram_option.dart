@@ -8,7 +8,7 @@ class BluetoothNvramOption {
   final String comment;
   final List<String> legacyAliases;
 
-  BluetoothNvramOption({
+  const BluetoothNvramOption({
     required this.id,
     required this.title,
     required this.key,

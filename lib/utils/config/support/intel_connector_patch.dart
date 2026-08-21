@@ -1,6 +1,5 @@
-import 'package:rapidefi/l10n/l10n_helper.dart';
 class IntelConnectorType {
-  IntelConnectorType({
+  const IntelConnectorType({
     required this.id,
     required this.label,
     required this.value,
@@ -12,41 +11,41 @@ class IntelConnectorType {
   final String value;
   final bool recommended;
 
-  static final dp = IntelConnectorType(
+  static const dp = IntelConnectorType(
     id: 'dp',
     label: 'DP',
     value: '00040000',
   );
-  static final lvdsEdp = IntelConnectorType(
+  static const lvdsEdp = IntelConnectorType(
     id: 'lvds_edp',
     label: 'LVDS/eDP',
     value: '02000000',
   );
-  static final hdmi = IntelConnectorType(
+  static const hdmi = IntelConnectorType(
     id: 'hdmi',
     label: 'HDMI',
     value: '00080000',
   );
-  static final vga = IntelConnectorType(
+  static const vga = IntelConnectorType(
     id: 'vga',
     label: 'VGA',
     value: '10000000',
     recommended: false,
   );
-  static final dviDual = IntelConnectorType(
+  static const dviDual = IntelConnectorType(
     id: 'dvi_dual',
-    label: l10nGlobal.autoGen5175,
+    label: 'DVI Dual-Link',
     value: '04000000',
     recommended: false,
   );
-  static final dviSingle = IntelConnectorType(
+  static const dviSingle = IntelConnectorType(
     id: 'dvi_single',
-    label: l10nGlobal.autoGen5176,
+    label: 'DVI Single-Link',
     value: '00020000',
     recommended: false,
   );
 
-  static final values = [
+  static const values = [
     dp,
     lvdsEdp,
     hdmi,
@@ -67,7 +66,7 @@ class IntelConnectorType {
 }
 
 class IntelConnectorPatchValue {
-  IntelConnectorPatchValue({
+  const IntelConnectorPatchValue({
     required this.connectorIndex,
     required this.indexHex,
     required this.busIdHex,
@@ -137,8 +136,8 @@ class IntelConnectorPlatformTemplate {
     this.auxHexByConnector = const [],
     this.typeByConnector = const [],
     this.flagsHexByConnector = const [],
-    this.portIndexes = const [],
-    this.busIdOptions = const [],
+    this.portIndexes = standardPortIndexes,
+    this.busIdOptions = standardBusIds,
     this.format = IntelConnectorPatchFormat.standard,
     this.supported = true,
     this.preferExternalConnectors = false,
@@ -180,7 +179,7 @@ class IntelConnectorPlatformTemplate {
           parsedValues.map((value) => value.pipeHex).toList(),
       auxHexByConnector: format == IntelConnectorPatchFormat.iceLake
           ? parsedValues.map((value) => value.auxHex ?? '00').toList()
-          : [],
+          : const [],
       typeByConnector: parsedValues.map((value) => value.type).toList(),
       flagsHexByConnector:
           parsedValues.map((value) => value.flagsHex).toList(),
@@ -205,14 +204,14 @@ class IntelConnectorPlatformTemplate {
   final bool supported;
   final bool preferExternalConnectors;
 
-  static final allConnectorIndexes = [0, 1, 2, 3];
+  static const allConnectorIndexes = [0, 1, 2, 3];
 
   List<int> get connectorIndexes {
     return List.generate(indexHexByConnector.length, (index) => index);
   }
 
-  static final standardBusIds = ['01', '02', '03', '04', '05', '06'];
-  static final iceLakeBusIds = [
+  static const standardBusIds = ['01', '02', '03', '04', '05', '06'];
+  static const iceLakeBusIds = [
     '00',
     '01',
     '02',
@@ -227,8 +226,8 @@ class IntelConnectorPlatformTemplate {
     '0B',
     '0C',
   ];
-  static final standardPortIndexes = ['01', '02', '03', '04', '05', '06'];
-  static final iceLakePortIndexes = ['00', '02', '03', '04', '05'];
+  static const standardPortIndexes = ['01', '02', '03', '04', '05', '06'];
+  static const iceLakePortIndexes = ['00', '02', '03', '04', '05'];
 
   List<String> get busIds {
     return busIdOptions;
@@ -304,9 +303,9 @@ class IntelConnectorPlatformTemplate {
     return IntelConnectorPlatformTemplate(
       platformCode: platformCode,
       framebufferId: framebufferId,
-      indexHexByConnector: [],
-      busIdHexByConnector: [],
-      pipeHexByConnector: [],
+      indexHexByConnector: const [],
+      busIdHexByConnector: const [],
+      pipeHexByConnector: const [],
       supported: false,
       preferExternalConnectors: preferExternalConnectors,
     );
@@ -351,10 +350,10 @@ class IntelConnectorPlatformTemplate {
       pipeHexByConnector: pipeHexByConnector.skip(1).toList(),
       flagsHex: flagsHex,
       auxHexByConnector:
-          auxHexByConnector.isEmpty ? [] : auxHexByConnector.skip(1).toList(),
+          auxHexByConnector.isEmpty ? const [] : auxHexByConnector.skip(1).toList(),
       typeByConnector: typeByConnector.skip(1).toList(),
       flagsHexByConnector: flagsHexByConnector.isEmpty
-          ? []
+          ? const []
           : flagsHexByConnector.skip(1).toList(),
       portIndexes: portIndexes,
       busIdOptions: busIdOptions,

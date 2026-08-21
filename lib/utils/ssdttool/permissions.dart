@@ -5,7 +5,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 
-/// 执行权限位
+/// Executable permission bits
 class ExecBits {
   static const int user = 0x40; // 0o100
   static const int group = 0x08; // 0o010
@@ -14,7 +14,7 @@ class ExecBits {
   static const int any = user | group | other;
 }
 
-/// 文件状态指纹
+/// File state fingerprint
 @immutable
 class _FileFingerprint {
   final int mtimeMs;
@@ -46,28 +46,28 @@ class _FileFingerprint {
   int get hashCode => Object.hash(mtimeMs, size, mode);
 }
 
-/// 可执行权限管理器
+/// Executable permission manager
 class ExecutablePermissionManager {
   ExecutablePermissionManager._internal();
 
   static final ExecutablePermissionManager instance =
       ExecutablePermissionManager._internal();
 
-  /// 路径,文件指纹
+  /// Path to file fingerprint mapping
   final Map<String, _FileFingerprint> _processed = {};
 
-  /// 路径锁,防止并发 chmod
+  /// Concurrency lock to prevent concurrent chmod
   final Map<String, Completer<void>> _locks = {};
 
-  /// 确保文件可执行
+  /// Ensure file is executable
   Future<void> ensureExecutable(
     String filePath, {
     int execBits = ExecBits.user,
 
-    /// 强制重新设置
+    /// Force reset permissions
     bool force = false,
 
-    /// 只打日志不执行
+    /// Dry run without executing
     bool dryRun = false,
 
     Function(String)? onError,
@@ -77,7 +77,7 @@ class ExecutablePermissionManager {
 
     final absPath = File(filePath).absolute.path;
 
-    // 并发锁
+    // Concurrency lock
     if (_locks.containsKey(absPath)) {
       await _locks[absPath]!.future;
       return;
@@ -112,7 +112,7 @@ class ExecutablePermissionManager {
     final file = File(absPath);
 
     if (!await file.exists()) {
-      _log('文件不存在: $absPath', onError);
+      _log('File not found: $absPath', onError);
       return;
     }
 
@@ -120,7 +120,7 @@ class ExecutablePermissionManager {
     try {
       stat = await file.stat();
     } catch (e) {
-      _log('stat 失败: $e', onError);
+      _log('stat failed: $e', onError);
       return;
     }
 
@@ -135,7 +135,7 @@ class ExecutablePermissionManager {
         _permissionLost(stat.mode, execBits);
 
     if (!needProcess) {
-      _log('未变化，跳过: $absPath', onLog);
+      _log('Unchanged, skipping: $absPath', onLog);
       return;
     }
 
@@ -151,20 +151,20 @@ class ExecutablePermissionManager {
     final result = await Process.run('chmod', [chmodArg, absPath]);
 
     if (result.exitCode != 0) {
-      _log('chmod 失败(${result.exitCode}): ${result.stderr}', onError);
+      _log('chmod failed (${result.exitCode}): ${result.stderr}', onError);
       return;
     }
 
     final newStat = await file.stat();
 
     if (_permissionLost(newStat.mode, execBits)) {
-      _log('chmod 后权限仍不满足: $absPath', onError);
+      _log('Insufficient permissions after chmod: $absPath', onError);
       return;
     }
 
     _processed[absPath] = _FileFingerprint.fromStat(newStat);
 
-    _log('已设置可执行权限: $absPath', onLog);
+    _log('Executable permission set: $absPath', onLog);
   }
 
   bool _permissionLost(int mode, int execBits) {

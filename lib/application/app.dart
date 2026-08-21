@@ -1,9 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
-import 'package:rapidefi/l10n/app_localizations.dart';
-import 'package:rapidefi/l10n/l10n_helper.dart';
-
-
 import 'package:flutter/services.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,7 +14,6 @@ import 'package:rapidefi/pages/process_page.dart';
 import 'package:rapidefi/pages/settings/setting_page.dart';
 import 'package:rapidefi/pages/ssdt_tab_page.dart';
 import 'package:rapidefi/pages/tahoe/tahoe_guide.dart';
-import 'package:rapidefi/pages/app_guide_page.dart';
 import 'package:rapidefi/utils/constant.dart';
 import 'package:rapidefi/utils/device_util.dart';
 import 'package:rapidefi/utils/image_util.dart';
@@ -61,14 +56,9 @@ class _AppHost extends StatelessWidget {
         ),
         radius: 10,
         position: ToastPosition.center,
-        child: Builder(
-          builder: (context) => DoubleClickBackExitApp(
-            tips: () {
-              final l10n = AppLocalizations.of(context);
-              showToast(l10n?.clickAgainToExit ?? 'Click again to exit');
-            },
-            child: _buildFluentApp(context, appTheme),
-          ),
+        child: DoubleClickBackExitApp(
+          tips: () => showToast('Press back again to exit'),
+          child: _buildFluentApp(context, appTheme),
         ),
       ),
     );
@@ -83,25 +73,16 @@ class _AppHost extends StatelessWidget {
       darkTheme: _fluentTheme(context, appTheme, Brightness.dark),
       theme: _fluentTheme(context, appTheme, Brightness.light),
       localizationsDelegates: const [
-        AppLocalizations.delegate,
         PickerLocalizationsDelegate.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('zh', 'CH'),
+      ],
       locale: appTheme.locale,
-      localeResolutionCallback: (locale, supportedLocales) {
-        if (locale != null) {
-          for (var supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale.languageCode) {
-              return supportedLocale;
-            }
-          }
-        }
-        return const Locale('en');
-      },
-
       builder: (context, child) => _AppChrome(
         appTheme: appTheme,
         child: child ?? const SizedBox.shrink(),
@@ -161,7 +142,6 @@ class _AppChrome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalLocalizations.init(context);
     _syncAndroidSystemUi(context);
 
     return Directionality(
@@ -226,6 +206,27 @@ class _AppState extends State<App> {
   final searchFocusNode = FocusNode();
   final searchController = TextEditingController();
 
+  late final List<NavigationPaneItem> originalItems = [
+    PaneItemWidgetAdapter(child: const _PaneHeaderText('Recent')),
+    PaneItemSeparator(),
+    _paneItem(_mainNavDestinations[0]),
+    PaneItemWidgetAdapter(child: const _PaneHeaderText('EFI Config')),
+    PaneItemSeparator(),
+    _paneItem(_mainNavDestinations[1]),
+    _paneItem(_mainNavDestinations[2]),
+    PaneItemWidgetAdapter(child: const _PaneHeaderText('Tools & Guides')),
+    PaneItemSeparator(),
+    _paneItem(_mainNavDestinations[3]),
+    _paneItem(_mainNavDestinations[4]),
+    _paneItem(_mainNavDestinations[5]),
+  ];
+
+  late final List<NavigationPaneItem> footerItems = [
+    PaneItemSeparator(),
+    _paneItem(_footerNavDestinations[0]),
+    _paneItem(_footerNavDestinations[1]),
+  ];
+
   @override
   void dispose() {
     searchController.dispose();
@@ -236,43 +237,20 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     final appTheme = context.watch<AppTheme>();
-    final l10n = AppLocalizations.of(context)!;
-
-    final originalItems = [
-      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n.recent)),
-      PaneItemSeparator(),
-      _paneItem(l10n, _mainNavDestinations[0]),
-      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n.efiRelated)),
-      PaneItemSeparator(),
-      _paneItem(l10n, _mainNavDestinations[1]),
-      _paneItem(l10n, _mainNavDestinations[2]),
-      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n.toolsAndGuides)),
-      PaneItemSeparator(),
-      _paneItem(l10n, _mainNavDestinations[3]),
-      _paneItem(l10n, _mainNavDestinations[4]),
-      _paneItem(l10n, _mainNavDestinations[5]),
-      _paneItem(l10n, _mainNavDestinations[6]),
-    ];
-
-    final footerItems = [
-      PaneItemSeparator(),
-      _paneItem(l10n, _footerNavDestinations[0]),
-      _paneItem(l10n, _footerNavDestinations[1]),
-    ];
 
     return NavigationView(
-      titleBar: _buildTitleBar(context, appTheme, l10n),
+      titleBar: _buildTitleBar(context, appTheme),
       paneBodyBuilder: _buildPaneBody,
-      pane: _buildNavigationPane(context, appTheme, l10n, originalItems, footerItems),
+      pane: _buildNavigationPane(context, appTheme),
       onOpenSearch: searchFocusNode.requestFocus,
     );
   }
 
-  PaneItem _paneItem(AppLocalizations l10n, _NavDestination destination) {
+  PaneItem _paneItem(_NavDestination destination) {
     return PaneItem(
       key: ValueKey(destination.path),
       icon: Icon(destination.icon),
-      title: Text(destination.title(l10n)),
+      title: Text(destination.title),
       body: const SizedBox.shrink(),
       onTap: () {
         _goToDestination(destination);
@@ -287,7 +265,7 @@ class _AppState extends State<App> {
     );
   }
 
-  Widget _buildTitleBar(BuildContext context, AppTheme appTheme, AppLocalizations l10n) {
+  Widget _buildTitleBar(BuildContext context, AppTheme appTheme) {
     final topPadding = MediaQuery.paddingOf(context).top;
 
     return DragToMoveArea(
@@ -298,7 +276,7 @@ class _AppState extends State<App> {
           children: [
             Align(
               alignment: AlignmentDirectional.centerStart,
-              child: _buildWindowTitle(context, l10n),
+              child: _buildWindowTitle(context),
             ),
             PositionedDirectional(
               start: 0,
@@ -307,7 +285,7 @@ class _AppState extends State<App> {
               bottom: 0,
               child: Align(
                 alignment: AlignmentDirectional.topEnd,
-                child: _buildWindowActions(context, appTheme, l10n),
+                child: _buildWindowActions(context, appTheme),
               ),
             ),
           ],
@@ -316,9 +294,9 @@ class _AppState extends State<App> {
     );
   }
 
-  Widget _buildWindowTitle(BuildContext context, AppLocalizations l10n) {
+  Widget _buildWindowTitle(BuildContext context) {
     final appVersion = SpUtil.getString(Constant.appVersionKey);
-    final ocVersion = SpUtil.getString(Constant.openCoreVersionKey) ?? '';
+    final ocVersion = SpUtil.getString(Constant.openCoreVersionKey);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -350,7 +328,7 @@ class _AppState extends State<App> {
         ),
         Flexible(
           child: Text(
-            '${Constant.appName}-$appVersion (${l10n.currentOpenCoreVersion(ocVersion)})',
+            '${Constant.appName}-$appVersion (Current OpenCore Version: $ocVersion)',
             softWrap: false,
             overflow: TextOverflow.ellipsis,
           ),
@@ -359,14 +337,14 @@ class _AppState extends State<App> {
     );
   }
 
-  Widget _buildWindowActions(BuildContext context, AppTheme appTheme, AppLocalizations l10n) {
+  Widget _buildWindowActions(BuildContext context, AppTheme appTheme) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.only(end: 8.0),
           child: ToggleSwitch(
-            content: Text(l10n.darkMode),
+            content: const Text('Dark Mode'),
             checked: FluentTheme.of(context).brightness == Brightness.dark,
             onChanged: (value) {
               appTheme.mode = value ? ThemeMode.dark : ThemeMode.light;
@@ -384,21 +362,15 @@ class _AppState extends State<App> {
     );
   }
 
-  NavigationPane _buildNavigationPane(
-    BuildContext context,
-    AppTheme appTheme,
-    AppLocalizations l10n,
-    List<NavigationPaneItem> items,
-    List<NavigationPaneItem> footerItems,
-  ) {
+  NavigationPane _buildNavigationPane(BuildContext context, AppTheme appTheme) {
     return NavigationPane(
       selected: widget.navigationShell.currentIndex,
       size: const NavigationPaneSize(openMaxWidth: 220),
       header: _buildPaneHeader(context, appTheme),
       displayMode: appTheme.displayMode,
       indicator: _buildNavigationIndicator(appTheme),
-      items: items,
-      autoSuggestBox: Builder(builder: (context) => _buildSearchBox(context, l10n)),
+      items: originalItems,
+      autoSuggestBox: Builder(builder: _buildSearchBox),
       autoSuggestBoxReplacement: const Icon(FluentIcons.search),
       footerItems: footerItems,
     );
@@ -425,13 +397,13 @@ class _AppState extends State<App> {
     };
   }
 
-  AutoSuggestBox _buildSearchBox(BuildContext context, AppLocalizations l10n) {
+  AutoSuggestBox _buildSearchBox(BuildContext context) {
     return AutoSuggestBox(
       focusNode: searchFocusNode,
       controller: searchController,
       unfocusedColor: Colors.transparent,
       items: _searchDestinations()
-          .map((destination) => _suggestionItem(context, l10n, destination))
+          .map((destination) => _suggestionItem(context, destination))
           .toList(),
       trailingIcon: IgnorePointer(
         child: IconButton(
@@ -439,7 +411,7 @@ class _AppState extends State<App> {
           icon: const Icon(FluentIcons.search),
         ),
       ),
-      placeholder: l10n.searchPlaceholder,
+      placeholder: 'Search',
     );
   }
 
@@ -452,13 +424,11 @@ class _AppState extends State<App> {
 
   AutoSuggestBoxItem<String> _suggestionItem(
     BuildContext context,
-    AppLocalizations l10n,
     _NavDestination destination,
   ) {
-    final title = destination.title(l10n);
     return AutoSuggestBoxItem(
-      label: title,
-      value: title,
+      label: destination.title,
+      value: destination.title,
       onSelected: () {
         searchController.clear();
         searchFocusNode.unfocus();
@@ -511,77 +481,68 @@ class _NavDestination {
     required this.index,
     required this.path,
     required this.icon,
-    required this.titleGetter,
+    required this.title,
   });
 
   final int index;
   final String path;
   final IconData icon;
-  final String Function(AppLocalizations l10n) titleGetter;
-
-  String title(AppLocalizations l10n) => titleGetter(l10n);
+  final String title;
 }
 
-final List<_NavDestination> _mainNavDestinations = [
+const List<_NavDestination> _mainNavDestinations = [
   _NavDestination(
     index: 0,
     path: '/history',
     icon: FluentIcons.history,
-    titleGetter: (l10n) => l10n.navHistory,
+    title: 'History',
   ),
   _NavDestination(
     index: 1,
     path: '/',
     icon: FluentIcons.repair,
-    titleGetter: (l10n) => l10n.navConfigureEFI,
+    title: 'Configure EFI',
   ),
   _NavDestination(
     index: 2,
     path: '/efi/process',
     icon: FluentIcons.c_r_m_services,
-    titleGetter: (l10n) => l10n.navProcessEFI,
+    title: 'Process EFI',
   ),
   _NavDestination(
     index: 3,
     path: '/ssdt',
     icon: FluentIcons.developer_tools,
-    titleGetter: (l10n) => l10n.navCustomSSDT,
+    title: 'Custom SSDT',
   ),
   _NavDestination(
     index: 4,
     path: '/oclp',
     icon: FluentIcons.publish_course,
-    titleGetter: (l10n) => l10n.navOCLPPatch,
+    title: 'OCLP-X Patches',
   ),
   _NavDestination(
     index: 5,
     path: '/tahoe',
     icon: FluentIcons.system,
-    titleGetter: (l10n) => l10n.navTahoeGuide,
-  ),
-  _NavDestination(
-    index: 6,
-    path: '/guide',
-    icon: FluentIcons.book_answers,
-    titleGetter: (l10n) => l10n.navAppGuide,
+    title: 'macOS Tahoe 26',
   ),
 ];
 
-final List<_NavDestination> _footerNavDestinations = [
+const List<_NavDestination> _footerNavDestinations = [
   _NavDestination(
     index: 6,
     path: '/settings',
     icon: FluentIcons.settings,
-    titleGetter: (l10n) => l10n.navSettings,
+    title: 'Settings',
   ),
   _NavDestination(
     index: 7,
     path: '/about',
     icon: FluentIcons.coffee_script,
-    titleGetter: (l10n) => l10n.navSponsor,
+    title: 'About & Sponsor',
   ),
 ];
-
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -596,9 +557,6 @@ final GlobalKey<NavigatorState> _processNavigatorKey =
 
 final GlobalKey<NavigatorState> _ssdtNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'ssdtBranchNavigator');
-
-final GlobalKey<NavigatorState> _appGuideNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'appGuideBranchNavigator');
 
 final GlobalKey<NavigatorState> _oclpNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'oclpBranchNavigator');
@@ -663,15 +621,6 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: '/oclp',
               builder: (context, state) => const OCLPTabPage(),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          navigatorKey: _appGuideNavigatorKey,
-          routes: [
-            GoRoute(
-              path: '/guide',
-              builder: (context, state) => const AppGuidePage(),
             ),
           ],
         ),
