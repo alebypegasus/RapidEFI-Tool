@@ -38,8 +38,8 @@ android {
 
     defaultConfig {
         applicationId "com.jeojay.rapidefi"
-        minSdk flutter.minSdkVersion
-        targetSdk flutter.targetSdkVersion
+        minSdk = 21
+        targetSdk = flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

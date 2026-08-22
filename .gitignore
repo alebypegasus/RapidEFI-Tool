@@ -44,8 +44,6 @@ coverage/
 # Android Studio related
 android/.gradle/
 android/captures/
-android/gradlew
-android/gradlew.bat
 android/local.properties
 android/GeneratedPluginRegistrant.java
 
