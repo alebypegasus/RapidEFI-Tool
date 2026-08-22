@@ -536,4 +536,149 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'Cari';
+
+  @override
+  String get initialSupportMacOs =>
+      'Versi macOS yang didukung secara bawaan awal:';
+
+  @override
+  String get lastSupportMacOs =>
+      'Versi macOS terbaru yang didukung secara bawaan:';
+
+  @override
+  String get oclpSupportMacOs => 'Versi macOS yang didukung tambalan OCLP:';
+
+  @override
+  String get cpuInfoTitle => '[Info CPU]:';
+
+  @override
+  String get biosRecommendedEnabled =>
+      '[Pengaturan BIOS yang Disarankan - Diaktifkan]:';
+
+  @override
+  String get biosRecommendedDisabled =>
+      '[Pengaturan BIOS yang Disarankan - Dinonaktifkan]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'EFI yang dibuat dengan RapidEFI dicadangkan secara otomatis ke riwayat.\nAnda dapat memuat ulang dan menyesuaikan EFI yang dibuat sebelumnya kapan saja.\n\nFitur ini didukung pada RapidEFI V3.0.0 ke atas.';
+
+  @override
+  String get gpuPresets => 'Preset';
+
+  @override
+  String get gpuByCpuModel => 'Berdasarkan Model CPU';
+
+  @override
+  String get selectCpuGeneration => 'Pilih Generasi';
+
+  @override
+  String get selectCpuModel => 'Pilih CPU';
+
+  @override
+  String get cpuGenerationLabel => 'Generasi CPU';
+
+  @override
+  String get cpuModelLabel => 'Model CPU';
+
+  @override
+  String get matchingIgpuTip =>
+      'Centang jika cocok, jika tidak biarkan tidak dicentang';
+
+  @override
+  String get selectPropertiesToApply => 'Pilih properti yang akan diterapkan';
+
+  @override
+  String get motherboardConfigTitle => 'Konfigurasi Model Motherboard:';
+
+  @override
+  String get motherboardConfigItems =>
+      'Pilih item konfigurasi untuk diterapkan';
+
+  @override
+  String get selectModelToConfigure => '(Pilih model untuk dikonfigurasi)';
+
+  @override
+  String get pleaseSelect => 'Silakan pilih';
+
+  @override
+  String get selectAllDeselectAll => 'Pilih / Batalkan Semua';
+
+  @override
+  String get deselectAll => 'Batalkan Semua';
+
+  @override
+  String get stuckOnEbFix =>
+      'Perbaikan macet di [EB] (Opsional - disarankan default):';
+
+  @override
+  String get renameCurrentEfi => 'Ubah Nama EFI Saat Ini';
+
+  @override
+  String get enterNewName => 'Masukkan nama baru';
+
+  @override
+  String get renameEfiTooltip => 'Ubah Nama EFI';
+
+  @override
+  String get adminPrivilegesRequired => 'Hak Istimewa Administrator Diperlukan';
+
+  @override
+  String get enterLoginPassword =>
+      'Silakan masukkan kata sandi masuk komputer Anda';
+
+  @override
+  String get importHardwareMaterials => 'Impor Materi Perangkat Keras';
+
+  @override
+  String get currentBiosSettings => 'Pengaturan BIOS Saat Ini';
+
+  @override
+  String get colorTheme => 'Tema Warna';
+
+  @override
+  String get noValidHardwareReport =>
+      'Tidak ada file laporan perangkat keras yang valid terdeteksi';
+
+  @override
+  String get viewOnGitHub => 'Lihat di GitHub';
+
+  @override
+  String get downloadNow => 'Unduh Sekarang';
+
+  @override
+  String get btnConfirm => 'Konfirmasi';
+
+  @override
+  String get btnDeleteRecord => 'Hapus catatan ini';
+
+  @override
+  String get currentEfiNamePrefix => 'Nama EFI Saat Ini: ';
+
+  @override
+  String get close => 'Tutup';
+
+  @override
+  String get applySelected => 'Terapkan yang Dipilih';
+
+  @override
+  String get connectedGpuPrefix => 'GPU Terhubung: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'Memerlukan Spoof ID: ';
+
+  @override
+  String get selectPlatform => 'Generasi Platform';
+
+  @override
+  String get selectVendor => 'Merek';
+
+  @override
+  String get selectModel => 'Model Motherboard';
+
+  @override
+  String get btnImport => 'Impor';
+
+  @override
+  String get defaultLabel => 'Bawaan';
 }

@@ -1167,6 +1167,276 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search'**
   String get searchPlaceholder;
+
+  /// No description provided for @initialSupportMacOs.
+  ///
+  /// In en, this message translates to:
+  /// **'Initial natively supported macOS version:'**
+  String get initialSupportMacOs;
+
+  /// No description provided for @lastSupportMacOs.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest natively supported macOS version:'**
+  String get lastSupportMacOs;
+
+  /// No description provided for @oclpSupportMacOs.
+  ///
+  /// In en, this message translates to:
+  /// **'OCLP patch supported macOS versions:'**
+  String get oclpSupportMacOs;
+
+  /// No description provided for @cpuInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'[CPU Info]:'**
+  String get cpuInfoTitle;
+
+  /// No description provided for @biosRecommendedEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'[BIOS Recommended Settings - Enabled]:'**
+  String get biosRecommendedEnabled;
+
+  /// No description provided for @biosRecommendedDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'[BIOS Recommended Settings - Disabled]:'**
+  String get biosRecommendedDisabled;
+
+  /// No description provided for @historyExpanderDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'EFIs generated with RapidEFI are automatically backed up to history.\nYou can reload and adjust any previously generated EFI at any time.\n\nThis feature is supported on RapidEFI V3.0.0 and above.'**
+  String get historyExpanderDesc;
+
+  /// No description provided for @gpuPresets.
+  ///
+  /// In en, this message translates to:
+  /// **'Presets'**
+  String get gpuPresets;
+
+  /// No description provided for @gpuByCpuModel.
+  ///
+  /// In en, this message translates to:
+  /// **'By CPU Model'**
+  String get gpuByCpuModel;
+
+  /// No description provided for @selectCpuGeneration.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Generation'**
+  String get selectCpuGeneration;
+
+  /// No description provided for @selectCpuModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Select CPU'**
+  String get selectCpuModel;
+
+  /// No description provided for @cpuGenerationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU Generation'**
+  String get cpuGenerationLabel;
+
+  /// No description provided for @cpuModelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU Model'**
+  String get cpuModelLabel;
+
+  /// No description provided for @matchingIgpuTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Check if matching, otherwise leave unchecked'**
+  String get matchingIgpuTip;
+
+  /// No description provided for @selectPropertiesToApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Select properties to apply'**
+  String get selectPropertiesToApply;
+
+  /// No description provided for @motherboardConfigTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Motherboard Model Config:'**
+  String get motherboardConfigTitle;
+
+  /// No description provided for @motherboardConfigItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Select configuration items to apply'**
+  String get motherboardConfigItems;
+
+  /// No description provided for @selectModelToConfigure.
+  ///
+  /// In en, this message translates to:
+  /// **'(Select model to configure)'**
+  String get selectModelToConfigure;
+
+  /// No description provided for @pleaseSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select'**
+  String get pleaseSelect;
+
+  /// No description provided for @selectAllDeselectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Select / Deselect All'**
+  String get selectAllDeselectAll;
+
+  /// No description provided for @deselectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Deselect All'**
+  String get deselectAll;
+
+  /// No description provided for @stuckOnEbFix.
+  ///
+  /// In en, this message translates to:
+  /// **'Stuck on [EB] Fix (Optional - defaults recommended):'**
+  String get stuckOnEbFix;
+
+  /// No description provided for @renameCurrentEfi.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename Current EFI'**
+  String get renameCurrentEfi;
+
+  /// No description provided for @enterNewName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new name'**
+  String get enterNewName;
+
+  /// No description provided for @renameEfiTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename EFI'**
+  String get renameEfiTooltip;
+
+  /// No description provided for @adminPrivilegesRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Administrator Privileges Required'**
+  String get adminPrivilegesRequired;
+
+  /// No description provided for @enterLoginPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your computer login password'**
+  String get enterLoginPassword;
+
+  /// No description provided for @importHardwareMaterials.
+  ///
+  /// In en, this message translates to:
+  /// **'Import Hardware Materials'**
+  String get importHardwareMaterials;
+
+  /// No description provided for @currentBiosSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Current BIOS Settings'**
+  String get currentBiosSettings;
+
+  /// No description provided for @colorTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Color Theme'**
+  String get colorTheme;
+
+  /// No description provided for @noValidHardwareReport.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid hardware report file detected'**
+  String get noValidHardwareReport;
+
+  /// No description provided for @viewOnGitHub.
+  ///
+  /// In en, this message translates to:
+  /// **'View on GitHub'**
+  String get viewOnGitHub;
+
+  /// No description provided for @downloadNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Download Now'**
+  String get downloadNow;
+
+  /// No description provided for @btnConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get btnConfirm;
+
+  /// No description provided for @btnDeleteRecord.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this record'**
+  String get btnDeleteRecord;
+
+  /// No description provided for @currentEfiNamePrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Current EFI Name: '**
+  String get currentEfiNamePrefix;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @applySelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Selected'**
+  String get applySelected;
+
+  /// No description provided for @connectedGpuPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected GPU: '**
+  String get connectedGpuPrefix;
+
+  /// No description provided for @requiresSpoofIdPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Requires Spoof ID: '**
+  String get requiresSpoofIdPrefix;
+
+  /// No description provided for @selectPlatform.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform Generation'**
+  String get selectPlatform;
+
+  /// No description provided for @selectVendor.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand'**
+  String get selectVendor;
+
+  /// No description provided for @selectModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Motherboard Model'**
+  String get selectModel;
+
+  /// No description provided for @btnImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get btnImport;
+
+  /// No description provided for @defaultLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get defaultLabel;
 }
 
 class _AppLocalizationsDelegate

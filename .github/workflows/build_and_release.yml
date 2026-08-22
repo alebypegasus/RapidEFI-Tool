@@ -169,6 +169,9 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
+      - name: Ensure Gradle Wrapper is Executable
+        run: chmod +x android/gradlew
+
       - name: Run Tests
         run: flutter test
 
@@ -177,13 +180,15 @@ jobs:
 
       - name: Copy & Rename Android APK
         run: |
-          cp build/app/outputs/flutter-apk/app-release.apk RapidEFI-Android.apk
+          mkdir -p dist_apk
+          find build/app/outputs -name "*release*.apk" -exec cp {} RapidEFI-Android.apk \; || cp build/app/outputs/flutter-apk/app-release.apk RapidEFI-Android.apk
 
       - name: Upload Android APK
         uses: actions/upload-artifact@v4
         with:
           name: RapidEFI-Android
           path: RapidEFI-Android.apk
+
 
   # -------------------------------------------------------------
   # 5. iOS Build (IPA)

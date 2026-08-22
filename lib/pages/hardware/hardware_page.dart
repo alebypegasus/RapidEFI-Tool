@@ -221,33 +221,35 @@ class _HardwarePageState extends State<HardwarePage> {
   }
 
   Future<String?> _requestSudoPassword() async {
+    final l10n = AppLocalizations.of(context);
     String password = '';
     return showDialog<String>(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Administrator Privileges Required'),
+          title: Text(l10n?.adminPrivilegesRequired ?? 'Administrator Privileges Required'),
           content: TextField(
             autofocus: true,
             obscureText: true,
-            decoration: const InputDecoration(labelText: 'Please enter your computer login password'),
+            decoration: InputDecoration(labelText: l10n?.enterLoginPassword ?? 'Please enter your computer login password'),
             onChanged: (value) => password = value,
             onSubmitted: (value) => Navigator.pop(context, value),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
+              child: Text(l10n?.btnCancel ?? 'Cancel'),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context, password),
-              child: const Text('Confirm'),
+              child: Text(l10n?.btnConfirm ?? 'Confirm'),
             ),
           ],
         );
       },
     );
   }
+
 
   Future<void> _importHardwareMaterials() async {
     final result = await _HardwareImportDialog.show(
@@ -693,6 +695,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     final darkMode = colorScheme.brightness == Brightness.dark;
     final dialogBackground =
@@ -702,7 +705,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.black.withValues(alpha: darkMode ? 0.75 : 0.22),
       elevation: darkMode ? 18 : 8,
-      title: const Text('Import Hardware Materials', textAlign: TextAlign.center),
+      title: Text(l10n?.importHardwareMaterials ?? 'Import Hardware Materials', textAlign: TextAlign.center),
       titlePadding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
       content: SizedBox(
@@ -712,16 +715,16 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildPickRow(
-              title: AppLocalizations.of(context)?.hardwareReport ?? 'Hardware Report',
+              title: l10n?.hardwareReport ?? 'Hardware Report',
               pathText: _hardwareReportPath,
-              buttonText: AppLocalizations.of(context)?.btnChooseFile ?? 'Browse File',
+              buttonText: l10n?.btnChooseFile ?? 'Browse File',
               onTap: _pickHardwareReport,
             ),
             const SizedBox(height: 12),
             _buildPickRow(
-              title: AppLocalizations.of(context)?.acpiFolderTitle ?? 'ACPI Folder',
+              title: l10n?.acpiFolderTitle ?? 'ACPI Folder',
               pathText: _acpiTablesPath,
-              buttonText: AppLocalizations.of(context)?.btnOpenFolder ?? 'Browse Folder',
+              buttonText: l10n?.btnOpenFolder ?? 'Browse Folder',
               onTap: _pickAcpiTables,
               optional: true,
             ),
@@ -743,7 +746,7 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(l10n?.btnCancel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: _hardwareReportPath.isEmpty
@@ -755,11 +758,12 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
                       acpiTablesPath: _acpiTablesPath,
                     ),
                   ),
-          child: const Text('Import'),
+          child: Text(l10n?.btnImport ?? 'Import'),
         ),
       ],
     );
   }
+
 
   Widget _buildPickRow({
     required String title,

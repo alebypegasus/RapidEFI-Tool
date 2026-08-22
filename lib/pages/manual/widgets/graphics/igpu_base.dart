@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:rapidefi/extension/string_extension.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/device_properties/device_property_item.dart';
+
 import 'package:rapidefi/utils/config/models/device_properties/igpu_model.dart';
 import 'package:rapidefi/utils/config/models/device_properties/iigpufb_model.dart';
 import 'package:rapidefi/utils/config/support/iigpufb_service.dart';
@@ -195,20 +197,21 @@ class _IgpuBaseState extends State<IgpuBase> {
 
   // ── Mode toggle button ──────────────────────────────────────────
   Widget _buildModeToggle(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SegmentedButton<_ConfigMode>(
       style: SegmentedButton.styleFrom(
         visualDensity: VisualDensity.compact,
       ),
-      segments: const [
+      segments: [
         ButtonSegment(
           value: _ConfigMode.preset,
-          label: Text('Presets'),
-          icon: Icon(Icons.list_alt_outlined, size: 16),
+          label: Text(l10n?.gpuPresets ?? 'Presets'),
+          icon: const Icon(Icons.list_alt_outlined, size: 16),
         ),
         ButtonSegment(
           value: _ConfigMode.cpu,
-          label: Text('By CPU Model'),
-          icon: Icon(Icons.memory_outlined, size: 16),
+          label: Text(l10n?.gpuByCpuModel ?? 'By CPU Model'),
+          icon: const Icon(Icons.memory_outlined, size: 16),
         ),
       ],
       selected: {_mode},
@@ -218,6 +221,7 @@ class _IgpuBaseState extends State<IgpuBase> {
 
   // ── Preset section ──────────────────────────────────────────────
   Widget _buildPresetSection(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final choices = igpuModels
         .map((e) => e.first.propertyItems.first.comment ?? '')
         .toList();
@@ -233,9 +237,10 @@ class _IgpuBaseState extends State<IgpuBase> {
       tips: tips,
       choices: choices,
       selectedChoices: [selectedChoice.nullSafe],
-      subTitle: 'Check if matching, otherwise leave unchecked',
+      subTitle: l10n?.matchingIgpuTip ?? 'Check if matching, otherwise leave unchecked',
       allowToggle: true,
       onChanged: (List<String> value) {
+
         if (value.isNotEmpty) {
           setState(() {
             selectedModel = widget.igpuModels.firstWhere(
@@ -254,6 +259,7 @@ class _IgpuBaseState extends State<IgpuBase> {
 
   // ── CPU selector panel ──────────────────────────────────────────
   Widget _buildCpuSelectorSection(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
     return Card(
@@ -262,13 +268,14 @@ class _IgpuBaseState extends State<IgpuBase> {
         borderRadius: BorderRadius.circular(8),
         side: BorderSide(color: colorScheme.outline.withValues(alpha: 0.3)),
       ),
+
       child: ExpansionTile(
         initiallyExpanded: false,
         tilePadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-        title: const Text(
-          'Load iGPU configuration by CPU model',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        title: Text(
+          l10n?.gpuByCpuModel ?? 'Load iGPU configuration by CPU model',
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
         subtitle: _selectedCpu != null
             ? Text(
@@ -276,11 +283,12 @@ class _IgpuBaseState extends State<IgpuBase> {
                 style:
                     TextStyle(fontSize: 12, color: colorScheme.primary),
               )
-            : const Text(
-                'Select CPU generation and model, then check desired properties',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+            : Text(
+                l10n?.matchingIgpuTip ?? 'Select CPU generation and model, then check desired properties',
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
               ),
         children: [
+
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -312,10 +320,11 @@ class _IgpuBaseState extends State<IgpuBase> {
         .where((g) => g.name == _selectedGeneration)
         .firstOrNull;
     final cpuList = currentGen?.cpus ?? <IigpufbCpuEntry>[];
+    final l10n = AppLocalizations.of(context);
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final isCompact = constraints.maxWidth < 550;
+        final isCompact = constraints.maxWidth < 520;
 
         return Wrap(
           spacing: 12,
@@ -328,14 +337,14 @@ class _IgpuBaseState extends State<IgpuBase> {
               child: DropdownButtonFormField<String>(
                 initialValue: _selectedGeneration,
                 isExpanded: true,
-                decoration: const InputDecoration(
-                  labelText: 'CPU Generation',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: l10n?.cpuGenerationLabel ?? 'CPU Generation',
+                  border: const OutlineInputBorder(),
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                   isDense: true,
                 ),
-                hint: const Text('Select Generation'),
+                hint: Text(l10n?.selectCpuGeneration ?? 'Select Generation'),
                 items: genNames
                     .map((g) =>
                         DropdownMenuItem(value: g, child: Text(g)))
@@ -442,6 +451,7 @@ class _IgpuBaseState extends State<IgpuBase> {
 
   // ── Property checklist ─────────────────────────────────────────
   Widget _buildPropertyChecklist(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final cpu = _selectedCpu!;
     final props = cpu.properties;
     final allSelected = _checkedIndices.length == props.length;
@@ -467,14 +477,14 @@ class _IgpuBaseState extends State<IgpuBase> {
                           : null,
                   onChanged: (v) => _toggleAll(v == true),
                 ),
-                const Text(
-                  'Select properties to apply',
-                  style: TextStyle(
+                Text(
+                  l10n?.selectPropertiesToApply ?? 'Select properties to apply',
+                  style: const TextStyle(
                       fontSize: 13, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '(${_checkedIndices.length}/${props.length} selected)',
+                  '(${_checkedIndices.length}/${props.length})',
                   style: const TextStyle(
                       fontSize: 12, color: Colors.grey),
                 ),
@@ -482,6 +492,7 @@ class _IgpuBaseState extends State<IgpuBase> {
             ),
           ),
         ),
+
         const Divider(height: 4),
         // Property items
         ...props.asMap().entries.map((entry) {

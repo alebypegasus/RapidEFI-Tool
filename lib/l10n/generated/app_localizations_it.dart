@@ -537,4 +537,150 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'Cerca';
+
+  @override
+  String get initialSupportMacOs =>
+      'Versione iniziale di macOS supportata nativamente:';
+
+  @override
+  String get lastSupportMacOs =>
+      'Ultima versione di macOS supportata nativamente:';
+
+  @override
+  String get oclpSupportMacOs =>
+      'Versioni di macOS supportate tramite patch OCLP:';
+
+  @override
+  String get cpuInfoTitle => '[Informazioni CPU]:';
+
+  @override
+  String get biosRecommendedEnabled =>
+      '[Impostazioni consigliate del BIOS - Abilitate]:';
+
+  @override
+  String get biosRecommendedDisabled =>
+      '[Impostazioni consigliate del BIOS - Disabilitate]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'Gli EFI generati con RapidEFI vengono automaticamente salvati nella cronologia.\nÈ possibile ricaricare e modificare qualsiasi EFI generato in precedenza in qualsiasi momento.\n\nQuesta funzionalità è supportata a partire da RapidEFI V3.0.0.';
+
+  @override
+  String get gpuPresets => 'Predefiniti';
+
+  @override
+  String get gpuByCpuModel => 'Per modello CPU';
+
+  @override
+  String get selectCpuGeneration => 'Seleziona generazione';
+
+  @override
+  String get selectCpuModel => 'Seleziona CPU';
+
+  @override
+  String get cpuGenerationLabel => 'Generazione CPU';
+
+  @override
+  String get cpuModelLabel => 'Modello CPU';
+
+  @override
+  String get matchingIgpuTip =>
+      'Spunta se corrispondente, altrimenti lascia deselezionato';
+
+  @override
+  String get selectPropertiesToApply => 'Seleziona le proprietà da applicare';
+
+  @override
+  String get motherboardConfigTitle => 'Configurazione modello scheda madre:';
+
+  @override
+  String get motherboardConfigItems =>
+      'Seleziona gli elementi di configurazione da applicare';
+
+  @override
+  String get selectModelToConfigure => '(Seleziona modello da configurare)';
+
+  @override
+  String get pleaseSelect => 'Si prega di selezionare';
+
+  @override
+  String get selectAllDeselectAll => 'Seleziona / Deseleziona tutto';
+
+  @override
+  String get deselectAll => 'Deseleziona tutto';
+
+  @override
+  String get stuckOnEbFix =>
+      'Risoluzione blocco su [EB] (Opzionale - consigliati i valori predefiniti):';
+
+  @override
+  String get renameCurrentEfi => 'Rinomina EFI corrente';
+
+  @override
+  String get enterNewName => 'Inserisci nuovo nome';
+
+  @override
+  String get renameEfiTooltip => 'Rinomina EFI';
+
+  @override
+  String get adminPrivilegesRequired => 'Privilegi di amministratore richiesti';
+
+  @override
+  String get enterLoginPassword =>
+      'Inserisci la password di accesso del computer';
+
+  @override
+  String get importHardwareMaterials => 'Importa dati hardware';
+
+  @override
+  String get currentBiosSettings => 'Impostazioni BIOS correnti';
+
+  @override
+  String get colorTheme => 'Tema colore';
+
+  @override
+  String get noValidHardwareReport =>
+      'Nessun file di report hardware valido rilevato';
+
+  @override
+  String get viewOnGitHub => 'Visualizza su GitHub';
+
+  @override
+  String get downloadNow => 'Scarica ora';
+
+  @override
+  String get btnConfirm => 'Conferma';
+
+  @override
+  String get btnDeleteRecord => 'Elimina questo record';
+
+  @override
+  String get currentEfiNamePrefix => 'Nome EFI corrente: ';
+
+  @override
+  String get close => 'Chiudi';
+
+  @override
+  String get applySelected => 'Applica selezionati';
+
+  @override
+  String get connectedGpuPrefix => 'GPU collegata: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'Richiede Spoof ID: ';
+
+  @override
+  String get selectPlatform => 'Generazione piattaforma';
+
+  @override
+  String get selectVendor => 'Marca';
+
+  @override
+  String get selectModel => 'Modello scheda madre';
+
+  @override
+  String get btnImport => 'Importa';
+
+  @override
+  String get defaultLabel => 'Predefinito';
 }

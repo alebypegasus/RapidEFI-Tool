@@ -536,4 +536,143 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'Tìm kiếm';
+
+  @override
+  String get initialSupportMacOs => 'Phiên bản macOS ban đầu được hỗ trợ gốc:';
+
+  @override
+  String get lastSupportMacOs => 'Phiên bản macOS mới nhất được hỗ trợ gốc:';
+
+  @override
+  String get oclpSupportMacOs => 'Các phiên bản macOS được hỗ trợ bản vá OCLP:';
+
+  @override
+  String get cpuInfoTitle => '[Thông tin CPU]:';
+
+  @override
+  String get biosRecommendedEnabled => '[Cài đặt BIOS được đề xuất - Đã bật]:';
+
+  @override
+  String get biosRecommendedDisabled => '[Cài đặt BIOS được đề xuất - Đã tắt]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'Các EFI được tạo bằng RapidEFI sẽ tự động được sao lưu vào lịch sử.\nBạn có thể tải lại và điều chỉnh bất kỳ EFI nào đã tạo trước đó vào bất kỳ lúc nào.\n\nTính năng này được hỗ trợ trên RapidEFI V3.0.0 trở lên.';
+
+  @override
+  String get gpuPresets => 'Cài đặt sẵn';
+
+  @override
+  String get gpuByCpuModel => 'Theo mẫu CPU';
+
+  @override
+  String get selectCpuGeneration => 'Chọn thế hệ';
+
+  @override
+  String get selectCpuModel => 'Chọn CPU';
+
+  @override
+  String get cpuGenerationLabel => 'Thế hệ CPU';
+
+  @override
+  String get cpuModelLabel => 'Mẫu CPU';
+
+  @override
+  String get matchingIgpuTip => 'Chọn nếu khớp, nếu không hãy bỏ chọn';
+
+  @override
+  String get selectPropertiesToApply => 'Chọn các thuộc tính cần áp dụng';
+
+  @override
+  String get motherboardConfigTitle => 'Cấu hình mẫu bo mạch chủ:';
+
+  @override
+  String get motherboardConfigItems => 'Chọn các mục cấu hình cần áp dụng';
+
+  @override
+  String get selectModelToConfigure => '(Chọn mẫu để cấu hình)';
+
+  @override
+  String get pleaseSelect => 'Vui lòng chọn';
+
+  @override
+  String get selectAllDeselectAll => 'Chọn tất cả / Bỏ chọn tất cả';
+
+  @override
+  String get deselectAll => 'Bỏ chọn tất cả';
+
+  @override
+  String get stuckOnEbFix =>
+      'Khắc phục treo ở [EB] (Tùy chọn - khuyến nghị mặc định):';
+
+  @override
+  String get renameCurrentEfi => 'Đổi tên EFI hiện tại';
+
+  @override
+  String get enterNewName => 'Nhập tên mới';
+
+  @override
+  String get renameEfiTooltip => 'Đổi tên EFI';
+
+  @override
+  String get adminPrivilegesRequired => 'Yêu cầu quyền quản trị viên';
+
+  @override
+  String get enterLoginPassword =>
+      'Vui lòng nhập mật khẩu đăng nhập máy tính của bạn';
+
+  @override
+  String get importHardwareMaterials => 'Nhập dữ liệu phần cứng';
+
+  @override
+  String get currentBiosSettings => 'Cài đặt BIOS hiện tại';
+
+  @override
+  String get colorTheme => 'Chủ đề màu sắc';
+
+  @override
+  String get noValidHardwareReport =>
+      'Không phát hiện thấy tệp báo cáo phần cứng hợp lệ';
+
+  @override
+  String get viewOnGitHub => 'Xem trên GitHub';
+
+  @override
+  String get downloadNow => 'Tải xuống ngay';
+
+  @override
+  String get btnConfirm => 'Xác nhận';
+
+  @override
+  String get btnDeleteRecord => 'Xóa bản ghi này';
+
+  @override
+  String get currentEfiNamePrefix => 'Tên EFI hiện tại: ';
+
+  @override
+  String get close => 'Đóng';
+
+  @override
+  String get applySelected => 'Áp dụng đã chọn';
+
+  @override
+  String get connectedGpuPrefix => 'GPU đã kết nối: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'Yêu cầu Spoof ID: ';
+
+  @override
+  String get selectPlatform => 'Thế hệ nền tảng';
+
+  @override
+  String get selectVendor => 'Thương hiệu';
+
+  @override
+  String get selectModel => 'Mẫu bo mạch chủ';
+
+  @override
+  String get btnImport => 'Nhập';
+
+  @override
+  String get defaultLabel => 'Mặc định';
 }

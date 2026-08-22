@@ -60,7 +60,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get btnEfiSettings => 'EFI সেটিংস';
 
   @override
-  String get btnExportEfi => 'EFI এক্সপোর্ট';
+  String get btnExportEfi => 'EFI রপ্তানি করুন';
 
   @override
   String get btnGenerateEfi => 'EFI তৈরি করুন';
@@ -156,7 +156,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get requiresPatch => 'প্যাচ প্রয়োজন';
 
   @override
-  String get details => 'বিস্তারিত';
+  String get details => 'বিবরণ';
 
   @override
   String get showDetailedReport => 'বিস্তারিত দেখুন';
@@ -536,4 +536,147 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'অনুসন্ধান করুন';
+
+  @override
+  String get initialSupportMacOs =>
+      'প্রাথমিক স্থানীয়ভাবে সমর্থিত macOS সংস্করণ:';
+
+  @override
+  String get lastSupportMacOs => 'সর্বশেষ স্থানীয়ভাবে সমর্থিত macOS সংস্করণ:';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP প্যাচ সমর্থিত macOS সংস্করণ:';
+
+  @override
+  String get cpuInfoTitle => '[সিপিইউ তথ্য]:';
+
+  @override
+  String get biosRecommendedEnabled => '[BIOS প্রস্তাবিত সেটিংস - সক্রিয়]:';
+
+  @override
+  String get biosRecommendedDisabled =>
+      '[BIOS প্রস্তাবিত সেটিংস - নিষ্ক্রিয়]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'RapidEFI দিয়ে তৈরি EFI স্বয়ংক্রিয়ভাবে ইতিহাসে ব্যাকআপ হয়।\nআপনি যেকোনো সময় পূর্বে তৈরি যেকোনো EFI পুনরায় লোড এবং সামঞ্জস্য করতে পারেন।\n\nএই বৈশিষ্ট্যটি RapidEFI V3.0.0 এবং তার উপরে সমর্থিত।';
+
+  @override
+  String get gpuPresets => 'প্রিসেট';
+
+  @override
+  String get gpuByCpuModel => 'সিপিইউ মডেল অনুযায়ী';
+
+  @override
+  String get selectCpuGeneration => 'প্রজন্ম নির্বাচন করুন';
+
+  @override
+  String get selectCpuModel => 'সিপিইউ নির্বাচন করুন';
+
+  @override
+  String get cpuGenerationLabel => 'সিপিইউ প্রজন্ম';
+
+  @override
+  String get cpuModelLabel => 'সিপিইউ মডেল';
+
+  @override
+  String get matchingIgpuTip => 'মিলে গেলে চেক করুন, অন্যথায় আনচেক রাখুন';
+
+  @override
+  String get selectPropertiesToApply =>
+      'প্রয়োগ করার জন্য বৈশিষ্ট্য নির্বাচন করুন';
+
+  @override
+  String get motherboardConfigTitle => 'মাদারবোর্ড মডেল কনফিগারেশন:';
+
+  @override
+  String get motherboardConfigItems =>
+      'প্রয়োগ করার জন্য কনফিগারেশন আইটেম নির্বাচন করুন';
+
+  @override
+  String get selectModelToConfigure => '(কনফিগার করতে মডেল নির্বাচন করুন)';
+
+  @override
+  String get pleaseSelect => 'অনুগ্রহ করে নির্বাচন করুন';
+
+  @override
+  String get selectAllDeselectAll => 'সব নির্বাচন / সব অনির্বাচন করুন';
+
+  @override
+  String get deselectAll => 'সব অনির্বাচন করুন';
+
+  @override
+  String get stuckOnEbFix =>
+      '[EB] তে আটকে যাওয়ার সমাধান (ঐচ্ছিক - ডিফল্ট প্রস্তাবিত):';
+
+  @override
+  String get renameCurrentEfi => 'বর্তমান EFI পুনঃনামকরণ করুন';
+
+  @override
+  String get enterNewName => 'নতুন নাম লিখুন';
+
+  @override
+  String get renameEfiTooltip => 'EFI পুনঃনামকরণ করুন';
+
+  @override
+  String get adminPrivilegesRequired => 'প্রশাসকের বিশেষাধিকার প্রয়োজন';
+
+  @override
+  String get enterLoginPassword =>
+      'অনুগ্রহ করে আপনার কম্পিউটার লগইন পাসওয়ার্ড লিখুন';
+
+  @override
+  String get importHardwareMaterials => 'হার্ডওয়্যার সামগ্রী আমদানি করুন';
+
+  @override
+  String get currentBiosSettings => 'বর্তমান BIOS সেটিংস';
+
+  @override
+  String get colorTheme => 'রঙের থিম';
+
+  @override
+  String get noValidHardwareReport =>
+      'কোনো বৈধ হার্ডওয়্যার রিপোর্ট ফাইল সনাক্ত করা যায়নি';
+
+  @override
+  String get viewOnGitHub => 'GitHub এ দেখুন';
+
+  @override
+  String get downloadNow => 'এখনই ডাউনলোড করুন';
+
+  @override
+  String get btnConfirm => 'নিশ্চিত করুন';
+
+  @override
+  String get btnDeleteRecord => 'এই রেকর্ড মুছুন';
+
+  @override
+  String get currentEfiNamePrefix => 'বর্তমান EFI নাম: ';
+
+  @override
+  String get close => 'বন্ধ করুন';
+
+  @override
+  String get applySelected => 'নির্বাচিত প্রয়োগ করুন';
+
+  @override
+  String get connectedGpuPrefix => 'সংযুক্ত GPU: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'স্পুফ ID প্রয়োজন: ';
+
+  @override
+  String get selectPlatform => 'প্ল্যাটফর্ম প্রজন্ম';
+
+  @override
+  String get selectVendor => 'ব্র্যান্ড';
+
+  @override
+  String get selectModel => 'মাদারবোর্ড মডেল';
+
+  @override
+  String get btnImport => 'আমদানি করুন';
+
+  @override
+  String get defaultLabel => 'ডিফল্ট';
 }

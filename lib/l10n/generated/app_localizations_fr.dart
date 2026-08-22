@@ -60,7 +60,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get btnEfiSettings => 'Paramètres EFI';
 
   @override
-  String get btnExportEfi => 'Exporter EFI';
+  String get btnExportEfi => 'Exporter l\'EFI';
 
   @override
   String get btnGenerateEfi => 'Générer EFI';
@@ -539,4 +539,152 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'Rechercher';
+
+  @override
+  String get initialSupportMacOs =>
+      'Version initiale de macOS prise en charge nativement :';
+
+  @override
+  String get lastSupportMacOs =>
+      'Dernière version de macOS prise en charge nativement :';
+
+  @override
+  String get oclpSupportMacOs =>
+      'Versions de macOS prises en charge via correctif OCLP :';
+
+  @override
+  String get cpuInfoTitle => '[Informations sur le CPU] :';
+
+  @override
+  String get biosRecommendedEnabled =>
+      '[Paramètres recommandés du BIOS - Activés] :';
+
+  @override
+  String get biosRecommendedDisabled =>
+      '[Paramètres recommandés du BIOS - Désactivés] :';
+
+  @override
+  String get historyExpanderDesc =>
+      'Les EFI générées avec RapidEFI sont automatiquement sauvegardées dans l\'historique.\nVous pouvez recharger et ajuster toute EFI générée précédemment à tout moment.\n\nCette fonctionnalité est prise en charge sur RapidEFI V3.0.0 et supérieur.';
+
+  @override
+  String get gpuPresets => 'Préréglages';
+
+  @override
+  String get gpuByCpuModel => 'Par modèle de processeur';
+
+  @override
+  String get selectCpuGeneration => 'Sélectionner la génération';
+
+  @override
+  String get selectCpuModel => 'Sélectionner le processeur';
+
+  @override
+  String get cpuGenerationLabel => 'Génération de processeur';
+
+  @override
+  String get cpuModelLabel => 'Modèle de processeur';
+
+  @override
+  String get matchingIgpuTip =>
+      'Cochez si correspondant, sinon laissez non coché';
+
+  @override
+  String get selectPropertiesToApply =>
+      'Sélectionner les propriétés à appliquer';
+
+  @override
+  String get motherboardConfigTitle =>
+      'Configuration du modèle de carte mère :';
+
+  @override
+  String get motherboardConfigItems =>
+      'Sélectionnez les éléments de configuration à appliquer';
+
+  @override
+  String get selectModelToConfigure => '(Sélectionnez le modèle à configurer)';
+
+  @override
+  String get pleaseSelect => 'Veuillez sélectionner';
+
+  @override
+  String get selectAllDeselectAll => 'Tout sélectionner / Tout désélectionner';
+
+  @override
+  String get deselectAll => 'Tout désélectionner';
+
+  @override
+  String get stuckOnEbFix =>
+      'Correction du blocage sur [EB] (Optionnel - valeurs par défaut recommandées) :';
+
+  @override
+  String get renameCurrentEfi => 'Renommer l\'EFI actuelle';
+
+  @override
+  String get enterNewName => 'Entrez un nouveau nom';
+
+  @override
+  String get renameEfiTooltip => 'Renommer l\'EFI';
+
+  @override
+  String get adminPrivilegesRequired => 'Privilèges d\'administrateur requis';
+
+  @override
+  String get enterLoginPassword =>
+      'Veuillez entrer votre mot de passe de session';
+
+  @override
+  String get importHardwareMaterials => 'Importer les données matérielles';
+
+  @override
+  String get currentBiosSettings => 'Paramètres actuels du BIOS';
+
+  @override
+  String get colorTheme => 'Thème de couleur';
+
+  @override
+  String get noValidHardwareReport =>
+      'Aucun fichier de rapport matériel valide détecté';
+
+  @override
+  String get viewOnGitHub => 'Voir sur GitHub';
+
+  @override
+  String get downloadNow => 'Télécharger maintenant';
+
+  @override
+  String get btnConfirm => 'Confirmer';
+
+  @override
+  String get btnDeleteRecord => 'Supprimer cet enregistrement';
+
+  @override
+  String get currentEfiNamePrefix => 'Nom actuel de l\'EFI : ';
+
+  @override
+  String get close => 'Fermer';
+
+  @override
+  String get applySelected => 'Appliquer la sélection';
+
+  @override
+  String get connectedGpuPrefix => 'GPU connecté : ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'Nécessite Spoof ID : ';
+
+  @override
+  String get selectPlatform => 'Génération de plateforme';
+
+  @override
+  String get selectVendor => 'Marque';
+
+  @override
+  String get selectModel => 'Modèle de carte mère';
+
+  @override
+  String get btnImport => 'Importer';
+
+  @override
+  String get defaultLabel => 'Par défaut';
 }

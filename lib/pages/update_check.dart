@@ -3,6 +3,7 @@
 //
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/link_button_row.dart';
 import 'package:rapidefi/pages/shared/widgets/markdown_viewer.dart';
 import 'package:rapidefi/utils/app_info.dart';
@@ -54,14 +55,16 @@ class UpdateDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final backgroundColor = isDark ? const Color(0xFF1E1E1E) : Colors.white;
+
     final release = _ctx.release;
     final asset = release.assetForCurrentPlatform();
-    final colorScheme = Theme.of(context).colorScheme;
-    final bool darkMode = colorScheme.brightness == Brightness.dark;
-    final backgroundColor = darkMode
-        ? const Color.fromARGB(255, 63, 60, 60)
-        : colorScheme.surfaceContainerHighest;
+
+
     return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       backgroundColor: backgroundColor,
       child: ConstrainedBox(
@@ -73,13 +76,13 @@ class UpdateDialog extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  'New version available for ${_ctx.repoConfig.repo}',
+                  '${_ctx.repoConfig.repo} - ${release.tag}',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               const SizedBox(height: 6),
-              Text('Version: ${release.tag}'),
-              Text('Release Date: ${release.publishedAt}'),
+              Text('Release: ${release.tag}'),
+              Text('Date: ${release.publishedAt}'),
               const Divider(height: 18, thickness: 0.2),
               Expanded(
                   child: MarkdownViewer(
@@ -100,12 +103,12 @@ class UpdateDialog extends StatelessWidget {
                     items: [
                       LinkButtonItem(
                         url: _ctx.repoConfig.releasesUrl,
-                        buttonText: 'View on GitHub',
+                        buttonText: l10n?.viewOnGitHub ?? 'View on GitHub',
                       ),
                       if (asset != null)
                         LinkButtonItem(
                           url: asset.downloadUrl,
-                          buttonText: 'Download Now',
+                          buttonText: l10n?.downloadNow ?? 'Download Now',
                         ),
                     ],
                   ),
@@ -115,7 +118,7 @@ class UpdateDialog extends StatelessWidget {
                     radius: 6,
                     backgroundColor: Colors.grey.withValues(alpha: 0.1),
                     onTap: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
+                    child: Text(l10n?.close ?? 'Close'),
                   ),
                 ],
               ),

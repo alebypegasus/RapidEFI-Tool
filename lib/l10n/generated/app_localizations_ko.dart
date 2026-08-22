@@ -156,7 +156,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get requiresPatch => '패치 필요';
 
   @override
-  String get details => '세부 정보';
+  String get details => '세부정보';
 
   @override
   String get showDetailedReport => '자세히 보기';
@@ -534,4 +534,140 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get searchPlaceholder => '검색';
+
+  @override
+  String get initialSupportMacOs => '초기 기본 지원 macOS 버전:';
+
+  @override
+  String get lastSupportMacOs => '최신 기본 지원 macOS 버전:';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP 패치 지원 macOS 버전:';
+
+  @override
+  String get cpuInfoTitle => '[CPU 정보]:';
+
+  @override
+  String get biosRecommendedEnabled => '[BIOS 권장 설정 - 활성화됨]:';
+
+  @override
+  String get biosRecommendedDisabled => '[BIOS 권장 설정 - 비활성화됨]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'RapidEFI로 생성된 EFI는 기록에 자동으로 백업됩니다.\n이전에 생성된 EFI를 언제든지 다시 로드하고 조정할 수 있습니다.\n\n이 기능은 RapidEFI V3.0.0 이상에서 지원됩니다.';
+
+  @override
+  String get gpuPresets => '사전 설정';
+
+  @override
+  String get gpuByCpuModel => 'CPU 모델별';
+
+  @override
+  String get selectCpuGeneration => '세대 선택';
+
+  @override
+  String get selectCpuModel => 'CPU 선택';
+
+  @override
+  String get cpuGenerationLabel => 'CPU 세대';
+
+  @override
+  String get cpuModelLabel => 'CPU 모델';
+
+  @override
+  String get matchingIgpuTip => '일치하는 경우 선택하고, 그렇지 않으면 선택 취소 상태로 둡니다';
+
+  @override
+  String get selectPropertiesToApply => '적용할 속성 선택';
+
+  @override
+  String get motherboardConfigTitle => '메인보드 모델 구성:';
+
+  @override
+  String get motherboardConfigItems => '적용할 구성 항목 선택';
+
+  @override
+  String get selectModelToConfigure => '(구성할 모델 선택)';
+
+  @override
+  String get pleaseSelect => '선택하세요';
+
+  @override
+  String get selectAllDeselectAll => '모두 선택 / 모두 선택 취소';
+
+  @override
+  String get deselectAll => '모두 선택 취소';
+
+  @override
+  String get stuckOnEbFix => '[EB] 멈춤 수정 (선택 사항 - 기본값 권장):';
+
+  @override
+  String get renameCurrentEfi => '현재 EFI 이름 변경';
+
+  @override
+  String get enterNewName => '새 이름 입력';
+
+  @override
+  String get renameEfiTooltip => 'EFI 이름 변경';
+
+  @override
+  String get adminPrivilegesRequired => '관리자 권한 필요';
+
+  @override
+  String get enterLoginPassword => '컴퓨터 로그인 비밀번호를 입력하세요';
+
+  @override
+  String get importHardwareMaterials => '하드웨어 자료 가져오기';
+
+  @override
+  String get currentBiosSettings => '현재 BIOS 설정';
+
+  @override
+  String get colorTheme => '색상 테마';
+
+  @override
+  String get noValidHardwareReport => '유효한 하드웨어 보고서 파일이 감지되지 않았습니다';
+
+  @override
+  String get viewOnGitHub => 'GitHub에서 보기';
+
+  @override
+  String get downloadNow => '지금 다운로드';
+
+  @override
+  String get btnConfirm => '확인';
+
+  @override
+  String get btnDeleteRecord => '이 기록 삭제';
+
+  @override
+  String get currentEfiNamePrefix => '현재 EFI 이름: ';
+
+  @override
+  String get close => '닫기';
+
+  @override
+  String get applySelected => '선택 항목 적용';
+
+  @override
+  String get connectedGpuPrefix => '연결된 GPU: ';
+
+  @override
+  String get requiresSpoofIdPrefix => '스푸프 ID 필요: ';
+
+  @override
+  String get selectPlatform => '플랫폼 세대';
+
+  @override
+  String get selectVendor => '브랜드';
+
+  @override
+  String get selectModel => '메인보드 모델';
+
+  @override
+  String get btnImport => '가져오기';
+
+  @override
+  String get defaultLabel => '기본값';
 }

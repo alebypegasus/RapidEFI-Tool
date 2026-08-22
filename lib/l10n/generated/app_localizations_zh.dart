@@ -156,7 +156,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get requiresPatch => '需要补丁';
 
   @override
-  String get details => '详细信息';
+  String get details => '详情';
 
   @override
   String get showDetailedReport => '详细视图';
@@ -533,6 +533,142 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get searchPlaceholder => '搜索';
+
+  @override
+  String get initialSupportMacOs => '原生支持的初始 macOS 版本：';
+
+  @override
+  String get lastSupportMacOs => '原生支持的最新 macOS 版本：';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP 补丁支持的 macOS 版本：';
+
+  @override
+  String get cpuInfoTitle => '【CPU 信息】：';
+
+  @override
+  String get biosRecommendedEnabled => '【BIOS 推荐设置 - 启用】：';
+
+  @override
+  String get biosRecommendedDisabled => '【BIOS 推荐设置 - 禁用】：';
+
+  @override
+  String get historyExpanderDesc =>
+      '使用 RapidEFI 生成的 EFI 会自动备份到历史记录。\n您可以随时重新加载并调整之前生成的任何 EFI。\n\n此功能在 RapidEFI V3.0.0 及以上版本中支持。';
+
+  @override
+  String get gpuPresets => '预设';
+
+  @override
+  String get gpuByCpuModel => '按 CPU 型号';
+
+  @override
+  String get selectCpuGeneration => '选择代数';
+
+  @override
+  String get selectCpuModel => '选择 CPU';
+
+  @override
+  String get cpuGenerationLabel => 'CPU 代数';
+
+  @override
+  String get cpuModelLabel => 'CPU 型号';
+
+  @override
+  String get matchingIgpuTip => '如匹配请勾选，否则保持未选中';
+
+  @override
+  String get selectPropertiesToApply => '选择要应用的的属性';
+
+  @override
+  String get motherboardConfigTitle => '主板型号配置：';
+
+  @override
+  String get motherboardConfigItems => '选择要应用的配置项';
+
+  @override
+  String get selectModelToConfigure => '（选择型号进行配置）';
+
+  @override
+  String get pleaseSelect => '请选择';
+
+  @override
+  String get selectAllDeselectAll => '全选 / 取消全选';
+
+  @override
+  String get deselectAll => '取消全选';
+
+  @override
+  String get stuckOnEbFix => '卡 [EB] 修复（可选 - 建议保持默认）：';
+
+  @override
+  String get renameCurrentEfi => '重命名当前 EFI';
+
+  @override
+  String get enterNewName => '输入新名称';
+
+  @override
+  String get renameEfiTooltip => '重命名 EFI';
+
+  @override
+  String get adminPrivilegesRequired => '需要管理员权限';
+
+  @override
+  String get enterLoginPassword => '请输入您的计算机登录密码';
+
+  @override
+  String get importHardwareMaterials => '导入硬件物料';
+
+  @override
+  String get currentBiosSettings => '当前 BIOS 设置';
+
+  @override
+  String get colorTheme => '颜色主题';
+
+  @override
+  String get noValidHardwareReport => '未检测到有效的硬件报告文件';
+
+  @override
+  String get viewOnGitHub => '在 GitHub 上查看';
+
+  @override
+  String get downloadNow => '立即下载';
+
+  @override
+  String get btnConfirm => '确认';
+
+  @override
+  String get btnDeleteRecord => '删除此记录';
+
+  @override
+  String get currentEfiNamePrefix => '当前 EFI 名称：';
+
+  @override
+  String get close => '关闭';
+
+  @override
+  String get applySelected => '应用所选';
+
+  @override
+  String get connectedGpuPrefix => '已连接显卡：';
+
+  @override
+  String get requiresSpoofIdPrefix => '需要仿冒 ID：';
+
+  @override
+  String get selectPlatform => '平台代数';
+
+  @override
+  String get selectVendor => '品牌';
+
+  @override
+  String get selectModel => '主板型号';
+
+  @override
+  String get btnImport => '导入';
+
+  @override
+  String get defaultLabel => '默认';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -687,7 +823,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get requiresPatch => '需要修補';
 
   @override
-  String get details => '詳細資訊';
+  String get details => '詳情';
 
   @override
   String get showDetailedReport => '詳細檢視';
@@ -1064,4 +1200,140 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get searchPlaceholder => '搜尋';
+
+  @override
+  String get initialSupportMacOs => '原生支援的初始 macOS 版本：';
+
+  @override
+  String get lastSupportMacOs => '原生支援的最新 macOS 版本：';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP 修補程式支援的 macOS 版本：';
+
+  @override
+  String get cpuInfoTitle => '【CPU 資訊】：';
+
+  @override
+  String get biosRecommendedEnabled => '【BIOS 推薦設定 - 啟用】：';
+
+  @override
+  String get biosRecommendedDisabled => '【BIOS 推薦設定 - 停用】：';
+
+  @override
+  String get historyExpanderDesc =>
+      '使用 RapidEFI 產生的 EFI 會自動備份到歷史記錄。\n您可以隨時重新載入並調整之前產生的任何 EFI。\n\n此功能在 RapidEFI V3.0.0 及以上版本中支援。';
+
+  @override
+  String get gpuPresets => '預設';
+
+  @override
+  String get gpuByCpuModel => '按 CPU 型號';
+
+  @override
+  String get selectCpuGeneration => '選擇代數';
+
+  @override
+  String get selectCpuModel => '選擇 CPU';
+
+  @override
+  String get cpuGenerationLabel => 'CPU 代數';
+
+  @override
+  String get cpuModelLabel => 'CPU 型號';
+
+  @override
+  String get matchingIgpuTip => '如相符請勾選，否則保持未選取';
+
+  @override
+  String get selectPropertiesToApply => '選擇要套用的屬性';
+
+  @override
+  String get motherboardConfigTitle => '主機板型號配置：';
+
+  @override
+  String get motherboardConfigItems => '選擇要套用的設定項目';
+
+  @override
+  String get selectModelToConfigure => '（選擇型號進行設定）';
+
+  @override
+  String get pleaseSelect => '請選擇';
+
+  @override
+  String get selectAllDeselectAll => '全選 / 取消全選';
+
+  @override
+  String get deselectAll => '取消全選';
+
+  @override
+  String get stuckOnEbFix => '卡 [EB] 修復（可選 - 建議保持預設）：';
+
+  @override
+  String get renameCurrentEfi => '重新命名當前 EFI';
+
+  @override
+  String get enterNewName => '輸入新名稱';
+
+  @override
+  String get renameEfiTooltip => '重新命名 EFI';
+
+  @override
+  String get adminPrivilegesRequired => '需要管理員權限';
+
+  @override
+  String get enterLoginPassword => '請輸入您的電腦登入密碼';
+
+  @override
+  String get importHardwareMaterials => '匯入硬體物料';
+
+  @override
+  String get currentBiosSettings => '當前 BIOS 設定';
+
+  @override
+  String get colorTheme => '顏色主題';
+
+  @override
+  String get noValidHardwareReport => '未檢測到有效的硬體報告檔案';
+
+  @override
+  String get viewOnGitHub => '在 GitHub 上檢視';
+
+  @override
+  String get downloadNow => '立即下載';
+
+  @override
+  String get btnConfirm => '確認';
+
+  @override
+  String get btnDeleteRecord => '刪除此記錄';
+
+  @override
+  String get currentEfiNamePrefix => '當前 EFI 名稱：';
+
+  @override
+  String get close => '關閉';
+
+  @override
+  String get applySelected => '套用所選';
+
+  @override
+  String get connectedGpuPrefix => '已連接顯示卡：';
+
+  @override
+  String get requiresSpoofIdPrefix => '需要仿冒 ID：';
+
+  @override
+  String get selectPlatform => '平台代數';
+
+  @override
+  String get selectVendor => '品牌';
+
+  @override
+  String get selectModel => '主機板型號';
+
+  @override
+  String get btnImport => '匯入';
+
+  @override
+  String get defaultLabel => '預設';
 }

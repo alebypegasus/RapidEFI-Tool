@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
+import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/models/booter/booter.dart';
 import 'package:rapidefi/utils/config/models/booter/booter_quirk_type.dart';
 import 'package:rapidefi/utils/config/models/booter/booter_quirks.dart';
 import 'package:rapidefi/widgets/radio_option_group.dart';
-import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+
 
 class BooterWidget extends StatefulWidget {
   const BooterWidget({
@@ -93,6 +95,7 @@ class _BooterWidgetState extends State<BooterWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return ScrollableChoiceListPanel(
       child: ChoiceList(
         showTip: true,
@@ -106,7 +109,7 @@ class _BooterWidgetState extends State<BooterWidget> {
             mainAxisSize: MainAxisSize.min,
             spacing: 8.0,
             children: [
-              const Text('Stuck on [EB] Fix (Optional - defaults recommended):'),
+              Text(l10n?.stuckOnEbFix ?? 'Stuck on [EB] Fix (Optional - defaults recommended):'),
               RadioOptionGroup(
                 groupValue: _selectedScheme,
                 options: const [
@@ -126,6 +129,7 @@ class _BooterWidgetState extends State<BooterWidget> {
             ],
           ),
         ),
+
         onChanged: (value) {
           final selectedQuirkTypes = widget.booterQuirkTypes
               .where((e) => value.contains(e.comment))

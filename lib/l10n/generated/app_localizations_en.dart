@@ -536,4 +536,142 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'Search';
+
+  @override
+  String get initialSupportMacOs => 'Initial natively supported macOS version:';
+
+  @override
+  String get lastSupportMacOs => 'Latest natively supported macOS version:';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP patch supported macOS versions:';
+
+  @override
+  String get cpuInfoTitle => '[CPU Info]:';
+
+  @override
+  String get biosRecommendedEnabled => '[BIOS Recommended Settings - Enabled]:';
+
+  @override
+  String get biosRecommendedDisabled =>
+      '[BIOS Recommended Settings - Disabled]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'EFIs generated with RapidEFI are automatically backed up to history.\nYou can reload and adjust any previously generated EFI at any time.\n\nThis feature is supported on RapidEFI V3.0.0 and above.';
+
+  @override
+  String get gpuPresets => 'Presets';
+
+  @override
+  String get gpuByCpuModel => 'By CPU Model';
+
+  @override
+  String get selectCpuGeneration => 'Select Generation';
+
+  @override
+  String get selectCpuModel => 'Select CPU';
+
+  @override
+  String get cpuGenerationLabel => 'CPU Generation';
+
+  @override
+  String get cpuModelLabel => 'CPU Model';
+
+  @override
+  String get matchingIgpuTip => 'Check if matching, otherwise leave unchecked';
+
+  @override
+  String get selectPropertiesToApply => 'Select properties to apply';
+
+  @override
+  String get motherboardConfigTitle => 'Motherboard Model Config:';
+
+  @override
+  String get motherboardConfigItems => 'Select configuration items to apply';
+
+  @override
+  String get selectModelToConfigure => '(Select model to configure)';
+
+  @override
+  String get pleaseSelect => 'Please select';
+
+  @override
+  String get selectAllDeselectAll => 'Select / Deselect All';
+
+  @override
+  String get deselectAll => 'Deselect All';
+
+  @override
+  String get stuckOnEbFix =>
+      'Stuck on [EB] Fix (Optional - defaults recommended):';
+
+  @override
+  String get renameCurrentEfi => 'Rename Current EFI';
+
+  @override
+  String get enterNewName => 'Enter new name';
+
+  @override
+  String get renameEfiTooltip => 'Rename EFI';
+
+  @override
+  String get adminPrivilegesRequired => 'Administrator Privileges Required';
+
+  @override
+  String get enterLoginPassword => 'Please enter your computer login password';
+
+  @override
+  String get importHardwareMaterials => 'Import Hardware Materials';
+
+  @override
+  String get currentBiosSettings => 'Current BIOS Settings';
+
+  @override
+  String get colorTheme => 'Color Theme';
+
+  @override
+  String get noValidHardwareReport => 'No valid hardware report file detected';
+
+  @override
+  String get viewOnGitHub => 'View on GitHub';
+
+  @override
+  String get downloadNow => 'Download Now';
+
+  @override
+  String get btnConfirm => 'Confirm';
+
+  @override
+  String get btnDeleteRecord => 'Delete this record';
+
+  @override
+  String get currentEfiNamePrefix => 'Current EFI Name: ';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get applySelected => 'Apply Selected';
+
+  @override
+  String get connectedGpuPrefix => 'Connected GPU: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'Requires Spoof ID: ';
+
+  @override
+  String get selectPlatform => 'Platform Generation';
+
+  @override
+  String get selectVendor => 'Brand';
+
+  @override
+  String get selectModel => 'Motherboard Model';
+
+  @override
+  String get btnImport => 'Import';
+
+  @override
+  String get defaultLabel => 'Default';
 }

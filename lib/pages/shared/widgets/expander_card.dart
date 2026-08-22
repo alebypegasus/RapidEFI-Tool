@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 
 class ExpanderCard extends StatefulWidget {
   const ExpanderCard(
@@ -28,6 +29,7 @@ class _ExpanderCardState extends State<ExpanderCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final theme = FluentTheme.of(context);
     return Container(
       decoration: BoxDecoration(
@@ -58,8 +60,9 @@ class _ExpanderCardState extends State<ExpanderCard> {
               key: expanderKey,
               initiallyExpanded: widget.initiallyExpanded,
               onStateChanged: (_) {},
-              header: widget.header ?? const Text('Details'),
+              header: widget.header ?? Text(l10n?.details ?? 'Details'),
               headerShape: (open) {
+
                 return const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(
                     top: Radius.zero,

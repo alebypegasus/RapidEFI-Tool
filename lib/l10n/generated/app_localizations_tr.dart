@@ -60,7 +60,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get btnEfiSettings => 'EFI Ayarları';
 
   @override
-  String get btnExportEfi => 'EFI Dışa Aktar';
+  String get btnExportEfi => 'EFI\'yi Dışa Aktar';
 
   @override
   String get btnGenerateEfi => 'EFI Oluştur';
@@ -537,4 +537,147 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'Ara';
+
+  @override
+  String get initialSupportMacOs =>
+      'İlk yerel olarak desteklenen macOS sürümü:';
+
+  @override
+  String get lastSupportMacOs =>
+      'En son yerel olarak desteklenen macOS sürümü:';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP yaması ile desteklenen macOS sürümleri:';
+
+  @override
+  String get cpuInfoTitle => '[İşlemci Bilgisi]:';
+
+  @override
+  String get biosRecommendedEnabled => '[BIOS Önerilen Ayarlar - Etkin]:';
+
+  @override
+  String get biosRecommendedDisabled => '[BIOS Önerilen Ayarlar - Devre Dışı]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'RapidEFI ile oluşturulan EFI\'ler otomatik olarak geçmişe yedeklenir.\nÖnceden oluşturulmuş herhangi bir EFI\'yi istediğiniz zaman yeniden yükleyebilir ve ayarlayabilirsiniz.\n\nBu özellik RapidEFI V3.0.0 ve sonraki sürümlerde desteklenir.';
+
+  @override
+  String get gpuPresets => 'Ön ayarlar';
+
+  @override
+  String get gpuByCpuModel => 'İşlemci Modeline Göre';
+
+  @override
+  String get selectCpuGeneration => 'Nesil Seçin';
+
+  @override
+  String get selectCpuModel => 'İşlemci Seçin';
+
+  @override
+  String get cpuGenerationLabel => 'İşlemci Nesli';
+
+  @override
+  String get cpuModelLabel => 'İşlemci Modeli';
+
+  @override
+  String get matchingIgpuTip =>
+      'Eşleşiyorsa işaretleyin, aksi halde işaretsiz bırakın';
+
+  @override
+  String get selectPropertiesToApply => 'Uygulanacak özellikleri seçin';
+
+  @override
+  String get motherboardConfigTitle => 'Anakart Modeli Yapılandırması:';
+
+  @override
+  String get motherboardConfigItems =>
+      'Uygulanacak yapılandırma öğelerini seçin';
+
+  @override
+  String get selectModelToConfigure => '(Yapılandırmak için modeli seçin)';
+
+  @override
+  String get pleaseSelect => 'Lütfen seçin';
+
+  @override
+  String get selectAllDeselectAll => 'Tümünü Seç / Seçimi Kaldır';
+
+  @override
+  String get deselectAll => 'Tümünün Seçimini Kaldır';
+
+  @override
+  String get stuckOnEbFix =>
+      '[EB] Takılma Düzeltmesi (İsteğe bağlı - varsayılanlar önerilir):';
+
+  @override
+  String get renameCurrentEfi => 'Geçerli EFI\'yi Yeniden Adlandır';
+
+  @override
+  String get enterNewName => 'Yeni adı girin';
+
+  @override
+  String get renameEfiTooltip => 'EFI\'yi Yeniden Adlandır';
+
+  @override
+  String get adminPrivilegesRequired => 'Yönetici Ayrıcalıkları Gerekli';
+
+  @override
+  String get enterLoginPassword =>
+      'Lütfen bilgisayarınızın giriş şifresini girin';
+
+  @override
+  String get importHardwareMaterials => 'Donanım Malzemelerini İçe Aktar';
+
+  @override
+  String get currentBiosSettings => 'Geçerli BIOS Ayarları';
+
+  @override
+  String get colorTheme => 'Renk Teması';
+
+  @override
+  String get noValidHardwareReport =>
+      'Geçerli bir donanım rapor dosyası algılanmadı';
+
+  @override
+  String get viewOnGitHub => 'GitHub\'da Görüntüle';
+
+  @override
+  String get downloadNow => 'Şimdi İndir';
+
+  @override
+  String get btnConfirm => 'Onayla';
+
+  @override
+  String get btnDeleteRecord => 'Bu kaydı sil';
+
+  @override
+  String get currentEfiNamePrefix => 'Geçerli EFI Adı: ';
+
+  @override
+  String get close => 'Kapat';
+
+  @override
+  String get applySelected => 'Seçilenleri Uygula';
+
+  @override
+  String get connectedGpuPrefix => 'Bağlı GPU: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'Spoof Kimliği Gerekli: ';
+
+  @override
+  String get selectPlatform => 'Platform Nesli';
+
+  @override
+  String get selectVendor => 'Marka';
+
+  @override
+  String get selectModel => 'Anakart Modeli';
+
+  @override
+  String get btnImport => 'İçe Aktar';
+
+  @override
+  String get defaultLabel => 'Varsayılan';
 }

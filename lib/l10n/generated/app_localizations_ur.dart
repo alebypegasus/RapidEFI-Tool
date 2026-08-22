@@ -537,4 +537,146 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'تلاش کریں';
+
+  @override
+  String get initialSupportMacOs =>
+      'ابتدائی مقامی طور پر تعاون یافتہ macOS ورژن:';
+
+  @override
+  String get lastSupportMacOs =>
+      'تازہ ترین مقامی طور پر تعاون یافتہ macOS ورژن:';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP پیچ سے تعاون یافتہ macOS ورژن:';
+
+  @override
+  String get cpuInfoTitle => '[سی پی یو کی معلومات]:';
+
+  @override
+  String get biosRecommendedEnabled => '[BIOS تجویز کردہ ترتیبات - فعال]:';
+
+  @override
+  String get biosRecommendedDisabled => '[BIOS تجویز کردہ ترتیبات - غیر فعال]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'RapidEFI کے ساتھ تیار کردہ EFI خود بخود تاریخ میں محفوظ ہو جاتے ہیں۔\nآپ کسی بھی وقت پہلے تیار کردہ کسی بھی EFI کو دوبارہ لوڈ اور ایڈجسٹ کر سکتے ہیں۔\n\nیہ خصوصیت RapidEFI V3.0.0 اور اس سے اوپر پر تعاون یافتہ ہے۔';
+
+  @override
+  String get gpuPresets => 'پریسیٹس';
+
+  @override
+  String get gpuByCpuModel => 'سی پی یو ماڈل کے لحاظ سے';
+
+  @override
+  String get selectCpuGeneration => 'نسل منتخب کریں';
+
+  @override
+  String get selectCpuModel => 'سی پی یو منتخب کریں';
+
+  @override
+  String get cpuGenerationLabel => 'سی پی یو نسل';
+
+  @override
+  String get cpuModelLabel => 'سی پی یو ماڈل';
+
+  @override
+  String get matchingIgpuTip =>
+      'اگر مماثل ہو تو چیک کریں، ورنہ غیر چیک شدہ چھوڑ دیں';
+
+  @override
+  String get selectPropertiesToApply => 'لاگو کرنے کے لیے خصوصیات منتخب کریں';
+
+  @override
+  String get motherboardConfigTitle => 'مدر بورڈ ماڈل کنفیگریشن:';
+
+  @override
+  String get motherboardConfigItems =>
+      'لاگو کرنے کے لیے کنفیگریشن آئٹمز منتخب کریں';
+
+  @override
+  String get selectModelToConfigure => '(کنفیگر کرنے کے لیے ماڈل منتخب کریں)';
+
+  @override
+  String get pleaseSelect => 'براہ کرم منتخب کریں';
+
+  @override
+  String get selectAllDeselectAll => 'سب منتخب / غیر منتخب کریں';
+
+  @override
+  String get deselectAll => 'سب غیر منتخب کریں';
+
+  @override
+  String get stuckOnEbFix =>
+      '[EB] پر پھنس جانے کا حل (اختیاری - ڈیفالٹ تجویز کردہ):';
+
+  @override
+  String get renameCurrentEfi => 'موجودہ EFI کا نام تبدیل کریں';
+
+  @override
+  String get enterNewName => 'نیا نام درج کریں';
+
+  @override
+  String get renameEfiTooltip => 'EFI کا نام تبدیل کریں';
+
+  @override
+  String get adminPrivilegesRequired => 'ایڈمنسٹریٹر کے مراعات درکار ہیں';
+
+  @override
+  String get enterLoginPassword =>
+      'براہ کرم اپنے کمپیوٹر کا لاگ ان پاس ورڈ درج کریں';
+
+  @override
+  String get importHardwareMaterials => 'ہارڈ ویئر مواد درآمد کریں';
+
+  @override
+  String get currentBiosSettings => 'موجودہ BIOS ترتیبات';
+
+  @override
+  String get colorTheme => 'رنگین تھیم';
+
+  @override
+  String get noValidHardwareReport => 'کوئی درست ہارڈ ویئر رپورٹ فائل نہیں ملی';
+
+  @override
+  String get viewOnGitHub => 'GitHub پر دیکھیں';
+
+  @override
+  String get downloadNow => 'ابھی ڈاؤن لوڈ کریں';
+
+  @override
+  String get btnConfirm => 'تصدیق کریں';
+
+  @override
+  String get btnDeleteRecord => 'یہ ریکارڈ حذف کریں';
+
+  @override
+  String get currentEfiNamePrefix => 'موجودہ EFI کا نام: ';
+
+  @override
+  String get close => 'بند کریں';
+
+  @override
+  String get applySelected => 'منتخب کردہ لاگو کریں';
+
+  @override
+  String get connectedGpuPrefix => 'منسلک GPU: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'اسپوف ID درکار: ';
+
+  @override
+  String get selectPlatform => 'پلیٹ فارم کی نسل';
+
+  @override
+  String get selectVendor => 'برانڈ';
+
+  @override
+  String get selectModel => 'مدر بورڈ ماڈل';
+
+  @override
+  String get btnImport => 'درآمد کریں';
+
+  @override
+  String get defaultLabel => 'ڈیفالٹ';
 }

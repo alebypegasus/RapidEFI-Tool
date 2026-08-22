@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart' hide Checkbox, FilledButton;
 import 'package:flutter/material.dart' hide Colors, Tooltip;
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/expander_card.dart';
 import 'package:rapidefi/utils/config/models/motherboard/mbconf_model.dart';
 import 'package:rapidefi/utils/config/support/mbconf_service.dart';
@@ -106,6 +107,7 @@ class _MotherboardSelectorWidgetState
   // ─────────────────────────────────────────────────────────────────────────
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final vendorList = _platforms
             .where((p) => p.name == _selPlatform)
             .firstOrNull
@@ -116,9 +118,9 @@ class _MotherboardSelectorWidgetState
 
     return ExpanderCard(
       // Details section: checklist (only shown when motherboard is selected)
-      header: const Text('Select configuration items to apply'),
+      header: Text(l10n?.motherboardConfigItems ?? 'Select configuration items to apply'),
       expander: (_entry != null || _entryLoading)
-          ? _buildExpanderContent()
+          ? _buildExpanderContent(context)
           : null,
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -133,14 +135,14 @@ class _MotherboardSelectorWidgetState
                 runSpacing: 4,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  const Text(
-                    'Motherboard Model Config:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  Text(
+                    l10n?.motherboardConfigTitle ?? 'Motherboard Model Config:',
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     _selModel != null
                         ? 'Selected: $_selModel'
-                        : '(Select model to configure)',
+                        : (l10n?.selectModelToConfigure ?? '(Select model to configure)'),
                     style: TextStyle(
                       fontSize: 12,
                       color: _selModel != null ? null : Colors.grey,
@@ -160,7 +162,8 @@ class _MotherboardSelectorWidgetState
                   children: [
                     // Platform Generation
                     _buildComboBox<String>(
-                      label: 'Platform Generation',
+                      label: l10n?.selectPlatform ?? 'Platform Generation',
+                      placeholder: l10n?.pleaseSelect ?? 'Please select',
                       width: isCompact ? constraints.maxWidth : 280,
                       value: _selPlatform,
                       items: _platforms
@@ -173,7 +176,8 @@ class _MotherboardSelectorWidgetState
                     ),
                     // Brand
                     _buildComboBox<String>(
-                      label: 'Brand',
+                      label: l10n?.selectVendor ?? 'Brand',
+                      placeholder: l10n?.pleaseSelect ?? 'Please select',
                       width: isCompact ? constraints.maxWidth : 150,
                       value: _selVendor,
                       items: vendorList
@@ -184,7 +188,8 @@ class _MotherboardSelectorWidgetState
                     ),
                     // Motherboard Model
                     _buildComboBox<String>(
-                      label: 'Motherboard Model',
+                      label: l10n?.selectModel ?? 'Motherboard Model',
+                      placeholder: l10n?.pleaseSelect ?? 'Please select',
                       width: isCompact ? constraints.maxWidth : 280,
                       value: _selModel,
                       items: modelList
@@ -207,6 +212,7 @@ class _MotherboardSelectorWidgetState
   // ── ComboBox Helper ───────────────────────────────────────────────────────
   Widget _buildComboBox<T>({
     required String label,
+    required String placeholder,
     required double width,
     required T? value,
     required List<ComboBoxItem<T>> items,
@@ -224,7 +230,7 @@ class _MotherboardSelectorWidgetState
           ComboBox<T>(
             isExpanded: true,
             value: value,
-            placeholder: const Text('Please select'),
+            placeholder: Text(placeholder),
             items: items,
             onChanged: onChanged,
           ),
@@ -233,9 +239,8 @@ class _MotherboardSelectorWidgetState
     );
   }
 
-
   // ── Expander Content ─────────────────────────────────────────────────────────
-  Widget _buildExpanderContent() {
+  Widget _buildExpanderContent(BuildContext context) {
     if (_entryLoading) {
       return const Padding(
         padding: EdgeInsets.all(20),
@@ -258,20 +263,21 @@ class _MotherboardSelectorWidgetState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Select All row
-          _buildSelectAllRow(allSel, noneSel, items.length),
+          _buildSelectAllRow(context, allSel, noneSel, items.length),
           const SizedBox(height: 4),
           // Groups
           ...grouped.entries
               .map((e) => _buildGroup(e.key, e.value, items)),
           const SizedBox(height: 8),
           // Apply Bar
-          _buildApplyBar(),
+          _buildApplyBar(context),
         ],
       ),
     );
   }
 
-  Widget _buildSelectAllRow(bool allSel, bool noneSel, int total) {
+  Widget _buildSelectAllRow(BuildContext context, bool allSel, bool noneSel, int total) {
+    final l10n = AppLocalizations.of(context);
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -283,11 +289,11 @@ class _MotherboardSelectorWidgetState
             value: allSel ? true : noneSel ? false : null,
             onChanged: (v) => _toggleAll(v == true),
           ),
-          const Text('Select / Deselect All',
+          Text(l10n?.selectAllDeselectAll ?? 'Select / Deselect All',
               style:
-                  TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+                  const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
           const SizedBox(width: 8),
-          Text('(${_checked.length}/$total selected)',
+          Text('(${_checked.length}/$total)',
               style: const TextStyle(fontSize: 12, color: Colors.grey)),
         ]),
       ),
@@ -387,7 +393,8 @@ class _MotherboardSelectorWidgetState
     );
   }
 
-  Widget _buildApplyBar() {
+  Widget _buildApplyBar(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Wrap(
       alignment: WrapAlignment.end,
       spacing: 8,
@@ -395,16 +402,15 @@ class _MotherboardSelectorWidgetState
       children: [
         Button(
           onPressed: () => _toggleAll(false),
-          child: const Text('Deselect All'),
+          child: Text(l10n?.deselectAll ?? 'Deselect All'),
         ),
         FilledButton(
           onPressed: _checked.isNotEmpty ? _apply : null,
-          child: Text('Apply Selected (${_checked.length} items)'),
+          child: Text('${l10n?.applySelected ?? "Apply Selected"} (${_checked.length})'),
         ),
       ],
     );
   }
-
 
   // ── Helpers ─────────────────────────────────────────────────────────────
   String _catLabel(MbItemCategory cat) => switch (cat) {

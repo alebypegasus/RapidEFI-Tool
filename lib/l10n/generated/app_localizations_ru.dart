@@ -536,4 +536,150 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'Поиск';
+
+  @override
+  String get initialSupportMacOs =>
+      'Начальная нативно поддерживаемая версия macOS:';
+
+  @override
+  String get lastSupportMacOs =>
+      'Последняя нативно поддерживаемая версия macOS:';
+
+  @override
+  String get oclpSupportMacOs =>
+      'Версии macOS, поддерживаемые через патч OCLP:';
+
+  @override
+  String get cpuInfoTitle => '[Информация о процессоре]:';
+
+  @override
+  String get biosRecommendedEnabled =>
+      '[Рекомендуемые настройки BIOS - Включено]:';
+
+  @override
+  String get biosRecommendedDisabled =>
+      '[Рекомендуемые настройки BIOS - Отключено]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'EFI, созданные с помощью RapidEFI, автоматически сохраняются в историю.\nВы можете в любое время загрузить и настроить любой ранее созданный EFI.\n\nЭта функция поддерживается в RapidEFI V3.0.0 и выше.';
+
+  @override
+  String get gpuPresets => 'Пресеты';
+
+  @override
+  String get gpuByCpuModel => 'По модели процессора';
+
+  @override
+  String get selectCpuGeneration => 'Выберите поколение';
+
+  @override
+  String get selectCpuModel => 'Выберите процессор';
+
+  @override
+  String get cpuGenerationLabel => 'Поколение процессора';
+
+  @override
+  String get cpuModelLabel => 'Модель процессора';
+
+  @override
+  String get matchingIgpuTip =>
+      'Отметьте при совпадении, иначе оставьте неотмеченным';
+
+  @override
+  String get selectPropertiesToApply => 'Выберите свойства для применения';
+
+  @override
+  String get motherboardConfigTitle => 'Конфигурация модели материнской платы:';
+
+  @override
+  String get motherboardConfigItems =>
+      'Выберите элементы конфигурации для применения';
+
+  @override
+  String get selectModelToConfigure => '(Выберите модель для настройки)';
+
+  @override
+  String get pleaseSelect => 'Пожалуйста, выберите';
+
+  @override
+  String get selectAllDeselectAll => 'Выбрать / Снять все';
+
+  @override
+  String get deselectAll => 'Снять все';
+
+  @override
+  String get stuckOnEbFix =>
+      'Исправление зависания на [EB] (Необязательно - рекомендуются настройки по умолчанию):';
+
+  @override
+  String get renameCurrentEfi => 'Переименовать текущий EFI';
+
+  @override
+  String get enterNewName => 'Введите новое имя';
+
+  @override
+  String get renameEfiTooltip => 'Переименовать EFI';
+
+  @override
+  String get adminPrivilegesRequired => 'Требуются права администратора';
+
+  @override
+  String get enterLoginPassword =>
+      'Пожалуйста, введите пароль для входа в компьютер';
+
+  @override
+  String get importHardwareMaterials => 'Импортировать данные об оборудовании';
+
+  @override
+  String get currentBiosSettings => 'Текущие настройки BIOS';
+
+  @override
+  String get colorTheme => 'Цветовая тема';
+
+  @override
+  String get noValidHardwareReport =>
+      'Действительный файл отчета об оборудовании не обнаружен';
+
+  @override
+  String get viewOnGitHub => 'Посмотреть на GitHub';
+
+  @override
+  String get downloadNow => 'Скачать сейчас';
+
+  @override
+  String get btnConfirm => 'Подтвердить';
+
+  @override
+  String get btnDeleteRecord => 'Удалить эту запись';
+
+  @override
+  String get currentEfiNamePrefix => 'Текущее имя EFI: ';
+
+  @override
+  String get close => 'Закрыть';
+
+  @override
+  String get applySelected => 'Применить выбранное';
+
+  @override
+  String get connectedGpuPrefix => 'Подключенный GPU: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'Требуется Spoof ID: ';
+
+  @override
+  String get selectPlatform => 'Поколение платформы';
+
+  @override
+  String get selectVendor => 'Бренд';
+
+  @override
+  String get selectModel => 'Модель материнской платы';
+
+  @override
+  String get btnImport => 'Импортировать';
+
+  @override
+  String get defaultLabel => 'По умолчанию';
 }

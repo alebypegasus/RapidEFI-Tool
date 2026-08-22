@@ -280,13 +280,15 @@ class HistoryPageState extends State<HistoryPage> {
             child: TitleCard(
               title: l10n?.navHistory ?? 'History',
               content: _buildClearAllAction(),
-              expander: const Text(
-                'EFIs generated with RapidEFI are automatically backed up to history.\n'
-                'You can reload and adjust any previously generated EFI at any time.\n\n'
-                'This feature is supported on RapidEFI V3.0.0 and above.',
+              expander: Text(
+                l10n?.historyExpanderDesc ??
+                    'EFIs generated with RapidEFI are automatically backed up to history.\n'
+                    'You can reload and adjust any previously generated EFI at any time.\n\n'
+                    'This feature is supported on RapidEFI V3.0.0 and above.',
               ),
             ),
           ),
+
 
           Expanded(
             child: _buildBody(),

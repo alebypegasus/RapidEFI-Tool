@@ -537,4 +537,142 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'بحث';
+
+  @override
+  String get initialSupportMacOs => 'إصدار macOS المدعوم أصلياً في البداية:';
+
+  @override
+  String get lastSupportMacOs => 'أحدث إصدار macOS مدعوم أصلياً:';
+
+  @override
+  String get oclpSupportMacOs => 'إصدارات macOS المدعومة عبر تصحيح OCLP:';
+
+  @override
+  String get cpuInfoTitle => '[معلومات المعالج]:';
+
+  @override
+  String get biosRecommendedEnabled => '[إعدادات BIOS الموصى بها - مفعلة]:';
+
+  @override
+  String get biosRecommendedDisabled => '[إعدادات BIOS الموصى بها - معطلة]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'يتم نسخ ملفات EFI التي تم إنشاؤها باستخدام RapidEFI احتياطياً تلقائياً في السجل.\nيمكنك إعادة تحميل وضبط أي EFI تم إنشاؤه مسبقاً في أي وقت.\n\nهذه الميزة مدعومة في RapidEFI V3.0.0 وما فوق.';
+
+  @override
+  String get gpuPresets => 'الإعدادات المسبقة';
+
+  @override
+  String get gpuByCpuModel => 'حسب طراز المعالج';
+
+  @override
+  String get selectCpuGeneration => 'حدد الجيل';
+
+  @override
+  String get selectCpuModel => 'حدد المعالج';
+
+  @override
+  String get cpuGenerationLabel => 'جيل المعالج';
+
+  @override
+  String get cpuModelLabel => 'طراز المعالج';
+
+  @override
+  String get matchingIgpuTip => 'حدد إذا كان متطابقاً، وإلا اتركه غير محدد';
+
+  @override
+  String get selectPropertiesToApply => 'حدد الخصائص لتطبيقها';
+
+  @override
+  String get motherboardConfigTitle => 'تكوين طراز اللوحة الأم:';
+
+  @override
+  String get motherboardConfigItems => 'حدد عناصر التكوين لتطبيقها';
+
+  @override
+  String get selectModelToConfigure => '(حدد الطراز للتكوين)';
+
+  @override
+  String get pleaseSelect => 'يرجى التحديد';
+
+  @override
+  String get selectAllDeselectAll => 'تحديد الكل / إلغاء تحديد الكل';
+
+  @override
+  String get deselectAll => 'إلغاء تحديد الكل';
+
+  @override
+  String get stuckOnEbFix =>
+      'إصلاح التعليق عند [EB] (اختياري - يوصى بالإعدادات الافتراضية):';
+
+  @override
+  String get renameCurrentEfi => 'إعادة تسمية EFI الحالي';
+
+  @override
+  String get enterNewName => 'أدخل الاسم الجديد';
+
+  @override
+  String get renameEfiTooltip => 'إعادة تسمية EFI';
+
+  @override
+  String get adminPrivilegesRequired => 'مطلوب امتيازات المسؤول';
+
+  @override
+  String get enterLoginPassword =>
+      'يرجى إدخال كلمة مرور تسجيل الدخول للكمبيوتر';
+
+  @override
+  String get importHardwareMaterials => 'استيراد مواد الأجهزة';
+
+  @override
+  String get currentBiosSettings => 'إعدادات BIOS الحالية';
+
+  @override
+  String get colorTheme => 'سمة الألوان';
+
+  @override
+  String get noValidHardwareReport => 'لم يتم العثور على ملف تقرير أجهزة صالح';
+
+  @override
+  String get viewOnGitHub => 'عرض على GitHub';
+
+  @override
+  String get downloadNow => 'تحميل الآن';
+
+  @override
+  String get btnConfirm => 'تأكيد';
+
+  @override
+  String get btnDeleteRecord => 'حذف هذا السجل';
+
+  @override
+  String get currentEfiNamePrefix => 'اسم EFI الحالي: ';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String get applySelected => 'تطبيق المحدد';
+
+  @override
+  String get connectedGpuPrefix => 'وحدة معالجة الرسومات المتصلة: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'يتطلب معرف محاكاة: ';
+
+  @override
+  String get selectPlatform => 'جيل المنصة';
+
+  @override
+  String get selectVendor => 'العلامة التجارية';
+
+  @override
+  String get selectModel => 'طراز اللوحة الأم';
+
+  @override
+  String get btnImport => 'استيراد';
+
+  @override
+  String get defaultLabel => 'افتراضي';
 }

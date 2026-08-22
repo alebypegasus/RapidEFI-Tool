@@ -1,8 +1,9 @@
+import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rapidefi/extension/int_extension.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/history/model/history_model.dart';
-import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:rapidefi/utils/theme.dart';
 
 class HistoryWidget extends StatefulWidget {
@@ -28,6 +29,7 @@ class HistoryWidget extends StatefulWidget {
 class _HistoryWidgetState extends State<HistoryWidget> {
   late bool isHovered;
   late String updateName = '';
+
   @override
   void initState() {
     super.initState();
@@ -36,6 +38,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final appTheme = context.watch<AppTheme>();
     return MouseRegion(
       onEnter: (_) => setState(() => isHovered = true),
@@ -113,7 +116,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                 child: Row(
                   children: [
                     Tooltip(
-                      message: 'Rename EFI',
+                      message: l10n?.renameEfiTooltip ?? 'Rename EFI',
                       child: IconButton(
                         icon: const Icon(
                           Icons.edit,
@@ -124,15 +127,15 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                             context: context,
                             builder: (context) {
                               return fluent.ContentDialog(
-                                title: const Text('Rename Current EFI'),
+                                title: Text(l10n?.renameCurrentEfi ?? 'Rename Current EFI'),
                                 content: fluent.InfoLabel(
-                                  label: 'Current EFI Name: ${widget.historyModel.name}',
+                                  label: '${l10n?.currentEfiNamePrefix ?? 'Current EFI Name: '}${widget.historyModel.name}',
                                   child: fluent.Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: fluent.SizedBox(
                                       height: 40,
                                       child: fluent.TextBox(
-                                        placeholder: 'Enter new name',
+                                        placeholder: l10n?.enterNewName ?? 'Enter new name',
                                         onChanged: (value) {
                                           if (value.isNotEmpty) {
                                             updateName = value;
@@ -144,7 +147,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                 ),
                                 actions: [
                                   fluent.FilledButton(
-                                    child: const Text('Confirm'),
+                                    child: Text(l10n?.btnConfirm ?? 'Confirm'),
                                     onPressed: () {
                                       Navigator.pop(context);
                                       if (updateName.isNotEmpty) {
@@ -155,7 +158,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                     },
                                   ),
                                   fluent.Button(
-                                    child: const Text('Cancel'),
+                                    child: Text(l10n?.btnCancel ?? 'Cancel'),
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
@@ -168,7 +171,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                       ),
                     ),
                     Tooltip(
-                      message: 'Delete this record',
+                      message: l10n?.btnDeleteRecord ?? 'Delete this record',
                       child: IconButton(
                         icon: const Icon(
                           Icons.delete,
@@ -180,7 +183,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                       ),
                     ),
                     Tooltip(
-                      message: 'Export this EFI',
+                      message: l10n?.btnExportEfi ?? 'Export EFI',
                       child: IconButton(
                         icon: const Icon(
                           Icons.output,
@@ -191,6 +194,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                         },
                       ),
                     ),
+
                   ],
                 ),
               ),
@@ -201,3 +205,4 @@ class _HistoryWidgetState extends State<HistoryWidget> {
     );
   }
 }
+

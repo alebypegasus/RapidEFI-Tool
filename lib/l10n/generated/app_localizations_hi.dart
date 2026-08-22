@@ -60,7 +60,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get btnEfiSettings => 'EFI सेटिंग्स';
 
   @override
-  String get btnExportEfi => 'EFI एक्सपोर्ट करें';
+  String get btnExportEfi => 'EFI निर्यात करें';
 
   @override
   String get btnGenerateEfi => 'EFI जनरेट करें';
@@ -537,4 +537,146 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get searchPlaceholder => 'खोजें';
+
+  @override
+  String get initialSupportMacOs =>
+      'प्रारंभिक मूल रूप से समर्थित macOS संस्करण:';
+
+  @override
+  String get lastSupportMacOs => 'नवीनतम मूल रूप से समर्थित macOS संस्करण:';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP पैच समर्थित macOS संस्करण:';
+
+  @override
+  String get cpuInfoTitle => '[सीपीयू जानकारी]:';
+
+  @override
+  String get biosRecommendedEnabled => '[BIOS अनुशंसित सेटिंग्स - सक्षम]:';
+
+  @override
+  String get biosRecommendedDisabled => '[BIOS अनुशंसित सेटिंग्स - अक्षम]:';
+
+  @override
+  String get historyExpanderDesc =>
+      'RapidEFI के साथ जनरेट किए गए EFI स्वचालित रूप से इतिहास में बैकअप हो जाते हैं।\nआप किसी भी समय पहले जनरेट किए गए EFI को पुनः लोड और समायोजित कर सकते हैं।\n\nयह सुविधा RapidEFI V3.0.0 और उससे ऊपर समर्थित है।';
+
+  @override
+  String get gpuPresets => 'प्रीसेट';
+
+  @override
+  String get gpuByCpuModel => 'सीपीयू मॉडल द्वारा';
+
+  @override
+  String get selectCpuGeneration => 'पीढ़ी चुनें';
+
+  @override
+  String get selectCpuModel => 'सीपीयू चुनें';
+
+  @override
+  String get cpuGenerationLabel => 'सीपीयू पीढ़ी';
+
+  @override
+  String get cpuModelLabel => 'सीपीयू मॉडल';
+
+  @override
+  String get matchingIgpuTip =>
+      'यदि मेल खाता है तो जांचें, अन्यथा अनियंत्रित छोड़ दें';
+
+  @override
+  String get selectPropertiesToApply => 'लागू करने के लिए गुण चुनें';
+
+  @override
+  String get motherboardConfigTitle => 'मदरबोर्ड मॉडल कॉन्फ़िगरेशन:';
+
+  @override
+  String get motherboardConfigItems =>
+      'लागू करने के लिए कॉन्फ़िगरेशन आइटम चुनें';
+
+  @override
+  String get selectModelToConfigure => '(कॉन्फ़िगर करने के लिए मॉडल चुनें)';
+
+  @override
+  String get pleaseSelect => 'कृपया चुनें';
+
+  @override
+  String get selectAllDeselectAll => 'सभी चुनें / सभी अचयनित करें';
+
+  @override
+  String get deselectAll => 'सभी अचयनित करें';
+
+  @override
+  String get stuckOnEbFix =>
+      '[EB] पर अटके रहने का समाधान (वैकल्पिक - डिफ़ॉल्ट अनुशंसित):';
+
+  @override
+  String get renameCurrentEfi => 'वर्तमान EFI का नाम बदलें';
+
+  @override
+  String get enterNewName => 'नया नाम दर्ज करें';
+
+  @override
+  String get renameEfiTooltip => 'EFI का नाम बदलें';
+
+  @override
+  String get adminPrivilegesRequired => 'व्यवस्थापक विशेषाधिकार आवश्यक हैं';
+
+  @override
+  String get enterLoginPassword =>
+      'कृपया अपना कंप्यूटर लॉगिन पासवर्ड दर्ज करें';
+
+  @override
+  String get importHardwareMaterials => 'हार्डवेयर सामग्री आयात करें';
+
+  @override
+  String get currentBiosSettings => 'वर्तमान BIOS सेटिंग्स';
+
+  @override
+  String get colorTheme => 'रंग थीम';
+
+  @override
+  String get noValidHardwareReport =>
+      'कोई मान्य हार्डवेयर रिपोर्ट फ़ाइल नहीं मिली';
+
+  @override
+  String get viewOnGitHub => 'GitHub पर देखें';
+
+  @override
+  String get downloadNow => 'अब डाउनलोड करें';
+
+  @override
+  String get btnConfirm => 'पुष्टि करें';
+
+  @override
+  String get btnDeleteRecord => 'यह रिकॉर्ड हटाएं';
+
+  @override
+  String get currentEfiNamePrefix => 'वर्तमान EFI नाम: ';
+
+  @override
+  String get close => 'बंद करें';
+
+  @override
+  String get applySelected => 'चयनित लागू करें';
+
+  @override
+  String get connectedGpuPrefix => 'कनेक्टेड GPU: ';
+
+  @override
+  String get requiresSpoofIdPrefix => 'स्पूफ़ ID आवश्यक: ';
+
+  @override
+  String get selectPlatform => 'प्लेटफ़ॉर्म पीढ़ी';
+
+  @override
+  String get selectVendor => 'ब्रांड';
+
+  @override
+  String get selectModel => 'मदरबोर्ड मॉडल';
+
+  @override
+  String get btnImport => 'आयात करें';
+
+  @override
+  String get defaultLabel => 'डिफ़ॉल्ट';
 }

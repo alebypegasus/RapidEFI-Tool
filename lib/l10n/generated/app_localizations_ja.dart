@@ -534,4 +534,140 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get searchPlaceholder => '検索';
+
+  @override
+  String get initialSupportMacOs => 'ネイティブ対応の初期 macOS バージョン：';
+
+  @override
+  String get lastSupportMacOs => 'ネイティブ対応の最新 macOS バージョン：';
+
+  @override
+  String get oclpSupportMacOs => 'OCLP パッチ対応 macOS バージョン：';
+
+  @override
+  String get cpuInfoTitle => '【CPU 情報】：';
+
+  @override
+  String get biosRecommendedEnabled => '【BIOS 推奨設定 - 有効】：';
+
+  @override
+  String get biosRecommendedDisabled => '【BIOS 推奨設定 - 無効】：';
+
+  @override
+  String get historyExpanderDesc =>
+      'RapidEFI で生成された EFI は自動的に履歴にバックアップされます。\n過去に生成した EFI はいつでも再読み込みして調整できます。\n\nこの機能は RapidEFI V3.0.0 以降でサポートされています。';
+
+  @override
+  String get gpuPresets => 'プリセット';
+
+  @override
+  String get gpuByCpuModel => 'CPU モデル別';
+
+  @override
+  String get selectCpuGeneration => '世代を選択';
+
+  @override
+  String get selectCpuModel => 'CPU を選択';
+
+  @override
+  String get cpuGenerationLabel => 'CPU 世代';
+
+  @override
+  String get cpuModelLabel => 'CPU モデル';
+
+  @override
+  String get matchingIgpuTip => '該当する場合はチェックし、それ以外はチェックを外したままにしてください';
+
+  @override
+  String get selectPropertiesToApply => '適用するプロパティを選択';
+
+  @override
+  String get motherboardConfigTitle => 'マザーボードモデル構成：';
+
+  @override
+  String get motherboardConfigItems => '適用する構成項目を選択';
+
+  @override
+  String get selectModelToConfigure => '（構成するモデルを選択）';
+
+  @override
+  String get pleaseSelect => '選択してください';
+
+  @override
+  String get selectAllDeselectAll => 'すべて選択 / すべて解除';
+
+  @override
+  String get deselectAll => 'すべて解除';
+
+  @override
+  String get stuckOnEbFix => '[EB] フリーズ修正（オプション - デフォルト推奨）：';
+
+  @override
+  String get renameCurrentEfi => '現在の EFI の名前を変更';
+
+  @override
+  String get enterNewName => '新しい名前を入力';
+
+  @override
+  String get renameEfiTooltip => 'EFI の名前を変更';
+
+  @override
+  String get adminPrivilegesRequired => '管理者権限が必要です';
+
+  @override
+  String get enterLoginPassword => 'コンピューターのログインパスワードを入力してください';
+
+  @override
+  String get importHardwareMaterials => 'ハードウェア情報をインポート';
+
+  @override
+  String get currentBiosSettings => '現在の BIOS 設定';
+
+  @override
+  String get colorTheme => 'カラーテーマ';
+
+  @override
+  String get noValidHardwareReport => '有効なハードウェアレポートファイルが検出されませんでした';
+
+  @override
+  String get viewOnGitHub => 'GitHub で見る';
+
+  @override
+  String get downloadNow => '今すぐダウンロード';
+
+  @override
+  String get btnConfirm => '確認';
+
+  @override
+  String get btnDeleteRecord => 'この記録を削除';
+
+  @override
+  String get currentEfiNamePrefix => '現在の EFI 名：';
+
+  @override
+  String get close => '閉じる';
+
+  @override
+  String get applySelected => '選択項目を適用';
+
+  @override
+  String get connectedGpuPrefix => '接続された GPU：';
+
+  @override
+  String get requiresSpoofIdPrefix => '偽装 ID が必要：';
+
+  @override
+  String get selectPlatform => 'プラットフォーム世代';
+
+  @override
+  String get selectVendor => 'ブランド';
+
+  @override
+  String get selectModel => 'マザーボードモデル';
+
+  @override
+  String get btnImport => 'インポート';
+
+  @override
+  String get defaultLabel => 'デフォルト';
 }

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 
 class ThemeWidget extends StatefulWidget {
   const ThemeWidget({
@@ -84,6 +85,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
   }
 
   Widget _defaultWidget(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final color = isDefalut ? widget.defaultCustomPrimary : selectThemeColor;
     return Material(
       child: InkWell(
@@ -105,9 +107,10 @@ class _ThemeWidgetState extends State<ThemeWidget> {
                   height: 40,
                 ),
                 Text(
-                  "Default",
+                  l10n?.defaultLabel ?? "Default",
                   style: TextStyle(fontSize: 11, color: color),
                 ),
+
                 isDefalut
                     ? Positioned(
                         bottom: 0,
@@ -130,6 +133,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     var colorWidets = Wrap(
       spacing: 5,
       runSpacing: 5,
@@ -177,7 +181,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
       return colorWidets;
     }
     return ExpansionTile(
-      title: const Text('Color Theme'),
+      title: Text(l10n?.colorTheme ?? 'Color Theme'),
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -187,3 +191,4 @@ class _ThemeWidgetState extends State<ThemeWidget> {
     );
   }
 }
+
