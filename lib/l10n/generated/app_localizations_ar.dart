@@ -688,4 +688,351 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(لأنظمة الكمبيوتر المحمول)';
+
+  @override
+  String get basicConfig => 'التكوين الأساسي';
+
+  @override
+  String get advancedConfig => 'التكوين المتقدم';
+
+  @override
+  String get portCustomization => 'تخصيص المنفذ';
+
+  @override
+  String get displayEdid => 'عرض إيد';
+
+  @override
+  String get nvidiaDgpu => 'نفيديا دي جي بي يو';
+
+  @override
+  String get amdDgpu => 'ايه ام دي دي جي بي يو';
+
+  @override
+  String get amdDgpuSpoof => 'AMD dGPU محاكاة ساخرة';
+
+  @override
+  String get intelWifi => 'إنتل واي فاي';
+
+  @override
+  String get broadcomBrcm => 'برودكوم (برسم)';
+
+  @override
+  String get atherosWifi => 'اثيروس';
+
+  @override
+  String get usbWifi => 'واي فاي يو اس بي';
+
+  @override
+  String get bluetoothDrivers => 'برامج تشغيل بلوتوث';
+
+  @override
+  String get debuggingTab => 'تصحيح الأخطاء';
+
+  @override
+  String get amfiSipTab => 'أمفي / رشفة';
+
+  @override
+  String get igpuFixesTab => 'إصلاحات iGPU';
+
+  @override
+  String get dgpuFixesTab => 'إصلاحات dGPU';
+
+  @override
+  String get blackScreenFixesTab => 'إصلاحات الشاشة السوداء';
+
+  @override
+  String get above4gTab => 'فوق فك تشفير 4G';
+
+  @override
+  String get trackpadFixesTab => 'إصلاحات لوحة التتبع';
+
+  @override
+  String get othersTab => 'آحرون';
+
+  @override
+  String get powerManagementTab => 'إدارة الطاقة';
+
+  @override
+  String get sleepHibernationTab => 'النوم / السبات';
+
+  @override
+  String get storageDiskTab => 'التخزين / القرص';
+
+  @override
+  String get cpuFixesTab => 'إصلاحات وحدة المعالجة المركزية';
+
+  @override
+  String get amdPlatformTab => 'منصة ايه ام دي';
+
+  @override
+  String get usbFixesTab => 'إصلاحات USB';
+
+  @override
+  String get sdCardTab => 'بطاقة SD';
+
+  @override
+  String get brandTab => 'ماركة';
+
+  @override
+  String get specialMotherboardTab => 'اللوحة الأم الخاصة';
+
+  @override
+  String get sipSettingsTab => 'إعدادات SIP';
+
+  @override
+  String get renameCpuTab => 'إعادة تسمية وحدة المعالجة المركزية';
+
+  @override
+  String get uiScaleTab => 'مقياس واجهة المستخدم';
+
+  @override
+  String get acpiConfigTab => 'تكوين ACPI';
+
+  @override
+  String get booterConfigTab => 'تكوين التمهيد';
+
+  @override
+  String get kernelConfigTab => 'تكوين النواة';
+
+  @override
+  String get uefiConfigTab => 'تكوين UEFI';
+
+  @override
+  String get lookupLayoutId => 'معرف تخطيط البحث';
+
+  @override
+  String get visitChris1111Repo => 'قم بزيارة مستودع chris1111';
+
+  @override
+  String get supportedMacOsVersions => 'إصدارات نظام التشغيل Mac المدعومة:';
+
+  @override
+  String get supportedUsbWifiChipsets => 'شرائح USB Wi-Fi المدعومة:';
+
+  @override
+  String get selectUtbMap => 'حدد خريطة UTB';
+
+  @override
+  String get selectUtbMapHint =>
+      'حدد UTBMap.kext المعين الذي تم إنشاؤه باستخدام USBToolBox';
+
+  @override
+  String get reprocessEfiSubtitle =>
+      '(إعادة معالجة EFI الذي تم إنشاؤه بواسطة RapidEFI)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'يقوم RapidEFI تلقائيًا بإخراج ملف configModel داخل مجلد EFI. قم باستيراد هذا الملف أدناه لإعادة تحميل وتخصيص تكوين EFI الخاص بك.';
+
+  @override
+  String get reprocessEfiVersionNote =>
+      'هذه الميزة مدعومة في RapidEFI V3.0.0 والإصدارات الأحدث.';
+
+  @override
+  String get dropConfigModelHint =>
+      'قم بإسقاط ملف configModel هنا أو انقر للتصفح';
+
+  @override
+  String get offLabel => 'عن';
+
+  @override
+  String get onLabel => 'على';
+
+  @override
+  String get githubRepository => 'مستودع جيثب';
+
+  @override
+  String get releasesAndUpdates => 'الإصدارات والتحديثات';
+
+  @override
+  String get projectDocumentation => 'توثيق المشروع';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI عبارة عن مولد OpenCore EFI آلي مفتوح المصدر، وأداة تصحيح ACPI/SSDT، وأداة تحليل الأجهزة المصممة لعشاق Hackintosh وmacOS.\n\nتم إنشاؤها والحفاظ عليها بالحب. قم بتمييز المشروع وشوكته على GitHub لدعم التطوير المستمر!';
+
+  @override
+  String get checkApplicableOptions => '(تحقق من الخيارات المطبقة)';
+
+  @override
+  String get optionalCheckApplicableOptions =>
+      '(اختياري - تحقق من الخيارات القابلة للتطبيق)';
+
+  @override
+  String get appleAlcUsedByDefault =>
+      '(يتم استخدام برنامج تشغيل AppleALC بشكل افتراضي)';
+
+  @override
+  String get noEthernetDriverByDefault =>
+      '(لم تتم إضافة برنامج تشغيل Ethernet بشكل افتراضي)';
+
+  @override
+  String get usbInjectAllByDefault => '(يتم استخدام USBInjectAll بشكل افتراضي)';
+
+  @override
+  String get verboseModeByDefault =>
+      '(يتم تمكين الوضع المطول -v بشكل افتراضي؛ قم بإلغاء تحديده للتعطيل)';
+
+  @override
+  String get optionalDriversSubtitle =>
+      '(برامج التشغيل الاختيارية - غير مطلوبة ما لم تكن مطلوبة)';
+
+  @override
+  String get keepDefaultsSubtitle =>
+      '(احتفظ بالإعدادات الافتراضية ما لم تكن هناك حاجة إلى تخصيص محدد)';
+
+  @override
+  String get optionalCheckDeviceBrand =>
+      'اختياري - تحقق من تطابق العلامة التجارية لجهازك';
+
+  @override
+  String get optionalCheckMotherboardModel =>
+      'اختياري - تحقق من تطابق طراز اللوحة الأم';
+
+  @override
+  String get optionalConfigureSip =>
+      'اختياري - قم بتكوين SIP حسب الحاجة (معطل افتراضيًا)';
+
+  @override
+  String get optionalCustomCpuName =>
+      'اختياري - اسم وحدة المعالجة المركزية المخصص';
+
+  @override
+  String get optionalAdjustUiScale =>
+      'اختياري - ضبط مقياس واجهة المستخدم لتمهيد OpenCore';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI - تصحيحات SSDT';
+
+  @override
+  String get acpiPatches => 'ACPI - التصحيحات';
+
+  @override
+  String get kernelPatches => 'النواة - البقع';
+
+  @override
+  String get powerManagement => 'إدارة الطاقة';
+
+  @override
+  String get ssdApfsTrimPolicy => 'سياسة القطع NVMe / SATA SSD APFS';
+
+  @override
+  String get kernelQuirksSubtitle =>
+      'Kernel - Quirks (يوصى بالإعدادات الافتراضية ما لم تكن هناك حاجة إلى إصلاحات محددة)';
+
+  @override
+  String get uefiDriversSubtitle =>
+      'UEFI - برامج التشغيل (احتفظ بالتكوينات الافتراضية ما لم تنشأ احتياجات محددة)';
+
+  @override
+  String get uefiOutputSubtitle =>
+      'UEFI - الإخراج (يوصى بالإعدادات الافتراضية)';
+
+  @override
+  String get method1Title =>
+      'الطريقة الأولى: إعادة تسمية \"GPRW إلى XPRW\" (إصلاح التنبيه الفوري)';
+
+  @override
+  String get method2Title =>
+      'الطريقة الثانية: إعادة تسمية \"UPRW إلى XPRW\" (إصلاح التنبيه الفوري)';
+
+  @override
+  String get method3Title =>
+      'الطريقة الثالثة: إعادة تسمية \"RTC Fix\" (إصلاح إيقاف تشغيل RTC / إعادة تعيين CMOS)';
+
+  @override
+  String get method4Title =>
+      'الطريقة الرابعة: إعادة تسمية \"إصلاح البطارية\" (دعم تصحيحات البطارية من 16 بت إلى 8 بت)';
+
+  @override
+  String get pciPathLabel => 'مسار dGPU PCI:';
+
+  @override
+  String get pciPathPlaceholder => 'أدخل مسار PCI';
+
+  @override
+  String get spoofedDeviceIdLabel => 'معرف الجهاز المخادع:';
+
+  @override
+  String get spoofedDeviceIdPlaceholder => 'حدد جهاز GPU للمحاكاة الساخرة';
+
+  @override
+  String get injectDisplayEdidLabel =>
+      'حقن عرض EDID (عادةً 256 أو 512 حرفًا سداسي عشريًا):';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      'أدخل عرض EDID (عادةً 256 أو 512 حرفًا سداسيًا عشريًا؛ يُسمح بالمسافات والأسطر الجديدة)';
+
+  @override
+  String get failed => 'فشل';
+
+  @override
+  String get method1 => 'الطريقة 1';
+
+  @override
+  String get method2 => 'الطريقة 2';
+
+  @override
+  String get method3 => 'الطريقة 3';
+
+  @override
+  String get method4 => 'الطريقة 4';
+
+  @override
+  String get optionalKextDrivers => 'برامج تشغيل Kext الاختيارية';
+
+  @override
+  String get optionalKextSubTitle =>
+      'حدد برامج تشغيل kext الاختيارية وفقًا لجهازك';
+
+  @override
+  String get brandConfigTab => 'العلامة التجارية';
+
+  @override
+  String get optionalSettings => 'إعدادات اختيارية';
+
+  @override
+  String get optionalSettingsSubTitle => 'حدد تكوينات اختيارية إضافية';
+
+  @override
+  String get optionalCheckMotherboard => 'خيارات اللوحة الأم الخاصة';
+
+  @override
+  String get processEfiExpanderTip =>
+      'يقوم RapidEFI تلقائيًا بإخراج ملف configModel داخل مجلد EFI.\nقم باستيراد هذا الملف أدناه لإعادة تحميل تكوين EFI وتخصيصه.\n\nهذه الميزة مدعومة في RapidEFI V3.0.0 والإصدارات الأحدث.';
+
+  @override
+  String get releaseToReimportConfigModel => 'حرر لإعادة استيراد configModel';
+
+  @override
+  String get invalidConfigFileMessage =>
+      'ملف التكوين غير صالح. يرجى تحديد ملف configModel صالح.';
+
+  @override
+  String get ethernetTitle => 'برامج تشغيل إيثرنت:';
+
+  @override
+  String get usbTitle => 'برامج تشغيل USB:';
+
+  @override
+  String get ssdtCoreOfficial => '* أساسي (رسمي)';
+
+  @override
+  String get ssdtRecommendedFixes => '* مستحسن (إصلاحات)';
+
+  @override
+  String get ssdtOptionalEnhancements => '* اختياري (تحسينات)';
+
+  @override
+  String get platformDesktop => 'كمبيوتر مكتبي';
+
+  @override
+  String get platformLaptop => 'كمبيوتر محمول';
+
+  @override
+  String get platformNucMini => 'NUC / كمبيوتر صغير';
+
+  @override
+  String get platformHedtServer => 'HEDT / خادم';
 }

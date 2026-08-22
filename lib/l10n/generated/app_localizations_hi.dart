@@ -692,4 +692,353 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(लैपटॉप सिस्टम के लिए)';
+
+  @override
+  String get basicConfig => 'बुनियादी विन्यास';
+
+  @override
+  String get advancedConfig => 'उन्नत कॉन्फिग';
+
+  @override
+  String get portCustomization => 'पोर्ट अनुकूलन';
+
+  @override
+  String get displayEdid => 'ईडीआईडी ​​प्रदर्शित करें';
+
+  @override
+  String get nvidiaDgpu => 'एनवीडिया dGPU';
+
+  @override
+  String get amdDgpu => 'एएमडी dGPU';
+
+  @override
+  String get amdDgpuSpoof => 'एएमडी dGPU स्पूफ';
+
+  @override
+  String get intelWifi => 'इंटेल वाई-फाई';
+
+  @override
+  String get broadcomBrcm => 'ब्रॉडकॉम (बीआरसीएम)';
+
+  @override
+  String get atherosWifi => 'एथेरोस';
+
+  @override
+  String get usbWifi => 'यूएसबी वाई-फाई';
+
+  @override
+  String get bluetoothDrivers => 'ब्लूटूथ ड्राइवर्स';
+
+  @override
+  String get debuggingTab => 'डिबगिंग';
+
+  @override
+  String get amfiSipTab => 'एएमएफआई / एसआईपी';
+
+  @override
+  String get igpuFixesTab => 'आईजीपीयू ठीक करता है';
+
+  @override
+  String get dgpuFixesTab => 'dGPU ठीक करता है';
+
+  @override
+  String get blackScreenFixesTab => 'ब्लैक स्क्रीन ठीक करता है';
+
+  @override
+  String get above4gTab => '4जी डिकोडिंग से ऊपर';
+
+  @override
+  String get trackpadFixesTab => 'ट्रैकपैड ठीक करता है';
+
+  @override
+  String get othersTab => 'अन्य';
+
+  @override
+  String get powerManagementTab => 'बिजली प्रबंधन';
+
+  @override
+  String get sleepHibernationTab => 'निद्रा/शीतनिद्रा';
+
+  @override
+  String get storageDiskTab => 'भंडारण/डिस्क';
+
+  @override
+  String get cpuFixesTab => 'सीपीयू ठीक करता है';
+
+  @override
+  String get amdPlatformTab => 'एएमडी प्लेटफार्म';
+
+  @override
+  String get usbFixesTab => 'यूएसबी फिक्स';
+
+  @override
+  String get sdCardTab => 'एसडी कार्ड';
+
+  @override
+  String get brandTab => 'ब्रांड';
+
+  @override
+  String get specialMotherboardTab => 'विशेष मदरबोर्ड';
+
+  @override
+  String get sipSettingsTab => 'एसआईपी सेटिंग्स';
+
+  @override
+  String get renameCpuTab => 'सीपीयू का नाम बदलें';
+
+  @override
+  String get uiScaleTab => 'यूआई स्केल';
+
+  @override
+  String get acpiConfigTab => 'एसीपीआई कॉन्फिग';
+
+  @override
+  String get booterConfigTab => 'बूटर कॉन्फिग';
+
+  @override
+  String get kernelConfigTab => 'कर्नेल कॉन्फ़िग';
+
+  @override
+  String get uefiConfigTab => 'यूईएफआई कॉन्फ़िगरेशन';
+
+  @override
+  String get lookupLayoutId => 'लुकअप लेआउट आईडी';
+
+  @override
+  String get visitChris1111Repo => 'क्रिस1111 रिपॉजिटरी पर जाएँ';
+
+  @override
+  String get supportedMacOsVersions => 'समर्थित macOS संस्करण:';
+
+  @override
+  String get supportedUsbWifiChipsets => 'समर्थित यूएसबी वाई-फाई चिपसेट:';
+
+  @override
+  String get selectUtbMap => 'UTBMap का चयन करें';
+
+  @override
+  String get selectUtbMapHint =>
+      'USBToolBox के साथ बनाए गए मैप किए गए UTBMap.kext का चयन करें';
+
+  @override
+  String get reprocessEfiSubtitle =>
+      '(रैपिडईएफआई द्वारा उत्पन्न ईएफआई को पुन: संसाधित करें)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI स्वचालित रूप से EFI फ़ोल्डर के अंदर एक configModel फ़ाइल आउटपुट करता है। अपने ईएफआई कॉन्फ़िगरेशन को पुनः लोड और अनुकूलित करने के लिए नीचे इस फ़ाइल को आयात करें।';
+
+  @override
+  String get reprocessEfiVersionNote =>
+      'यह सुविधा RapidEFI V3.0.0 और इसके बाद के संस्करण पर समर्थित है।';
+
+  @override
+  String get dropConfigModelHint =>
+      'configModel फ़ाइल को यहां छोड़ें या ब्राउज़ करने के लिए क्लिक करें';
+
+  @override
+  String get offLabel => 'बंद';
+
+  @override
+  String get onLabel => 'पर';
+
+  @override
+  String get githubRepository => 'गिटहब रिपॉजिटरी';
+
+  @override
+  String get releasesAndUpdates => 'रिलीज़ और अपडेट';
+
+  @override
+  String get projectDocumentation => 'परियोजना दस्तावेज़ीकरण';
+
+  @override
+  String get aboutSupportDetails =>
+      'रैपिडईएफआई एक ओपन-सोर्स, स्वचालित ओपनकोर ईएफआई जनरेटर, एसीपीआई/एसएसडीटी पैचर और हार्डवेयर विश्लेषण टूल है जो हैकिंटोश और मैकओएस उत्साही लोगों के लिए बनाया गया है।\n\nप्यार से बनाया और बनाए रखा। चल रहे विकास का समर्थन करने के लिए GitHub पर प्रोजेक्ट को स्टार और फोर्क करें!';
+
+  @override
+  String get checkApplicableOptions => '(लागू विकल्पों की जाँच करें)';
+
+  @override
+  String get optionalCheckApplicableOptions =>
+      '(वैकल्पिक - लागू विकल्पों की जांच करें)';
+
+  @override
+  String get appleAlcUsedByDefault =>
+      '(AppleALC ड्राइवर डिफ़ॉल्ट रूप से उपयोग किया जाता है)';
+
+  @override
+  String get noEthernetDriverByDefault =>
+      '(डिफ़ॉल्ट रूप से कोई ईथरनेट ड्राइवर नहीं जोड़ा गया)';
+
+  @override
+  String get usbInjectAllByDefault =>
+      '(USBInjectAll डिफ़ॉल्ट रूप से उपयोग किया जाता है)';
+
+  @override
+  String get verboseModeByDefault =>
+      '(-v वर्बोज़ मोड डिफ़ॉल्ट रूप से सक्षम है; अक्षम करने के लिए अनचेक करें)';
+
+  @override
+  String get optionalDriversSubtitle =>
+      '(वैकल्पिक ड्राइवर - जब तक आवश्यक न हो, इसकी आवश्यकता नहीं है)';
+
+  @override
+  String get keepDefaultsSubtitle =>
+      '(जब तक विशिष्ट अनुकूलन की आवश्यकता न हो, डिफ़ॉल्ट रखें)';
+
+  @override
+  String get optionalCheckDeviceBrand =>
+      'वैकल्पिक - जांचें कि क्या आपके डिवाइस का ब्रांड मेल खाता है';
+
+  @override
+  String get optionalCheckMotherboardModel =>
+      'वैकल्पिक - जांचें कि क्या मदरबोर्ड मॉडल मेल खाता है';
+
+  @override
+  String get optionalConfigureSip =>
+      'वैकल्पिक - आवश्यकतानुसार एसआईपी कॉन्फ़िगर करें (डिफ़ॉल्ट रूप से अक्षम)';
+
+  @override
+  String get optionalCustomCpuName => 'वैकल्पिक - कस्टम सीपीयू नाम';
+
+  @override
+  String get optionalAdjustUiScale =>
+      'वैकल्पिक - ओपनकोर बूट यूआई स्केल समायोजित करें';
+
+  @override
+  String get acpiSsdtPatches => 'एसीपीआई - एसएसडीटी पैच';
+
+  @override
+  String get acpiPatches => 'एसीपीआई - पैच';
+
+  @override
+  String get kernelPatches => 'कर्नेल - पैच';
+
+  @override
+  String get powerManagement => 'बिजली प्रबंधन';
+
+  @override
+  String get ssdApfsTrimPolicy => 'एनवीएमई/एसएटीए एसएसडी एपीएफएस ट्रिम नीति';
+
+  @override
+  String get kernelQuirksSubtitle =>
+      'कर्नेल - विचित्रता (डिफ़ॉल्ट सेटिंग्स की अनुशंसा की जाती है जब तक कि विशिष्ट सुधारों की आवश्यकता न हो)';
+
+  @override
+  String get uefiDriversSubtitle =>
+      'यूईएफआई - ड्राइवर (जब तक विशिष्ट आवश्यकता न हो, डिफ़ॉल्ट कॉन्फ़िगरेशन रखें)';
+
+  @override
+  String get uefiOutputSubtitle =>
+      'यूईएफआई - आउटपुट (डिफ़ॉल्ट सेटिंग्स अनुशंसित)';
+
+  @override
+  String get method1Title =>
+      'विधि 1: \'GPRW का नाम बदलकर XPRW\' करें (इंस्टेंट वेक फिक्स)';
+
+  @override
+  String get method2Title =>
+      'विधि 2: \'UPRW का नाम बदलकर XPRW\' करें (इंस्टेंट वेक फिक्स)';
+
+  @override
+  String get method3Title =>
+      'विधि 3: \'आरटीसी फिक्स\' का नाम बदलें (आरटीसी पावर ऑफ/सीएमओएस रीसेट ठीक करें)';
+
+  @override
+  String get method4Title =>
+      'विधि 4: \'बैटरी फिक्स\' का नाम बदलें (16-बिट से 8-बिट बैटरी पैच का समर्थन करें)';
+
+  @override
+  String get pciPathLabel => 'dGPU पीसीआई पथ:';
+
+  @override
+  String get pciPathPlaceholder => 'पीसीआई पथ दर्ज करें';
+
+  @override
+  String get spoofedDeviceIdLabel => 'नकली डिवाइस आईडी:';
+
+  @override
+  String get spoofedDeviceIdPlaceholder =>
+      'स्पूफ करने के लिए GPU डिवाइस का चयन करें';
+
+  @override
+  String get injectDisplayEdidLabel =>
+      'डिस्प्ले ईडीआईडी ​​इंजेक्ट करें (आमतौर पर 256 या 512 हेक्स अक्षर):';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      'प्रदर्शन ईडीआईडी ​​दर्ज करें (आमतौर पर 256 या 512 हेक्स वर्ण; रिक्त स्थान और न्यूलाइन की अनुमति)';
+
+  @override
+  String get failed => 'विफल';
+
+  @override
+  String get method1 => 'विधि 1';
+
+  @override
+  String get method2 => 'विधि 2';
+
+  @override
+  String get method3 => 'विधि 3';
+
+  @override
+  String get method4 => 'विधि 4';
+
+  @override
+  String get optionalKextDrivers => 'वैकल्पिक Kext ड्राइवर्स';
+
+  @override
+  String get optionalKextSubTitle =>
+      'अपने हार्डवेयर के अनुसार वैकल्पिक kext ड्राइवर चुनें';
+
+  @override
+  String get brandConfigTab => 'ब्रांड';
+
+  @override
+  String get optionalSettings => 'वैकल्पिक सेटिंग्स';
+
+  @override
+  String get optionalSettingsSubTitle => 'अतिरिक्त वैकल्पिक कॉन्फ़िगरेशन चुनें';
+
+  @override
+  String get optionalCheckMotherboard => 'विशेष मदरबोर्ड विकल्प';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI स्वचालित रूप से EFI फ़ोल्डर के अंदर एक configModel फ़ाइल आउटपुट करता है।\nअपने EFI कॉन्फ़िगरेशन को पुनः लोड और अनुकूलित करने के लिए नीचे इस फ़ाइल को आयात करें।\n\nयह सुविधा RapidEFI V3.0.0 और इसके बाद के संस्करणों पर समर्थित है।';
+
+  @override
+  String get releaseToReimportConfigModel =>
+      'configModel को पुनः आयात करने के लिए छोड़ें';
+
+  @override
+  String get invalidConfigFileMessage =>
+      'अमान्य कॉन्फ़िगरेशन फ़ाइल। कृपया एक मान्य configModel फ़ाइल चुनें।';
+
+  @override
+  String get ethernetTitle => 'ईथरनेट ड्राइवर्स:';
+
+  @override
+  String get usbTitle => 'USB ड्राइवर्स:';
+
+  @override
+  String get ssdtCoreOfficial => '* कोर (आधिकारिक)';
+
+  @override
+  String get ssdtRecommendedFixes => '* अनुशंसित (सुधार)';
+
+  @override
+  String get ssdtOptionalEnhancements => '* वैकल्पिक (सुधार)';
+
+  @override
+  String get platformDesktop => 'डेस्कटॉप';
+
+  @override
+  String get platformLaptop => 'लैपटॉप';
+
+  @override
+  String get platformNucMini => 'NUC / मिनी पीसी';
+
+  @override
+  String get platformHedtServer => 'HEDT / सर्वर';
 }

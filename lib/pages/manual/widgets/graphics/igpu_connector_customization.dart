@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/support/intel_connector_patch.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class IgpuConnectorCustomization extends StatefulWidget {
   const IgpuConnectorCustomization({
@@ -186,8 +187,8 @@ class _IgpuConnectorCustomizationState
           padding: const EdgeInsets.fromLTRB(10, 8, 10, 0),
           child: Text(
             _template.supported
-                ? 'Current Framebuffer: ${_template.framebufferId}. Generates framebuffer-conX-alldata according to WhateverGreen tables.'
-                : 'Current Framebuffer does not support structured recommendations; remove existing value and reselect a supported iGPU configuration.',
+                ? '${HackintoshDetailsTranslator.translate("Current Framebuffer", context: context)}: ${_template.framebufferId}. ${HackintoshDetailsTranslator.translate("Generates framebuffer-conX-alldata according to WhateverGreen tables.", context: context)}'
+                : HackintoshDetailsTranslator.translate('Current Framebuffer does not support structured recommendations; remove existing value and reselect a supported iGPU configuration.', context: context),
             style: const TextStyle(fontSize: 12),
           ),
         ),
@@ -199,7 +200,7 @@ class _IgpuConnectorCustomizationState
           child: Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              tooltip: 'Add port customization',
+              tooltip: HackintoshDetailsTranslator.translate('Add port customization', context: context),
               onPressed: !_template.supported ||
                       _values.length >= _template.connectorIndexes.length
                   ? null
@@ -232,7 +233,7 @@ class _IgpuConnectorCustomizationState
             spacing: 12,
             children: [
               _buildDropdown<int>(
-                label: 'Port',
+                label: HackintoshDetailsTranslator.translate('Port', context: context),
                 value: value.connectorIndex,
                 items: _availableConnectorIndexes(itemIndex),
                 itemLabel: (item) => 'con$item',
@@ -248,7 +249,7 @@ class _IgpuConnectorCustomizationState
                 },
               ),
               _buildDropdown<String>(
-                label: 'Index',
+                label: HackintoshDetailsTranslator.translate('Index', context: context),
                 value: value.indexHex,
                 items: _template.portIndexes,
                 itemLabel: (item) => item,
@@ -258,7 +259,7 @@ class _IgpuConnectorCustomizationState
                 ),
               ),
               _buildDropdown<String>(
-                label: 'Bus ID',
+                label: HackintoshDetailsTranslator.translate('Bus ID', context: context),
                 value: value.busIdHex,
                 items: _availableBusIds(itemIndex, value.busIdHex),
                 itemLabel: (item) => item,
@@ -268,7 +269,7 @@ class _IgpuConnectorCustomizationState
                 ),
               ),
               _buildDropdown<IntelConnectorType>(
-                label: 'Port Type',
+                label: HackintoshDetailsTranslator.translate('Port Type', context: context),
                 value: value.type,
                 items: IntelConnectorType.values,
                 itemLabel: (item) =>
@@ -279,7 +280,7 @@ class _IgpuConnectorCustomizationState
                 ),
               ),
               IconButton(
-                tooltip: 'Delete con${value.connectorIndex} customization',
+                tooltip: '${HackintoshDetailsTranslator.translate("Delete", context: context)} con${value.connectorIndex} ${HackintoshDetailsTranslator.translate("customization", context: context)}',
                 onPressed: () => _removeConnector(itemIndex),
                 icon: const Icon(Icons.delete_outline),
               ),
@@ -301,20 +302,20 @@ class _IgpuConnectorCustomizationState
         mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
-          const Text(
-            'Raw value unparseable',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          Text(
+            HackintoshDetailsTranslator.translate('Raw value unparseable', context: context),
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
           Text(
             'con$connectorIndex',
             style: const TextStyle(fontSize: 12),
           ),
-          const Text(
-            'Please delete and re-add structured port customization',
-            style: TextStyle(fontSize: 12),
+          Text(
+            HackintoshDetailsTranslator.translate('Please delete and re-add structured port customization', context: context),
+            style: const TextStyle(fontSize: 12),
           ),
           IconButton(
-            tooltip: 'Delete unparseable port customization',
+            tooltip: HackintoshDetailsTranslator.translate('Delete unparseable port customization', context: context),
             onPressed: () => _removeConnector(itemIndex),
             icon: const Icon(Icons.delete_outline),
           ),

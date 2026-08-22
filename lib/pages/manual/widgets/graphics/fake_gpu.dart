@@ -1,7 +1,9 @@
-import 'package:fluent_ui/fluent_ui.dart' hide Colors;
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/device_id_textfield.dart';
 import 'package:rapidefi/pages/shared/widgets/path_textfield.dart';
 import 'package:rapidefi/utils/hardware/analysis/gpu_compatibility_data.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class FakeGPU extends StatefulWidget {
   const FakeGPU({
@@ -28,18 +30,18 @@ class _FakeGPUState extends State<FakeGPU> {
       TextEditingController(text: dgpuFakeID);
   final FocusNode _focusNodePci = FocusNode();
   final FocusNode _focusNodeFakeId = FocusNode();
-  final String placeholder = 'Select GPU device to spoof';
+  static const String placeholder = 'Select GPU device to spoof';
   String? _selectedComboBoxValue;
   late final Future<void> _gpuCompatibilityFuture =
       GpuCompatibilityData.ensureLoaded();
 
-  final String tip = r'''
-  AMD dGPU Spoofing (Device Properties):
-   1. Enter the dGPU PCI Path, e.g.: PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)
-   2. Enter the spoofed Device ID (4 hex chars), e.g.: 73BF
-   3. Ensure appropriate boot-args are enabled (in dGPU Configuration -> AMD dGPU as needed)
-   4. The tool includes built-in presets for common spoofed AMD GPUs
-  ''';
+  static const String tip = r'''
+AMD dGPU Spoofing (Device Properties):
+ 1. Enter the dGPU PCI Path, e.g.: PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)
+ 2. Enter the spoofed Device ID (4 hex chars), e.g.: 73BF
+ 3. Ensure appropriate boot-args are enabled (in dGPU Configuration -> AMD dGPU as needed)
+ 4. The tool includes built-in presets for common spoofed AMD GPUs
+''';
 
   @override
   void initState() {
@@ -114,6 +116,7 @@ class _FakeGPUState extends State<FakeGPU> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +125,7 @@ class _FakeGPUState extends State<FakeGPU> {
           Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Text(
-              tip,
+              HackintoshDetailsTranslator.translate(tip.trim(), context: context),
               style: const TextStyle(fontSize: 12),
             ),
           ),
@@ -132,9 +135,9 @@ class _FakeGPUState extends State<FakeGPU> {
               mainAxisSize: MainAxisSize.min,
               spacing: 15,
               children: [
-                const Text(
-                  'dGPU PCI Path:',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                Text(
+                  l10n?.pciPathLabel ?? 'dGPU PCI Path:',
+                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                 ),
                 Flexible(
                   child: IntrinsicWidth(
@@ -145,7 +148,7 @@ class _FakeGPUState extends State<FakeGPU> {
                       ),
                       child: PathTextField(
                         pathType: PathType.pci,
-                        hintText: 'Enter PCI Path',
+                        hintText: l10n?.pciPathPlaceholder ?? 'Enter PCI Path',
                         onChanged: (value, _) {
                           _controllerPci.text = value;
                           _emitChanged();
@@ -165,9 +168,9 @@ class _FakeGPUState extends State<FakeGPU> {
                 mainAxisSize: MainAxisSize.min,
                 spacing: 15,
                 children: [
-                  const Text(
-                    ' Spoofed Device ID:',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  Text(
+                    l10n?.spoofedDeviceIdLabel ?? 'Spoofed Device ID:',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                   ),
                   DeviceIdTextField(
                     controller: _controllerFakeId,
@@ -181,7 +184,7 @@ class _FakeGPUState extends State<FakeGPU> {
                     },
                   ),
                   const SizedBox(width: 20),
-                  Flexible(child: _buildIdentityOverrideGpuCombo()),
+                  Flexible(child: _buildIdentityOverrideGpuCombo(l10n)),
                 ],
               ),
             ),
@@ -191,7 +194,7 @@ class _FakeGPUState extends State<FakeGPU> {
     );
   }
 
-  Widget _buildIdentityOverrideGpuCombo() {
+  Widget _buildIdentityOverrideGpuCombo(AppLocalizations? l10n) {
     return FutureBuilder<void>(
       future: _gpuCompatibilityFuture,
       builder: (context, snapshot) {
@@ -211,7 +214,7 @@ class _FakeGPUState extends State<FakeGPU> {
             ? _selectedComboBoxValue
             : placeholder;
         final placeholderText =
-            snapshot.hasError ? 'Failed to load GPU spoof presets' : placeholder;
+            snapshot.hasError ? (l10n?.failed ?? 'Failed to load') : (l10n?.spoofedDeviceIdPlaceholder ?? placeholder);
 
         return ComboBox<String>(
           isExpanded: false,

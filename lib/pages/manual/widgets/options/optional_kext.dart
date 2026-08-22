@@ -1,12 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/kernel/kext_group.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kext_groups.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:rapidefi/utils/config/services/config_option_provider.dart';
-import 'package:flutter/material.dart';
-
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/pages/shared/widgets/categorized_choice_list_card.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class OptionalKextWidget extends StatefulWidget {
   const OptionalKextWidget({super.key, this.revision = 0});
@@ -120,11 +121,12 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
   }
 
   ChoiceListCategory<KextGroup> _buildChoiceListCategory(
+    BuildContext context,
     _KextCategory category,
     ConfigOptionProvider provider,
   ) {
     return ChoiceListCategory<KextGroup>(
-      name: category.name,
+      name: HackintoshDetailsTranslator.translate(category.name, context: context),
       tips: category.options
           .map((group) => group.bundleNames.join(', '))
           .toList(),
@@ -143,13 +145,14 @@ class _OptionalKextWidgetState extends State<OptionalKextWidget>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Consumer<ConfigOptionProvider>(builder: (context, provider, child) {
       return CategorizedChoiceListCard<KextGroup>(
-        title: "Optional Kext Drivers:",
-        subTitle: "(Optional drivers - not needed unless required)",
+        title: l10n?.optionalKextDrivers ?? "Optional Kext Drivers:",
+        subTitle: l10n?.optionalKextSubTitle ?? "(Optional drivers - not needed unless required)",
         controller: _tabController,
         categories: _categories
-            .map((category) => _buildChoiceListCategory(category, provider))
+            .map((category) => _buildChoiceListCategory(context, category, provider))
             .toList(),
       );
     });

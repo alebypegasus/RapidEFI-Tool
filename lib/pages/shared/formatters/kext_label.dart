@@ -1,12 +1,13 @@
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/models/kernel/kext_group.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 String kextDescriptionLabel(KernelKext kext) {
   final function = kext.function.trim();
-  if (function.isNotEmpty) return function;
+  if (function.isNotEmpty) return HackintoshDetailsTranslator.translate(function);
 
   final note = kext.note.where((item) => item.trim().isNotEmpty).join(' ');
-  if (note.isNotEmpty) return note;
+  if (note.isNotEmpty) return HackintoshDetailsTranslator.translate(note);
 
   return kextTitleLabel(kext);
 }
@@ -25,12 +26,13 @@ String kextBundleNameLabel(KernelKext kext) {
 
 String kextFunctionOrBundleLabel(KernelKext kext) {
   final function = kext.function.trim();
-  return function.isNotEmpty ? function : kext.bundlePath;
+  return function.isNotEmpty ? HackintoshDetailsTranslator.translate(function) : kext.bundlePath;
 }
 
 String kextGroupTitleDescriptionLabel(KextGroup group) {
   final description = group.description.trim();
   if (description.isEmpty) return group.title;
 
-  return '${group.title}($description)';
+  return '${group.title}(${HackintoshDetailsTranslator.translate(description)})';
 }
+

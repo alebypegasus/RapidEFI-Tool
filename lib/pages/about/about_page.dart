@@ -20,17 +20,17 @@ class _AboutPageState extends State<AboutPage> {
     return ScaffoldPage.scrollable(
         header: PageHeader(
           title: Text(l10n?.navAbout ?? 'About RapidEFI'),
-          commandBar: const LinkButtonRow(
+          commandBar: LinkButtonRow(
             mainAxisAlignment: MainAxisAlignment.end,
             items: [
               LinkButtonItem(
                 url: 'https://github.com/alebypegasus/RapidEFI-Tool',
-                buttonText: "GitHub Repository",
+                buttonText: l10n?.githubRepository ?? "GitHub Repository",
                 icon: FluentIcons.open_source,
               ),
               LinkButtonItem(
                 url: 'https://github.com/alebypegasus/RapidEFI-Tool/releases',
-                buttonText: "Releases & Updates",
+                buttonText: l10n?.releasesAndUpdates ?? "Releases & Updates",
                 icon: FluentIcons.download,
               ),
             ],
@@ -40,18 +40,20 @@ class _AboutPageState extends State<AboutPage> {
           TitleCard(
             title: l10n?.aboutSupport ?? 'About & Support',
             initiallyExpanded: true,
-            expander: const Column(
+            expander: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Text(
-                    'RapidEFI is an open-source, automated OpenCore EFI generator, ACPI/SSDT patcher, and hardware analysis tool built for Hackintosh and macOS enthusiasts.\n\nCreated and maintained with love. Star and fork the project on GitHub to support ongoing development!'),
-                SizedBox(
+                  l10n?.aboutSupportDetails ??
+                  'RapidEFI is an open-source, automated OpenCore EFI generator, ACPI/SSDT patcher, and hardware analysis tool built for Hackintosh and macOS enthusiasts.\n\nCreated and maintained with love. Star and fork the project on GitHub to support ongoing development!',
+                ),
+                const SizedBox(
                   height: 15,
                 ),
-                Wrap(
+                const Wrap(
                   spacing: 16,
                   runSpacing: 16,
                   children: [
@@ -77,12 +79,12 @@ class _AboutPageState extends State<AboutPage> {
           ),
           TitleCard(
             title: l10n?.documentationGuides ?? 'Documentation & Guides',
-            content: const LinkButtonRow(
+            content: LinkButtonRow(
               mainAxisAlignment: MainAxisAlignment.end,
               items: [
                 LinkButtonItem(
                   url: 'https://github.com/alebypegasus/RapidEFI-Tool',
-                  buttonText: 'Project Documentation',
+                  buttonText: l10n?.projectDocumentation ?? 'Project Documentation',
                   icon: FluentIcons.open_source,
                 )
               ],

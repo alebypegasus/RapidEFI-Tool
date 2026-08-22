@@ -1,7 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/models/enums/processor_type_enum.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class RenameCPUNameWidget extends StatefulWidget {
   final Function(ProcessorType, String?) onChanged;
@@ -38,7 +40,7 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
     }
   }
 
-  Widget cpunameText() {
+  Widget cpunameText(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
       child: Wrap(
@@ -46,15 +48,18 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
         runSpacing: 8,
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          const Text(
-            'Enter custom CPU name (leave empty to show Windows CPU name):',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          Text(
+            HackintoshDetailsTranslator.translate(
+              'Enter custom CPU name (leave empty to show Windows CPU name):',
+              context: context,
+            ),
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
           ),
           SizedBox(
             width: 180,
             child: TextBox(
               controller: _controller,
-              placeholder: 'Enter CPU name here',
+              placeholder: HackintoshDetailsTranslator.translate('Enter CPU name here', context: context),
               onChanged: (value) {
                 cpuName = value;
                 setState(() {});
@@ -69,39 +74,44 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final choices = ProcessorType.values
+    final l10n = AppLocalizations.of(context);
+    final rawChoices = ProcessorType.values
         .where((element) => element != ProcessorType.none)
-        .map((e) => e.text.description)
         .toList();
-    final tips = ProcessorType.values
-        .where((element) => element != ProcessorType.none)
+    final choices = rawChoices
+        .map((e) => HackintoshDetailsTranslator.translate(e.text.description, context: context))
+        .toList();
+    final tips = rawChoices
         .map((e) => e.text.title)
         .toList();
 
     return ScrollableChoiceListPanel(
-      child: ChoiceList(
+      child: ChoiceList<String>(
         tips: tips,
         choices: choices,
-        selectedChoices: [processorType.text.description],
+        selectedChoices: processorType != ProcessorType.none
+            ? [HackintoshDetailsTranslator.translate(processorType.text.description, context: context)]
+            : const <String>[],
         isMultipleSelection: false,
         allowToggle: true,
-        subTitle: "Optional - Custom CPU Name",
+        subTitle: l10n?.optionalCustomCpuName ?? "Optional - Custom CPU Name",
         header: processorType != ProcessorType.none
-            ? cpunameText()
+            ? cpunameText(context)
             : const SizedBox.shrink(),
         onChanged: (List<String> value) {
           String? selectedValue = value.firstOrNull;
-          processorType = ProcessorType.values.firstWhere(
-            (type) => type.text.description == selectedValue,
+          processorType = rawChoices.firstWhere(
+            (type) =>
+                HackintoshDetailsTranslator.translate(type.text.description, context: context) ==
+                selectedValue,
             orElse: () => ProcessorType.none,
           );
           if (processorType == ProcessorType.none) {
             cpuName = '';
             _controller.text = '';
           }
-          widget.onChanged.call(processorType, cpuName);
-          _focusNode.requestFocus();
           setState(() {});
+          widget.onChanged.call(processorType, cpuName);
         },
       ),
     );

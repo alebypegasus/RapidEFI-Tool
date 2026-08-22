@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/config/models/nvram/nvram_add.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class BluetoothWidget extends StatefulWidget {
   final ValueChanged<String?>? onChanged;
@@ -23,14 +24,14 @@ class BluetoothWidget extends StatefulWidget {
 }
 
 class _BluetoothWidgetState extends State<BluetoothWidget> {
-  String tip = r'''
-  Bluetooth Driver Notes:
-  1. When Intel Wi-Fi is selected, Intel Bluetooth drivers are automatically configured based on macOS version!
-  2. When Broadcom Wi-Fi is selected, Broadcom Bluetooth drivers are automatically configured based on macOS version!
-  3. When Atheros Wi-Fi is selected, Atheros Bluetooth drivers are automatically configured!
-  4. Manually select Bluetooth parameters only if not covered above or for standalone modules.
-  5. Bluetooth uses USB internally; ensure USB ports are properly mapped if Bluetooth is malfunctioning!
-  ''';
+  static const String tip = r'''
+Bluetooth Driver Notes:
+1. When Intel Wi-Fi is selected, Intel Bluetooth drivers are automatically configured based on macOS version!
+2. When Broadcom Wi-Fi is selected, Broadcom Bluetooth drivers are automatically configured based on macOS version!
+3. When Atheros Wi-Fi is selected, Atheros Bluetooth drivers are automatically configured!
+4. Manually select Bluetooth parameters only if not covered above or for standalone modules.
+5. Bluetooth uses USB internally; ensure USB ports are properly mapped if Bluetooth is malfunctioning!
+''';
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +39,26 @@ class _BluetoothWidgetState extends State<BluetoothWidget> {
     final selectedNvramOption = widget.selectedNvramOption;
     return ScrollableChoiceListPanel(
       children: [
-        Text(tip, style: TextStyle(fontSize: 13)),
+        Text(
+          HackintoshDetailsTranslator.translate(tip.trim(), context: context),
+          style: const TextStyle(fontSize: 13),
+        ),
         ChoiceList(
-          subTitle: 'Bluetooth NVRAM Parameters:',
-          choices: nvramOptions.map((option) => option.title).toList(),
+          subTitle: HackintoshDetailsTranslator.translate('Bluetooth NVRAM Parameters:', context: context),
+          choices: nvramOptions
+              .map((option) => HackintoshDetailsTranslator.translate(option.title, context: context))
+              .toList(),
           selectedChoices: [
-            if (selectedNvramOption != null) selectedNvramOption.title
+            if (selectedNvramOption != null)
+              HackintoshDetailsTranslator.translate(selectedNvramOption.title, context: context)
           ],
           allowToggle: true,
           onChanged: (value) {
             final title = value.firstOrNull;
             final option = nvramOptions
-                .where((option) => option.title == title)
+                .where((option) =>
+                    HackintoshDetailsTranslator.translate(option.title, context: context) ==
+                    title)
                 .firstOrNull;
             widget.onChanged?.call(option?.id);
           },

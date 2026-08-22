@@ -54,7 +54,13 @@ class _IgpuWidgetState extends State<IgpuWidget> with TickerProviderStateMixin {
   }
 
   List<String> _getTabNames(BuildContext context) {
-    return ["Basic Config", "Advanced Config", "Port Customization", "Display EDID"];
+    final l10n = AppLocalizations.of(context);
+    return [
+      l10n?.basicConfig ?? "Basic Config",
+      l10n?.advancedConfig ?? "Advanced Config",
+      l10n?.portCustomization ?? "Port Customization",
+      l10n?.displayEdid ?? "Display EDID",
+    ];
   }
 
   List<Widget> _buildPages() {
@@ -107,7 +113,7 @@ class _IgpuWidgetState extends State<IgpuWidget> with TickerProviderStateMixin {
 
     return TabbedTitleCard(
       title: l10n?.igpuConfig ?? "iGPU Configuration:",
-      subTitle: "(Check applicable options)",
+      subTitle: l10n?.checkApplicableOptions ?? "(Check applicable options)",
       initiallyExpanded: false,
       height: 560,
       content: const OclpLinkButton(),

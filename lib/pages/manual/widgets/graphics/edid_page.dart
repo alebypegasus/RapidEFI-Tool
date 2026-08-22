@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/custom_textfield.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class EDIDPage extends StatefulWidget {
   final String? edid;
@@ -16,17 +18,17 @@ class EDIDPage extends StatefulWidget {
 class _EDIDPageState extends State<EDIDPage> {
   late final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  final String tip = r'''
-  1. Used to fix black screen / no signal issues on Intel 6th~10th Gen iGPUs (where caps lock key responds but display has no signal).
-  2. 500-series desktop motherboards (H510/B560/H570/Q570/Z590/W580) using iGPU HDMI output MUST inject a real display EDID, otherwise black screen often occurs.
-  3. How to obtain display EDID:
-     In Windows, use RapidEFI or hdinfo to acquire display EDID:
-     1). Open RapidEFI, go to "Configure EFI" -> "Auto EFI Config" -> "Details".
-     2). Once hardware scanning completes, click the EDID text next to the display to copy it.
-     3). Return to this page and paste the EDID into the input box below.
-  4. Before injecting EDID, check the AAPL0X port to inject in "Advanced Config".
-  5. EDID data is usually 128 bytes (256 hex chars) or 256 bytes (512 hex chars). Please verify before submitting!
-  ''';
+  static const String tip = r'''
+1. Used to fix black screen / no signal issues on Intel 6th~10th Gen iGPUs (where caps lock key responds but display has no signal).
+2. 500-series desktop motherboards (H510/B560/H570/Q570/Z590/W580) using iGPU HDMI output MUST inject a real display EDID, otherwise black screen often occurs.
+3. How to obtain display EDID:
+   In Windows, use RapidEFI or hdinfo to acquire display EDID:
+   1). Open RapidEFI, go to "Configure EFI" -> "Auto EFI Config" -> "Details".
+   2). Once hardware scanning completes, click the EDID text next to the display to copy it.
+   3). Return to this page and paste the EDID into the input box below.
+4. Before injecting EDID, check the AAPL0X port to inject in "Advanced Config".
+5. EDID data is usually 128 bytes (256 hex chars) or 256 bytes (512 hex chars). Please verify before submitting!
+''';
 
   String? _edidError;
 
@@ -69,9 +71,9 @@ class _EDIDPageState extends State<EDIDPage> {
     if (edidText.isNotEmpty) {
       final isHex = RegExp(r'^[0-9A-Fa-f]+$').hasMatch(edidText);
       if (!isHex) {
-        error = 'EDID data contains non-hexadecimal characters, please check!';
+        error = HackintoshDetailsTranslator.translate('EDID data contains non-hexadecimal characters, please check!', context: context);
       } else if (edidText.length % 256 != 0) {
-        error = 'Current EDID length is ${edidText.length} hex chars (must be a multiple of 256), please check!';
+        error = HackintoshDetailsTranslator.translate('Current EDID length is not a multiple of 256 hex chars, please check!', context: context);
       }
     }
 
@@ -83,12 +85,13 @@ class _EDIDPageState extends State<EDIDPage> {
     });
 
     if (error != null) {
-      showToast('Invalid EDID data, please verify and try again!');
+      showToast(HackintoshDetailsTranslator.translate('Invalid EDID data, please verify and try again!', context: context));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return SingleChildScrollView(
@@ -97,7 +100,7 @@ class _EDIDPageState extends State<EDIDPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            tip,
+            HackintoshDetailsTranslator.translate(tip.trim(), context: context),
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w300,
@@ -105,9 +108,9 @@ class _EDIDPageState extends State<EDIDPage> {
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Inject Display EDID (usually 256 or 512 hex characters):',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          Text(
+            l10n?.injectDisplayEdidLabel ?? 'Inject Display EDID (usually 256 or 512 hex characters):',
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 10),
           CustomTextField(
@@ -119,7 +122,7 @@ class _EDIDPageState extends State<EDIDPage> {
               FilteringTextInputFormatter.allow(RegExp(r'[A-Fa-f0-9]')),
             ],
             keyboardType: TextInputType.text,
-            hintText: 'Enter display EDID (usually 256 or 512 hex chars; spaces and newlines allowed)',
+            hintText: l10n?.injectDisplayEdidPlaceholder ?? 'Enter display EDID (usually 256 or 512 hex chars; spaces and newlines allowed)',
             hintStyle: TextStyle(
               fontSize: 12,
               color: isDarkMode ? Colors.grey.shade500 : Colors.grey.shade400,

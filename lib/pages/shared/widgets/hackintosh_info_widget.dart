@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/extension/list_extension.dart';
 import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/manual/model/platform_entity.dart';
 import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
@@ -75,7 +74,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          "${l10n?.cpuInfoTitle ?? '[CPU Info]:'} \n${translatedNotes.descriptionList}",
+          "${l10n?.cpuInfoTitle ?? '[CPU Info]:'} \n${translatedNotes.join('\n')}",
           style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.normal,
@@ -85,7 +84,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          "${l10n?.biosRecommendedEnabled ?? '[BIOS Recommended Settings - Enabled]:'} \n${translatedBiosEnable.descriptionList}",
+          "${l10n?.biosRecommendedEnabled ?? '[BIOS Recommended Settings - Enabled]:'} \n${translatedBiosEnable.join('\n')}",
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.normal,
@@ -95,7 +94,7 @@ class HackintoshInfoWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          "${l10n?.biosRecommendedDisabled ?? '[BIOS Recommended Settings - Disabled]:'} \n${translatedBiosDisable.descriptionList}",
+          "${l10n?.biosRecommendedDisabled ?? '[BIOS Recommended Settings - Disabled]:'} \n${translatedBiosDisable.join('\n')}",
           style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.normal,

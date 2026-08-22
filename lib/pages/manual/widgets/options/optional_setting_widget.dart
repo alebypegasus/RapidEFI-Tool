@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/manual/manual_config_controller.dart';
 import 'package:rapidefi/pages/manual/widgets/options/acpi_ssdt_widget.dart';
 import 'package:rapidefi/pages/manual/widgets/options/booter_widget.dart';
@@ -53,23 +54,11 @@ class OptionalSettingWidget extends StatefulWidget {
 class _OptionalSettingWidgetState extends State<OptionalSettingWidget>
     with TickerProviderStateMixin {
   late final TabController _tabController;
-  late final List<String> tabName;
 
   @override
   void initState() {
     super.initState();
-    tabName = [
-      "Brand",
-      "Special Motherboard",
-      "SIP Settings",
-      "Rename CPU",
-      "UI Scale",
-      "ACPI Config",
-      "Booter Config",
-      "Kernel Config",
-      "UEFI Config"
-    ];
-    _tabController = TabController(vsync: this, length: tabName.length);
+    _tabController = TabController(vsync: this, length: 9);
   }
 
   @override
@@ -181,11 +170,23 @@ class _OptionalSettingWidgetState extends State<OptionalSettingWidget>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final List<String> tabName = [
+      l10n?.brandConfigTab ?? "Brand",
+      l10n?.specialMotherboardTab ?? "Special Motherboard",
+      l10n?.sipSettingsTab ?? "SIP Settings",
+      l10n?.renameCpuTab ?? "Rename CPU",
+      l10n?.uiScaleTab ?? "UI Scale",
+      l10n?.acpiConfigTab ?? "ACPI Config",
+      l10n?.booterConfigTab ?? "Booter Config",
+      l10n?.kernelConfigTab ?? "Kernel Config",
+      l10n?.uefiConfigTab ?? "UEFI Config",
+    ];
     final pages = _buildPages();
 
     return TabbedTitleCard(
-      title: "Optional Settings:",
-      subTitle: "(Keep defaults unless specific customization is needed)",
+      title: l10n?.optionalSettings ?? "Optional Settings:",
+      subTitle: l10n?.optionalSettingsSubTitle ?? "(Keep defaults unless specific customization is needed)",
       initiallyExpanded: false,
       controller: _tabController,
       tabs: tabName.map((name) => Tab(text: name)).toList(),

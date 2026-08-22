@@ -931,7 +931,7 @@ abstract class AppLocalizations {
   /// No description provided for @fixIrq.
   ///
   /// In en, this message translates to:
-  /// **'Fix IRQ Conflicts'**
+  /// **'Fix IRQ'**
   String get fixIrq;
 
   /// No description provided for @networkConfig.
@@ -991,7 +991,7 @@ abstract class AppLocalizations {
   /// No description provided for @clearConfig.
   ///
   /// In en, this message translates to:
-  /// **'Clear Config'**
+  /// **'Clear Configuration'**
   String get clearConfig;
 
   /// No description provided for @importConfigModel.
@@ -1441,19 +1441,19 @@ abstract class AppLocalizations {
   /// No description provided for @wifiBluetoothDrivers.
   ///
   /// In en, this message translates to:
-  /// **'Wi-Fi & Bluetooth Drivers:'**
+  /// **'Wi-Fi and Bluetooth Drivers:'**
   String get wifiBluetoothDrivers;
 
   /// No description provided for @noWifiDriversByDefault.
   ///
   /// In en, this message translates to:
-  /// **'(No Wi-Fi drivers configured by default)'**
+  /// **'(No Wi-Fi driver configured by default)'**
   String get noWifiDriversByDefault;
 
   /// No description provided for @getIntelModifiedOclp.
   ///
   /// In en, this message translates to:
-  /// **'Get Intel Modified OCLP'**
+  /// **'Get Modified OCLP'**
   String get getIntelModifiedOclp;
 
   /// No description provided for @forLaptopSystems.
@@ -1461,6 +1461,642 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'(For Laptop Systems)'**
   String get forLaptopSystems;
+
+  /// No description provided for @basicConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Config'**
+  String get basicConfig;
+
+  /// No description provided for @advancedConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Config'**
+  String get advancedConfig;
+
+  /// No description provided for @portCustomization.
+  ///
+  /// In en, this message translates to:
+  /// **'Port Customization'**
+  String get portCustomization;
+
+  /// No description provided for @displayEdid.
+  ///
+  /// In en, this message translates to:
+  /// **'Display EDID'**
+  String get displayEdid;
+
+  /// No description provided for @nvidiaDgpu.
+  ///
+  /// In en, this message translates to:
+  /// **'NVIDIA dGPU'**
+  String get nvidiaDgpu;
+
+  /// No description provided for @amdDgpu.
+  ///
+  /// In en, this message translates to:
+  /// **'AMD dGPU'**
+  String get amdDgpu;
+
+  /// No description provided for @amdDgpuSpoof.
+  ///
+  /// In en, this message translates to:
+  /// **'AMD dGPU Spoof'**
+  String get amdDgpuSpoof;
+
+  /// No description provided for @intelWifi.
+  ///
+  /// In en, this message translates to:
+  /// **'Intel Wi-Fi'**
+  String get intelWifi;
+
+  /// No description provided for @broadcomBrcm.
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcom (Brcm)'**
+  String get broadcomBrcm;
+
+  /// No description provided for @atherosWifi.
+  ///
+  /// In en, this message translates to:
+  /// **'Atheros'**
+  String get atherosWifi;
+
+  /// No description provided for @usbWifi.
+  ///
+  /// In en, this message translates to:
+  /// **'USB Wi-Fi'**
+  String get usbWifi;
+
+  /// No description provided for @bluetoothDrivers.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth Drivers'**
+  String get bluetoothDrivers;
+
+  /// No description provided for @debuggingTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Debugging'**
+  String get debuggingTab;
+
+  /// No description provided for @amfiSipTab.
+  ///
+  /// In en, this message translates to:
+  /// **'AMFI / SIP'**
+  String get amfiSipTab;
+
+  /// No description provided for @igpuFixesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'iGPU Fixes'**
+  String get igpuFixesTab;
+
+  /// No description provided for @dgpuFixesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'dGPU Fixes'**
+  String get dgpuFixesTab;
+
+  /// No description provided for @blackScreenFixesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Black Screen Fixes'**
+  String get blackScreenFixesTab;
+
+  /// No description provided for @above4gTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Above 4G Decoding'**
+  String get above4gTab;
+
+  /// No description provided for @trackpadFixesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Trackpad Fixes'**
+  String get trackpadFixesTab;
+
+  /// No description provided for @othersTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get othersTab;
+
+  /// No description provided for @powerManagementTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Power Management'**
+  String get powerManagementTab;
+
+  /// No description provided for @sleepHibernationTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep / Hibernation'**
+  String get sleepHibernationTab;
+
+  /// No description provided for @storageDiskTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage / Disk'**
+  String get storageDiskTab;
+
+  /// No description provided for @cpuFixesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU Fixes'**
+  String get cpuFixesTab;
+
+  /// No description provided for @amdPlatformTab.
+  ///
+  /// In en, this message translates to:
+  /// **'AMD Platform'**
+  String get amdPlatformTab;
+
+  /// No description provided for @usbFixesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'USB Fixes'**
+  String get usbFixesTab;
+
+  /// No description provided for @sdCardTab.
+  ///
+  /// In en, this message translates to:
+  /// **'SD Card'**
+  String get sdCardTab;
+
+  /// No description provided for @brandTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand'**
+  String get brandTab;
+
+  /// No description provided for @specialMotherboardTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Special Motherboard'**
+  String get specialMotherboardTab;
+
+  /// No description provided for @sipSettingsTab.
+  ///
+  /// In en, this message translates to:
+  /// **'SIP Settings'**
+  String get sipSettingsTab;
+
+  /// No description provided for @renameCpuTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename CPU'**
+  String get renameCpuTab;
+
+  /// No description provided for @uiScaleTab.
+  ///
+  /// In en, this message translates to:
+  /// **'UI Scale'**
+  String get uiScaleTab;
+
+  /// No description provided for @acpiConfigTab.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI Config'**
+  String get acpiConfigTab;
+
+  /// No description provided for @booterConfigTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Booter Config'**
+  String get booterConfigTab;
+
+  /// No description provided for @kernelConfigTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Kernel Config'**
+  String get kernelConfigTab;
+
+  /// No description provided for @uefiConfigTab.
+  ///
+  /// In en, this message translates to:
+  /// **'UEFI Config'**
+  String get uefiConfigTab;
+
+  /// No description provided for @lookupLayoutId.
+  ///
+  /// In en, this message translates to:
+  /// **'Lookup Layout ID'**
+  String get lookupLayoutId;
+
+  /// No description provided for @visitChris1111Repo.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit chris1111 Repository'**
+  String get visitChris1111Repo;
+
+  /// No description provided for @supportedMacOsVersions.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported macOS Versions:'**
+  String get supportedMacOsVersions;
+
+  /// No description provided for @supportedUsbWifiChipsets.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported USB Wi-Fi Chipsets:'**
+  String get supportedUsbWifiChipsets;
+
+  /// No description provided for @selectUtbMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Select UTBMap'**
+  String get selectUtbMap;
+
+  /// No description provided for @selectUtbMapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select mapped UTBMap.kext created with USBToolBox'**
+  String get selectUtbMapHint;
+
+  /// No description provided for @reprocessEfiSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'(Reprocess an EFI generated by RapidEFI)'**
+  String get reprocessEfiSubtitle;
+
+  /// No description provided for @reprocessEfiDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'RapidEFI automatically outputs a configModel file inside the EFI folder. Import this file below to reload and customize your EFI configuration.'**
+  String get reprocessEfiDetails;
+
+  /// No description provided for @reprocessEfiVersionNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is supported on RapidEFI V3.0.0 and above.'**
+  String get reprocessEfiVersionNote;
+
+  /// No description provided for @dropConfigModelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop the configModel file here or click to browse'**
+  String get dropConfigModelHint;
+
+  /// No description provided for @offLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get offLabel;
+
+  /// No description provided for @onLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get onLabel;
+
+  /// No description provided for @githubRepository.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub Repository'**
+  String get githubRepository;
+
+  /// No description provided for @releasesAndUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Releases & Updates'**
+  String get releasesAndUpdates;
+
+  /// No description provided for @projectDocumentation.
+  ///
+  /// In en, this message translates to:
+  /// **'Project Documentation'**
+  String get projectDocumentation;
+
+  /// No description provided for @aboutSupportDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'RapidEFI is an open-source, automated OpenCore EFI generator, ACPI/SSDT patcher, and hardware analysis tool built for Hackintosh and macOS enthusiasts.\n\nCreated and maintained with love. Star and fork the project on GitHub to support ongoing development!'**
+  String get aboutSupportDetails;
+
+  /// No description provided for @checkApplicableOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'(Check applicable options)'**
+  String get checkApplicableOptions;
+
+  /// No description provided for @optionalCheckApplicableOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'(Optional - check applicable options)'**
+  String get optionalCheckApplicableOptions;
+
+  /// No description provided for @appleAlcUsedByDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'(AppleALC driver used by default)'**
+  String get appleAlcUsedByDefault;
+
+  /// No description provided for @noEthernetDriverByDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'(No Ethernet driver added by default)'**
+  String get noEthernetDriverByDefault;
+
+  /// No description provided for @usbInjectAllByDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'(USBInjectAll used by default)'**
+  String get usbInjectAllByDefault;
+
+  /// No description provided for @verboseModeByDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'(-v verbose mode enabled by default; uncheck to disable)'**
+  String get verboseModeByDefault;
+
+  /// No description provided for @optionalDriversSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'(Optional drivers - not needed unless required)'**
+  String get optionalDriversSubtitle;
+
+  /// No description provided for @keepDefaultsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'(Keep defaults unless specific customization is needed)'**
+  String get keepDefaultsSubtitle;
+
+  /// No description provided for @optionalCheckDeviceBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional - Check if your device brand matches'**
+  String get optionalCheckDeviceBrand;
+
+  /// No description provided for @optionalCheckMotherboardModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional - Check if motherboard model matches'**
+  String get optionalCheckMotherboardModel;
+
+  /// No description provided for @optionalConfigureSip.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional - Configure SIP as needed (Disabled by default)'**
+  String get optionalConfigureSip;
+
+  /// No description provided for @optionalCustomCpuName.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional - Custom CPU Name'**
+  String get optionalCustomCpuName;
+
+  /// No description provided for @optionalAdjustUiScale.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional - Adjust OpenCore boot UI scale'**
+  String get optionalAdjustUiScale;
+
+  /// No description provided for @acpiSsdtPatches.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI - SSDT Patches'**
+  String get acpiSsdtPatches;
+
+  /// No description provided for @acpiPatches.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI - Patches'**
+  String get acpiPatches;
+
+  /// No description provided for @kernelPatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Kernel - Patches'**
+  String get kernelPatches;
+
+  /// No description provided for @powerManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Power Management'**
+  String get powerManagement;
+
+  /// No description provided for @ssdApfsTrimPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'NVMe / SATA SSD APFS Trim Policy'**
+  String get ssdApfsTrimPolicy;
+
+  /// No description provided for @kernelQuirksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kernel - Quirks (Default settings recommended unless specific fixes needed)'**
+  String get kernelQuirksSubtitle;
+
+  /// No description provided for @uefiDriversSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'UEFI - Drivers (Keep default configurations unless specific needs arise)'**
+  String get uefiDriversSubtitle;
+
+  /// No description provided for @uefiOutputSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'UEFI - Output (Default settings recommended)'**
+  String get uefiOutputSubtitle;
+
+  /// No description provided for @method1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Method 1: Rename \'GPRW to XPRW\' (Instant Wake Fix)'**
+  String get method1Title;
+
+  /// No description provided for @method2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Method 2: Rename \'UPRW to XPRW\' (Instant Wake Fix)'**
+  String get method2Title;
+
+  /// No description provided for @method3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Method 3: Rename \'RTC Fix\' (Fix RTC Power Off / CMOS Reset)'**
+  String get method3Title;
+
+  /// No description provided for @method4Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Method 4: Rename \'Battery Fix\' (Support 16-bit to 8-bit Battery Patches)'**
+  String get method4Title;
+
+  /// No description provided for @pciPathLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'dGPU PCI Path:'**
+  String get pciPathLabel;
+
+  /// No description provided for @pciPathPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter PCI Path'**
+  String get pciPathPlaceholder;
+
+  /// No description provided for @spoofedDeviceIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Spoofed Device ID:'**
+  String get spoofedDeviceIdLabel;
+
+  /// No description provided for @spoofedDeviceIdPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select GPU device to spoof'**
+  String get spoofedDeviceIdPlaceholder;
+
+  /// No description provided for @injectDisplayEdidLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Inject Display EDID (usually 256 or 512 hex characters):'**
+  String get injectDisplayEdidLabel;
+
+  /// No description provided for @injectDisplayEdidPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter display EDID (usually 256 or 512 hex chars; spaces and newlines allowed)'**
+  String get injectDisplayEdidPlaceholder;
+
+  /// No description provided for @failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get failed;
+
+  /// No description provided for @method1.
+  ///
+  /// In en, this message translates to:
+  /// **'Method 1'**
+  String get method1;
+
+  /// No description provided for @method2.
+  ///
+  /// In en, this message translates to:
+  /// **'Method 2'**
+  String get method2;
+
+  /// No description provided for @method3.
+  ///
+  /// In en, this message translates to:
+  /// **'Method 3'**
+  String get method3;
+
+  /// No description provided for @method4.
+  ///
+  /// In en, this message translates to:
+  /// **'Method 4'**
+  String get method4;
+
+  /// No description provided for @optionalKextDrivers.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional Kext Drivers'**
+  String get optionalKextDrivers;
+
+  /// No description provided for @optionalKextSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select optional kext drivers according to your hardware'**
+  String get optionalKextSubTitle;
+
+  /// No description provided for @brandConfigTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand'**
+  String get brandConfigTab;
+
+  /// No description provided for @optionalSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional Settings'**
+  String get optionalSettings;
+
+  /// No description provided for @optionalSettingsSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select additional optional configurations'**
+  String get optionalSettingsSubTitle;
+
+  /// No description provided for @optionalCheckMotherboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Special Motherboard Options'**
+  String get optionalCheckMotherboard;
+
+  /// No description provided for @processEfiExpanderTip.
+  ///
+  /// In en, this message translates to:
+  /// **'RapidEFI automatically outputs a configModel file inside the EFI folder.\nImport this file below to reload and customize your EFI configuration.\n\nThis feature is supported on RapidEFI V3.0.0 and above.'**
+  String get processEfiExpanderTip;
+
+  /// No description provided for @releaseToReimportConfigModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Release to re-import configModel'**
+  String get releaseToReimportConfigModel;
+
+  /// No description provided for @invalidConfigFileMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid configuration file. Please select a valid configModel file.'**
+  String get invalidConfigFileMessage;
+
+  /// No description provided for @ethernetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ethernet Drivers:'**
+  String get ethernetTitle;
+
+  /// No description provided for @usbTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'USB Drivers:'**
+  String get usbTitle;
+
+  /// No description provided for @ssdtCoreOfficial.
+  ///
+  /// In en, this message translates to:
+  /// **'* Core (Official)'**
+  String get ssdtCoreOfficial;
+
+  /// No description provided for @ssdtRecommendedFixes.
+  ///
+  /// In en, this message translates to:
+  /// **'* Recommended (Fixes)'**
+  String get ssdtRecommendedFixes;
+
+  /// No description provided for @ssdtOptionalEnhancements.
+  ///
+  /// In en, this message translates to:
+  /// **'* Optional (Enhancements)'**
+  String get ssdtOptionalEnhancements;
+
+  /// No description provided for @platformDesktop.
+  ///
+  /// In en, this message translates to:
+  /// **'Desktop'**
+  String get platformDesktop;
+
+  /// No description provided for @platformLaptop.
+  ///
+  /// In en, this message translates to:
+  /// **'Laptop'**
+  String get platformLaptop;
+
+  /// No description provided for @platformNucMini.
+  ///
+  /// In en, this message translates to:
+  /// **'NUC / Mini PC'**
+  String get platformNucMini;
+
+  /// No description provided for @platformHedtServer.
+  ///
+  /// In en, this message translates to:
+  /// **'HEDT / Server'**
+  String get platformHedtServer;
 }
 
 class _AppLocalizationsDelegate

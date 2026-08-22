@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/utils/config/models/nvram/boot_arg_model.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class BootArgChoiceList extends StatelessWidget {
   const BootArgChoiceList({
@@ -31,12 +32,14 @@ class BootArgChoiceList extends StatelessWidget {
     final selectedArgs = selectedBootArgs.map((model) => model.arg).toSet();
     final selectedChoices = options
         .where((model) => selectedArgs.contains(model.arg))
-        .map((model) => model.comment)
+        .map((model) => HackintoshDetailsTranslator.translate(model.comment, context: context))
         .toList();
 
     return ChoiceList<String>(
       tips: options.map((model) => model.arg).toList(),
-      choices: options.map((model) => model.comment).toList(),
+      choices: options
+          .map((model) => HackintoshDetailsTranslator.translate(model.comment, context: context))
+          .toList(),
       selectedChoices: selectedChoices,
       isMultipleSelection: isMultipleSelection,
       allowToggle: allowToggle,
@@ -46,7 +49,7 @@ class BootArgChoiceList extends StatelessWidget {
       footer: footer,
       onChanged: (value) {
         final selected = options
-            .where((model) => value.contains(model.comment))
+            .where((model) => value.contains(HackintoshDetailsTranslator.translate(model.comment, context: context)))
             .toSet();
         onChanged?.call(selected);
       },

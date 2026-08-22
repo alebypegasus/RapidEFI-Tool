@@ -1,7 +1,9 @@
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/models/uefi/uefi_quirks.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/utils/device_util.dart';
 import 'package:rapidefi/widgets/choose_file.dart';
@@ -37,9 +39,9 @@ class _USBWidgetState extends State<USBWidget> {
   late UefiQuirks uefiQuirks = widget.uefiQuirks ?? UefiQuirks();
   late String? utbMapPath = widget.utbMapPath;
 
-  Widget chooseUTBMap() {
+  Widget chooseUTBMap(AppLocalizations? l10n) {
     return ChooseFileWidget(
-      buttonText: 'Select UTBMap',
+      buttonText: l10n?.selectUtbMap ?? 'Select UTBMap',
       onValid: (filePath) async {
         return filePath.endsWith('UTBMap.kext');
       },
@@ -48,7 +50,7 @@ class _USBWidgetState extends State<USBWidget> {
         widget.onUTBMapPathChanged?.call(filePath);
       },
       directoryPath: '',
-      hintText: utbMapPath ?? 'Select mapped UTBMap.kext created with USBToolBox',
+      hintText: utbMapPath ?? (l10n?.selectUtbMapHint ?? 'Select mapped UTBMap.kext created with USBToolBox'),
       allowedExtensions: Device.isMacOS ? null : const ['kext'],
       openFile: Device.isMacOS ? true : !Device.isWindows,
     );
@@ -56,13 +58,15 @@ class _USBWidgetState extends State<USBWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final choices = USBWidget.choices;
     final bool owner = uefiQuirks.releaseUsbOwnership;
-    const releaseUsbOwnershipText =
-        "Enable 'UEFI->Quirks->ReleaseUsbOwnership' quirk to release USB controller ownership from firmware. Useful for OEM boards (e.g. some H110, B150, B250, Q270) where USB freezes on boot or keyboard/mouse fails to respond.";
+    final releaseUsbOwnershipText = HackintoshDetailsTranslator.translate(
+        "Enable 'UEFI->Quirks->ReleaseUsbOwnership' quirk to release USB controller ownership from firmware. Useful for OEM boards (e.g. some H110, B150, B250, Q270) where USB freezes on boot or keyboard/mouse fails to respond.",
+        context: context);
     return KextChoiceListCard(
-      title: "USB Drivers:",
-      cardSubTitle: "(USBInjectAll used by default)",
+      title: l10n?.usbTitle ?? "USB Drivers:",
+      cardSubTitle: l10n?.usbInjectAllByDefault ?? "(USBInjectAll used by default)",
       choices: choices,
       selectedChoices: usbDriverType?.bundlePath.isNotEmpty == true
           ? [usbDriverType!]
@@ -78,7 +82,7 @@ class _USBWidgetState extends State<USBWidget> {
         },
       ),
       footer: usbDriverType?.bundlePath == ConfigKernel.USBToolBox.bundlePath
-          ? chooseUTBMap()
+          ? chooseUTBMap(l10n)
           : const SizedBox.shrink(),
       onChanged: (List<KernelKext> value) {
         usbDriverType = value.firstOrNull;
@@ -88,3 +92,4 @@ class _USBWidgetState extends State<USBWidget> {
     );
   }
 }
+

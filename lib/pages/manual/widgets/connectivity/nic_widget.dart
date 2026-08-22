@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
-import 'package:flutter/material.dart';
-
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/pages/shared/widgets/kext_choice_list.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class NicWidget extends StatefulWidget {
   final ValueChanged? onChanged;
@@ -33,14 +34,19 @@ class NicWidget extends StatefulWidget {
 class _NicWidgetState extends State<NicWidget> {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final ethernetOptions = NicWidget.ethernetOptions;
     final selected = ethernetOptions
         .where((kext) => widget.selectedKexts?.contains(kext) ?? false)
         .toList();
-    final tips = ethernetOptions.map((kext) => kext.note.join('\n')).toList();
+    final tips = ethernetOptions
+        .map((kext) => kext.note
+            .map((n) => HackintoshDetailsTranslator.translate(n, context: context))
+            .join('\n'))
+        .toList();
     return KextChoiceListCard(
-      title: "Ethernet Drivers:",
-      cardSubTitle: '(No Ethernet driver added by default)',
+      title: l10n?.ethernetTitle ?? "Ethernet Drivers:",
+      cardSubTitle: l10n?.noEthernetDriverByDefault ?? '(No Ethernet driver added by default)',
       choices: ethernetOptions,
       selectedChoices: selected,
       isMultipleSelection: true,

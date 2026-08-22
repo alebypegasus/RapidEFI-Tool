@@ -694,4 +694,352 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(Untuk Sistem Laptop)';
+
+  @override
+  String get basicConfig => 'Konfigurasi Dasar';
+
+  @override
+  String get advancedConfig => 'Konfigurasi Lanjutan';
+
+  @override
+  String get portCustomization => 'Kustomisasi Pelabuhan';
+
+  @override
+  String get displayEdid => 'Tampilkan EDID';
+
+  @override
+  String get nvidiaDgpu => 'NVIDIA dGPU';
+
+  @override
+  String get amdDgpu => 'AMD dGPU';
+
+  @override
+  String get amdDgpuSpoof => 'Spoof AMD dGPU';
+
+  @override
+  String get intelWifi => 'Intel Wi-Fi';
+
+  @override
+  String get broadcomBrcm => 'Broadcom (Brcm)';
+
+  @override
+  String get atherosWifi => 'Ateros';
+
+  @override
+  String get usbWifi => 'Wi-Fi USB';
+
+  @override
+  String get bluetoothDrivers => 'Driver Bluetooth';
+
+  @override
+  String get debuggingTab => 'Men-debug';
+
+  @override
+  String get amfiSipTab => 'AMFI / SIP';
+
+  @override
+  String get igpuFixesTab => 'Perbaikan iGPU';
+
+  @override
+  String get dgpuFixesTab => 'Perbaikan dGPU';
+
+  @override
+  String get blackScreenFixesTab => 'Perbaikan Layar Hitam';
+
+  @override
+  String get above4gTab => 'Dekode di atas 4G';
+
+  @override
+  String get trackpadFixesTab => 'Perbaikan Trackpad';
+
+  @override
+  String get othersTab => 'Yang lain';
+
+  @override
+  String get powerManagementTab => 'Manajemen Daya';
+
+  @override
+  String get sleepHibernationTab => 'Tidur / Hibernasi';
+
+  @override
+  String get storageDiskTab => 'Penyimpanan / Disk';
+
+  @override
+  String get cpuFixesTab => 'Perbaikan CPU';
+
+  @override
+  String get amdPlatformTab => 'Platform AMD';
+
+  @override
+  String get usbFixesTab => 'Perbaikan USB';
+
+  @override
+  String get sdCardTab => 'Kartu SD';
+
+  @override
+  String get brandTab => 'Merek';
+
+  @override
+  String get specialMotherboardTab => 'Motherboard Khusus';
+
+  @override
+  String get sipSettingsTab => 'Pengaturan SIP';
+
+  @override
+  String get renameCpuTab => 'Ganti nama CPU';
+
+  @override
+  String get uiScaleTab => 'Skala UI';
+
+  @override
+  String get acpiConfigTab => 'Konfigurasi ACPI';
+
+  @override
+  String get booterConfigTab => 'Konfigurasi Booter';
+
+  @override
+  String get kernelConfigTab => 'Konfigurasi Kernel';
+
+  @override
+  String get uefiConfigTab => 'Konfigurasi UEFI';
+
+  @override
+  String get lookupLayoutId => 'ID Tata Letak Pencarian';
+
+  @override
+  String get visitChris1111Repo => 'Kunjungi Repositori chris1111';
+
+  @override
+  String get supportedMacOsVersions => 'Versi macOS yang didukung:';
+
+  @override
+  String get supportedUsbWifiChipsets => 'Chipset Wi-Fi USB yang didukung:';
+
+  @override
+  String get selectUtbMap => 'Pilih UTBmap';
+
+  @override
+  String get selectUtbMapHint =>
+      'Pilih UTBMap.kext yang dipetakan yang dibuat dengan USBToolBox';
+
+  @override
+  String get reprocessEfiSubtitle =>
+      '(Memproses ulang EFI yang dihasilkan oleh RapidEFI)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI secara otomatis mengeluarkan file configModel di dalam folder EFI. Impor file di bawah ini untuk memuat ulang dan menyesuaikan konfigurasi EFI Anda.';
+
+  @override
+  String get reprocessEfiVersionNote =>
+      'Fitur ini didukung pada RapidEFI V3.0.0 dan yang lebih baru.';
+
+  @override
+  String get dropConfigModelHint =>
+      'Letakkan file configModel di sini atau klik untuk menelusuri';
+
+  @override
+  String get offLabel => 'Mati';
+
+  @override
+  String get onLabel => 'Pada';
+
+  @override
+  String get githubRepository => 'Repositori GitHub';
+
+  @override
+  String get releasesAndUpdates => 'Rilis & Pembaruan';
+
+  @override
+  String get projectDocumentation => 'Dokumentasi Proyek';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI adalah generator EFI OpenCore otomatis sumber terbuka, patcher ACPI/SSDT, dan alat analisis perangkat keras yang dibuat untuk penggemar Hackintosh dan macOS.\n\nDibuat dan dipelihara dengan cinta. Bintangi dan fork proyek ini di GitHub untuk mendukung pengembangan berkelanjutan!';
+
+  @override
+  String get checkApplicableOptions => '(Periksa opsi yang berlaku)';
+
+  @override
+  String get optionalCheckApplicableOptions =>
+      '(Opsional - periksa opsi yang berlaku)';
+
+  @override
+  String get appleAlcUsedByDefault =>
+      '(Driver AppleALC digunakan secara default)';
+
+  @override
+  String get noEthernetDriverByDefault =>
+      '(Tidak ada driver Ethernet yang ditambahkan secara default)';
+
+  @override
+  String get usbInjectAllByDefault => '(USBInjectAll digunakan secara default)';
+
+  @override
+  String get verboseModeByDefault =>
+      '(-v mode verbose diaktifkan secara default; hapus centang untuk menonaktifkan)';
+
+  @override
+  String get optionalDriversSubtitle =>
+      '(Driver opsional - tidak diperlukan kecuali diperlukan)';
+
+  @override
+  String get keepDefaultsSubtitle =>
+      '(Pertahankan default kecuali penyesuaian khusus diperlukan)';
+
+  @override
+  String get optionalCheckDeviceBrand =>
+      'Opsional - Periksa apakah merek perangkat Anda cocok';
+
+  @override
+  String get optionalCheckMotherboardModel =>
+      'Opsional - Periksa apakah model motherboard cocok';
+
+  @override
+  String get optionalConfigureSip =>
+      'Opsional - Konfigurasikan SIP sesuai kebutuhan (Dinonaktifkan secara default)';
+
+  @override
+  String get optionalCustomCpuName => 'Opsional - Nama CPU Khusus';
+
+  @override
+  String get optionalAdjustUiScale =>
+      'Opsional - Sesuaikan skala UI boot OpenCore';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI - Patch SSDT';
+
+  @override
+  String get acpiPatches => 'ACPI - Tambalan';
+
+  @override
+  String get kernelPatches => 'Kernel - Tambalan';
+
+  @override
+  String get powerManagement => 'Manajemen Daya';
+
+  @override
+  String get ssdApfsTrimPolicy => 'Kebijakan Pemangkasan APFS NVMe / SATA SSD';
+
+  @override
+  String get kernelQuirksSubtitle =>
+      'Kernel - Quirks (Pengaturan default disarankan kecuali diperlukan perbaikan khusus)';
+
+  @override
+  String get uefiDriversSubtitle =>
+      'UEFI - Driver (Simpan konfigurasi default kecuali timbul kebutuhan khusus)';
+
+  @override
+  String get uefiOutputSubtitle =>
+      'UEFI - Output (Pengaturan default disarankan)';
+
+  @override
+  String get method1Title =>
+      'Metode 1: Ganti nama \'GPRW menjadi XPRW\' (Perbaikan Bangun Instan)';
+
+  @override
+  String get method2Title =>
+      'Metode 2: Ganti nama \'UPRW menjadi XPRW\' (Perbaikan Bangun Instan)';
+
+  @override
+  String get method3Title =>
+      'Metode 3: Ganti nama \'RTC Fix\' (Perbaiki RTC Power Off / CMOS Reset)';
+
+  @override
+  String get method4Title =>
+      'Metode 4: Ganti nama \'Perbaikan Baterai\' (Mendukung Patch Baterai 16-bit hingga 8-bit)';
+
+  @override
+  String get pciPathLabel => 'Jalur PCI dGPU:';
+
+  @override
+  String get pciPathPlaceholder => 'Masukkan Jalur PCI';
+
+  @override
+  String get spoofedDeviceIdLabel => 'ID Perangkat Palsu:';
+
+  @override
+  String get spoofedDeviceIdPlaceholder =>
+      'Pilih perangkat GPU yang akan dipalsukan';
+
+  @override
+  String get injectDisplayEdidLabel =>
+      'Suntikkan Tampilan EDID (biasanya 256 atau 512 karakter hex):';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      'Masukkan tampilan EDID (biasanya 256 atau 512 karakter hex; spasi dan baris baru diperbolehkan)';
+
+  @override
+  String get failed => 'Gagal';
+
+  @override
+  String get method1 => 'Metode 1';
+
+  @override
+  String get method2 => 'Metode 2';
+
+  @override
+  String get method3 => 'Metode 3';
+
+  @override
+  String get method4 => 'Metode 4';
+
+  @override
+  String get optionalKextDrivers => 'Driver Kext Opsional';
+
+  @override
+  String get optionalKextSubTitle =>
+      'Pilih driver kext opsional sesuai dengan perangkat keras Anda';
+
+  @override
+  String get brandConfigTab => 'Merek';
+
+  @override
+  String get optionalSettings => 'Pengaturan Opsional';
+
+  @override
+  String get optionalSettingsSubTitle => 'Pilih konfigurasi opsional tambahan';
+
+  @override
+  String get optionalCheckMotherboard => 'Opsi Motherboard Khusus';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI secara otomatis mengeluarkan file configModel di dalam folder EFI.\nImpor file ini di bawah untuk memuat ulang dan menyesuaikan konfigurasi EFI Anda.\n\nFitur ini didukung pada RapidEFI V3.0.0 ke atas.';
+
+  @override
+  String get releaseToReimportConfigModel =>
+      'Lepaskan untuk mengimpor ulang configModel';
+
+  @override
+  String get invalidConfigFileMessage =>
+      'File konfigurasi tidak valid. Silakan pilih file configModel yang valid.';
+
+  @override
+  String get ethernetTitle => 'Driver Ethernet:';
+
+  @override
+  String get usbTitle => 'Driver USB:';
+
+  @override
+  String get ssdtCoreOfficial => '* Inti (Resmi)';
+
+  @override
+  String get ssdtRecommendedFixes => '* Direkomendasikan (Perbaikan)';
+
+  @override
+  String get ssdtOptionalEnhancements => '* Opsional (Peningkatan)';
+
+  @override
+  String get platformDesktop => 'Desktop';
+
+  @override
+  String get platformLaptop => 'Laptop';
+
+  @override
+  String get platformNucMini => 'NUC / Mini PC';
+
+  @override
+  String get platformHedtServer => 'HEDT / Server';
 }

@@ -12,6 +12,7 @@ import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/pages/shared/widgets/custom_textfield.dart';
 import 'package:rapidefi/pages/shared/widgets/kext_choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/tip_switch.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class SoundWidget extends StatefulWidget {
   final Function(KernelKext?, String, List<Object>?)? onChanged;
@@ -42,13 +43,13 @@ class _SoundWidgetState extends State<SoundWidget> {
   final FocusNode _focusNode = FocusNode();
   List<Object>? _lastPickerSelection;
 
-  final String tip = r'''
-  Common HPET Paths:
-  \_SB.PCI0.LPCB.HPET
-  \_SB.PCI0.LPC.HPET
-  \_SB.PCI0.HPET
-  This option is used to fix audio card IRQ conflict issues! Note: Do not enable unless your audio has IRQ issues!
-  ''';
+  static const String tip = r'''
+Common HPET Paths:
+\_SB.PCI0.LPCB.HPET
+\_SB.PCI0.LPC.HPET
+\_SB.PCI0.HPET
+This option is used to fix audio card IRQ conflict issues! Note: Do not enable unless your audio has IRQ issues!
+''';
 
   @override
   void initState() {
@@ -119,7 +120,7 @@ class _SoundWidgetState extends State<SoundWidget> {
     );
   }
 
-  Widget configalcid() {
+  Widget configalcid(AppLocalizations? l10n) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -146,8 +147,8 @@ class _SoundWidgetState extends State<SoundWidget> {
                     isDarkMode ? Colors.grey[850] : Colors.grey[50],
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                label: const Text(
-                  "Lookup Layout ID",
+                label: Text(
+                  l10n?.lookupLayoutId ?? "Lookup Layout ID",
                 ),
                 onPressed: () {
                   showPickerModal(context);
@@ -185,8 +186,8 @@ class _SoundWidgetState extends State<SoundWidget> {
                 },
               ),
               TipSwitch(
-                tip: tip,
-                title: 'Fix IRQ',
+                tip: HackintoshDetailsTranslator.translate(tip.trim(), context: context),
+                title: l10n?.fixIrq ?? 'Fix IRQ',
                 checked: _enableHpetPatch,
                 onChanged: (value) {
                   setState(() {
@@ -223,14 +224,14 @@ class _SoundWidgetState extends State<SoundWidget> {
         spacing: 5,
         children: [
           Text(
-            "Select Audio Layout ID (Database: ${AppleALCResolver.published} v${AppleALCResolver.version})",
+            "${HackintoshDetailsTranslator.translate('Select Audio Layout ID', context: context)} (Database: ${AppleALCResolver.published} v${AppleALCResolver.version})",
             style: TextStyle(
               fontSize: 20,
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
           Text(
-            "(Scroll to select, then click Confirm)",
+            HackintoshDetailsTranslator.translate("(Scroll to select, then click Confirm)", context: context),
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey[600],
@@ -268,7 +269,7 @@ class _SoundWidgetState extends State<SoundWidget> {
     final soundChoices = [ConfigKernel.AppleALC, ConfigKernel.VoodooHDA];
     return KextChoiceListCard(
       title: l10n?.audioConfig ?? "Audio Drivers:",
-      cardSubTitle: '(AppleALC driver used by default)',
+      cardSubTitle: l10n?.appleAlcUsedByDefault ?? '(AppleALC driver used by default)',
       choices: soundChoices,
       selectedChoices:
           soundDriverType != null && soundDriverType!.bundlePath.isNotEmpty
@@ -278,7 +279,7 @@ class _SoundWidgetState extends State<SoundWidget> {
       allowToggle: true,
       labelBuilder: kextDescriptionLabel,
       header: soundDriverType?.bundlePath == ConfigKernel.AppleALC.bundlePath
-          ? configalcid()
+          ? configalcid(l10n)
           : const SizedBox.shrink(),
       onChanged: (List<KernelKext> value) {
         soundDriverType = value.firstOrNull;

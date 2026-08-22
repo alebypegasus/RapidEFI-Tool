@@ -62,6 +62,12 @@ class _SettingPageState extends State<SettingPage> {
     final l10n = AppLocalizations.of(context);
     final efiOptionsList = _getEfiOptions(context);
 
+    final themeModeLabels = {
+      'system': l10n?.followSystem ?? 'Follow System',
+      'light': l10n?.offLabel ?? 'Off',
+      'dark': l10n?.onLabel ?? 'On',
+    };
+
     return [
       TitleCard(
         title: l10n?.copyrightNotice ?? 'Copyright & License',
@@ -104,12 +110,12 @@ class _SettingPageState extends State<SettingPage> {
 
       SettingsChoiceCard<String>(
         title: l10n?.themeMode ?? 'Theme Mode :',
-        choices: themeModeCHMap.values.toList(),
-        selectedChoices: [themeModeCHMap[appTheme.themeMode.name] ?? ''],
+        choices: themeModeLabels.values.toList(),
+        selectedChoices: [themeModeLabels[appTheme.themeMode.name] ?? ''],
         onChanged: (List<String> value) {
           String? selectedValue = value.firstOrNull;
-          var key = themeModeCHMap.keys.firstWhere(
-            (type) => themeModeCHMap[type] == selectedValue,
+          var key = themeModeLabels.keys.firstWhere(
+            (type) => themeModeLabels[type] == selectedValue,
             orElse: () => appTheme.themeMode.name,
           );
           appTheme.mode = themeModeMap[key]!;

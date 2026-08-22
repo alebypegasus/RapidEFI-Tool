@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
@@ -26,6 +27,7 @@ class _MotherBoardWidgetState extends State<SpecialMotherBoardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final choices = SpecialMotherboard.values
         .where((element) =>
             element != SpecialMotherboard.none &&
@@ -38,7 +40,7 @@ class _MotherBoardWidgetState extends State<SpecialMotherBoardWidget> {
         selectedChoices: [specialMotherBoard.value],
         isMultipleSelection: false,
         allowToggle: true,
-        subTitle: "Optional - Check if motherboard model matches",
+        subTitle: l10n?.optionalCheckMotherboard ?? "Optional - Check if motherboard model matches",
         onChanged: (List<String> value) {
           String? selectedValue = value.firstOrNull;
           specialMotherBoard = SpecialMotherboard.values.firstWhere(

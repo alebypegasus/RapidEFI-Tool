@@ -681,6 +681,328 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(适用于笔记本机型)';
+
+  @override
+  String get basicConfig => '基本配置';
+
+  @override
+  String get advancedConfig => '高级配置';
+
+  @override
+  String get portCustomization => '端口定制';
+
+  @override
+  String get displayEdid => '显示EDID';
+
+  @override
+  String get nvidiaDgpu => 'NVIDIA dGPU';
+
+  @override
+  String get amdDgpu => 'AMD dGPU';
+
+  @override
+  String get amdDgpuSpoof => 'AMD dGPU 欺骗';
+
+  @override
+  String get intelWifi => '英特尔无线网络连接';
+
+  @override
+  String get broadcomBrcm => '博通 (Brcm)';
+
+  @override
+  String get atherosWifi => '阿瑟罗斯';
+
+  @override
+  String get usbWifi => 'USB 无线网络';
+
+  @override
+  String get bluetoothDrivers => '蓝牙驱动程序';
+
+  @override
+  String get debuggingTab => '调试';
+
+  @override
+  String get amfiSipTab => 'AMFI/SIP';
+
+  @override
+  String get igpuFixesTab => 'iGPU 修复';
+
+  @override
+  String get dgpuFixesTab => 'dGPU 修复';
+
+  @override
+  String get blackScreenFixesTab => '黑屏修复';
+
+  @override
+  String get above4gTab => '4G以上解码';
+
+  @override
+  String get trackpadFixesTab => '触控板修复';
+
+  @override
+  String get othersTab => '其他的';
+
+  @override
+  String get powerManagementTab => '电源管理';
+
+  @override
+  String get sleepHibernationTab => '睡眠/冬眠';
+
+  @override
+  String get storageDiskTab => '存储/磁盘';
+
+  @override
+  String get cpuFixesTab => 'CPU修复';
+
+  @override
+  String get amdPlatformTab => 'AMD平台';
+
+  @override
+  String get usbFixesTab => 'USB修复';
+
+  @override
+  String get sdCardTab => 'SD卡';
+
+  @override
+  String get brandTab => '品牌';
+
+  @override
+  String get specialMotherboardTab => '专用主板';
+
+  @override
+  String get sipSettingsTab => 'SIP 设置';
+
+  @override
+  String get renameCpuTab => '重命名CPU';
+
+  @override
+  String get uiScaleTab => '用户界面比例';
+
+  @override
+  String get acpiConfigTab => 'ACPI配置';
+
+  @override
+  String get booterConfigTab => '启动器配置';
+
+  @override
+  String get kernelConfigTab => '内核配置';
+
+  @override
+  String get uefiConfigTab => 'UEFI配置';
+
+  @override
+  String get lookupLayoutId => '查找布局ID';
+
+  @override
+  String get visitChris1111Repo => '访问 chris1111 存储库';
+
+  @override
+  String get supportedMacOsVersions => '支持的 macOS 版本：';
+
+  @override
+  String get supportedUsbWifiChipsets => '支持的 USB Wi-Fi 芯片组：';
+
+  @override
+  String get selectUtbMap => '选择UTB地图';
+
+  @override
+  String get selectUtbMapHint => '选择使用 USBToolBox 创建的映射 UTBMap.kext';
+
+  @override
+  String get reprocessEfiSubtitle => '（重新处理RapidEFI生成的EFI）';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI 自动在 EFI 文件夹内输出一个 configModel 文件。导入以下文件以重新加载并自定义您的 EFI 配置。';
+
+  @override
+  String get reprocessEfiVersionNote => 'RapidEFI V3.0.0 及更高版本支持此功能。';
+
+  @override
+  String get dropConfigModelHint => '将 configModel 文件拖放到此处或单击浏览';
+
+  @override
+  String get offLabel => '离开';
+
+  @override
+  String get onLabel => '在';
+
+  @override
+  String get githubRepository => 'GitHub 存储库';
+
+  @override
+  String get releasesAndUpdates => '发布与更新';
+
+  @override
+  String get projectDocumentation => '项目文档';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI 是一款开源、自动化的 OpenCore EFI 生成器、ACPI/SSDT 修补程序以及专为 Hackintosh 和 macOS 爱好者构建的硬件分析工具。\n\n用爱创造和维护。在 GitHub 上加星标并分叉该项目以支持持续的开发！';
+
+  @override
+  String get checkApplicableOptions => '（勾选适用的选项）';
+
+  @override
+  String get optionalCheckApplicableOptions => '（可选 - 检查适用的选项）';
+
+  @override
+  String get appleAlcUsedByDefault => '（默认使用AppleALC驱动程序）';
+
+  @override
+  String get noEthernetDriverByDefault => '（默认不添加以太网驱动）';
+
+  @override
+  String get usbInjectAllByDefault => '（默认使用USBInjectAll）';
+
+  @override
+  String get verboseModeByDefault => '（-v 详细模式默认启用；取消选中即可禁用）';
+
+  @override
+  String get optionalDriversSubtitle => '（可选驱动程序 - 除非需要，否则不需要）';
+
+  @override
+  String get keepDefaultsSubtitle => '（除非需要特定定制，否则保留默认值）';
+
+  @override
+  String get optionalCheckDeviceBrand => '可选 - 检查您的设备品牌是否匹配';
+
+  @override
+  String get optionalCheckMotherboardModel => '可选 - 检查主板型号是否匹配';
+
+  @override
+  String get optionalConfigureSip => '可选 - 根据需要配置 SIP（​​默认禁用）';
+
+  @override
+  String get optionalCustomCpuName => '可选 - 自定义 CPU 名称';
+
+  @override
+  String get optionalAdjustUiScale => '可选 - 调整 OpenCore 启动 UI 比例';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI - SSDT 补丁';
+
+  @override
+  String get acpiPatches => 'ACPI - 补丁';
+
+  @override
+  String get kernelPatches => '内核 - 补丁';
+
+  @override
+  String get powerManagement => '电源管理';
+
+  @override
+  String get ssdApfsTrimPolicy => 'NVMe / SATA SSD APFS 修剪策略';
+
+  @override
+  String get kernelQuirksSubtitle => '内核 - 怪癖（除非需要特定修复，否则建议使用默认设置）';
+
+  @override
+  String get uefiDriversSubtitle => 'UEFI - 驱动程序（保留默认配置，除非出现特殊需要）';
+
+  @override
+  String get uefiOutputSubtitle => 'UEFI - 输出（建议使用默认设置）';
+
+  @override
+  String get method1Title => '方法 1：将“GPRW 重命名为 XPRW”（即时唤醒修复）';
+
+  @override
+  String get method2Title => '方法 2：将“UPRW 重命名为 XPRW”（即时唤醒修复）';
+
+  @override
+  String get method3Title => '方法 3：重命名“RTC Fix”（修复 RTC 断电/CMOS 重置）';
+
+  @override
+  String get method4Title => '方法4：重命名“Battery Fix”（支持16位到8位电池补丁）';
+
+  @override
+  String get pciPathLabel => 'dGPU PCI 路径：';
+
+  @override
+  String get pciPathPlaceholder => '输入 PCI 路径';
+
+  @override
+  String get spoofedDeviceIdLabel => '欺骗设备 ID：';
+
+  @override
+  String get spoofedDeviceIdPlaceholder => '选择要欺骗的 GPU 设备';
+
+  @override
+  String get injectDisplayEdidLabel => '注入显示 EDID（通常为 256 或 512 十六进制字符）：';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      '输入显示 EDID（通常为 256 或 512 个十六进制字符；允许空格和换行符）';
+
+  @override
+  String get failed => '失败';
+
+  @override
+  String get method1 => '方案 1';
+
+  @override
+  String get method2 => '方案 2';
+
+  @override
+  String get method3 => '方案 3';
+
+  @override
+  String get method4 => '方案 4';
+
+  @override
+  String get optionalKextDrivers => '可选驱动';
+
+  @override
+  String get optionalKextSubTitle => '根据您的硬件选择可选的kext驱动';
+
+  @override
+  String get brandConfigTab => '品牌';
+
+  @override
+  String get optionalSettings => '可选设置';
+
+  @override
+  String get optionalSettingsSubTitle => '选择其他可选配置';
+
+  @override
+  String get optionalCheckMotherboard => '特殊主板选项';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI 会自动在 EFI 文件夹中输出 configModel 文件。\n在下方导入此文件以重新加载和自定义您的 EFI 配置。\n\nRapidEFI V3.0.0 及以上版本支持此功能。';
+
+  @override
+  String get releaseToReimportConfigModel => '释放以重新导入 configModel';
+
+  @override
+  String get invalidConfigFileMessage => '配置文件无效。请选择有效的 configModel 文件。';
+
+  @override
+  String get ethernetTitle => '网卡驱动：';
+
+  @override
+  String get usbTitle => 'USB 驱动：';
+
+  @override
+  String get ssdtCoreOfficial => '* 核心（官方）';
+
+  @override
+  String get ssdtRecommendedFixes => '* 推荐（修复）';
+
+  @override
+  String get ssdtOptionalEnhancements => '* 可选（增强）';
+
+  @override
+  String get platformDesktop => '台式机';
+
+  @override
+  String get platformLaptop => '笔记本';
+
+  @override
+  String get platformNucMini => '迷你主机 (NUC)';
+
+  @override
+  String get platformHedtServer => '高端台式机 / 服务器 (HEDT)';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -1360,4 +1682,326 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get forLaptopSystems => '(適用於筆記型電腦)';
+
+  @override
+  String get basicConfig => '基本配置';
+
+  @override
+  String get advancedConfig => '進階配置';
+
+  @override
+  String get portCustomization => '端口定制';
+
+  @override
+  String get displayEdid => '顯示EDID';
+
+  @override
+  String get nvidiaDgpu => 'NVIDIA dGPU';
+
+  @override
+  String get amdDgpu => 'AMD dGPU';
+
+  @override
+  String get amdDgpuSpoof => 'AMD dGPU 欺騙';
+
+  @override
+  String get intelWifi => '英特爾無線網路連接';
+
+  @override
+  String get broadcomBrcm => '博通 (Brcm)';
+
+  @override
+  String get atherosWifi => '阿瑟羅斯';
+
+  @override
+  String get usbWifi => 'USB 無線網路';
+
+  @override
+  String get bluetoothDrivers => '藍牙驅動程式';
+
+  @override
+  String get debuggingTab => '偵錯';
+
+  @override
+  String get amfiSipTab => 'AMFI/SIP';
+
+  @override
+  String get igpuFixesTab => 'iGPU 修復';
+
+  @override
+  String get dgpuFixesTab => 'dGPU 修復';
+
+  @override
+  String get blackScreenFixesTab => '黑屏修復';
+
+  @override
+  String get above4gTab => '4G以上解碼';
+
+  @override
+  String get trackpadFixesTab => '觸控板修復';
+
+  @override
+  String get othersTab => '其他的';
+
+  @override
+  String get powerManagementTab => '電源管理';
+
+  @override
+  String get sleepHibernationTab => '睡眠/冬眠';
+
+  @override
+  String get storageDiskTab => '存儲/磁碟';
+
+  @override
+  String get cpuFixesTab => 'CPU修復';
+
+  @override
+  String get amdPlatformTab => 'AMD平台';
+
+  @override
+  String get usbFixesTab => 'USB修復';
+
+  @override
+  String get sdCardTab => 'SD卡';
+
+  @override
+  String get brandTab => '品牌';
+
+  @override
+  String get specialMotherboardTab => '專用主機板';
+
+  @override
+  String get sipSettingsTab => 'SIP 設定';
+
+  @override
+  String get renameCpuTab => '重新命名CPU';
+
+  @override
+  String get uiScaleTab => '使用者介面比例';
+
+  @override
+  String get acpiConfigTab => 'ACPI配置';
+
+  @override
+  String get booterConfigTab => '啟動器配置';
+
+  @override
+  String get kernelConfigTab => '核心配置';
+
+  @override
+  String get uefiConfigTab => 'UEFI配置';
+
+  @override
+  String get lookupLayoutId => '尋找佈局ID';
+
+  @override
+  String get visitChris1111Repo => '存取 chris1111 儲存庫';
+
+  @override
+  String get supportedMacOsVersions => '支援的 macOS 版本：';
+
+  @override
+  String get supportedUsbWifiChipsets => '支援的 USB Wi-Fi 晶片組：';
+
+  @override
+  String get selectUtbMap => '選擇UTB地圖';
+
+  @override
+  String get selectUtbMapHint => '選擇使用 USBToolBox 建立的映射 UTBMap.kext';
+
+  @override
+  String get reprocessEfiSubtitle => '(Reprocess an EFI generated by RapidEFI)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI 會自動在 EFI 資料夾內輸出一個 configModel 檔案。導入以下文件以重新載入並自訂您的 EFI 配置。';
+
+  @override
+  String get reprocessEfiVersionNote => 'RapidEFI V3.0.0 及更高版本支援此功能。';
+
+  @override
+  String get dropConfigModelHint => '將 configModel 檔案拖放到此處或按一下瀏覽';
+
+  @override
+  String get offLabel => '離開';
+
+  @override
+  String get onLabel => '在';
+
+  @override
+  String get githubRepository => 'GitHub 儲存庫';
+
+  @override
+  String get releasesAndUpdates => '發布與更新';
+
+  @override
+  String get projectDocumentation => '專案文件';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI 是一款開源、自動化的 OpenCore EFI 生成器、ACPI/SSDT 修補程式以及專為 Hackintosh 和 macOS 愛好者構建的硬體分析工具。\n\n用愛創造和維護。在 GitHub 上加星標並分叉該專案以支持持續的開發！';
+
+  @override
+  String get checkApplicableOptions => '（勾選適用的選項）';
+
+  @override
+  String get optionalCheckApplicableOptions => '（可選 - 檢查適用的選項）';
+
+  @override
+  String get appleAlcUsedByDefault => '（預設使用AppleALC驅動程式）';
+
+  @override
+  String get noEthernetDriverByDefault => '（預設不新增乙太網路驅動）';
+
+  @override
+  String get usbInjectAllByDefault => '（預設使用USBInjectAll）';
+
+  @override
+  String get verboseModeByDefault => '（-v 詳細模式預設為啟用；取消選取即可停用）';
+
+  @override
+  String get optionalDriversSubtitle => '（可選驅動程式 - 除非需要，否則不需要）';
+
+  @override
+  String get keepDefaultsSubtitle => '（除非需要特定定制，否則保留預設值）';
+
+  @override
+  String get optionalCheckDeviceBrand => '可選 - 檢查您的設備品牌是否匹配';
+
+  @override
+  String get optionalCheckMotherboardModel => '可選 - 檢查主機板型號是否匹配';
+
+  @override
+  String get optionalConfigureSip => '可選 - 根據需要配置 SIP（​​預設為停用）';
+
+  @override
+  String get optionalCustomCpuName => '可選 - 自訂 CPU 名稱';
+
+  @override
+  String get optionalAdjustUiScale => '可選 - 調整 OpenCore 啟動 UI 比例';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI - SSDT 補丁';
+
+  @override
+  String get acpiPatches => 'ACPI - 補丁';
+
+  @override
+  String get kernelPatches => '核心 - 補丁';
+
+  @override
+  String get powerManagement => '電源管理';
+
+  @override
+  String get ssdApfsTrimPolicy => 'NVMe / SATA SSD APFS 修剪策略';
+
+  @override
+  String get kernelQuirksSubtitle => '內核 - 怪癖（除非需要特定修復，否則建議使用預設）';
+
+  @override
+  String get uefiDriversSubtitle => 'UEFI - 驅動程式（保留預設配置，除非出現特殊需求）';
+
+  @override
+  String get uefiOutputSubtitle => 'UEFI - 輸出（建議使用預設）';
+
+  @override
+  String get method1Title => '方法 1：將「GPRW 重新命名為 XPRW」（即時喚醒修復）';
+
+  @override
+  String get method2Title => '方法 2：將「UPRW 重新命名為 XPRW」（即時喚醒修復）';
+
+  @override
+  String get method3Title => '方法 3：重新命名「RTC Fix」（修復 RTC 斷電/CMOS 重置）';
+
+  @override
+  String get method4Title => '方法4：重新命名「Battery Fix」（支援16位元到8位元電池補丁）';
+
+  @override
+  String get pciPathLabel => 'dGPU PCI 路徑：';
+
+  @override
+  String get pciPathPlaceholder => '輸入 PCI 路徑';
+
+  @override
+  String get spoofedDeviceIdLabel => '欺騙設備 ID：';
+
+  @override
+  String get spoofedDeviceIdPlaceholder => '選擇要欺騙的 GPU 設備';
+
+  @override
+  String get injectDisplayEdidLabel => '注入顯示 EDID（通常為 256 或 512 十六進位字元）：';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      '輸入顯示 EDID（通常為 256 或 512 個十六進位字元；允許空格和換行符）';
+
+  @override
+  String get failed => '失敗';
+
+  @override
+  String get method1 => '方案 1';
+
+  @override
+  String get method2 => '方案 2';
+
+  @override
+  String get method3 => '方案 3';
+
+  @override
+  String get method4 => '方案 4';
+
+  @override
+  String get optionalKextDrivers => '可選驅動';
+
+  @override
+  String get optionalKextSubTitle => '根據您的硬體選擇可選的kext驅動';
+
+  @override
+  String get brandConfigTab => '品牌';
+
+  @override
+  String get optionalSettings => '可選設定';
+
+  @override
+  String get optionalSettingsSubTitle => '選擇其他可選配置';
+
+  @override
+  String get optionalCheckMotherboard => '特殊主機板選項';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI 會自動在 EFI 資料夾中輸出 configModel 檔案。\n在下方匯入此檔案以重新載入和自訂您的 EFI 設定。\n\nRapidEFI V3.0.0 及以上版本支援此功能。';
+
+  @override
+  String get releaseToReimportConfigModel => '釋放以重新匯入 configModel';
+
+  @override
+  String get invalidConfigFileMessage => '設定檔無效。請選擇有效的 configModel 檔案。';
+
+  @override
+  String get ethernetTitle => '網路卡驅動：';
+
+  @override
+  String get usbTitle => 'USB 驅動：';
+
+  @override
+  String get ssdtCoreOfficial => '* 核心（官方）';
+
+  @override
+  String get ssdtRecommendedFixes => '* 推薦（修復）';
+
+  @override
+  String get ssdtOptionalEnhancements => '* 可選（增強）';
+
+  @override
+  String get platformDesktop => '桌上型電腦';
+
+  @override
+  String get platformLaptop => '筆記型電腦';
+
+  @override
+  String get platformNucMini => '迷你主機 (NUC)';
+
+  @override
+  String get platformHedtServer => '高階桌上型 / 伺服器 (HEDT)';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
 import 'package:rapidefi/utils/config/models/nvram/boot_arg_model.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_nvram.dart';
@@ -53,7 +54,7 @@ class _AMDGPUState extends State<AMDGPU> {
             choices: [ConfigKernel.NootRX],
             selectedChoices: nootRXSelected ? [ConfigKernel.NootRX] : [],
             isMultipleSelection: true,
-            labelBuilder: (kext) => kext.note.join(' '),
+            labelBuilder: kextDescriptionLabel,
             onChanged: (value) {
               final selected = value.isNotEmpty;
               provider.updateKexts(

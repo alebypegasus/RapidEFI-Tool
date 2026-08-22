@@ -682,4 +682,331 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(ノート PC 向け)';
+
+  @override
+  String get basicConfig => '基本構成';
+
+  @override
+  String get advancedConfig => '詳細設定';
+
+  @override
+  String get portCustomization => 'ポートのカスタマイズ';
+
+  @override
+  String get displayEdid => 'EDIDを表示する';
+
+  @override
+  String get nvidiaDgpu => 'NVIDIA dGPU';
+
+  @override
+  String get amdDgpu => 'AMD dGPU';
+
+  @override
+  String get amdDgpuSpoof => 'AMD dGPU スプーフ';
+
+  @override
+  String get intelWifi => 'インテル Wi-Fi';
+
+  @override
+  String get broadcomBrcm => 'ブロードコム (Brcm)';
+
+  @override
+  String get atherosWifi => 'アセロス';
+
+  @override
+  String get usbWifi => 'USB Wi-Fi';
+
+  @override
+  String get bluetoothDrivers => 'Bluetoothドライバー';
+
+  @override
+  String get debuggingTab => 'デバッグ';
+
+  @override
+  String get amfiSipTab => 'AMFI / SIP';
+
+  @override
+  String get igpuFixesTab => 'iGPUの修正';
+
+  @override
+  String get dgpuFixesTab => 'dGPU の修正';
+
+  @override
+  String get blackScreenFixesTab => '黒い画面の修正';
+
+  @override
+  String get above4gTab => '4G デコード以上';
+
+  @override
+  String get trackpadFixesTab => 'トラックパッドの修正';
+
+  @override
+  String get othersTab => 'その他';
+
+  @override
+  String get powerManagementTab => '電源管理';
+
+  @override
+  String get sleepHibernationTab => 'スリープ/冬眠';
+
+  @override
+  String get storageDiskTab => 'ストレージ/ディスク';
+
+  @override
+  String get cpuFixesTab => 'CPUの修正';
+
+  @override
+  String get amdPlatformTab => 'AMDプラットフォーム';
+
+  @override
+  String get usbFixesTab => 'USBの修正';
+
+  @override
+  String get sdCardTab => 'SDカード';
+
+  @override
+  String get brandTab => 'ブランド';
+
+  @override
+  String get specialMotherboardTab => '特殊マザーボード';
+
+  @override
+  String get sipSettingsTab => 'SIP設定';
+
+  @override
+  String get renameCpuTab => 'CPUの名前を変更する';
+
+  @override
+  String get uiScaleTab => 'UIスケール';
+
+  @override
+  String get acpiConfigTab => 'ACPI構成';
+
+  @override
+  String get booterConfigTab => 'ブート設定';
+
+  @override
+  String get kernelConfigTab => 'カーネル構成';
+
+  @override
+  String get uefiConfigTab => 'UEFI構成';
+
+  @override
+  String get lookupLayoutId => 'レイアウトIDの検索';
+
+  @override
+  String get visitChris1111Repo => 'chris1111 リポジトリにアクセス';
+
+  @override
+  String get supportedMacOsVersions => 'サポートされている macOS バージョン:';
+
+  @override
+  String get supportedUsbWifiChipsets => 'サポートされている USB Wi-Fi チップセット:';
+
+  @override
+  String get selectUtbMap => 'UTBマップを選択';
+
+  @override
+  String get selectUtbMapHint => 'USBToolBoxで作成したマッピングされたUTBMap.kextを選択します';
+
+  @override
+  String get reprocessEfiSubtitle => '(RapidEFI によって生成された EFI を再処理します)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI は、EFI フォルダー内に configModel ファイルを自動的に出力します。以下のこのファイルをインポートして、EFI 構成をリロードしてカスタマイズします。';
+
+  @override
+  String get reprocessEfiVersionNote => 'この機能は、RapidEFI V3.0.0 以降でサポートされています。';
+
+  @override
+  String get dropConfigModelHint => 'configModel ファイルをここにドロップするか、クリックして参照します';
+
+  @override
+  String get offLabel => 'オフ';
+
+  @override
+  String get onLabel => 'の上';
+
+  @override
+  String get githubRepository => 'GitHub リポジトリ';
+
+  @override
+  String get releasesAndUpdates => 'リリースとアップデート';
+
+  @override
+  String get projectDocumentation => 'プロジェクトのドキュメント';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI は、Hackintosh および macOS 愛好家向けに構築された、オープンソースの自動 OpenCore EFI ジェネレーター、ACPI/SSDT パッチャー、およびハードウェア分析ツールです。\n\n愛情を持って作成され、維持されています。進行中の開発をサポートするために、GitHub でプロジェクトにスターを付けてフォークしてください。';
+
+  @override
+  String get checkApplicableOptions => '(該当するオプションを確認してください)';
+
+  @override
+  String get optionalCheckApplicableOptions => '(オプション - 該当するオプションを確認してください)';
+
+  @override
+  String get appleAlcUsedByDefault => '(AppleALCドライバーがデフォルトで使用されます)';
+
+  @override
+  String get noEthernetDriverByDefault => '(デフォルトではイーサネットドライバーは追加されていません)';
+
+  @override
+  String get usbInjectAllByDefault => '(USBInjectAll がデフォルトで使用されます)';
+
+  @override
+  String get verboseModeByDefault =>
+      '(-v 冗長モードはデフォルトで有効になります。無効にするにはチェックを外します)';
+
+  @override
+  String get optionalDriversSubtitle => '(オプションのドライバー - 必要でない限り必要ありません)';
+
+  @override
+  String get keepDefaultsSubtitle => '(特定のカスタマイズが必要でない限り、デフォルトのままにしてください)';
+
+  @override
+  String get optionalCheckDeviceBrand => 'オプション - デバイスのブランドが一致するかどうかを確認します';
+
+  @override
+  String get optionalCheckMotherboardModel =>
+      'オプション - マザーボードのモデルが一致するかどうかを確認します';
+
+  @override
+  String get optionalConfigureSip => 'オプション - 必要に応じて SIP を構成します (デフォルトでは無効)';
+
+  @override
+  String get optionalCustomCpuName => 'オプション - カスタム CPU 名';
+
+  @override
+  String get optionalAdjustUiScale => 'オプション - OpenCore ブー​​ト UI スケールを調整します';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI - SSDT パッチ';
+
+  @override
+  String get acpiPatches => 'ACPI - パッチ';
+
+  @override
+  String get kernelPatches => 'カーネル - パッチ';
+
+  @override
+  String get powerManagement => '電源管理';
+
+  @override
+  String get ssdApfsTrimPolicy => 'NVMe / SATA SSD APFS トリム ポリシー';
+
+  @override
+  String get kernelQuirksSubtitle => 'カーネル - 癖 (特定の修正が必要な場合を除き、デフォルト設定を推奨)';
+
+  @override
+  String get uefiDriversSubtitle => 'UEFI - ドライバー (特別な必要が生じない限り、デフォルト構成を維持します)';
+
+  @override
+  String get uefiOutputSubtitle => 'UEFI - 出力 (デフォルト設定を推奨)';
+
+  @override
+  String get method1Title => '方法 1: 名前を「GPRW から XPRW」に変更する (インスタント ウェイク修正)';
+
+  @override
+  String get method2Title => '方法 2: 「UPRW から XPRW」の名前を変更する (インスタント ウェイク修正)';
+
+  @override
+  String get method3Title => '方法 3: 「RTC 修正」の名前を変更する (RTC 電源オフ/CMOS リセットを修正)';
+
+  @override
+  String get method4Title =>
+      '方法 4: 「バッテリー修正」の名前を変更する (16 ビットから 8 ビットへのバッテリー パッチをサポート)';
+
+  @override
+  String get pciPathLabel => 'dGPU PCI パス:';
+
+  @override
+  String get pciPathPlaceholder => 'PCI パスを入力してください';
+
+  @override
+  String get spoofedDeviceIdLabel => '偽装されたデバイス ID:';
+
+  @override
+  String get spoofedDeviceIdPlaceholder => 'スプーフィングするGPUデバイスを選択してください';
+
+  @override
+  String get injectDisplayEdidLabel =>
+      '表示 EDID を挿入します (通常は 256 または 512 の 16 進文字):';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      'ディスプレイ EDID を入力します (通常は 256 または 512 の 16 進数文字、スペースと改行は使用可能)';
+
+  @override
+  String get failed => '失敗';
+
+  @override
+  String get method1 => '方法 1';
+
+  @override
+  String get method2 => '方法 2';
+
+  @override
+  String get method3 => '方法 3';
+
+  @override
+  String get method4 => '方法 4';
+
+  @override
+  String get optionalKextDrivers => 'オプションのKextドライバー';
+
+  @override
+  String get optionalKextSubTitle => 'ハードウェアに応じてオプションのkextドライバーを選択してください';
+
+  @override
+  String get brandConfigTab => 'ブランド';
+
+  @override
+  String get optionalSettings => 'オプション設定';
+
+  @override
+  String get optionalSettingsSubTitle => '追加のオプション設定を選択してください';
+
+  @override
+  String get optionalCheckMotherboard => '特別なマザーボードオプション';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI は EFI フォルダ内に configModel ファイルを自動的に出力します。\n以下でこのファイルをインポートして、EFI 構成を再ロードおよびカスタマイズします。\n\nこの機能は RapidEFI V3.0.0 以降でサポートされています。';
+
+  @override
+  String get releaseToReimportConfigModel => '離して configModel を再インポート';
+
+  @override
+  String get invalidConfigFileMessage =>
+      '構成ファイルが無効です。有効な configModel ファイルを選択してください。';
+
+  @override
+  String get ethernetTitle => 'イーサネットドライバー：';
+
+  @override
+  String get usbTitle => 'USBドライバー：';
+
+  @override
+  String get ssdtCoreOfficial => '* コア（公式）';
+
+  @override
+  String get ssdtRecommendedFixes => '* 推奨（修正）';
+
+  @override
+  String get ssdtOptionalEnhancements => '* オプション（拡張）';
+
+  @override
+  String get platformDesktop => 'デスクトップ';
+
+  @override
+  String get platformLaptop => 'ノートパソコン';
+
+  @override
+  String get platformNucMini => 'NUC / ミニPC';
+
+  @override
+  String get platformHedtServer => 'HEDT / サーバー';
 }

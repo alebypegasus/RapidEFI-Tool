@@ -695,4 +695,354 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(Для ноутбуков)';
+
+  @override
+  String get basicConfig => 'Базовая конфигурация';
+
+  @override
+  String get advancedConfig => 'Расширенная конфигурация';
+
+  @override
+  String get portCustomization => 'Настройка порта';
+
+  @override
+  String get displayEdid => 'Отобразить EDID';
+
+  @override
+  String get nvidiaDgpu => 'NVIDIA dGPU';
+
+  @override
+  String get amdDgpu => 'AMD dGPU';
+
+  @override
+  String get amdDgpuSpoof => 'Подделка AMD dGPU';
+
+  @override
+  String get intelWifi => 'Интел Wi-Fi';
+
+  @override
+  String get broadcomBrcm => 'Бродком (Брцм)';
+
+  @override
+  String get atherosWifi => 'Атерос';
+
+  @override
+  String get usbWifi => 'USB Wi-Fi';
+
+  @override
+  String get bluetoothDrivers => 'Драйверы Bluetooth';
+
+  @override
+  String get debuggingTab => 'Отладка';
+
+  @override
+  String get amfiSipTab => 'АМФИ/СИП';
+
+  @override
+  String get igpuFixesTab => 'Исправления iGPU';
+
+  @override
+  String get dgpuFixesTab => 'Исправления dGPU';
+
+  @override
+  String get blackScreenFixesTab => 'Исправления черного экрана';
+
+  @override
+  String get above4gTab => 'Декодирование выше 4G';
+
+  @override
+  String get trackpadFixesTab => 'Исправления трекпада';
+
+  @override
+  String get othersTab => 'Другие';
+
+  @override
+  String get powerManagementTab => 'Управление питанием';
+
+  @override
+  String get sleepHibernationTab => 'Сон/Гибернация';
+
+  @override
+  String get storageDiskTab => 'Хранилище/Диск';
+
+  @override
+  String get cpuFixesTab => 'Исправления процессора';
+
+  @override
+  String get amdPlatformTab => 'Платформа AMD';
+
+  @override
+  String get usbFixesTab => 'USB-фиксы';
+
+  @override
+  String get sdCardTab => 'SD-карта';
+
+  @override
+  String get brandTab => 'Бренд';
+
+  @override
+  String get specialMotherboardTab => 'Специальная материнская плата';
+
+  @override
+  String get sipSettingsTab => 'SIP-настройки';
+
+  @override
+  String get renameCpuTab => 'Переименовать процессор';
+
+  @override
+  String get uiScaleTab => 'Масштаб пользовательского интерфейса';
+
+  @override
+  String get acpiConfigTab => 'Конфигурация ACPI';
+
+  @override
+  String get booterConfigTab => 'Конфигурация загрузчика';
+
+  @override
+  String get kernelConfigTab => 'Конфигурация ядра';
+
+  @override
+  String get uefiConfigTab => 'Конфигурация UEFI';
+
+  @override
+  String get lookupLayoutId => 'Идентификатор макета поиска';
+
+  @override
+  String get visitChris1111Repo => 'Посетите репозиторий chris1111';
+
+  @override
+  String get supportedMacOsVersions => 'Поддерживаемые версии MacOS:';
+
+  @override
+  String get supportedUsbWifiChipsets => 'Поддерживаемые чипсеты USB Wi-Fi:';
+
+  @override
+  String get selectUtbMap => 'Выберите UTBMap';
+
+  @override
+  String get selectUtbMapHint =>
+      'Выберите сопоставленный UTBMap.kext, созданный с помощью USBToolBox.';
+
+  @override
+  String get reprocessEfiSubtitle =>
+      '(Повторно обработайте EFI, созданный RapidEFI)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI автоматически выводит файл configModel в папке EFI. Импортируйте этот файл ниже, чтобы перезагрузить и настроить конфигурацию EFI.';
+
+  @override
+  String get reprocessEfiVersionNote =>
+      'Эта функция поддерживается в RapidEFI V3.0.0 и выше.';
+
+  @override
+  String get dropConfigModelHint =>
+      'Перетащите сюда файл configModel или нажмите, чтобы просмотреть.';
+
+  @override
+  String get offLabel => 'Выключенный';
+
+  @override
+  String get onLabel => 'На';
+
+  @override
+  String get githubRepository => 'Репозиторий GitHub';
+
+  @override
+  String get releasesAndUpdates => 'Релизы и обновления';
+
+  @override
+  String get projectDocumentation => 'Проектная документация';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI — это автоматизированный генератор EFI OpenCore с открытым исходным кодом, средство исправления ACPI/SSDT и инструмент анализа оборудования, созданный для энтузиастов Hackintosh и macOS.\n\nСоздано и поддерживается с любовью. Поставьте звездочку и создайте форк проекта на GitHub, чтобы поддержать текущую разработку!';
+
+  @override
+  String get checkApplicableOptions => '(Отметьте подходящие варианты)';
+
+  @override
+  String get optionalCheckApplicableOptions =>
+      '(Необязательно — отметьте применимые варианты)';
+
+  @override
+  String get appleAlcUsedByDefault =>
+      '(Драйвер AppleALC используется по умолчанию)';
+
+  @override
+  String get noEthernetDriverByDefault =>
+      '(Драйвер Ethernet не добавлен по умолчанию)';
+
+  @override
+  String get usbInjectAllByDefault =>
+      '(USBInjectAll используется по умолчанию)';
+
+  @override
+  String get verboseModeByDefault =>
+      '(-v подробный режим включен по умолчанию; снимите флажок, чтобы отключить)';
+
+  @override
+  String get optionalDriversSubtitle =>
+      '(Дополнительные драйверы — не нужны, если не требуются)';
+
+  @override
+  String get keepDefaultsSubtitle =>
+      '(Сохраняйте значения по умолчанию, если не требуется специальная настройка)';
+
+  @override
+  String get optionalCheckDeviceBrand =>
+      'Необязательно: проверьте, соответствует ли марка вашего устройства';
+
+  @override
+  String get optionalCheckMotherboardModel =>
+      'Необязательно — проверьте, соответствует ли модель материнской платы';
+
+  @override
+  String get optionalConfigureSip =>
+      'Необязательно — настройте SIP по мере необходимости (по умолчанию отключено)';
+
+  @override
+  String get optionalCustomCpuName => 'Необязательно — пользовательское имя ЦП';
+
+  @override
+  String get optionalAdjustUiScale =>
+      'Необязательно: отрегулируйте масштаб пользовательского интерфейса загрузки OpenCore.';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI — патчи SSDT';
+
+  @override
+  String get acpiPatches => 'ACPI — Патчи';
+
+  @override
+  String get kernelPatches => 'Ядро — Патчи';
+
+  @override
+  String get powerManagement => 'Управление питанием';
+
+  @override
+  String get ssdApfsTrimPolicy => 'Политика обрезки APFS для NVMe/SATA SSD';
+
+  @override
+  String get kernelQuirksSubtitle =>
+      'Ядро — особенности (рекомендуются настройки по умолчанию, если не требуются специальные исправления)';
+
+  @override
+  String get uefiDriversSubtitle =>
+      'UEFI — Драйверы (сохраняйте конфигурации по умолчанию, если не возникнут особые потребности)';
+
+  @override
+  String get uefiOutputSubtitle =>
+      'UEFI — вывод (рекомендуются настройки по умолчанию)';
+
+  @override
+  String get method1Title =>
+      'Способ 1: переименуйте «GPRW в XPRW» (исправление мгновенного пробуждения)';
+
+  @override
+  String get method2Title =>
+      'Способ 2. Переименуйте «UPRW в XPRW» (исправление мгновенного пробуждения)';
+
+  @override
+  String get method3Title =>
+      'Способ 3: переименовать «RTC Fix» (исправить выключение RTC/сброс CMOS)';
+
+  @override
+  String get method4Title =>
+      'Способ 4: переименуйте «Battery Fix» (поддержка 16-битных и 8-битных патчей батареи)';
+
+  @override
+  String get pciPathLabel => 'Путь PCI dGPU:';
+
+  @override
+  String get pciPathPlaceholder => 'Введите путь PCI';
+
+  @override
+  String get spoofedDeviceIdLabel => 'Поддельный идентификатор устройства:';
+
+  @override
+  String get spoofedDeviceIdPlaceholder =>
+      'Выберите устройство графического процессора для подделки';
+
+  @override
+  String get injectDisplayEdidLabel =>
+      'Вставить EDID дисплея (обычно 256 или 512 шестнадцатеричных символов):';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      'Введите отображаемый EDID (обычно 256 или 512 шестнадцатеричных символов; допускаются пробелы и переводы строк).';
+
+  @override
+  String get failed => 'Не удалось';
+
+  @override
+  String get method1 => 'Метод 1';
+
+  @override
+  String get method2 => 'Метод 2';
+
+  @override
+  String get method3 => 'Метод 3';
+
+  @override
+  String get method4 => 'Метод 4';
+
+  @override
+  String get optionalKextDrivers => 'Дополнительные драйверы Kext';
+
+  @override
+  String get optionalKextSubTitle =>
+      'Выберите дополнительные драйверы kext в зависимости от вашего оборудования';
+
+  @override
+  String get brandConfigTab => 'Бренд';
+
+  @override
+  String get optionalSettings => 'Дополнительные настройки';
+
+  @override
+  String get optionalSettingsSubTitle =>
+      'Выберите дополнительные опциональные конфигурации';
+
+  @override
+  String get optionalCheckMotherboard => 'Особые параметры материнской платы';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI автоматически создает файл configModel внутри папки EFI.\nИмпортируйте этот файл ниже, чтобы перезагрузить и настроить конфигурацию EFI.\n\nЭта функция поддерживается в RapidEFI V3.0.0 и выше.';
+
+  @override
+  String get releaseToReimportConfigModel =>
+      'Отпустите, чтобы повторно импортировать configModel';
+
+  @override
+  String get invalidConfigFileMessage =>
+      'Неверный файл конфигурации. Пожалуйста, выберите действительный файл configModel.';
+
+  @override
+  String get ethernetTitle => 'Драйверы Ethernet:';
+
+  @override
+  String get usbTitle => 'Драйверы USB:';
+
+  @override
+  String get ssdtCoreOfficial => '* Основной (Официальный)';
+
+  @override
+  String get ssdtRecommendedFixes => '* Рекомендуемые (Исправления)';
+
+  @override
+  String get ssdtOptionalEnhancements => '* Дополнительно (Улучшения)';
+
+  @override
+  String get platformDesktop => 'Настольный ПК';
+
+  @override
+  String get platformLaptop => 'Ноутбук';
+
+  @override
+  String get platformNucMini => 'NUC / Мини-ПК';
+
+  @override
+  String get platformHedtServer => 'HEDT / Сервер';
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/extension/list_extension.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel.dart';
 import 'package:rapidefi/utils/config/presets/patches/kernel_patch.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_quirks.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class KernelWidget extends StatefulWidget {
   const KernelWidget({
@@ -65,23 +65,24 @@ class _KernelWidgetState extends State<KernelWidget> {
   Widget build(BuildContext context) {
     return ScrollableChoiceListPanel(
       children: [
-        _buildKernelPatchesChoiceList(),
-        _buildDummyPowerManagementChoiceList(),
-        _buildTrimChoiceList(),
-        _buildQuirksChoiceList(),
+        _buildKernelPatchesChoiceList(context),
+        _buildDummyPowerManagementChoiceList(context),
+        _buildTrimChoiceList(context),
+        _buildQuirksChoiceList(context),
       ],
     );
   }
 
-  Widget _buildDummyPowerManagementChoiceList() {
-    return ChoiceList(
-      choices: [powerManagementText],
-      selectedChoices: [dummyPowerManagement ? powerManagementText : ''],
+  Widget _buildDummyPowerManagementChoiceList(BuildContext context) {
+    final translatedPowerText = HackintoshDetailsTranslator.translate(powerManagementText, context: context);
+    return ChoiceList<String>(
+      choices: [translatedPowerText],
+      selectedChoices: [dummyPowerManagement ? translatedPowerText : ''],
       allowToggle: true,
-      subTitle: 'Power Management',
+      subTitle: HackintoshDetailsTranslator.translate('Power Management', context: context),
       onChanged: (value) {
-        // Extract update state logic into method
-        updateDummyPowerManagement(value.isEmpty);
+        final validValues = value.where((item) => item.isNotEmpty).toList();
+        updateDummyPowerManagement(validValues.isEmpty);
       },
     );
   }
@@ -93,16 +94,17 @@ class _KernelWidgetState extends State<KernelWidget> {
         .copyWith(dummyPowerManagement: dummyPowerManagement));
   }
 
-  Widget _buildKernelPatchesChoiceList() {
-    return ChoiceList(
+  Widget _buildKernelPatchesChoiceList(BuildContext context) {
+    final translatedRtcWake = HackintoshDetailsTranslator.translate(rtcWake, context: context);
+    return ChoiceList<String>(
       showTip: true,
-      choices: [rtcWake],
-      selectedChoices: [rtcWakeFix ? rtcWake : ''],
+      choices: [translatedRtcWake],
+      selectedChoices: [rtcWakeFix ? translatedRtcWake : ''],
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: 'Kernel - Patches',
+      subTitle: HackintoshDetailsTranslator.translate('Kernel - Patches', context: context),
       onChanged: (value) {
-        rtcWakeFix = value.any((e) => e == rtcWake);
+        rtcWakeFix = value.any((e) => e == translatedRtcWake);
         final patches = widget.kernel.kernelPatchItems ?? [];
         if (rtcWakeFix) {
           if (!patches.any(
@@ -119,14 +121,17 @@ class _KernelWidgetState extends State<KernelWidget> {
     );
   }
 
-  Widget _buildQuirksChoiceList() {
-    return ChoiceList(
+  Widget _buildQuirksChoiceList(BuildContext context) {
+    return ChoiceList<String>(
       showTip: true,
       choices: choices,
       selectedChoices: selectedChoices,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: 'Kernel - Quirks (Default settings recommended unless specific fixes needed)',
+      subTitle: HackintoshDetailsTranslator.translate(
+        'Kernel - Quirks (Default settings recommended unless specific fixes needed)',
+        context: context,
+      ),
       onChanged: (value) {
         selectedChoices = List<String>.from(value);
         final selected = selectedChoices.toSet();
@@ -138,23 +143,31 @@ class _KernelWidgetState extends State<KernelWidget> {
     );
   }
 
-  Widget _buildTrimChoiceList() {
+  Widget _buildTrimChoiceList(BuildContext context) {
     final kernelTrims = ConfigKernel.kernelTrims;
-    return ChoiceList(
+    final translatedChoices = kernelTrims
+        .map((e) => HackintoshDetailsTranslator.translate(e.comment, context: context))
+        .toList();
+    final translatedSelected = kernelTrims
+        .where((e) => e.value == widget.kernel.kernelQuirks.setApfsTrimTimeout)
+        .map((e) => HackintoshDetailsTranslator.translate(e.comment, context: context))
+        .toList();
+    final translatedTips = kernelTrims
+        .map((e) => e.note.map((n) => HackintoshDetailsTranslator.translate(n, context: context)).join(' '))
+        .toList();
+
+    return ChoiceList<String>(
       showTip: true,
-      choices: kernelTrims.map((e) => e.comment).toList(),
-      selectedChoices: kernelTrims
-          .where(
-              (e) => e.value == widget.kernel.kernelQuirks.setApfsTrimTimeout)
-          .map((e) => e.comment)
-          .toList(),
+      choices: translatedChoices,
+      selectedChoices: translatedSelected,
       allowToggle: false,
-      subTitle: 'NVMe / SATA SSD APFS Trim Policy',
-      tiplist: kernelTrims.map((e) => e.note.description).toList(),
+      subTitle: HackintoshDetailsTranslator.translate('NVMe / SATA SSD APFS Trim Policy', context: context),
+      tiplist: translatedTips,
       onChanged: (value) {
         final selectedComment = value.first;
-        final selectedTrim =
-            kernelTrims.firstWhere((e) => e.comment == selectedComment);
+        final selectedTrim = kernelTrims.firstWhere((e) =>
+            HackintoshDetailsTranslator.translate(e.comment, context: context) ==
+            selectedComment);
         widget.onChanged.call(selectedTrim.value);
       },
     );

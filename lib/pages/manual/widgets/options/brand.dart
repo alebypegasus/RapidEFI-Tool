@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/models/enums/brand_enum.dart';
@@ -26,6 +27,7 @@ class _BrandWidgetState extends State<BrandWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final choices = Brand.values
         .where((element) => element != Brand.none)
         .map((e) => e.value)
@@ -36,7 +38,7 @@ class _BrandWidgetState extends State<BrandWidget> {
         selectedChoices: [brand.value],
         isMultipleSelection: false,
         allowToggle: true,
-        subTitle: "Optional - Check if your device brand matches",
+        subTitle: l10n?.optionalCheckDeviceBrand ?? "Optional - Check if your device brand matches",
         onChanged: (List<String> value) {
           String? selectedValue = value.firstOrNull;
           brand = Brand.values.firstWhere(

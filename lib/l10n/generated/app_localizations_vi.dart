@@ -688,4 +688,350 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(Dành cho hệ thống máy tính xách tay)';
+
+  @override
+  String get basicConfig => 'Cấu hình cơ bản';
+
+  @override
+  String get advancedConfig => 'Cấu hình nâng cao';
+
+  @override
+  String get portCustomization => 'Tùy chỉnh cổng';
+
+  @override
+  String get displayEdid => 'Hiển thị EDID';
+
+  @override
+  String get nvidiaDgpu => 'NVIDIA dGPU';
+
+  @override
+  String get amdDgpu => 'AMD dGPU';
+
+  @override
+  String get amdDgpuSpoof => 'Giả mạo AMD dGPU';
+
+  @override
+  String get intelWifi => 'Intel Wi-Fi';
+
+  @override
+  String get broadcomBrcm => 'Broadcom (Brcm)';
+
+  @override
+  String get atherosWifi => 'Atheros';
+
+  @override
+  String get usbWifi => 'Wi-Fi USB';
+
+  @override
+  String get bluetoothDrivers => 'Trình điều khiển Bluetooth';
+
+  @override
+  String get debuggingTab => 'Gỡ lỗi';
+
+  @override
+  String get amfiSipTab => 'AMFI / SIP';
+
+  @override
+  String get igpuFixesTab => 'Sửa lỗi iGPU';
+
+  @override
+  String get dgpuFixesTab => 'Sửa lỗi dGPU';
+
+  @override
+  String get blackScreenFixesTab => 'Sửa lỗi màn hình đen';
+
+  @override
+  String get above4gTab => 'Giải mã 4G trên';
+
+  @override
+  String get trackpadFixesTab => 'Sửa lỗi bàn di chuột';
+
+  @override
+  String get othersTab => 'Người khác';
+
+  @override
+  String get powerManagementTab => 'Quản lý nguồn điện';
+
+  @override
+  String get sleepHibernationTab => 'Ngủ/Ngủ đông';
+
+  @override
+  String get storageDiskTab => 'Lưu trữ / Đĩa';
+
+  @override
+  String get cpuFixesTab => 'Sửa lỗi CPU';
+
+  @override
+  String get amdPlatformTab => 'Nền tảng AMD';
+
+  @override
+  String get usbFixesTab => 'Sửa lỗi USB';
+
+  @override
+  String get sdCardTab => 'Thẻ SD';
+
+  @override
+  String get brandTab => 'Thương hiệu';
+
+  @override
+  String get specialMotherboardTab => 'Bo mạch chủ đặc biệt';
+
+  @override
+  String get sipSettingsTab => 'Cài đặt SIP';
+
+  @override
+  String get renameCpuTab => 'Đổi tên CPU';
+
+  @override
+  String get uiScaleTab => 'Quy mô giao diện người dùng';
+
+  @override
+  String get acpiConfigTab => 'Cấu hình ACPI';
+
+  @override
+  String get booterConfigTab => 'Cấu hình khởi động';
+
+  @override
+  String get kernelConfigTab => 'Cấu hình hạt nhân';
+
+  @override
+  String get uefiConfigTab => 'Cấu hình UEFI';
+
+  @override
+  String get lookupLayoutId => 'Tra cứu ID bố cục';
+
+  @override
+  String get visitChris1111Repo => 'Truy cập kho lưu trữ chris1111';
+
+  @override
+  String get supportedMacOsVersions => 'Các phiên bản macOS được hỗ trợ:';
+
+  @override
+  String get supportedUsbWifiChipsets => 'Chipset USB Wi-Fi được hỗ trợ:';
+
+  @override
+  String get selectUtbMap => 'Chọn UTBMap';
+
+  @override
+  String get selectUtbMapHint =>
+      'Chọn UTBMap.kext được ánh xạ được tạo bằng USBToolBox';
+
+  @override
+  String get reprocessEfiSubtitle => '(Xử lý lại EFI được tạo bởi RapidEFI)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI tự động xuất tệp configModel bên trong thư mục EFI. Nhập tệp này bên dưới để tải lại và tùy chỉnh cấu hình EFI của bạn.';
+
+  @override
+  String get reprocessEfiVersionNote =>
+      'Tính năng này được hỗ trợ trên RapidEFI V3.0.0 trở lên.';
+
+  @override
+  String get dropConfigModelHint =>
+      'Thả file configModel vào đây hoặc bấm để duyệt';
+
+  @override
+  String get offLabel => 'Tắt';
+
+  @override
+  String get onLabel => 'TRÊN';
+
+  @override
+  String get githubRepository => 'Kho lưu trữ GitHub';
+
+  @override
+  String get releasesAndUpdates => 'Phát hành & Cập nhật';
+
+  @override
+  String get projectDocumentation => 'Tài liệu dự án';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI là một trình tạo OpenCore EFI tự động, mã nguồn mở, trình vá ACPI/SSDT và công cụ phân tích phần cứng được xây dựng cho những người đam mê Hackintosh và macOS.\n\nĐược tạo ra và duy trì bằng tình yêu. Gắn dấu sao và phân nhánh dự án trên GitHub để hỗ trợ quá trình phát triển liên tục!';
+
+  @override
+  String get checkApplicableOptions => '(Kiểm tra các tùy chọn áp dụng)';
+
+  @override
+  String get optionalCheckApplicableOptions =>
+      '(Tùy chọn - kiểm tra các tùy chọn áp dụng)';
+
+  @override
+  String get appleAlcUsedByDefault =>
+      '(Trình điều khiển AppleALC được sử dụng theo mặc định)';
+
+  @override
+  String get noEthernetDriverByDefault =>
+      '(Không có trình điều khiển Ethernet nào được thêm vào theo mặc định)';
+
+  @override
+  String get usbInjectAllByDefault =>
+      '(USBInjectAll được sử dụng theo mặc định)';
+
+  @override
+  String get verboseModeByDefault =>
+      '(Chế độ dài dòng -v được bật theo mặc định; bỏ chọn để tắt)';
+
+  @override
+  String get optionalDriversSubtitle =>
+      '(Trình điều khiển tùy chọn - không cần thiết trừ khi được yêu cầu)';
+
+  @override
+  String get keepDefaultsSubtitle =>
+      '(Giữ mặc định trừ khi cần tùy chỉnh cụ thể)';
+
+  @override
+  String get optionalCheckDeviceBrand =>
+      'Tùy chọn - Kiểm tra xem nhãn hiệu thiết bị của bạn có khớp không';
+
+  @override
+  String get optionalCheckMotherboardModel =>
+      'Tùy chọn - Kiểm tra xem model bo mạch chủ có khớp không';
+
+  @override
+  String get optionalConfigureSip =>
+      'Tùy chọn - Định cấu hình SIP khi cần (Tắt theo mặc định)';
+
+  @override
+  String get optionalCustomCpuName => 'Tùy chọn - Tên CPU tùy chỉnh';
+
+  @override
+  String get optionalAdjustUiScale =>
+      'Tùy chọn - Điều chỉnh tỷ lệ giao diện người dùng khởi động OpenCore';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI - Bản vá SSDT';
+
+  @override
+  String get acpiPatches => 'ACPI - Bản vá';
+
+  @override
+  String get kernelPatches => 'Hạt nhân - Bản vá';
+
+  @override
+  String get powerManagement => 'Quản lý nguồn điện';
+
+  @override
+  String get ssdApfsTrimPolicy => 'Chính sách cắt APFS của SSD NVMe / SATA';
+
+  @override
+  String get kernelQuirksSubtitle =>
+      'Kernel - Quirks (Khuyến nghị cài đặt mặc định trừ khi cần sửa lỗi cụ thể)';
+
+  @override
+  String get uefiDriversSubtitle =>
+      'UEFI - Trình điều khiển (Giữ cấu hình mặc định trừ khi có nhu cầu cụ thể)';
+
+  @override
+  String get uefiOutputSubtitle =>
+      'UEFI - Đầu ra (Khuyến nghị cài đặt mặc định)';
+
+  @override
+  String get method1Title =>
+      'Phương pháp 1: Đổi tên “GPRW thành XPRW” (Sửa lỗi đánh thức tức thì)';
+
+  @override
+  String get method2Title =>
+      'Phương pháp 2: Đổi tên \'UPRW thành XPRW\' (Sửa lỗi đánh thức tức thì)';
+
+  @override
+  String get method3Title =>
+      'Cách 3: Đổi tên “RTC Fix” (Sửa lỗi RTC Power Off/CMOS Reset)';
+
+  @override
+  String get method4Title =>
+      'Cách 4: Đổi tên “Battery Fix” (Hỗ trợ các bản vá pin 16-bit đến 8-bit)';
+
+  @override
+  String get pciPathLabel => 'Đường dẫn PCI dGPU:';
+
+  @override
+  String get pciPathPlaceholder => 'Nhập đường dẫn PCI';
+
+  @override
+  String get spoofedDeviceIdLabel => 'ID thiết bị giả mạo:';
+
+  @override
+  String get spoofedDeviceIdPlaceholder => 'Chọn thiết bị GPU để giả mạo';
+
+  @override
+  String get injectDisplayEdidLabel =>
+      'Tiêm EDID hiển thị (thường là 256 hoặc 512 ký tự hex):';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      'Nhập EDID hiển thị (thường là 256 hoặc 512 ký tự hex; cho phép khoảng trắng và dòng mới)';
+
+  @override
+  String get failed => 'Thất bại';
+
+  @override
+  String get method1 => 'Phương pháp 1';
+
+  @override
+  String get method2 => 'Phương pháp 2';
+
+  @override
+  String get method3 => 'Phương pháp 3';
+
+  @override
+  String get method4 => 'Phương pháp 4';
+
+  @override
+  String get optionalKextDrivers => 'Trình điều khiển Kext tùy chọn';
+
+  @override
+  String get optionalKextSubTitle =>
+      'Chọn trình điều khiển kext tùy chọn theo phần cứng của bạn';
+
+  @override
+  String get brandConfigTab => 'Thương hiệu';
+
+  @override
+  String get optionalSettings => 'Cài đặt tùy chọn';
+
+  @override
+  String get optionalSettingsSubTitle => 'Chọn các cấu hình tùy chọn bổ sung';
+
+  @override
+  String get optionalCheckMotherboard => 'Tùy chọn bo mạch chủ đặc biệt';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI tự động tạo tệp configModel bên trong thư mục EFI.\nNhập tệp này bên dưới để tải lại và tùy chỉnh cấu hình EFI của bạn.\n\nTính năng này được hỗ trợ trên RapidEFI V3.0.0 trở lên.';
+
+  @override
+  String get releaseToReimportConfigModel => 'Thả để nhập lại configModel';
+
+  @override
+  String get invalidConfigFileMessage =>
+      'Tệp cấu hình không hợp lệ. Vui lòng chọn tệp configModel hợp lệ.';
+
+  @override
+  String get ethernetTitle => 'Trình điều khiển Ethernet:';
+
+  @override
+  String get usbTitle => 'Trình điều khiển USB:';
+
+  @override
+  String get ssdtCoreOfficial => '* Cốt lõi (Chính thức)';
+
+  @override
+  String get ssdtRecommendedFixes => '* Khuyến nghị (Sửa lỗi)';
+
+  @override
+  String get ssdtOptionalEnhancements => '* Tùy chọn (Cải tiến)';
+
+  @override
+  String get platformDesktop => 'Máy tính bàn';
+
+  @override
+  String get platformLaptop => 'Máy tính xách tay';
+
+  @override
+  String get platformNucMini => 'NUC / Mini PC';
+
+  @override
+  String get platformHedtServer => 'HEDT / Máy chủ';
 }

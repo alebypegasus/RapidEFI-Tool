@@ -30,13 +30,11 @@ class DgpuWidget extends StatefulWidget {
 
 class _DgpuWidgetState extends State<DgpuWidget> with TickerProviderStateMixin {
   late final TabController _tabController;
-  late final List<String> tabName;
 
   @override
   void initState() {
     super.initState();
-    tabName = ['NVIDIA dGPU', 'AMD dGPU', 'AMD dGPU Spoof'];
-    _tabController = TabController(vsync: this, length: tabName.length);
+    _tabController = TabController(vsync: this, length: 3);
   }
 
   @override
@@ -70,9 +68,14 @@ class _DgpuWidgetState extends State<DgpuWidget> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final tabName = [
+      l10n?.nvidiaDgpu ?? 'NVIDIA dGPU',
+      l10n?.amdDgpu ?? 'AMD dGPU',
+      l10n?.amdDgpuSpoof ?? 'AMD dGPU Spoof',
+    ];
     return TabbedTitleCard(
       title: l10n?.dgpuConfig ?? 'dGPU Configuration:',
-      subTitle: '(Optional - check applicable options)',
+      subTitle: l10n?.optionalCheckApplicableOptions ?? '(Optional - check applicable options)',
       initiallyExpanded: false,
       content: const OclpLinkButton(),
       controller: _tabController,

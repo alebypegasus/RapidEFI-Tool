@@ -6,6 +6,7 @@ import 'package:rapidefi/pages/manual/widgets/platform/os_version.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/smbios.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_chip_tile.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 import 'package:rapidefi/utils/config/models/enums/config_enums.dart';
 import 'package:rapidefi/utils/config/models/platform_info/pi_generic.dart';
 import 'package:rapidefi/utils/config/services/config_service.dart';
@@ -786,7 +787,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
                 Expanded(
                   flex: 5,
                   child: Text(
-                    item.remark,
+                    HackintoshDetailsTranslator.translate(item.remark, context: context),
                     style:
                         TextStyle(color: colorScheme.onSurface, fontSize: 12),
                     overflow: TextOverflow.ellipsis,
@@ -801,20 +802,21 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
   }
 
   Widget _buildLegend() {
+    final l10n = AppLocalizations.of(context);
     return Center(
       child: Wrap(
         spacing: 8,
-        children: const [
+        children: [
           _LegendText(
-            text: '* Core (Official)',
+            text: l10n?.ssdtCoreOfficial ?? '* Core (Official)',
             color: _PersonalizedEfiDialogState._basicColor,
           ),
           _LegendText(
-            text: '* Recommended (Fixes)',
+            text: l10n?.ssdtRecommendedFixes ?? '* Recommended (Fixes)',
             color: _PersonalizedEfiDialogState._recommendColor,
           ),
           _LegendText(
-            text: '* Optional (Enhancements)',
+            text: l10n?.ssdtOptionalEnhancements ?? '* Optional (Enhancements)',
             color: _PersonalizedEfiDialogState._optionalColor,
           ),
         ],
@@ -859,15 +861,16 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
   }
 
   String _platformTypeLabel(PlatformType platformType) {
+    final l10n = AppLocalizations.of(context);
     switch (platformType) {
       case PlatformType.desktop:
-        return 'Desktop';
+        return l10n?.platformDesktop ?? 'Desktop';
       case PlatformType.laptop:
-        return 'Laptop';
+        return l10n?.platformLaptop ?? 'Laptop';
       case PlatformType.nuc:
-        return 'NUC / Mini PC';
+        return l10n?.platformNucMini ?? 'NUC / Mini PC';
       case PlatformType.hedt:
-        return 'HEDT / Server';
+        return l10n?.platformHedtServer ?? 'HEDT / Server';
     }
   }
 }

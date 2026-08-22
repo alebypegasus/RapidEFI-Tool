@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/models/enums/csr_setting_enum.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class CSRWidget extends StatefulWidget {
   final ValueChanged onChanged;
@@ -27,26 +29,32 @@ class _CSRWidgetState extends State<CSRWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final choices = CsrSetting.values
+    final l10n = AppLocalizations.of(context);
+    final rawChoices = CsrSetting.values
         .where((element) => element != CsrSetting.none)
-        .map((e) => e.value)
         .toList();
-    final tips = CsrSetting.values
-        .where((element) => element != CsrSetting.none)
+    final choices = rawChoices
+        .map((e) => HackintoshDetailsTranslator.translate(e.value, context: context))
+        .toList();
+    final tips = rawChoices
         .map((e) => 'csr-active-config: ${e.nvramValue} ')
         .toList();
     return ScrollableChoiceListPanel(
-      child: ChoiceList(
+      child: ChoiceList<String>(
         tips: tips,
         choices: choices,
-        selectedChoices: [csrsetting.value],
+        selectedChoices: csrsetting != CsrSetting.none
+            ? [HackintoshDetailsTranslator.translate(csrsetting.value, context: context)]
+            : <String>[],
         isMultipleSelection: false,
         allowToggle: true,
-        subTitle: "Optional - Configure SIP as needed (Disabled by default)",
+        subTitle: l10n?.optionalConfigureSip ?? "Optional - Configure SIP as needed (Disabled by default)",
         onChanged: (List<String> value) {
           String? selectedValue = value.firstOrNull;
-          csrsetting = CsrSetting.values.firstWhere(
-            (type) => type.value == selectedValue,
+          csrsetting = rawChoices.firstWhere(
+            (type) =>
+                HackintoshDetailsTranslator.translate(type.value, context: context) ==
+                selectedValue,
             orElse: () => CsrSetting.none,
           );
           setState(() {});

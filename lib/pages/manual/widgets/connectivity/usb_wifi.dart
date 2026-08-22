@@ -1,7 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/link_button_row.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class USBWiFi extends StatefulWidget {
   final bool enableUSBWiFi;
@@ -13,18 +15,20 @@ class USBWiFi extends StatefulWidget {
 
 class _USBWiFiState extends State<USBWiFi> {
   late bool enableUSBWiFi = widget.enableUSBWiFi;
-  final String usbWiFiText =
+  static const String usbWiFiText =
       'Add USB Wi-Fi required driver Kexts (Note: In addition to enabling this driver, install the Wireless USB Big Sur Adapter application in macOS; restart if it does not take effect)';
-  final String tip = r'''
-  Supported macOS Versions:
-    • Wireless USB Big Sur Adapter V18: macOS Catalina 10.15.x ~ macOS Tahoe 26.x (Requires OCLP USB root patch)
-    • Wireless USB Big Sur Adapter V15: OS X Mavericks 10.9 ~ macOS Catalina 10.15.x
-  Supported USB Wi-Fi Chipsets:
-    • Primarily Realtek 802.11n and 802.11ac USB Wi-Fi Adapters; see author repository for detailed hardware lists
-  ''';
+  static const String tip = r'''
+Supported macOS Versions:
+  • Wireless USB Big Sur Adapter V18: macOS Catalina 10.15.x ~ macOS Tahoe 26.x (Requires OCLP USB root patch)
+  • Wireless USB Big Sur Adapter V15: OS X Mavericks 10.9 ~ macOS Catalina 10.15.x
+Supported USB Wi-Fi Chipsets:
+  • Primarily Realtek 802.11n and 802.11ac USB Wi-Fi Adapters; see author repository for detailed hardware lists
+''';
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final translatedUsbText = HackintoshDetailsTranslator.translate(usbWiFiText, context: context);
     return ScrollableChoiceListPanel(
       child: ChoiceList(
         header: Padding(
@@ -38,22 +42,22 @@ class _USBWiFiState extends State<USBWiFi> {
                   LinkButtonItem(
                     url:
                         'https://github.com/chris1111/Wireless-USB-Big-Sur-Adapter',
-                    buttonText: 'Visit chris1111 Repository',
+                    buttonText: l10n?.visitChris1111Repo ?? 'Visit chris1111 Repository',
                     icon: FluentIcons.open_source,
                   ),
                 ],
               ),
               Text(
-                tip,
+                HackintoshDetailsTranslator.translate(tip.trim(), context: context),
                 style: const TextStyle(fontSize: 12),
               ),
             ],
           ),
         ),
         choices: [
-          usbWiFiText,
+          translatedUsbText,
         ],
-        selectedChoices: [enableUSBWiFi ? usbWiFiText : ''],
+        selectedChoices: [enableUSBWiFi ? translatedUsbText : ''],
         isMultipleSelection: true,
         allowToggle: true,
         onChanged: (List<String> value) {

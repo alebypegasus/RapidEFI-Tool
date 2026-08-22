@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/nvram/boot_arg_model.dart';
 import 'package:rapidefi/utils/config/presets/sections/config_nvram.dart';
 import 'package:rapidefi/utils/config/services/config_option_provider.dart';
-import 'package:rapidefi/pages/shared/widgets/boot_arg_choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/categorized_choice_list_card.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class BootArgs extends StatefulWidget {
   const BootArgs({super.key, this.revision = 0});
@@ -128,38 +129,42 @@ class _BootArgsState extends State<BootArgs> with TickerProviderStateMixin {
   }
 
   ChoiceListCategory<String> _buildChoiceListCategory(
+    BuildContext context,
     _BootArgCategory category,
     ConfigOptionProvider provider,
   ) {
+    final selectedArgs = provider.selectedBootArgs.map((m) => m.arg).toSet();
+    final selectedChoices = category.options
+        .where((m) => selectedArgs.contains(m.arg))
+        .map((m) => HackintoshDetailsTranslator.translate(m.comment, context: context))
+        .toList();
+
     return ChoiceListCategory<String>(
-      name: category.name,
-      tips: BootArgChoiceMapper.tips(category.options),
-      choices: BootArgChoiceMapper.choices(category.options),
-      selectedChoices: BootArgChoiceMapper.selectedChoices(
-        options: category.options,
-        selectedBootArgs: provider.selectedBootArgs,
-      ),
+      name: HackintoshDetailsTranslator.translate(category.name, context: context),
+      tips: category.options.map((m) => m.arg).toList(),
+      choices: category.options
+          .map((m) => HackintoshDetailsTranslator.translate(m.comment, context: context))
+          .toList(),
+      selectedChoices: selectedChoices,
       onChanged: (List<String> value) {
-        provider.updateBootArgsForOptions(
-          category.options,
-          BootArgChoiceMapper.selectedModels(
-            options: category.options,
-            selectedChoices: value,
-          ),
-        );
+        final selected = category.options
+            .where((m) => value.contains(HackintoshDetailsTranslator.translate(m.comment, context: context)))
+            .toSet();
+        provider.updateBootArgsForOptions(category.options, selected);
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Consumer<ConfigOptionProvider>(builder: (context, provider, child) {
       return CategorizedChoiceListCard<String>(
-        title: "Boot Arguments:",
-        subTitle: "(-v verbose mode enabled by default; uncheck to disable)",
+        title: l10n?.bootArgsTitle ?? "Boot Arguments (boot-args):",
+        subTitle: HackintoshDetailsTranslator.translate("(-v verbose mode enabled by default; uncheck to disable)", context: context),
         controller: _tabController,
         categories: _categories
-            .map((category) => _buildChoiceListCategory(category, provider))
+            .map((category) => _buildChoiceListCategory(context, category, provider))
             .toList(),
       );
     });

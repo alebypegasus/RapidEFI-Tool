@@ -5,8 +5,8 @@ import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart'
 import 'package:rapidefi/utils/config/models/booter/booter.dart';
 import 'package:rapidefi/utils/config/models/booter/booter_quirk_type.dart';
 import 'package:rapidefi/utils/config/models/booter/booter_quirks.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 import 'package:rapidefi/widgets/radio_option_group.dart';
-
 
 class BooterWidget extends StatefulWidget {
   const BooterWidget({
@@ -30,8 +30,8 @@ class _BooterWidgetState extends State<BooterWidget> {
   static const String _schemeInverseWithVirtualMap = 'Method 3';
   static const String _schemeAllEnabled = 'Method 4';
 
-  late List<String> choices;
-  late List<String> selectedChoices;
+  late List<String> rawChoices;
+  late List<String> rawSelectedChoices;
   late BooterQuirks _defaultQuirks;
   String _selectedScheme = _schemeDefault;
 
@@ -55,8 +55,8 @@ class _BooterWidgetState extends State<BooterWidget> {
   }
 
   void _syncFromWidget() {
-    choices = widget.booterQuirkTypes.map((e) => e.comment).toList();
-    selectedChoices = _selectedChoicesFromQuirks(widget.booter.booterQuirks);
+    rawChoices = widget.booterQuirkTypes.map((e) => e.comment).toList();
+    rawSelectedChoices = _selectedChoicesFromQuirks(widget.booter.booterQuirks);
   }
 
   void _applyScheme(String scheme) {
@@ -80,7 +80,7 @@ class _BooterWidgetState extends State<BooterWidget> {
 
     setState(() {
       _selectedScheme = scheme;
-      selectedChoices = _selectedChoicesFromQuirks(booterQuirks);
+      rawSelectedChoices = _selectedChoicesFromQuirks(booterQuirks);
     });
     widget.onChanged.call(booterQuirks);
   }
@@ -96,11 +96,18 @@ class _BooterWidgetState extends State<BooterWidget> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final translatedChoices = rawChoices
+        .map((c) => HackintoshDetailsTranslator.translate(c, context: context))
+        .toList();
+    final translatedSelected = rawSelectedChoices
+        .map((c) => HackintoshDetailsTranslator.translate(c, context: context))
+        .toList();
+
     return ScrollableChoiceListPanel(
-      child: ChoiceList(
+      child: ChoiceList<String>(
         showTip: true,
-        choices: choices,
-        selectedChoices: selectedChoices,
+        choices: translatedChoices,
+        selectedChoices: translatedSelected,
         isMultipleSelection: true,
         allowToggle: true,
         header: Padding(
@@ -112,16 +119,16 @@ class _BooterWidgetState extends State<BooterWidget> {
               Text(l10n?.stuckOnEbFix ?? 'Stuck on [EB] Fix (Optional - defaults recommended):'),
               RadioOptionGroup(
                 groupValue: _selectedScheme,
-                options: const [
-                  RadioOptionData(value: _schemeDefault, label: _schemeDefault),
-                  RadioOptionData(value: _schemeInverse, label: _schemeInverse),
+                options: [
+                  RadioOptionData(value: _schemeDefault, label: l10n?.method1 ?? 'Method 1'),
+                  RadioOptionData(value: _schemeInverse, label: l10n?.method2 ?? 'Method 2'),
                   RadioOptionData(
                     value: _schemeInverseWithVirtualMap,
-                    label: _schemeInverseWithVirtualMap,
+                    label: l10n?.method3 ?? 'Method 3',
                   ),
                   RadioOptionData(
                     value: _schemeAllEnabled,
-                    label: _schemeAllEnabled,
+                    label: l10n?.method4 ?? 'Method 4',
                   ),
                 ],
                 onChanged: _applyScheme,
@@ -129,10 +136,9 @@ class _BooterWidgetState extends State<BooterWidget> {
             ],
           ),
         ),
-
         onChanged: (value) {
           final selectedQuirkTypes = widget.booterQuirkTypes
-              .where((e) => value.contains(e.comment))
+              .where((e) => value.contains(HackintoshDetailsTranslator.translate(e.comment, context: context)))
               .toList();
 
           final list = selectedQuirkTypes.map((e) => e.name).toList();
@@ -144,7 +150,7 @@ class _BooterWidgetState extends State<BooterWidget> {
           final booterQuirks = BooterQuirks.fromJson(propertiesMap);
 
           setState(() {
-            selectedChoices = List<String>.from(value);
+            rawSelectedChoices = selectedQuirkTypes.map((e) => e.comment).toList();
           });
 
           widget.onChanged.call(booterQuirks);

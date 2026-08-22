@@ -6,6 +6,7 @@ import 'package:rapidefi/utils/config/presets/sections/config_acpi.dart';
 
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 class AcpiSsdtWidget extends StatefulWidget {
   const AcpiSsdtWidget(
@@ -17,8 +18,8 @@ class AcpiSsdtWidget extends StatefulWidget {
 }
 
 class _AcpiSsdtWidgetState extends State<AcpiSsdtWidget> {
-  late List<String> choices;
-  late List<String> selectedSsdtChoices;
+  late List<String> rawChoices;
+  late List<String> rawSelectedSsdtChoices;
   late List<AcpiPatchItem> selectedPatchChoices;
 
   @override
@@ -35,10 +36,10 @@ class _AcpiSsdtWidgetState extends State<AcpiSsdtWidget> {
   }
 
   void initializeChoices() {
-    choices = ConfigAcpi.fixSSDTs.map((e) => e.note).toList();
+    rawChoices = ConfigAcpi.fixSSDTs.map((e) => e.note).toList();
     final pathToNoteMap = {for (var e in ConfigAcpi.fixSSDTs) e.path: e.note};
 
-    selectedSsdtChoices = widget.acpi.acpiAddItems.map((e) {
+    rawSelectedSsdtChoices = widget.acpi.acpiAddItems.map((e) {
       return (e.note.isNotEmpty) ? e.note : pathToNoteMap[e.path] ?? '';
     }).toList();
     selectedPatchChoices = AcpiPatch.patchChoicesList
@@ -54,38 +55,46 @@ class _AcpiSsdtWidgetState extends State<AcpiSsdtWidget> {
   Widget build(BuildContext context) {
     return ScrollableChoiceListPanel(
       children: [
-        _buildSSDTChoiceList(),
-        _buildPatchChoiceList(),
+        _buildSSDTChoiceList(context),
+        _buildPatchChoiceList(context),
       ],
     );
   }
 
-  Widget _buildPatchChoiceList() {
+  Widget _buildPatchChoiceList(BuildContext context) {
     return ChoiceList<AcpiPatchItem>(
       showTip: true,
       choices: AcpiPatch.patchChoicesList,
       selectedChoices: selectedPatchChoices,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: 'ACPI - Patches',
-      labelBuilder: (patch) => patch.note,
+      subTitle: HackintoshDetailsTranslator.translate('ACPI - Patches', context: context),
+      labelBuilder: (patch) => HackintoshDetailsTranslator.translate(patch.note, context: context),
       onChanged: (value) {
         widget.onChanged.call(value.map((patch) => patch.copyWith()).toList());
       },
     );
   }
 
-  Widget _buildSSDTChoiceList() {
-    return ChoiceList(
+  Widget _buildSSDTChoiceList(BuildContext context) {
+    final translatedChoices = rawChoices
+        .map((note) => HackintoshDetailsTranslator.translate(note, context: context))
+        .toList();
+    final translatedSelected = rawSelectedSsdtChoices
+        .map((note) => HackintoshDetailsTranslator.translate(note, context: context))
+        .toList();
+
+    return ChoiceList<String>(
       showTip: true,
-      choices: choices,
-      selectedChoices: selectedSsdtChoices,
+      choices: translatedChoices,
+      selectedChoices: translatedSelected,
       isMultipleSelection: true,
       allowToggle: true,
-      subTitle: 'ACPI - SSDT Patches',
+      subTitle: HackintoshDetailsTranslator.translate('ACPI - SSDT Patches', context: context),
       onChanged: (value) {
-        final fixAcpiItems =
-            ConfigAcpi.fixSSDTs.where((e) => value.contains(e.note)).toList();
+        final fixAcpiItems = ConfigAcpi.fixSSDTs
+            .where((e) => value.contains(HackintoshDetailsTranslator.translate(e.note, context: context)))
+            .toList();
         widget.onChanged.call(fixAcpiItems);
       },
     );

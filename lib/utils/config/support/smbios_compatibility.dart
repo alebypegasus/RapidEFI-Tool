@@ -146,11 +146,9 @@ class SMBIOSCompatibility {
     PlatformInfoGeneric smbios, {
     String langCode = 'en',
   }) {
-    final range = supportRange(smbios);
     return HackintoshDetailsTranslator.translateSmbiosDescription(
       smbios.systemProductName,
       langCode,
-      fallbackRange: range,
     );
   }
 }

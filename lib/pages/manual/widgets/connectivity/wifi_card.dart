@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/connectivity/bluetooth_widget.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
 
 import 'package:rapidefi/pages/manual/widgets/connectivity/brcm_wifi.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
@@ -155,6 +156,15 @@ class _WifiCardState extends State<WifiCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final titles = [
+      l10n?.intelWifi ?? "Intel Wi-Fi",
+      l10n?.broadcomBrcm ?? "Broadcom (Brcm)",
+      l10n?.atherosWifi ?? "Atheros",
+      l10n?.usbWifi ?? "USB Wi-Fi",
+      l10n?.bluetoothDrivers ?? "Bluetooth Drivers"
+    ];
+
     final subviews = [
       StateKeepContainer(
         child: ScrollableChoiceListPanel(
@@ -163,16 +173,19 @@ class _WifiCardState extends State<WifiCard> {
               choices: [],
               header: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: const Text(
-                  'Option 1: AirportItlwm driver. Native Apple Wi-Fi UI for Intel cards (large size). Do NOT use concurrently with Option 2 (itlwm) to avoid kernel panics!',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                child: Text(
+                  HackintoshDetailsTranslator.translate(
+                    'Option 1: AirportItlwm driver. Native Apple Wi-Fi UI for Intel cards (large size). Do NOT use concurrently with Option 2 (itlwm) to avoid kernel panics!',
+                    context: context,
+                  ),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               footer: WifiTypeWidget(
                 choices: intelAirportOptions,
                 selectedChoices: intelSelectedChoices,
                 isMultipleSelection: true,
-                expandTitle: 'Include all Wi-Fi drivers below (larger size)',
+                expandTitle: HackintoshDetailsTranslator.translate('Include all Wi-Fi drivers below (larger size)', context: context),
                 onChanged: (List<KernelKext> value) {
                   _handleIntelSelectionChange.call(value);
                 },
@@ -182,9 +195,12 @@ class _WifiCardState extends State<WifiCard> {
               choices: [intelItlwmOption],
               header: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: const Text(
-                  'Option 2: itlwm driver (requires HeliPort app). Compatible Intel Wi-Fi driver. Do NOT use concurrently with Option 1!',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                child: Text(
+                  HackintoshDetailsTranslator.translate(
+                    'Option 2: itlwm driver (requires HeliPort app). Compatible Intel Wi-Fi driver. Do NOT use concurrently with Option 1!',
+                    context: context,
+                  ),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               selectedChoices: itlwmSelected ? [intelItlwmOption] : [],
@@ -215,11 +231,14 @@ class _WifiCardState extends State<WifiCard> {
       StateKeepContainer(
         child: ScrollableChoiceListPanel(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 10, left: 10),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10),
               child: Text(
-                "Atheros drivers support macOS Mojave 10.14 ~ macOS Sequoia 15! Note: macOS Monterey 12+ requires OCLP root patching!",
-                style: TextStyle(fontSize: 12),
+                HackintoshDetailsTranslator.translate(
+                  "Atheros drivers support macOS Mojave 10.14 ~ macOS Sequoia 15! Note: macOS Monterey 12+ requires OCLP root patching!",
+                  context: context,
+                ),
+                style: const TextStyle(fontSize: 12),
               ),
             ),
             WifiTypeWidget(
@@ -257,7 +276,6 @@ class _WifiCardState extends State<WifiCard> {
       );
     });
 
-    final l10n = AppLocalizations.of(context);
     return TitleCard(
       title: l10n?.wifiBluetoothDrivers ?? "Wi-Fi & Bluetooth Drivers:",
       subTitle: l10n?.noWifiDriversByDefault ?? "(No Wi-Fi drivers configured by default)",

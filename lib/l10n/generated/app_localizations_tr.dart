@@ -693,4 +693,353 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(Dizüstü Bilgisayarlar İçin)';
+
+  @override
+  String get basicConfig => 'Temel Yapılandırma';
+
+  @override
+  String get advancedConfig => 'Gelişmiş Yapılandırma';
+
+  @override
+  String get portCustomization => 'Bağlantı Noktası Özelleştirmesi';
+
+  @override
+  String get displayEdid => 'EDID\'yi görüntüle';
+
+  @override
+  String get nvidiaDgpu => 'NVIDIA dGPU\'su';
+
+  @override
+  String get amdDgpu => 'AMD dGPU\'su';
+
+  @override
+  String get amdDgpuSpoof => 'AMD dGPU Sahtekarlığı';
+
+  @override
+  String get intelWifi => 'Intel Wi-Fi';
+
+  @override
+  String get broadcomBrcm => 'Broadcom (Brcm)';
+
+  @override
+  String get atherosWifi => 'Ateros';
+
+  @override
+  String get usbWifi => 'USB Wi-Fi';
+
+  @override
+  String get bluetoothDrivers => 'Bluetooth Sürücüleri';
+
+  @override
+  String get debuggingTab => 'Hata ayıklama';
+
+  @override
+  String get amfiSipTab => 'AMFI / SIP';
+
+  @override
+  String get igpuFixesTab => 'iGPU Düzeltmeleri';
+
+  @override
+  String get dgpuFixesTab => 'dGPU Düzeltmeleri';
+
+  @override
+  String get blackScreenFixesTab => 'Siyah Ekran Düzeltmeleri';
+
+  @override
+  String get above4gTab => '4G Kod Çözme Üstü';
+
+  @override
+  String get trackpadFixesTab => 'İzleme Dörtgeni Düzeltmeleri';
+
+  @override
+  String get othersTab => 'Diğerleri';
+
+  @override
+  String get powerManagementTab => 'Güç Yönetimi';
+
+  @override
+  String get sleepHibernationTab => 'Uyku / Hazırda Bekletme';
+
+  @override
+  String get storageDiskTab => 'Depolama / Disk';
+
+  @override
+  String get cpuFixesTab => 'CPU Düzeltmeleri';
+
+  @override
+  String get amdPlatformTab => 'AMD Platformu';
+
+  @override
+  String get usbFixesTab => 'USB Düzeltmeleri';
+
+  @override
+  String get sdCardTab => 'SD Kart';
+
+  @override
+  String get brandTab => 'Marka';
+
+  @override
+  String get specialMotherboardTab => 'Özel Anakart';
+
+  @override
+  String get sipSettingsTab => 'SIP Ayarları';
+
+  @override
+  String get renameCpuTab => 'CPU\'yu yeniden adlandır';
+
+  @override
+  String get uiScaleTab => 'Kullanıcı Arayüzü Ölçeği';
+
+  @override
+  String get acpiConfigTab => 'ACPI Yapılandırması';
+
+  @override
+  String get booterConfigTab => 'Önyükleyici Yapılandırması';
+
+  @override
+  String get kernelConfigTab => 'Çekirdek Yapılandırması';
+
+  @override
+  String get uefiConfigTab => 'UEFI Yapılandırması';
+
+  @override
+  String get lookupLayoutId => 'Arama Düzeni Kimliği';
+
+  @override
+  String get visitChris1111Repo => 'chris1111 Deposunu ziyaret edin';
+
+  @override
+  String get supportedMacOsVersions => 'Desteklenen macOS Sürümleri:';
+
+  @override
+  String get supportedUsbWifiChipsets => 'Desteklenen USB Wi-Fi Yonga Setleri:';
+
+  @override
+  String get selectUtbMap => 'UTBMap\'i seçin';
+
+  @override
+  String get selectUtbMapHint =>
+      'USBToolBox ile oluşturulan eşlenmiş UTBMap.kext\'i seçin';
+
+  @override
+  String get reprocessEfiSubtitle =>
+      '(RapidEFI tarafından oluşturulan bir EFI\'yi yeniden işleyin)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI, EFI klasörü içinde otomatik olarak bir configModel dosyası çıkarır. EFI yapılandırmanızı yeniden yüklemek ve özelleştirmek için aşağıdaki dosyayı içe aktarın.';
+
+  @override
+  String get reprocessEfiVersionNote =>
+      'Bu özellik RapidEFI V3.0.0 ve üzeri sürümlerde desteklenmektedir.';
+
+  @override
+  String get dropConfigModelHint =>
+      'ConfigModel dosyasını buraya bırakın veya göz atmak için tıklayın';
+
+  @override
+  String get offLabel => 'Kapalı';
+
+  @override
+  String get onLabel => 'Açık';
+
+  @override
+  String get githubRepository => 'GitHub Deposu';
+
+  @override
+  String get releasesAndUpdates => 'Sürümler ve Güncellemeler';
+
+  @override
+  String get projectDocumentation => 'Proje Dokümantasyonu';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI, Hackintosh ve macOS meraklıları için geliştirilmiş açık kaynaklı, otomatik bir OpenCore EFI oluşturucu, ACPI/SSDT yamalı ve donanım analiz aracıdır.\n\nSevgiyle yaratıldı ve sürdürüldü. Devam eden gelişimi desteklemek için projeyi GitHub\'da yıldızlandırın ve çatallayın!';
+
+  @override
+  String get checkApplicableOptions => '(Geçerli seçenekleri kontrol edin)';
+
+  @override
+  String get optionalCheckApplicableOptions =>
+      '(İsteğe bağlı - uygulanabilir seçenekleri kontrol edin)';
+
+  @override
+  String get appleAlcUsedByDefault =>
+      '(Varsayılan olarak AppleALC sürücüsü kullanılır)';
+
+  @override
+  String get noEthernetDriverByDefault =>
+      '(Varsayılan olarak Ethernet sürücüsü eklenmemiştir)';
+
+  @override
+  String get usbInjectAllByDefault =>
+      '(USBInjectAll varsayılan olarak kullanılır)';
+
+  @override
+  String get verboseModeByDefault =>
+      '(-v ayrıntılı mod varsayılan olarak etkindir; devre dışı bırakmak için işareti kaldırın)';
+
+  @override
+  String get optionalDriversSubtitle =>
+      '(İsteğe bağlı sürücüler - gerekmedikçe gerekli değildir)';
+
+  @override
+  String get keepDefaultsSubtitle =>
+      '(Belirli bir özelleştirme gerekmediği sürece varsayılanları koruyun)';
+
+  @override
+  String get optionalCheckDeviceBrand =>
+      'İsteğe bağlı - Cihazınızın markasının eşleşip eşleşmediğini kontrol edin';
+
+  @override
+  String get optionalCheckMotherboardModel =>
+      'İsteğe bağlı - Anakart modelinin eşleşip eşleşmediğini kontrol edin';
+
+  @override
+  String get optionalConfigureSip =>
+      'İsteğe bağlı - SIP\'yi gerektiği gibi yapılandırın (Varsayılan olarak devre dışıdır)';
+
+  @override
+  String get optionalCustomCpuName => 'İsteğe Bağlı - Özel CPU Adı';
+
+  @override
+  String get optionalAdjustUiScale =>
+      'İsteğe bağlı - OpenCore önyükleme kullanıcı arayüzü ölçeğini ayarlayın';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI - SSDT Yamaları';
+
+  @override
+  String get acpiPatches => 'ACPI - Yamalar';
+
+  @override
+  String get kernelPatches => 'Çekirdek - Yamalar';
+
+  @override
+  String get powerManagement => 'Güç Yönetimi';
+
+  @override
+  String get ssdApfsTrimPolicy => 'NVMe / SATA SSD APFS Trim Politikası';
+
+  @override
+  String get kernelQuirksSubtitle =>
+      'Çekirdek - Tuhaflıklar (Belirli düzeltmeler gerekmediği sürece varsayılan ayarlar önerilir)';
+
+  @override
+  String get uefiDriversSubtitle =>
+      'UEFI - Sürücüler (Özel ihtiyaçlar ortaya çıkmadıkça varsayılan yapılandırmaları koruyun)';
+
+  @override
+  String get uefiOutputSubtitle => 'UEFI - Çıkış (Varsayılan ayarlar önerilir)';
+
+  @override
+  String get method1Title =>
+      'Yöntem 1: \'GPRW\'yi XPRW olarak yeniden adlandırın (Anında Uyandırma Düzeltmesi)';
+
+  @override
+  String get method2Title =>
+      'Yöntem 2: \'UPRW\'yi XPRW olarak yeniden adlandırın (Anında Uyandırma Düzeltmesi)';
+
+  @override
+  String get method3Title =>
+      'Yöntem 3: \'RTC Düzeltme\'yi yeniden adlandırın (RTC Kapanmasını Düzeltme / CMOS Sıfırlama)';
+
+  @override
+  String get method4Title =>
+      'Yöntem 4: \'Pil Düzeltme\'yi yeniden adlandırın (16 bit ila 8 bit Pil Yamalarını Destekleyin)';
+
+  @override
+  String get pciPathLabel => 'dGPU PCI Yolu:';
+
+  @override
+  String get pciPathPlaceholder => 'PCI Yolunu Girin';
+
+  @override
+  String get spoofedDeviceIdLabel => 'Sahte Cihaz Kimliği:';
+
+  @override
+  String get spoofedDeviceIdPlaceholder =>
+      'Sahtekarlık yapılacak GPU cihazını seçin';
+
+  @override
+  String get injectDisplayEdidLabel =>
+      'Ekran EDID\'sini enjekte edin (genellikle 256 veya 512 onaltılık karakter):';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      'Ekran EDID\'sini girin (genellikle 256 veya 512 onaltılık karakter; boşluklara ve yeni satırlara izin verilir)';
+
+  @override
+  String get failed => 'Başarısız';
+
+  @override
+  String get method1 => 'Yöntem 1';
+
+  @override
+  String get method2 => 'Yöntem 2';
+
+  @override
+  String get method3 => 'Yöntem 3';
+
+  @override
+  String get method4 => 'Yöntem 4';
+
+  @override
+  String get optionalKextDrivers => 'İsteğe Bağlı Kext Sürücüleri';
+
+  @override
+  String get optionalKextSubTitle =>
+      'Donanımınıza göre isteğe bağlı kext sürücülerini seçin';
+
+  @override
+  String get brandConfigTab => 'Marka';
+
+  @override
+  String get optionalSettings => 'İsteğe Bağlı Ayarlar';
+
+  @override
+  String get optionalSettingsSubTitle =>
+      'Ek isteğe bağlı yapılandırmaları seçin';
+
+  @override
+  String get optionalCheckMotherboard => 'Özel Anakart Seçenekleri';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI, EFI klasörünün içinde otomatik olarak bir configModel dosyası oluşturur.\nEFI yapılandırmanızı yeniden yüklemek ve özelleştirmek için bu dosyayı aşağıdan içe aktarın.\n\nBu özellik RapidEFI V3.0.0 ve sonraki sürümlerde desteklenir.';
+
+  @override
+  String get releaseToReimportConfigModel =>
+      'configModel\'i yeniden içe aktarmak için bırakın';
+
+  @override
+  String get invalidConfigFileMessage =>
+      'Geçersiz yapılandırma dosyası. Lütfen geçerli bir configModel dosyası seçin.';
+
+  @override
+  String get ethernetTitle => 'Ethernet Sürücüleri:';
+
+  @override
+  String get usbTitle => 'USB Sürücüleri:';
+
+  @override
+  String get ssdtCoreOfficial => '* Çekirdek (Resmi)';
+
+  @override
+  String get ssdtRecommendedFixes => '* Önerilen (Düzeltmeler)';
+
+  @override
+  String get ssdtOptionalEnhancements => '* İsteğe Bağlı (Geliştirmeler)';
+
+  @override
+  String get platformDesktop => 'Masaüstü';
+
+  @override
+  String get platformLaptop => 'Dizüstü';
+
+  @override
+  String get platformNucMini => 'NUC / Mini PC';
+
+  @override
+  String get platformHedtServer => 'HEDT / Sunucu';
 }

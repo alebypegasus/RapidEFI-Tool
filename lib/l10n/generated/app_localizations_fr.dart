@@ -700,4 +700,352 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get forLaptopSystems => '(Pour les ordinateurs portables)';
+
+  @override
+  String get basicConfig => 'Configuration de base';
+
+  @override
+  String get advancedConfig => 'Configuration avancée';
+
+  @override
+  String get portCustomization => 'Personnalisation des ports';
+
+  @override
+  String get displayEdid => 'Afficher l\'EDID';
+
+  @override
+  String get nvidiaDgpu => 'GPU NVIDIA';
+
+  @override
+  String get amdDgpu => 'AMD dGPU';
+
+  @override
+  String get amdDgpuSpoof => 'Usurpation d\'AMD dGPU';
+
+  @override
+  String get intelWifi => 'Wi-Fi Intel';
+
+  @override
+  String get broadcomBrcm => 'Broadcom (Brcm)';
+
+  @override
+  String get atherosWifi => 'Athéros';
+
+  @override
+  String get usbWifi => 'Wi-Fi USB';
+
+  @override
+  String get bluetoothDrivers => 'Pilotes Bluetooth';
+
+  @override
+  String get debuggingTab => 'Débogage';
+
+  @override
+  String get amfiSipTab => 'AMFI / SIP';
+
+  @override
+  String get igpuFixesTab => 'Correctifs iGPU';
+
+  @override
+  String get dgpuFixesTab => 'Correctifs dGPU';
+
+  @override
+  String get blackScreenFixesTab => 'Corrections d\'écran noir';
+
+  @override
+  String get above4gTab => 'Au-dessus du décodage 4G';
+
+  @override
+  String get trackpadFixesTab => 'Corrections du trackpad';
+
+  @override
+  String get othersTab => 'Autres';
+
+  @override
+  String get powerManagementTab => 'Gestion de l\'alimentation';
+
+  @override
+  String get sleepHibernationTab => 'Sommeil / Hibernation';
+
+  @override
+  String get storageDiskTab => 'Stockage/Disque';
+
+  @override
+  String get cpuFixesTab => 'Correctifs du processeur';
+
+  @override
+  String get amdPlatformTab => 'Plateforme AMD';
+
+  @override
+  String get usbFixesTab => 'Correctifs USB';
+
+  @override
+  String get sdCardTab => 'Carte SD';
+
+  @override
+  String get brandTab => 'Marque';
+
+  @override
+  String get specialMotherboardTab => 'Carte mère spéciale';
+
+  @override
+  String get sipSettingsTab => 'Paramètres SIP';
+
+  @override
+  String get renameCpuTab => 'Renommer le processeur';
+
+  @override
+  String get uiScaleTab => 'Échelle de l\'interface utilisateur';
+
+  @override
+  String get acpiConfigTab => 'Configuration ACPI';
+
+  @override
+  String get booterConfigTab => 'Configuration du démarrage';
+
+  @override
+  String get kernelConfigTab => 'Configuration du noyau';
+
+  @override
+  String get uefiConfigTab => 'Configuration UEFI';
+
+  @override
+  String get lookupLayoutId => 'ID de mise en page de recherche';
+
+  @override
+  String get visitChris1111Repo => 'Visitez le référentiel chris1111';
+
+  @override
+  String get supportedMacOsVersions => 'Versions macOS prises en charge :';
+
+  @override
+  String get supportedUsbWifiChipsets => 'Chipsets Wi-Fi USB pris en charge :';
+
+  @override
+  String get selectUtbMap => 'Sélectionnez UTBMap';
+
+  @override
+  String get selectUtbMapHint =>
+      'Sélectionnez UTBMap.kext mappé créé avec USBToolBox';
+
+  @override
+  String get reprocessEfiSubtitle => '(Retraiter un EFI généré par RapidEFI)';
+
+  @override
+  String get reprocessEfiDetails =>
+      'RapidEFI génère automatiquement un fichier configModel dans le dossier EFI. Importez ce fichier ci-dessous pour recharger et personnaliser votre configuration EFI.';
+
+  @override
+  String get reprocessEfiVersionNote =>
+      'Cette fonctionnalité est prise en charge sur RapidEFI V3.0.0 et supérieur.';
+
+  @override
+  String get dropConfigModelHint =>
+      'Déposez le fichier configModel ici ou cliquez pour parcourir';
+
+  @override
+  String get offLabel => 'Désactivé';
+
+  @override
+  String get onLabel => 'Sur';
+
+  @override
+  String get githubRepository => 'Dépôt GitHub';
+
+  @override
+  String get releasesAndUpdates => 'Sorties et mises à jour';
+
+  @override
+  String get projectDocumentation => 'Documentation du projet';
+
+  @override
+  String get aboutSupportDetails =>
+      'RapidEFI est un générateur OpenCore EFI automatisé, un correcteur ACPI/SSDT et un outil d\'analyse matérielle open source conçu pour les passionnés de Hackintosh et de macOS.\n\nCréé et entretenu avec amour. Star et forkez le projet sur GitHub pour soutenir le développement en cours !';
+
+  @override
+  String get checkApplicableOptions => '(Vérifiez les options applicables)';
+
+  @override
+  String get optionalCheckApplicableOptions =>
+      '(Facultatif - cochez les options applicables)';
+
+  @override
+  String get appleAlcUsedByDefault => '(Pilote AppleALC utilisé par défaut)';
+
+  @override
+  String get noEthernetDriverByDefault =>
+      '(Aucun pilote Ethernet ajouté par défaut)';
+
+  @override
+  String get usbInjectAllByDefault => '(USBInjectAll utilisé par défaut)';
+
+  @override
+  String get verboseModeByDefault =>
+      '(-v mode verbeux activé par défaut ; décochez pour désactiver)';
+
+  @override
+  String get optionalDriversSubtitle =>
+      '(Pilotes facultatifs - non nécessaires sauf si nécessaire)';
+
+  @override
+  String get keepDefaultsSubtitle =>
+      '(Conservez les valeurs par défaut sauf si une personnalisation spécifique est nécessaire)';
+
+  @override
+  String get optionalCheckDeviceBrand =>
+      'Facultatif - Vérifiez si la marque de votre appareil correspond';
+
+  @override
+  String get optionalCheckMotherboardModel =>
+      'Facultatif - Vérifiez si le modèle de la carte mère correspond';
+
+  @override
+  String get optionalConfigureSip =>
+      'Facultatif - Configurez SIP selon vos besoins (désactivé par défaut)';
+
+  @override
+  String get optionalCustomCpuName =>
+      'Facultatif - Nom du processeur personnalisé';
+
+  @override
+  String get optionalAdjustUiScale =>
+      'Facultatif - Ajuster l\'échelle de l\'interface utilisateur de démarrage OpenCore';
+
+  @override
+  String get acpiSsdtPatches => 'ACPI - Correctifs SSDT';
+
+  @override
+  String get acpiPatches => 'ACPI - Correctifs';
+
+  @override
+  String get kernelPatches => 'Noyau - Correctifs';
+
+  @override
+  String get powerManagement => 'Gestion de l\'alimentation';
+
+  @override
+  String get ssdApfsTrimPolicy => 'Politique de réduction APFS NVMe / SATA SSD';
+
+  @override
+  String get kernelQuirksSubtitle =>
+      'Kernel - Quirks (paramètres par défaut recommandés sauf si des correctifs spécifiques sont nécessaires)';
+
+  @override
+  String get uefiDriversSubtitle =>
+      'UEFI - Pilotes (Conserver les configurations par défaut sauf besoins spécifiques)';
+
+  @override
+  String get uefiOutputSubtitle =>
+      'UEFI - Sortie (paramètres par défaut recommandés)';
+
+  @override
+  String get method1Title =>
+      'Méthode 1 : Renommer « GPRW en XPRW » (Instant Wake Fix)';
+
+  @override
+  String get method2Title =>
+      'Méthode 2 : Renommer « UPRW en XPRW » (Instant Wake Fix)';
+
+  @override
+  String get method3Title =>
+      'Méthode 3 : Renommer « RTC Fix » (réparer la mise hors tension du RTC/la réinitialisation du CMOS)';
+
+  @override
+  String get method4Title =>
+      'Méthode 4 : Renommer « Battery Fix » (prend en charge les correctifs de batterie de 16 bits à 8 bits)';
+
+  @override
+  String get pciPathLabel => 'Chemin PCI du dGPU :';
+
+  @override
+  String get pciPathPlaceholder => 'Entrez le chemin PCI';
+
+  @override
+  String get spoofedDeviceIdLabel => 'Identifiant d\'appareil usurpé :';
+
+  @override
+  String get spoofedDeviceIdPlaceholder =>
+      'Sélectionnez le périphérique GPU à usurper';
+
+  @override
+  String get injectDisplayEdidLabel =>
+      'Injecter l\'EDID d\'affichage (généralement 256 ou 512 caractères hexadécimaux) :';
+
+  @override
+  String get injectDisplayEdidPlaceholder =>
+      'Entrez l\'EDID d\'affichage (généralement 256 ou 512 caractères hexadécimaux ; espaces et nouvelles lignes autorisés)';
+
+  @override
+  String get failed => 'Échoué';
+
+  @override
+  String get method1 => 'Méthode 1';
+
+  @override
+  String get method2 => 'Méthode 2';
+
+  @override
+  String get method3 => 'Méthode 3';
+
+  @override
+  String get method4 => 'Méthode 4';
+
+  @override
+  String get optionalKextDrivers => 'Pilotes Kext Optionnels';
+
+  @override
+  String get optionalKextSubTitle =>
+      'Sélectionnez les pilotes kext optionnels selon votre matériel';
+
+  @override
+  String get brandConfigTab => 'Marque';
+
+  @override
+  String get optionalSettings => 'Paramètres Optionnels';
+
+  @override
+  String get optionalSettingsSubTitle =>
+      'Sélectionnez des configurations optionnelles supplémentaires';
+
+  @override
+  String get optionalCheckMotherboard => 'Options de Carte Mère Spéciales';
+
+  @override
+  String get processEfiExpanderTip =>
+      'RapidEFI génère automatiquement un fichier configModel dans le dossier EFI.\nImportez ce fichier ci-dessous pour recharger et personnaliser votre configuration EFI.\n\nCette fonctionnalité est prise en charge sur RapidEFI V3.0.0 et versions ultérieures.';
+
+  @override
+  String get releaseToReimportConfigModel =>
+      'Relâcher pour réimporter configModel';
+
+  @override
+  String get invalidConfigFileMessage =>
+      'Fichier de configuration invalide. Veuillez sélectionner un fichier configModel valide.';
+
+  @override
+  String get ethernetTitle => 'Pilotes Ethernet :';
+
+  @override
+  String get usbTitle => 'Pilotes USB :';
+
+  @override
+  String get ssdtCoreOfficial => '* Essentiel (Officiel)';
+
+  @override
+  String get ssdtRecommendedFixes => '* Recommandé (Correctifs)';
+
+  @override
+  String get ssdtOptionalEnhancements => '* Optionnel (Améliorations)';
+
+  @override
+  String get platformDesktop => 'Bureau';
+
+  @override
+  String get platformLaptop => 'Portable';
+
+  @override
+  String get platformNucMini => 'NUC / Mini PC';
+
+  @override
+  String get platformHedtServer => 'HEDT / Serveur';
 }
