@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.jeojay.rapidefi"
-    compileSdk flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -39,7 +39,7 @@ android {
     defaultConfig {
         applicationId "com.jeojay.rapidefi"
         minSdk = 21
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
