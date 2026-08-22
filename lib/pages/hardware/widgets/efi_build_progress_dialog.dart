@@ -94,60 +94,67 @@ class _EfiBuildProgressDialogState extends State<EfiBuildProgressDialog> {
           title: Text(
             running ? 'Configuring EFI...' : (success ? 'EFI Configuration Succeeded' : 'EFI Configuration Failed'),
           ),
-          content: SizedBox(
-            width: 620,
-            height: 390,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 22,
-                      height: 22,
-                      child: running
-                          ? const CircularProgressIndicator(strokeWidth: 2.5)
-                          : Icon(
-                              success
-                                  ? Icons.check_circle_outline
-                                  : Icons.error_outline,
-                              color: success ? Colors.green : colorScheme.error,
-                              size: 22,
-                            ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        statusText,
-                        style: Theme.of(context).textTheme.bodyMedium,
+          content: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: 620,
+              maxHeight: MediaQuery.of(context).size.height * 0.70,
+            ),
+            child: SizedBox(
+              width: double.maxFinite,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: running
+                            ? const CircularProgressIndicator(strokeWidth: 2.5)
+                            : Icon(
+                                success
+                                    ? Icons.check_circle_outline
+                                    : Icons.error_outline,
+                                color: success ? Colors.green : colorScheme.error,
+                                size: 22,
+                              ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          statusText,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (result != null && result.outputPath.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    SelectableText(
+                      'Output Directory: ${result.outputPath}',
+                      style: TextStyle(
+                        color: colorScheme.onSurfaceVariant,
+                        fontSize: 12,
                       ),
                     ),
                   ],
-                ),
-                if (result != null && result.outputPath.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  SelectableText(
-                    'Output Directory: ${result.outputPath}',
-                    style: TextStyle(
-                      color: colorScheme.onSurfaceVariant,
-                      fontSize: 12,
-                    ),
+                  const SizedBox(height: 14),
+                  Expanded(
+                    child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: logBackground,
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(color: colorScheme.outlineVariant),
+                        ),
+                        child:
+                            LogWidget(showChannelTag: false, allChannel: true)),
                   ),
                 ],
-                const SizedBox(height: 14),
-                Expanded(
-                  child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: logBackground,
-                        borderRadius: BorderRadius.circular(6),
-                        border: Border.all(color: colorScheme.outlineVariant),
-                      ),
-                      child:
-                          LogWidget(showChannelTag: false, allChannel: true)),
-                ),
-              ],
+              ),
             ),
           ),
+
           actions: [
             if (success && result != null && result.outputPath.isNotEmpty)
               TextButton(

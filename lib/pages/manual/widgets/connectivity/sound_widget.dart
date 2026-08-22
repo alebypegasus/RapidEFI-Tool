@@ -121,91 +121,89 @@ class _SoundWidgetState extends State<SoundWidget> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'ALC Layout ID:',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 10,
+            runSpacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              const Text(
+                'ALC Layout ID:',
+              ),
+              IncrementalInput(
+                number: _selectedLayoutId,
+                onChanged: (number) {
+                  _lastPickerSelection = _selectionWithLayoutId(number);
+                  _emitChanged();
+                },
+              ),
+              ActionChip(
+                backgroundColor:
+                    isDarkMode ? Colors.grey[850] : Colors.grey[50],
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                label: const Text(
+                  "Lookup Layout ID",
                 ),
-                IncrementalInput(
-                  number: _selectedLayoutId,
-                  onChanged: (number) {
-                    _lastPickerSelection = _selectionWithLayoutId(number);
-                    _emitChanged();
-                  },
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ActionChip(
-                  backgroundColor:
-                      isDarkMode ? Colors.grey[850] : Colors.grey[50],
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  label: const Text(
-                    "Lookup Layout ID",
+                onPressed: () {
+                  showPickerModal(context);
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 12,
+            runSpacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              const Text(
+                'HPET ACPI Path:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              ),
+              CustomTextField(
+                controller: _controller,
+                focusNode: _focusNode,
+                minWidth: 140,
+                maxWidth: 240,
+                expandWidth: true,
+                adaptiveWidth: true,
+                style: const TextStyle(fontSize: 13),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                    RegExp(r'[a-zA-Z0-9_\\.]'),
                   ),
-                  onPressed: () {
-                    showPickerModal(context);
-                  },
-                ),
-              ],
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              spacing: 15,
-              children: [
-                const Text(
-                  'HPET ACPI Path (for audio IRQ fixes):',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                ),
-                CustomTextField(
-                  controller: _controller,
-                  focusNode: _focusNode,
-                  minWidth: 120,
-                  maxWidth: 200,
-                  expandWidth: true,
-                  adaptiveWidth: true,
-                  style: const TextStyle(fontSize: 13),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(
-                      RegExp(r'[a-zA-Z0-9_\\.]'),
-                    ),
-                  ],
-                  keyboardType: TextInputType.text,
-                  enabled: _enableHpetPatch,
-                  onChanged: (value, _) {
-                    hpet = value;
-                  },
-                ),
-                TipSwitch(
-                  tip: tip,
-                  title: 'Fix IRQ',
-                  checked: _enableHpetPatch,
-                  onChanged: (value) {
-                    setState(() {
-                      if (value) {
-                        hpet = _controller.text.trim().isEmpty
-                            ? _defaultHpetPath
-                            : _controller.text.trim();
-                        _controller.text = hpet;
-                      } else {
-                        hpet = '';
-                        _controller.text = _defaultHpetPath;
-                      }
-                    });
-                    _emitChanged();
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
+                ],
+                keyboardType: TextInputType.text,
+                enabled: _enableHpetPatch,
+                onChanged: (value, _) {
+                  hpet = value;
+                },
+              ),
+              TipSwitch(
+                tip: tip,
+                title: 'Fix IRQ',
+                checked: _enableHpetPatch,
+                onChanged: (value) {
+                  setState(() {
+                    if (value) {
+                      hpet = _controller.text.trim().isEmpty
+                          ? _defaultHpetPath
+                          : _controller.text.trim();
+                      _controller.text = hpet;
+                    } else {
+                      hpet = '';
+                      _controller.text = _defaultHpetPath;
+                    }
+                  });
+                  _emitChanged();
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

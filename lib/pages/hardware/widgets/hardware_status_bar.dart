@@ -40,45 +40,76 @@ class HardwareStatusBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = hardwareThemeColors(context);
     return Container(
-      height: 30,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       color: Colors.transparent,
-      child: Row(children: [
-        if (showProgressDetails || isLoading) ...[
-          SizedBox(
-            width: _statusWidth,
-            child: Text(_statusText,
-                style: TextStyle(fontSize: 11, color: colors.textColor),
-                maxLines: 1,
-                softWrap: false,
-                textAlign: TextAlign.right),
-          ),
-          const SizedBox(width: 6),
-          SizedBox(
-              width: 108,
-              height: 4,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(2), child: _bar(colors))),
-          const SizedBox(width: 6),
-          SizedBox(
-            width: _elapsedWidth,
-            child: Text('Elapsed: ${_elapsedSecs}s',
-                style: TextStyle(fontSize: 11, color: colors.textColor)),
-          ),
-        ] else ...[
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 360),
-            child: Text(
-              _statusText,
-              style: TextStyle(fontSize: 11, color: colors.textColor),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
-        const SizedBox(width: 18),
-        const Expanded(child: _Legend()),
-      ]),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isCompact = constraints.maxWidth < 600;
+
+          final statusWidget = (showProgressDetails || isLoading)
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: _statusWidth,
+                      child: Text(
+                        _statusText,
+                        style: TextStyle(fontSize: 11, color: colors.textColor),
+                        maxLines: 1,
+                        softWrap: false,
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    SizedBox(
+                      width: 108,
+                      height: 4,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(2),
+                        child: _bar(colors),
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    SizedBox(
+                      width: _elapsedWidth,
+                      child: Text(
+                        'Elapsed: ${_elapsedSecs}s',
+                        style: TextStyle(fontSize: 11, color: colors.textColor),
+                      ),
+                    ),
+                  ],
+                )
+              : ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 360),
+                  child: Text(
+                    _statusText,
+                    style: TextStyle(fontSize: 11, color: colors.textColor),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                );
+
+          if (isCompact) {
+            return Wrap(
+              spacing: 12,
+              runSpacing: 4,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                statusWidget,
+                const _Legend(),
+              ],
+            );
+          }
+
+          return Row(
+            children: [
+              statusWidget,
+              const SizedBox(width: 18),
+              const Expanded(child: _Legend()),
+            ],
+          );
+        },
+      ),
     );
   }
 

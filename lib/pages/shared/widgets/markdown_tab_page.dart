@@ -51,21 +51,31 @@ class _MarkdownTabPageState extends State<MarkdownTabPage>
         .toList();
 
     return Scaffold(
-      body: CategorizedTabView(
-        controller: _tabController,
-        tabs: widget.items.map((item) => Tab(text: item.title)).toList(),
-        crossAxisAlignment: CrossAxisAlignment.center,
-        isScrollable: false,
-        labelPadding: const EdgeInsets.only(left: 10, right: 10),
-        labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        labelColor: Theme.of(context).colorScheme.primary,
-        unselectedLabelStyle: const TextStyle(fontSize: 16),
-        tabBarTheme: const TabBarThemeData(
-          dividerColor: Colors.transparent,
-        ),
-        children: children,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final isCompact = constraints.maxWidth < 600;
+
+          return CategorizedTabView(
+            controller: _tabController,
+            tabs: widget.items.map((item) => Tab(text: item.title)).toList(),
+            crossAxisAlignment: isCompact
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.center,
+            isScrollable: true,
+            tabAlignment: isCompact ? TabAlignment.start : TabAlignment.center,
+            labelPadding: const EdgeInsets.symmetric(horizontal: 14),
+            labelStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            labelColor: Theme.of(context).colorScheme.primary,
+            unselectedLabelStyle: const TextStyle(fontSize: 15),
+            tabBarTheme: const TabBarThemeData(
+              dividerColor: Colors.transparent,
+            ),
+            children: children,
+          );
+        },
       ),
     );
+
   }
 
   @override

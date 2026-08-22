@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/utils/config/models/enums/csr_setting_enum.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
+import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+import 'package:rapidefi/utils/config/models/enums/csr_setting_enum.dart';
 
 class CSRWidget extends StatefulWidget {
   final ValueChanged onChanged;
@@ -34,11 +35,8 @@ class _CSRWidgetState extends State<CSRWidget> {
         .where((element) => element != CsrSetting.none)
         .map((e) => 'csr-active-config: ${e.nvramValue} ')
         .toList();
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SizedBox(
-        height: 10,
-      ),
-      ChoiceList(
+    return ScrollableChoiceListPanel(
+      child: ChoiceList(
         tips: tips,
         choices: choices,
         selectedChoices: [csrsetting.value],
@@ -55,6 +53,7 @@ class _CSRWidgetState extends State<CSRWidget> {
           widget.onChanged.call(csrsetting);
         },
       ),
-    ]);
+    );
   }
 }
+

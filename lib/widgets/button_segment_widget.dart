@@ -7,7 +7,7 @@ class ButtonSegmentWidget extends StatefulWidget {
     this.onSelectionChanged,
     this.initialSelection,
     this.segmentHeight = 36,
-    this.horizontalPadding = 16,
+    this.horizontalPadding = 12,
   });
 
   final List<String> labels;
@@ -30,20 +30,52 @@ class _ButtonSegmentWidgetState extends State<ButtonSegmentWidget> {
   }
 
   @override
+  void didUpdateWidget(covariant ButtonSegmentWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.initialSelection != null &&
+        widget.initialSelection != oldWidget.initialSelection) {
+      selected = widget.initialSelection!;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
     final themeColor = theme.colorScheme.primary;
     final borderColor = Colors.grey.withAlpha(
-      (255.0 * (isDarkMode ? 0.6 : 0.5)).round(),
+      (255.0 * (isDarkMode ? 0.4 : 0.35)).round(),
     );
-    final radius = BorderRadius.circular(widget.segmentHeight / 2);
 
-    return SizedBox(
-      height: widget.segmentHeight,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: ClipRRect(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isCompact = constraints.maxWidth < 450;
+        final shouldWrapGrid = isCompact && widget.labels.length > 2;
+
+        if (shouldWrapGrid) {
+          final itemWidth = (constraints.maxWidth - 8) / 2;
+          return Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final label in widget.labels)
+                SizedBox(
+                  width: itemWidth,
+                  height: widget.segmentHeight,
+                  child: _buildStandaloneButton(
+                    text: label,
+                    themeColor: themeColor,
+                    borderColor: borderColor,
+                    isDarkMode: isDarkMode,
+                  ),
+                ),
+            ],
+          );
+        }
+
+        final radius = BorderRadius.circular(8.0);
+
+        return ClipRRect(
           borderRadius: radius,
           child: DecoratedBox(
             decoration: BoxDecoration(
@@ -57,15 +89,60 @@ class _ButtonSegmentWidgetState extends State<ButtonSegmentWidget> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   for (var index = 0; index < widget.labels.length; index++)
-                    _buildSegment(
-                      text: widget.labels[index],
-                      isLast: index == widget.labels.length - 1,
-                      themeColor: themeColor,
-                      borderColor: borderColor,
-                      isDarkMode: isDarkMode,
+                    Expanded(
+                      child: _buildSegment(
+                        text: widget.labels[index],
+                        isLast: index == widget.labels.length - 1,
+                        themeColor: themeColor,
+                        borderColor: borderColor,
+                        isDarkMode: isDarkMode,
+                      ),
                     ),
                 ],
               ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildStandaloneButton({
+    required String text,
+    required Color themeColor,
+    required Color borderColor,
+    required bool isDarkMode,
+  }) {
+    final isSelected = selected.contains(text);
+    final radius = BorderRadius.circular(8.0);
+
+    return Material(
+      color: isSelected ? themeColor : (isDarkMode ? Colors.white.withAlpha(12) : Colors.black.withAlpha(8)),
+      borderRadius: radius,
+      child: InkWell(
+        borderRadius: radius,
+        onTap: () => _handleSelect(text),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: radius,
+            border: Border.all(
+              color: isSelected ? themeColor : borderColor,
+              width: 1.0,
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          alignment: Alignment.center,
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: isSelected
+                  ? Colors.white
+                  : (isDarkMode ? Colors.grey[300] : Colors.black87),
+              fontSize: 13,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
             ),
           ),
         ),
@@ -85,14 +162,7 @@ class _ButtonSegmentWidgetState extends State<ButtonSegmentWidget> {
     return Material(
       color: isSelected ? themeColor : Colors.transparent,
       child: InkWell(
-        onTap: () {
-          if (selected.length == 1 && selected.contains(text)) {
-            return;
-          }
-          final newSelection = {text};
-          setState(() => selected = newSelection);
-          widget.onSelectionChanged?.call(newSelection);
-        },
+        onTap: () => _handleSelect(text),
         child: DecoratedBox(
           decoration: BoxDecoration(
             border: isLast
@@ -102,16 +172,19 @@ class _ButtonSegmentWidgetState extends State<ButtonSegmentWidget> {
                   ),
           ),
           child: Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: widget.horizontalPadding),
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Center(
               child: Text(
                 text,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: isSelected
                       ? Colors.white
-                      : (isDarkMode ? Colors.grey[500] : Colors.black),
-                  fontSize: 11,
+                      : (isDarkMode ? Colors.grey[300] : Colors.black87),
+                  fontSize: 13,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                 ),
               ),
             ),
@@ -120,4 +193,14 @@ class _ButtonSegmentWidgetState extends State<ButtonSegmentWidget> {
       ),
     );
   }
+
+  void _handleSelect(String text) {
+    if (selected.length == 1 && selected.contains(text)) {
+      return;
+    }
+    final newSelection = {text};
+    setState(() => selected = newSelection);
+    widget.onSelectionChanged?.call(newSelection);
+  }
 }
+

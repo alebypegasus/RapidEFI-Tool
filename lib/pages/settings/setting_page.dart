@@ -165,8 +165,10 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   Widget _buildUpdateContent() {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 12,
+      runSpacing: 8,
       children: [
         FutureBuilder<String>(
           future: AppInfo.version,
@@ -178,25 +180,21 @@ class _SettingPageState extends State<SettingPage> {
             );
           },
         ),
-        const SizedBox(width: 12),
-        SizedBox(
-          width: 92,
-          height: 30,
-          child: ElevatedButton(
-            onPressed: _checkingUpdate ? null : _checkUpdate,
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              textStyle: const TextStyle(fontSize: 13),
+        ElevatedButton(
+          onPressed: _checkingUpdate ? null : _checkUpdate,
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(6),
             ),
-            child: Text(_checkingUpdate ? 'Checking...' : 'Check Updates'),
+            textStyle: const TextStyle(fontSize: 13),
           ),
+          child: Text(_checkingUpdate ? 'Checking...' : 'Check Updates'),
         ),
       ],
     );
   }
+
 
   Future<void> _checkUpdate() async {
     setState(() => _checkingUpdate = true);

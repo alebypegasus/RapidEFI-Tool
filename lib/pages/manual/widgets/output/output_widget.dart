@@ -19,48 +19,75 @@ class OutputWidget extends StatefulWidget {
 
 class _OutputWidgetState extends State<OutputWidget> {
   late String outputDirectory = widget.directoryPath;
+  Future<void> _browseDirectory() async {
+    final picker = widget.onPickDirectory;
+    if (picker == null) return;
+    String selectDirectory = await picker(outputDirectory);
+    if (selectDirectory.isNotEmpty) {
+      outputDirectory = selectDirectory;
+      widget.onChanged.call(outputDirectory);
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return TitleCard(
       title: "Output Directory:",
       content: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
+        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final isCompact = constraints.maxWidth < 500;
+
+            if (isCompact) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SelectableText(
+                    outputDirectory,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  const SizedBox(height: 8),
+                  InkWellWidget(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                    radius: 14,
+                    onTap: _browseDirectory,
+                    child: const Text(
+                      "Browse",
+                      style: TextStyle(color: Colors.white, fontSize: 13),
+                    ),
+                  ),
+                ],
+              );
+            }
+
+            return Row(
               children: [
-                Flexible(
-                  child: SelectableText(outputDirectory),
+                Expanded(
+                  child: SelectableText(
+                    outputDirectory,
+                    style: const TextStyle(fontSize: 13),
+                  ),
                 ),
-                const SizedBox(
-                  width: 15,
-                )
+                const SizedBox(width: 15),
+                InkWellWidget(
+                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                  radius: 14,
+                  onTap: _browseDirectory,
+                  child: const Text(
+                    "Browse",
+                    style: TextStyle(color: Colors.white, fontSize: 13),
+                  ),
+                ),
               ],
-            ),
-            InkWellWidget(
-              height: 34,
-              width: 80,
-              radius: 17,
-              child: const Text(
-                "Browse",
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () async {
-                final picker = widget.onPickDirectory;
-                if (picker == null) return;
-                String selectDirectory = await picker(outputDirectory);
-                if (selectDirectory.isNotEmpty) {
-                  outputDirectory = selectDirectory;
-                  widget.onChanged.call(outputDirectory);
-                }
-                setState(() {});
-              },
-            ),
-          ],
+            );
+
+
+          },
         ),
       ),
     );
   }
 }
+

@@ -1,63 +1,66 @@
-# OpenCore Legacy Patcher
+# OpenCore Legacy Patcher (OCLP-X Integration)
+
 ![OpenCore Patcher Logo](images/OC-Patcher.png)
 
-----------
+---
 
-## What is OCLP?
+## 🌟 What is OpenCore Legacy Patcher (OCLP)?
 
-OpenCore Legacy Patcher (OCLP) is a Python-based project built around [Acidanthera's OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) and [Lilu](https://github.com/acidanthera/Lilu), designed to run modern macOS versions and unlock features on both supported and unsupported Macs. Originally created and maintained by Dortania, it breathes new life into older Macs no longer supported by Apple, enabling 2007 and newer machines to run macOS Big Sur, Monterey, Ventura, Sonoma, and Sequoia.
+**OpenCore Legacy Patcher (OCLP)** is an advanced, Python-based utility built around [Acidanthera's OpenCorePkg](https://github.com/acidanthera/OpenCorePkg) and [Lilu](https://github.com/acidanthera/Lilu). It is engineered to enable modern macOS releases (such as macOS Big Sur, Monterey, Ventura, Sonoma, Sequoia, and Tahoe 26) on unsupported Apple Mac hardware as well as non-Apple PC Hackintosh configurations.
 
-### Original Purpose (Legacy Apple Macs)
+---
 
-* As Apple phases out support for older hardware across macOS releases, OCLP was created to patch unsupported Macs so they can continue running the latest macOS versions.
-* Primarily provides boot patches and kernel extensions (kexts) to resolve graphics drivers, Wi-Fi, and USB device compatibility on legacy Macs.
+## 🛠️ Core Capabilities & Mechanisms
 
-### Evolution (Hackintosh Systems)
+### 1. Root Volume Patching (Post-Install)
+In modern macOS releases (macOS 11+), Apple transitioned to a cryptographically sealed System Volume (SSV / APFS snapshot). When Apple drops legacy drivers (such as Intel HD Graphics, Kepler GPU, or Broadcom Wi-Fi stacks), OCLP mounts the APFS system snapshot, disables root validation, injects legacy frameworks/kexts/OpenGL/Metal bundles, and re-seals the snapshot with a custom cryptographic hash.
 
-* OCLP's patching system is also widely used by the Hackintosh community for hardware unsupported in newer macOS versions, including:
-  * Legacy Intel and AMD GPU driver patches (Metal and non-Metal)
-  * Legacy Wi-Fi and Bluetooth adaptations (e.g. Broadcom, Atheros, Intel)
-  * USB 1.1 controller patches
+### 2. Dual Use Cases:
+* **Legacy Apple Macs**: Extends the lifecycle of Mac models from 2007 through 2017 that were officially discontinued by Apple.
+* **Hackintosh Systems**: Provides missing hardware drivers for PCs running newer macOS versions where Apple removed native kexts:
+  * **Legacy Intel iGPUs**: Sandy Bridge (HD 3000), Ivy Bridge (HD 4000), Haswell (HD 4400/4600), Broadwell (HD 5500/6000), Skylake (HD 520/530), Kaby Lake (HD 620/630).
+  * **Legacy NVIDIA GPUs**: Kepler architecture (GeForce GTX 650, 660, 760, 770, 780, Titan).
+  * **Legacy AMD GPUs**: GCN 1-3 (HD 7000, R7, R9 series).
+  * **Legacy Wireless**: Broadcom BCM94360 / BCM94352Z / BCM943224 and Qualcomm Atheros AR9285/AR9287.
+  * **Legacy Audio**: AppleHDA restoration for AppleALC on macOS Tahoe 26.
 
-Combined with OpenCore's capabilities, OCLP allows both legacy Macs and Hackintosh PCs to run modern macOS releases with stability.
+---
 
-----------
+## 🔗 Downloads & Source Code
 
-## OpenCore Legacy Patcher Modified Edition
+* **Latest Release & Downloads**: [RapidEFI & OCLP Releases](https://github.com/alebypegasus/RapidEFI-Tool/releases)
+* **GitHub Repository**: [https://github.com/alebypegasus/RapidEFI-Tool](https://github.com/alebypegasus/RapidEFI-Tool)
 
-Visit [OpenCore Legacy Patcher Modified by JeoJay](https://github.com/JeoJay127/OCLP-X/releases) to download OpenCore-Patcher.pkg.
+---
 
-----------
+## 📋 OpenCore Configuration Prerequisites
 
-## Official OCLP Key Features:
+Before running OCLP Root Patching, ensure your `config.plist` is properly configured:
 
-* Supports macOS Big Sur, Monterey, Ventura, Sonoma, and Sequoia
-* Native OTA (over-the-air) system update support
-* Compatible with Penryn and newer Mac models
-* Full support for WPA Wi-Fi and Personal Hotspot for BCM943224 and newer wireless chipsets
-* System Integrity Protection (SIP), FileVault 2, .im4m Secure Boot, and Vaulting support
-* Recovery OS, Safe Mode, and Single-user Mode booting on non-native OS versions
-* Unlocks Sidecar and AirPlay to Mac on unsupported hardware
-* Enhanced SATA and NVMe power management on third-party drives
-* Graphics acceleration for Metal and non-Metal GPUs
+| Configuration Setting | Required Value | Rationale |
+| :--- | :--- | :--- |
+| **`NVRAM` -> `csr-active-config`** | `03080000` (or `FF0F0000`) | Disables System Integrity Protection (SIP) to permit filesystem modifications |
+| **`NVRAM` -> `boot-args`** | `amfi=0x80` or `amfi_get_out_of_my_way=0x1` | Disables Apple Mobile File Integrity (or use `AMFIPass.kext`) |
+| **`Misc` -> `Security` -> `SecureBootModel`** | `Disabled` | Allows unsigned kernel extension caching and snapshot loading |
+| **`Kernel` -> `Block`** | Block `com.apple.iokit.IOSkywalkFamily` | *(Required on macOS Sonoma / Sequoia for Broadcom Wi-Fi restoration)* |
 
-----------
+---
 
-## Modified Edition Features:
+## 🚀 Step-by-Step Root Patching Workflow
 
-* **Enhanced Intel Wi-Fi support on macOS Sequoia**
-* **Added support for Atheros Wi-Fi and select legacy Broadcom Wi-Fi device IDs**
-* **Added AppleHDA audio layout support (for AppleALC) on macOS Tahoe 26 Beta 2+**
+1. **Boot into macOS** using your RapidEFI-generated OpenCore configuration.
+2. **Download & Launch OpenCore-Patcher.app** from the [Releases page](https://github.com/alebypegasus/RapidEFI-Tool/releases).
+3. Click on **Post-Install Root Patch**.
+4. The patcher will inspect your system and list available patches (e.g., *Intel Haswell Graphics*, *Legacy Wireless Stack*).
+5. Click **Start Root Patching** and enter your administrator password when prompted.
+6. Once the patcher finishes rebuilding the kernel cache and APFS snapshot, click **Reboot**.
+7. After rebooting, verify that hardware acceleration (Metal, Wi-Fi, Audio) is active in **System Information**.
 
-----------
+---
 
-## Running from Source
+## 🙏 Acknowledgements
 
-To build and run from source, refer to: [Building and Running from Source](https://github.com/JeoJay127/OCLP-X/blob/main/SOURCE.md)
-
-## Acknowledgements
-
-* [Dortania](https://github.com/dortania) - Original creator and maintainer of OpenCore Legacy Patcher
-* [Acidanthera](https://github.com/Acidanthera) - Creators of OpenCorePkg and core kernel extensions
-* [zxystd](https://github.com/zxystd) - Developer of Intel Wi-Fi kexts for macOS
-* Apple - macOS operating system and frameworks
+* [Dortania](https://github.com/dortania) - Original creators and maintainers of OpenCore Legacy Patcher.
+* [Acidanthera](https://github.com/acidanthera) - OpenCorePkg, Lilu, and core driver extensions.
+* [zxystd](https://github.com/zxystd) - OpenIntelWireless drivers.
+* Apple Inc. - macOS operating system.

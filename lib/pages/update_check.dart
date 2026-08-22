@@ -6,6 +6,7 @@ import 'package:oktoast/oktoast.dart';
 import 'package:rapidefi/pages/shared/widgets/link_button_row.dart';
 import 'package:rapidefi/pages/shared/widgets/markdown_viewer.dart';
 import 'package:rapidefi/utils/app_info.dart';
+import 'package:rapidefi/utils/log/log.dart';
 import 'package:rapidefi/utils/update/release_notes_translator.dart';
 import 'package:rapidefi/utils/update/repo_config.dart';
 import 'package:rapidefi/utils/update/repo_context.dart';

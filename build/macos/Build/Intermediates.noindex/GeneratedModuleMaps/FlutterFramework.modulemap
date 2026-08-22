@@ -1,4 +1,0 @@
-module FlutterFramework {
-header "FlutterFramework-Swift.h"
-export *
-}

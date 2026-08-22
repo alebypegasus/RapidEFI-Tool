@@ -27,22 +27,30 @@ class LinkButtonRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: mainAxisAlignment,
-        children: [
-          for (var index = 0; index < items.length; index++) ...[
-            if (index > 0) SizedBox(width: spacing),
-            CustomLinkButton(
-              url: items[index].url,
-              buttonText: items[index].buttonText,
-              icon: items[index].icon,
-            ),
-          ],
-        ],
-      ),
+    return Wrap(
+      spacing: spacing,
+      runSpacing: spacing,
+      alignment: _wrapAlignment(mainAxisAlignment),
+      children: [
+        for (final item in items)
+          CustomLinkButton(
+            url: item.url,
+            buttonText: item.buttonText,
+            icon: item.icon,
+          ),
+      ],
     );
   }
+
+  static WrapAlignment _wrapAlignment(MainAxisAlignment alignment) {
+    return switch (alignment) {
+      MainAxisAlignment.start => WrapAlignment.start,
+      MainAxisAlignment.end => WrapAlignment.end,
+      MainAxisAlignment.center => WrapAlignment.center,
+      MainAxisAlignment.spaceBetween => WrapAlignment.spaceBetween,
+      MainAxisAlignment.spaceAround => WrapAlignment.spaceAround,
+      MainAxisAlignment.spaceEvenly => WrapAlignment.spaceEvenly,
+    };
+  }
 }
+

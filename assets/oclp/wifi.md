@@ -1,49 +1,55 @@
-# OCLP Wi-Fi & Bluetooth Patching Guide
+# OCLP Wi-Fi & Bluetooth Networking Guide
 
-## Overview
+## 📡 Overview
 
-In macOS 14 Sonoma and macOS 15 Sequoia, Apple removed native support for legacy Broadcom and Atheros Wi-Fi chipsets (`IO80211FamilyLegacy.kext`). OCLP restores native Wi-Fi functionality by re-injecting the legacy wireless networking stack into the system root volume.
+Starting with **macOS 14 Sonoma** and continuing into **macOS 15 Sequoia** and **macOS Tahoe 26**, Apple completely removed the legacy wireless subsystem (`IO80211FamilyLegacy.kext`), affecting all non-native Broadcom and Atheros Wi-Fi cards that previously functioned out-of-the-box in macOS Ventura.
 
----
-
-## Supported Wireless Cards
-
-### Broadcom Native Series (AirPort / Fenvi)
-* **BCM94360CD / BCM94360CS2 / BCM943602CS / BCM94360Z**
-* **Fenvi T919 / FV-HB1200 / FV-T919**
-* *Native in Ventura and older; requires OCLP root patches on Sonoma 14 & Sequoia 15.*
-
-### Broadcom Non-Native Series
-* **BCM94352Z (DW1560) / BCM94350ZAE (DW1820A)**
-* *Requires AirportBrcmFixup + OCLP root patches on Sonoma 14 & Sequoia 15.*
-
-### Intel Wi-Fi
-* **Intel Wireless-AC 7265, 8265, 9260, 9560 / Wi-Fi 6 AX200, AX201, AX210**
-* *Supported via AirportItlwm.kext or itlwm.kext + HeliPort client.*
-
-### Qualcomm Atheros
-* **AR9285, AR9287, AR9380, AR9485, AR9565**
-* *Supported via modified OCLP root patches.*
+OpenCore Legacy Patcher (OCLP) restores full Wi-Fi and Bluetooth connectivity (including AirDrop, AirPlay, Continuity, and Hotspot) by re-injecting the legacy 802.11 network subsystem into the APFS root volume.
 
 ---
 
-## OpenCore Configuration Requirements
+## 📶 Supported Wi-Fi Chipsets & Status
 
-1. **Block Modern IO80211 Stack**:
-   * Under `Kernel` -> `Block`: Block `com.apple.iokit.IOSkywalkFamily`.
-2. **Inject Compatibility Kexts**:
-   * `IOSkywalkFamily.kext` (MinimumKernel: 23.0.0)
-   * `IO80211FamilyLegacy.kext` (MinimumKernel: 23.0.0)
-   * `AirPortBrcmNIC.kext` (inside Plugins)
-3. **NVRAM Settings**:
-   * `csr-active-config`: `03080000` (SIP disabled)
-   * `boot-args`: `amfi=0x80` or `amfi_get_out_of_my_way=0x1`
+| Manufacturer & Model | Chipset | macOS Sonoma 14+ Status | Required Driver / Method |
+| :--- | :--- | :--- | :--- |
+| **Broadcom Native (AirPort)** | BCM94360CD, BCM943602CS, BCM94360CS2, BCM94360Z, Fenvi T919, FV-HB1200 | Requires OCLP Root Patch | `IOSkywalkFamily` block + `IO80211FamilyLegacy` injection + OCLP Root Patch |
+| **Broadcom Non-Native** | BCM94352Z (DW1560), BCM94350ZAE (DW1820A), BCM943224 | Requires OCLP Root Patch | `AirportBrcmFixup` + `IOSkywalkFamily` block + OCLP Root Patch |
+| **Intel Wi-Fi** | AC 7265, 8265, 9260, 9560, Wi-Fi 6 AX200, AX201, AX210, AX211 | Supported via Kext | `AirportItlwm.kext` (native UI) OR `itlwm.kext` + HeliPort client |
+| **Qualcomm Atheros** | AR9285, AR9287, AR9380, AR9485, AR9565 | Requires OCLP Root Patch | `AirPortAtheros40` injection + modified OCLP Root Patch |
 
 ---
 
-## Post-Install Patching
+## 🛠️ OpenCore Configuration Guide for Broadcom Wi-Fi
 
-1. Boot into Sonoma 14 or Sequoia 15.
-2. Open **OpenCore-Patcher.app**.
-3. Select **Post-Install Root Patch** -> **Start Root Patching**.
-4. Enter administrator credentials and reboot upon completion.
+When configuring OpenCore for Broadcom Wi-Fi on macOS Sonoma 14 or Sequoia 15, RapidEFI automatically applies the required entries:
+
+### 1. Kernel -> Block
+Block Apple's modern Skywalk family to allow the legacy framework to take priority:
+* **Identifier**: `com.apple.iokit.IOSkywalkFamily`
+* **Comment**: `Allow legacy Broadcom Wi-Fi`
+* **Enabled**: `True`
+* **Strategy**: `Exclude`
+* **MinKernel**: `23.0.0` (Sonoma+)
+
+### 2. Kernel -> Add
+Inject the compatibility kernel extensions in order:
+1. `IOSkywalkFamily.kext` (MinKernel: `23.0.0`)
+2. `IO80211FamilyLegacy.kext` (MinKernel: `23.0.0`)
+3. `IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext` (MinKernel: `23.0.0`)
+
+### 3. NVRAM Configuration
+In `7C436110-AB2A-4BBB-A880-FE41995C9F82`:
+* `csr-active-config`: `03080000`
+* `boot-args`: `amfi=0x80 ipc_control_port_options=0`
+
+---
+
+## 🚀 Post-Install Root Patching Steps
+
+1. Boot into macOS Sonoma or Sequoia.
+2. Launch **OpenCore Legacy Patcher**.
+3. Select **Post-Install Root Patch**.
+4. The patcher will display **Networking: Modern Wireless** under available patches.
+5. Click **Start Root Patching** and authenticate.
+6. Once complete, reboot your computer.
+7. Wi-Fi status will now appear in the macOS menu bar with active scanning and connection capabilities.

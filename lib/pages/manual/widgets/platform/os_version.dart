@@ -52,29 +52,47 @@ class _OSVersionWidgetState extends State<OSVersionWidget> {
     return TitleCard(
       title: "Target macOS Version:",
       subTitle: "",
-      content: ComboBox<String>(
-        isExpanded: false,
-        value: macOSVersion.isEmpty ? null : macOSVersion,
-        items: widget.verions.map((e) {
-          return ComboBoxItem(
-            value: e,
-            child: Text(e),
+      content: LayoutBuilder(
+        builder: (context, constraints) {
+          final isCompact = constraints.maxWidth < 620;
+
+          final comboBox = ComboBox<String>(
+            isExpanded: isCompact,
+            value: macOSVersion.isEmpty ? null : macOSVersion,
+            items: widget.verions.map((e) {
+              return ComboBoxItem(
+                value: e,
+                child: Text(
+                  e,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              );
+            }).toList(),
+            onChanged: (info) {
+              if (info == null) {
+                return;
+              }
+
+              if (macOSVersion == info) {
+                return;
+              }
+
+              setState(() {
+                macOSVersion = info;
+              });
+
+              widget.onChanged?.call(info);
+            },
           );
-        }).toList(),
-        onChanged: (info) {
-          if (info == null) {
-            return;
+
+          if (isCompact) {
+            return SizedBox(
+              width: constraints.maxWidth,
+              child: comboBox,
+            );
           }
 
-          if (macOSVersion == info) {
-            return;
-          }
-
-          setState(() {
-            macOSVersion = info;
-          });
-
-          widget.onChanged?.call(info);
+          return comboBox;
         },
       ),
       snippet:
@@ -82,3 +100,4 @@ class _OSVersionWidgetState extends State<OSVersionWidget> {
     );
   }
 }
+

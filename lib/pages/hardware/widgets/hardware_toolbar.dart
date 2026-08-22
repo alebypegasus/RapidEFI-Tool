@@ -36,35 +36,56 @@ class HardwareToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(children: [
-            if (showHardwareActions) ...[
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isCompact = constraints.maxWidth < 680;
+
+          final actionButtons = <Widget>[
+            if (showHardwareActions)
               _btn('Refresh', () => onRefresh(), isLoading),
-              const SizedBox(width: 8),
-            ],
             _btn('Import Report', onImport, false),
-            const SizedBox(width: 8),
-            if (showHardwareActions) ...[
+            if (showHardwareActions)
               _btn('Export Report', onExport, false),
-              const SizedBox(width: 8),
-            ],
-            if (showAcpiExportAction) ...[
+            if (showAcpiExportAction)
               _btn('Export ACPI', onExportAcpi, false),
-              const SizedBox(width: 8),
-            ],
             _btn('EFI Settings', onPersonalizedEfi, false),
-            const SizedBox(width: 8),
             _btn('Export EFI', onOutputEfi, false),
-            const Spacer(),
-            _segmentedSwitch(context),
-          ]),
-        ],
+          ];
+
+          if (isCompact) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    ...actionButtons,
+                    _segmentedSwitch(context),
+                  ],
+                ),
+              ],
+            );
+          }
+
+          return Row(
+            children: [
+              for (final btn in actionButtons) ...[
+                btn,
+                const SizedBox(width: 8),
+              ],
+              const Spacer(),
+              _segmentedSwitch(context),
+            ],
+          );
+        },
       ),
     );
   }
+
 
   Widget _btn(String text, VoidCallback onTap, bool disabled) {
     return SizedBox(

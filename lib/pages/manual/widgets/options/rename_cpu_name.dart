@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
+import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
 import 'package:rapidefi/utils/config/models/enums/processor_type_enum.dart';
 
 class RenameCPUNameWidget extends StatefulWidget {
@@ -39,21 +40,18 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
 
   Widget cpunameText() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+      child: Wrap(
+        spacing: 10,
+        runSpacing: 8,
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           const Text(
             'Enter custom CPU name (leave empty to show Windows CPU name):',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
           ),
-          const SizedBox(
-            width: 10,
-          ),
-          Flexible(
-              child: Container(
-            constraints: const BoxConstraints(
-              maxWidth: 160.0, // Set max width
-            ),
+          SizedBox(
+            width: 180,
             child: TextBox(
               controller: _controller,
               placeholder: 'Enter CPU name here',
@@ -63,7 +61,7 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
                 widget.onChanged.call(processorType, cpuName);
               },
             ),
-          ))
+          ),
         ],
       ),
     );
@@ -79,39 +77,33 @@ class _RenameCPUNameWidgetState extends State<RenameCPUNameWidget> {
         .where((element) => element != ProcessorType.none)
         .map((e) => e.text.title)
         .toList();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 10,
-        ),
-        ChoiceList(
-          tips: tips,
-          choices: choices,
-          selectedChoices: [processorType.text.description],
-          isMultipleSelection: false,
-          allowToggle: true,
-          subTitle: "Optional - Custom CPU Name",
-          header: processorType != ProcessorType.none
-              ? cpunameText()
-              : const SizedBox.shrink(),
-          onChanged: (List<String> value) {
-            String? selectedValue = value.firstOrNull;
-            processorType = ProcessorType.values.firstWhere(
-              (type) => type.text.description == selectedValue,
-              orElse: () => ProcessorType.none,
-            );
-            if (processorType == ProcessorType.none) {
-              cpuName = '';
-              _controller.text = '';
-            }
-            widget.onChanged.call(processorType, cpuName);
-            // Set focus
-            _focusNode.requestFocus();
-            setState(() {});
-          },
-        )
-      ],
+
+    return ScrollableChoiceListPanel(
+      child: ChoiceList(
+        tips: tips,
+        choices: choices,
+        selectedChoices: [processorType.text.description],
+        isMultipleSelection: false,
+        allowToggle: true,
+        subTitle: "Optional - Custom CPU Name",
+        header: processorType != ProcessorType.none
+            ? cpunameText()
+            : const SizedBox.shrink(),
+        onChanged: (List<String> value) {
+          String? selectedValue = value.firstOrNull;
+          processorType = ProcessorType.values.firstWhere(
+            (type) => type.text.description == selectedValue,
+            orElse: () => ProcessorType.none,
+          );
+          if (processorType == ProcessorType.none) {
+            cpuName = '';
+            _controller.text = '';
+          }
+          widget.onChanged.call(processorType, cpuName);
+          _focusNode.requestFocus();
+          setState(() {});
+        },
+      ),
     );
   }
 }

@@ -43,47 +43,45 @@ class _CPUWidgetState extends State<CPUWidget> {
   Widget build(BuildContext context) {
     return TitleCard(
       title: "CPU Selection:",
-      content: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ButtonSegmentWidget(
-              labels: choices,
-              initialSelection: {cpuType.text.title},
-              onSelectionChanged: (value) {
-                final selectedValue = value.first;
+      content: Wrap(
+        spacing: 12,
+        runSpacing: 8,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          ButtonSegmentWidget(
+            labels: choices,
+            initialSelection: {cpuType.text.title},
+            onSelectionChanged: (value) {
+              final selectedValue = value.first;
 
-                final selectedCpuType = CpuType.values.firstWhere(
-                  (type) => type.text.title == selectedValue,
-                  orElse: () => CpuType.intel,
-                );
+              final selectedCpuType = CpuType.values.firstWhere(
+                (type) => type.text.title == selectedValue,
+                orElse: () => CpuType.intel,
+              );
 
-                if (cpuType == selectedCpuType) {
-                  return;
-                }
+              if (cpuType == selectedCpuType) {
+                return;
+              }
 
-                setState(() {
-                  cpuType = selectedCpuType;
-                });
+              setState(() {
+                cpuType = selectedCpuType;
+              });
 
-                widget.onChanged.call(cpuType);
+              widget.onChanged.call(cpuType);
+            },
+          ),
+          if (cpuType == CpuType.intel)
+            TipSwitch(
+              tip: "Pentium or Celeron processors require CPU spoofing; please enable this!\nNote: Pentium/Celeron iGPUs are generally unsupported!",
+              title: 'Pentium/Celeron',
+              checked: widget.pentiumOrCeleron,
+              onChanged: (value) {
+                widget.onPentiumChanged?.call(value);
               },
             ),
-            const SizedBox(width: 10),
-            if (cpuType == CpuType.intel)
-              TipSwitch(
-                tip: "Pentium or Celeron processors require CPU spoofing; please enable this!\nNote: Pentium/Celeron iGPUs are generally unsupported!",
-                title: 'Pentium/Celeron',
-                checked: widget.pentiumOrCeleron,
-                onChanged: (value) {
-                  widget.onPentiumChanged?.call(value);
-                },
-              ),
-          ],
-        ),
+        ],
       ),
     );
+
   }
 }

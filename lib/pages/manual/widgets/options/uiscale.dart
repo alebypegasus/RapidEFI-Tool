@@ -1,6 +1,7 @@
-import 'package:rapidefi/utils/config/models/enums/uiscale_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
+import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+import 'package:rapidefi/utils/config/models/enums/uiscale_enum.dart';
 
 class UIScaleWidget extends StatefulWidget {
   final ValueChanged onChanged;
@@ -27,28 +28,23 @@ class _UIScaleWidgetState extends State<UIScaleWidget> {
   @override
   Widget build(BuildContext context) {
     final choices = UIScale.values.map((e) => e.text.description).toList();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 10,
-        ),
-        ChoiceList(
-          choices: choices,
-          selectedChoices: [uiScale.text.description],
-          isMultipleSelection: false,
-          allowToggle: false,
-          subTitle: "Optional - Adjust OpenCore boot UI scale",
-          onChanged: (List<String> value) {
-            String? selectedValue = value.firstOrNull;
-            uiScale = UIScale.values.firstWhere(
-              (type) => type.text.description == selectedValue,
-            );
-            setState(() {});
-            widget.onChanged.call(uiScale);
-          },
-        ),
-      ],
+    return ScrollableChoiceListPanel(
+      child: ChoiceList(
+        choices: choices,
+        selectedChoices: [uiScale.text.description],
+        isMultipleSelection: false,
+        allowToggle: false,
+        subTitle: "Optional - Adjust OpenCore boot UI scale",
+        onChanged: (List<String> value) {
+          String? selectedValue = value.firstOrNull;
+          uiScale = UIScale.values.firstWhere(
+            (type) => type.text.description == selectedValue,
+          );
+          setState(() {});
+          widget.onChanged.call(uiScale);
+        },
+      ),
     );
   }
 }
+

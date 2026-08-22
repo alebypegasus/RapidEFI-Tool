@@ -194,27 +194,26 @@ class _ChoiceListState<T> extends State<ChoiceList<T>> {
   Widget _buildTitle() {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 6,
+        runSpacing: 4,
         children: [
-          Flexible(
-            child: Text(
+          if (widget.title.isNotEmpty)
+            Text(
               widget.title,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-          ),
-          if (widget.subTitle.isNotEmpty) const SizedBox(width: 5),
           if (widget.subTitle.isNotEmpty)
-            Flexible(
-              child: Text(
-                widget.subTitle,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
-              ),
+            Text(
+              widget.subTitle,
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
         ],
       ),
     );
   }
+
 
   Widget _buildExpandableContent(List<Widget> subWidgets) {
     final expansionContent = Wrap(children: subWidgets);

@@ -237,6 +237,13 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     final appTheme = context.watch<AppTheme>();
+    final isDesktop = Device.isDesktop;
+
+    if (!isDesktop) {
+      return SafeArea(
+        child: _buildMobileLayout(context, appTheme),
+      );
+    }
 
     return NavigationView(
       titleBar: _buildTitleBar(context, appTheme),
@@ -245,6 +252,81 @@ class _AppState extends State<App> {
       onOpenSearch: searchFocusNode.requestFocus,
     );
   }
+
+  Widget _buildMobileLayout(BuildContext context, AppTheme appTheme) {
+    final currentIndex = widget.navigationShell.currentIndex;
+    final isSettings = currentIndex == 6;
+
+    return ScaffoldPage(
+      padding: EdgeInsets.zero,
+      header: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: FluentTheme.of(context).resources.dividerStrokeColorDefault,
+              width: 0.5,
+            ),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                if (isSettings) {
+                  widget.navigationShell.goBranch(1, initialLocation: false);
+                } else {
+                  widget.navigationShell.goBranch(6, initialLocation: false);
+                }
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    child: LoadAssetsImage(
+                      'Icon-App-60x60',
+                      format: ImageFormat.png,
+                      width: 28,
+                      height: 28,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    isSettings ? 'Settings' : Constant.appName,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            IconButton(
+              icon: Icon(
+                isSettings ? FluentIcons.repair : FluentIcons.settings,
+                size: 20,
+              ),
+              onPressed: () {
+                if (isSettings) {
+                  widget.navigationShell.goBranch(1, initialLocation: false);
+                } else {
+                  widget.navigationShell.goBranch(6, initialLocation: false);
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+      content: FocusTraversalGroup(
+        child: widget.navigationShell,
+      ),
+    );
+  }
+
 
   PaneItem _paneItem(_NavDestination destination) {
     return PaneItem(
@@ -270,24 +352,14 @@ class _AppState extends State<App> {
 
     return DragToMoveArea(
       child: Container(
-        height: 50 + topPadding,
-        padding: EdgeInsetsDirectional.only(top: topPadding),
-        child: Stack(
+        height: 48 + topPadding,
+        padding: EdgeInsetsDirectional.only(top: topPadding, start: 8, end: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: _buildWindowTitle(context),
-            ),
-            PositionedDirectional(
-              start: 0,
-              end: 0,
-              top: 0,
-              bottom: 0,
-              child: Align(
-                alignment: AlignmentDirectional.topEnd,
-                child: _buildWindowActions(context, appTheme),
-              ),
-            ),
+            Flexible(child: _buildWindowTitle(context)),
+            _buildWindowActions(context, appTheme),
           ],
         ),
       ),
@@ -341,16 +413,6 @@ class _AppState extends State<App> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: const EdgeInsetsDirectional.only(end: 8.0),
-          child: ToggleSwitch(
-            content: const Text('Dark Mode'),
-            checked: FluentTheme.of(context).brightness == Brightness.dark,
-            onChanged: (value) {
-              appTheme.mode = value ? ThemeMode.dark : ThemeMode.light;
-            },
-          ),
-        ),
         if (Device.isDesktop) const WindowButtons(),
       ],
     );
@@ -363,11 +425,16 @@ class _AppState extends State<App> {
   }
 
   NavigationPane _buildNavigationPane(BuildContext context, AppTheme appTheme) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final isMobileScreen = screenWidth < 700 || !Device.isDesktop;
+    final effectiveDisplayMode =
+        isMobileScreen ? PaneDisplayMode.minimal : appTheme.displayMode;
+
     return NavigationPane(
       selected: widget.navigationShell.currentIndex,
       size: const NavigationPaneSize(openMaxWidth: 220),
       header: _buildPaneHeader(context, appTheme),
-      displayMode: appTheme.displayMode,
+      displayMode: effectiveDisplayMode,
       indicator: _buildNavigationIndicator(appTheme),
       items: originalItems,
       autoSuggestBox: Builder(builder: _buildSearchBox),
@@ -377,18 +444,29 @@ class _AppState extends State<App> {
   }
 
   Widget _buildPaneHeader(BuildContext context, AppTheme appTheme) {
-    final theme = FluentTheme.of(context);
-
-    return SizedBox(
-      height: kOneLineTileHeight,
-      child: ShaderMask(
-        shaderCallback: (rect) {
-          final color = appTheme.accentColor.defaultBrushFor(theme.brightness);
-          return LinearGradient(colors: [color, color]).createShader(rect);
-        },
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+      child: Row(
+        children: [
+          LoadAssetsImage(
+            'Icon-App-60x60',
+            format: ImageFormat.png,
+            width: 22,
+            height: 22,
+          ),
+          SizedBox(width: 8),
+          Text(
+            Constant.appName,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }
+
 
   Widget _buildNavigationIndicator(AppTheme appTheme) {
     return switch (appTheme.indicator) {

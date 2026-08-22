@@ -1,4 +1,0 @@
-module macos_window_utils {
-header "macos_window_utils-Swift.h"
-export *
-}

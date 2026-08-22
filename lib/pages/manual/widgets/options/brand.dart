@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/utils/config/models/enums/brand_enum.dart';
-
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
+import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+import 'package:rapidefi/utils/config/models/enums/brand_enum.dart';
 
 class BrandWidget extends StatefulWidget {
   final ValueChanged onChanged;
@@ -30,28 +30,23 @@ class _BrandWidgetState extends State<BrandWidget> {
         .where((element) => element != Brand.none)
         .map((e) => e.value)
         .toList();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 10,
-        ),
-        ChoiceList(
-          choices: choices,
-          selectedChoices: [brand.value],
-          isMultipleSelection: false,
-          allowToggle: true,
-          subTitle: "Optional - Check if your device brand matches",
-          onChanged: (List<String> value) {
-            String? selectedValue = value.firstOrNull;
-            brand = Brand.values.firstWhere(
-              (type) => type.value == selectedValue,
-              orElse: () => Brand.none,
-            );
-            widget.onChanged.call(brand);
-          },
-        )
-      ],
+    return ScrollableChoiceListPanel(
+      child: ChoiceList(
+        choices: choices,
+        selectedChoices: [brand.value],
+        isMultipleSelection: false,
+        allowToggle: true,
+        subTitle: "Optional - Check if your device brand matches",
+        onChanged: (List<String> value) {
+          String? selectedValue = value.firstOrNull;
+          brand = Brand.values.firstWhere(
+            (type) => type.value == selectedValue,
+            orElse: () => Brand.none,
+          );
+          widget.onChanged.call(brand);
+        },
+      ),
     );
   }
 }
+

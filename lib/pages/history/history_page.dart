@@ -348,39 +348,45 @@ class HistoryPageState extends State<HistoryPage> {
   }
 
   Widget _buildHistoryList() {
-    return Scrollbar(
-      controller: _historyScrollController,
-      child: SingleChildScrollView(
-        controller: _historyScrollController,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 10,
-        ),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: historyModels.map((historyModel) {
-              return SizedBox(
-                width: 180,
-                child: KeyedSubtree(
-                  key: ValueKey(_historyStorageName(historyModel)),
-                  child: HistoryWidget(
-                    historyModel: historyModel,
-                    onChanged: gotoManualPage,
-                    onDelete: deleteHistory,
-                    onExport: exportEFI,
-                    onUpdate: updateHistoryModel,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final availableWidth = constraints.maxWidth - 20;
+        final count = (availableWidth / 180).floor().clamp(1, 6);
+        final itemWidth = (availableWidth - (count - 1) * 8) / count;
+
+        return Scrollbar(
+          controller: _historyScrollController,
+          child: SingleChildScrollView(
+            controller: _historyScrollController,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 10,
+            ),
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: historyModels.map((historyModel) {
+                return SizedBox(
+                  width: itemWidth,
+                  child: KeyedSubtree(
+                    key: ValueKey(_historyStorageName(historyModel)),
+                    child: HistoryWidget(
+                      historyModel: historyModel,
+                      onChanged: gotoManualPage,
+                      onDelete: deleteHistory,
+                      onExport: exportEFI,
+                      onUpdate: updateHistoryModel,
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
+                );
+              }).toList(),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
+
 }
 
 class _HistoryManualPage extends StatelessWidget {

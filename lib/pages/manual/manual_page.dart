@@ -74,12 +74,15 @@ class _ManualPageState extends State<ManualPage> {
         backgroundColor: Colors.transparent,
         body: const _ManualPageBody(),
         floatingActionButton: InkWellWidget(
-          width: 120,
-          height: 36,
-          radius: 18,
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+          radius: 20,
           child: const Text(
             'Generate EFI',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
           ),
           onTap: () async {
             CustomToast.show(context, "Configuring EFI, please wait...");
@@ -96,6 +99,7 @@ class _ManualPageState extends State<ManualPage> {
       ),
     );
   }
+
 }
 
 class _ManualPageBody extends StatelessWidget {
@@ -116,9 +120,10 @@ class _ManualPageBody extends StatelessWidget {
     final children = ManualSections.children;
 
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.fromLTRB(15, 8, 15, 75),
       itemCount: children.length,
       itemBuilder: (_, index) => children[index],
     );
+
   }
 }

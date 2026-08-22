@@ -78,59 +78,98 @@ class _PlantFormInfoWidgetState extends State<PlantFormInfoWidget> {
     return TitleCard(
       title: "Platform Info:",
       subTitle: "",
-      content: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            ComboBox<String>(
-              isExpanded: false,
-              value: currentValue,
-              items: widget.infos.map((e) {
-                return ComboBoxItem(
-                  value: e,
-                  child: Text(e),
-                );
-              }).toList(),
-              onChanged: (info) {
-                if (info == null) {
-                  return;
-                }
+      content: LayoutBuilder(
+        builder: (context, constraints) {
+          final isCompact = constraints.maxWidth < 620;
 
-                final nextIndex = widget.infos.indexOf(info);
+          final comboBox = ComboBox<String>(
+            isExpanded: isCompact,
+            value: currentValue,
+            items: widget.infos.map((e) {
+              return ComboBoxItem(
+                value: e,
+                child: Text(
+                  e,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              );
+            }).toList(),
+            onChanged: (info) {
+              if (info == null) {
+                return;
+              }
 
-                if (nextIndex < 0 || nextIndex == selectedIndex) {
-                  return;
-                }
+              final nextIndex = widget.infos.indexOf(info);
 
-                setState(() {
-                  selectedIndex = nextIndex;
-                });
+              if (nextIndex < 0 || nextIndex == selectedIndex) {
+                return;
+              }
 
-                widget.onChanged.call(info, selectedIndex);
-              },
-            ),
-            const SizedBox(width: 10),
-            if (widget.showMobileComet)
-              TipSwitch(
-                tip:
-                    "10th Gen Comet Lake U62 CPUs (e.g. i3-10110U, i5-10210U, i5-10310U,\n i7-10510U, i7-10610U, i7-10710U, i7-10810U), please check this option!",
-                title: 'U62 CPU',
-                checked: isMobileCometLake,
-                onChanged: (value) {
-                  setState(() {
-                    isMobileCometLake = value;
-                  });
+              setState(() {
+                selectedIndex = nextIndex;
+              });
 
-                  widget.onCometLakeChange?.call(isMobileCometLake);
-                },
-              ),
-          ],
-        ),
+              widget.onChanged.call(info, selectedIndex);
+            },
+          );
+
+          if (isCompact) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: constraints.maxWidth,
+                  child: comboBox,
+                ),
+                if (widget.showMobileComet) ...[
+                  const SizedBox(height: 8),
+                  TipSwitch(
+                    tip:
+                        "10th Gen Comet Lake U62 CPUs (e.g. i3-10110U, i5-10210U, i5-10310U,\n i7-10510U, i7-10610U, i7-10710U, i7-10810U), please check this option!",
+                    title: 'U62 CPU',
+                    checked: isMobileCometLake,
+                    onChanged: (value) {
+                      setState(() {
+                        isMobileCometLake = value;
+                      });
+
+                      widget.onCometLakeChange?.call(isMobileCometLake);
+                    },
+                  ),
+                ],
+              ],
+            );
+          }
+
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              comboBox,
+              const SizedBox(width: 10),
+              if (widget.showMobileComet)
+                TipSwitch(
+                  tip:
+                      "10th Gen Comet Lake U62 CPUs (e.g. i3-10110U, i5-10210U, i5-10310U,\n i7-10510U, i7-10610U, i7-10710U, i7-10810U), please check this option!",
+                  title: 'U62 CPU',
+                  checked: isMobileCometLake,
+                  onChanged: (value) {
+                    setState(() {
+                      isMobileCometLake = value;
+                    });
+
+                    widget.onCometLakeChange?.call(isMobileCometLake);
+                  },
+                ),
+            ],
+          );
+        },
       ),
       expander: HackintoshInfoWidget(
         key: ValueKey(widget.platformEntity.hashCode),
         platformEntity: widget.platformEntity,
       ),
     );
+
   }
 }

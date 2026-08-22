@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
-
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
+import 'package:rapidefi/pages/shared/widgets/scrollable_choice_list_panel.dart';
+import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
 
 /// Special Motherboard Models
 class SpecialMotherBoardWidget extends StatefulWidget {
@@ -32,28 +32,23 @@ class _MotherBoardWidgetState extends State<SpecialMotherBoardWidget> {
             element.vendor == MotherboardVendor.intel)
         .map((e) => e.value)
         .toList();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 10,
-        ),
-        ChoiceList(
-          choices: choices,
-          selectedChoices: [specialMotherBoard.value],
-          isMultipleSelection: false,
-          allowToggle: true,
-          subTitle: "Optional - Check if motherboard model matches",
-          onChanged: (List<String> value) {
-            String? selectedValue = value.firstOrNull;
-            specialMotherBoard = SpecialMotherboard.values.firstWhere(
-              (type) => type.value == selectedValue,
-              orElse: () => SpecialMotherboard.none,
-            );
-            widget.onChanged.call(specialMotherBoard);
-          },
-        )
-      ],
+    return ScrollableChoiceListPanel(
+      child: ChoiceList(
+        choices: choices,
+        selectedChoices: [specialMotherBoard.value],
+        isMultipleSelection: false,
+        allowToggle: true,
+        subTitle: "Optional - Check if motherboard model matches",
+        onChanged: (List<String> value) {
+          String? selectedValue = value.firstOrNull;
+          specialMotherBoard = SpecialMotherboard.values.firstWhere(
+            (type) => type.value == selectedValue,
+            orElse: () => SpecialMotherboard.none,
+          );
+          widget.onChanged.call(specialMotherBoard);
+        },
+      ),
     );
   }
 }
+

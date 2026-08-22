@@ -1,0 +1,281 @@
+name: Build and Release Multiplatform
+
+on:
+  push:
+    branches: [ main, master ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      delete_old_releases:
+        description: 'Prune older releases before publishing new release'
+        required: false
+        type: boolean
+        default: false
+      tag_name:
+        description: 'Release tag name (e.g. v5.2.0)'
+        required: false
+        type: string
+        default: 'v5.2.0'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  # -------------------------------------------------------------
+  # 1. macOS Build (Universal / Intel & Apple Silicon)
+  # -------------------------------------------------------------
+  build-macos:
+    name: Build macOS Universal Bundle
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Analysis & Unit Tests
+        run: |
+          dart analyze
+          flutter test
+
+      - name: Build macOS Release
+        run: flutter build macos --release
+
+      - name: Package macOS App (.zip)
+        run: |
+          cd build/macos/Build/Products/Release
+          zip -r -y RapidEFI-macOS-Universal.zip RapidEFI.app
+          mv RapidEFI-macOS-Universal.zip ../../../../../
+
+      - name: Upload macOS Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RapidEFI-macOS-Universal
+          path: RapidEFI-macOS-Universal.zip
+
+  # -------------------------------------------------------------
+  # 2. Windows Build (x64)
+  # -------------------------------------------------------------
+  build-windows:
+    name: Build Windows Application
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build Windows Release
+        run: flutter build windows --release
+
+      - name: Bundle VC++ Runtime DLLs and Package (.zip)
+        shell: pwsh
+        run: |
+          if (Test-Path "docs\dll") {
+            Copy-Item -Path "docs\dll\*" -Destination "build\windows\x64\runner\Release\" -Recurse -Force
+          }
+          Compress-Archive -Path "build\windows\x64\runner\Release\*" -DestinationPath "RapidEFI-Windows-x64.zip"
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RapidEFI-Windows-x64
+          path: RapidEFI-Windows-x64.zip
+
+  # -------------------------------------------------------------
+  # 3. Linux Build (x64)
+  # -------------------------------------------------------------
+  build-linux:
+    name: Build Linux Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Linux Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build Linux Release
+        run: flutter build linux --release
+
+      - name: Package Linux Bundle (.tar.gz)
+        run: |
+          cd build/linux/x64/release/bundle
+          tar -czvf ../../../../../RapidEFI-Linux-x64.tar.gz *
+
+      - name: Upload Linux Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RapidEFI-Linux-x64
+          path: RapidEFI-Linux-x64.tar.gz
+
+  # -------------------------------------------------------------
+  # 4. Android Build (APK)
+  # -------------------------------------------------------------
+  build-android:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build Android Release APK
+        run: flutter build apk --release
+
+      - name: Copy & Rename Android APK
+        run: |
+          cp build/app/outputs/flutter-apk/app-release.apk RapidEFI-Android.apk
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: RapidEFI-Android
+          path: RapidEFI-Android.apk
+
+  # -------------------------------------------------------------
+  # 5. iOS Build (IPA)
+  # -------------------------------------------------------------
+  build-ios:
+    name: Build iOS App
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build iOS (No Codesign)
+        run: flutter build ios --release --no-codesign
+
+      - name: Package iOS Payload (.ipa)
+        run: |
+          mkdir -p Payload
+          cp -r build/ios/iphoneos/Runner.app Payload/
+          zip -r RapidEFI-iOS.ipa Payload
+
+      - name: Upload iOS Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RapidEFI-iOS
+          path: RapidEFI-iOS.ipa
+
+  # -------------------------------------------------------------
+  # 6. Automatic GitHub Release & Checksums
+  # -------------------------------------------------------------
+  release:
+    name: Create Multiplatform Release
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    needs: [build-macos, build-windows, build-linux, build-android, build-ios]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Prune Old Releases (Optional)
+        if: ${{ inputs.delete_old_releases == true }}
+        uses: dev-drprasad/delete-older-releases@v0.3.3
+        with:
+          keep_latest: 0
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+
+      - name: Organize Release Files & Compute SHA-256 Checksums
+        run: |
+          mkdir -p release_assets
+          cp dist/RapidEFI-macOS-Universal/RapidEFI-macOS-Universal.zip release_assets/
+          cp dist/RapidEFI-Windows-x64/RapidEFI-Windows-x64.zip release_assets/
+          cp dist/RapidEFI-Linux-x64/RapidEFI-Linux-x64.tar.gz release_assets/
+          cp dist/RapidEFI-Android/RapidEFI-Android.apk release_assets/
+          cp dist/RapidEFI-iOS/RapidEFI-iOS.ipa release_assets/
+
+          cd release_assets
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+          cd ..
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag_name || github.ref_name }}
+          name: RapidEFI Release ${{ inputs.tag_name || github.ref_name }}
+          files: |
+            release_assets/RapidEFI-macOS-Universal.zip
+            release_assets/RapidEFI-Windows-x64.zip
+            release_assets/RapidEFI-Linux-x64.tar.gz
+            release_assets/RapidEFI-Android.apk
+            release_assets/RapidEFI-iOS.ipa
+            release_assets/SHA256SUMS.txt
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

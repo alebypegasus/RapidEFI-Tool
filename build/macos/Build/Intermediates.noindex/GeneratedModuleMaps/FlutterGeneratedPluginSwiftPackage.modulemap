@@ -1,4 +1,0 @@
-module FlutterGeneratedPluginSwiftPackage {
-header "FlutterGeneratedPluginSwiftPackage-Swift.h"
-export *
-}

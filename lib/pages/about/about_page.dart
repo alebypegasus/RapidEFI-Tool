@@ -16,26 +16,26 @@ class _AboutPageState extends State<AboutPage> {
     assert(debugCheckHasFluentTheme(context));
     return ScaffoldPage.scrollable(
         header: const PageHeader(
-          title: Text('Sponsor Developer'),
+          title: Text('About RapidEFI'),
           commandBar: LinkButtonRow(
             mainAxisAlignment: MainAxisAlignment.end,
             items: [
               LinkButtonItem(
-                url: 'https://www.bilibili.com/video/BV1Li421h7FZ',
-                buttonText: "Author's Bilibili",
-                icon: FluentIcons.my_movies_t_v,
+                url: 'https://github.com/alebypegasus/RapidEFI-Tool',
+                buttonText: "GitHub Repository",
+                icon: FluentIcons.open_source,
               ),
               LinkButtonItem(
-                url: 'https://github.com/JeoJay127/RapidEFI-Tool',
-                buttonText: "Author's GitHub",
-                icon: FluentIcons.open_source,
+                url: 'https://github.com/alebypegasus/RapidEFI-Tool/releases',
+                buttonText: "Releases & Updates",
+                icon: FluentIcons.download,
               ),
             ],
           ),
         ),
         children: const [
           TitleCard(
-            title: 'Buy the Developer a Coffee',
+            title: 'About & Support',
             initiallyExpanded: true,
             expander: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,45 +44,43 @@ class _AboutPageState extends State<AboutPage> {
                   height: 15,
                 ),
                 Text(
-                    'If this tool has been helpful to you, feel free to sponsor the developer! Thank you for your support!\n\nContact: QQ 766264141 or WeChat: JeoJay127. Beware of imposters!'),
+                    'RapidEFI is an open-source, automated OpenCore EFI generator, ACPI/SSDT patcher, and hardware analysis tool built for Hackintosh and macOS enthusiasts.\n\nCreated and maintained with love. Star and fork the project on GitHub to support ongoing development!'),
                 SizedBox(
                   height: 15,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      LoadAssetsImage(
-                        'donate_alipay',
-                        format: ImageFormat.png,
-                        width: 213 * 0.8,
-                        height: 284 * 0.8,
-                      ),
-                      LoadAssetsImage(
-                        'donate_wechat',
-                        format: ImageFormat.png,
-                        width: 213 * 0.8,
-                        height: 284 * 0.8,
-                      )
-                    ],
-                  ),
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  children: [
+                    LoadAssetsImage(
+                      'donate_alipay',
+                      format: ImageFormat.png,
+                      width: 213 * 0.75,
+                      height: 284 * 0.75,
+                    ),
+                    LoadAssetsImage(
+                      'donate_wechat',
+                      format: ImageFormat.png,
+                      width: 213 * 0.75,
+                      height: 284 * 0.75,
+                    )
+                  ],
                 )
               ],
             ),
           ),
+
           SizedBox(
             height: 10,
           ),
           TitleCard(
-            title: 'RapidEFI Success Stories',
+            title: 'Documentation & Guides',
             content: LinkButtonRow(
               mainAxisAlignment: MainAxisAlignment.end,
               items: [
                 LinkButtonItem(
-                  url:
-                      'https://github.com/JeoJay127/RapidEFI-Tool/blob/main/%E6%88%90%E5%8A%9F%E6%A1%88%E4%BE%8B.md',
-                  buttonText: 'RapidEFI Success Stories',
+                  url: 'https://github.com/alebypegasus/RapidEFI-Tool',
+                  buttonText: 'Project Documentation',
                   icon: FluentIcons.open_source,
                 )
               ],
@@ -91,3 +89,4 @@ class _AboutPageState extends State<AboutPage> {
         ]);
   }
 }
+

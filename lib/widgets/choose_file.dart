@@ -64,53 +64,63 @@ class _ChooseFileWidgetState extends State<ChooseFileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isCompact = constraints.maxWidth < 450;
+
+        final button = InkWellWidget(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+          radius: widget.radius ?? 12,
+          onTap: onClick,
+          child: Text(
+            widget.buttonText,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        );
+
+        final textField = TextField(
+          enabled: false,
+          controller: TextEditingController(
+            text: outputPath,
+          ),
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            hintStyle: const TextStyle(color: Colors.grey),
+            isDense: true,
+          ),
+        );
+
+        if (isCompact) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              textField,
+              const SizedBox(height: 8),
+              button,
+            ],
+          );
+        }
+
+        return Row(
           children: [
             if (widget.buttonOnLeft) ...[
-              InkWellWidget(
-                height: 40,
-                width: 140,
-                radius: widget.radius ?? 20,
-                onTap: onClick,
-                child: Text(
-                  widget.buttonText,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
+              button,
               const SizedBox(width: 15),
             ],
-            Expanded(
-              child: TextField(
-                enabled: false,
-                controller: TextEditingController(
-                  text: outputPath,
-                ),
-                decoration: InputDecoration(
-                  hintText: widget.hintText,
-                  hintStyle: const TextStyle(color: Colors.grey),
-                ),
-              ),
-            ),
+            Expanded(child: textField),
             if (!widget.buttonOnLeft) ...[
               const SizedBox(width: 15),
-              InkWellWidget(
-                height: 40,
-                width: 140,
-                radius: 20,
-                onTap: onClick,
-                child: Text(
-                  widget.buttonText,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
+              button,
             ],
           ],
-        )
-      ],
+        );
+      },
     );
   }
 }
+

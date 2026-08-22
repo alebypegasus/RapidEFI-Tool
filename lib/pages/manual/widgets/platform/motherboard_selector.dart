@@ -120,77 +120,86 @@ class _MotherboardSelectorWidgetState
       expander: (_entry != null || _entryLoading)
           ? _buildExpanderContent()
           : null,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // ── Title row ──────────────────────────────────────────
-          Row(children: [
-            const Text(
-              'Motherboard Model Config:',
-              style:
-                  TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(width: 10),
-            Text(
-              _selModel != null
-                  ? 'Selected: $_selModel'
-                  : '(Select motherboard model and check desired configs)',
-              style: TextStyle(
-                fontSize: 13,
-                color: _selModel != null ? null : Colors.grey,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isCompact = constraints.maxWidth < 600;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // ── Title row ──────────────────────────────────────────
+              Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  const Text(
+                    'Motherboard Model Config:',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    _selModel != null
+                        ? 'Selected: $_selModel'
+                        : '(Select model to configure)',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: _selModel != null ? null : Colors.grey,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ]),
-          const SizedBox(height: 12),
-          // ── 3-level ComboBox ────────────────────────────────────
-          if (_navLoading)
-            const Center(child: ProgressRing())
-          else
-            Wrap(
-              spacing: 12,
-              runSpacing: 8,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                // Platform Generation
-                _buildComboBox<String>(
-                  label: 'Platform Generation',
-                  width: 300,
-                  value: _selPlatform,
-                  items: _platforms
-                      .map((p) => ComboBoxItem(
-                          value: p.name,
-                          child: Text(p.name,
-                              overflow: TextOverflow.ellipsis)))
-                      .toList(),
-                  onChanged: _onPlatformChanged,
+              const SizedBox(height: 12),
+              // ── 3-level ComboBox ────────────────────────────────────
+              if (_navLoading)
+                const Center(child: ProgressRing())
+              else
+                Wrap(
+                  spacing: 12,
+                  runSpacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    // Platform Generation
+                    _buildComboBox<String>(
+                      label: 'Platform Generation',
+                      width: isCompact ? constraints.maxWidth : 280,
+                      value: _selPlatform,
+                      items: _platforms
+                          .map((p) => ComboBoxItem(
+                              value: p.name,
+                              child: Text(p.name,
+                                  overflow: TextOverflow.ellipsis)))
+                          .toList(),
+                      onChanged: _onPlatformChanged,
+                    ),
+                    // Brand
+                    _buildComboBox<String>(
+                      label: 'Brand',
+                      width: isCompact ? constraints.maxWidth : 150,
+                      value: _selVendor,
+                      items: vendorList
+                          .map((v) => ComboBoxItem(
+                              value: v.name, child: Text(v.name)))
+                          .toList(),
+                      onChanged: vendorList.isEmpty ? null : _onVendorChanged,
+                    ),
+                    // Motherboard Model
+                    _buildComboBox<String>(
+                      label: 'Motherboard Model',
+                      width: isCompact ? constraints.maxWidth : 280,
+                      value: _selModel,
+                      items: modelList
+                          .map((m) => ComboBoxItem(
+                              value: m,
+                              child: Text(m,
+                                  overflow: TextOverflow.ellipsis)))
+                          .toList(),
+                      onChanged: modelList.isEmpty ? null : _onModelChanged,
+                    ),
+                  ],
                 ),
-                // Brand
-                _buildComboBox<String>(
-                  label: 'Brand',
-                  width: 150,
-                  value: _selVendor,
-                  items: vendorList
-                      .map((v) => ComboBoxItem(
-                          value: v.name, child: Text(v.name)))
-                      .toList(),
-                  onChanged: vendorList.isEmpty ? null : _onVendorChanged,
-                ),
-                // Motherboard Model
-                _buildComboBox<String>(
-                  label: 'Motherboard Model',
-                  width: 320,
-                  value: _selModel,
-                  items: modelList
-                      .map((m) => ComboBoxItem(
-                          value: m,
-                          child: Text(m,
-                              overflow: TextOverflow.ellipsis)))
-                      .toList(),
-                  onChanged: modelList.isEmpty ? null : _onModelChanged,
-                ),
-              ],
-            ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }
@@ -203,26 +212,27 @@ class _MotherboardSelectorWidgetState
     required List<ComboBoxItem<T>> items,
     required ValueChanged<T?>? onChanged,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(label,
-            style: const TextStyle(fontSize: 12, color: Colors.grey)),
-        const SizedBox(height: 4),
-        SizedBox(
-          width: width,
-          child: ComboBox<T>(
+    return SizedBox(
+      width: width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(label,
+              style: const TextStyle(fontSize: 12, color: Colors.grey)),
+          const SizedBox(height: 4),
+          ComboBox<T>(
             isExpanded: true,
             value: value,
             placeholder: const Text('Please select'),
             items: items,
             onChanged: onChanged,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
+
 
   // ── Expander Content ─────────────────────────────────────────────────────────
   Widget _buildExpanderContent() {
@@ -378,18 +388,23 @@ class _MotherboardSelectorWidgetState
   }
 
   Widget _buildApplyBar() {
-    return Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-      Button(
-        onPressed: () => _toggleAll(false),
-        child: const Text('Deselect All'),
-      ),
-      const SizedBox(width: 8),
-      FilledButton(
-        onPressed: _checked.isNotEmpty ? _apply : null,
-        child: Text('Apply Selected (${_checked.length} items)'),
-      ),
-    ]);
+    return Wrap(
+      alignment: WrapAlignment.end,
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        Button(
+          onPressed: () => _toggleAll(false),
+          child: const Text('Deselect All'),
+        ),
+        FilledButton(
+          onPressed: _checked.isNotEmpty ? _apply : null,
+          child: Text('Apply Selected (${_checked.length} items)'),
+        ),
+      ],
+    );
   }
+
 
   // ── Helpers ─────────────────────────────────────────────────────────────
   String _catLabel(MbItemCategory cat) => switch (cat) {

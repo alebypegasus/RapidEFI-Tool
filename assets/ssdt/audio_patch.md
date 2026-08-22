@@ -1,79 +1,56 @@
-# SSDT-HPET Audio Patch Guide
+# SSDT-HPET Audio IRQ Routing & AppleALC Guide
 
-**Note: This guide is specifically for AppleALC (relying on macOS AppleHDA). It does not apply to VoodooHDA. Please remove VoodooHDA if using AppleALC!**
+## 🎵 Overview
 
-- [1. Diagnosing Audio IRQ Conflict Issues](#1-diagnosing-audio-irq-conflict-issues)
-  - [1.1 macOS Tahoe 26 Audio IRQ Patching](#11-macos-tahoe-26-audio-irq-patching)
-  - [1.2 macOS Sequoia 15 and Earlier Audio IRQ Patching](#12-macos-sequoia-15-and-earlier-audio-irq-patching)
-- [2. Generating SSDT-HPET Patch](#2-generating-ssdt-hpet-patch)
+In native PC motherboards, legacy interrupt routing often assigns identical IRQ lines (specifically IRQ 0, 8, 11, 14, 15) to both system timers (such as **HPET**, **RTC**, **TIMR**, **TMR**, **IPIC**) and the High Definition Audio controller (HDEF / HDAS / HDAU).
 
-## 1. Diagnosing Audio IRQ Conflict Issues
+Under macOS, **AppleALC** and Apple's native `AppleHDA.kext` driver require exclusive control over IRQ 0 and IRQ 8 to enumerate audio codecs and manage audio hardware buffers. When conflicts exist, onboard audio will remain completely silent and fail to initialize despite correct `layout-id` injection.
 
-On some platforms using AppleALC, even with the correct `layout-id`, IRQ conflict issues may prevent the onboard audio codec from functioning properly. RapidSSDT generates customized SSDT-HPET and IRQ patches to fix this.
+`SSDT-HPET` dynamically remaps HPET IRQ lines and injects necessary ACPI binary patches to free up IRQ channels for AppleALC.
 
-### 1.1 macOS Tahoe 26 Audio IRQ Patching
-Starting from macOS Tahoe 26 Beta 2, Apple removed the system `AppleHDA.kext`. On macOS Tahoe 26 Beta 2 and above, **you must first install audio patches via OCLP (OpenCore Legacy Patcher)**, then follow the configuration steps below.
+---
 
-### 1.2 macOS Sequoia 15 and Earlier Audio IRQ Patching
+## 🔍 Diagnosing Audio IRQ Conflicts
 
-**Prerequisite: Ensure an appropriate audio layout ID (e.g. via `alcid=xx` boot arg) is set according to AppleALC documentation.**
-
-##### 1.2.1 Checking with Hackintool
-
-Ensure `AppleALC.kext` is loaded in your EFI. If Hackintool does not show any audio devices, an IRQ conflict is likely present, requiring an SSDT-HPET patch:
-
-<img src="images/hackintool-applehda.png" style="zoom:100%;" />
-
-If Hackintool displays your audio codec, there is no IRQ conflict:
-
-<img src="images/hackintool-applehda-ok.png" style="zoom:100%;" />
-
-##### 1.2.2 Checking via Terminal (Accurate & Recommended)
-
-Run the following command in Terminal:
-
+### 1. Verification via macOS Terminal (Recommended)
+Run the following diagnostic command:
 ```bash
 sudo kextstat | grep -E "AppleHDA|AppleALC|Lilu"
 ```
+* **Status Normal**: Both `as.vit9696.AppleALC` and `com.apple.driver.AppleHDA` are listed with active instances.
+* **Conflict Detected**: `AppleALC` is loaded, but `com.apple.driver.AppleHDA` is absent. `SSDT-HPET` is required!
 
-If `AppleALC` is loaded but `AppleHDA` is absent, an IRQ conflict exists and `SSDT-HPET` is required.
+### 2. Verification via IORegistryExplorer
+Search for `AppleHDA` in IORegistryExplorer:
+* If `AppleHDACodec` or `AppleHDAEngine` is missing under your audio controller (`HDEF` or `HDAS`), an IRQ conflict is blocking audio initialization.
 
-<img src="images/terminal-applehda.png" style="zoom:100%;" />
+---
 
-If both `AppleALC` and `AppleHDA` are loaded, no IRQ conflict exists.
+## 🛠️ How RapidSSDT Resolves Audio IRQs
 
-<img src="images/terminal-applehda-ok.png" style="zoom:100%;" />
+RapidSSDT analyzes your native DSDT table for existing `_CRS` (Current Resource Setting) methods under:
+* `_SB.PCI0.LPCB.HPET` (or `_SB.PCI0.LPC0.HPET`)
+* `_SB.PCI0.LPCB.RTC` (or `_SB.PCI0.LPCB.RTC0`)
+* `_SB.PCI0.LPCB.TIMR` (or `_SB.PCI0.LPCB.TMR`)
+* `_SB.PCI0.LPCB.IPIC` (or `_SB.PCI0.LPCB.PIC`)
 
-##### 1.2.3 Checking with IORegistryExplorer
+It generates:
+1. Binary ACPI patches (`HPET _CRS to XCRS`, `RTC _CRS to XCRS`, `TIMR _CRS to XCRS`, `IPIC _CRS to XCRS`) that rename the native conflict methods.
+2. A clean `SSDT-HPET.aml` table that provides compliant resource descriptors with reserved IRQ lines for AppleALC.
 
-Search for `AppleHDA` in IORegistryExplorer. If `AppleHDACodec` is missing, an IRQ conflict is present.
+---
 
-<img src="images/IORegistryExplorer-applehda.png" style="zoom:100%;" />
+## 🚀 Generation & Integration Steps
 
-If `AppleHDACodec` appears, no IRQ conflict exists:
+1. **Dump ACPI**: Click **[Dump ACPI]** in RapidEFI.
+2. **Select Patch**: Go to **Function Patches** -> **SSDT-HPET**.
+3. **Execute Patch**: RapidSSDT compiles `SSDT-HPET.aml` and generates matching binary patch rules.
+4. **Merge config**: Click **[Merge config]** to automatically inject the table and rename patches into your `config.plist`.
+5. **Reboot**: Verify that onboard audio output/input devices appear in **System Settings -> Sound**.
 
-<img src="images/IORegistryExplorer-applehda-ok.png" style="zoom:100%;" />
+---
 
-## 2. Generating SSDT-HPET Patch
+## 🔗 Documentation & Support
 
-### 2.1 Direct Extraction & Patching on Current Machine
-
-Workflow: **[Dump ACPI] -> [Core Patches - Select SSDT-HPET] -> [Execute Patch] -> [Select config] -> [Merge config]**
-
-[Dump ACPI]:
-<img src="images/dump-win-1.png" width="100%" />
-
-[Core Patches] -> [SSDT-HPET]:
-<img src="images/SSDT-HPET.png" style="zoom:100%;" />
-
-[Select config]:
-<img src="images/select-config.png" width="100%" />
-
-[Merge config]:
-<img src="images/merge-ssdt-2.png" width="100%" />
-
-### 2.2 Patching Using Pre-dumped ACPIs
-
-Workflow: **[Select ACPIs] -> [Core Patches - Select SSDT-HPET] -> [Execute Patch] -> [Select config] -> [Merge config]**
-
-<img src="images/select-acpis.png" width="100%" />
+* [RapidEFI GitHub Repository](https://github.com/alebypegasus/RapidEFI-Tool)
+* [Releases & Changelog](https://github.com/alebypegasus/RapidEFI-Tool/releases)

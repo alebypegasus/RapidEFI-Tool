@@ -313,62 +313,69 @@ class _IgpuBaseState extends State<IgpuBase> {
         .firstOrNull;
     final cpuList = currentGen?.cpus ?? <IigpufbCpuEntry>[];
 
-    return Wrap(
-      spacing: 12,
-      runSpacing: 8,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        // CPU Generation
-        SizedBox(
-          width: 230,
-          child: DropdownButtonFormField<String>(
-            initialValue: _selectedGeneration,
-            isExpanded: true,
-            decoration: const InputDecoration(
-              labelText: 'CPU Generation',
-              border: OutlineInputBorder(),
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              isDense: true,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isCompact = constraints.maxWidth < 550;
+
+        return Wrap(
+          spacing: 12,
+          runSpacing: 8,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            // CPU Generation
+            SizedBox(
+              width: isCompact ? constraints.maxWidth : 230,
+              child: DropdownButtonFormField<String>(
+                initialValue: _selectedGeneration,
+                isExpanded: true,
+                decoration: const InputDecoration(
+                  labelText: 'CPU Generation',
+                  border: OutlineInputBorder(),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  isDense: true,
+                ),
+                hint: const Text('Select Generation'),
+                items: genNames
+                    .map((g) =>
+                        DropdownMenuItem(value: g, child: Text(g)))
+                    .toList(),
+                onChanged: _onGenerationChanged,
+              ),
             ),
-            hint: const Text('Select Generation'),
-            items: genNames
-                .map((g) =>
-                    DropdownMenuItem(value: g, child: Text(g)))
-                .toList(),
-            onChanged: _onGenerationChanged,
-          ),
-        ),
-        // CPU Model
-        SizedBox(
-          width: 260,
-          child: DropdownButtonFormField<IigpufbCpuEntry>(
-            initialValue: _selectedCpu,
-            isExpanded: true,
-            decoration: InputDecoration(
-              labelText: 'CPU Model',
-              border: const OutlineInputBorder(),
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              isDense: true,
-              enabled: cpuList.isNotEmpty,
+            // CPU Model
+            SizedBox(
+              width: isCompact ? constraints.maxWidth : 260,
+              child: DropdownButtonFormField<IigpufbCpuEntry>(
+                initialValue: _selectedCpu,
+                isExpanded: true,
+                decoration: InputDecoration(
+                  labelText: 'CPU Model',
+                  border: const OutlineInputBorder(),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  isDense: true,
+                  enabled: cpuList.isNotEmpty,
+                ),
+                hint: const Text('Select CPU'),
+                items: cpuList
+                    .map((cpu) => DropdownMenuItem(
+                          value: cpu,
+                          child: Text(
+                            cpu.cpuModel,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ))
+                    .toList(),
+                onChanged: cpuList.isEmpty ? null : _onCpuChanged,
+              ),
             ),
-            hint: const Text('Select CPU'),
-            items: cpuList
-                .map((cpu) => DropdownMenuItem(
-                      value: cpu,
-                      child: Text(
-                        cpu.cpuModel,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ))
-                .toList(),
-            onChanged: cpuList.isEmpty ? null : _onCpuChanged,
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
+
 
   // ── Preview row ────────────────────────────────────────────────
   Widget _buildPreviewRow(BuildContext context) {

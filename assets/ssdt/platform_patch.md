@@ -1,47 +1,55 @@
-## Platform Patches
+# Platform ACPI Patches & Batch Generation Guide
 
-To quickly determine required SSDTs, RapidSSDT provides platform profiles that automatically list all necessary SSDTs (Core and Recommended) for the chosen hardware.
+## 🗺️ Overview
 
-Platform patches are determined by CPU vendor (Intel or AMD), form factor (Desktop, Laptop, Mini PC, Server), and generation based on Dortania's official guide: [https://dortania.github.io/Getting-Started-With-ACPI/ssdt-platform.html#desktop](https://dortania.github.io/Getting-Started-With-ACPI/ssdt-platform.html#desktop)
+RapidSSDT provides automated platform profiles that categorize, generate, and compile all necessary SSDTs for your hardware in a single click.
 
-### 1. Using Local Native ACPIs
+Whether configuring an Intel LGA1700 desktop, a Haswell laptop, or an AMD AM5 workstation, RapidSSDT reads your dumped ACPI tables, identifies hardware characteristics (such as whether AWAC is enabled in firmware or whether an EC device exists), and generates only the required AML tables.
 
-[Dump ACPI]:
-<img src="images/dump-win-1.png" width="100%" />
+---
 
-### 2. Using Pre-dumped ACPIs
+## 🏗️ Platform Profiles & Generation Workflow
 
-[Select ACPIs]:
-<img src="images/select-acpis.png" width="100%" />
+```mermaid
+graph TD
+    A[Dump Native ACPI Tables] --> B{Select CPU Architecture}
+    B -->|Intel Desktop| C[Compile SSDT-PLUG, SSDT-EC-USBX, SSDT-AWAC]
+    B -->|Intel Laptop| D[Compile SSDT-PLUG, SSDT-EC, SSDT-PNLF, SSDT-GPI0]
+    B -->|AMD Ryzen| E[Compile SSDT-EC-USBX, SSDT-CPUR]
+    C --> F[Merge .aml & config.plist]
+    D --> F
+    E --> F
+    F --> G[Validated Bootable OpenCore ACPI]
+```
 
-**RapidSSDT Platform Patch Description:**
-- **[Core (Official Recommended)]**: Mandatory selection, cannot be deselected.
-- **[Recommended (Fixes)]**: Recommended fixes; selectable based on configuration.
-- **[Optional (Enhancements)]**: Optional enhancements; selectable based on configuration.
-- **[Select All]**: Selects all SSDTs. Unchecking restores Core selection only.
-- **[Custom SSDT]**: Automatically compiles custom SSDTs based on dumped DSDT/SSDT tables.
-- **[Prebuilt SSDT]**: Generates generic SSDTs without analyzing native ACPI tables.
+---
 
-Batch selection example:
-<img src="images/platform-ssdt.png" width="100%" />
+## 📊 Patch Classification Matrix
 
-Click [Custom SSDT] to output compiled SSDTs to `ACPIs/Results` folder:
-<img src="images/platform-ssdt-1.png" width="100%" />
-<img src="images/platform-ssdt-2.png" width="100%" />
+* **🟢 Core (Mandatory)**: Essential for boot and power management. Cannot be disabled.
+  * Examples: `SSDT-PLUG`, `SSDT-EC-USBX`, `SSDT-AWAC`, `SSDT-CPUR`.
+* **🟡 Recommended (Hardware Fixes)**: Resolves system-level conflicts on specific motherboards.
+  * Examples: `SSDT-HPET` (Audio IRQ fix), `SSDT-RHUB` (USB reset), `SSDT-SBUS-MCHC` (SMBus controller).
+* **🔵 Optional (Enhancements)**: Adds advanced functionality or power optimization.
+  * Examples: `SSDT-PMC` (NVRAM write fix on 300-series), `SSDT-BRG0` (PCI Bridge injection for dGPU/NVMe), `SSDT-PCI-DISABLE` (Disable unsupported hardware).
 
-### 3. Merging SSDTs and Patches into EFI
+---
 
-Target EFI before merge:
-<img src="images/merge-ssdt-1.png" width="100%" />
+## 🛠️ Step-by-Step Generation Steps
 
-[Select config] (Select target `config.plist`):
-<img src="images/select-config.png" width="100%" />
+1. **Dump ACPI**: Click **[Dump ACPI]** on your Windows, Linux, or macOS workstation.
+2. **Select Platform**: Choose your CPU architecture and form factor.
+3. **Execute [Custom SSDT]**:
+   - RapidSSDT decompiles the native DSDT table using `iasl`.
+   - Locates target scopes (`_SB.PR00`, `_SB.PCI0.LPCB.EC0`, `_SB.AWAC`, etc.).
+   - Compiles fully resolved `.aml` binaries into `ACPIs/Results`.
+4. **Merge with OpenCore**:
+   - Click **[Select config]** to point to your `config.plist`.
+   - Click **[Merge config]** to copy the `.aml` files and update `ACPI -> Add` and `ACPI -> Patch` entries automatically.
 
-[Merge config]:
-<img src="images/merge-ssdt-2.png" width="100%" />
+---
 
-Merged EFI ACPI entries:
-<img src="images/merge-ssdt-3.png" width="100%" />
+## 🔗 Repository & Updates
 
-Merged EFI ACPI patches:
-<img src="images/merge-ssdt-4.png" width="100%" />
+* [RapidEFI GitHub Repository](https://github.com/alebypegasus/RapidEFI-Tool)
+* [Releases & Changelog](https://github.com/alebypegasus/RapidEFI-Tool/releases)

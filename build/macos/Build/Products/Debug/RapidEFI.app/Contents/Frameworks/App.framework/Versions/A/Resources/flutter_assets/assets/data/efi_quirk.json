@@ -1,8 +1,0 @@
-[
-    {
-        "id": "ReleaseUsbOwnership",
-        "title": "ReleaseUsbOwnership",
-        "description": "Releases ownership of USB controller from firmware driver. While most motherboards handle USB ownership release automatically (enable XHCI/EHCI Hand-off in BIOS), some OEM boards fail to do so (e.g. certain H110, B150, B250, Lenovo Q270). May resolve boot hangs or non-responsive USB keyboards/mice at boot. Not recommended unless necessary.",
-        "tip": "Recommended for OEM motherboards"
-    }
-]

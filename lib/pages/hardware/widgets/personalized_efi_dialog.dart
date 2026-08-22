@@ -343,33 +343,69 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
       title: const Text('EFI Settings', textAlign: TextAlign.center),
       titlePadding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-      content: SizedBox(
-        width: 900,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          spacing: 8,
-          children: [
-            const Text(
-              'These options are customizable. The EFI will be generated based on these settings.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12),
-            ),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.64,
+      content: LayoutBuilder(
+        builder: (context, constraints) {
+          final isCompact = constraints.maxWidth < 650;
+          final dialogContentHeight = MediaQuery.of(context).size.height * 0.70;
+
+          if (isCompact) {
+            return SizedBox(
+              width: double.maxFinite,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: dialogContentHeight,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        'These options are customizable. The EFI will be generated based on these settings.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      const SizedBox(height: 10),
+                      _buildLeftOptions(),
+                      const SizedBox(height: 12),
+                      _buildSsdtPanel(),
+                    ],
+                  ),
+                ),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 10,
-                children: [
-                  Expanded(flex: 1, child: _buildSsdtPanel()),
-                  Expanded(flex: 1, child: _buildLeftOptions()),
-                ],
-              ),
+            );
+          }
+
+          return SizedBox(
+            width: 900,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'These options are customizable. The EFI will be generated based on these settings.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12),
+                ),
+                const SizedBox(height: 8),
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: dialogContentHeight,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(flex: 1, child: _buildSsdtPanel()),
+                      const SizedBox(width: 10),
+                      Expanded(flex: 1, child: _buildLeftOptions()),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
+
       actionsPadding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
       actions: [
         TextButton(
@@ -431,26 +467,38 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             TitleCard(
               title: 'Audio Layout ID:',
               subTitle: _alcModel,
-              content: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: fluent.ComboBox<String>(
-                  isExpanded: false,
-                  value: _selectedAlcLayout?.toString() ??
-                      _alcLayouts.first.toString(),
-                  items: _alcLayouts
-                      .map(
-                        (e) => fluent.ComboBoxItem(
-                          value: e.toString(),
-                          child: Text(e.toString()),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (v) =>
-                      setState(() => _selectedAlcLayout = int.tryParse(v!)),
-                ),
+              content: LayoutBuilder(
+                builder: (context, constraints) {
+                  final isCompact = constraints.maxWidth < 500;
+                  final comboBox = fluent.ComboBox<String>(
+                    isExpanded: isCompact,
+                    value: _selectedAlcLayout?.toString() ??
+                        _alcLayouts.first.toString(),
+                    items: _alcLayouts
+                        .map(
+                          (e) => fluent.ComboBoxItem(
+                            value: e.toString(),
+                            child: Text(e.toString()),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (v) =>
+                        setState(() => _selectedAlcLayout = int.tryParse(v!)),
+                  );
+
+                  if (isCompact) {
+                    return SizedBox(
+                      width: constraints.maxWidth,
+                      child: comboBox,
+                    );
+                  }
+
+                  return comboBox;
+                },
               ),
               snippet: 'AppleALC supports multiple layout IDs. Different IDs may affect audio port availability.',
             ),
+
           TitleCard(
             title: 'Above 4G Decoding Settings',
             content: ChoiceChipTile(

@@ -67,39 +67,50 @@ class _SMBiosWidgetState extends State<SMBiosWidget> {
     return TitleCard(
       title: "SMBIOS Model Settings:",
       subTitle: "",
-      content: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            ComboBox<String>(
-              isExpanded: false,
-              value: selectedChoice.systemProductName,
-              items: widget.platformInfoGenerics.map((e) {
-                return ComboBoxItem(
-                  value: e.systemProductName,
-                  child: Text(
-                    '${e.systemProductName} - ${e.systemProductNameRelatedCPU}',
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                );
-              }).toList(),
-              onChanged: (info) {
-                if (info == null) return;
+      content: LayoutBuilder(
+        builder: (context, constraints) {
+          final isCompact = constraints.maxWidth < 620;
 
-                final nextChoice = widget.platformInfoGenerics.firstWhere(
-                  (e) => e.systemProductName == info,
-                  orElse: () => selectedChoice,
-                );
+          final comboBox = ComboBox<String>(
+            isExpanded: isCompact,
+            value: selectedChoice.systemProductName,
+            items: widget.platformInfoGenerics.map((e) {
+              return ComboBoxItem(
+                value: e.systemProductName,
+                child: Text(
+                  '${e.systemProductName} - ${e.systemProductNameRelatedCPU}',
+                  overflow: TextOverflow.ellipsis,
+                ),
+              );
+            }).toList(),
+            onChanged: (info) {
+              if (info == null) return;
 
-                setState(() {
-                  selectedChoice = nextChoice;
-                });
+              final nextChoice = widget.platformInfoGenerics.firstWhere(
+                (e) => e.systemProductName == info,
+                orElse: () => selectedChoice,
+              );
 
-                widget.onChanged?.call(selectedChoice);
-              },
-            ),
-          ],
-        ),
+              setState(() {
+                selectedChoice = nextChoice;
+              });
+
+              widget.onChanged?.call(selectedChoice);
+            },
+          );
+
+          if (isCompact) {
+            return SizedBox(
+              width: constraints.maxWidth,
+              child: comboBox,
+            );
+          }
+
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: comboBox,
+          );
+        },
       ),
       snippet: SMBIOSCompatibility.supportSummary(selectedChoice),
     );

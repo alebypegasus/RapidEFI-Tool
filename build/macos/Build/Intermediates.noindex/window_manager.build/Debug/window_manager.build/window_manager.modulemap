@@ -1,4 +1,0 @@
-module window_manager {
-header "window_manager-Swift.h"
-export *
-}

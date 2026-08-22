@@ -8,10 +8,11 @@ class RepoConfig {
   const RepoConfig({required this.owner, required this.repo});
 
   static const RepoConfig defaultConfig = RepoConfig(
-    owner: 'JeoJay127',
+    owner: 'alebypegasus',
     repo: 'RapidEFI-Tool',
   );
 
   String get baseUrl => 'https://github.com/$owner/$repo';
   String get releasesUrl => '$baseUrl/releases';
 }
+
