@@ -1,0 +1,708 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Portuguese (`pt`).
+class AppLocalizationsPt extends AppLocalizations {
+  AppLocalizationsPt([String locale = 'pt']) : super(locale);
+
+  @override
+  String get appName => 'RapidEFI';
+
+  @override
+  String get appTitle => 'RapidEFI - Ferramenta de EFI OpenCore';
+
+  @override
+  String get navHardware => 'Hardware';
+
+  @override
+  String get navManual => 'Config Manual da EFI';
+
+  @override
+  String get navProcess => 'Processar EFI';
+
+  @override
+  String get navSsdt => 'SSDT';
+
+  @override
+  String get navOclp => 'OCLP';
+
+  @override
+  String get navTahoe => 'Tahoe 26';
+
+  @override
+  String get navHistory => 'Histórico';
+
+  @override
+  String get navSettings => 'Configurações';
+
+  @override
+  String get navAbout => 'Sobre';
+
+  @override
+  String get navSponsor => 'Apoiar Desenvolvedor';
+
+  @override
+  String get btnRefresh => 'Atualizar';
+
+  @override
+  String get btnImportReport => 'Importar Relatório';
+
+  @override
+  String get btnExportReport => 'Exportar Relatório';
+
+  @override
+  String get btnExportAcpi => 'Exportar ACPI';
+
+  @override
+  String get btnEfiSettings => 'Configurações EFI';
+
+  @override
+  String get btnExportEfi => 'Exportar EFI';
+
+  @override
+  String get btnGenerateEfi => 'Gerar EFI';
+
+  @override
+  String get btnBrowse => 'Procurar';
+
+  @override
+  String get btnChooseFile => 'Escolher Arquivo';
+
+  @override
+  String get btnCancel => 'Cancelar';
+
+  @override
+  String get btnApply => 'Aplicar';
+
+  @override
+  String get btnSave => 'Salvar';
+
+  @override
+  String get btnClose => 'Fechar';
+
+  @override
+  String get btnCheckUpdates => 'Verificar Atualizações';
+
+  @override
+  String get btnChecking => 'Verificando...';
+
+  @override
+  String get btnSelectAll => 'Selecionar Todos';
+
+  @override
+  String get btnDeselectAll => 'Desmarcar Todos';
+
+  @override
+  String get btnCustomSsdt => 'SSDT Customizado';
+
+  @override
+  String get btnPrebuiltSsdt => 'SSDT Pré-compilado';
+
+  @override
+  String get btnDumpAcpi => 'Extrair ACPI';
+
+  @override
+  String get btnSelectAcpis => 'Selecionar ACPIs';
+
+  @override
+  String get btnSelectConfig => 'Selecionar config';
+
+  @override
+  String get btnMergeConfig => 'Mesclar config';
+
+  @override
+  String get btnExecutePatch => 'Executar Patch';
+
+  @override
+  String get btnOpenFolder => 'Abrir Pasta';
+
+  @override
+  String get hardwareReport => 'Relatório de Hardware';
+
+  @override
+  String get cpuArchitecture => 'Processador (CPU)';
+
+  @override
+  String get motherboardChipset => 'Placa-mãe & Chipset';
+
+  @override
+  String get graphicsDevice => 'Gráficos (GPU)';
+
+  @override
+  String get audioCodec => 'Controlador de Áudio';
+
+  @override
+  String get networkController => 'Rede & Wi-Fi';
+
+  @override
+  String get storageDevice => 'Dispositivos de Armazenamento';
+
+  @override
+  String get acpiTables => 'Tabelas ACPI';
+
+  @override
+  String get compatibilityStatus => 'Compatibilidade';
+
+  @override
+  String get compatible => 'Suportado';
+
+  @override
+  String get unsupported => 'Não Suportado';
+
+  @override
+  String get requiresPatch => 'Patch Necessário';
+
+  @override
+  String get details => 'Detalhes';
+
+  @override
+  String get showDetailedReport => 'Visualização Detalhada';
+
+  @override
+  String get platformConfig => 'Configuração da Plataforma';
+
+  @override
+  String get cpuVendor => 'Fabricante da CPU';
+
+  @override
+  String get intel => 'Intel';
+
+  @override
+  String get amd => 'AMD';
+
+  @override
+  String get formFactor => 'Fator de Forma';
+
+  @override
+  String get desktop => 'Desktop';
+
+  @override
+  String get laptop => 'Notebook';
+
+  @override
+  String get nucMiniPc => 'NUC / Mini PC';
+
+  @override
+  String get hedtServer => 'HEDT / Servidor';
+
+  @override
+  String get processorGen => 'Geração do Processador';
+
+  @override
+  String get targetMacOs => 'Versão Alvo do macOS';
+
+  @override
+  String get smbiosModel => 'Modelo SMBIOS Alvo';
+
+  @override
+  String get motherboardSelector => 'Seleção da Placa-Mãe';
+
+  @override
+  String get brand => 'Marca';
+
+  @override
+  String get model => 'Modelo';
+
+  @override
+  String get outputDirectory => 'Diretório de Saída';
+
+  @override
+  String get kextConfiguration => 'Configuração de Kexts';
+
+  @override
+  String get bootArguments => 'Argumentos de Inicialização (boot-args)';
+
+  @override
+  String get csrActiveConfig => 'SIP (csr-active-config)';
+
+  @override
+  String get sipEnabled => 'SIP Ativado (00000000)';
+
+  @override
+  String get sipDisabled => 'SIP Desativado (03080000)';
+
+  @override
+  String get processEfiTitle => 'Processar & Recompilar EFI';
+
+  @override
+  String get chooseEfiPrompt =>
+      'Selecione uma pasta EFI ou arquivo configModel para carregar a configuração';
+
+  @override
+  String get configModelFound =>
+      'ConfigModel encontrado e carregado com sucesso';
+
+  @override
+  String get rebuildEfi => 'Reconstruir EFI';
+
+  @override
+  String get ssdtGeneratorTitle => 'Gerador de SSDT & Modificador ACPI';
+
+  @override
+  String get corePatches => 'Patches Principais';
+
+  @override
+  String get recommendedPatches => 'Patches Recomendados';
+
+  @override
+  String get optionalPatches => 'Patches Opcionais';
+
+  @override
+  String get compilationComplete => 'Compilação Concluída';
+
+  @override
+  String get mergeSuccess => 'Mesclado na EFI com sucesso';
+
+  @override
+  String get oclpTitle => 'Integração OpenCore Legacy Patcher';
+
+  @override
+  String get rootPatching => 'Root Patching';
+
+  @override
+  String get graphicsAcceleration => 'Aceleração Gráfica';
+
+  @override
+  String get wirelessFix => 'Correção de Wi-Fi e Bluetooth';
+
+  @override
+  String get postInstall => 'Passos Pós-Instalação';
+
+  @override
+  String get tahoeGuideTitle => 'Guia de Compatibilidade macOS Tahoe 26';
+
+  @override
+  String get tahoeCompatibility => 'Adaptação de Kernel e Áudio Tahoe 26';
+
+  @override
+  String get settingsTitle => 'Configurações';
+
+  @override
+  String get appLanguage => 'Idioma :';
+
+  @override
+  String get followSystem => 'Seguir o Sistema';
+
+  @override
+  String get themeMode => 'Modo do Tema :';
+
+  @override
+  String get themeColor => 'Cor do Tema :';
+
+  @override
+  String get appFont => 'Fonte do App :';
+
+  @override
+  String get efiOptions => 'Opções da EFI :';
+
+  @override
+  String get addThemeToEfi => 'Adicionar tema de boot OpenCore à EFI';
+
+  @override
+  String get generateConfigModel => 'Gerar arquivo configModel na pasta EFI';
+
+  @override
+  String get compressZipEfi => 'Comprimir EFI em arquivo ZIP';
+
+  @override
+  String get checkForUpdates => 'Verificar Atualizações :';
+
+  @override
+  String currentVersion(String version) {
+    return 'Versão atual: $version';
+  }
+
+  @override
+  String get copyrightNotice => 'Direitos Autorais & Licença';
+
+  @override
+  String get exitAppTip => 'Pressione voltar novamente para sair';
+
+  @override
+  String get updateAvailable => 'Nova versão disponível';
+
+  @override
+  String versionTag(String version) {
+    return 'Versão: $version';
+  }
+
+  @override
+  String releaseDate(String date) {
+    return 'Data de Lançamento: $date';
+  }
+
+  @override
+  String get noUpdateFound => 'Você está usando a versão mais recente';
+
+  @override
+  String get efiBuildSuccess => 'EFI gerada com sucesso!';
+
+  @override
+  String get efiBuildFailed => 'Falha ao gerar EFI';
+
+  @override
+  String get copiedToClipboard => 'Copiado para a área de transferência';
+
+  @override
+  String get soundLayoutId => 'ID de Layout de Áudio (alcid)';
+
+  @override
+  String get nvramBootArgs => 'boot-args personalizados';
+
+  @override
+  String get generateSerial => 'Gerar Serial';
+}
+
+/// The translations for Portuguese, as used in Portugal (`pt_PT`).
+class AppLocalizationsPtPt extends AppLocalizationsPt {
+  AppLocalizationsPtPt() : super('pt_PT');
+
+  @override
+  String get appName => 'RapidEFI';
+
+  @override
+  String get appTitle => 'RapidEFI - Ferramenta de EFI OpenCore';
+
+  @override
+  String get navHardware => 'Hardware';
+
+  @override
+  String get navManual => 'Configuração Manual da EFI';
+
+  @override
+  String get navProcess => 'Processar EFI';
+
+  @override
+  String get navSsdt => 'SSDT';
+
+  @override
+  String get navOclp => 'OCLP';
+
+  @override
+  String get navTahoe => 'Tahoe 26';
+
+  @override
+  String get navHistory => 'Histórico';
+
+  @override
+  String get navSettings => 'Definições';
+
+  @override
+  String get navAbout => 'Acerca de';
+
+  @override
+  String get navSponsor => 'Apoiar o Programador';
+
+  @override
+  String get btnRefresh => 'Atualizar';
+
+  @override
+  String get btnImportReport => 'Importar Relatório';
+
+  @override
+  String get btnExportReport => 'Exportar Relatório';
+
+  @override
+  String get btnExportAcpi => 'Exportar ACPI';
+
+  @override
+  String get btnEfiSettings => 'Definições EFI';
+
+  @override
+  String get btnExportEfi => 'Exportar EFI';
+
+  @override
+  String get btnGenerateEfi => 'Gerar EFI';
+
+  @override
+  String get btnBrowse => 'Procurar';
+
+  @override
+  String get btnChooseFile => 'Escolher Ficheiro';
+
+  @override
+  String get btnCancel => 'Cancelar';
+
+  @override
+  String get btnApply => 'Aplicar';
+
+  @override
+  String get btnSave => 'Guardar';
+
+  @override
+  String get btnClose => 'Fechar';
+
+  @override
+  String get btnCheckUpdates => 'Procurar Atualizações';
+
+  @override
+  String get btnChecking => 'A procurar...';
+
+  @override
+  String get btnSelectAll => 'Selecionar Todos';
+
+  @override
+  String get btnDeselectAll => 'Desmarcar Todos';
+
+  @override
+  String get btnCustomSsdt => 'SSDT Personalizado';
+
+  @override
+  String get btnPrebuiltSsdt => 'SSDT Pré-compilado';
+
+  @override
+  String get btnDumpAcpi => 'Extrair ACPI';
+
+  @override
+  String get btnSelectAcpis => 'Selecionar ACPIs';
+
+  @override
+  String get btnSelectConfig => 'Selecionar config';
+
+  @override
+  String get btnMergeConfig => 'Intercalar config';
+
+  @override
+  String get btnExecutePatch => 'Executar Correção';
+
+  @override
+  String get btnOpenFolder => 'Abrir Pasta';
+
+  @override
+  String get hardwareReport => 'Relatório de Hardware';
+
+  @override
+  String get cpuArchitecture => 'Processador (CPU)';
+
+  @override
+  String get motherboardChipset => 'Placa Principal & Chipset';
+
+  @override
+  String get graphicsDevice => 'Gráficos (GPU)';
+
+  @override
+  String get audioCodec => 'Controlador de Áudio';
+
+  @override
+  String get networkController => 'Rede & Wi-Fi';
+
+  @override
+  String get storageDevice => 'Dispositivos de Armazenamento';
+
+  @override
+  String get acpiTables => 'Tabelas ACPI';
+
+  @override
+  String get compatibilityStatus => 'Compatibilidade';
+
+  @override
+  String get compatible => 'Suportado';
+
+  @override
+  String get unsupported => 'Não Suportado';
+
+  @override
+  String get requiresPatch => 'Correção Necessária';
+
+  @override
+  String get details => 'Detalhes';
+
+  @override
+  String get showDetailedReport => 'Vista Detalhada';
+
+  @override
+  String get platformConfig => 'Configuração da Plataforma';
+
+  @override
+  String get cpuVendor => 'Fabricante da CPU';
+
+  @override
+  String get intel => 'Intel';
+
+  @override
+  String get amd => 'AMD';
+
+  @override
+  String get formFactor => 'Fator de Forma';
+
+  @override
+  String get desktop => 'Desktop';
+
+  @override
+  String get laptop => 'Portátil';
+
+  @override
+  String get nucMiniPc => 'NUC / Mini PC';
+
+  @override
+  String get hedtServer => 'HEDT / Servidor';
+
+  @override
+  String get processorGen => 'Geração do Processador';
+
+  @override
+  String get targetMacOs => 'Versão Alvo do macOS';
+
+  @override
+  String get smbiosModel => 'Modelo SMBIOS Alvo';
+
+  @override
+  String get motherboardSelector => 'Seleção da Placa Principal';
+
+  @override
+  String get brand => 'Marca';
+
+  @override
+  String get model => 'Modelo';
+
+  @override
+  String get outputDirectory => 'Diretório de Saída';
+
+  @override
+  String get kextConfiguration => 'Configuração de Kexts';
+
+  @override
+  String get bootArguments => 'Argumentos de Inicialização (boot-args)';
+
+  @override
+  String get csrActiveConfig => 'SIP (csr-active-config)';
+
+  @override
+  String get sipEnabled => 'SIP Ativado (00000000)';
+
+  @override
+  String get sipDisabled => 'SIP Desativado (03080000)';
+
+  @override
+  String get processEfiTitle => 'Processar & Reconstruir EFI';
+
+  @override
+  String get chooseEfiPrompt =>
+      'Selecione uma pasta EFI ou ficheiro configModel para carregar a configuração';
+
+  @override
+  String get configModelFound => 'ConfigModel detetado e carregado com sucesso';
+
+  @override
+  String get rebuildEfi => 'Reconstruir EFI';
+
+  @override
+  String get ssdtGeneratorTitle => 'Gerador de SSDT & Modificador ACPI';
+
+  @override
+  String get corePatches => 'Correções Principais';
+
+  @override
+  String get recommendedPatches => 'Correções Recomendadas';
+
+  @override
+  String get optionalPatches => 'Correções Opcionais';
+
+  @override
+  String get compilationComplete => 'Compilação Concluída';
+
+  @override
+  String get mergeSuccess => 'Integrado na EFI com sucesso';
+
+  @override
+  String get oclpTitle => 'Integração OpenCore Legacy Patcher';
+
+  @override
+  String get rootPatching => 'Root Patching';
+
+  @override
+  String get graphicsAcceleration => 'Aceleração Gráfica';
+
+  @override
+  String get wirelessFix => 'Correção de Wi-Fi e Bluetooth';
+
+  @override
+  String get postInstall => 'Passos Pós-Instalação';
+
+  @override
+  String get tahoeGuideTitle => 'Guia de Compatibilidade macOS Tahoe 26';
+
+  @override
+  String get tahoeCompatibility => 'Adaptação de Kernel e Áudio Tahoe 26';
+
+  @override
+  String get settingsTitle => 'Definições';
+
+  @override
+  String get appLanguage => 'Idioma :';
+
+  @override
+  String get followSystem => 'Seguir o Sistema';
+
+  @override
+  String get themeMode => 'Modo do Tema :';
+
+  @override
+  String get themeColor => 'Cor do Tema :';
+
+  @override
+  String get appFont => 'Tipo de Letra :';
+
+  @override
+  String get efiOptions => 'Opções da EFI :';
+
+  @override
+  String get addThemeToEfi => 'Adicionar tema de arranque OpenCore à EFI';
+
+  @override
+  String get generateConfigModel => 'Gerar ficheiro configModel na pasta EFI';
+
+  @override
+  String get compressZipEfi => 'Comprimir EFI em ficheiro ZIP';
+
+  @override
+  String get checkForUpdates => 'Procurar Atualizações :';
+
+  @override
+  String currentVersion(String version) {
+    return 'Versão atual: $version';
+  }
+
+  @override
+  String get copyrightNotice => 'Direitos de Autor & Licença';
+
+  @override
+  String get exitAppTip => 'Pressione retroceder novamente para sair';
+
+  @override
+  String get updateAvailable => 'Nova versão disponível';
+
+  @override
+  String versionTag(String version) {
+    return 'Versão: $version';
+  }
+
+  @override
+  String releaseDate(String date) {
+    return 'Data de Lançamento: $date';
+  }
+
+  @override
+  String get noUpdateFound => 'Está a utilizar a versão mais recente';
+
+  @override
+  String get efiBuildSuccess => 'EFI compilada com sucesso!';
+
+  @override
+  String get efiBuildFailed => 'Falha ao compilar EFI';
+
+  @override
+  String get copiedToClipboard => 'Copiado para a área de transferência';
+
+  @override
+  String get soundLayoutId => 'ID de Esquema de Áudio (alcid)';
+
+  @override
+  String get nvramBootArgs => 'boot-args personalizados';
+
+  @override
+  String get generateSerial => 'Gerar Número de Série';
+}

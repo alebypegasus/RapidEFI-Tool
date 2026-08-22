@@ -27,6 +27,30 @@ Map<String, String> get appFontFamilyMap => {
 
 List<String> get themeModeCHList => themeModeCHMap.values.toList();
 
+/// Comprehensive Multi-Language support map (Locale Code -> Display Name)
+const Map<String, String> appLanguagesMap = {
+  'system': 'Follow System',
+  'en': 'English',
+  'pt': 'Português (Brasil)',
+  'pt_PT': 'Português (Portugal)',
+  'zh': '简体中文 (Chinese Simplified)',
+  'zh_Hant': '繁體中文 (Chinese Traditional)',
+  'es': 'Español (Spanish)',
+  'fr': 'Français (French)',
+  'hi': 'हिन्दी (Hindi)',
+  'ar': 'العربية (Arabic)',
+  'bn': 'বাংলা (Bengali)',
+  'ru': 'Русский (Russian)',
+  'id': 'Bahasa Indonesia',
+  'ur': 'اردو (Urdu)',
+  'de': 'Deutsch (German)',
+  'ja': '日本語 (Japanese)',
+  'ko': '한국어 (Korean)',
+  'it': 'Italiano (Italian)',
+  'tr': 'Türkçe (Turkish)',
+  'vi': 'Tiếng Việt (Vietnamese)',
+};
+
 class AppTheme extends ChangeNotifier {
   AccentColor? _accentColor;
   AccentColor get accentColor => _accentColor ?? _theme!.toAccentColor();
@@ -122,10 +146,50 @@ class AppTheme extends ChangeNotifier {
     notifyListeners();
   }
 
-  Locale? _locale;
-  Locale? get locale => _locale;
-  set locale(Locale? locale) {
-    _locale = locale;
+  String get appLocaleCode {
+    return SpUtil.getString(Constant.appLocaleKey, defValue: 'system') ?? 'system';
+  }
+
+  set appLocaleCode(String code) {
+    if (code == appLocaleCode) return;
+    SpUtil.putString(Constant.appLocaleKey, code);
+    _locale = _parseLocale(code);
+    _textDirection = (code == 'ar' || code == 'ur') ? TextDirection.rtl : TextDirection.ltr;
     notifyListeners();
+  }
+
+  Locale? _locale;
+  Locale? get locale {
+    if (_locale != null) return _locale;
+    final saved = appLocaleCode;
+    _locale = _parseLocale(saved);
+    _textDirection = (saved == 'ar' || saved == 'ur') ? TextDirection.rtl : TextDirection.ltr;
+    return _locale;
+  }
+
+  set locale(Locale? loc) {
+    _locale = loc;
+    if (loc == null) {
+      SpUtil.putString(Constant.appLocaleKey, 'system');
+      _textDirection = TextDirection.ltr;
+    } else {
+      final code = loc.countryCode != null && loc.countryCode!.isNotEmpty
+          ? '${loc.languageCode}_${loc.countryCode}'
+          : (loc.scriptCode != null && loc.scriptCode!.isNotEmpty
+              ? '${loc.languageCode}_${loc.scriptCode}'
+              : loc.languageCode);
+      SpUtil.putString(Constant.appLocaleKey, code);
+      _textDirection = (loc.languageCode == 'ar' || loc.languageCode == 'ur')
+          ? TextDirection.rtl
+          : TextDirection.ltr;
+    }
+    notifyListeners();
+  }
+
+  static Locale? _parseLocale(String code) {
+    if (code == 'system' || code.isEmpty) return null;
+    if (code == 'pt_PT') return const Locale('pt', 'PT');
+    if (code == 'zh_Hant') return const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant');
+    return Locale(code);
   }
 }

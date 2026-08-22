@@ -12,6 +12,7 @@ class Constant {
   static const String themeMode = 'themeMode';
 
   static const String appFontFamily = 'appFontFamily';
+  static const String appLocaleKey = 'appLocaleKey';
 
   static const String historyConfigModel = 'historyConfigModel';
 

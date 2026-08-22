@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 
 class HardwareToolbar extends StatelessWidget {
@@ -35,6 +36,8 @@ class HardwareToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
       child: LayoutBuilder(
@@ -43,14 +46,14 @@ class HardwareToolbar extends StatelessWidget {
 
           final actionButtons = <Widget>[
             if (showHardwareActions)
-              _btn('Refresh', () => onRefresh(), isLoading),
-            _btn('Import Report', onImport, false),
+              _btn(l10n?.btnRefresh ?? 'Refresh', () => onRefresh(), isLoading),
+            _btn(l10n?.btnImportReport ?? 'Import Report', onImport, false),
             if (showHardwareActions)
-              _btn('Export Report', onExport, false),
+              _btn(l10n?.btnExportReport ?? 'Export Report', onExport, false),
             if (showAcpiExportAction)
-              _btn('Export ACPI', onExportAcpi, false),
-            _btn('EFI Settings', onPersonalizedEfi, false),
-            _btn('Export EFI', onOutputEfi, false),
+              _btn(l10n?.btnExportAcpi ?? 'Export ACPI', onExportAcpi, false),
+            _btn(l10n?.btnEfiSettings ?? 'EFI Settings', onPersonalizedEfi, false),
+            _btn(l10n?.btnExportEfi ?? 'Export EFI', onOutputEfi, false),
           ];
 
           if (isCompact) {
@@ -86,7 +89,6 @@ class HardwareToolbar extends StatelessWidget {
     );
   }
 
-
   Widget _btn(String text, VoidCallback onTap, bool disabled) {
     return SizedBox(
       height: 30,
@@ -103,6 +105,7 @@ class HardwareToolbar extends StatelessWidget {
   }
 
   Widget _segmentedSwitch(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final colors = hardwareThemeColors(context);
     return Container(
       height: 30,
@@ -112,8 +115,8 @@ class HardwareToolbar extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        _segment(context, 'Summary', !detailed, () => onDetailedChanged(false)),
-        _segment(context, 'Details', detailed, () => onDetailedChanged(true)),
+        _segment(context, l10n?.compatibilityStatus ?? 'Summary', !detailed, () => onDetailedChanged(false)),
+        _segment(context, l10n?.details ?? 'Details', detailed, () => onDetailedChanged(true)),
       ]),
     );
   }
@@ -124,7 +127,7 @@ class HardwareToolbar extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 64,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         height: 28,
         alignment: Alignment.center,
         decoration: BoxDecoration(

@@ -4,6 +4,7 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:path/path.dart' as path;
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi.dart';
 import 'package:rapidefi/utils/config/models/acpi/acpi_add_item.dart';
@@ -38,6 +39,7 @@ class _ProcessPageState extends State<ProcessPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Column(
@@ -45,7 +47,7 @@ class _ProcessPageState extends State<ProcessPage> {
           Padding(
             padding: const EdgeInsets.all(15),
             child: TitleCard(
-              title: 'Process EFI',
+              title: l10n?.processEfiTitle ?? 'Process EFI',
               content: _buildImportHeader(),
               expander: const Text(
                 'RapidEFI automatically outputs a configModel file inside the EFI folder.\n'
@@ -64,6 +66,7 @@ class _ProcessPageState extends State<ProcessPage> {
       ),
     );
   }
+
 
   Widget _buildImportHeader() {
     return Wrap(

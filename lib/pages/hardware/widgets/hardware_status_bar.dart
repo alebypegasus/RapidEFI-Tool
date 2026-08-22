@@ -139,13 +139,18 @@ class _Legend extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       text: const TextSpan(style: TextStyle(fontSize: 11), children: [
         TextSpan(
-            text: 'Green: Fully Supported (macOS Tahoe 26)',
-            style: TextStyle(color: Color(0xFF4CAF50))),
+            text: '● Supported',
+            style: TextStyle(color: Color(0xFF4CAF50), fontWeight: FontWeight.w600)),
         TextSpan(text: '   '),
-        TextSpan(text: 'Yellow: Partially Supported', style: TextStyle(color: Color(0xFFFFB627))),
+        TextSpan(
+            text: '▲ Patch Required',
+            style: TextStyle(color: Color(0xFFFFB627), fontWeight: FontWeight.w600)),
         TextSpan(text: '   '),
-        TextSpan(text: 'Red: Incompatible', style: TextStyle(color: Color(0xFFD94B4B))),
+        TextSpan(
+            text: '✕ Unsupported',
+            style: TextStyle(color: Color(0xFFD94B4B), fontWeight: FontWeight.w600)),
       ]),
     );
   }
 }
+

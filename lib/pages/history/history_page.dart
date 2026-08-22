@@ -16,8 +16,10 @@ import 'package:rapidefi/utils/theme.dart';
 import 'package:rapidefi/widgets/custom_toast.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:sp_util/sp_util.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/history/widgets/history_widget.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
+
 
 /// History
 class HistoryPage extends StatefulWidget {
@@ -264,6 +266,7 @@ class HistoryPageState extends State<HistoryPage> {
       );
     }
 
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Column(
@@ -271,7 +274,7 @@ class HistoryPageState extends State<HistoryPage> {
           Padding(
             padding: const EdgeInsets.all(15),
             child: TitleCard(
-              title: 'History',
+              title: l10n?.navHistory ?? 'History',
               content: _buildClearAllAction(),
               expander: const Text(
                 'EFIs generated with RapidEFI are automatically backed up to history.\n'
@@ -280,6 +283,7 @@ class HistoryPageState extends State<HistoryPage> {
               ),
             ),
           ),
+
           Expanded(
             child: _buildBody(),
           ),

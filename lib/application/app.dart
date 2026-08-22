@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/about/about_page.dart';
 import 'package:rapidefi/pages/history/history_page.dart';
 import 'package:rapidefi/pages/home_tab_page.dart';
@@ -57,7 +58,9 @@ class _AppHost extends StatelessWidget {
         radius: 10,
         position: ToastPosition.center,
         child: DoubleClickBackExitApp(
-          tips: () => showToast('Press back again to exit'),
+          tips: () {
+            showToast(AppLocalizations.of(context)?.exitAppTip ?? 'Press back again to exit');
+          },
           child: _buildFluentApp(context, appTheme),
         ),
       ),
@@ -73,15 +76,13 @@ class _AppHost extends StatelessWidget {
       darkTheme: _fluentTheme(context, appTheme, Brightness.dark),
       theme: _fluentTheme(context, appTheme, Brightness.light),
       localizationsDelegates: const [
+        AppLocalizations.delegate,
         PickerLocalizationsDelegate.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('zh', 'CH'),
-      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       locale: appTheme.locale,
       builder: (context, child) => _AppChrome(
         appTheme: appTheme,
@@ -92,6 +93,7 @@ class _AppHost extends StatelessWidget {
       routeInformationProvider: router.routeInformationProvider,
     );
   }
+
 
   static bool _isDarkMode(BuildContext context, AppTheme appTheme) {
     final platformBrightness =
@@ -206,26 +208,59 @@ class _AppState extends State<App> {
   final searchFocusNode = FocusNode();
   final searchController = TextEditingController();
 
-  late final List<NavigationPaneItem> originalItems = [
-    PaneItemWidgetAdapter(child: const _PaneHeaderText('Recent')),
-    PaneItemSeparator(),
-    _paneItem(_mainNavDestinations[0]),
-    PaneItemWidgetAdapter(child: const _PaneHeaderText('EFI Config')),
-    PaneItemSeparator(),
-    _paneItem(_mainNavDestinations[1]),
-    _paneItem(_mainNavDestinations[2]),
-    PaneItemWidgetAdapter(child: const _PaneHeaderText('Tools & Guides')),
-    PaneItemSeparator(),
-    _paneItem(_mainNavDestinations[3]),
-    _paneItem(_mainNavDestinations[4]),
-    _paneItem(_mainNavDestinations[5]),
-  ];
+  String _getDestinationTitle(BuildContext context, _NavDestination destination) {
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) return destination.title;
+    return switch (destination.index) {
+      0 => l10n.navHistory,
+      1 => l10n.navManual,
+      2 => l10n.navProcess,
+      3 => l10n.navSsdt,
+      4 => l10n.navOclp,
+      5 => l10n.navTahoe,
+      6 => l10n.navSettings,
+      7 => l10n.navAbout,
+      _ => destination.title,
+    };
+  }
 
-  late final List<NavigationPaneItem> footerItems = [
-    PaneItemSeparator(),
-    _paneItem(_footerNavDestinations[0]),
-    _paneItem(_footerNavDestinations[1]),
-  ];
+  PaneItem _paneItem(BuildContext context, _NavDestination destination) {
+    return PaneItem(
+      key: ValueKey(destination.path),
+      icon: Icon(destination.icon),
+      title: Text(_getDestinationTitle(context, destination)),
+      body: const SizedBox.shrink(),
+      onTap: () {
+        _goToDestination(destination);
+      },
+    );
+  }
+
+  List<NavigationPaneItem> _buildOriginalItems(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return [
+      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n?.navHistory ?? 'Recent')),
+      PaneItemSeparator(),
+      _paneItem(context, _mainNavDestinations[0]),
+      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n?.navManual ?? 'EFI Config')),
+      PaneItemSeparator(),
+      _paneItem(context, _mainNavDestinations[1]),
+      _paneItem(context, _mainNavDestinations[2]),
+      PaneItemWidgetAdapter(child: _PaneHeaderText(l10n?.navSsdt ?? 'Tools & Guides')),
+      PaneItemSeparator(),
+      _paneItem(context, _mainNavDestinations[3]),
+      _paneItem(context, _mainNavDestinations[4]),
+      _paneItem(context, _mainNavDestinations[5]),
+    ];
+  }
+
+  List<NavigationPaneItem> _buildFooterItems(BuildContext context) {
+    return [
+      PaneItemSeparator(),
+      _paneItem(context, _footerNavDestinations[0]),
+      _paneItem(context, _footerNavDestinations[1]),
+    ];
+  }
 
   @override
   void dispose() {
@@ -233,6 +268,7 @@ class _AppState extends State<App> {
     searchFocusNode.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -327,18 +363,6 @@ class _AppState extends State<App> {
     );
   }
 
-
-  PaneItem _paneItem(_NavDestination destination) {
-    return PaneItem(
-      key: ValueKey(destination.path),
-      icon: Icon(destination.icon),
-      title: Text(destination.title),
-      body: const SizedBox.shrink(),
-      onTap: () {
-        _goToDestination(destination);
-      },
-    );
-  }
 
   void _goToDestination(_NavDestination destination) {
     widget.navigationShell.goBranch(
@@ -436,12 +460,13 @@ class _AppState extends State<App> {
       header: _buildPaneHeader(context, appTheme),
       displayMode: effectiveDisplayMode,
       indicator: _buildNavigationIndicator(appTheme),
-      items: originalItems,
+      items: _buildOriginalItems(context),
       autoSuggestBox: Builder(builder: _buildSearchBox),
       autoSuggestBoxReplacement: const Icon(FluentIcons.search),
-      footerItems: footerItems,
+      footerItems: _buildFooterItems(context),
     );
   }
+
 
   Widget _buildPaneHeader(BuildContext context, AppTheme appTheme) {
     return const Padding(

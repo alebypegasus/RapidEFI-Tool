@@ -1,0 +1,146 @@
+{
+  "@@locale": "en",
+  "appName": "RapidEFI",
+  "appTitle": "RapidEFI - OpenCore EFI Tool",
+  "navHardware": "Hardware",
+  "navManual": "Manual EFI Config",
+  "navProcess": "Process EFI",
+  "navSsdt": "SSDT",
+  "navOclp": "OCLP",
+  "navTahoe": "Tahoe 26",
+  "navHistory": "History",
+  "navSettings": "Settings",
+  "navAbout": "About",
+  "navSponsor": "Sponsor Developer",
+
+  "btnRefresh": "Refresh",
+  "btnImportReport": "Import Report",
+  "btnExportReport": "Export Report",
+  "btnExportAcpi": "Export ACPI",
+  "btnEfiSettings": "EFI Settings",
+  "btnExportEfi": "Export EFI",
+  "btnGenerateEfi": "Generate EFI",
+  "btnBrowse": "Browse",
+  "btnChooseFile": "Choose File",
+  "btnCancel": "Cancel",
+  "btnApply": "Apply",
+  "btnSave": "Save",
+  "btnClose": "Close",
+  "btnCheckUpdates": "Check Updates",
+  "btnChecking": "Checking...",
+  "btnSelectAll": "Select All",
+  "btnDeselectAll": "Deselect All",
+  "btnCustomSsdt": "Custom SSDT",
+  "btnPrebuiltSsdt": "Prebuilt SSDT",
+  "btnDumpAcpi": "Dump ACPI",
+  "btnSelectAcpis": "Select ACPIs",
+  "btnSelectConfig": "Select config",
+  "btnMergeConfig": "Merge config",
+  "btnExecutePatch": "Execute Patch",
+  "btnOpenFolder": "Open Folder",
+
+  "hardwareReport": "Hardware Report",
+  "cpuArchitecture": "Processor (CPU)",
+  "motherboardChipset": "Motherboard & Chipset",
+  "graphicsDevice": "Graphics (GPU)",
+  "audioCodec": "Audio Controller",
+  "networkController": "Network & Wireless",
+  "storageDevice": "Storage Devices",
+  "acpiTables": "ACPI Tables",
+  "compatibilityStatus": "Compatibility",
+  "compatible": "Supported",
+  "unsupported": "Unsupported",
+  "requiresPatch": "Patch Required",
+  "details": "Details",
+  "showDetailedReport": "Detailed View",
+
+  "platformConfig": "Platform Configuration",
+  "cpuVendor": "CPU Vendor",
+  "intel": "Intel",
+  "amd": "AMD",
+  "formFactor": "Form Factor",
+  "desktop": "Desktop",
+  "laptop": "Laptop",
+  "nucMiniPc": "NUC / Mini PC",
+  "hedtServer": "HEDT / Server",
+  "processorGen": "Processor Generation",
+  "targetMacOs": "Target macOS Version",
+  "smbiosModel": "Target SMBIOS Model",
+  "motherboardSelector": "Motherboard Selection",
+  "brand": "Brand",
+  "model": "Model",
+  "outputDirectory": "Output Directory",
+  "kextConfiguration": "Kext Configuration",
+  "bootArguments": "Boot Arguments (boot-args)",
+  "csrActiveConfig": "SIP (csr-active-config)",
+  "sipEnabled": "SIP Enabled (00000000)",
+  "sipDisabled": "SIP Disabled (03080000)",
+
+  "processEfiTitle": "Process & Rebuild EFI",
+  "chooseEfiPrompt": "Select an EFI directory or configModel file to load configuration",
+  "configModelFound": "ConfigModel found and loaded successfully",
+  "rebuildEfi": "Rebuild EFI",
+
+  "ssdtGeneratorTitle": "SSDT Generator & ACPI Patcher",
+  "corePatches": "Core Patches",
+  "recommendedPatches": "Recommended Patches",
+  "optionalPatches": "Optional Patches",
+  "compilationComplete": "Compilation Completed",
+  "mergeSuccess": "Merged into EFI successfully",
+
+  "oclpTitle": "OpenCore Legacy Patcher Integration",
+  "rootPatching": "Root Patching",
+  "graphicsAcceleration": "Graphics Acceleration",
+  "wirelessFix": "Wi-Fi & Bluetooth Fix",
+  "postInstall": "Post-Install Steps",
+
+  "tahoeGuideTitle": "macOS Tahoe 26 Compatibility Guide",
+  "tahoeCompatibility": "Tahoe 26 Kernel & Audio Adaptation",
+
+  "settingsTitle": "Settings",
+  "appLanguage": "Language :",
+  "followSystem": "Follow System",
+  "themeMode": "Theme Mode :",
+  "themeColor": "Theme Color :",
+  "appFont": "App Font :",
+  "efiOptions": "EFI Options :",
+  "addThemeToEfi": "Add OpenCore boot theme to EFI",
+  "generateConfigModel": "Generate configModel file in EFI folder",
+  "compressZipEfi": "Compress EFI to ZIP file",
+  "checkForUpdates": "Check for Updates :",
+  "currentVersion": "Current version: {version}",
+  "@currentVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "copyrightNotice": "Copyright & License",
+
+  "exitAppTip": "Press back again to exit",
+  "updateAvailable": "New version available",
+  "versionTag": "Version: {version}",
+  "@versionTag": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "releaseDate": "Release Date: {date}",
+  "@releaseDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "noUpdateFound": "You are running the latest version",
+  "efiBuildSuccess": "EFI built successfully!",
+  "efiBuildFailed": "Failed to build EFI",
+  "copiedToClipboard": "Copied to clipboard",
+  "soundLayoutId": "Audio Layout ID (alcid)",
+  "nvramBootArgs": "Custom boot-args",
+  "generateSerial": "Generate Serial"
+}
