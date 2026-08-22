@@ -180,15 +180,23 @@ jobs:
         run: flutter test
 
       - name: Build Android Release APK
-        run: flutter build apk --release --no-tree-shake-icons --android-skip-build-dependency-validation
+        run: |
+          flutter build apk --release --no-tree-shake-icons --android-skip-build-dependency-validation || (cd android && ./gradlew assembleRelease)
 
       - name: Copy & Rename Android APK
         run: |
           mkdir -p dist_apk
-          if [ -f "build/app/outputs/flutter-apk/app-release.apk" ]; then
-            cp build/app/outputs/flutter-apk/app-release.apk RapidEFI-Android.apk
+          APK_FILE=$(find build android -name "*release*.apk" 2>/dev/null | head -n 1)
+          if [ -z "$APK_FILE" ]; then
+            APK_FILE=$(find build android -name "*.apk" 2>/dev/null | head -n 1)
+          fi
+          echo "Found APK at: $APK_FILE"
+          if [ -n "$APK_FILE" ]; then
+            cp "$APK_FILE" RapidEFI-Android.apk
+            ls -la RapidEFI-Android.apk
           else
-            find build/app/outputs -name "*release*.apk" -exec cp {} RapidEFI-Android.apk \;
+            echo "ERROR: No APK generated!"
+            exit 1
           fi
 
       - name: Upload Android Artifact
