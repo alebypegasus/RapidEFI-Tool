@@ -469,28 +469,36 @@ class _AppState extends State<App> {
 
 
   Widget _buildPaneHeader(BuildContext context, AppTheme appTheme) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
-      child: Row(
-        children: [
-          LoadAssetsImage(
-            'Icon-App-60x60',
-            format: ImageFormat.png,
-            width: 22,
-            height: 22,
+    return ClipRect(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        physics: const NeverScrollableScrollPhysics(),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              LoadAssetsImage(
+                'Icon-App-60x60',
+                format: ImageFormat.png,
+                width: 22,
+                height: 22,
+              ),
+              SizedBox(width: 8),
+              Text(
+                Constant.appName,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
-          SizedBox(width: 8),
-          Text(
-            Constant.appName,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
+
 
 
   Widget _buildNavigationIndicator(AppTheme appTheme) {
