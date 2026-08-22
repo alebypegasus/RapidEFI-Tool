@@ -26,7 +26,7 @@ class InkWellWidget extends StatelessWidget {
     this.width,
     this.height,
     this.boxShadow,
-    this.alignment = Alignment.center,
+    this.alignment,
     this.decorationImage,
     this.padding = EdgeInsets.zero,
     this.foregroundColor,
@@ -35,6 +35,7 @@ class InkWellWidget extends StatelessWidget {
     this.gradient,
     this.border,
   });
+
   @override
   Widget build(BuildContext context) {
     return Stack(

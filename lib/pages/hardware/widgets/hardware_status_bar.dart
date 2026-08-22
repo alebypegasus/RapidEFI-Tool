@@ -3,12 +3,10 @@ import 'package:path/path.dart' as path;
 import 'package:rapidefi/pages/hardware/models/hardware_models.dart';
 
 class HardwareStatusBar extends StatelessWidget {
-  static const double _statusWidth = 112;
-  static const double _elapsedWidth = 82;
-
   final String status;
   final bool isLoading;
   final double progress;
+
   final int elapsedMs;
   final String importedHardwarePath;
   final String importedAcpiTablesPath;
