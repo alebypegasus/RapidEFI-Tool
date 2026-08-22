@@ -353,4 +353,187 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get generateSerial => 'Tạo số Serial';
+
+  @override
+  String get navManualTab => 'Cấu hình EFI Thủ công';
+
+  @override
+  String get navAutoTab => 'Cấu hình EFI Tự động';
+
+  @override
+  String get cpuSelection => 'Chọn Bộ xử lý (CPU):';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'Bộ xử lý Pentium hoặc Celeron yêu cầu giả lập CPU (CPU spoofing); vui lòng bật tùy chọn này!\nLưu ý: iGPU Pentium/Celeron thường không được hỗ trợ!';
+
+  @override
+  String get platformSelection => 'Chọn Loại Nền tảng:';
+
+  @override
+  String get processorGeneration => 'Thế hệ Vi xử lý:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6 nhân/12 luồng)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'Comet Lake U62 (6 nhân / 12 luồng) yêu cầu giả lập CPU đặc thù';
+
+  @override
+  String get amdCoresTitle => 'Số nhân CPU AMD:';
+
+  @override
+  String get amdSpecialMb => 'Bo mạch chủ Đặc biệt AMD:';
+
+  @override
+  String get usePrecastMmio => 'Sử dụng Precast MMIO';
+
+  @override
+  String get useRyzenGpu => 'Bật hỗ trợ iGPU Ryzen (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'Hãng Bo mạch chủ:';
+
+  @override
+  String get motherboardModel => 'Mẫu Bo mạch chủ:';
+
+  @override
+  String get customMotherboard => 'Bo mạch chủ Tùy chỉnh / Phổ thông';
+
+  @override
+  String get igpuConfig => 'Cấu hình iGPU:';
+
+  @override
+  String get dgpuConfig => 'Cấu hình dGPU:';
+
+  @override
+  String get audioConfig => 'Cấu hình Âm thanh:';
+
+  @override
+  String get audioCodecFix => 'Codec Âm thanh & Layout ID';
+
+  @override
+  String get fixIrq => 'Sửa xung đột IRQ';
+
+  @override
+  String get networkConfig => 'Cấu hình Mạng & Wi-Fi:';
+
+  @override
+  String get laptopDrivers => 'Trình điều khiển Laptop:';
+
+  @override
+  String get touchpadDriver => 'Trình điều khiển Touchpad (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'Mẫu SMBIOS Đích:';
+
+  @override
+  String get targetMacOsVersion => 'Phiên bản macOS Đích:';
+
+  @override
+  String get bootArgsTitle => 'Tham số Khởi động (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'Bảo vệ Tính toàn vẹn Hệ thống (SIP):';
+
+  @override
+  String get outputEfiTitle => 'Thư mục Xuất EFI:';
+
+  @override
+  String get selectOutputFolder => 'Chọn Thư mục Xuất';
+
+  @override
+  String get clearConfig => 'Xóa Cấu hình';
+
+  @override
+  String get importConfigModel => 'Nhập configModel';
+
+  @override
+  String get importingConfigModel => 'Đang nhập configModel...';
+
+  @override
+  String get dragDropConfigModel =>
+      'Kéo thả tệp configModel vào đây\nhoặc nhấp để duyệt';
+
+  @override
+  String get clearAllHistory => 'Xóa Tất cả Lịch sử';
+
+  @override
+  String get clearingHistory => 'Đang xóa lịch sử...';
+
+  @override
+  String get noHistoryRecords => 'Chưa có bản ghi lịch sử nào';
+
+  @override
+  String get overview => 'Tổng quan';
+
+  @override
+  String get platformPatches => 'Bản vá Nền tảng';
+
+  @override
+  String get audioPatches => 'Bản vá Âm thanh';
+
+  @override
+  String get gpuSpoofing => 'Giả lập GPU';
+
+  @override
+  String get disableDevices => 'Vô hiệu hóa Thiết bị';
+
+  @override
+  String get brightnessPatches => 'Bản vá Độ sáng';
+
+  @override
+  String get graphicsPatches => 'Bản vá Đồ họa';
+
+  @override
+  String get wifiPatches => 'Bản vá Wi-Fi';
+
+  @override
+  String get documentationGuides => 'Tài liệu & Hướng dẫn';
+
+  @override
+  String get aboutSupport => 'Giới thiệu & Hỗ trợ';
+
+  @override
+  String get hardwareTabTitle => 'Cấu hình Phần cứng';
+
+  @override
+  String get acpiFolderTitle => 'Thư mục ACPI';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'Đang tải dữ liệu...';
+
+  @override
+  String get configuringEfiWait => 'Đang cấu hình EFI, vui lòng đợi...';
+
+  @override
+  String get summary => 'Tóm tắt';
+
+  @override
+  String get recent => 'Gần đây';
+
+  @override
+  String get efiConfig => 'Cấu hình EFI';
+
+  @override
+  String get toolsAndGuides => 'Công cụ & Hướng dẫn';
+
+  @override
+  String get checkUpdates => 'Kiểm tra Cập nhật';
+
+  @override
+  String get sponsorDeveloper => 'Ủng hộ Nhà phát triển';
+
+  @override
+  String get releaseNotes => 'Ghi chú Bản phát hành';
+
+  @override
+  String get searchPlaceholder => 'Tìm kiếm';
 }

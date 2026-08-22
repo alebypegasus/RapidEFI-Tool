@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/battery.dart';
+
 import 'package:rapidefi/pages/manual/widgets/platform/laptop_other.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/sensor.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
@@ -144,6 +146,7 @@ class _LaptopWidgetState extends State<LaptopWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final subviews = _buildSubviews();
     final tabs = List.generate(
       titles.length,
@@ -151,13 +154,14 @@ class _LaptopWidgetState extends State<LaptopWidget> {
     );
 
     return TitleCard(
-      title: 'Laptop Drivers:',
+      title: l10n?.laptopDrivers ?? 'Laptop Drivers:',
       subTitle: '(For Laptop Systems)',
       expander: SizedBox(
         height: 380,
         child: TabView(
           tabs: tabs,
           currentIndex: currentIndex,
+
           onChanged: (index) {
             setState(() {
               currentIndex = index;

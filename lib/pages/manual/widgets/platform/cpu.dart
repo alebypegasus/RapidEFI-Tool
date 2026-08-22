@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 import 'package:rapidefi/widgets/button_segment_widget.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +42,9 @@ class _CPUWidgetState extends State<CPUWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return TitleCard(
-      title: "CPU Selection:",
+      title: l10n?.cpuSelection ?? "CPU Selection:",
       content: Wrap(
         spacing: 12,
         runSpacing: 8,
@@ -72,8 +74,8 @@ class _CPUWidgetState extends State<CPUWidget> {
           ),
           if (cpuType == CpuType.intel)
             TipSwitch(
-              tip: "Pentium or Celeron processors require CPU spoofing; please enable this!\nNote: Pentium/Celeron iGPUs are generally unsupported!",
-              title: 'Pentium/Celeron',
+              tip: l10n?.pentiumCeleronTip ?? "Pentium or Celeron processors require CPU spoofing; please enable this!\nNote: Pentium/Celeron iGPUs are generally unsupported!",
+              title: l10n?.pentiumCeleron ?? 'Pentium/Celeron',
               checked: widget.pentiumOrCeleron,
               onChanged: (value) {
                 widget.onPentiumChanged?.call(value);
@@ -82,6 +84,5 @@ class _CPUWidgetState extends State<CPUWidget> {
         ],
       ),
     );
-
   }
 }

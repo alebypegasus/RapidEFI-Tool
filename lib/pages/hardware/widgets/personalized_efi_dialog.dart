@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
+
 import 'package:rapidefi/pages/manual/widgets/platform/os_version.dart';
 import 'package:rapidefi/pages/manual/widgets/platform/smbios.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_chip_tile.dart';
@@ -465,7 +467,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ),
           if (hasAlc)
             TitleCard(
-              title: 'Audio Layout ID:',
+              title: AppLocalizations.of(context)?.audioCodecFix ?? 'Audio Layout ID:',
               subTitle: _alcModel,
               content: LayoutBuilder(
                 builder: (context, constraints) {
@@ -500,7 +502,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ),
 
           TitleCard(
-            title: 'Above 4G Decoding Settings',
+            title: AppLocalizations.of(context)?.above4gDecoding ?? 'Above 4G Decoding Settings',
             content: ChoiceChipTile(
               label: 'Add npci=0x2000 boot-arg',
               selected: _enableNpci,
@@ -508,6 +510,7 @@ class _PersonalizedEfiDialogState extends State<PersonalizedEfiDialog> {
             ),
             snippet: 'Recommended when Above 4G Decoding is not enabled in BIOS; remove if enabled in BIOS.',
           ),
+
         ],
       ),
     );

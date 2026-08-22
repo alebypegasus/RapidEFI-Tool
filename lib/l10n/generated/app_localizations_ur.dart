@@ -353,4 +353,188 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get generateSerial => 'سیریل نمبر بنائیں';
+
+  @override
+  String get navManualTab => 'دستی EFI ترتیب';
+
+  @override
+  String get navAutoTab => 'خودکار EFI ترتیب';
+
+  @override
+  String get cpuSelection => 'پروسیسر (CPU) کا انتخاب:';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'پینٹیم یا سیلیرون پروسیسرز کو CPU سپوفنگ کی ضرورت ہوتی ہے؛ براہ کرم اسے فعال کریں!\nنوٹ: پینٹیم/سیلیرون iGPU عام طور پر تعاون یافتہ نہیں ہیں!';
+
+  @override
+  String get platformSelection => 'پلیٹ فارم کا انتخاب:';
+
+  @override
+  String get processorGeneration => 'پروسیسر جنریشن:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6C/12T)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'Comet Lake U62 (6 کورز / 12 تھریڈز) کو مخصوص CPU سپوفنگ درکار ہے';
+
+  @override
+  String get amdCoresTitle => 'AMD CPU کورز:';
+
+  @override
+  String get amdSpecialMb => 'AMD کے خصوصی مدر بورڈز:';
+
+  @override
+  String get usePrecastMmio => 'Precast MMIO استعمال کریں';
+
+  @override
+  String get useRyzenGpu => 'Ryzen iGPU سپورٹ فعال کریں (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'مدر بورڈ برانڈ:';
+
+  @override
+  String get motherboardModel => 'مدر بورڈ ماڈل:';
+
+  @override
+  String get customMotherboard => 'کسٹم / عام مدر بورڈ';
+
+  @override
+  String get igpuConfig => 'iGPU کنفیگریشن:';
+
+  @override
+  String get dgpuConfig => 'dGPU کنفیگریشن:';
+
+  @override
+  String get audioConfig => 'آڈیو کنفیگریشن:';
+
+  @override
+  String get audioCodecFix => 'آڈیو کوڈیک اور لے آؤٹ ID';
+
+  @override
+  String get fixIrq => 'IRQ تنازعات کو درست کریں';
+
+  @override
+  String get networkConfig => 'نیٹ ورک اور وائی فائی کنفیگریشن:';
+
+  @override
+  String get laptopDrivers => 'لیپ ٹاپ ڈرائیورز:';
+
+  @override
+  String get touchpadDriver => 'ٹچ پیڈ ڈرائیور (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'ہدف SMBIOS ماڈل:';
+
+  @override
+  String get targetMacOsVersion => 'ہدف شدہ macOS ورژن:';
+
+  @override
+  String get bootArgsTitle => 'بوٹ آرگومنٹس (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'سسٹم کی سالمیت کا تحفظ (SIP):';
+
+  @override
+  String get outputEfiTitle => 'آؤٹ پٹ EFI فولڈر:';
+
+  @override
+  String get selectOutputFolder => 'آؤٹ پٹ فولڈر منتخب کریں';
+
+  @override
+  String get clearConfig => 'ترتیب صاف کریں';
+
+  @override
+  String get importConfigModel => 'configModel درآمد کریں';
+
+  @override
+  String get importingConfigModel => 'configModel درآمد ہو رہا ہے...';
+
+  @override
+  String get dragDropConfigModel =>
+      'configModel فائل کو یہاں ڈریگ اور ڈراپ کریں\nیا براؤز کرنے کے لیے کلک کریں';
+
+  @override
+  String get clearAllHistory => 'تمام تاریخ صاف کریں';
+
+  @override
+  String get clearingHistory => 'تاریخ صاف ہو رہی ہے...';
+
+  @override
+  String get noHistoryRecords => 'ابھی تک کوئی تاریخ کا ریکارڈ نہیں';
+
+  @override
+  String get overview => 'جائزہ';
+
+  @override
+  String get platformPatches => 'پلیٹ فارم پیچز';
+
+  @override
+  String get audioPatches => 'آڈیو پیچز';
+
+  @override
+  String get gpuSpoofing => 'GPU سپوفنگ';
+
+  @override
+  String get disableDevices => 'ڈیوائسز غیر فعال کریں';
+
+  @override
+  String get brightnessPatches => 'چمک کے پیچز';
+
+  @override
+  String get graphicsPatches => 'گرافکس پیچز';
+
+  @override
+  String get wifiPatches => 'وائی فائی پیچز';
+
+  @override
+  String get documentationGuides => 'دستاویزات اور رہنمائی';
+
+  @override
+  String get aboutSupport => 'کے بارے میں اور سپورٹ';
+
+  @override
+  String get hardwareTabTitle => 'ہارڈ ویئر کنفیگریشن';
+
+  @override
+  String get acpiFolderTitle => 'ACPI فولڈر';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'ڈیٹا لوڈ ہو رہا ہے...';
+
+  @override
+  String get configuringEfiWait =>
+      'EFI ترتیب دیا جا رہا ہے، براہ کرم انتظار کریں...';
+
+  @override
+  String get summary => 'خلاصہ';
+
+  @override
+  String get recent => 'حالیہ';
+
+  @override
+  String get efiConfig => 'EFI ترتیب';
+
+  @override
+  String get toolsAndGuides => 'اوزار اور گائیڈز';
+
+  @override
+  String get checkUpdates => 'اپ ڈیٹس چیک کریں';
+
+  @override
+  String get sponsorDeveloper => 'ڈویلپر کو سپانسر کریں';
+
+  @override
+  String get releaseNotes => 'ریلیز نوٹس';
+
+  @override
+  String get searchPlaceholder => 'تلاش کریں';
 }

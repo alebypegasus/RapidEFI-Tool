@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/link_button_row.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 import 'package:rapidefi/utils/image_util.dart';
@@ -14,10 +15,12 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasFluentTheme(context));
+    final l10n = AppLocalizations.of(context);
+
     return ScaffoldPage.scrollable(
-        header: const PageHeader(
-          title: Text('About RapidEFI'),
-          commandBar: LinkButtonRow(
+        header: PageHeader(
+          title: Text(l10n?.navAbout ?? 'About RapidEFI'),
+          commandBar: const LinkButtonRow(
             mainAxisAlignment: MainAxisAlignment.end,
             items: [
               LinkButtonItem(
@@ -33,11 +36,11 @@ class _AboutPageState extends State<AboutPage> {
             ],
           ),
         ),
-        children: const [
+        children: [
           TitleCard(
-            title: 'About & Support',
+            title: l10n?.aboutSupport ?? 'About & Support',
             initiallyExpanded: true,
-            expander: Column(
+            expander: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
@@ -69,13 +72,12 @@ class _AboutPageState extends State<AboutPage> {
               ],
             ),
           ),
-
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           TitleCard(
-            title: 'Documentation & Guides',
-            content: LinkButtonRow(
+            title: l10n?.documentationGuides ?? 'Documentation & Guides',
+            content: const LinkButtonRow(
               mainAxisAlignment: MainAxisAlignment.end,
               items: [
                 LinkButtonItem(
@@ -89,4 +91,3 @@ class _AboutPageState extends State<AboutPage> {
         ]);
   }
 }
-

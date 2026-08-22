@@ -353,4 +353,188 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get generateSerial => 'توليد الرقم التسلسلي';
+
+  @override
+  String get navManualTab => 'تهيئة EFI اليدوية';
+
+  @override
+  String get navAutoTab => 'تهيئة EFI التلقائية';
+
+  @override
+  String get cpuSelection => 'اختيار المعالج (CPU):';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'تتطلب معالجات Pentium أو Celeron انتحال المعالج (CPU spoofing)؛ يرجى تفعيل هذا!\nملاحظة: كروت iGPU لمعالجات Pentium/Celeron غير مدعومة عموماً!';
+
+  @override
+  String get platformSelection => 'اختيار نوع المنصة:';
+
+  @override
+  String get processorGeneration => 'جيل المعالج:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6C/12T)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'يتطلب Comet Lake U62 (6 أنوية / 12 مساراً) انتحالاً مخصصاً للمعالج';
+
+  @override
+  String get amdCoresTitle => 'أنوية معالج AMD:';
+
+  @override
+  String get amdSpecialMb => 'لوحات أم خاصة بـ AMD:';
+
+  @override
+  String get usePrecastMmio => 'استخدام Precast MMIO';
+
+  @override
+  String get useRyzenGpu =>
+      'تفعيل دعم معالج الرسوميات المدمج Ryzen (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'علامة اللوحة الأم:';
+
+  @override
+  String get motherboardModel => 'موديل اللوحة الأم:';
+
+  @override
+  String get customMotherboard => 'لوحة أم مخصصة / عامة';
+
+  @override
+  String get igpuConfig => 'تهيئة معالج الرسوميات المدمج (iGPU):';
+
+  @override
+  String get dgpuConfig => 'تهيئة كرت الشاشة المنفصل (dGPU):';
+
+  @override
+  String get audioConfig => 'تهيئة الصوت:';
+
+  @override
+  String get audioCodecFix => 'ترميز الصوت ومعرف التخطيط';
+
+  @override
+  String get fixIrq => 'إصلاح تعارضات IRQ';
+
+  @override
+  String get networkConfig => 'تهيئة الشبكة واللاسلكي:';
+
+  @override
+  String get laptopDrivers => 'تعريفات الحواسيب المحمولة:';
+
+  @override
+  String get touchpadDriver => 'تعريف لوحة اللمس (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'طراز SMBIOS المستهدف:';
+
+  @override
+  String get targetMacOsVersion => 'إصدار macOS المستهدف:';
+
+  @override
+  String get bootArgsTitle => 'معاملات الإقلاع (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'حماية تكامل النظام (SIP):';
+
+  @override
+  String get outputEfiTitle => 'مجلد إخراج EFI:';
+
+  @override
+  String get selectOutputFolder => 'تحديد مجلد الإخراج';
+
+  @override
+  String get clearConfig => 'مسح التهيئة';
+
+  @override
+  String get importConfigModel => 'استيراد configModel';
+
+  @override
+  String get importingConfigModel => 'جاري استيراد configModel...';
+
+  @override
+  String get dragDropConfigModel =>
+      'اسحب وأفلت ملف configModel هنا\nأو انقر للتصفح';
+
+  @override
+  String get clearAllHistory => 'مسح كل السجل';
+
+  @override
+  String get clearingHistory => 'جاري مسح السجل...';
+
+  @override
+  String get noHistoryRecords => 'لا توجد سجلات بعد';
+
+  @override
+  String get overview => 'نظرة عامة';
+
+  @override
+  String get platformPatches => 'رقع المنصة';
+
+  @override
+  String get audioPatches => 'رقع الصوت';
+
+  @override
+  String get gpuSpoofing => 'انتحال كرت الشاشة';
+
+  @override
+  String get disableDevices => 'تعطيل الأجهزة';
+
+  @override
+  String get brightnessPatches => 'رقع السطوع';
+
+  @override
+  String get graphicsPatches => 'رقع الرسوميات';
+
+  @override
+  String get wifiPatches => 'رقع Wi-Fi';
+
+  @override
+  String get documentationGuides => 'الوثائق والأدلة';
+
+  @override
+  String get aboutSupport => 'حول والدعم';
+
+  @override
+  String get hardwareTabTitle => 'تهيئة العتاد';
+
+  @override
+  String get acpiFolderTitle => 'مجلد ACPI';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'جاري تحميل البيانات...';
+
+  @override
+  String get configuringEfiWait => 'جاري تهيئة EFI، يرجى الانتظار...';
+
+  @override
+  String get summary => 'ملخص';
+
+  @override
+  String get recent => 'الأحدث';
+
+  @override
+  String get efiConfig => 'تهيئة EFI';
+
+  @override
+  String get toolsAndGuides => 'الأدوات والأدلة';
+
+  @override
+  String get checkUpdates => 'التحقق من التحديثات';
+
+  @override
+  String get sponsorDeveloper => 'دعم المطور';
+
+  @override
+  String get releaseNotes => 'ملاحظات الإصدار';
+
+  @override
+  String get searchPlaceholder => 'بحث';
 }

@@ -353,4 +353,187 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get generateSerial => 'সিরিয়াল তৈরি করুন';
+
+  @override
+  String get navManualTab => 'ম্যানুয়াল EFI কনফিগারেশন';
+
+  @override
+  String get navAutoTab => 'স্বয়ংক্রিয় EFI কনফিগারেশন';
+
+  @override
+  String get cpuSelection => 'প্রসেসর (CPU) নির্বাচন:';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'পেন্টিয়াম বা সেলেরন প্রসেসরের জন্য CPU স্পুফিং প্রয়োজন; অনুগ্রহ করে এটি সক্রিয় করুন!\nউল্লেখ্য: পেন্টিয়াম/সেরেলন iGPU সমর্থিত নয়!';
+
+  @override
+  String get platformSelection => 'প্ল্যাটফর্ম নির্বাচন:';
+
+  @override
+  String get processorGeneration => 'প্রসেসর প্রজন্ম:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6C/12T)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'Comet Lake U62 (6 কোর / 12 থ্রেড) নির্দিষ্ট CPU স্পুফিং প্রয়োজন';
+
+  @override
+  String get amdCoresTitle => 'AMD CPU কোর:';
+
+  @override
+  String get amdSpecialMb => 'AMD বিশেষ মাদারবোর্ড:';
+
+  @override
+  String get usePrecastMmio => 'প্রিকাস্ট MMIO ব্যবহার করুন';
+
+  @override
+  String get useRyzenGpu => 'Ryzen iGPU সাপোর্ট সক্রিয় করুন (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'মাদারবোর্ড ব্র্যান্ড:';
+
+  @override
+  String get motherboardModel => 'মাদারবোর্ড মডেল:';
+
+  @override
+  String get customMotherboard => 'কাস্টম / সাধারণ মাদারবোর্ড';
+
+  @override
+  String get igpuConfig => 'iGPU কনফিগারেশন:';
+
+  @override
+  String get dgpuConfig => 'dGPU কনফিগারেশন:';
+
+  @override
+  String get audioConfig => 'অডিও কনফিগারেশন:';
+
+  @override
+  String get audioCodecFix => 'অডিও কোডেক ও লেআউট ID';
+
+  @override
+  String get fixIrq => 'IRQ দ্বন্দ্ব সমাধান করুন';
+
+  @override
+  String get networkConfig => 'নেটওয়ার্ক ও ওয়্যারলেস কনফিগারেশন:';
+
+  @override
+  String get laptopDrivers => 'ল্যাপটপ ড্রাইভারসমূহ:';
+
+  @override
+  String get touchpadDriver => 'টাচপ্যাড ড্রাইভার (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'টার্গেট SMBIOS মডেল:';
+
+  @override
+  String get targetMacOsVersion => 'টার্গেট macOS সংস্করণ:';
+
+  @override
+  String get bootArgsTitle => 'বুট আর্গুমেন্ট (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'সিস্টেম ইন্টিগ্রিটি প্রোটেকশন (SIP):';
+
+  @override
+  String get outputEfiTitle => 'আউটপুট EFI ফোল্ডার:';
+
+  @override
+  String get selectOutputFolder => 'আউটপুট ফোল্ডার নির্বাচন করুন';
+
+  @override
+  String get clearConfig => 'কনফিগারেশন মুছুন';
+
+  @override
+  String get importConfigModel => 'configModel ইম্পোর্ট করুন';
+
+  @override
+  String get importingConfigModel => 'configModel ইম্পোর্ট করা হচ্ছে...';
+
+  @override
+  String get dragDropConfigModel =>
+      'configModel ফাইল এখানে টেনে আনুন\nঅথবা ব্রাউজ করতে ক্লিক করুন';
+
+  @override
+  String get clearAllHistory => 'সব ইতিহাস মুছুন';
+
+  @override
+  String get clearingHistory => 'ইতিহাস মুছে ফেলা হচ্ছে...';
+
+  @override
+  String get noHistoryRecords => 'এখনও কোনো ইতিহাস রেকর্ড নেই';
+
+  @override
+  String get overview => 'সংক্ষিপ্ত বিবরণ';
+
+  @override
+  String get platformPatches => 'প্ল্যাটফর্ম প্যাচসমূহ';
+
+  @override
+  String get audioPatches => 'অডিও প্যাচসমূহ';
+
+  @override
+  String get gpuSpoofing => 'GPU স্পুফিং';
+
+  @override
+  String get disableDevices => 'ডিভাইস নিষ্ক্রিয় করুন';
+
+  @override
+  String get brightnessPatches => 'উজ্জ্বলতা প্যাচসমূহ';
+
+  @override
+  String get graphicsPatches => 'গ্রাফিক্স প্যাচসমূহ';
+
+  @override
+  String get wifiPatches => 'ওয়াই-ফাই প্যাচসমূহ';
+
+  @override
+  String get documentationGuides => 'ডকুমেন্টেশন ও নির্দেশিকা';
+
+  @override
+  String get aboutSupport => 'সম্পর্কে ও সহায়তা';
+
+  @override
+  String get hardwareTabTitle => 'হার্ডওয়্যার কনফিগারেশন';
+
+  @override
+  String get acpiFolderTitle => 'ACPI ফোল্ডার';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'ডাটা লোড হচ্ছে...';
+
+  @override
+  String get configuringEfiWait => 'EFI কনফিগার করা হচ্ছে, অপেক্ষা করুন...';
+
+  @override
+  String get summary => 'সারাংশ';
+
+  @override
+  String get recent => 'সাম্প্রতিক';
+
+  @override
+  String get efiConfig => 'EFI কনফিগ';
+
+  @override
+  String get toolsAndGuides => 'টুলস ও গাইড';
+
+  @override
+  String get checkUpdates => 'আপডেট চেক করুন';
+
+  @override
+  String get sponsorDeveloper => 'ডেভেলপারকে স্পনসর করুন';
+
+  @override
+  String get releaseNotes => 'রিলিজ নোট';
+
+  @override
+  String get searchPlaceholder => 'অনুসন্ধান করুন';
 }

@@ -807,6 +807,366 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Generate Serial'**
   String get generateSerial;
+
+  /// No description provided for @navManualTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual EFI Config'**
+  String get navManualTab;
+
+  /// No description provided for @navAutoTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto EFI Config'**
+  String get navAutoTab;
+
+  /// No description provided for @cpuSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU Selection:'**
+  String get cpuSelection;
+
+  /// No description provided for @pentiumCeleron.
+  ///
+  /// In en, this message translates to:
+  /// **'Pentium/Celeron'**
+  String get pentiumCeleron;
+
+  /// No description provided for @pentiumCeleronTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Pentium or Celeron processors require CPU spoofing; please enable this!\nNote: Pentium/Celeron iGPUs are generally unsupported!'**
+  String get pentiumCeleronTip;
+
+  /// No description provided for @platformSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform Selection:'**
+  String get platformSelection;
+
+  /// No description provided for @processorGeneration.
+  ///
+  /// In en, this message translates to:
+  /// **'Processor Generation:'**
+  String get processorGeneration;
+
+  /// No description provided for @cometLakeU62.
+  ///
+  /// In en, this message translates to:
+  /// **'Comet Lake U62 (6C/12T)'**
+  String get cometLakeU62;
+
+  /// No description provided for @cometLakeU62Tip.
+  ///
+  /// In en, this message translates to:
+  /// **'Comet Lake U62 (6 cores / 12 threads) requires specific CPU spoofing'**
+  String get cometLakeU62Tip;
+
+  /// No description provided for @amdCoresTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AMD CPU Cores:'**
+  String get amdCoresTitle;
+
+  /// No description provided for @amdSpecialMb.
+  ///
+  /// In en, this message translates to:
+  /// **'AMD Special Motherboards:'**
+  String get amdSpecialMb;
+
+  /// No description provided for @usePrecastMmio.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Precast MMIO'**
+  String get usePrecastMmio;
+
+  /// No description provided for @useRyzenGpu.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Ryzen iGPU Support (NootedRed)'**
+  String get useRyzenGpu;
+
+  /// No description provided for @motherboardBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'Motherboard Brand:'**
+  String get motherboardBrand;
+
+  /// No description provided for @motherboardModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Motherboard Model:'**
+  String get motherboardModel;
+
+  /// No description provided for @customMotherboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom / Generic Motherboard'**
+  String get customMotherboard;
+
+  /// No description provided for @igpuConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'iGPU Configuration:'**
+  String get igpuConfig;
+
+  /// No description provided for @dgpuConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'dGPU Configuration:'**
+  String get dgpuConfig;
+
+  /// No description provided for @audioConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Configuration:'**
+  String get audioConfig;
+
+  /// No description provided for @audioCodecFix.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Codec & Layout ID'**
+  String get audioCodecFix;
+
+  /// No description provided for @fixIrq.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix IRQ Conflicts'**
+  String get fixIrq;
+
+  /// No description provided for @networkConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Network & Wireless Configuration:'**
+  String get networkConfig;
+
+  /// No description provided for @laptopDrivers.
+  ///
+  /// In en, this message translates to:
+  /// **'Laptop Drivers:'**
+  String get laptopDrivers;
+
+  /// No description provided for @touchpadDriver.
+  ///
+  /// In en, this message translates to:
+  /// **'Touchpad Driver (I2C / PS2)'**
+  String get touchpadDriver;
+
+  /// No description provided for @smbiosSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Target SMBIOS Model:'**
+  String get smbiosSelection;
+
+  /// No description provided for @targetMacOsVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Target macOS Version:'**
+  String get targetMacOsVersion;
+
+  /// No description provided for @bootArgsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Boot Arguments (boot-args):'**
+  String get bootArgsTitle;
+
+  /// No description provided for @csrActiveConfigTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'System Integrity Protection (SIP):'**
+  String get csrActiveConfigTitle;
+
+  /// No description provided for @outputEfiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Output EFI Folder:'**
+  String get outputEfiTitle;
+
+  /// No description provided for @selectOutputFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Output Folder'**
+  String get selectOutputFolder;
+
+  /// No description provided for @clearConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Config'**
+  String get clearConfig;
+
+  /// No description provided for @importConfigModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Import configModel'**
+  String get importConfigModel;
+
+  /// No description provided for @importingConfigModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Importing configModel...'**
+  String get importingConfigModel;
+
+  /// No description provided for @dragDropConfigModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag and drop configModel file here\nor click to browse'**
+  String get dragDropConfigModel;
+
+  /// No description provided for @clearAllHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear All History'**
+  String get clearAllHistory;
+
+  /// No description provided for @clearingHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Clearing history...'**
+  String get clearingHistory;
+
+  /// No description provided for @noHistoryRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'No history records yet'**
+  String get noHistoryRecords;
+
+  /// No description provided for @overview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get overview;
+
+  /// No description provided for @platformPatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform Patches'**
+  String get platformPatches;
+
+  /// No description provided for @audioPatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Patches'**
+  String get audioPatches;
+
+  /// No description provided for @gpuSpoofing.
+  ///
+  /// In en, this message translates to:
+  /// **'GPU Spoofing'**
+  String get gpuSpoofing;
+
+  /// No description provided for @disableDevices.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Devices'**
+  String get disableDevices;
+
+  /// No description provided for @brightnessPatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Brightness Patches'**
+  String get brightnessPatches;
+
+  /// No description provided for @graphicsPatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphics Patches'**
+  String get graphicsPatches;
+
+  /// No description provided for @wifiPatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi Patches'**
+  String get wifiPatches;
+
+  /// No description provided for @documentationGuides.
+  ///
+  /// In en, this message translates to:
+  /// **'Documentation & Guides'**
+  String get documentationGuides;
+
+  /// No description provided for @aboutSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'About & Support'**
+  String get aboutSupport;
+
+  /// No description provided for @hardwareTabTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware Configuration'**
+  String get hardwareTabTitle;
+
+  /// No description provided for @acpiFolderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'ACPI Folder'**
+  String get acpiFolderTitle;
+
+  /// No description provided for @above4gDecoding.
+  ///
+  /// In en, this message translates to:
+  /// **'Above 4G Decoding'**
+  String get above4gDecoding;
+
+  /// No description provided for @loadingData.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading data...'**
+  String get loadingData;
+
+  /// No description provided for @configuringEfiWait.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuring EFI, please wait...'**
+  String get configuringEfiWait;
+
+  /// No description provided for @summary.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get summary;
+
+  /// No description provided for @recent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get recent;
+
+  /// No description provided for @efiConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'EFI Config'**
+  String get efiConfig;
+
+  /// No description provided for @toolsAndGuides.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools & Guides'**
+  String get toolsAndGuides;
+
+  /// No description provided for @checkUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Check Updates'**
+  String get checkUpdates;
+
+  /// No description provided for @sponsorDeveloper.
+  ///
+  /// In en, this message translates to:
+  /// **'Sponsor Developer'**
+  String get sponsorDeveloper;
+
+  /// No description provided for @releaseNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Release Notes'**
+  String get releaseNotes;
+
+  /// No description provided for @searchPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get searchPlaceholder;
 }
 
 class _AppLocalizationsDelegate

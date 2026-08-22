@@ -353,4 +353,187 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get generateSerial => 'Сгенерировать серийный номер';
+
+  @override
+  String get navManualTab => 'Ручная настройка EFI';
+
+  @override
+  String get navAutoTab => 'Автоматическая настройка EFI';
+
+  @override
+  String get cpuSelection => 'Выбор процессора (CPU):';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'Процессоры Pentium или Celeron требуют спуфинга CPU; пожалуйста, включите это!\nПримечание: встройка (iGPU) Pentium/Celeron обычно не поддерживается!';
+
+  @override
+  String get platformSelection => 'Выбор платформы:';
+
+  @override
+  String get processorGeneration => 'Поколение процессора:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6 ядер / 12 потоков)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'Comet Lake U62 (6 ядер / 12 потоков) требует специального спуфинга CPU';
+
+  @override
+  String get amdCoresTitle => 'Ядра процессора AMD:';
+
+  @override
+  String get amdSpecialMb => 'Специальные материнские платы AMD:';
+
+  @override
+  String get usePrecastMmio => 'Использовать Precast MMIO';
+
+  @override
+  String get useRyzenGpu => 'Включить поддержку графики Ryzen (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'Бренд материнской платы:';
+
+  @override
+  String get motherboardModel => 'Модель материнской платы:';
+
+  @override
+  String get customMotherboard => 'Пользовательская / Универсальная плата';
+
+  @override
+  String get igpuConfig => 'Конфигурация встроенной графики (iGPU):';
+
+  @override
+  String get dgpuConfig => 'Конфигурация дискретной графики (dGPU):';
+
+  @override
+  String get audioConfig => 'Конфигурация звука:';
+
+  @override
+  String get audioCodecFix => 'Аудиокодек и Layout ID';
+
+  @override
+  String get fixIrq => 'Исправить конфликты IRQ';
+
+  @override
+  String get networkConfig => 'Конфигурация сети и Wi-Fi:';
+
+  @override
+  String get laptopDrivers => 'Драйверы для ноутбука:';
+
+  @override
+  String get touchpadDriver => 'Драйвер тачпада (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'Целевая модель SMBIOS:';
+
+  @override
+  String get targetMacOsVersion => 'Целевая версия macOS:';
+
+  @override
+  String get bootArgsTitle => 'Аргументы загрузки (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'Защита целостности системы (SIP):';
+
+  @override
+  String get outputEfiTitle => 'Папка сохранения EFI:';
+
+  @override
+  String get selectOutputFolder => 'Выбрать папку сохранения';
+
+  @override
+  String get clearConfig => 'Очистить конфигурацию';
+
+  @override
+  String get importConfigModel => 'Импортировать configModel';
+
+  @override
+  String get importingConfigModel => 'Импорт configModel...';
+
+  @override
+  String get dragDropConfigModel =>
+      'Перетащите файл configModel сюда\nили нажмите для выбора';
+
+  @override
+  String get clearAllHistory => 'Очистить всю историю';
+
+  @override
+  String get clearingHistory => 'Очистка истории...';
+
+  @override
+  String get noHistoryRecords => 'История пуста';
+
+  @override
+  String get overview => 'Обзор';
+
+  @override
+  String get platformPatches => 'Патчи платформы';
+
+  @override
+  String get audioPatches => 'Аудио патчи';
+
+  @override
+  String get gpuSpoofing => 'Спуфинг видеокарты';
+
+  @override
+  String get disableDevices => 'Отключение устройств';
+
+  @override
+  String get brightnessPatches => 'Патчи яркости';
+
+  @override
+  String get graphicsPatches => 'Графические патчи';
+
+  @override
+  String get wifiPatches => 'Патчи Wi-Fi';
+
+  @override
+  String get documentationGuides => 'Документация и руководства';
+
+  @override
+  String get aboutSupport => 'О программе и поддержка';
+
+  @override
+  String get hardwareTabTitle => 'Конфигурация оборудования';
+
+  @override
+  String get acpiFolderTitle => 'Папка ACPI';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'Загрузка данных...';
+
+  @override
+  String get configuringEfiWait => 'Настройка EFI, пожалуйста, подождите...';
+
+  @override
+  String get summary => 'Сводка';
+
+  @override
+  String get recent => 'Недавние';
+
+  @override
+  String get efiConfig => 'Конфиг EFI';
+
+  @override
+  String get toolsAndGuides => 'Инструменты и гиды';
+
+  @override
+  String get checkUpdates => 'Проверить обновления';
+
+  @override
+  String get sponsorDeveloper => 'Поддержать разработчика';
+
+  @override
+  String get releaseNotes => 'История версий';
+
+  @override
+  String get searchPlaceholder => 'Поиск';
 }

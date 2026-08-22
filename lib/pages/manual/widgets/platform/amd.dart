@@ -1,8 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 import 'package:rapidefi/utils/config/models/enums/motherboard_enum.dart';
 import 'package:rapidefi/widgets/radio_option_group.dart';
-
 import 'package:rapidefi/pages/shared/widgets/choice_chip_tile.dart';
 
 class AMDWidget extends StatefulWidget {
@@ -71,15 +71,16 @@ class _AMDWidgetState extends State<AMDWidget> {
     }
   }
 
-  Widget cores() {
+  Widget cores(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          'AMD Cores:',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        Text(
+          l10n?.amdCoresTitle ?? 'AMD Cores:',
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         const SizedBox(
           width: 10,
@@ -105,6 +106,7 @@ class _AMDWidgetState extends State<AMDWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return TitleCard(
       title: '',
       content: Wrap(
@@ -113,7 +115,7 @@ class _AMDWidgetState extends State<AMDWidget> {
         children: [
           Wrap(
             children: [
-              cores(),
+              cores(context),
               const SizedBox(
                 width: 20,
               ),
@@ -131,7 +133,7 @@ class _AMDWidgetState extends State<AMDWidget> {
               ),
               if (showRyzenGPU)
                 ChoiceChipTile(
-                    label: "Use AMD iGPU Display Output",
+                    label: l10n?.useRyzenGpu ?? "Use AMD iGPU Display Output",
                     selected: useRyzenGPU,
                     onChanged: (bo) {
                       useRyzenGPU = bo;

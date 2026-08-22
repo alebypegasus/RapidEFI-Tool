@@ -352,6 +352,187 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get generateSerial => '生成三码';
+
+  @override
+  String get navManualTab => '手动配置 EFI';
+
+  @override
+  String get navAutoTab => '自动配置 EFI';
+
+  @override
+  String get cpuSelection => '处理器 (CPU) 选择：';
+
+  @override
+  String get pentiumCeleron => '奔腾/赛扬 (Pentium/Celeron)';
+
+  @override
+  String get pentiumCeleronTip =>
+      '奔腾或赛扬处理器需要开启 CPU 仿冒；请启用此项！\n注意：奔腾/赛扬核显通常不受支持！';
+
+  @override
+  String get platformSelection => '平台类型选择：';
+
+  @override
+  String get processorGeneration => '处理器代数：';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6核/12线程)';
+
+  @override
+  String get cometLakeU62Tip => 'Comet Lake U62 (6核心/12线程) 需要特定的 CPU 仿冒';
+
+  @override
+  String get amdCoresTitle => 'AMD CPU 核心数：';
+
+  @override
+  String get amdSpecialMb => 'AMD 特殊主板：';
+
+  @override
+  String get usePrecastMmio => '使用预制 MMIO';
+
+  @override
+  String get useRyzenGpu => '启用锐龙核显支持 (NootedRed)';
+
+  @override
+  String get motherboardBrand => '主板品牌：';
+
+  @override
+  String get motherboardModel => '主板型号：';
+
+  @override
+  String get customMotherboard => '自定义 / 通用主板';
+
+  @override
+  String get igpuConfig => '核显配置 (iGPU)：';
+
+  @override
+  String get dgpuConfig => '独显配置 (dGPU)：';
+
+  @override
+  String get audioConfig => '声卡配置：';
+
+  @override
+  String get audioCodecFix => '声卡编解码器 & Layout ID';
+
+  @override
+  String get fixIrq => '修复 IRQ 冲突';
+
+  @override
+  String get networkConfig => '网卡 & 无线网络配置：';
+
+  @override
+  String get laptopDrivers => '笔记本驱动：';
+
+  @override
+  String get touchpadDriver => '触摸板驱动 (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => '目标机型 (SMBIOS)：';
+
+  @override
+  String get targetMacOsVersion => '目标 macOS 版本：';
+
+  @override
+  String get bootArgsTitle => '引导参数 (boot-args)：';
+
+  @override
+  String get csrActiveConfigTitle => '系统完整性保护 (SIP)：';
+
+  @override
+  String get outputEfiTitle => 'EFI 输出目录：';
+
+  @override
+  String get selectOutputFolder => '选择输出目录';
+
+  @override
+  String get clearConfig => '清空配置';
+
+  @override
+  String get importConfigModel => '导入 configModel';
+
+  @override
+  String get importingConfigModel => '正在导入 configModel...';
+
+  @override
+  String get dragDropConfigModel => '拖拽 configModel 文件到此处\n或点击浏览选择';
+
+  @override
+  String get clearAllHistory => '清空所有历史';
+
+  @override
+  String get clearingHistory => '正在清空历史...';
+
+  @override
+  String get noHistoryRecords => '暂无历史记录';
+
+  @override
+  String get overview => '概述';
+
+  @override
+  String get platformPatches => '平台补丁';
+
+  @override
+  String get audioPatches => '声卡补丁';
+
+  @override
+  String get gpuSpoofing => '显卡仿冒';
+
+  @override
+  String get disableDevices => '屏蔽设备';
+
+  @override
+  String get brightnessPatches => '亮度补丁';
+
+  @override
+  String get graphicsPatches => '显卡补丁';
+
+  @override
+  String get wifiPatches => '无线网卡补丁';
+
+  @override
+  String get documentationGuides => '文档与指南';
+
+  @override
+  String get aboutSupport => '关于与支持';
+
+  @override
+  String get hardwareTabTitle => '硬件配置';
+
+  @override
+  String get acpiFolderTitle => 'ACPI 目录';
+
+  @override
+  String get above4gDecoding => '大于 4G 解码 (Above 4G Decoding)';
+
+  @override
+  String get loadingData => '正在加载数据...';
+
+  @override
+  String get configuringEfiWait => '正在配置 EFI，请稍候...';
+
+  @override
+  String get summary => '概要';
+
+  @override
+  String get recent => '最近记录';
+
+  @override
+  String get efiConfig => 'EFI 配置';
+
+  @override
+  String get toolsAndGuides => '工具与指南';
+
+  @override
+  String get checkUpdates => '检查更新';
+
+  @override
+  String get sponsorDeveloper => '赞助开发者';
+
+  @override
+  String get releaseNotes => '更新日志';
+
+  @override
+  String get searchPlaceholder => '搜索';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -702,4 +883,185 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get generateSerial => '生成序號';
+
+  @override
+  String get navManualTab => '手動配置 EFI';
+
+  @override
+  String get navAutoTab => '自動配置 EFI';
+
+  @override
+  String get cpuSelection => '處理器 (CPU) 選擇：';
+
+  @override
+  String get pentiumCeleron => '奔騰/賽揚 (Pentium/Celeron)';
+
+  @override
+  String get pentiumCeleronTip =>
+      '奔騰或賽揚處理器需要開啟 CPU 仿冒；請啟用此項！\n注意：奔騰/賽揚核顯通常不受支援！';
+
+  @override
+  String get platformSelection => '平台類型選擇：';
+
+  @override
+  String get processorGeneration => '處理器世代：';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6核/12線程)';
+
+  @override
+  String get cometLakeU62Tip => 'Comet Lake U62 (6核心/12線程) 需要特定的 CPU 仿冒';
+
+  @override
+  String get amdCoresTitle => 'AMD CPU 核心數：';
+
+  @override
+  String get amdSpecialMb => 'AMD 特殊主機板：';
+
+  @override
+  String get usePrecastMmio => '使用預製 MMIO';
+
+  @override
+  String get useRyzenGpu => '啟用銳龍核顯支援 (NootedRed)';
+
+  @override
+  String get motherboardBrand => '主機板品牌：';
+
+  @override
+  String get motherboardModel => '主機板型號：';
+
+  @override
+  String get customMotherboard => '自訂 / 通用主機板';
+
+  @override
+  String get igpuConfig => '內顯配置 (iGPU)：';
+
+  @override
+  String get dgpuConfig => '獨顯配置 (dGPU)：';
+
+  @override
+  String get audioConfig => '音效卡配置：';
+
+  @override
+  String get audioCodecFix => '音效卡解碼器 & Layout ID';
+
+  @override
+  String get fixIrq => '修復 IRQ 衝突';
+
+  @override
+  String get networkConfig => '網卡 & 無線網路配置：';
+
+  @override
+  String get laptopDrivers => '筆記型電腦驅動：';
+
+  @override
+  String get touchpadDriver => '觸控板驅動 (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => '目標機型 (SMBIOS)：';
+
+  @override
+  String get targetMacOsVersion => '目標 macOS 版本：';
+
+  @override
+  String get bootArgsTitle => '開機引導參數 (boot-args)：';
+
+  @override
+  String get csrActiveConfigTitle => '系統完整性保護 (SIP)：';
+
+  @override
+  String get outputEfiTitle => 'EFI 輸出目錄：';
+
+  @override
+  String get selectOutputFolder => '選擇輸出目錄';
+
+  @override
+  String get clearConfig => '清除配置';
+
+  @override
+  String get importConfigModel => '匯入 configModel';
+
+  @override
+  String get importingConfigModel => '正在匯入 configModel...';
+
+  @override
+  String get dragDropConfigModel => '拖曳 configModel 檔案至此處\n或點擊瀏覽選取';
+
+  @override
+  String get clearAllHistory => '清除所有歷史';
+
+  @override
+  String get clearingHistory => '正在清除歷史...';
+
+  @override
+  String get noHistoryRecords => '暫無歷史記錄';
+
+  @override
+  String get overview => '概述';
+
+  @override
+  String get platformPatches => '平台修補程式';
+
+  @override
+  String get audioPatches => '音效修補程式';
+
+  @override
+  String get gpuSpoofing => '顯示卡仿冒';
+
+  @override
+  String get disableDevices => '停用設備';
+
+  @override
+  String get brightnessPatches => '亮度修補程式';
+
+  @override
+  String get graphicsPatches => '顯示卡修補程式';
+
+  @override
+  String get wifiPatches => '無線網卡修補程式';
+
+  @override
+  String get documentationGuides => '文檔與指南';
+
+  @override
+  String get aboutSupport => '關於與支援';
+
+  @override
+  String get hardwareTabTitle => '硬體配置';
+
+  @override
+  String get acpiFolderTitle => 'ACPI 目錄';
+
+  @override
+  String get above4gDecoding => '大於 4G 解碼 (Above 4G Decoding)';
+
+  @override
+  String get loadingData => '正在載入資料...';
+
+  @override
+  String get configuringEfiWait => '正在配置 EFI，請稍候...';
+
+  @override
+  String get summary => '概要';
+
+  @override
+  String get recent => '最近記錄';
+
+  @override
+  String get efiConfig => 'EFI 配置';
+
+  @override
+  String get toolsAndGuides => '工具與指南';
+
+  @override
+  String get checkUpdates => '檢查更新';
+
+  @override
+  String get sponsorDeveloper => '贊助開發者';
+
+  @override
+  String get releaseNotes => '更新紀錄';
+
+  @override
+  String get searchPlaceholder => '搜尋';
 }

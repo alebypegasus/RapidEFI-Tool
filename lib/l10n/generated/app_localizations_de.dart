@@ -353,4 +353,187 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get generateSerial => 'Seriennummer generieren';
+
+  @override
+  String get navManualTab => 'Manuelle EFI-Konfiguration';
+
+  @override
+  String get navAutoTab => 'Automatische EFI-Konfiguration';
+
+  @override
+  String get cpuSelection => 'Prozessor (CPU) Auswahl:';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'Pentium- oder Celeron-Prozessoren erfordern CPU-Spoofing; bitte aktivieren!\nHinweis: Pentium/Celeron iGPUs werden in der Regel nicht unterstützt!';
+
+  @override
+  String get platformSelection => 'Plattform-Auswahl:';
+
+  @override
+  String get processorGeneration => 'Prozessorgeneration:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6K/12T)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'Comet Lake U62 (6 Kerne / 12 Threads) erfordert spezifisches CPU-Spoofing';
+
+  @override
+  String get amdCoresTitle => 'AMD CPU-Kerne:';
+
+  @override
+  String get amdSpecialMb => 'AMD Spezielle Mainboards:';
+
+  @override
+  String get usePrecastMmio => 'Precast MMIO verwenden';
+
+  @override
+  String get useRyzenGpu => 'Ryzen iGPU Unterstützung aktivieren (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'Mainboard-Hersteller:';
+
+  @override
+  String get motherboardModel => 'Mainboard-Modell:';
+
+  @override
+  String get customMotherboard => 'Benutzerdefiniertes / Generisches Mainboard';
+
+  @override
+  String get igpuConfig => 'iGPU-Konfiguration:';
+
+  @override
+  String get dgpuConfig => 'dGPU-Konfiguration:';
+
+  @override
+  String get audioConfig => 'Audio-Konfiguration:';
+
+  @override
+  String get audioCodecFix => 'Audio-Codec & Layout-ID';
+
+  @override
+  String get fixIrq => 'IRQ-Konflikte beheben';
+
+  @override
+  String get networkConfig => 'Netzwerk- & WLAN-Konfiguration:';
+
+  @override
+  String get laptopDrivers => 'Laptop-Treiber:';
+
+  @override
+  String get touchpadDriver => 'Touchpad-Treiber (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'Ziel-SMBIOS-Modell:';
+
+  @override
+  String get targetMacOsVersion => 'Ziel-macOS-Version:';
+
+  @override
+  String get bootArgsTitle => 'Startargumente (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'Systemintegritätsschutz (SIP):';
+
+  @override
+  String get outputEfiTitle => 'EFI-Ausgabeordner:';
+
+  @override
+  String get selectOutputFolder => 'Ausgabeordner wählen';
+
+  @override
+  String get clearConfig => 'Konfiguration leeren';
+
+  @override
+  String get importConfigModel => 'configModel importieren';
+
+  @override
+  String get importingConfigModel => 'configModel wird importiert...';
+
+  @override
+  String get dragDropConfigModel =>
+      'configModel-Datei hierher ziehen\noder zum Durchsuchen klicken';
+
+  @override
+  String get clearAllHistory => 'Gesamten Verlauf löschen';
+
+  @override
+  String get clearingHistory => 'Verlauf wird gelöscht...';
+
+  @override
+  String get noHistoryRecords => 'Noch keine Verlaufseinträge vorhanden';
+
+  @override
+  String get overview => 'Übersicht';
+
+  @override
+  String get platformPatches => 'Plattform-Patches';
+
+  @override
+  String get audioPatches => 'Audio-Patches';
+
+  @override
+  String get gpuSpoofing => 'GPU-Spoofing';
+
+  @override
+  String get disableDevices => 'Geräte deaktivieren';
+
+  @override
+  String get brightnessPatches => 'Helligkeits-Patches';
+
+  @override
+  String get graphicsPatches => 'Grafik-Patches';
+
+  @override
+  String get wifiPatches => 'WLAN-Patches';
+
+  @override
+  String get documentationGuides => 'Dokumentation & Anleitungen';
+
+  @override
+  String get aboutSupport => 'Über & Support';
+
+  @override
+  String get hardwareTabTitle => 'Hardware-Konfiguration';
+
+  @override
+  String get acpiFolderTitle => 'ACPI-Ordner';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'Daten werden geladen...';
+
+  @override
+  String get configuringEfiWait => 'EFI wird konfiguriert, bitte warten...';
+
+  @override
+  String get summary => 'Zusammenfassung';
+
+  @override
+  String get recent => 'Zuletzt verwendet';
+
+  @override
+  String get efiConfig => 'EFI-Konfig';
+
+  @override
+  String get toolsAndGuides => 'Werkzeuge & Anleitungen';
+
+  @override
+  String get checkUpdates => 'Nach Updates suchen';
+
+  @override
+  String get sponsorDeveloper => 'Entwickler unterstützen';
+
+  @override
+  String get releaseNotes => 'Versionshinweise';
+
+  @override
+  String get searchPlaceholder => 'Suchen';
 }

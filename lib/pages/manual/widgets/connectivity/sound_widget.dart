@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/kernel/kernel_kext.dart';
+
 import 'package:rapidefi/utils/config/presets/sections/config_kernel.dart';
 import 'package:rapidefi/utils/config/services/apple_alc_resolver.dart';
 import 'package:rapidefi/widgets/flutter_picker/flutter_picker.dart';
@@ -262,9 +264,10 @@ class _SoundWidgetState extends State<SoundWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final soundChoices = [ConfigKernel.AppleALC, ConfigKernel.VoodooHDA];
     return KextChoiceListCard(
-      title: "Audio Drivers:",
+      title: l10n?.audioConfig ?? "Audio Drivers:",
       cardSubTitle: '(AppleALC driver used by default)',
       choices: soundChoices,
       selectedChoices:

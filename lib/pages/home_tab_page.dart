@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/hardware/hardware_page.dart';
 import 'package:rapidefi/pages/manual/manual_page.dart';
 import 'package:rapidefi/utils/config/services/config_service.dart';
@@ -21,7 +22,6 @@ class HomeTabPage extends StatefulWidget {
 class _HomeTabPageState extends State<HomeTabPage>
     with TickerProviderStateMixin {
   late final TabController _tabController;
-  late final List<String> tabName;
   late final List<Widget> pages;
   final PageStorageBucket _bucket = PageStorageBucket();
   bool _hardwarePrewarmStarted = false;
@@ -29,21 +29,19 @@ class _HomeTabPageState extends State<HomeTabPage>
   @override
   void initState() {
     super.initState();
-    _initTabData();
+    final showAutoEFI = Device.isDesktop;
+    pages = _getPages(showAutoEFI);
     _tabController = TabController(vsync: this, length: pages.length);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       UpdateDialog.checkLatestRelease(context);
     });
   }
 
-  void _initTabData() {
-    final showAutoEFI = Device.isDesktop;
-    tabName = _getTabNames(showAutoEFI);
-    pages = _getPages(showAutoEFI);
-  }
-
-  List<String> _getTabNames(bool showAutoEFI) {
-    return showAutoEFI ? ["Manual EFI Config", "Auto EFI Config"] : ["Manual EFI Config"];
+  List<String> _getTabNames(BuildContext context, bool showAutoEFI) {
+    final l10n = AppLocalizations.of(context);
+    final manualName = l10n?.navManualTab ?? "Manual EFI Config";
+    final autoName = l10n?.navAutoTab ?? "Auto EFI Config";
+    return showAutoEFI ? [manualName, autoName] : [manualName];
   }
 
   List<Widget> _getPages(bool showAutoEFI) {
@@ -76,13 +74,16 @@ class _HomeTabPageState extends State<HomeTabPage>
 
   @override
   Widget build(BuildContext context) {
+    final showAutoEFI = Device.isDesktop;
+    final tabNames = _getTabNames(context, showAutoEFI);
+
     return PageStorage(
       bucket: _bucket,
       child: Scaffold(
           backgroundColor: Colors.transparent,
           body: CategorizedTabView(
             controller: _tabController,
-            tabs: tabName.map((name) => Tab(text: name)).toList(),
+            tabs: tabNames.map((name) => Tab(text: name)).toList(),
             onTap: (index) {
               ConfigService().updateConfigModel(index == 1);
             },

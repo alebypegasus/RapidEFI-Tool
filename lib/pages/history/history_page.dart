@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as p;
 import 'package:provider/provider.dart';
+
 import 'package:rapidefi/extension/int_extension.dart';
 import 'package:rapidefi/pages/manual/manual_page.dart';
 import 'package:rapidefi/pages/history/history_event_notifier.dart';
@@ -104,8 +105,10 @@ class HistoryPageState extends State<HistoryPage> {
   ) async {
     if (!mounted) return;
 
-    CustomToast.show(this.context, "Generating EFI, please wait...");
+    final l10n = AppLocalizations.of(context);
+    CustomToast.show(context, l10n?.configuringEfiWait ?? "Configuring EFI, please wait...");
     final success = await EfiBuildPipeline(ConfigService()).build(
+
       configModel: configModel,
       mode: ConfigModelMode.history,
       options: EfiBuildOptions(
@@ -154,7 +157,8 @@ class HistoryPageState extends State<HistoryPage> {
   Future<void> deleteHistory(HistoryModel historyModel) async {
     final targetKey = _historyStorageName(historyModel);
     final historyDirectory = await FileUtils.getHistoryDirectory();
-    final historyFile = join(historyDirectory, targetKey);
+    final historyFile = p.join(historyDirectory, targetKey);
+
 
     try {
       await FileUtils.deleteFile(historyFile);
@@ -293,6 +297,7 @@ class HistoryPageState extends State<HistoryPage> {
   }
 
   Widget _buildClearAllAction() {
+    final l10n = AppLocalizations.of(context);
     final disabled = historyModels.isEmpty || _deletingAll;
 
     return Padding(
@@ -313,16 +318,19 @@ class HistoryPageState extends State<HistoryPage> {
               children: [
                 Icon(
                   Icons.delete_forever,
-                  color: disabled ? Theme.of(this.context).disabledColor : null,
+                  color: disabled ? Theme.of(context).disabledColor : null,
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  _deletingAll ? 'Clearing history...' : 'Clear All History',
+                  _deletingAll
+                      ? (l10n?.clearingHistory ?? 'Clearing history...')
+                      : (l10n?.clearAllHistory ?? 'Clear All History'),
                   style: TextStyle(
                     color:
-                        disabled ? Theme.of(this.context).disabledColor : null,
+                        disabled ? Theme.of(context).disabledColor : null,
                   ),
                 ),
+
                 const SizedBox(width: 10),
               ],
             ),
@@ -333,6 +341,7 @@ class HistoryPageState extends State<HistoryPage> {
   }
 
   Widget _buildBody() {
+    final l10n = AppLocalizations.of(context);
     if (_loading) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -340,16 +349,17 @@ class HistoryPageState extends State<HistoryPage> {
     }
 
     if (historyModels.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Text('No history records yet'),
+          padding: const EdgeInsets.all(15),
+          child: Text(l10n?.noHistoryRecords ?? 'No history records yet'),
         ),
       );
     }
 
     return _buildHistoryList();
   }
+
 
   Widget _buildHistoryList() {
     return LayoutBuilder(

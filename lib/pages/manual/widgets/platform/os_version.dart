@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 
 class OSVersionWidget extends StatefulWidget {
@@ -49,8 +50,9 @@ class _OSVersionWidgetState extends State<OSVersionWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return TitleCard(
-      title: "Target macOS Version:",
+      title: l10n?.targetMacOsVersion ?? "Target macOS Version:",
       subTitle: "",
       content: LayoutBuilder(
         builder: (context, constraints) {
@@ -100,4 +102,3 @@ class _OSVersionWidgetState extends State<OSVersionWidget> {
     );
   }
 }
-

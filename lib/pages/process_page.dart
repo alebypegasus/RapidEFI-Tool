@@ -69,6 +69,7 @@ class _ProcessPageState extends State<ProcessPage> {
 
 
   Widget _buildImportHeader() {
+    final l10n = AppLocalizations.of(context);
     return Wrap(
       spacing: 8,
       runSpacing: 8,
@@ -79,18 +80,19 @@ class _ProcessPageState extends State<ProcessPage> {
           style: TextStyle(fontSize: 12, color: Colors.grey),
         ),
         _buildActionButton(
-          text: 'Clear Config',
+          text: l10n?.clearConfig ?? 'Clear Config',
           enabled: _hasConfigModel && !_importing,
           onTap: _clearConfigModel,
         ),
         _buildActionButton(
-          text: _importing ? 'Importing...' : 'Import configModel',
+          text: _importing ? (l10n?.importingConfigModel ?? 'Importing...') : (l10n?.importConfigModel ?? 'Import configModel'),
           enabled: !_importing,
           onTap: _pickAndImportConfigModel,
         ),
       ],
     );
   }
+
 
 
   Widget _buildActionButton({
@@ -199,6 +201,7 @@ class _ProcessPageState extends State<ProcessPage> {
   }
 
   Widget _buildEmptyDropArea() {
+    final l10n = AppLocalizations.of(context);
     return DropTarget(
       onDragDone: _handleDragDone,
       onDragEntered: (_) => _setHighlighted(true),
@@ -222,7 +225,9 @@ class _ProcessPageState extends State<ProcessPage> {
           ),
           child: Center(
             child: Text(
-              _importing ? 'Importing configModel...' : 'Drag and drop configModel file here\nor click to browse',
+              _importing
+                  ? (l10n?.importingConfigModel ?? 'Importing configModel...')
+                  : (l10n?.dragDropConfigModel ?? 'Drag and drop configModel file here\nor click to browse'),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 14),
             ),
@@ -231,6 +236,7 @@ class _ProcessPageState extends State<ProcessPage> {
       ),
     );
   }
+
 
   Future<void> _handleDragDone(DropDoneDetails detail) async {
     if (detail.files.isEmpty) return;

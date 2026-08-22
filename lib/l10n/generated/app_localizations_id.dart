@@ -353,4 +353,187 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get generateSerial => 'Buat Nomor Seri';
+
+  @override
+  String get navManualTab => 'Konfigurasi Manual EFI';
+
+  @override
+  String get navAutoTab => 'Konfigurasi Otomatis EFI';
+
+  @override
+  String get cpuSelection => 'Pilihan Prosesor (CPU):';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'Prosesor Pentium atau Celeron memerlukan spoofing CPU; harap aktifkan ini!\nCatatan: iGPU Pentium/Celeron umumnya tidak didukung!';
+
+  @override
+  String get platformSelection => 'Pilihan Platform:';
+
+  @override
+  String get processorGeneration => 'Generasi Prosesor:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6C/12T)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'Comet Lake U62 (6 core / 12 thread) memerlukan spoofing CPU khusus';
+
+  @override
+  String get amdCoresTitle => 'Jumlah Core CPU AMD:';
+
+  @override
+  String get amdSpecialMb => 'Motherboard Khusus AMD:';
+
+  @override
+  String get usePrecastMmio => 'Gunakan Precast MMIO';
+
+  @override
+  String get useRyzenGpu => 'Aktifkan Dukungan iGPU Ryzen (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'Merek Motherboard:';
+
+  @override
+  String get motherboardModel => 'Model Motherboard:';
+
+  @override
+  String get customMotherboard => 'Motherboard Kustom / Generik';
+
+  @override
+  String get igpuConfig => 'Konfigurasi iGPU:';
+
+  @override
+  String get dgpuConfig => 'Konfigurasi dGPU:';
+
+  @override
+  String get audioConfig => 'Konfigurasi Audio:';
+
+  @override
+  String get audioCodecFix => 'Codec Audio & Layout ID';
+
+  @override
+  String get fixIrq => 'Perbaiki Konflik IRQ';
+
+  @override
+  String get networkConfig => 'Konfigurasi Jaringan & Wi-Fi:';
+
+  @override
+  String get laptopDrivers => 'Driver Laptop:';
+
+  @override
+  String get touchpadDriver => 'Driver Touchpad (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'Model SMBIOS Target:';
+
+  @override
+  String get targetMacOsVersion => 'Versi macOS Target:';
+
+  @override
+  String get bootArgsTitle => 'Argumen Booting (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'Perlindungan Integritas Sistem (SIP):';
+
+  @override
+  String get outputEfiTitle => 'Direktori Output EFI:';
+
+  @override
+  String get selectOutputFolder => 'Pilih Direktori Output';
+
+  @override
+  String get clearConfig => 'Hapus Konfigurasi';
+
+  @override
+  String get importConfigModel => 'Impor configModel';
+
+  @override
+  String get importingConfigModel => 'Mengimpor configModel...';
+
+  @override
+  String get dragDropConfigModel =>
+      'Seret dan lepas file configModel ke sini\natau klik untuk menelusuri';
+
+  @override
+  String get clearAllHistory => 'Hapus Semua Riwayat';
+
+  @override
+  String get clearingHistory => 'Menghapus riwayat...';
+
+  @override
+  String get noHistoryRecords => 'Belum ada riwayat';
+
+  @override
+  String get overview => 'Ikhtisar';
+
+  @override
+  String get platformPatches => 'Patch Platform';
+
+  @override
+  String get audioPatches => 'Patch Audio';
+
+  @override
+  String get gpuSpoofing => 'Spoofing GPU';
+
+  @override
+  String get disableDevices => 'Nonaktifkan Perangkat';
+
+  @override
+  String get brightnessPatches => 'Patch Kecerahan';
+
+  @override
+  String get graphicsPatches => 'Patch Grafis';
+
+  @override
+  String get wifiPatches => 'Patch Wi-Fi';
+
+  @override
+  String get documentationGuides => 'Dokumentasi & Panduan';
+
+  @override
+  String get aboutSupport => 'Tentang & Bantuan';
+
+  @override
+  String get hardwareTabTitle => 'Konfigurasi Perangkat Keras';
+
+  @override
+  String get acpiFolderTitle => 'Folder ACPI';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'Memuat data...';
+
+  @override
+  String get configuringEfiWait => 'Mengonfigurasi EFI, harap tunggu...';
+
+  @override
+  String get summary => 'Ringkasan';
+
+  @override
+  String get recent => 'Terbaru';
+
+  @override
+  String get efiConfig => 'Konfigurasi EFI';
+
+  @override
+  String get toolsAndGuides => 'Alat & Panduan';
+
+  @override
+  String get checkUpdates => 'Periksa Pembaruan';
+
+  @override
+  String get sponsorDeveloper => 'Dukung Pengembang';
+
+  @override
+  String get releaseNotes => 'Catatan Rilis';
+
+  @override
+  String get searchPlaceholder => 'Cari';
 }

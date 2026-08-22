@@ -352,4 +352,186 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get generateSerial => '시리얼 생성';
+
+  @override
+  String get navManualTab => '수동 EFI 구성';
+
+  @override
+  String get navAutoTab => '자동 EFI 구성';
+
+  @override
+  String get cpuSelection => '프로세서 (CPU) 선택:';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      '펜티엄 또는 셀러론 프로세서는 CPU 스푸핑이 필요합니다. 활성화하세요!\n참고: 펜티엄/셀러론 iGPU는 일반적으로 지원되지 않습니다!';
+
+  @override
+  String get platformSelection => '플랫폼 유형 선택:';
+
+  @override
+  String get processorGeneration => '프로세서 세대:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6코어/12스레드)';
+
+  @override
+  String get cometLakeU62Tip => 'Comet Lake U62 (6코어/12스레드)는 특정 CPU 스푸핑이 필요합니다';
+
+  @override
+  String get amdCoresTitle => 'AMD CPU 코어 수:';
+
+  @override
+  String get amdSpecialMb => 'AMD 특수 메인보드:';
+
+  @override
+  String get usePrecastMmio => 'Precast MMIO 사용';
+
+  @override
+  String get useRyzenGpu => 'Ryzen 내장 그래픽 활성화 (NootedRed)';
+
+  @override
+  String get motherboardBrand => '메인보드 브랜드:';
+
+  @override
+  String get motherboardModel => '메인보드 모델:';
+
+  @override
+  String get customMotherboard => '사용자 지정 / 범용 메인보드';
+
+  @override
+  String get igpuConfig => '내장 그래픽 구성 (iGPU):';
+
+  @override
+  String get dgpuConfig => '외장 그래픽 구성 (dGPU):';
+
+  @override
+  String get audioConfig => '오디오 구성:';
+
+  @override
+  String get audioCodecFix => '오디오 코덱 및 Layout ID';
+
+  @override
+  String get fixIrq => 'IRQ 충돌 수정';
+
+  @override
+  String get networkConfig => '네트워크 및 Wi-Fi 구성:';
+
+  @override
+  String get laptopDrivers => '노트북 드라이버:';
+
+  @override
+  String get touchpadDriver => '터치패드 드라이버 (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => '대상 SMBIOS 모델:';
+
+  @override
+  String get targetMacOsVersion => '대상 macOS 버전:';
+
+  @override
+  String get bootArgsTitle => '부팅 인수 (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => '시스템 무결성 보호 (SIP):';
+
+  @override
+  String get outputEfiTitle => 'EFI 출력 폴더:';
+
+  @override
+  String get selectOutputFolder => '출력 폴더 선택';
+
+  @override
+  String get clearConfig => '구성 초기화';
+
+  @override
+  String get importConfigModel => 'configModel 가져오기';
+
+  @override
+  String get importingConfigModel => 'configModel 가져오는 중...';
+
+  @override
+  String get dragDropConfigModel =>
+      '여기에 configModel 파일을 드래그 앤 드롭\n또는 클릭하여 찾아보기';
+
+  @override
+  String get clearAllHistory => '모든 기록 지우기';
+
+  @override
+  String get clearingHistory => '기록 지우는 중...';
+
+  @override
+  String get noHistoryRecords => '기록이 없습니다';
+
+  @override
+  String get overview => '개요';
+
+  @override
+  String get platformPatches => '플랫폼 패치';
+
+  @override
+  String get audioPatches => '오디오 패치';
+
+  @override
+  String get gpuSpoofing => 'GPU 스푸핑';
+
+  @override
+  String get disableDevices => '장치 비활성화';
+
+  @override
+  String get brightnessPatches => '밝기 패치';
+
+  @override
+  String get graphicsPatches => '그래픽 패치';
+
+  @override
+  String get wifiPatches => 'Wi-Fi 패치';
+
+  @override
+  String get documentationGuides => '문서 및 가이드';
+
+  @override
+  String get aboutSupport => '정보 및 지원';
+
+  @override
+  String get hardwareTabTitle => '하드웨어 구성';
+
+  @override
+  String get acpiFolderTitle => 'ACPI 폴더';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => '데이터 로드 중...';
+
+  @override
+  String get configuringEfiWait => 'EFI 구성 중, 잠시 기다려 주세요...';
+
+  @override
+  String get summary => '요약';
+
+  @override
+  String get recent => '최근';
+
+  @override
+  String get efiConfig => 'EFI 구성';
+
+  @override
+  String get toolsAndGuides => '도구 및 가이드';
+
+  @override
+  String get checkUpdates => '업데이트 확인';
+
+  @override
+  String get sponsorDeveloper => '개발자 후원';
+
+  @override
+  String get releaseNotes => '릴리스 노트';
+
+  @override
+  String get searchPlaceholder => '검색';
 }

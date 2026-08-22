@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/manual/model/platform_entity.dart';
+
 import 'package:rapidefi/pages/shared/widgets/hackintosh_info_widget.dart';
 import 'package:rapidefi/pages/shared/widgets/tip_switch.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
@@ -72,11 +74,16 @@ class _PlantFormInfoWidgetState extends State<PlantFormInfoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final hasInfos = widget.infos.isNotEmpty;
     final currentValue = hasInfos ? widget.infos[selectedIndex] : null;
 
+    final u62Title = l10n?.cometLakeU62 ?? 'U62 CPU';
+    final u62Tip = l10n?.cometLakeU62Tip ??
+        "10th Gen Comet Lake U62 CPUs (e.g. i3-10110U, i5-10210U, i5-10310U,\n i7-10510U, i7-10610U, i7-10710U, i7-10810U), please check this option!";
+
     return TitleCard(
-      title: "Platform Info:",
+      title: l10n?.processorGeneration ?? "Processor Generation:",
       subTitle: "",
       content: LayoutBuilder(
         builder: (context, constraints) {
@@ -125,9 +132,8 @@ class _PlantFormInfoWidgetState extends State<PlantFormInfoWidget> {
                 if (widget.showMobileComet) ...[
                   const SizedBox(height: 8),
                   TipSwitch(
-                    tip:
-                        "10th Gen Comet Lake U62 CPUs (e.g. i3-10110U, i5-10210U, i5-10310U,\n i7-10510U, i7-10610U, i7-10710U, i7-10810U), please check this option!",
-                    title: 'U62 CPU',
+                    tip: u62Tip,
+                    title: u62Title,
                     checked: isMobileCometLake,
                     onChanged: (value) {
                       setState(() {
@@ -149,9 +155,8 @@ class _PlantFormInfoWidgetState extends State<PlantFormInfoWidget> {
               const SizedBox(width: 10),
               if (widget.showMobileComet)
                 TipSwitch(
-                  tip:
-                      "10th Gen Comet Lake U62 CPUs (e.g. i3-10110U, i5-10210U, i5-10310U,\n i7-10510U, i7-10610U, i7-10710U, i7-10810U), please check this option!",
-                  title: 'U62 CPU',
+                  tip: u62Tip,
+                  title: u62Title,
                   checked: isMobileCometLake,
                   onChanged: (value) {
                     setState(() {
@@ -170,6 +175,5 @@ class _PlantFormInfoWidgetState extends State<PlantFormInfoWidget> {
         platformEntity: widget.platformEntity,
       ),
     );
-
   }
 }

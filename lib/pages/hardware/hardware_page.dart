@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
+
 import 'package:rapidefi/utils/config/services/config_service.dart';
 import 'package:rapidefi/utils/file_util.dart';
 import 'package:rapidefi/utils/hardware/hardware_info.dart';
@@ -710,19 +712,20 @@ class _HardwareImportDialogState extends State<_HardwareImportDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildPickRow(
-              title: 'Hardware Report',
+              title: AppLocalizations.of(context)?.hardwareReport ?? 'Hardware Report',
               pathText: _hardwareReportPath,
-              buttonText: 'Browse File',
+              buttonText: AppLocalizations.of(context)?.btnChooseFile ?? 'Browse File',
               onTap: _pickHardwareReport,
             ),
             const SizedBox(height: 12),
             _buildPickRow(
-              title: 'ACPI Folder',
+              title: AppLocalizations.of(context)?.acpiFolderTitle ?? 'ACPI Folder',
               pathText: _acpiTablesPath,
-              buttonText: 'Browse Folder',
+              buttonText: AppLocalizations.of(context)?.btnOpenFolder ?? 'Browse Folder',
               onTap: _pickAcpiTables,
               optional: true,
             ),
+
             const SizedBox(height: 8),
             Text(
               _acpiTablesPath.isEmpty

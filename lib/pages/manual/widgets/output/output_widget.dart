@@ -1,3 +1,4 @@
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
 import 'package:rapidefi/widgets/inkwell_widget.dart';
 import 'package:flutter/material.dart';
@@ -32,13 +33,16 @@ class _OutputWidgetState extends State<OutputWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return TitleCard(
-      title: "Output Directory:",
+      title: l10n?.outputEfiTitle ?? "Output Directory:",
       content: Container(
         padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
         child: LayoutBuilder(
           builder: (context, constraints) {
             final isCompact = constraints.maxWidth < 500;
+            final browseText = l10n?.btnBrowse ?? "Browse";
 
             if (isCompact) {
               return Column(
@@ -53,9 +57,9 @@ class _OutputWidgetState extends State<OutputWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                     radius: 14,
                     onTap: _browseDirectory,
-                    child: const Text(
-                      "Browse",
-                      style: TextStyle(color: Colors.white, fontSize: 13),
+                    child: Text(
+                      browseText,
+                      style: const TextStyle(color: Colors.white, fontSize: 13),
                     ),
                   ),
                 ],
@@ -75,19 +79,16 @@ class _OutputWidgetState extends State<OutputWidget> {
                   padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                   radius: 14,
                   onTap: _browseDirectory,
-                  child: const Text(
-                    "Browse",
-                    style: TextStyle(color: Colors.white, fontSize: 13),
+                  child: Text(
+                    browseText,
+                    style: const TextStyle(color: Colors.white, fontSize: 13),
                   ),
                 ),
               ],
             );
-
-
           },
         ),
       ),
     );
   }
 }
-

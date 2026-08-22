@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/utils/config/models/device_properties/device_property_item.dart';
 import 'package:rapidefi/utils/config/models/device_properties/igpu_model.dart';
 import 'package:rapidefi/utils/config/services/config_service.dart';
@@ -9,7 +10,6 @@ import 'package:rapidefi/pages/manual/widgets/graphics/igpu_connector_customizat
 import 'package:rapidefi/pages/shared/widgets/oclp_link_button.dart';
 import 'package:rapidefi/pages/shared/widgets/tabbed_title_card.dart';
 import 'package:rapidefi/widgets/state_keep_container.dart';
-
 import 'package:rapidefi/pages/manual/widgets/graphics/edid_page.dart';
 
 class IgpuWidget extends StatefulWidget {
@@ -46,13 +46,15 @@ class IgpuWidget extends StatefulWidget {
 
 class _IgpuWidgetState extends State<IgpuWidget> with TickerProviderStateMixin {
   late final TabController _tabController;
-  late final List<String> tabName;
 
   @override
   void initState() {
     super.initState();
-    tabName = ["Basic Config", "Advanced Config", "Port Customization", "Display EDID"];
-    _tabController = TabController(vsync: this, length: tabName.length);
+    _tabController = TabController(vsync: this, length: 4);
+  }
+
+  List<String> _getTabNames(BuildContext context) {
+    return ["Basic Config", "Advanced Config", "Port Customization", "Display EDID"];
   }
 
   List<Widget> _buildPages() {
@@ -100,14 +102,17 @@ class _IgpuWidgetState extends State<IgpuWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final tabNames = _getTabNames(context);
+
     return TabbedTitleCard(
-      title: "iGPU Configuration:",
+      title: l10n?.igpuConfig ?? "iGPU Configuration:",
       subTitle: "(Check applicable options)",
       initiallyExpanded: false,
       height: 560,
       content: const OclpLinkButton(),
       controller: _tabController,
-      tabs: tabName.map((name) => Tab(text: name)).toList(),
+      tabs: tabNames.map((name) => Tab(text: name)).toList(),
       children: _buildPages(),
     );
   }

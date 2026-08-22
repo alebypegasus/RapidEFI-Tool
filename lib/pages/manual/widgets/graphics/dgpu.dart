@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/graphics/amd_gpu.dart';
+
 import 'package:rapidefi/pages/manual/widgets/graphics/fake_gpu.dart';
 import 'package:rapidefi/pages/manual/widgets/graphics/nvidia_gpu.dart';
 import 'package:rapidefi/pages/shared/widgets/oclp_link_button.dart';
@@ -67,8 +69,9 @@ class _DgpuWidgetState extends State<DgpuWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return TabbedTitleCard(
-      title: 'dGPU Configuration:',
+      title: l10n?.dgpuConfig ?? 'dGPU Configuration:',
       subTitle: '(Optional - check applicable options)',
       initiallyExpanded: false,
       content: const OclpLinkButton(),
@@ -78,3 +81,4 @@ class _DgpuWidgetState extends State<DgpuWidget> with TickerProviderStateMixin {
     );
   }
 }
+

@@ -354,4 +354,187 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get generateSerial => 'Genera Numero di Serie';
+
+  @override
+  String get navManualTab => 'Configurazione Manuale EFI';
+
+  @override
+  String get navAutoTab => 'Configurazione Automatica EFI';
+
+  @override
+  String get cpuSelection => 'Selezione Processore (CPU):';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'I processori Pentium o Celeron richiedono lo spoofing della CPU; si prega di abilitarlo!\nNota: le iGPU Pentium/Celeron generalmente non sono supportate!';
+
+  @override
+  String get platformSelection => 'Selezione Piattaforma:';
+
+  @override
+  String get processorGeneration => 'Generazione Processore:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6C/12T)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'Comet Lake U62 (6 core / 12 thread) richiede uno spoofing CPU specifico';
+
+  @override
+  String get amdCoresTitle => 'Core CPU AMD:';
+
+  @override
+  String get amdSpecialMb => 'Schede Madri Speciali AMD:';
+
+  @override
+  String get usePrecastMmio => 'Usa MMIO Precast';
+
+  @override
+  String get useRyzenGpu => 'Abilita Supporto iGPU Ryzen (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'Marca Scheda Madre:';
+
+  @override
+  String get motherboardModel => 'Modello Scheda Madre:';
+
+  @override
+  String get customMotherboard => 'Scheda Madre Generica / Personalizzata';
+
+  @override
+  String get igpuConfig => 'Configurazione iGPU:';
+
+  @override
+  String get dgpuConfig => 'Configurazione dGPU:';
+
+  @override
+  String get audioConfig => 'Configurazione Audio:';
+
+  @override
+  String get audioCodecFix => 'Codec Audio & Layout ID';
+
+  @override
+  String get fixIrq => 'Correggi Conflitti IRQ';
+
+  @override
+  String get networkConfig => 'Configurazione Rete e Wi-Fi:';
+
+  @override
+  String get laptopDrivers => 'Driver per Portatile:';
+
+  @override
+  String get touchpadDriver => 'Driver Touchpad (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'Modello SMBIOS di Destinazione:';
+
+  @override
+  String get targetMacOsVersion => 'Versione macOS di Destinazione:';
+
+  @override
+  String get bootArgsTitle => 'Argomenti di Avvio (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'Protezione Integrità di Sistema (SIP):';
+
+  @override
+  String get outputEfiTitle => 'Cartella di Output EFI:';
+
+  @override
+  String get selectOutputFolder => 'Seleziona Cartella di Output';
+
+  @override
+  String get clearConfig => 'Cancella Configurazione';
+
+  @override
+  String get importConfigModel => 'Importa configModel';
+
+  @override
+  String get importingConfigModel => 'Importazione configModel...';
+
+  @override
+  String get dragDropConfigModel =>
+      'Trascina e rilascia il file configModel qui\noppure clicca per sfogliare';
+
+  @override
+  String get clearAllHistory => 'Cancella Tutta la Cronologia';
+
+  @override
+  String get clearingHistory => 'Cancellazione cronologia...';
+
+  @override
+  String get noHistoryRecords => 'Nessun record nella cronologia';
+
+  @override
+  String get overview => 'Panoramica';
+
+  @override
+  String get platformPatches => 'Patch di Piattaforma';
+
+  @override
+  String get audioPatches => 'Patch Audio';
+
+  @override
+  String get gpuSpoofing => 'Spoofing GPU';
+
+  @override
+  String get disableDevices => 'Disabilita Dispositivi';
+
+  @override
+  String get brightnessPatches => 'Patch Luminosità';
+
+  @override
+  String get graphicsPatches => 'Patch Grafiche';
+
+  @override
+  String get wifiPatches => 'Patch Wi-Fi';
+
+  @override
+  String get documentationGuides => 'Documentazione & Guide';
+
+  @override
+  String get aboutSupport => 'Informazioni & Supporto';
+
+  @override
+  String get hardwareTabTitle => 'Configurazione Hardware';
+
+  @override
+  String get acpiFolderTitle => 'Cartella ACPI';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'Caricamento dati...';
+
+  @override
+  String get configuringEfiWait => 'Configurazione EFI in corso, attendere...';
+
+  @override
+  String get summary => 'Riepilogo';
+
+  @override
+  String get recent => 'Recente';
+
+  @override
+  String get efiConfig => 'Config EFI';
+
+  @override
+  String get toolsAndGuides => 'Strumenti & Guide';
+
+  @override
+  String get checkUpdates => 'Controlla Aggiornamenti';
+
+  @override
+  String get sponsorDeveloper => 'Supporta lo Sviluppatore';
+
+  @override
+  String get releaseNotes => 'Note di Rilascio';
+
+  @override
+  String get searchPlaceholder => 'Cerca';
 }

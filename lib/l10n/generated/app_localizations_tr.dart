@@ -354,4 +354,187 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get generateSerial => 'Seri Numarası Oluştur';
+
+  @override
+  String get navManualTab => 'Manuel EFI Yapılandırması';
+
+  @override
+  String get navAutoTab => 'Otomatik EFI Yapılandırması';
+
+  @override
+  String get cpuSelection => 'İşlemci (CPU) Seçimi:';
+
+  @override
+  String get pentiumCeleron => 'Pentium/Celeron';
+
+  @override
+  String get pentiumCeleronTip =>
+      'Pentium veya Celeron işlemciler CPU sahtelemesi (spoofing) gerektirir; lütfen bunu etkinleştirin!\nNot: Pentium/Celeron iGPU\'ları genellikle desteklenmez!';
+
+  @override
+  String get platformSelection => 'Platform Seçimi:';
+
+  @override
+  String get processorGeneration => 'İşlemci Nesli:';
+
+  @override
+  String get cometLakeU62 => 'Comet Lake U62 (6Ç/12İ)';
+
+  @override
+  String get cometLakeU62Tip =>
+      'Comet Lake U62 (6 çekirdek / 12 iş parçacığı) özel CPU sahtelemesi gerektirir';
+
+  @override
+  String get amdCoresTitle => 'AMD CPU Çekirdek Sayısı:';
+
+  @override
+  String get amdSpecialMb => 'AMD Özel Anakartlar:';
+
+  @override
+  String get usePrecastMmio => 'Precast MMIO Kullan';
+
+  @override
+  String get useRyzenGpu => 'Ryzen iGPU Desteğini Etkinleştir (NootedRed)';
+
+  @override
+  String get motherboardBrand => 'Anakart Markası:';
+
+  @override
+  String get motherboardModel => 'Anakart Modeli:';
+
+  @override
+  String get customMotherboard => 'Özel / Genel Anakart';
+
+  @override
+  String get igpuConfig => 'iGPU Yapılandırması:';
+
+  @override
+  String get dgpuConfig => 'dGPU Yapılandırması:';
+
+  @override
+  String get audioConfig => 'Ses Yapılandırması:';
+
+  @override
+  String get audioCodecFix => 'Ses Codec ve Layout ID';
+
+  @override
+  String get fixIrq => 'IRQ Çakışmalarını Düzelt';
+
+  @override
+  String get networkConfig => 'Ağ ve Wi-Fi Yapılandırması:';
+
+  @override
+  String get laptopDrivers => 'Dizüstü Bilgisayar Sürücüleri:';
+
+  @override
+  String get touchpadDriver => 'Dokunmatik Yüzey Sürücüsü (I2C / PS2)';
+
+  @override
+  String get smbiosSelection => 'Hedef SMBIOS Modeli:';
+
+  @override
+  String get targetMacOsVersion => 'Hedef macOS Sürümü:';
+
+  @override
+  String get bootArgsTitle => 'Başlatma Komutları (boot-args):';
+
+  @override
+  String get csrActiveConfigTitle => 'Sistem Bütünlüğü Koruması (SIP):';
+
+  @override
+  String get outputEfiTitle => 'Çıktı EFI Klasörü:';
+
+  @override
+  String get selectOutputFolder => 'Çıktı Klasörünü Seç';
+
+  @override
+  String get clearConfig => 'Yapılandırmayı Temizle';
+
+  @override
+  String get importConfigModel => 'configModel İçe Aktar';
+
+  @override
+  String get importingConfigModel => 'configModel içe aktarılıyor...';
+
+  @override
+  String get dragDropConfigModel =>
+      'configModel dosyasını buraya sürükleyip bırakın\nveya göz atmak için tıklayın';
+
+  @override
+  String get clearAllHistory => 'Tüm Geçmişi Temizle';
+
+  @override
+  String get clearingHistory => 'Geçmiş temizleniyor...';
+
+  @override
+  String get noHistoryRecords => 'Henüz geçmiş kaydı yok';
+
+  @override
+  String get overview => 'Genel Bakış';
+
+  @override
+  String get platformPatches => 'Platform Yamaları';
+
+  @override
+  String get audioPatches => 'Ses Yamaları';
+
+  @override
+  String get gpuSpoofing => 'GPU Sahtelemesi';
+
+  @override
+  String get disableDevices => 'Aygıtları Devre Dışı Bırak';
+
+  @override
+  String get brightnessPatches => 'Parlaklık Yamaları';
+
+  @override
+  String get graphicsPatches => 'Grafik Yamaları';
+
+  @override
+  String get wifiPatches => 'Wi-Fi Yamaları';
+
+  @override
+  String get documentationGuides => 'Belgeler ve Kılavuzlar';
+
+  @override
+  String get aboutSupport => 'Hakkında ve Destek';
+
+  @override
+  String get hardwareTabTitle => 'Donanım Yapılandırması';
+
+  @override
+  String get acpiFolderTitle => 'ACPI Klasörü';
+
+  @override
+  String get above4gDecoding => 'Above 4G Decoding';
+
+  @override
+  String get loadingData => 'Veriler yükleniyor...';
+
+  @override
+  String get configuringEfiWait => 'EFI yapılandırılıyor, lütfen bekleyin...';
+
+  @override
+  String get summary => 'Özet';
+
+  @override
+  String get recent => 'Son Kullanılanlar';
+
+  @override
+  String get efiConfig => 'EFI Yapılandırması';
+
+  @override
+  String get toolsAndGuides => 'Araçlar ve Kılavuzlar';
+
+  @override
+  String get checkUpdates => 'Güncellemeleri Denetle';
+
+  @override
+  String get sponsorDeveloper => 'Geliştiriciye Destek Ol';
+
+  @override
+  String get releaseNotes => 'Sürüm Notları';
+
+  @override
+  String get searchPlaceholder => 'Ara';
 }
