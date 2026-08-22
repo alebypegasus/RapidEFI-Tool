@@ -51,12 +51,15 @@ class ChoiceChipTile extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Checkbox(
-                value: selected,
-                checkColor: Colors.white,
-                onChanged: (value) => onChanged(value!),
-                activeColor: selectedColor,
+              IgnorePointer(
+                child: Checkbox(
+                  value: selected,
+                  checkColor: Colors.white,
+                  onChanged: (value) {},
+                  activeColor: selectedColor,
+                ),
               ),
+
               const SizedBox(width: 4.0),
               Flexible(
                 child: Column(

@@ -456,6 +456,9 @@ class _AppState extends State<App> {
 
     return NavigationPane(
       selected: widget.navigationShell.currentIndex,
+      onChanged: (index) {
+        widget.navigationShell.goBranch(index, initialLocation: false);
+      },
       size: const NavigationPaneSize(openMaxWidth: 220),
       header: _buildPaneHeader(context, appTheme),
       displayMode: effectiveDisplayMode,
@@ -465,6 +468,7 @@ class _AppState extends State<App> {
       autoSuggestBoxReplacement: const Icon(FluentIcons.search),
       footerItems: _buildFooterItems(context),
     );
+
   }
 
 

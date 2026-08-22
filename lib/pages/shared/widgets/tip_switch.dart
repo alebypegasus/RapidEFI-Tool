@@ -14,6 +14,15 @@ class TipSwitch extends StatefulWidget {
 
 class _TipSwitchState extends State<TipSwitch> {
   late bool checked = widget.checked;
+
+  @override
+  void didUpdateWidget(covariant TipSwitch oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.checked != widget.checked) {
+      checked = widget.checked;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Tooltip(
@@ -29,3 +38,4 @@ class _TipSwitchState extends State<TipSwitch> {
     );
   }
 }
+

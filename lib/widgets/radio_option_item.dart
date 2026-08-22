@@ -28,13 +28,16 @@ class RadioOptionItem extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Transform.scale(
-              scale: radioScale,
-              child: Radio<String>(
-                value: value,
-                activeColor: primaryColor,
+            IgnorePointer(
+              child: Transform.scale(
+                scale: radioScale,
+                child: Radio<String>(
+                  value: value,
+                  activeColor: primaryColor,
+                ),
               ),
             ),
+
             Text(
               label,
               style: TextStyle(

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ButtonSegmentWidget extends StatefulWidget {
@@ -33,10 +34,11 @@ class _ButtonSegmentWidgetState extends State<ButtonSegmentWidget> {
   void didUpdateWidget(covariant ButtonSegmentWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.initialSelection != null &&
-        widget.initialSelection != oldWidget.initialSelection) {
+        !setEquals(widget.initialSelection, oldWidget.initialSelection)) {
       selected = widget.initialSelection!;
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
