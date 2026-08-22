@@ -217,5 +217,9 @@
   "selectVendor": "Thương hiệu",
   "selectModel": "Mẫu bo mạch chủ",
   "btnImport": "Nhập",
-  "defaultLabel": "Mặc định"
+  "defaultLabel": "Mặc định",
+  "wifiBluetoothDrivers": "Trình điều khiển Wi-Fi & Bluetooth:",
+  "noWifiDriversByDefault": "(Mặc định không cấu hình trình điều khiển Wi-Fi)",
+  "getIntelModifiedOclp": "Tải OCLP sửa đổi cho Intel",
+  "forLaptopSystems": "(Dành cho hệ thống máy tính xách tay)"
 }

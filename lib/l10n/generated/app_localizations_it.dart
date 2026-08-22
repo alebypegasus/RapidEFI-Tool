@@ -683,4 +683,17 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get defaultLabel => 'Predefinito';
+
+  @override
+  String get wifiBluetoothDrivers => 'Driver Wi-Fi e Bluetooth:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(Nessun driver Wi-Fi configurato per impostazione predefinita)';
+
+  @override
+  String get getIntelModifiedOclp => 'Ottieni OCLP modificato per Intel';
+
+  @override
+  String get forLaptopSystems => '(Per sistemi portatili)';
 }

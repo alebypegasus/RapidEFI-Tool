@@ -217,5 +217,9 @@
   "selectVendor": "品牌",
   "selectModel": "主板型号",
   "btnImport": "导入",
-  "defaultLabel": "默认"
+  "defaultLabel": "默认",
+  "wifiBluetoothDrivers": "无线网卡与蓝牙驱动：",
+  "noWifiDriversByDefault": "(默认不配置任何无线驱动)",
+  "getIntelModifiedOclp": "获取 Intel 专用修改版 OCLP",
+  "forLaptopSystems": "(适用于笔记本机型)"
 }

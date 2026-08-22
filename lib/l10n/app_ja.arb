@@ -217,5 +217,9 @@
   "selectVendor": "ブランド",
   "selectModel": "マザーボードモデル",
   "btnImport": "インポート",
-  "defaultLabel": "デフォルト"
+  "defaultLabel": "デフォルト",
+  "wifiBluetoothDrivers": "Wi-Fi＆Bluetooth ドライバ：",
+  "noWifiDriversByDefault": "(デフォルトでは Wi-Fi ドライバは構成されていません)",
+  "getIntelModifiedOclp": "Intel 改変版 OCLP を取得",
+  "forLaptopSystems": "(ノート PC 向け)"
 }

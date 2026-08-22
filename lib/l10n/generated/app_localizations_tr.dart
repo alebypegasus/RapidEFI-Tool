@@ -680,4 +680,17 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get defaultLabel => 'Varsayılan';
+
+  @override
+  String get wifiBluetoothDrivers => 'Wi-Fi ve Bluetooth Sürücüleri:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(Varsayılan olarak hiçbir Wi-Fi sürücüsü yapılandırılmamıştır)';
+
+  @override
+  String get getIntelModifiedOclp => 'Intel Değiştirilmiş OCLP\'yi Edinin';
+
+  @override
+  String get forLaptopSystems => '(Dizüstü Bilgisayarlar İçin)';
 }

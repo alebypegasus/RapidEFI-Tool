@@ -217,5 +217,9 @@
   "selectVendor": "Marca",
   "selectModel": "Modelo da Placa-mãe",
   "btnImport": "Importar",
-  "defaultLabel": "Padrão"
+  "defaultLabel": "Padrão",
+  "wifiBluetoothDrivers": "Drivers de Wi-Fi e Bluetooth:",
+  "noWifiDriversByDefault": "(Nenhum driver de Wi-Fi configurado por padrão)",
+  "getIntelModifiedOclp": "Obter OCLP Modificado da Intel",
+  "forLaptopSystems": "(Para Sistemas de Notebook)"
 }

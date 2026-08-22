@@ -683,6 +683,19 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get defaultLabel => 'Padrão';
+
+  @override
+  String get wifiBluetoothDrivers => 'Drivers de Wi-Fi e Bluetooth:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(Nenhum driver de Wi-Fi configurado por padrão)';
+
+  @override
+  String get getIntelModifiedOclp => 'Obter OCLP Modificado da Intel';
+
+  @override
+  String get forLaptopSystems => '(Para Sistemas de Notebook)';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -1364,4 +1377,17 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get defaultLabel => 'Predefinição';
+
+  @override
+  String get wifiBluetoothDrivers => 'Controladores de Wi-Fi e Bluetooth:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(Nenhum controlador de Wi-Fi configurado por predefinição)';
+
+  @override
+  String get getIntelModifiedOclp => 'Obter OCLP Modificado da Intel';
+
+  @override
+  String get forLaptopSystems => '(Para Sistemas Portáteis)';
 }

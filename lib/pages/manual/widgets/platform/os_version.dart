@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/shared/widgets/title_card.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
+
 
 class OSVersionWidget extends StatefulWidget {
   final List<String> verions;
@@ -97,8 +99,10 @@ class _OSVersionWidgetState extends State<OSVersionWidget> {
           return comboBox;
         },
       ),
-      snippet:
-          'The EFI generated for the selected macOS version is backward-compatible. For example, selecting Tahoe 26 will also boot Sequoia 15 and earlier versions.\n\nNote: The generated EFI has been tested from macOS El Capitan 10.11.x through macOS Tahoe 26.x.',
+      snippet: HackintoshDetailsTranslator.translateOsVersionSnippet(
+        Localizations.localeOf(context).languageCode,
+      ),
     );
   }
 }
+

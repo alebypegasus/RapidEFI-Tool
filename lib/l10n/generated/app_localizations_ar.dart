@@ -675,4 +675,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get defaultLabel => 'افتراضي';
+
+  @override
+  String get wifiBluetoothDrivers => 'برامج تشغيل Wi-Fi وبلوتوث:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(لم يتم تكوين برامج تشغيل Wi-Fi افتراضيًا)';
+
+  @override
+  String get getIntelModifiedOclp => 'الحصول على OCLP المعدل من Intel';
+
+  @override
+  String get forLaptopSystems => '(لأنظمة الكمبيوتر المحمول)';
 }

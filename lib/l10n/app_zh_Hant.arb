@@ -217,5 +217,9 @@
   "selectVendor": "品牌",
   "selectModel": "主機板型號",
   "btnImport": "匯入",
-  "defaultLabel": "預設"
+  "defaultLabel": "預設",
+  "wifiBluetoothDrivers": "無線網卡與藍牙驅動：",
+  "noWifiDriversByDefault": "(預設不配置任何無線驅動)",
+  "getIntelModifiedOclp": "獲取 Intel 專用修改版 OCLP",
+  "forLaptopSystems": "(適用於筆記型電腦)"
 }

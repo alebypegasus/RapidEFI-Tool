@@ -1,5 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rapidefi/l10n/generated/app_localizations.dart';
 import 'package:rapidefi/pages/manual/widgets/connectivity/bluetooth_widget.dart';
+
 import 'package:rapidefi/pages/manual/widgets/connectivity/brcm_wifi.dart';
 import 'package:rapidefi/pages/shared/widgets/choice_list.dart';
 import 'package:rapidefi/pages/shared/formatters/kext_label.dart';
@@ -255,10 +257,11 @@ class _WifiCardState extends State<WifiCard> {
       );
     });
 
+    final l10n = AppLocalizations.of(context);
     return TitleCard(
-      title: "Wi-Fi & Bluetooth Drivers:",
-      subTitle: "(No Wi-Fi drivers configured by default)",
-      content: const OclpLinkButton(buttonText: 'Get Intel Modified OCLP'),
+      title: l10n?.wifiBluetoothDrivers ?? "Wi-Fi & Bluetooth Drivers:",
+      subTitle: l10n?.noWifiDriversByDefault ?? "(No Wi-Fi drivers configured by default)",
+      content: OclpLinkButton(buttonText: l10n?.getIntelModifiedOclp ?? 'Get Intel Modified OCLP'),
       expander: SizedBox(
         height: 300,
         child: TabView(
@@ -273,3 +276,4 @@ class _WifiCardState extends State<WifiCard> {
     );
   }
 }
+

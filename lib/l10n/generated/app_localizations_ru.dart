@@ -682,4 +682,17 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get defaultLabel => 'По умолчанию';
+
+  @override
+  String get wifiBluetoothDrivers => 'Драйверы Wi-Fi и Bluetooth:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(По умолчанию драйверы Wi-Fi не настроены)';
+
+  @override
+  String get getIntelModifiedOclp => 'Получить модифицированный OCLP для Intel';
+
+  @override
+  String get forLaptopSystems => '(Для ноутбуков)';
 }

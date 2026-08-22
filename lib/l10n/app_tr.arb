@@ -217,5 +217,9 @@
   "selectVendor": "Marka",
   "selectModel": "Anakart Modeli",
   "btnImport": "İçe Aktar",
-  "defaultLabel": "Varsayılan"
+  "defaultLabel": "Varsayılan",
+  "wifiBluetoothDrivers": "Wi-Fi ve Bluetooth Sürücüleri:",
+  "noWifiDriversByDefault": "(Varsayılan olarak hiçbir Wi-Fi sürücüsü yapılandırılmamıştır)",
+  "getIntelModifiedOclp": "Intel Değiştirilmiş OCLP'yi Edinin",
+  "forLaptopSystems": "(Dizüstü Bilgisayarlar İçin)"
 }

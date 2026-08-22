@@ -217,5 +217,9 @@
   "selectVendor": "ব্র্যান্ড",
   "selectModel": "মাদারবোর্ড মডেল",
   "btnImport": "আমদানি করুন",
-  "defaultLabel": "ডিফল্ট"
+  "defaultLabel": "ডিফল্ট",
+  "wifiBluetoothDrivers": "ওয়াই-ফাই এবং ব্লুটুথ ড্রাইভার:",
+  "noWifiDriversByDefault": "(ডিফল্টভাবে কোনও ওয়াই-ফাই ড্রাইভার কনফিগার করা নেই)",
+  "getIntelModifiedOclp": "ইন্টেল পরিবর্তিত OCLP পান",
+  "forLaptopSystems": "(ল্যাপটপ সিস্টেমের জন্য)"
 }

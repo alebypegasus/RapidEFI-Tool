@@ -155,8 +155,9 @@ class _LaptopWidgetState extends State<LaptopWidget> {
 
     return TitleCard(
       title: l10n?.laptopDrivers ?? 'Laptop Drivers:',
-      subTitle: '(For Laptop Systems)',
+      subTitle: l10n?.forLaptopSystems ?? '(For Laptop Systems)',
       expander: SizedBox(
+
         height: 380,
         child: TabView(
           tabs: tabs,

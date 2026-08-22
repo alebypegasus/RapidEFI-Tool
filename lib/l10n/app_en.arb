@@ -238,5 +238,9 @@
   "selectVendor": "Brand",
   "selectModel": "Motherboard Model",
   "btnImport": "Import",
-  "defaultLabel": "Default"
+  "defaultLabel": "Default",
+  "wifiBluetoothDrivers": "Wi-Fi & Bluetooth Drivers:",
+  "noWifiDriversByDefault": "(No Wi-Fi drivers configured by default)",
+  "getIntelModifiedOclp": "Get Intel Modified OCLP",
+  "forLaptopSystems": "(For Laptop Systems)"
 }

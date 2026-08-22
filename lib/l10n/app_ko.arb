@@ -217,5 +217,9 @@
   "selectVendor": "브랜드",
   "selectModel": "메인보드 모델",
   "btnImport": "가져오기",
-  "defaultLabel": "기본값"
+  "defaultLabel": "기본값",
+  "wifiBluetoothDrivers": "Wi-Fi 및 블루투스 드라이버:",
+  "noWifiDriversByDefault": "(기본적으로 Wi-Fi 드라이버가 구성되지 않음)",
+  "getIntelModifiedOclp": "Intel 수정판 OCLP 받기",
+  "forLaptopSystems": "(노트북 시스템 전용)"
 }

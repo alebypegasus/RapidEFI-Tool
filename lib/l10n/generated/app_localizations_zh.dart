@@ -669,6 +669,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get defaultLabel => '默认';
+
+  @override
+  String get wifiBluetoothDrivers => '无线网卡与蓝牙驱动：';
+
+  @override
+  String get noWifiDriversByDefault => '(默认不配置任何无线驱动)';
+
+  @override
+  String get getIntelModifiedOclp => '获取 Intel 专用修改版 OCLP';
+
+  @override
+  String get forLaptopSystems => '(适用于笔记本机型)';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -1336,4 +1348,16 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get defaultLabel => '預設';
+
+  @override
+  String get wifiBluetoothDrivers => '無線網卡與藍牙驅動：';
+
+  @override
+  String get noWifiDriversByDefault => '(預設不配置任何無線驅動)';
+
+  @override
+  String get getIntelModifiedOclp => '獲取 Intel 專用修改版 OCLP';
+
+  @override
+  String get forLaptopSystems => '(適用於筆記型電腦)';
 }

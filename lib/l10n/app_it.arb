@@ -217,5 +217,9 @@
   "selectVendor": "Marca",
   "selectModel": "Modello scheda madre",
   "btnImport": "Importa",
-  "defaultLabel": "Predefinito"
+  "defaultLabel": "Predefinito",
+  "wifiBluetoothDrivers": "Driver Wi-Fi e Bluetooth:",
+  "noWifiDriversByDefault": "(Nessun driver Wi-Fi configurato per impostazione predefinita)",
+  "getIntelModifiedOclp": "Ottieni OCLP modificato per Intel",
+  "forLaptopSystems": "(Per sistemi portatili)"
 }

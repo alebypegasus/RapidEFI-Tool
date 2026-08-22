@@ -674,4 +674,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get defaultLabel => 'Default';
+
+  @override
+  String get wifiBluetoothDrivers => 'Wi-Fi & Bluetooth Drivers:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(No Wi-Fi drivers configured by default)';
+
+  @override
+  String get getIntelModifiedOclp => 'Get Intel Modified OCLP';
+
+  @override
+  String get forLaptopSystems => '(For Laptop Systems)';
 }

@@ -670,4 +670,16 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get defaultLabel => '기본값';
+
+  @override
+  String get wifiBluetoothDrivers => 'Wi-Fi 및 블루투스 드라이버:';
+
+  @override
+  String get noWifiDriversByDefault => '(기본적으로 Wi-Fi 드라이버가 구성되지 않음)';
+
+  @override
+  String get getIntelModifiedOclp => 'Intel 수정판 OCLP 받기';
+
+  @override
+  String get forLaptopSystems => '(노트북 시스템 전용)';
 }

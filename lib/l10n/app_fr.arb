@@ -217,5 +217,9 @@
   "selectVendor": "Marque",
   "selectModel": "Modèle de carte mère",
   "btnImport": "Importer",
-  "defaultLabel": "Par défaut"
+  "defaultLabel": "Par défaut",
+  "wifiBluetoothDrivers": "Pilotes Wi-Fi et Bluetooth :",
+  "noWifiDriversByDefault": "(Aucun pilote Wi-Fi configuré par défaut)",
+  "getIntelModifiedOclp": "Obtenir l'OCLP modifié d'Intel",
+  "forLaptopSystems": "(Pour les ordinateurs portables)"
 }

@@ -114,7 +114,11 @@ class _SMBiosWidgetState extends State<SMBiosWidget> {
           );
         },
       ),
-      snippet: SMBIOSCompatibility.supportSummary(selectedChoice),
+      snippet: SMBIOSCompatibility.supportSummary(
+        selectedChoice,
+        langCode: Localizations.localeOf(context).languageCode,
+      ),
     );
+
   }
 }

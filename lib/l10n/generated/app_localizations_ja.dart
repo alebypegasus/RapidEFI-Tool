@@ -670,4 +670,16 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get defaultLabel => 'デフォルト';
+
+  @override
+  String get wifiBluetoothDrivers => 'Wi-Fi＆Bluetooth ドライバ：';
+
+  @override
+  String get noWifiDriversByDefault => '(デフォルトでは Wi-Fi ドライバは構成されていません)';
+
+  @override
+  String get getIntelModifiedOclp => 'Intel 改変版 OCLP を取得';
+
+  @override
+  String get forLaptopSystems => '(ノート PC 向け)';
 }

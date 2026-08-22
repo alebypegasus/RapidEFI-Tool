@@ -217,5 +217,9 @@
   "selectVendor": "Marca",
   "selectModel": "Modelo de placa base",
   "btnImport": "Importar",
-  "defaultLabel": "Predeterminado"
+  "defaultLabel": "Predeterminado",
+  "wifiBluetoothDrivers": "Controladores de Wi-Fi y Bluetooth:",
+  "noWifiDriversByDefault": "(Sin controladores de Wi-Fi configurados por defecto)",
+  "getIntelModifiedOclp": "Obtener OCLP modificado de Intel",
+  "forLaptopSystems": "(Para sistemas portátiles)"
 }

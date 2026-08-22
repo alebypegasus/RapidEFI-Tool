@@ -679,4 +679,17 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get defaultLabel => 'ڈیفالٹ';
+
+  @override
+  String get wifiBluetoothDrivers => 'وائی فائی اور بلوٹوتھ ڈرائیورز:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(طے شدہ طور پر کوئی وائی فائی ڈرائیور تشکیل نہیں دیا گیا)';
+
+  @override
+  String get getIntelModifiedOclp => 'انٹیل کا ترمیم شدہ OCLP حاصل کریں';
+
+  @override
+  String get forLaptopSystems => '(لیپ ٹاپ سسٹمز کے لیے)';
 }

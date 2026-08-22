@@ -679,4 +679,17 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get defaultLabel => 'ডিফল্ট';
+
+  @override
+  String get wifiBluetoothDrivers => 'ওয়াই-ফাই এবং ব্লুটুথ ড্রাইভার:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(ডিফল্টভাবে কোনও ওয়াই-ফাই ড্রাইভার কনফিগার করা নেই)';
+
+  @override
+  String get getIntelModifiedOclp => 'ইন্টেল পরিবর্তিত OCLP পান';
+
+  @override
+  String get forLaptopSystems => '(ল্যাপটপ সিস্টেমের জন্য)';
 }

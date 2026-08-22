@@ -217,5 +217,9 @@
   "selectVendor": "Бренд",
   "selectModel": "Модель материнской платы",
   "btnImport": "Импортировать",
-  "defaultLabel": "По умолчанию"
+  "defaultLabel": "По умолчанию",
+  "wifiBluetoothDrivers": "Драйверы Wi-Fi и Bluetooth:",
+  "noWifiDriversByDefault": "(По умолчанию драйверы Wi-Fi не настроены)",
+  "getIntelModifiedOclp": "Получить модифицированный OCLP для Intel",
+  "forLaptopSystems": "(Для ноутбуков)"
 }

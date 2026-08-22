@@ -217,5 +217,9 @@
   "selectVendor": "ब्रांड",
   "selectModel": "मदरबोर्ड मॉडल",
   "btnImport": "आयात करें",
-  "defaultLabel": "डिफ़ॉल्ट"
+  "defaultLabel": "डिफ़ॉल्ट",
+  "wifiBluetoothDrivers": "वाई-फ़ाई और ब्लूटूथ ड्राइवर:",
+  "noWifiDriversByDefault": "(डिफ़ॉल्ट रूप से कोई वाई-फ़ाई ड्राइवर कॉन्फ़िगर नहीं)",
+  "getIntelModifiedOclp": "इंटेल संशोधित OCLP प्राप्त करें",
+  "forLaptopSystems": "(लैपटॉप सिस्टम के लिए)"
 }

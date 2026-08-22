@@ -675,4 +675,17 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get defaultLabel => 'Mặc định';
+
+  @override
+  String get wifiBluetoothDrivers => 'Trình điều khiển Wi-Fi & Bluetooth:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(Mặc định không cấu hình trình điều khiển Wi-Fi)';
+
+  @override
+  String get getIntelModifiedOclp => 'Tải OCLP sửa đổi cho Intel';
+
+  @override
+  String get forLaptopSystems => '(Dành cho hệ thống máy tính xách tay)';
 }

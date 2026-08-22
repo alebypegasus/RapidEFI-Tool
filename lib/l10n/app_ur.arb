@@ -217,5 +217,9 @@
   "selectVendor": "برانڈ",
   "selectModel": "مدر بورڈ ماڈل",
   "btnImport": "درآمد کریں",
-  "defaultLabel": "ڈیفالٹ"
+  "defaultLabel": "ڈیفالٹ",
+  "wifiBluetoothDrivers": "وائی فائی اور بلوٹوتھ ڈرائیورز:",
+  "noWifiDriversByDefault": "(طے شدہ طور پر کوئی وائی فائی ڈرائیور تشکیل نہیں دیا گیا)",
+  "getIntelModifiedOclp": "انٹیل کا ترمیم شدہ OCLP حاصل کریں",
+  "forLaptopSystems": "(لیپ ٹاپ سسٹمز کے لیے)"
 }

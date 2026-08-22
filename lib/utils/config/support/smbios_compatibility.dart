@@ -1,5 +1,6 @@
 import 'package:rapidefi/utils/config/models/platform_info/pi_generic.dart';
-import 'package:rapidefi/utils/config/support/macos_version.dart';
+import 'package:rapidefi/utils/translation/hackintosh_details_translator.dart';
+
 
 class SMBIOSCompatibility {
   const SMBIOSCompatibility._();
@@ -80,95 +81,8 @@ class SMBIOSCompatibility {
     'MacPro7,1': (min: 19, max: 25),
   };
 
-  static const Map<String, String> _supportDescriptions = {
-    'iMac10,1': 'Supports OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13',
-    'iMac11,1': 'Supports OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13',
-    'iMac11,2': 'Supports OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13',
-    'iMac12,2': 'Supports OS X Snow Leopard 10.6 ~ macOS High Sierra 10.13, suitable for iGPU + dGPU systems',
-    'iMac13,1':
-        'Supports OS X Mountain Lion 10.8 ~ macOS Catalina 10.15, suitable for Ivy Bridge architecture iGPU-only models',
-    'iMac13,2':
-        'Supports OS X Mountain Lion 10.8 ~ macOS Catalina 10.15, suitable for Ivy Bridge architecture with iGPU compute/decode + dGPU display output',
-    'iMac14,2':
-        'Supports OS X Mavericks 10.9 ~ macOS Big Sur 11, suitable for Haswell architecture with NVIDIA Maxwell and Pascal dGPUs',
-    'iMac14,4': 'Supports OS X Mavericks 10.9 ~ macOS Big Sur 11, suitable for Haswell architecture iGPU-only models',
-    'iMac15,1': 'Supports OS X Mavericks 10.9 ~ macOS Big Sur 11, suitable for Haswell architecture iGPU + dGPU models',
-    'iMac16,1': 'Supports macOS El Capitan 10.11 ~ macOS Monterey 12, suitable for iGPU (or with dGPU) models',
-    'iMac16,2':
-        'Supports macOS El Capitan 10.11 ~ macOS Monterey 12, suitable for Broadwell architecture iGPU (or with dGPU) models',
-    'iMac17,1':
-        'Supports macOS El Capitan 10.11 ~ macOS Monterey 12, suitable for Skylake architecture iGPU (or with dGPU) models',
-    'iMac18,1':
-        'Supports macOS Sierra 10.12 ~ macOS Ventura 13, suitable for iGPU + dGPU models. Note: with this model, most iGPU-only users may experience display color issues. Not recommended for iGPU-only users.',
-    'iMac18,3': 'Supports macOS Sierra 10.12 ~ macOS Ventura 13, suitable for iGPU compute/decode + dGPU display output',
-    'iMac19,2': 'Supports macOS 10.14 ~ macOS Sequoia 15, suitable for iGPU (or with dGPU) models',
-    'iMac19,1': 'Supports macOS 10.14 ~ macOS Sequoia 15, suitable for iGPU (or with dGPU) models',
-    'iMac20,1': 'Supports macOS 10.15 ~ macOS Tahoe 26, suitable for i7-10700K and lower processors with iGPU (or with dGPU)',
-    'iMac20,2': 'Supports macOS 10.15 ~ macOS Tahoe 26, suitable for i9-10850K and higher processors with iGPU (or with dGPU)',
-    'MacBookPro5,1': 'Supports macOS 10.5 ~ macOS El Capitan 10.11',
-    'MacBookPro5,2': 'Supports macOS 10.5 ~ macOS El Capitan 10.11',
-    'MacBookPro5,3': 'Supports macOS 10.5 ~ macOS El Capitan 10.11',
-    'MacBookPro5,4': 'Supports macOS 10.5 ~ macOS El Capitan 10.11',
-    'MacBookPro6,1': 'Supports macOS 10.6 ~ macOS High Sierra 10.13',
-    'MacBookPro6,2': 'Supports macOS 10.6 ~ macOS High Sierra 10.13',
-    'MacBookAir4,1': 'Supports macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookAir4,2': 'Supports macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookPro8,1': 'Supports macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookPro8,2': 'Supports macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookPro8,3': 'Supports macOS 10.7 ~ macOS High Sierra 10.13',
-    'Macmini5,1': 'Supports macOS 10.7 ~ macOS High Sierra 10.13',
-    'Macmini5,2': 'Supports macOS 10.7 ~ macOS High Sierra 10.13',
-    'Macmini5,3': 'Supports macOS 10.7 ~ macOS High Sierra 10.13',
-    'MacBookAir5,1': 'Supports macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookAir5,2': 'Supports macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookPro9,2': 'Supports macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookPro10,1': 'Supports macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookPro10,2': 'Supports macOS 10.8 ~ macOS Catalina 10.15',
-    'Macmini6,1': 'Supports macOS 10.8 ~ macOS Catalina 10.15',
-    'Macmini6,2': 'Supports macOS 10.8 ~ macOS Catalina 10.15',
-    'MacBookAir6,1': 'Supports macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookAir6,2': 'Supports macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookPro11,1': 'Supports macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookPro11,2': 'Supports macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookPro11,3': 'Supports macOS 10.9 ~ macOS Big Sur 11',
-    'MacBookPro11,4': 'Supports macOS High Sierra 10.13 ~ macOS Monterey 12',
-    'MacBookPro11,5': 'Supports macOS High Sierra 10.13 ~ macOS Monterey 12',
-    'Macmini3,1': 'Supports macOS 10.5 ~ macOS El Capitan 10.11',
-    'Macmini4,1': 'Supports macOS 10.5 ~ macOS El Capitan 10.11',
-    'Macmini7,1': 'Supports macOS Mojave 10.14 ~ macOS Monterey 12',
-    'MacBook8,1': 'Supports OS X El Capitan 10.11 ~ macOS Big Sur 11',
-    'MacBookAir7,1': 'Supports OS X El Capitan 10.11 ~ macOS Monterey 12',
-    'MacBookAir7,2': 'Supports OS X El Capitan 10.11 ~ macOS Monterey 12',
-    'MacBookPro12,1': 'Supports macOS Sierra 10.12 ~ macOS Monterey 12',
-    'MacBook9,1':
-        'Supports macOS Sierra 10.12 ~ macOS Monterey 12 (HD 515 iGPU officially supports up to Monterey 12, spoofing supports macOS Sequoia 15)',
-    'MacBookPro13,1':
-        'Supports macOS Sierra 10.12 ~ macOS Monterey 12 (Iris 540 iGPU officially supports up to Monterey 12, spoofing supports macOS Sequoia 15)',
-    'MacBookPro13,2':
-        'Supports macOS Sierra 10.12 ~ macOS Monterey 12 (Iris 550 iGPU officially supports up to Monterey 12, spoofing supports macOS Sequoia 15)',
-    'MacBookPro13,3':
-        'Supports macOS Sierra 10.12 ~ macOS Monterey 12 (HD 530 iGPU officially supports up to Monterey 12, spoofing supports macOS Sequoia 15)',
-    'MacBookPro14,1': 'Supports macOS High Sierra 10.13 ~ macOS Ventura 13',
-    'MacBookPro14,2': 'Supports macOS High Sierra 10.13 ~ macOS Ventura 13',
-    'MacBookPro14,3': 'Supports macOS High Sierra 10.13 ~ macOS Ventura 13',
-    'MacBookPro15,1': 'Supports macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'MacBookPro15,2': 'Supports macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'MacBookPro15,3': 'Supports macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'MacBookPro15,4': 'Supports macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'Macmini8,1': 'Supports macOS Mojave 10.14 ~ macOS Sequoia 15',
-    'MacBookPro16,1': 'Supports macOS Catalina 10.15 ~ macOS Tahoe 26',
-    'MacBookPro16,3': 'Supports macOS Catalina 10.15 ~ macOS Sequoia 15',
-    'MacBookPro16,4': 'Supports macOS Catalina 10.15 ~ macOS Tahoe 26',
-    'MacBookAir9,1': 'Supports macOS Catalina 10.15 ~ macOS Sequoia 15',
-    'MacBookPro16,2': 'Supports macOS Catalina 10.15 ~ macOS Tahoe 26',
-    'MacPro6,1': 'Supports macOS 10.9 ~ macOS Monterey 12, suitable for dGPU-only models',
-    'iMacPro1,1':
-        'Supports macOS 10.13 ~ macOS Sequoia 15, suitable for dGPU-only models. For Intel 11th Gen and above, this model provides normal CPU power management and turbo boost without extra kext patches (if turbo boost is abnormal in macOS, dump and use native SSDT-PLUG).',
-    'MacPro7,1':
-        'Supports macOS 10.15 ~ macOS Tahoe 26, suitable for AMD dGPU-only systems. Supported native AMD GPUs (e.g. RX560, RX570, RX5500, RX6600) provide full VDA hardware acceleration. For Intel 11th Gen and above using this model, CPU power management requires an extra kext patch. Enable this under [Optional Kexts] -> [CPU Related] -> [CPU Power Management Driver for MacPro7,1].',
-  };
-
   static ({int min, int max})? supportRange(PlatformInfoGeneric smbios) {
+
     return _supportRanges[smbios.systemProductName];
   }
 
@@ -228,18 +142,16 @@ class SMBIOSCompatibility {
     return true;
   }
 
-  static String supportSummary(PlatformInfoGeneric smbios) {
-    final description = _supportDescriptions[smbios.systemProductName];
-    if (description != null) {
-      return description;
-    }
-
+  static String supportSummary(
+    PlatformInfoGeneric smbios, {
+    String langCode = 'en',
+  }) {
     final range = supportRange(smbios);
-    if (range == null) {
-      return 'macOS compatibility range not configured';
-    }
-
-    return 'Supports ${MacOSVersions.labelFromDarwinMajor(range.min)} ~ '
-        '${MacOSVersions.labelFromDarwinMajor(range.max)}';
+    return HackintoshDetailsTranslator.translateSmbiosDescription(
+      smbios.systemProductName,
+      langCode,
+      fallbackRange: range,
+    );
   }
 }
+

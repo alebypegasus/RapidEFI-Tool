@@ -681,4 +681,17 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get defaultLabel => 'Standard';
+
+  @override
+  String get wifiBluetoothDrivers => 'WLAN- & Bluetooth-Treiber:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(Standardmäßig sind keine WLAN-Treiber konfiguriert)';
+
+  @override
+  String get getIntelModifiedOclp => 'Intel-modifiziertes OCLP herunterladen';
+
+  @override
+  String get forLaptopSystems => '(Für Laptop-Systeme)';
 }

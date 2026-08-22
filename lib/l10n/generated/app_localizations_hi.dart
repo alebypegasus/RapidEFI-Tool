@@ -679,4 +679,17 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get defaultLabel => 'डिफ़ॉल्ट';
+
+  @override
+  String get wifiBluetoothDrivers => 'वाई-फ़ाई और ब्लूटूथ ड्राइवर:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(डिफ़ॉल्ट रूप से कोई वाई-फ़ाई ड्राइवर कॉन्फ़िगर नहीं)';
+
+  @override
+  String get getIntelModifiedOclp => 'इंटेल संशोधित OCLP प्राप्त करें';
+
+  @override
+  String get forLaptopSystems => '(लैपटॉप सिस्टम के लिए)';
 }

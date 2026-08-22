@@ -217,5 +217,9 @@
   "selectVendor": "Merek",
   "selectModel": "Model Motherboard",
   "btnImport": "Impor",
-  "defaultLabel": "Bawaan"
+  "defaultLabel": "Bawaan",
+  "wifiBluetoothDrivers": "Driver Wi-Fi & Bluetooth:",
+  "noWifiDriversByDefault": "(Tidak ada driver Wi-Fi yang dikonfigurasi secara bawaan)",
+  "getIntelModifiedOclp": "Dapatkan OCLP Modifikasi Intel",
+  "forLaptopSystems": "(Untuk Sistem Laptop)"
 }

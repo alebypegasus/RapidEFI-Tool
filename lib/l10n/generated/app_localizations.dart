@@ -1437,6 +1437,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Default'**
   String get defaultLabel;
+
+  /// No description provided for @wifiBluetoothDrivers.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi & Bluetooth Drivers:'**
+  String get wifiBluetoothDrivers;
+
+  /// No description provided for @noWifiDriversByDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'(No Wi-Fi drivers configured by default)'**
+  String get noWifiDriversByDefault;
+
+  /// No description provided for @getIntelModifiedOclp.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Intel Modified OCLP'**
+  String get getIntelModifiedOclp;
+
+  /// No description provided for @forLaptopSystems.
+  ///
+  /// In en, this message translates to:
+  /// **'(For Laptop Systems)'**
+  String get forLaptopSystems;
 }
 
 class _AppLocalizationsDelegate

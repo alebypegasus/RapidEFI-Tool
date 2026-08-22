@@ -217,5 +217,9 @@
   "selectVendor": "العلامة التجارية",
   "selectModel": "طراز اللوحة الأم",
   "btnImport": "استيراد",
-  "defaultLabel": "افتراضي"
+  "defaultLabel": "افتراضي",
+  "wifiBluetoothDrivers": "برامج تشغيل Wi-Fi وبلوتوث:",
+  "noWifiDriversByDefault": "(لم يتم تكوين برامج تشغيل Wi-Fi افتراضيًا)",
+  "getIntelModifiedOclp": "الحصول على OCLP المعدل من Intel",
+  "forLaptopSystems": "(لأنظمة الكمبيوتر المحمول)"
 }

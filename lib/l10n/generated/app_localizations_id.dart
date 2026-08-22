@@ -681,4 +681,17 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get defaultLabel => 'Bawaan';
+
+  @override
+  String get wifiBluetoothDrivers => 'Driver Wi-Fi & Bluetooth:';
+
+  @override
+  String get noWifiDriversByDefault =>
+      '(Tidak ada driver Wi-Fi yang dikonfigurasi secara bawaan)';
+
+  @override
+  String get getIntelModifiedOclp => 'Dapatkan OCLP Modifikasi Intel';
+
+  @override
+  String get forLaptopSystems => '(Untuk Sistem Laptop)';
 }
