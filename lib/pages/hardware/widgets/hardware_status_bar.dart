@@ -44,25 +44,25 @@ class HardwareStatusBar extends StatelessWidget {
       color: Colors.transparent,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final isCompact = constraints.maxWidth < 600;
+          final isCompact = constraints.maxWidth < 750;
 
           final statusWidget = (showProgressDetails || isLoading)
               ? Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
-                      width: _statusWidth,
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 130),
                       child: Text(
                         _statusText,
                         style: TextStyle(fontSize: 11, color: colors.textColor),
                         maxLines: 1,
-                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.right,
                       ),
                     ),
                     const SizedBox(width: 6),
                     SizedBox(
-                      width: 108,
+                      width: 90,
                       height: 4,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(2),
@@ -70,17 +70,14 @@ class HardwareStatusBar extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 6),
-                    SizedBox(
-                      width: _elapsedWidth,
-                      child: Text(
-                        'Elapsed: ${_elapsedSecs}s',
-                        style: TextStyle(fontSize: 11, color: colors.textColor),
-                      ),
+                    Text(
+                      'Elapsed: ${_elapsedSecs}s',
+                      style: TextStyle(fontSize: 11, color: colors.textColor),
                     ),
                   ],
                 )
               : ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 360),
+                  constraints: const BoxConstraints(maxWidth: 320),
                   child: Text(
                     _statusText,
                     style: TextStyle(fontSize: 11, color: colors.textColor),
@@ -112,6 +109,7 @@ class HardwareStatusBar extends StatelessWidget {
       ),
     );
   }
+
 
   Widget _bar(HardwareThemeColors colors) {
     final value = isLoading ? progress : (progress == 0 ? 0.0 : 1.0);
